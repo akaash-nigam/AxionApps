@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axion Apps - Social Impact Mobile Applications</title>
+    <meta name="description" content="Portfolio of 18 working mobile applications for social impact in India - Android and visionOS platforms">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; background: #f7fafc; }
+
+        .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 100px 20px; text-align: center; }
+        .hero h1 { font-size: 4em; margin-bottom: 20px; font-weight: 700; }
+        .hero p { font-size: 1.5em; opacity: 0.95; max-width: 800px; margin: 0 auto; }
+
+        .stats { background: white; padding: 60px 20px; text-align: center; border-bottom: 1px solid #e2e8f0; }
+        .stats-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+        .stat-card { padding: 20px; }
+        .stat-number { font-size: 3em; font-weight: 700; color: #667eea; }
+        .stat-label { font-size: 1.1em; color: #666; margin-top: 10px; }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 80px 20px; }
+        .section-title { text-align: center; font-size: 3em; margin-bottom: 20px; color: #2d3748; }
+        .section-subtitle { text-align: center; font-size: 1.2em; color: #666; margin-bottom: 60px; max-width: 800px; margin-left: auto; margin-right: auto; }
+
+        .platform-section { margin-bottom: 80px; }
+        .platform-header { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 40px; }
+        .platform-icon { font-size: 2.5em; }
+        .platform-title { font-size: 2.5em; color: #2d3748; }
+
+        .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
+        .app-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; text-decoration: none; color: inherit; display: block; }
+        .app-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+
+        .app-header { padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .app-name-en { font-size: 1.5em; font-weight: 600; margin-bottom: 5px; }
+        .app-name-hi { font-size: 1.1em; opacity: 0.9; }
+
+        .app-body { padding: 25px; }
+        .app-tagline { color: #666; font-size: 0.95em; line-height: 1.5; margin-bottom: 15px; }
+        .app-category { display: inline-block; background: #edf2f7; color: #667eea; padding: 5px 12px; border-radius: 20px; font-size: 0.85em; font-weight: 600; }
+
+        .android-card .app-header { background: linear-gradient(135deg, #3ddc84 0%, #00875a 100%); }
+        .visionos-card .app-header { background: linear-gradient(135deg, #ff6482 0%, #c81e78 100%); }
+
+        footer { background: #2d3748; color: white; padding: 60px 20px; text-align: center; }
+        .footer-content { max-width: 1200px; margin: 0 auto; }
+        .footer-title { font-size: 1.5em; margin-bottom: 20px; }
+        .footer-text { opacity: 0.8; max-width: 600px; margin: 0 auto 30px; }
+        .footer-links { display: flex; gap: 30px; justify-content: center; margin-top: 30px; }
+        .footer-link { color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s; }
+        .footer-link:hover { opacity: 1; }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <h1>Axion Apps</h1>
+        <p>Technology for Social Impact in India</p>
+        <p style="font-size: 1.2em; margin-top: 20px; opacity: 0.9;">18 Mobile Applications Serving Communities Across Android & visionOS</p>
+    </section>
+
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">18</div>
+                <div class="stat-label">Working Apps</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2</div>
+                <div class="stat-label">Platforms</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Success Rate</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">6+</div>
+                <div class="stat-label">Languages</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <h2 class="section-title">Our Applications</h2>
+        <p class="section-subtitle">Empowering communities through accessible, multilingual mobile technology</p>
+
+        <!-- Android Apps -->
+        <div class="platform-section">
+            <div class="platform-header">
+                <span class="platform-icon">🤖</span>
+                <h3 class="platform-title">Android Apps (16)</h3>
+            </div>
+            <div class="apps-grid">
+                <a href="android_majdoor-mitra/" class="app-card android-card">
+                    <div class="app-header">
+                        <div class="app-name-en">Majdoor Mitra</div>
+                        <div class="app-name-hi">मजदूर मित्र</div>
+                    </div>
+                    <div class="app-body">
+                        <p class="app-tagline">Worker assistance platform with job search, skills training, and rights awareness in 6 languages</p>
+                        <span class="app-category">Employment</span>
+                    </div>
+                </a>
+
+                <a href="android_safar-saathi/" class="app-card android-card">
+                    <div class="app-header">
+                        <div class="app-name-en">Safar Saathi</div>
+                        <div class="app-name-hi">सफर साथी</div>
+                    </div>
+                    <div class="app-body">
+                        <p class="app-tagline">Travel companion app for safe and convenient journeys across India</p>
+                        <span class="app-category">Travel</span>
+                    </div>
+                </a>
+
+                <a href="android_sarkar-seva/" class="app-card android-card">
+                    <div class="app-header">
+                        <div class="app-name-en">Sarkar Seva</div>
+                        <div class="app-name-hi">सरकार सेवा</div>
+                    </div>
+                    <div class="app-body">
+                        <p class="app-tagline">Easy access to government services, schemes, and benefits in your language</p>
+                        <span class="app-category">Government</span>
+                    </div>
+                </a>
+
+                <a href="android_BoloCare/" class="app-card android-card">
+                    <div class="app-header">
+                        <div class="app-name-en">BoloCare</div>
+                        <div class="app-name-hi">बोलो केयर</div>
+                    </div>
+                    <div class="app-body">
+                        <p class="app-tagline">Voice-enabled healthcare app with multilingual support and doctor consultations</p>
+                        <span class="app-category">Healthcare</span>
+                    </div>
+                </a>
+
+                <a href="android_TrainSathi/" class="app-card android-card">
+                    <div class="app-header">
+                        <div class="app-name-en">Train Sathi</div>
+                        <div class="app-name-hi">ट्रेन साथी</div>
+                    </div>
+                    <div class="app-body">
+                        <p class="app-tagline">Railway assistant for booking, tracking, and journey planning</p>
+                        <span class="app-category">Travel</span>
+                    </div>
+                </a>
+
+                <a href="android_seekho-kamao/" class="app-card android-card">
+                    <div class="app-header">
+                        <div class="app-name-en">Seekho Kamao</div>
+                        <div class="app-name-hi">सीखो कमाओ</div>
+                    </div>
+                    <div class="app-body">
+                        <p class="app-tagline">Skill development and employment platform connecting training to jobs</p>
+                        <span class="app-category">Education</span>
+                    </div>
+                </a>
+
+                <a href="android_bachat-sahayak/" class="app-card android-card">
+                    <div class="app-header">
+                        <div class="app-name-en">Bachat Sahayak</div>
+                        <div class="app-name-hi">बचत सहायक</div>
+                    </div>
+                    <div class="app-body">
+                        <p class="app-tagline">Savings helper for financial planning and money management</p>
+                        <span class="app-category">Finance</span>
+                    </div>
+                </a>
+
+                <a href="android_bhasha-buddy/" class="app-card android-card">
+                    <div class="app-header">
+                        <div class="app-name-en">Bhasha Buddy</div>
+                        <div class="app-name-hi">भाषा बड्डी</div>
+                    </div>
+                    <div class="app-body">
+                        <p class="app-tagline">Language learning companion for mastering Indian languages</p>
+                        <span class="app-category">Education</span>
+                    </div>
+                </a>
+
+                <a href="android_dukaan-sahayak/" class="app-card android-card">
+                    <div class="app-header">
+                        <div class="app-name-en">Dukaan Sahayak</div>
+                        <div class="app-name-hi">दुकान सहायक</div>
+                    </div>
+                    <div class="app-body">
+                        <p class="app-tagline">Shop management assistant for small business owners</p>
+                        <span class="app-category">Business</span>
+                    </div>
+                </a>
+
+                <a href="android_beti-bachao/" class="app-card android-card">
+                    <div class="app-header">
+                        <div class="app-name-en">Beti Bachao</div>
+                        <div class="app-name-hi">बेटी बचाओ</div>
+                    </div>
+                    <div class="app-body">
+                        <p class="app-tagline">Women & girl child empowerment with safety, education, and rights support</p>
+                        <span class="app-category">Social Impact</span>
+                    </div>
+                </a>
+
+                <a href="android_fasal-rakshak/" class="app-card android-card">
+                    <div class="app-header">
+                        <div class="app-name-en">Fasal Rakshak</div>
+                        <div class="app-name-hi">फसल रक्षक</div>
+                    </div>
+                    <div class="app-body">
+                        <p class="app-tagline">AI-powered crop protection with disease detection and pest management</p>
+                        <span class="app-category">Agriculture</span>
+                    </div>
+                </a>
+
+                <a href="android_gaon-gateway/" class="app-card android-card">
+                    <div class="app-header">
+                        <div class="app-name-en">Gaon Gateway</div>
+                        <div class="app-name-hi">गाँव गेटवे</div>
+                    </div>
+                    <div class="app-body">
+                        <p class="app-tagline">Rural digital connectivity hub linking villages to e-commerce and services</p>
+                        <span class="app-category">Digital Inclusion</span>
+                    </div>
+                </a>
+
+                <a href="android_krishi-mitra/" class="app-card android-card">
+                    <div class="app-header">
+                        <div class="app-name-en">Krishi Mitra</div>
+                        <div class="app-name-hi">कृषि मित्र</div>
+                    </div>
+                    <div class="app-body">
+                        <p class="app-tagline">Complete farming companion with mandi prices, crop advisory, and buyer connections</p>
+                        <span class="app-category">Agriculture</span>
+                    </div>
+                </a>
+
+                <a href="android_pani-rakshak/" class="app-card android-card">
+                    <div class="app-header">
+                        <div class="app-name-en">Pani Rakshak</div>
+                        <div class="app-name-hi">पानी रक्षक</div>
+                    </div>
+                    <div class="app-body">
+                        <p class="app-tagline">Water conservation app with usage tracking and rainwater harvesting guidance</p>
+                        <span class="app-category">Environment</span>
+                    </div>
+                </a>
+
+                <a href="android_svachh-sahayak/" class="app-card android-card">
+                    <div class="app-header">
+                        <div class="app-name-en">Svachh Sahayak</div>
+                        <div class="app-name-hi">स्वच्छ सहायक</div>
+                    </div>
+                    <div class="app-body">
+                        <p class="app-tagline">Cleanliness assistant supporting Swachh Bharat with waste management tools</p>
+                        <span class="app-category">Social Impact</span>
+                    </div>
+                </a>
+
+                <a href="android_vidyarthi-sahayak/" class="app-card android-card">
+                    <div class="app-header">
+                        <div class="app-name-en">Vidyarthi Sahayak</div>
+                        <div class="app-name-hi">विद्यार्थी सहायक</div>
+                    </div>
+                    <div class="app-body">
+                        <p class="app-tagline">Student learning companion with NCERT solutions, exam prep, and career guidance</p>
+                        <span class="app-category">Education</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- visionOS Apps -->
+        <div class="platform-section">
+            <div class="platform-header">
+                <span class="platform-icon">🥽</span>
+                <h3 class="platform-title">visionOS Apps (2)</h3>
+            </div>
+            <div class="apps-grid">
+                <a href="visionOS_ai-agent-coordinator/" class="app-card visionos-card">
+                    <div class="app-header">
+                        <div class="app-name-en">AI Agent Coordinator</div>
+                    </div>
+                    <div class="app-body">
+                        <p class="app-tagline">Multi-agent spatial coordination with real-time collaboration and 3D visualization</p>
+                        <span class="app-category">Enterprise</span>
+                    </div>
+                </a>
+
+                <a href="visionOS_energy-grid-visualizer/" class="app-card visionos-card">
+                    <div class="app-header">
+                        <div class="app-name-en">Energy Grid Visualizer</div>
+                    </div>
+                    <div class="app-body">
+                        <p class="app-tagline">3D energy infrastructure visualization with real-time grid monitoring and power flow analytics</p>
+                        <span class="app-category">Enterprise</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <h3 class="footer-title">Axion Apps</h3>
+            <p class="footer-text">Building technology solutions for social impact across India. Our applications serve millions, bridging the digital divide through multilingual, accessible mobile experiences.</p>
+            <p style="margin-top: 40px; opacity: 0.6;">&copy; 2024 Axion Apps. Empowering Communities Through Technology.</p>
+        </div>
+    </footer>
+</body>
+</html>

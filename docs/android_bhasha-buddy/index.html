@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhasha Buddy - Master Indian Languages with AI</title>
+    <meta name="description" content="Learn Hindi, Tamil, Telugu, Bengali, and more Indian languages through interactive AI-powered lessons, voice practice, and cultural immersion.">
+    <meta name="keywords" content="language learning, Indian languages, Hindi learning, Tamil app, AI tutor, language buddy">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Bhasha Buddy - Master Indian Languages">
+    <meta property="og:description" content="AI-powered language learning designed specifically for Indian languages and culture.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bhasha-buddy.app">
+    <meta property="og:image" content="https://bhasha-buddy.app/og-image.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bhasha Buddy - Master Indian Languages">
+    <meta name="twitter:description" content="Learn Indian languages with AI-powered interactive lessons.">
+    <meta name="twitter:image" content="https://bhasha-buddy.app/twitter-image.jpg">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #ff9933 0%, #138808 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #ff9933;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            color: #2d3748;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #ff9933;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .screenshot-section {
+            background: #f7fafc;
+            padding: 80px 20px;
+        }
+
+        .screenshots {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .screenshot-placeholder {
+            width: 280px;
+            height: 580px;
+            background: linear-gradient(135deg, #ff9933 0%, #138808 100%);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2em;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .testimonials {
+            background: white;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .testimonial {
+            padding: 30px;
+            background: #f7fafc;
+            border-radius: 15px;
+            border-left: 4px solid #ff9933;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #4a5568;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .testimonial-role {
+            color: #718096;
+            font-size: 0.9em;
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-top: 20px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <h1>Bhasha Buddy</h1>
+        <p>Master Indian Languages with AI</p>
+        <p>Learn Hindi, Tamil, Telugu, Bengali and more through interactive lessons and cultural immersion</p>
+        <a href="#" class="cta-button">Download on Google Play</a>
+    </section>
+
+    <div class="container">
+        <h2 class="section-title">Your Personal Language Learning Companion</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>AI-Powered Tutor</h3>
+                <p>Get personalized lessons tailored to your learning style and pace. Our AI adapts to your progress and focuses on areas that need improvement.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎤</div>
+                <h3>Voice Recognition</h3>
+                <p>Practice pronunciation with advanced speech recognition technology. Get instant feedback on your accent and speaking skills.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌏</div>
+                <h3>22+ Indian Languages</h3>
+                <p>Learn Hindi, Tamil, Telugu, Bengali, Marathi, Gujarati, Kannada, Malayalam, Punjabi, and many more regional languages.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3>Cultural Context</h3>
+                <p>Learn beyond vocabulary with cultural insights, regional expressions, and real-world conversations rooted in Indian traditions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎮</div>
+                <h3>Gamified Learning</h3>
+                <p>Make learning fun with interactive games, quizzes, challenges, and daily streaks. Compete with friends and earn rewards!</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Offline Mode</h3>
+                <p>Download lessons and practice anywhere without internet. Perfect for commutes, travel, or areas with limited connectivity.</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="screenshot-section">
+        <h2 class="section-title">Experience Interactive Learning</h2>
+        <div class="screenshots">
+            <div style="max-width: 300px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border-radius: 20px; overflow: hidden;">
+                <img src="screenshots/home_screen.png" alt="Bhasha Buddy Home Screen" style="width: 100%; height: auto; display: block;">
+                <div style="padding: 15px; background: white; text-align: center;">
+                    <h4 style="color: #2d3748; margin-bottom: 5px;">Home Screen</h4>
+                    <p style="color: #666; font-size: 0.9em;">AI-powered language learning interface</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container testimonials">
+        <h2 class="section-title">Success Stories</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial">
+                <p class="testimonial-text">"I learned Tamil in just 3 months to talk to my in-laws! The voice recognition helped me perfect my pronunciation."</p>
+                <p class="testimonial-author">Neha Kapoor</p>
+                <p class="testimonial-role">Software Developer, Delhi</p>
+            </div>
+            <div class="testimonial">
+                <p class="testimonial-text">"As someone who moved to Gujarat for work, Bhasha Buddy made learning Gujarati fun and easy. The cultural context helped me connect with locals."</p>
+                <p class="testimonial-author">Arjun Menon</p>
+                <p class="testimonial-role">Marketing Manager, Ahmedabad</p>
+            </div>
+            <div class="testimonial">
+                <p class="testimonial-text">"Finally reconnecting with my roots! Learning Bengali has brought me closer to my grandparents and heritage."</p>
+                <p class="testimonial-author">Priya Chatterjee</p>
+                <p class="testimonial-role">Student, Bangalore</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Bhasha Buddy. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="support.html">Support</a>
+        </div>
+    </footer>
+</body>
+</html>
