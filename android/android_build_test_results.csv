@@ -1,0 +1,7 @@
+Project,Status,BuildTime,ErrorType,ErrorCount,Notes
+android_analysis,SKIPPED,0,EMPTY_DIR,0,Empty or tool directory
+android_shared,SKIPPED,0,EMPTY_DIR,0,Empty or tool directory
+android_tools,SKIPPED,0,EMPTY_DIR,0,Empty or tool directory
+device_testing_screenshots_session2,SKIPPED,0,NO_GRADLE,0,No Gradle build files found
+device_testing_screenshots,SKIPPED,0,NO_GRADLE,0,No Gradle build files found
+TobeDeletedLater,SKIPPED,0,NO_GRADLE,0,No Gradle build files found

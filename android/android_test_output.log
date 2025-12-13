@@ -1,0 +1,147 @@
+=======================================
+Android Systematic Build Testing
+=======================================
+
+⏭️  Skipping: android_analysis (empty/tool directory)
+
+[2] Testing: Android_ApexLifeStyle
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[3] Testing: Android_Aurum
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[4] Testing: android_ayushman-card-manager
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[5] Testing: android_bachat-sahayak
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[6] Testing: Android_BachatSahayak
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[7] Testing: android_bhasha-buddy
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[8] Testing: android_BimaShield
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[9] Testing: Android_DailyNeedsDelivery
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[10] Testing: android_dukaan-sahayak
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[11] Testing: Android_ElderCareConnect
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[12] Testing: Android_FamilyHub
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[13] Testing: android_GlowAI
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[14] Testing: Android_HealthyFamily
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[15] Testing: android_karz-mukti
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[16] Testing: android_kisan-sahayak
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[17] Testing: android_majdoor-mitra
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[18] Testing: Android_Pinnacle
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[19] Testing: android_poshan-tracker
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[20] Testing: Android_RasodaManager
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[21] Testing: Android_RentSmart
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[22] Testing: android_safar-saathi
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[23] Testing: android_SafeCalc
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[24] Testing: android_sarkar-seva
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[25] Testing: android_seekho-kamao
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+⏭️  Skipping: android_shared (empty/tool directory)
+
+[27] Testing: android_swasthya-sahayak
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+⏭️  Skipping: android_tools (empty/tool directory)
+
+[29] Testing: android_TrainSathi
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[30] Testing: Android_VahanTracker
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[31] Testing: android_village-job-board
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[32] Testing: Android_WealthWise
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+
+[33] Testing: android-seekho-kamao
+-----------------------------------
+[0;31m❌ FAILED[0m: Other errors (0)
+⏭️  Skipping: device_testing_screenshots_session2 (no Gradle build file)
+⏭️  Skipping: device_testing_screenshots (no Gradle build file)
+⏭️  Skipping: TobeDeletedLater (no Gradle build file)
+
+=======================================
+Build Testing Complete
+=======================================
+
+Results:
+  Total Projects: 36
+  Success: 0 (0%)
+  Failed: 30 (83%)
+  Skipped: 6 (16%)
+
+Results saved to: android_build_test_results.csv
+Summary report saved to: android_build_test_summary.md
+
+To view results:
+  cat android_build_test_results.csv
+  cat android_build_test_summary.md

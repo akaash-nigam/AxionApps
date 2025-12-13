@@ -1,0 +1,115 @@
+# iOS Duplicate Repositories Analysis
+
+**Date:** December 03, 2025
+
+
+## Potential Duplicate Families
+
+### 0 (105 versions)
+
+- ios_02-demo-projects (EMPTY)
+- ios_04-development-tools (EMPTY)
+- ios_06-scripts (1 commits
+- 13 files)
+- iOS_AIPersonalTrainer (9 commits
+- 37 files)
+- iOS_BilingualCivicAssistant (5 commits
+- 1422 files)
+- iOS_BilingualCivicAssistant_Concept (1 commits
+- 5 files)
+- iOS_BilingualCivicAssistantXcode (1 commits
+- 149 files)
+- iOS_BorderBuddy (1 commits
+- 191 files)
+- iOS_BorderBuddy_Concept (1 commits
+- 4 files)
+- iOS_BorderBuddyApp (1 commits
+- 91 files)
+- ios_calmspace-ai (8 commits
+- 45 files)
+- iOS_CanadaBizPro (6 commits
+- 32 files)
+- iOS_CanadianAppsCore (6 commits
+- 30 files)
+- iOS_CrossBorderCompanion (1 commits
+- 27 files)
+- iOS_CrossBorderCompanion_Concept (1 commits
+- 5 files)
+- ios_expense-ai (5 commits
+- 33 files)
+- ios_fitcoach-ai (4 commits
+- 49 files)
+- ios_fluent-ai (11 commits
+- 126 files)
+- iOS_HelloWorld_Demo (3 commits
+- 35 files)
+- iOS_IndigenousLanguagesLand (1 commits
+- 7 files)
+- iOS_IndigenousLanguagesLand_Concept (1 commits
+- 5 files)
+- iOS_iOSMCPServer (1 commits
+- 27 files)
+- ios_letters (1 commits
+- 15 files)
+- iOS_LocaleConnect (1 commits
+- 17 files)
+- iOS_LocaleConnect_Concept (82 commits
+- 446 files)
+- iOS_MapleFinance (1 commits
+- 2385 files)
+- iOS_MapleFinance_Concept (6 commits
+- 55 files)
+- iOS_MapleFinanceApp (1 commits
+- 31 files)
+- iOS_MapleFinanceXcode (1 commits
+- 22 files)
+- iOS_MapleFresh (1 commits
+- 18 files)
+- iOS_MapleFresh_Concept (6 commits
+- 109 files)
+- ios_mealmind-ai (3 commits
+- 182 files)
+- iOS_MediQueue (1 commits
+- 42 files)
+- iOS_NewcomerLaunchpad (1 commits
+- 2954 files)
+- iOS_NewcomerLaunchpad_Concept (6 commits
+- 60 files)
+- iOS_NewcomerLaunchpadApp (1 commits
+- 34 files)
+- iOS_NorthernEssentials (1 commits
+- 21 files)
+- iOS_NorthernEssentials_Concept (6 commits
+- 66 files)
+- iOS_ParksWildfirePlanner (1 commits
+- 19 files)
+- iOS_ParksWildfirePlanner_Concept (6 commits
+- 55 files)
+- ios_photopro-ai (3 commits
+- 30 files)
+- ios_readtrack-ai (1 commits
+- 1 files)
+- ios_sleepwise-ai (4 commits
+- 69 files)
+- iOS_SMEExportWizard (13 commits
+- 2529 files)
+- iOS_SMEExportWizard_Concept (7 commits
+- 66 files)
+- ios_taskmaster-ai (2 commits
+- 37 files)
+- ios_taxwise-ai (7 commits
+- 43 files)
+- ios_therapyspace-ai (8 commits
+- 90 files)
+- ios_tripgenius-ai (15 commits
+- 168 files)
+- ios_wealthtrack-ai (1 commits
+- 1 files)
+- iOS_WinterWell (15 commits
+- 167 files)
+- iOS_WinterWell_Concept (6 commits
+- 46 files)
+- MCP_iOS_Server (1 commits
+- 82 files)
+- 
+
