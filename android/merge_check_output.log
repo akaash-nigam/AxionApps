@@ -1,0 +1,156 @@
+========================================
+MERGE CHECK FOR PENDING REPOSITORIES
+Total Repositories: 28
+========================================
+
+=========================================
+[1/28] Checking: android_sarkar-seva
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[2/28] Checking: android_ayushman-card-manager
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[3/28] Checking: android_MeraShahar
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[4/28] Checking: android_village-job-board
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[5/28] Checking: android_analysis
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[6/28] Checking: android_shared
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[7/28] Checking: android_tools
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[8/28] Checking: android_CodexAndroid
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[9/28] Checking: android_India1_Apps
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[10/28] Checking: android_India2_Apps
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[11/28] Checking: android_India3_apps
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[12/28] Checking: Android_DailyNeedsDelivery
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[13/28] Checking: Android_RasodaManager
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[14/28] Checking: Android_ApexLifeStyle
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[15/28] Checking: Android_FamilyHub
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[16/28] Checking: android_ShadiConnect
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[17/28] Checking: android_FanConnect
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[18/28] Checking: android_bachat-sahayak
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[19/28] Checking: android_KisanPay
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[20/28] Checking: android_SafeCalc
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[21/28] Checking: android_GlowAI
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[22/28] Checking: android_JyotishAI
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[23/28] Checking: android_QuotelyAI
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[24/28] Checking: android_TrainSathi
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[25/28] Checking: android_RentRamp
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[26/28] Checking: android_Canada
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[27/28] Checking: Android_Pinnacle
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+[28/28] Checking: android_PhoneGuardian
+=========================================
+⚠️  Repository not found locally - skipping
+
+=========================================
+MERGE CHECK SUMMARY
+=========================================
+Total Repositories: 28
+Repositories with Claude branches: 0
+Successful merges: 0
+Failed merges (conflicts): 0
+No branches to merge: 28
+
+Conflict report saved to: /Users/aakashnigam/Axion/AxionApps/android/MERGE_CONFLICTS_FOUND.md
+=========================================
