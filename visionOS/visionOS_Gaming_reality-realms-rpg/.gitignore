@@ -1,0 +1,183 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Xcode
+*.xcodeproj
+*.xcworkspace
+!*.xcworkspace/contents.xcworkspacedata
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.moved-aside
+DerivedData/
+*.hmap
+*.ipa
+*.xcuserstate
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Reality Composer Pro
+*.rcproject/DerivedData/
+
+# Game Assets (large files)
+# Uncomment if using Git LFS
+# *.usdz
+# *.reality
+# *.wav
+# *.mp3
+
+# Build artifacts
+*.dSYM.zip
+*.dSYM
+
+# Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# CocoaPods
+Pods/
+
+# Carthage
+Carthage/Build/
+
+# Temporary files
+*.swp
+*~.nib
+*.tmp
+*.temp
+
+# Testing
+*.gcov
+*.gcno
+*.gcda
+*.profdata
+
+# IDE
+.vscode/
+.idea/
+
+# SwiftLint
+.swiftlint-report.json
+
+# Build and Derived Data
+Build/
+DerivedData/
+.ipa
+*.hmap
+*.ipa.txt
+
+# Artifacts
+*.dSYM
+*.dSYM.zip
+*.xcarchive
+
+# Environment and Secrets
+.env
+.env.local
+.env.*.local
+credentials.json
+config.local.swift
+
+# GitHub and CI/CD
+.github/workflows/*.backup
+.github/artifacts/
+workflow-artifacts/
+
+# Swift Package Manager
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+Package.resolved
+
+# Test Artifacts
+Build/TestResults.xcresult
+Build/coverage.json
+*.profraw
+*.profdata
+coverage.xml
+
+# Code Coverage
+coverage/
+*.gcov
+*.gcno
+*.gcda
+
+# Documentation
+docs/_build/
+docs/.doctrees/
+
+# Node modules (if using any JavaScript tooling)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Temporary Editor Files
+*.swp
+*.swo
+*~
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Xcode Specific
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcworkspace/xcshareddata/
+*.moved-aside
+build/
+.codebeat.yml
+.swiftlint-ignore
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output/**
+fastlane/logs/
+fastlane/.env
+fastlane/.env.default
+
+# Third-party
+Vendors/
+External/
+
+# System
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Workspace
+*.xcworkspace/
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Local development
+local.properties
+.gradle/
+
+# macOS specifics
+.AppleDouble
+.LSOverride
+._*
+*.swp
+*~.nib
+.DS_Store
+

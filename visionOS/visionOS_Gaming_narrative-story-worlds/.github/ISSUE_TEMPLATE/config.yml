@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Discussions
+    url: https://github.com/akaash-nigam/visionOS_Gaming_narrative-story-worlds/discussions
+    about: Ask questions, discuss features, and engage with the community
+  - name: 📚 Documentation
+    url: https://github.com/akaash-nigam/visionOS_Gaming_narrative-story-worlds/blob/main/README.md
+    about: Read the project documentation
+  - name: 🧪 Testing Guide
+    url: https://github.com/akaash-nigam/visionOS_Gaming_narrative-story-worlds/blob/main/NarrativeStoryWorlds/Tests/README.md
+    about: Learn about our testing procedures

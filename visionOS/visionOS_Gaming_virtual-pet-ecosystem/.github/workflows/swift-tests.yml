@@ -1,0 +1,77 @@
+name: Swift Tests
+
+on:
+  push:
+    branches: [ main, develop, 'claude/**' ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: macos-14
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '16.0'
+
+    - name: Swift version
+      run: swift --version
+
+    - name: Run tests
+      working-directory: ./VirtualPetEcosystem
+      run: swift test --enable-code-coverage
+
+    - name: Generate code coverage report
+      working-directory: ./VirtualPetEcosystem
+      run: |
+        xcrun llvm-cov export -format="lcov" \
+          .build/debug/VirtualPetEcosystemPackageTests.xctest/Contents/MacOS/VirtualPetEcosystemPackageTests \
+          -instr-profile .build/debug/codecov/default.profdata > coverage.lcov
+      continue-on-error: true
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        files: ./VirtualPetEcosystem/coverage.lcov
+        flags: unittests
+        name: codecov-umbrella
+      continue-on-error: true
+
+  lint:
+    name: SwiftLint
+    runs-on: macos-14
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install SwiftLint
+      run: brew install swiftlint
+
+    - name: Run SwiftLint
+      working-directory: ./VirtualPetEcosystem
+      run: swiftlint lint --reporter github-actions-logging
+      continue-on-error: true
+
+  build:
+    name: Build Check
+    runs-on: macos-14
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '16.0'
+
+    - name: Build package
+      working-directory: ./VirtualPetEcosystem
+      run: swift build -v

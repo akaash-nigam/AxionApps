@@ -1,0 +1,173 @@
+name: Tests
+
+on:
+  push:
+    branches: [main, develop, "claude/**"]
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+
+jobs:
+  unit-tests:
+    name: Unit & Integration Tests
+    runs-on: macos-14
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_15.2.app
+
+      - name: Display Xcode version
+        run: xcodebuild -version
+
+      - name: Cache Derived Data
+        uses: actions/cache@v3
+        with:
+          path: ~/Library/Developer/Xcode/DerivedData
+          key: ${{ runner.os }}-derived-data-${{ hashFiles('**/*.swift') }}
+          restore-keys: |
+            ${{ runner.os }}-derived-data-
+
+      - name: Build for testing
+        run: |
+          xcodebuild build-for-testing \
+            -scheme NarrativeStoryWorlds \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -derivedDataPath DerivedData
+
+      - name: Run Unit Tests
+        run: |
+          xcodebuild test-without-building \
+            -scheme NarrativeStoryWorlds \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -derivedDataPath DerivedData \
+            -only-testing:NarrativeStoryWorldsTests/AISystemTests \
+            -enableCodeCoverage YES \
+            -resultBundlePath TestResults.xcresult
+
+      - name: Run Integration Tests
+        run: |
+          xcodebuild test-without-building \
+            -scheme NarrativeStoryWorlds \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -derivedDataPath DerivedData \
+            -only-testing:NarrativeStoryWorldsTests/IntegrationTests \
+            -enableCodeCoverage YES \
+            -resultBundlePath TestResults.xcresult
+
+      - name: Generate Coverage Report
+        run: |
+          xcrun xccov view --report TestResults.xcresult > coverage.txt
+          cat coverage.txt
+
+      - name: Check Coverage Threshold
+        run: |
+          COVERAGE=$(xcrun xccov view --report --json TestResults.xcresult | \
+            jq '.targets[] | select(.name=="NarrativeStoryWorlds") | .lineCoverage' | \
+            awk '{print int($1*100)}')
+          echo "Coverage: ${COVERAGE}%"
+          if [ $COVERAGE -lt 70 ]; then
+            echo "❌ Coverage ${COVERAGE}% is below 70% threshold"
+            exit 1
+          else
+            echo "✅ Coverage ${COVERAGE}% meets 70% threshold"
+          fi
+
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: coverage-report
+          path: |
+            coverage.txt
+            TestResults.xcresult
+
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: test-results
+          path: TestResults.xcresult
+
+      - name: Comment PR with Coverage
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const coverage = fs.readFileSync('coverage.txt', 'utf8');
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## Test Coverage Report\n\n\`\`\`\n${coverage}\n\`\`\``
+            });
+
+  performance-tests:
+    name: Performance Tests
+    runs-on: macos-14
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_15.2.app
+
+      - name: Run Performance Tests
+        run: |
+          xcodebuild test \
+            -scheme NarrativeStoryWorlds \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -only-testing:NarrativeStoryWorldsTests/PerformanceTests \
+            -resultBundlePath PerformanceResults.xcresult
+
+      - name: Extract Performance Metrics
+        run: |
+          xcrun xcresulttool get --path PerformanceResults.xcresult \
+            --format json > performance.json
+          echo "Performance test results:"
+          cat performance.json | jq '.metrics'
+
+      - name: Upload Performance Results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: performance-results
+          path: |
+            performance.json
+            PerformanceResults.xcresult
+
+  test-summary:
+    name: Test Summary
+    runs-on: ubuntu-latest
+    needs: [unit-tests, performance-tests]
+    if: always()
+
+    steps:
+      - name: Download Test Results
+        uses: actions/download-artifact@v3
+
+      - name: Create Summary
+        run: |
+          echo "# Test Execution Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Unit & Integration Tests" >> $GITHUB_STEP_SUMMARY
+          if [ -f "test-results/TestResults.xcresult" ]; then
+            echo "✅ Completed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ Failed" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Performance Tests" >> $GITHUB_STEP_SUMMARY
+          if [ -f "performance-results/PerformanceResults.xcresult" ]; then
+            echo "✅ Completed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ Failed" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "See artifacts for detailed results." >> $GITHUB_STEP_SUMMARY

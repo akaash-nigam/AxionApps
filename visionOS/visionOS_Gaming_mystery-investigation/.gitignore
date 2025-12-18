@@ -1,0 +1,130 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Xcode
+*.xcodeproj
+*.xcworkspace
+!*.xcworkspace/contents.xcworkspacedata
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.moved-aside
+DerivedData/
+*.hmap
+*.ipa
+*.xcuserstate
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Reality Composer Pro
+*.rcproject/DerivedData/
+
+# Game Assets (large files)
+# Uncomment if using Git LFS
+# *.usdz
+# *.reality
+# *.wav
+# *.mp3
+
+# Build artifacts
+*.dSYM.zip
+*.dSYM
+
+# Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# CocoaPods
+Pods/
+
+# Carthage
+Carthage/Build/
+
+# Temporary files
+*.swp
+*~.nib
+*.tmp
+*.temp
+
+# Testing
+*.gcov
+*.gcno
+*.gcda
+*.profdata
+
+# IDE
+.vscode/
+.idea/
+
+# visionOS specific
+*.xcscmblueprint
+*.xccheckout
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+
+# FastLane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# AppCode
+.appcode/
+
+# App packaging
+*.app
+*.dSYM
+*.ipa
+*.xcarchive
+
+# Secrets and environment
+.env
+.env.local
+secrets.json
+credentials.json
+*.pem
+*.p12
+*.mobileprovision
+
+# Documentation build
+site/
+_site/
+
+# Node modules (for tooling)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Python (for scripts)
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+ENV/
+
+# Logs
+*.log
+logs/
+
+# OS generated
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Backup files
+*.bak
+*.backup
+*~
+

@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parkour Pathways - Transform Your Space Into a Parkour Playground</title>
+    <meta name="description" content="The ultimate spatial parkour game for Apple Vision Pro. Transform any room into your personal parkour playground with AI-generated courses and real-time physics.">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Parkour Pathways - Spatial Parkour for Vision Pro">
+    <meta property="og:description" content="Transform your space into a parkour playground. AI-generated courses that adapt to your room.">
+    <meta property="og:image" content="https://parkourpathways.app/og-image.jpg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="container nav-container">
+            <div class="nav-logo">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <path d="M20 0L40 20L20 40L0 20L20 0Z" fill="url(#logo-gradient)"/>
+                    <defs>
+                        <linearGradient id="logo-gradient" x1="0" y1="0" x2="40" y2="40">
+                            <stop offset="0%" stop-color="#00D9FF"/>
+                            <stop offset="100%" stop-color="#7B61FF"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span class="nav-brand">Parkour Pathways</span>
+            </div>
+
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+                <li><a href="#pricing" class="nav-link">Pricing</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="#pricing" class="btn btn-ghost">Get Started</a>
+                <button class="nav-toggle" id="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="hero-grid"></div>
+            <div class="hero-gradient"></div>
+        </div>
+
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-badge" data-aos="fade-up">
+                    <span class="badge-icon">✨</span>
+                    <span>Built exclusively for Apple Vision Pro</span>
+                </div>
+
+                <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+                    Your Room.<br/>
+                    Your <span class="gradient-text">Playground</span>.
+                </h1>
+
+                <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
+                    Transform any space into an immersive parkour experience. AI-powered courses that adapt to your room, your skill level, and your style.
+                </p>
+
+                <div class="hero-cta" data-aos="fade-up" data-aos-delay="300">
+                    <a href="#pricing" class="btn btn-primary btn-lg">
+                        <span>Start Your Journey</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                    <a href="#demo" class="btn btn-outline btn-lg">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M6.66667 5L13.3333 10L6.66667 15V5Z" fill="currentColor"/>
+                        </svg>
+                        <span>Watch Demo</span>
+                    </a>
+                </div>
+
+                <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat">
+                        <div class="stat-value">10K+</div>
+                        <div class="stat-label">Active Players</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">500K+</div>
+                        <div class="stat-label">Courses Completed</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">4.9★</div>
+                        <div class="stat-label">App Store Rating</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual" data-aos="fade-left" data-aos-delay="200">
+                <div class="device-mockup">
+                    <div class="mockup-screen">
+                        <div class="mockup-content">
+                            <!-- Animated parkour visualization -->
+                            <div class="parkour-demo">
+                                <div class="player-avatar"></div>
+                                <div class="obstacle obstacle-1"></div>
+                                <div class="obstacle obstacle-2"></div>
+                                <div class="obstacle obstacle-3"></div>
+                                <div class="trajectory-line"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mockup-glow"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-scroll">
+            <div class="scroll-indicator">
+                <span>Scroll to explore</span>
+                <div class="scroll-arrow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-label">Why Choose Parkour Pathways</span>
+                <h2 class="section-title">Features That Push Boundaries</h2>
+                <p class="section-description">
+                    Experience parkour like never before with cutting-edge spatial computing technology
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path d="M16 4L28 16L16 28L4 16L16 4Z" stroke="url(#icon-gradient-1)" stroke-width="2"/>
+                            <defs>
+                                <linearGradient id="icon-gradient-1" x1="4" y1="4" x2="28" y2="28">
+                                    <stop offset="0%" stop-color="#00D9FF"/>
+                                    <stop offset="100%" stop-color="#7B61FF"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">AI-Powered Course Generation</h3>
+                    <p class="feature-description">
+                        Our advanced AI analyzes your room layout and generates perfectly balanced parkour courses that match your skill level and available space.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Adapts to any room size (2m x 2m minimum)</li>
+                        <li>Learns your style and preferences</li>
+                        <li>Infinite unique course variations</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <circle cx="16" cy="16" r="12" stroke="url(#icon-gradient-2)" stroke-width="2"/>
+                            <path d="M16 8V16L22 19" stroke="url(#icon-gradient-2)" stroke-width="2" stroke-linecap="round"/>
+                            <defs>
+                                <linearGradient id="icon-gradient-2" x1="4" y1="4" x2="28" y2="28">
+                                    <stop offset="0%" stop-color="#FF6B9D"/>
+                                    <stop offset="100%" stop-color="#FFA06B"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Real-Time Physics & Safety</h3>
+                    <p class="feature-description">
+                        Advanced physics simulation combined with real-time safety monitoring ensures an authentic yet safe parkour experience.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Realistic jump and vault mechanics</li>
+                        <li>Dynamic collision detection</li>
+                        <li>Automatic safety boundaries</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path d="M8 12L16 4L24 12M8 20L16 28L24 20" stroke="url(#icon-gradient-3)" stroke-width="2" stroke-linecap="round"/>
+                            <defs>
+                                <linearGradient id="icon-gradient-3" x1="8" y1="4" x2="24" y2="28">
+                                    <stop offset="0%" stop-color="#A78BFA"/>
+                                    <stop offset="100%" stop-color="#EC4899"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Multiplayer & Social</h3>
+                    <p class="feature-description">
+                        Compete with friends using SharePlay, challenge global leaderboards, or race against ghost recordings of top players.
+                    </p>
+                    <ul class="feature-list">
+                        <li>SharePlay for co-op gameplay</li>
+                        <li>Global & friend leaderboards</li>
+                        <li>Ghost racing with top performers</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path d="M16 4C9.37 4 4 9.37 4 16C4 22.63 9.37 28 16 28C22.63 28 28 22.63 28 16" stroke="url(#icon-gradient-4)" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="16" cy="16" r="4" fill="url(#icon-gradient-4)"/>
+                            <defs>
+                                <linearGradient id="icon-gradient-4" x1="4" y1="4" x2="28" y2="28">
+                                    <stop offset="0%" stop-color="#10B981"/>
+                                    <stop offset="100%" stop-color="#3B82F6"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Immersive Spatial Audio</h3>
+                    <p class="feature-description">
+                        3D spatial audio with dynamic room acoustics creates an incredibly realistic soundscape that responds to your movements.
+                    </p>
+                    <ul class="feature-list">
+                        <li>HRTF-based 3D positioning</li>
+                        <li>Adaptive room reverb</li>
+                        <li>Haptic feedback integration</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <rect x="4" y="8" width="24" height="16" rx="2" stroke="url(#icon-gradient-5)" stroke-width="2"/>
+                            <path d="M12 14L16 18L20 14" stroke="url(#icon-gradient-5)" stroke-width="2" stroke-linecap="round"/>
+                            <defs>
+                                <linearGradient id="icon-gradient-5" x1="4" y1="8" x2="28" y2="24">
+                                    <stop offset="0%" stop-color="#F59E0B"/>
+                                    <stop offset="100%" stop-color="#EF4444"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Progressive Difficulty</h3>
+                    <p class="feature-description">
+                        From beginner to expert, our adaptive difficulty system ensures you're always challenged but never overwhelmed.
+                    </p>
+                    <ul class="feature-list">
+                        <li>4 skill levels with smooth progression</li>
+                        <li>Assistive mode for accessibility</li>
+                        <li>Custom difficulty settings</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path d="M16 4L20 12L28 13L22 19L24 28L16 23L8 28L10 19L4 13L12 12L16 4Z" stroke="url(#icon-gradient-6)" stroke-width="2"/>
+                            <defs>
+                                <linearGradient id="icon-gradient-6" x1="4" y1="4" x2="28" y2="28">
+                                    <stop offset="0%" stop-color="#8B5CF6"/>
+                                    <stop offset="100%" stop-color="#EC4899"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Achievements & Progression</h3>
+                    <p class="feature-description">
+                        Unlock achievements, track your stats, and watch yourself improve with detailed performance analytics.
+                    </p>
+                    <ul class="feature-list">
+                        <li>50+ unique achievements</li>
+                        <li>Detailed performance metrics</li>
+                        <li>Personal records tracking</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-label">Simple & Intuitive</span>
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-description">
+                    Get started in under 60 seconds
+                </p>
+            </div>
+
+            <div class="steps">
+                <div class="step" data-aos="fade-right" data-aos-delay="100">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Scan Your Room</h3>
+                        <p class="step-description">
+                            Put on your Vision Pro and let our ARKit-powered scanner map your space in seconds. We detect walls, furniture, and safe play areas automatically.
+                        </p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="visual-placeholder room-scan">
+                            <div class="scan-grid"></div>
+                            <div class="scan-pulse"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step step-reverse" data-aos="fade-left" data-aos-delay="200">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Choose Your Challenge</h3>
+                        <p class="step-description">
+                            Select from AI-generated courses tailored to your space and skill level. Each course is unique and perfectly balanced for your room's dimensions.
+                        </p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="visual-placeholder course-select">
+                            <div class="course-card"></div>
+                            <div class="course-card"></div>
+                            <div class="course-card active"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" data-aos="fade-right" data-aos-delay="300">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Jump, Vault, Conquer</h3>
+                        <p class="step-description">
+                            Execute precision jumps, smooth vaults, and wall runs. Our physics engine ensures every movement feels authentic while keeping you safe.
+                        </p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="visual-placeholder gameplay">
+                            <div class="player-icon"></div>
+                            <div class="obstacle-icon"></div>
+                            <div class="score-popup">+950</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Demo Section -->
+    <section class="demo-section" id="demo">
+        <div class="container">
+            <div class="demo-content" data-aos="zoom-in">
+                <div class="demo-video">
+                    <div class="video-placeholder">
+                        <button class="play-button">
+                            <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                                <circle cx="32" cy="32" r="32" fill="rgba(255,255,255,0.2)"/>
+                                <path d="M24 18L46 32L24 46V18Z" fill="white"/>
+                            </svg>
+                        </button>
+                        <div class="video-overlay">
+                            <span>Watch Full Demo</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-info">
+                    <h3>See It In Action</h3>
+                    <p>Watch as players transform their living rooms into thrilling parkour courses. Real players, real rooms, real excitement.</p>
+                    <div class="demo-stats">
+                        <div class="demo-stat">
+                            <span class="stat-number">2:34</span>
+                            <span class="stat-label">Average Session</span>
+                        </div>
+                        <div class="demo-stat">
+                            <span class="stat-number">850</span>
+                            <span class="stat-label">Calories/Hour</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof / Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-label">Loved by Players</span>
+                <h2 class="section-title">What Players Say</h2>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-rating">
+                        <span>★★★★★</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "This is the first fitness app that actually makes me excited to work out. The AI course generation means I never get bored!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MK</div>
+                        <div class="author-info">
+                            <div class="author-name">Marcus K.</div>
+                            <div class="author-title">Early Adopter</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-rating">
+                        <span>★★★★★</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "The spatial audio is incredible. You really feel like you're in a parkour gym. And SharePlay mode with friends is so much fun!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SL</div>
+                        <div class="author-info">
+                            <div class="author-name">Sarah L.</div>
+                            <div class="author-title">Fitness Enthusiast</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-rating">
+                        <span>★★★★★</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "I've tried every Vision Pro game. This is THE killer app. The physics feel perfect and the safety features give me confidence."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">DJ</div>
+                        <div class="author-info">
+                            <div class="author-name">David J.</div>
+                            <div class="author-title">Tech Reviewer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-label">Simple Pricing</span>
+                <h2 class="section-title">Choose Your Plan</h2>
+                <p class="section-description">
+                    Start free, upgrade anytime. No credit card required.
+                </p>
+            </div>
+
+            <div class="pricing-toggle" data-aos="fade-up" data-aos-delay="100">
+                <span class="toggle-label">Monthly</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="pricing-toggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label">Annual <span class="save-badge">Save 20%</span></span>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="pricing-header">
+                        <h3 class="plan-name">Free</h3>
+                        <p class="plan-description">Perfect for trying out parkour</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price">$0</span>
+                        <span class="period">/forever</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><span class="check">✓</span> 5 AI-generated courses/week</li>
+                        <li><span class="check">✓</span> Basic difficulty levels</li>
+                        <li><span class="check">✓</span> Personal stats tracking</li>
+                        <li><span class="check">✓</span> Local leaderboards</li>
+                        <li class="disabled"><span class="cross">✗</span> Multiplayer & SharePlay</li>
+                        <li class="disabled"><span class="cross">✗</span> Advanced analytics</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline btn-block">Get Started Free</a>
+                </div>
+
+                <div class="pricing-card featured" data-aos="fade-up" data-aos-delay="200">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3 class="plan-name">Pro</h3>
+                        <p class="plan-description">For serious parkour athletes</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price monthly-price">$9.99</span>
+                        <span class="price annual-price" style="display: none;">$7.99</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><span class="check">✓</span> Unlimited AI courses</li>
+                        <li><span class="check">✓</span> All difficulty levels + custom</li>
+                        <li><span class="check">✓</span> SharePlay multiplayer</li>
+                        <li><span class="check">✓</span> Global leaderboards</li>
+                        <li><span class="check">✓</span> Ghost racing</li>
+                        <li><span class="check">✓</span> Advanced analytics</li>
+                        <li><span class="check">✓</span> Priority support</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary btn-block">Start Free Trial</a>
+                    <p class="trial-note">14-day free trial, cancel anytime</p>
+                </div>
+
+                <div class="pricing-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="pricing-header">
+                        <h3 class="plan-name">Team</h3>
+                        <p class="plan-description">For gyms and trainers</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price">Custom</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><span class="check">✓</span> Everything in Pro</li>
+                        <li><span class="check">✓</span> Multi-user management</li>
+                        <li><span class="check">✓</span> Custom branding</li>
+                        <li><span class="check">✓</span> Analytics dashboard</li>
+                        <li><span class="check">✓</span> Dedicated support</li>
+                        <li><span class="check">✓</span> API access</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline btn-block">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-label">Got Questions?</span>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <button class="faq-question">
+                        <span>Do I need a large space to play?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No! Parkour Pathways works in spaces as small as 2m x 2m (6.5ft x 6.5ft). Our AI adapts courses to your available space, whether you have a small bedroom or a large living room.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <button class="faq-question">
+                        <span>Is it safe? What about my furniture?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Safety is our #1 priority. Our advanced ARKit scanning detects furniture and obstacles, automatically creating safe boundaries. The game will alert you if you get too close to any hazards, and courses are designed with generous safety margins.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                    <button class="faq-question">
+                        <span>Can I play with friends?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely! Pro plan includes SharePlay support, letting you compete with friends in real-time. You can also race against ghost recordings of other players or climb the global leaderboards.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <button class="faq-question">
+                        <span>Do I need parkour experience?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Not at all! Our adaptive difficulty system starts with beginner-friendly courses and progressively challenges you as you improve. The tutorial teaches all movements step-by-step.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <button class="faq-question">
+                        <span>How many calories can I burn?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Players burn an average of 850 calories per hour during intense sessions. Our analytics track your activity and integrate with Apple Health for comprehensive fitness tracking.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                    <button class="faq-question">
+                        <span>What about accessibility features?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We're committed to accessibility. Features include VoiceOver support, color blind modes, reduce motion options, and assistive difficulty settings that provide more time and larger target zones.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content" data-aos="zoom-in">
+                <h2 class="cta-title">Ready to Transform Your Space?</h2>
+                <p class="cta-description">
+                    Join thousands of players who've discovered the future of fitness gaming
+                </p>
+                <div class="cta-buttons">
+                    <a href="#pricing" class="btn btn-primary btn-lg">
+                        <span>Start Free Trial</span>
+                    </a>
+                    <a href="#demo" class="btn btn-glass btn-lg">
+                        <span>Watch Demo First</span>
+                    </a>
+                </div>
+                <p class="cta-note">
+                    ✓ No credit card required  ✓ 14-day free trial  ✓ Cancel anytime
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
+                            <path d="M20 0L40 20L20 40L0 20L20 0Z" fill="url(#footer-logo-gradient)"/>
+                            <defs>
+                                <linearGradient id="footer-logo-gradient" x1="0" y1="0" x2="40" y2="40">
+                                    <stop offset="0%" stop-color="#00D9FF"/>
+                                    <stop offset="100%" stop-color="#7B61FF"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <span>Parkour Pathways</span>
+                    </div>
+                    <p class="footer-description">
+                        Transform your space into an immersive parkour playground with the power of spatial computing.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M6.29 18.25c7.55 0 11.67-6.25 11.67-11.67v-.53c.8-.59 1.49-1.3 2.04-2.13-.75.33-1.54.55-2.36.65a4.12 4.12 0 0 0 1.8-2.27c-.8.48-1.68.81-2.6 1a4.1 4.1 0 0 0-7 3.74 11.65 11.65 0 0 1-8.45-4.3 4.1 4.1 0 0 0 1.27 5.49C2.01 8.2 1.37 8.03.8 7.7v.05a4.1 4.1 0 0 0 3.3 4.03 4.1 4.1 0 0 1-1.86.07 4.1 4.1 0 0 0 3.83 2.85A8.23 8.23 0 0 1 0 16.4a11.62 11.62 0 0 0 6.29 1.84"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M10 0C7.28 0 6.94.01 5.88.05 4.82.09 4.07.27 3.42.51c-.68.26-1.26.61-1.84 1.19C1 2.28.65 2.86.39 3.54.15 4.19-.03 4.94.01 6c-.04 1.06-.05 1.4-.05 4.12s.01 3.06.05 4.12c.04 1.06.22 1.81.46 2.46.26.68.61 1.26 1.19 1.84.58.58 1.16.93 1.84 1.19.65.24 1.4.42 2.46.46 1.06.04 1.4.05 4.12.05s3.06-.01 4.12-.05c1.06-.04 1.81-.22 2.46-.46.68-.26 1.26-.61 1.84-1.19.58-.58.93-1.16 1.19-1.84.24-.65.42-1.4.46-2.46.04-1.06.05-1.4.05-4.12s-.01-3.06-.05-4.12c-.04-1.06-.22-1.81-.46-2.46-.26-.68-.61-1.26-1.19-1.84-.58-.58-1.16-.93-1.84-1.19-.65-.24-1.4-.42-2.46-.46C13.06.01 12.72 0 10 0zm0 1.8c2.67 0 2.99.01 4.04.05.98.04 1.5.2 1.86.33.47.18.8.4 1.15.75.35.35.57.68.75 1.15.13.36.29.88.33 1.86.04 1.05.05 1.37.05 4.04s-.01 2.99-.05 4.04c-.04.98-.2 1.5-.33 1.86-.18.47-.4.8-.75 1.15-.35.35-.68.57-1.15.75-.36.13-.88.29-1.86.33-1.05.04-1.37.05-4.04.05s-2.99-.01-4.04-.05c-.98-.04-1.5-.2-1.86-.33-.47-.18-.8-.4-1.15-.75-.35-.35-.57-.68-.75-1.15-.13-.36-.29-.88-.33-1.86-.04-1.05-.05-1.37-.05-4.04s.01-2.99.05-4.04c.04-.98.2-1.5.33-1.86.18-.47.4-.8.75-1.15.35-.35.68-.57 1.15-.75.36-.13.88-.29 1.86-.33 1.05-.04 1.37-.05 4.04-.05z"/>
+                                <path d="M10 13.33a3.33 3.33 0 1 1 0-6.66 3.33 3.33 0 0 1 0 6.66zm0-8.46a5.13 5.13 0 1 0 0 10.26 5.13 5.13 0 0 0 0-10.26zm6.54-.2a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Discord">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M16.93 4.21c-1.23-.56-2.54-.98-3.92-1.22-.17.3-.36.71-.49 1.03a14.29 14.29 0 0 0-4.28 0c-.13-.32-.33-.73-.5-1.03-1.37.24-2.69.66-3.91 1.22C.69 7.97-.42 11.64.13 15.25c1.62 1.19 3.18 1.91 4.73 2.39.38-.51.72-1.06 1.01-1.63-.56-.21-1.08-.46-1.58-.76.13-.1.26-.2.38-.3 3.05 1.41 6.36 1.41 9.38 0 .13.11.26.21.39.3-.5.3-1.03.55-1.59.76.29.57.63 1.12 1.01 1.63 1.55-.48 3.11-1.2 4.73-2.39.64-4.18-.67-7.8-2.83-11.04zM6.68 13.03c-.94 0-1.71-.87-1.71-1.93 0-1.06.76-1.93 1.71-1.93.95 0 1.72.87 1.71 1.93 0 1.06-.76 1.93-1.71 1.93zm6.65 0c-.94 0-1.71-.87-1.71-1.93 0-1.06.76-1.93 1.71-1.93.95 0 1.72.87 1.71 1.93 0 1.06-.76 1.93-1.71 1.93z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-title">Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#demo">Demo</a></li>
+                        <li><a href="#">Changelog</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-title">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Community</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-title">Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Licenses</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="copyright">© 2024 Parkour Pathways. All rights reserved.</p>
+                <div class="footer-badges">
+                    <span class="badge">Built for Vision Pro</span>
+                    <span class="badge">iOS 18+</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

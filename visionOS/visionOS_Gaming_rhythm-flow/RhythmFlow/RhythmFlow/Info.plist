@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<true/>
+		<key>UISceneConfigurations</key>
+		<dict/>
+	</dict>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Rhythm Flow tracks your workout data to help you reach your fitness goals.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Rhythm Flow saves your workout data to the Health app.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Rhythm Flow uses the local network for multiplayer features with SharePlay.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Rhythm Flow can use your microphone for voice commands during gameplay.</string>
+	<key>NSHandTrackingUsageDescription</key>
+	<string>Rhythm Flow uses hand tracking to detect your movements and gestures for gameplay.</string>
+	<key>NSWorldSensingUsageDescription</key>
+	<string>Rhythm Flow scans your play area to create a safe and immersive gaming environment.</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>arm64</string>
+	</array>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>UIPreferredDefaultInterfaceOrientation</key>
+	<string>UIInterfaceOrientationPortrait</string>
+</dict>
+</plist>

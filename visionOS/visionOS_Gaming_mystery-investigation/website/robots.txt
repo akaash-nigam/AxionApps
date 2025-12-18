@@ -1,0 +1,35 @@
+# robots.txt for Mystery Investigation
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://mysteryinvestigation.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Specific rules for different bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Block access to admin or private areas (if any)
+# User-agent: *
+# Disallow: /admin/
+# Disallow: /private/
+
+# Allow images and assets
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /css/
+Allow: /js/
+
+# Host (preferred domain)
+# Host: https://mysteryinvestigation.com

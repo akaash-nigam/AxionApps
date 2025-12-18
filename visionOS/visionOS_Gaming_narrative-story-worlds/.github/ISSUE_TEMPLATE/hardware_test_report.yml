@@ -1,0 +1,144 @@
+name: Hardware Test Report
+description: Report results from visionOS hardware testing
+title: "[Hardware Test]: "
+labels: ["testing", "hardware", "needs-review"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Report results from hardware-specific tests (ARKit, spatial audio, gestures, etc.)
+        See [VISIONOS_HARDWARE_TESTS.md](../../NarrativeStoryWorlds/Tests/VISIONOS_HARDWARE_TESTS.md)
+
+  - type: input
+    id: test-id
+    attributes:
+      label: Test ID
+      description: Test identifier from VISIONOS_HARDWARE_TESTS.md
+      placeholder: "e.g., ARK-001, HND-002, EMO-003"
+    validations:
+      required: true
+
+  - type: input
+    id: test-name
+    attributes:
+      label: Test Name
+      description: Name of the test from documentation
+      placeholder: "e.g., Room Scan Accuracy, Pinch Gesture Detection"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: result
+    attributes:
+      label: Test Result
+      description: Overall result of the test
+      options:
+        - PASS
+        - FAIL
+        - PARTIAL
+        - BLOCKED
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Outcome
+      description: What was supposed to happen (from test documentation)
+      placeholder: Copy from test documentation
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Outcome
+      description: What actually happened
+      placeholder: Describe what you observed
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device-type
+    attributes:
+      label: Device Type
+      description: Device used for testing
+      options:
+        - Apple Vision Pro
+        - visionOS Simulator
+    validations:
+      required: true
+
+  - type: input
+    id: visionos-version
+    attributes:
+      label: visionOS Version
+      description: Version of visionOS
+      placeholder: "e.g., 2.0, 2.1"
+    validations:
+      required: true
+
+  - type: input
+    id: app-version
+    attributes:
+      label: App Build
+      description: App version/build number
+      placeholder: "e.g., 1.0.0 (123)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Test Environment
+      description: Room conditions, lighting, space size, etc.
+      placeholder: |
+        - Room size: 4m x 3m
+        - Lighting: Bright daylight
+        - Furniture: Table, couch, bookshelf
+    validations:
+      required: true
+
+  - type: textarea
+    id: metrics
+    attributes:
+      label: Metrics / Measurements
+      description: Quantitative results (accuracy %, frame rate, latency, etc.)
+      placeholder: |
+        - Accuracy: 92% (target: >90%)
+        - Latency: 18ms (target: <20ms)
+
+  - type: textarea
+    id: issues
+    attributes:
+      label: Issues Found
+      description: Any bugs or problems discovered during testing
+      placeholder: List any issues encountered
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes / Observations
+      description: Additional observations or context
+      placeholder: Any other relevant information
+
+  - type: textarea
+    id: media
+    attributes:
+      label: Screenshots / Videos
+      description: Visual evidence of test execution
+
+  - type: dropdown
+    id: retest
+    attributes:
+      label: Retest Needed?
+      description: Should this test be run again?
+      options:
+        - No
+        - Yes - Minor issues
+        - Yes - Major issues
+        - Yes - After bug fixes
+    validations:
+      required: true

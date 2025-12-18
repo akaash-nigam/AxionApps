@@ -1,0 +1,159 @@
+name: Build
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  validate:
+    name: Validate Xcode Project
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Validate Xcode Project
+        run: |
+          xcodebuild -project RealityRealms.xcodeproj \
+            -scheme RealityRealms \
+            -configuration Debug \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            clean build-for-testing \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO
+
+      - name: Check code structure
+        run: |
+          swift build --help > /dev/null
+          echo "Swift build infrastructure validated"
+
+  build_simulator:
+    name: Build for visionOS Simulator
+    runs-on: macos-14
+    needs: validate
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Cache Build Artifacts
+        uses: actions/cache@v3
+        with:
+          path: Build/DerivedData
+          key: ${{ runner.os }}-build-simulator-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-build-simulator-
+
+      - name: Build for visionOS Simulator
+        run: |
+          xcodebuild build \
+            -scheme RealityRealms \
+            -configuration Debug \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -derivedDataPath Build/DerivedData \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO
+
+      - name: Archive Simulator Build
+        run: |
+          mkdir -p Build/Archives
+          zip -r Build/Archives/RealityRealms-Simulator-${{ github.sha }}.zip \
+            Build/DerivedData/Build/Products/Debug-xros
+
+      - name: Upload Simulator Build
+        uses: actions/upload-artifact@v3
+        with:
+          name: simulator-build
+          path: Build/Archives/
+          retention-days: 7
+
+  build_device:
+    name: Build for visionOS Device
+    runs-on: macos-14
+    needs: validate
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Cache Build Artifacts
+        uses: actions/cache@v3
+        with:
+          path: Build/DerivedData
+          key: ${{ runner.os }}-build-device-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-build-device-
+
+      - name: Build for visionOS Device
+        run: |
+          xcodebuild build \
+            -scheme RealityRealms \
+            -configuration Release \
+            -destination 'platform=visionOS,name=Apple Vision Pro' \
+            -derivedDataPath Build/DerivedData \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO
+        continue-on-error: true
+
+      - name: Archive Device Build
+        run: |
+          mkdir -p Build/Archives
+          zip -r Build/Archives/RealityRealms-Device-${{ github.sha }}.zip \
+            Build/DerivedData/Build/Products/Release-xros
+        continue-on-error: true
+
+      - name: Upload Device Build
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: device-build
+          path: Build/Archives/
+          retention-days: 7
+
+  build_summary:
+    name: Build Summary
+    runs-on: macos-14
+    needs: [ validate, build_simulator, build_device ]
+    if: always()
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v3
+
+      - name: Generate build report
+        run: |
+          echo "## Build Report" > $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Build Status" >> $GITHUB_STEP_SUMMARY
+          echo "- Validation: ${{ needs.validate.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Simulator Build: ${{ needs.build_simulator.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Device Build: ${{ needs.build_device.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Artifacts" >> $GITHUB_STEP_SUMMARY
+          ls -lah simulator-build/ device-build/ || echo "No artifacts generated"
+
+      - name: Cleanup cache
+        if: failure()
+        run: |
+          echo "Build failed. Cache may need to be invalidated."

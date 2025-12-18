@@ -1,0 +1,532 @@
+{
+  "id": "tutorial-case-01",
+  "title": "The Gallery Heist",
+  "description": "Your first case: A priceless painting has been stolen from the Metropolitan Art Gallery. Use your detective skills to find the thief before they escape!",
+  "difficulty": "tutorial",
+  "caseType": "theft",
+  "version": "1.0",
+  "created": "2024-01-15T10:30:00Z",
+  "author": "Mystery Investigation Team",
+  "estimatedPlayTime": 20,
+  "metadata": {
+    "tags": ["tutorial", "theft", "art", "beginner-friendly"],
+    "language": "en",
+    "region": "GLOBAL",
+    "rating": "E",
+    "contentWarnings": []
+  },
+  "location": {
+    "name": "Metropolitan Art Gallery - East Wing",
+    "description": "A prestigious art gallery featuring impressionist paintings. The main gallery is a large open space with high ceilings, spotlights, and security cameras. The theft occurred in the restricted exhibition area.",
+    "type": "museum",
+    "areas": [
+      {
+        "id": "main-gallery",
+        "name": "Main Gallery Floor",
+        "description": "The large open gallery space where the stolen painting was displayed on the east wall",
+        "evidenceItems": ["evidence-painting-frame", "evidence-shattered-glass", "evidence-footprints"]
+      },
+      {
+        "id": "security-office",
+        "name": "Security Office",
+        "description": "The security monitoring station with screens and recording equipment",
+        "evidenceItems": ["evidence-security-footage", "evidence-clipboard"]
+      },
+      {
+        "id": "back-entrance",
+        "name": "Back Entrance",
+        "description": "Service entrance used by staff, located behind the main gallery",
+        "evidenceItems": ["evidence-muddy-footprints", "evidence-alarm-bypass"]
+      }
+    ],
+    "layout": {
+      "dimensions": {
+        "width": 30,
+        "depth": 25,
+        "height": 8
+      },
+      "orientation": "north"
+    }
+  },
+  "timeline": {
+    "incidentDate": "2024-01-15",
+    "incidentTime": "22:45",
+    "discoveryDate": "2024-01-15",
+    "discoveryTime": "23:15",
+    "events": [
+      {
+        "time": "22:30",
+        "description": "Gallery begins closing procedures. Last visitors leave the building.",
+        "visibility": "visible"
+      },
+      {
+        "time": "22:45",
+        "description": "Security guard notices alarm has been bypassed at back entrance",
+        "visibility": "visible"
+      },
+      {
+        "time": "22:50",
+        "description": "Guard discovers the painting frame broken and artwork missing from main gallery",
+        "visibility": "visible"
+      },
+      {
+        "time": "23:15",
+        "description": "Police and investigation team arrive at the scene",
+        "visibility": "visible"
+      },
+      {
+        "time": "23:30",
+        "description": "Suspects are rounded up from the building for questioning",
+        "visibility": "visible"
+      }
+    ],
+    "deductionTimeline": "The theft occurred between 22:45 and 22:50. The alarm was bypassed before the theft, suggesting premeditation. The muddy footprints trace the thief's path from the back entrance to the main gallery and out the front."
+  },
+  "evidence": [
+    {
+      "id": "evidence-painting-frame",
+      "name": "Broken Picture Frame",
+      "description": "The ornate gold frame that held the stolen painting. The frame is heavily damaged with jagged edges where the canvas was torn from it. Small flecks of blue paint are visible on the floor beneath it.",
+      "type": "physical",
+      "category": "tool",
+      "location": "main-gallery",
+      "position": {
+        "x": 25.0,
+        "y": 1.5,
+        "z": 0.0
+      },
+      "scale": 1.0,
+      "discoveryHint": "Look near the east wall where the painting was displayed. You can't miss the damage.",
+      "forensicAnalysis": {
+        "findings": "The frame shows signs of being forcibly removed. Fresh tool marks on the edges indicate a crowbar or similar tool was used. The damage pattern suggests the thief was in a hurry.",
+        "tools": ["magnifying-glass"],
+        "significance": "Indicates the theft was hurried and unplanned, or the thief wanted to avoid the alarm frame"
+      },
+      "relatedSuspects": ["suspect-marcus", "suspect-elena"],
+      "relatedEvidence": ["evidence-shattered-glass", "evidence-crowbar"],
+      "visibility": "visible"
+    },
+    {
+      "id": "evidence-shattered-glass",
+      "name": "Shattered Display Glass",
+      "description": "Fragments of reinforced glass from the protective case around the painting. The glass was tempered, making large pieces. Most fragments are near the frame, but some are scattered across the gallery floor in a trail.",
+      "type": "physical",
+      "category": "trace",
+      "location": "main-gallery",
+      "position": {
+        "x": 25.5,
+        "y": 1.2,
+        "z": 0.0
+      },
+      "scale": 0.5,
+      "discoveryHint": "Look on the floor around the broken frame. The glass shards tell a story of how the painting was removed.",
+      "forensicAnalysis": {
+        "findings": "Glass fragments contain traces of expensive perfume - likely a clue to the thief's identity. Microscopic analysis shows the glass broke outward, meaning the frame was pulled away from the case.",
+        "tools": ["magnifying-glass", "spectroscope"],
+        "significance": "The perfume traces can be matched to suspects' belongings. The break pattern confirms the method of theft."
+      },
+      "relatedSuspects": ["suspect-elena", "suspect-james"],
+      "relatedEvidence": ["evidence-painting-frame"],
+      "visibility": "visible"
+    },
+    {
+      "id": "evidence-footprints",
+      "name": "Suspicious Footprints",
+      "description": "A trail of footprints visible on the gallery floor, leading from the back entrance through the main gallery and toward the front exit. The prints are slightly smudged but distinctive - size 10 shoes with a unique heel pattern.",
+      "type": "trace",
+      "category": "trace",
+      "location": "main-gallery",
+      "position": {
+        "x": 20.0,
+        "y": 15.0,
+        "z": 0.0
+      },
+      "scale": 2.0,
+      "discoveryHint": "Look at the floor carefully. The thief left a trail of evidence! You can follow it through the gallery.",
+      "forensicAnalysis": {
+        "findings": "Footprint analysis reveals size 10 men's shoes with distinctive heel wear pattern. The stride length and pressure points suggest an athletic person, possibly male. The prints match size 10 shoes owned by Marcus.",
+        "tools": ["footprint-analyzer"],
+        "significance": "Directly links suspect to the crime scene. The size 10 shoes narrow down the suspects significantly."
+      },
+      "relatedSuspects": ["suspect-marcus"],
+      "relatedEvidence": ["evidence-muddy-footprints"],
+      "visibility": "visible"
+    },
+    {
+      "id": "evidence-muddy-footprints",
+      "name": "Muddy Footprints at Back Entrance",
+      "description": "Muddy footprints near the back entrance door, showing where the thief entered the building. The mud pattern matches the footprints found inside the gallery. There's also a muddy palm print on the door handle.",
+      "type": "trace",
+      "category": "trace",
+      "location": "back-entrance",
+      "position": {
+        "x": 1.5,
+        "y": 2.0,
+        "z": 0.0
+      },
+      "scale": 1.5,
+      "discoveryHint": "Check the back entrance carefully. The thief entered through here and left tracks.",
+      "forensicAnalysis": {
+        "findings": "Palm print analysis reveals a left-handed person with distinctive ridge patterns. Soil composition in the mud matches Marcus's garden area. DNA from the palm print matches Marcus Chen.",
+        "tools": ["palm-print-scanner", "soil-analyzer"],
+        "significance": "Confirms the entry point and directly identifies the thief through multiple forensic methods."
+      },
+      "relatedSuspects": ["suspect-marcus"],
+      "relatedEvidence": ["evidence-footprints", "evidence-alarm-bypass"],
+      "visibility": "hidden"
+    },
+    {
+      "id": "evidence-security-footage",
+      "name": "Security Camera Footage",
+      "description": "Video from the security system showing the theft in progress. The footage is timestamped at 22:47. A figure in dark clothing can be seen disabling the back entrance alarm, entering the gallery, forcibly removing the painting from its case, and exiting with the artwork.",
+      "type": "video",
+      "category": "document",
+      "location": "security-office",
+      "position": {
+        "x": 5.0,
+        "y": 3.0,
+        "z": 0.0
+      },
+      "scale": 1.0,
+      "discoveryHint": "Review the security footage from the time of the theft. The cameras captured everything.",
+      "forensicAnalysis": {
+        "findings": "The figure in the video matches Marcus's build and distinctive gait. The timestamp proves the theft occurred at 22:47. The figure has a distinctive limp in the left leg, consistent with Marcus's old soccer injury.",
+        "tools": ["video-analyzer", "gait-analyzer"],
+        "significance": "Conclusive visual evidence of the theft. Video analysis confirms Marcus as the thief."
+      },
+      "relatedSuspects": ["suspect-marcus"],
+      "relatedEvidence": ["evidence-alarm-bypass"],
+      "visibility": "hidden"
+    },
+    {
+      "id": "evidence-alarm-bypass",
+      "name": "Disabled Alarm System",
+      "description": "The back entrance alarm has been disabled using a specialized bypass device. Technical analysis shows the security code was entered correctly (12345 - the old maintenance code), suggesting the thief had inside knowledge or information.",
+      "type": "digital",
+      "category": "device",
+      "location": "back-entrance",
+      "position": {
+        "x": 2.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": 0.8,
+      "discoveryHint": "Examine the alarm system at the back entrance. It's been tampered with by someone who knew the security code.",
+      "forensicAnalysis": {
+        "findings": "The bypass used the old maintenance code that was changed 3 months ago. Only current staff would know this old code. Marcus worked as a maintenance contractor and still had access to the old code. The bypass device contains fingerprints matching Marcus.",
+        "tools": ["digital-forensics", "fingerprint-scanner"],
+        "significance": "Proves inside knowledge and planning. Links Marcus directly to the premeditation of the crime."
+      },
+      "relatedSuspects": ["suspect-marcus"],
+      "relatedEvidence": ["evidence-muddy-footprints"],
+      "visibility": "hidden"
+    },
+    {
+      "id": "evidence-crowbar",
+      "name": "Crowbar Found in Alley",
+      "description": "A steel crowbar discovered in the alley behind the gallery, still wrapped partially in newspaper dated January 15th. Tool marks on the crowbar match the marks on the broken picture frame.",
+      "type": "physical",
+      "category": "tool",
+      "location": "back-entrance",
+      "position": {
+        "x": 0.5,
+        "y": -5.0,
+        "z": 0.0
+      },
+      "scale": 1.0,
+      "discoveryHint": "Search the alley behind the building. The thief may have abandoned tools.",
+      "forensicAnalysis": {
+        "findings": "Tool marks on the crowbar precisely match the scratches on the picture frame. Fingerprints on the crowbar match Marcus Chen. Paint traces from the frame are embedded in the crowbar.",
+        "tools": ["tool-analysis", "fingerprint-scanner"],
+        "significance": "Physical tool used in the crime. Direct match confirms Marcus as the thief."
+      },
+      "relatedSuspects": ["suspect-marcus"],
+      "relatedEvidence": ["evidence-painting-frame"],
+      "visibility": "hidden"
+    },
+    {
+      "id": "evidence-clipboard",
+      "name": "Security Guard's Clipboard",
+      "description": "The clipboard used by the security guard to note patrol times and incidents. It shows security rounds were completed at 22:30, 22:40, and the next round wasn't scheduled until 23:00, creating a 20-minute window where the thief knew the gallery would be unmonitored.",
+      "type": "document",
+      "category": "document",
+      "location": "security-office",
+      "position": {
+        "x": 4.0,
+        "y": 2.0,
+        "z": 0.0
+      },
+      "scale": 1.0,
+      "discoveryHint": "Check the security office. The patrol schedule shows when the gallery was unmonitored.",
+      "forensicAnalysis": {
+        "findings": "The clipboard shows a gap from 22:40 to 23:00 when no patrols were scheduled. The thief knew this schedule, suggesting inside information. Marcus, as a maintenance contractor, would have had access to security schedules.",
+        "tools": ["document-analysis"],
+        "significance": "Shows premeditation and inside knowledge. Confirms the theft was planned, not opportunistic."
+      },
+      "relatedSuspects": ["suspect-marcus"],
+      "relatedEvidence": ["evidence-security-footage"],
+      "visibility": "visible"
+    }
+  ],
+  "suspects": [
+    {
+      "id": "suspect-marcus",
+      "name": "Marcus Chen",
+      "title": "Maintenance Contractor",
+      "age": 32,
+      "description": "A former maintenance worker at the gallery with knowledge of the security systems. Marcus is athletic, with a distinctive limp from an old soccer injury. He quit two months ago but still has an old key to the back entrance.",
+      "motive": "Financial trouble. Marcus lost his job and is facing eviction. He knew the painting was worth over $2 million.",
+      "opportunity": "Marcus had inside knowledge of security schedules and codes. He knew when patrols were scheduled and had access to the back entrance.",
+      "alibi": {
+        "claim": "He claims he was home watching movies at 22:45",
+        "verified": false,
+        "verificationEvidence": "no-confirmation"
+      },
+      "appearance": {
+        "height": "6'0\"",
+        "build": "Athletic and muscular",
+        "distinguishingFeatures": ["Walks with a slight limp in left leg", "Distinctive gait", "Size 10 shoe size"]
+      },
+      "relationshipToVictim": "Not directly related to the gallery owner, but knew the head curator professionally",
+      "behavioral": {
+        "stressIndicators": ["Avoids eye contact when questioned about the security system", "Hands trembling slightly", "Defensive tone when asked about his job loss"],
+        "inconsistencies": ["Initially claims he never enters the gallery anymore, but his shoes have matching mud samples", "Says he doesn't know about security codes, but the bypass used an old code he would know"],
+        "microExpressions": ["Fear when asked about security camera footage", "Anger when mentioned about his financial problems"]
+      },
+      "background": "Marcus worked as a maintenance contractor for 5 years. He had access to all areas of the building and knew the security systems intimately. Lost his job due to budget cuts. Has a history of financial instability but no criminal record.",
+      "secrets": "Marcus is facing eviction and has serious gambling debts. He needed money desperately.",
+      "dialogue": {
+        "initialApproach": "I don't know anything about this theft! I haven't been to the gallery in months.",
+        "keyQuestions": [
+          "Where were you at 22:45 on the night of the theft?",
+          "Do you still have access to the old security codes?",
+          "Can you explain why your shoes match footprints at the scene?",
+          "Why are there muddy footprints with your fingerprints at the back entrance?"
+        ],
+        "responses": {
+          "Where were you at 22:45 on the night of the theft?": "I was home. Alone. Watching a movie. You can't prove otherwise.",
+          "Do you still have access to the old security codes?": "No, I don't. Why would I care about old codes? I don't work there anymore.",
+          "Can you explain why your shoes match footprints at the scene?": "Common shoe brand. Lots of people wear size 10.",
+          "Why are there muddy footprints with your fingerprints at the back entrance?": "I... I don't know. Maybe from when I was still working there. It was a long time ago."
+        }
+      },
+      "isCulprit": true,
+      "culpritEvidence": ["evidence-footprints", "evidence-muddy-footprints", "evidence-security-footage", "evidence-alarm-bypass", "evidence-crowbar"]
+    },
+    {
+      "id": "suspect-elena",
+      "name": "Elena Rodriguez",
+      "title": "Head Curator",
+      "age": 48,
+      "description": "The head curator of the gallery with 20 years of experience. Elena is professional but has been under stress due to insurance audits and was recently passed over for a director position.",
+      "motive": "Elena could have orchestrated the theft for insurance fraud, or to create a scandal at the gallery due to frustration over the director position.",
+      "opportunity": "Elena has keys to all gallery areas and knows the security systems. She was on duty the night of the theft.",
+      "alibi": {
+        "claim": "She was in her office reviewing paperwork for the insurance audit",
+        "verified": true,
+        "verificationEvidence": "office-lights-timestamp"
+      },
+      "appearance": {
+        "height": "5'7\"",
+        "build": "Professional appearance",
+        "distinguishingFeatures": ["Wears expensive perfume", "Usually formal attire"]
+      },
+      "relationshipToVictim": "Curator of the stolen painting",
+      "behavioral": {
+        "stressIndicators": ["Seems anxious about the investigation", "Talks more than usual when nervous"],
+        "inconsistencies": ["Initially says she locked the painting case, but security footage shows it was already open", "Claims no one else had access codes, but Marcus had the old codes"],
+        "microExpressions": ["Relief mixed with concern when told security camera footage captured the theft"]
+      },
+      "background": "Long-time curator with excellent professional record. Recently frustrated by not being promoted to director. Dealing with insurance audits.",
+      "secrets": "Elena knows the gallery's insurance covers the stolen painting at much higher value than current market value.",
+      "dialogue": {
+        "initialApproach": "This is terrible! I was so careful with security procedures. That painting was my responsibility.",
+        "keyQuestions": [
+          "Were there any problems with the security system before the theft?",
+          "Could anyone else have access to the security codes?",
+          "Were you aware of any recent attempts to breach security?"
+        ],
+        "responses": {
+          "Were there any problems with the security system before the theft?": "No, everything was functioning normally. I always do a final check before closing.",
+          "Could anyone else have access to the security codes?": "Only the current staff. Marcus quit months ago, so he wouldn't have access anymore.",
+          "Were you aware of any recent attempts to breach security?": "No, nothing unusual. The back entrance is rarely used."
+        }
+      },
+      "isCulprit": false,
+      "culpritEvidence": []
+    },
+    {
+      "id": "suspect-james",
+      "name": "James Mitchell",
+      "title": "Security Guard",
+      "age": 26,
+      "description": "The security guard on duty during the theft. James is new to the position, having been hired only 3 months ago. He seems nervous and apologetic about the incident.",
+      "motive": "James could have been bribed to look the other way, or could have been negligent for other reasons.",
+      "opportunity": "James was supposed to monitor the gallery and security systems during the night shift.",
+      "alibi": {
+        "claim": "He was conducting routine patrols as scheduled, with breaks at specific intervals",
+        "verified": true,
+        "verificationEvidence": "patrol-schedule"
+      },
+      "appearance": {
+        "height": "5'10\"",
+        "build": "Slightly stocky",
+        "distinguishingFeatures": ["Nervous demeanor", "New to the job"]
+      },
+      "relationshipToVictim": "No relationship, just professional",
+      "behavioral": {
+        "stressIndicators": ["Very nervous and apologetic", "Keeps apologizing for the theft", "Worried about losing his new job"],
+        "inconsistencies": ["Says he was on patrol but admits he didn't check the back entrance during the 22:40-23:00 window"],
+        "microExpressions": ["Guilt about negligence", "Relief when told it wasn't his fault due to inside knowledge"]
+      },
+      "background": "Recent hire to the security team. Comes from a similar security position at another location. Clean background, no issues.",
+      "secrets": "James is worried he'll be fired for his negligence in not catching the theft, though he wasn't really negligent due to the inside information.",
+      "dialogue": {
+        "initialApproach": "I'm so sorry! I should have caught this. I feel terrible about the theft.",
+        "keyQuestions": [
+          "Were you aware of any unusual activity before the theft?",
+          "Did you notice anything strange about the security systems?",
+          "Do you know Marcus Chen?"
+        ],
+        "responses": {
+          "Were you aware of any unusual activity before the theft?": "No, everything seemed normal. I was doing my rounds as scheduled.",
+          "Did you notice anything strange about the security systems?": "No, I didn't. Everything was working fine as far as I could tell.",
+          "Do you know Marcus Chen?": "Only by reputation. He quit before I was hired. Elena mentioned he was reliable."
+        }
+      },
+      "isCulprit": false,
+      "culpritEvidence": []
+    }
+  ],
+  "solution": {
+    "culprit": "suspect-marcus",
+    "culpritIdentity": "Marcus Chen, 32, former maintenance contractor",
+    "motive": "Financial desperation. Marcus was facing eviction and had significant gambling debts. He knew the stolen painting was worth over $2 million.",
+    "weapon": "evidence-crowbar",
+    "method": "Marcus used his knowledge of the old security code to bypass the back entrance alarm. He entered the gallery during the 20-minute patrol gap (22:40-23:00) when no one was checking the back entrance. He forcibly removed the painting from its protective case using a crowbar, leaving tool marks and shattered glass. He then exited through the back entrance, leaving a trail of muddy footprints and the crowbar in the alley.",
+    "timeline": "22:40 - Security patrol leaves back entrance unmonitored. 22:45 - Marcus enters through back entrance after disabling alarm with old maintenance code. 22:47 - Marcus forcibly removes painting from display case. 22:50 - Security guard discovers theft during next patrol. 22:55 - Police are called.",
+    "evidence": [
+      "evidence-footprints",
+      "evidence-muddy-footprints",
+      "evidence-painting-frame",
+      "evidence-shattered-glass",
+      "evidence-security-footage",
+      "evidence-alarm-bypass",
+      "evidence-crowbar",
+      "evidence-clipboard"
+    ],
+    "keyDeductions": [
+      {
+        "question": "Who knew the old security codes?",
+        "answer": "Only Marcus Chen, the maintenance contractor who worked there for 5 years, would still remember the old code that was replaced 3 months ago.",
+        "relatedEvidence": [
+          "evidence-alarm-bypass",
+          "evidence-clipboard"
+        ]
+      },
+      {
+        "question": "Whose footprints are at the scene?",
+        "answer": "Size 10 shoes with a distinctive heel pattern match Marcus Chen's shoes. The gait and limp match his distinctive walk from an old soccer injury.",
+        "relatedEvidence": [
+          "evidence-footprints",
+          "evidence-muddy-footprints",
+          "evidence-security-footage"
+        ]
+      },
+      {
+        "question": "What tool was used to remove the painting?",
+        "answer": "A crowbar found in the alley has tool marks matching the frame damage and fingerprints matching Marcus Chen.",
+        "relatedEvidence": [
+          "evidence-painting-frame",
+          "evidence-crowbar"
+        ]
+      },
+      {
+        "question": "Who had motive to commit this theft?",
+        "answer": "Marcus was facing eviction and had gambling debts. He needed money desperately and knew the painting's value.",
+        "relatedEvidence": [
+          "evidence-security-footage",
+          "evidence-alarm-bypass"
+        ]
+      },
+      {
+        "question": "How did the thief know when the gallery would be unmonitored?",
+        "answer": "Marcus knew the patrol schedule from his time working at the gallery. The 20-minute gap between 22:40 and 23:00 provided the perfect opportunity.",
+        "relatedEvidence": [
+          "evidence-clipboard",
+          "evidence-security-footage"
+        ]
+      }
+    ],
+    "alternate": {
+      "theoryCriminal": "Elena Rodriguez, the head curator, could be suspected due to insurance fraud motives and her knowledge of the gallery's security.",
+      "whyWrong": "Elena's alibi is verified by office lights timestamp and she was in her office at the time of the theft. More importantly, the footprints, security footage, and alarm bypass all point to Marcus, not Elena.",
+      "correctEvidence": "evidence-security-footage"
+    }
+  },
+  "dialogue": {
+    "narratorOpening": "Welcome, detective. You've just been assigned to your first case. A priceless painting - 'Starry Night in the City' - has been stolen from the Metropolitan Art Gallery. The theft occurred sometime between 22:40 and 22:50 this evening. Three suspects are being held for questioning: Marcus Chen, a former maintenance contractor; Elena Rodriguez, the head curator; and James Mitchell, the security guard on duty. Your job is to examine the evidence, interview the suspects, and determine who committed this theft. The painting is valued at $2.3 million, so this is a serious crime. Use all the investigative tools at your disposal. Look for footprints, fingerprints, and any other evidence that might lead you to the culprit. The security cameras may hold crucial footage. Interview each suspect carefully, watching for inconsistencies in their stories. Remember: the guilty party often shows signs of stress or tells contradictory stories. Good luck, detective.",
+    "narratorClosing": "Excellent work, detective! You've successfully solved 'The Gallery Heist' case. You correctly identified Marcus Chen as the thief. Your investigative work - examining the footprints, analyzing the security footage, checking the security codes, and finding the crowbar in the alley - was thorough and accurate. Marcus's desperation due to financial troubles, combined with his knowledge of the security systems from his time working at the gallery, made him the perfect suspect. The evidence chain was clear: his footprints, the muddy prints with his palm print, the security footage showing his distinctive gait, the crowbar with his fingerprints, and his knowledge of the old security code all pointed directly to him. Well done, detective. You've proven yourself worthy of becoming a member of our investigative team. Congratulations on solving your first case!",
+    "caseDescription": "A valuable impressionist painting titled 'Starry Night in the City' was stolen from the Metropolitan Art Gallery. The painting, created by renowned artist Claude Laurent in 1923, has been on display in the gallery for 15 years. It was last seen by staff at 22:30 when the gallery began closing procedures. The theft was discovered at 22:50 when the security guard noticed the display case was empty and the security system had been disabled.",
+    "victimDescription": "The painting 'Starry Night in the City' is a small impressionist work, measuring 24x18 inches, painted in oil on canvas. It depicts a Parisian street at night with lamplight reflecting off wet cobblestones. The painting is insured for $2.3 million and is considered one of the gallery's most valuable pieces. Its theft is significant not just for the monetary value, but for the cultural and historical importance to the art world.",
+    "crimeDescription": "The painting was forcibly removed from its protective glass case, shattering the tempered glass and leaving the ornate frame damaged. The back entrance alarm was disabled using an old security code, allowing unauthorized entry into the gallery. The thief entered during a scheduled gap in security patrols, suggesting inside knowledge of the security schedule. The painting was removed using a crowbar, and the tool was abandoned in the alley behind the gallery."
+  },
+  "achievements": [
+    {
+      "id": "solved-tutorial-case",
+      "name": "First Case Solver",
+      "description": "Successfully solve the Gallery Heist tutorial case",
+      "condition": "caseCompleted === 'tutorial-case-01'",
+      "points": 100
+    },
+    {
+      "id": "found-all-evidence-tutorial",
+      "name": "Thorough Detective (Tutorial)",
+      "description": "Find all pieces of evidence in the Gallery Heist case",
+      "condition": "evidenceFound >= 8",
+      "points": 75
+    },
+    {
+      "id": "interrogated-all-suspects-tutorial",
+      "name": "Skilled Interrogator (Tutorial)",
+      "description": "Question all three suspects in detail",
+      "condition": "suspectsInterviewed >= 3",
+      "points": 50
+    },
+    {
+      "id": "solved-under-30min-tutorial",
+      "name": "Speed Detective (Tutorial)",
+      "description": "Solve the tutorial case in under 30 minutes",
+      "condition": "completionTime < 1800",
+      "points": 100
+    },
+    {
+      "id": "correct-culprit-first-try",
+      "name": "Keen Detective",
+      "description": "Identify the correct culprit on your first accusation",
+      "condition": "firstAccusationCorrect === true",
+      "points": 125
+    },
+    {
+      "id": "forensic-expert-tutorial",
+      "name": "Forensic Expert (Tutorial)",
+      "description": "Use forensic tools on all relevant evidence items",
+      "condition": "forensicToolsUsed >= 6",
+      "points": 75
+    },
+    {
+      "id": "perfect-evidence-chain",
+      "name": "Evidence Specialist",
+      "description": "Connect all evidence to the correct suspect",
+      "condition": "evidenceConnectionsFound >= 7",
+      "points": 150
+    },
+    {
+      "id": "security-expert",
+      "name": "Security Expert",
+      "description": "Discover the alarm bypass system and understand the security code",
+      "condition": "evidenceFound(['evidence-alarm-bypass', 'evidence-clipboard'])",
+      "points": 75
+    }
+  ]
+}

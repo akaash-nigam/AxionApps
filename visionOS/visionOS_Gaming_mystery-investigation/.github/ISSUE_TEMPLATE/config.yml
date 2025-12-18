@@ -1,0 +1,17 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Discord Community
+    url: https://discord.gg/mystery-investigation
+    about: Join our Discord server for general questions and community discussion
+  - name: 📚 Documentation
+    url: https://github.com/[org]/visionOS_Gaming_mystery-investigation/tree/main/docs
+    about: Check our comprehensive documentation for guides and technical details
+  - name: 🔒 Security Vulnerability
+    url: https://github.com/[org]/visionOS_Gaming_mystery-investigation/blob/main/SECURITY.md
+    about: Report security vulnerabilities privately to security@mysteryinvestigation.com
+  - name: ❓ General Question
+    url: https://github.com/[org]/visionOS_Gaming_mystery-investigation/discussions
+    about: Ask questions in GitHub Discussions
+  - name: 🌐 Website
+    url: https://mysteryinvestigation.com
+    about: Visit our official website for more information

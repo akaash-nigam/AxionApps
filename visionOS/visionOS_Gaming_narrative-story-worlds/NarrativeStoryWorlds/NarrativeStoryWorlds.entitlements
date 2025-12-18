@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- Spatial Computing Capabilities -->
+    <key>com.apple.developer.arkit.world-tracking</key>
+    <true/>
+    <key>com.apple.developer.arkit.face-tracking</key>
+    <true/>
+    <key>com.apple.developer.arkit.hand-tracking</key>
+    <true/>
+    <key>com.apple.developer.spatial-persistence</key>
+    <true/>
+
+    <!-- Audio -->
+    <key>com.apple.developer.spatial-audio</key>
+    <true/>
+
+    <!-- iCloud -->
+    <key>com.apple.developer.icloud-container-identifiers</key>
+    <array>
+        <string>iCloud.com.storystudios.narrativeworldsvision</string>
+    </array>
+    <key>com.apple.developer.ubiquity-kvstore-identifier</key>
+    <string>$(TeamIdentifierPrefix)com.storystudios.narrativeworldsvision</string>
+    <key>com.apple.developer.icloud-services</key>
+    <array>
+        <string>CloudKit</string>
+        <string>CloudDocuments</string>
+    </array>
+
+    <!-- App Groups -->
+    <key>com.apple.security.application-groups</key>
+    <array>
+        <string>group.com.storystudios.narrativeworldsvision</string>
+    </array>
+
+    <!-- Game Center (Optional) -->
+    <key>com.apple.developer.game-center</key>
+    <true/>
+
+    <!-- App Sandbox (for macOS builds) -->
+    <key>com.apple.security.app-sandbox</key>
+    <true/>
+    <key>com.apple.security.files.user-selected.read-write</key>
+    <true/>
+</dict>
+</plist>

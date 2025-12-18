@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySpatial Life - LIFE SIMULATION for Vision Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+            background: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Enhanced 3D Depth Layers - More dramatic */
+        .depth-layer {
+            position: fixed;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .depth-layer-1 {
+            background: radial-gradient(circle at 20% 30%, rgba(234, 179, 8, 0.4) 0%, transparent 40%);
+            animation: dramaticFloat 15s ease-in-out infinite;
+        }
+
+        .depth-layer-2 {
+            background: radial-gradient(circle at 80% 70%, rgba(234, 179, 8, 0.5) 0%, transparent 40%);
+            animation: dramaticFloat 18s ease-in-out infinite reverse;
+        }
+
+        .depth-layer-3 {
+            background: radial-gradient(circle at 50% 50%, rgba(234, 179, 8, 0.3) 0%, transparent 50%);
+            animation: dramaticFloat 22s ease-in-out infinite;
+        }
+
+        @keyframes dramaticFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            33% { transform: translate(40px, -40px) rotate(8deg) scale(1.05); }
+            66% { transform: translate(-30px, 30px) rotate(-8deg) scale(0.95); }
+        }
+
+        /* Pulsing glow effect */
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 30px rgba(234, 179, 8, 0.4), 0 0 60px rgba(234, 179, 8, 0.3); }
+            50% { box-shadow: 0 0 50px rgba(234, 179, 8, 0.5), 0 0 100px rgba(234, 179, 8, 0.4); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px 60px;
+            position: relative;
+        }
+
+        .genre-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #eab308 0%, #eab308cc 100%);
+            padding: 10px 24px;
+            border-radius: 24px;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            box-shadow: 0 8px 32px rgba(234, 179, 8, 0.5);
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        .logo-container {
+            margin-bottom: 30px;
+            perspective: 1200px;
+        }
+
+        .logo-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 140px;
+            height: 140px;
+            background: rgba(15, 15, 30, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 3px solid #eab308;
+            border-radius: 32px;
+            font-size: 72px;
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.5),
+                0 0 40px rgba(234, 179, 8, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            transform-style: preserve-3d;
+            animation: logoFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: rotateY(0deg) rotateX(0deg) translateY(0); }
+            50% { transform: rotateY(15deg) rotateX(8deg) translateY(-10px); }
+        }
+
+        h1 {
+            font-size: 72px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #eab308 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .tagline {
+            font-size: 32px;
+            color: #eab308;
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 20px rgba(234, 179, 8, 0.4);
+        }
+
+        .hero-message {
+            font-size: 19px;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 900px;
+            margin: 0 auto 50px;
+            line-height: 1.7;
+        }
+
+        /* Game Metadata Bar */
+        .game-metadata {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            padding: 30px;
+            background: rgba(15, 15, 30, 0.4);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            border-radius: 20px;
+            margin-bottom: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .metadata-item {
+            text-align: center;
+        }
+
+        .metadata-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: #eab308;
+            display: block;
+        }
+
+        .metadata-label {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .cta-primary {
+            background: #eab308;
+            color: #ffffff;
+            padding: 20px 60px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 50px rgba(234, 179, 8, 0.5);
+            border: 2px solid #eab308;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(234, 179, 8, 0.5);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: #eab308;
+            padding: 20px 60px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 700;
+            border: 2px solid #eab308;
+            transition: all 0.3s ease;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(234, 179, 8, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styling */
+        .section {
+            margin: 100px 0;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 0%, #eab308 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Game Modes */
+        .modes-grid {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .mode-badge {
+            background: rgba(15, 15, 30, 0.5);
+            border: 2px solid rgba(234, 179, 8, 0.3);
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        .mode-badge:hover {
+            background: rgba(234, 179, 8, 0.3);
+            border-color: #eab308;
+            transform: translateY(-2px);
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background: rgba(15, 15, 30, 0.5);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid rgba(234, 179, 8, 0.3);
+            border-radius: 24px;
+            padding: 45px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #eab308, transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: #eab308;
+            box-shadow: 0 15px 60px rgba(234, 179, 8, 0.4);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            font-size: 56px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            color: #eab308;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            font-size: 17px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        /* Screenshots */
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .screenshot-card {
+            background: rgba(15, 15, 30, 0.4);
+            border: 2px solid rgba(234, 179, 8, 0.3);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .screenshot-card:hover {
+            border-color: #eab308;
+            transform: scale(1.02);
+        }
+
+        .screenshot-placeholder {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0.3) 0%, rgba(15, 15, 30, 0.8) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 20px;
+            font-weight: 600;
+            border: 2px dashed rgba(234, 179, 8, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 80px 20px;
+            border-top: 1px solid rgba(234, 179, 8, 0.3);
+            margin-top: 120px;
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 15px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 48px;
+            }
+
+            .tagline {
+                font-size: 24px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .features-grid,
+            .screenshots-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .game-metadata {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced 3D Depth Layers -->
+    <div class="depth-layer depth-layer-1"></div>
+    <div class="depth-layer depth-layer-2"></div>
+    <div class="depth-layer depth-layer-3"></div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="genre-badge">LIFE SIMULATION</div>
+
+            <div class="logo-container">
+                <div class="logo-icon">🌟</div>
+            </div>
+
+            <h1>MySpatial Life</h1>
+            <p class="tagline">LIVE A VIRTUAL LIFE IN YOUR REAL SPACE</p>
+            <p class="hero-message">
+                Your room becomes your character's home. Develop skills, build relationships, pursue careers, and live a virtual life overlaid on your real world in this spatial life sim.
+            </p>
+
+            <div class="cta-buttons">
+                <a href="#" class="cta-primary">START PLAYING</a>
+                <a href="#" class="cta-secondary">Watch Trailer</a>
+            </div>
+        </section>
+
+        <!-- Game Metadata -->
+        <section class="game-metadata">
+            <div class="metadata-item">
+                <span class="metadata-value">140K+</span>
+                <span class="metadata-label">Players</span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-value">⭐ 4.8</span>
+                <span class="metadata-label">Rating</span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-value">Light</span>
+                <span class="metadata-label">Intensity</span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-value">Room-Scale</span>
+                <span class="metadata-label">Space</span>
+            </div>
+        </section>
+
+        <!-- Game Modes -->
+        <section class="section">
+            <h2 class="section-title">GAME MODES</h2>
+            <div class="modes-grid">
+                <div class="mode-badge">Free Life</div>
+                <div class="mode-badge">Career Mode</div>
+                <div class="mode-badge">Relationship Focus</div>
+                <div class="mode-badge">Social Visits</div>
+                <div class="mode-badge">Challenges</div>
+            </div>
+        </section>
+
+        <!-- Gameplay Features -->
+        <section class="section">
+            <h2 class="section-title">EPIC GAMEPLAY FEATURES</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏠</div>
+                    <h3>Home Living</h3>
+                    <p>Your real room is your character's living space</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👤</div>
+                    <h3>Deep Character Development</h3>
+                    <p>Skills, careers, hobbies, relationships</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛋️</div>
+                    <h3>Furniture Interactions</h3>
+                    <p>Real furniture becomes functional objects</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Social Network</h3>
+                    <p>Friends visit your space with their characters</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Life Achievements</h3>
+                    <p>Complete milestones and life goals</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screenshots -->
+        <section class="section">
+            <h2 class="section-title">GAMEPLAY GALLERY</h2>
+            <div class="screenshots-grid">
+                <div class="screenshot-card">
+                    <div class="screenshot-placeholder">ACTION SCREENSHOT</div>
+                </div>
+                <div class="screenshot-card">
+                    <div class="screenshot-placeholder">COMBAT MOMENT</div>
+                </div>
+                <div class="screenshot-card">
+                    <div class="screenshot-placeholder">SPECIAL ABILITY</div>
+                </div>
+                <div class="screenshot-card">
+                    <div class="screenshot-placeholder">MULTIPLAYER ACTION</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 MySpatial Life. Experience the future of spatial gaming on Apple Vision Pro.</p>
+    </footer>
+</body>
+</html>

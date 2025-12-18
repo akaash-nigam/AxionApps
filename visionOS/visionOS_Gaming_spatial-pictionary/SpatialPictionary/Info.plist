@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>$(DEVELOPMENT_LANGUAGE)</string>
+    <key>CFBundleDisplayName</key>
+    <string>Spatial Pictionary</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>$(PRODUCT_NAME)</string>
+    <key>CFBundlePackageType</key>
+    <string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+
+    <!-- visionOS Specific Keys -->
+    <key>UIApplicationSceneManifest</key>
+    <dict>
+        <key>UIApplicationSupportsMultipleScenes</key>
+        <true/>
+        <key>UISceneConfigurations</key>
+        <dict/>
+    </dict>
+
+    <!-- Required Capabilities -->
+    <key>NSHandTrackingUsageDescription</key>
+    <string>Spatial Pictionary uses hand tracking to enable drawing in 3D space using natural hand gestures.</string>
+
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>Spatial Pictionary uses speech recognition to allow voice-based guessing for a hands-free experience.</string>
+
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Spatial Pictionary uses the microphone for voice chat with other players and voice-based guessing.</string>
+
+    <!-- Privacy -->
+    <key>NSPrivacyAccessedAPITypes</key>
+    <array>
+        <dict>
+            <key>NSPrivacyAccessedAPIType</key>
+            <string>NSPrivacyAccessedAPICategoryHandTracking</string>
+            <key>NSPrivacyAccessedAPITypeReasons</key>
+            <array>
+                <string>Gameplay</string>
+            </array>
+        </dict>
+    </array>
+
+    <!-- Supported Platforms -->
+    <key>UIDeviceFamily</key>
+    <array>
+        <integer>7</integer> <!-- visionOS -->
+    </array>
+
+    <!-- Preferred Default Scene Session Role -->
+    <key>UIApplicationPreferredDefaultSceneSessionRole</key>
+    <string>UIWindowSceneSessionRoleApplication</string>
+
+    <!-- Supported Interface Orientations -->
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+
+    <!-- Game Center -->
+    <key>GKGameCenterEnabled</key>
+    <false/> <!-- Can be enabled later -->
+
+    <!-- SharePlay Support -->
+    <key>NSSupportsGroupActivities</key>
+    <true/>
+</dict>
+</plist>

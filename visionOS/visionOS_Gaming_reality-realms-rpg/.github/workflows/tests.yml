@@ -1,0 +1,146 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main, develop, "claude/**" ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Cache Swift Package Dependencies
+        uses: actions/cache@v3
+        with:
+          path: .build
+          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-spm-
+
+      - name: Display Swift version
+        run: swift --version
+
+      - name: Run Unit Tests
+        run: |
+          set -o pipefail && \
+          xcodebuild test \
+            -scheme RealityRealms \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -derivedDataPath Build/DerivedData \
+            -resultBundlePath Build/TestResults.xcresult \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO | xcpretty
+        continue-on-error: true
+
+      - name: Run Integration Tests
+        run: |
+          set -o pipefail && \
+          xcodebuild test \
+            -scheme RealityRealmsIntegration \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -derivedDataPath Build/DerivedData \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO | xcpretty
+        continue-on-error: true
+
+      - name: Generate Coverage Report
+        run: |
+          xccov view \
+            Build/TestResults.xcresult \
+            --json > Build/coverage.json
+        continue-on-error: true
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./Build/coverage.json
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: false
+          verbose: true
+
+      - name: Performance Tests
+        run: |
+          set -o pipefail && \
+          xcodebuild test \
+            -scheme RealityRealmsPerformance \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -derivedDataPath Build/DerivedData \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO | xcpretty
+        continue-on-error: true
+
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: test-results
+          path: Build/TestResults.xcresult
+
+      - name: Clean up
+        if: always()
+        run: rm -rf Build/DerivedData
+
+  lint:
+    name: SwiftLint
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install SwiftLint
+        run: |
+          brew install swiftlint
+
+      - name: Run SwiftLint
+        run: swiftlint lint --strict
+        continue-on-error: true
+
+      - name: Generate SwiftLint Report
+        run: swiftlint lint --reporter json > swiftlint-report.json
+        continue-on-error: true
+
+      - name: Upload SwiftLint Report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: swiftlint-report
+          path: swiftlint-report.json
+
+  staticanalysis:
+    name: Static Analysis
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run SwiftFormat Check
+        run: |
+          brew install swiftformat
+          swiftformat --lint .
+        continue-on-error: true
+
+      - name: Run Xcode Static Analysis
+        run: |
+          xcodebuild analyze \
+            -scheme RealityRealms \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -derivedDataPath Build/DerivedData \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO
+        continue-on-error: true

@@ -1,0 +1,376 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop, 'claude/**' ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+env:
+  XCODE_VERSION: '16.0'
+  IOS_SIMULATOR: 'visionOS Simulator'
+  SWIFT_VERSION: '6.0'
+
+jobs:
+  # Job 1: Code Quality Checks
+  code-quality:
+    name: Code Quality
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_${{ env.XCODE_VERSION }}.app
+
+      - name: Check Swift version
+        run: swift --version
+
+      - name: SwiftLint
+        run: |
+          if command -v swiftlint &> /dev/null; then
+            cd SpatialMusicStudio
+            swiftlint --strict
+          else
+            echo "SwiftLint not installed, skipping..."
+          fi
+        continue-on-error: true
+
+      - name: Check for TODOs
+        run: |
+          echo "Checking for TODO/FIXME comments..."
+          TODO_COUNT=$(grep -r "TODO\|FIXME" SpatialMusicStudio/SpatialMusicStudio --include="*.swift" | wc -l || echo 0)
+          echo "Found $TODO_COUNT TODO/FIXME comments"
+          if [ $TODO_COUNT -gt 50 ]; then
+            echo "::warning::High number of TODO/FIXME comments ($TODO_COUNT)"
+          fi
+
+  # Job 2: Build Project
+  build:
+    name: Build
+    runs-on: macos-14
+    needs: code-quality
+
+    strategy:
+      matrix:
+        destination:
+          - 'platform=visionOS Simulator,name=Apple Vision Pro'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_${{ env.XCODE_VERSION }}.app
+
+      - name: Show build settings
+        run: |
+          cd SpatialMusicStudio
+          xcodebuild -showsdks
+          xcodebuild -version
+
+      - name: Resolve Swift Package dependencies
+        run: |
+          cd SpatialMusicStudio
+          xcodebuild -resolvePackageDependencies -scheme SpatialMusicStudio
+        continue-on-error: true
+
+      - name: Build for visionOS Simulator
+        run: |
+          cd SpatialMusicStudio
+          xcodebuild clean build \
+            -scheme SpatialMusicStudio \
+            -destination "${{ matrix.destination }}" \
+            -configuration Debug \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            | xcpretty && exit ${PIPESTATUS[0]}
+        continue-on-error: true
+
+      - name: Archive build logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-logs
+          path: ~/Library/Logs/DiagnosticReports/
+
+  # Job 3: Unit Tests
+  unit-tests:
+    name: Unit Tests
+    runs-on: macos-14
+    needs: build
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_${{ env.XCODE_VERSION }}.app
+
+      - name: Run Domain Model Tests
+        run: |
+          cd SpatialMusicStudio
+          xcodebuild test \
+            -scheme SpatialMusicStudio \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -only-testing:SpatialMusicStudioTests/DomainModelTests \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            | xcpretty && exit ${PIPESTATUS[0]}
+        continue-on-error: true
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-test-results
+          path: |
+            SpatialMusicStudio/build/reports/
+            ~/Library/Developer/Xcode/DerivedData/**/Logs/Test/
+
+  # Job 4: Integration Tests
+  integration-tests:
+    name: Integration Tests
+    runs-on: macos-14
+    needs: unit-tests
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_${{ env.XCODE_VERSION }}.app
+
+      - name: Run Integration Tests
+        run: |
+          cd SpatialMusicStudio
+          xcodebuild test \
+            -scheme SpatialMusicStudio \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -only-testing:SpatialMusicStudioTests/SystemIntegrationTests \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            | xcpretty && exit ${PIPESTATUS[0]}
+        continue-on-error: true
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: integration-test-results
+          path: ~/Library/Developer/Xcode/DerivedData/**/Logs/Test/
+
+  # Job 5: UI Tests
+  ui-tests:
+    name: UI Tests
+    runs-on: macos-14
+    needs: unit-tests
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_${{ env.XCODE_VERSION }}.app
+
+      - name: Boot visionOS Simulator
+        run: |
+          SIMULATOR_ID=$(xcrun simctl list devices available | grep "Apple Vision Pro" | head -1 | grep -o "[0-9A-F-]\{36\}")
+          if [ -n "$SIMULATOR_ID" ]; then
+            echo "Booting simulator: $SIMULATOR_ID"
+            xcrun simctl boot "$SIMULATOR_ID" || true
+          fi
+        continue-on-error: true
+
+      - name: Run UI Tests
+        run: |
+          cd SpatialMusicStudio
+          xcodebuild test \
+            -scheme SpatialMusicStudio \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -only-testing:SpatialMusicStudioUITests \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            | xcpretty && exit ${PIPESTATUS[0]}
+        continue-on-error: true
+
+      - name: Upload test results and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ui-test-results
+          path: |
+            ~/Library/Developer/Xcode/DerivedData/**/Logs/Test/
+            ~/Library/Developer/Xcode/DerivedData/**/Attachments/
+
+  # Job 6: Documentation Check
+  documentation:
+    name: Documentation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check documentation files exist
+        run: |
+          echo "Checking documentation files..."
+          for file in ARCHITECTURE.md TECHNICAL_SPEC.md DESIGN.md IMPLEMENTATION_PLAN.md TEST_DOCUMENTATION.md; do
+            if [ -f "$file" ]; then
+              echo "✓ $file exists"
+            else
+              echo "✗ $file missing"
+              exit 1
+            fi
+          done
+
+      - name: Check documentation completeness
+        run: |
+          echo "Checking documentation size and completeness..."
+          for file in ARCHITECTURE.md TECHNICAL_SPEC.md DESIGN.md; do
+            SIZE=$(wc -l < "$file")
+            if [ $SIZE -lt 100 ]; then
+              echo "::warning::$file may be incomplete (only $SIZE lines)"
+            else
+              echo "✓ $file looks complete ($SIZE lines)"
+            fi
+          done
+
+      - name: Check for broken links in markdown
+        run: |
+          echo "Checking for broken internal links..."
+          # Simple check for .md links
+          grep -r "\[.*\](.*.md)" . --include="*.md" || echo "No internal markdown links found"
+
+  # Job 7: Landing Page Tests
+  landing-page:
+    name: Landing Page
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check landing page files
+        run: |
+          echo "Checking landing page files..."
+          for file in landing-page/index.html landing-page/styles.css landing-page/script.js; do
+            if [ -f "$file" ]; then
+              echo "✓ $file exists"
+            else
+              echo "✗ $file missing"
+              exit 1
+            fi
+          done
+
+      - name: Validate HTML
+        run: |
+          echo "Basic HTML validation..."
+          if grep -q "<!DOCTYPE html>" landing-page/index.html; then
+            echo "✓ Valid HTML5 doctype"
+          else
+            echo "✗ Missing HTML5 doctype"
+            exit 1
+          fi
+
+      - name: Check for common issues
+        run: |
+          echo "Checking for common issues..."
+          # Check for meta viewport
+          if grep -q "viewport" landing-page/index.html; then
+            echo "✓ Viewport meta tag found"
+          else
+            echo "::warning::Missing viewport meta tag"
+          fi
+          # Check CSS file size
+          CSS_SIZE=$(wc -c < landing-page/styles.css)
+          echo "CSS file size: $CSS_SIZE bytes"
+          if [ $CSS_SIZE -gt 100000 ]; then
+            echo "::warning::Large CSS file ($CSS_SIZE bytes)"
+          fi
+
+  # Job 8: Test Coverage Report
+  coverage:
+    name: Test Coverage
+    runs-on: macos-14
+    needs: [unit-tests, integration-tests]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_${{ env.XCODE_VERSION }}.app
+
+      - name: Generate coverage report
+        run: |
+          cd SpatialMusicStudio
+          xcodebuild test \
+            -scheme SpatialMusicStudio \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -enableCodeCoverage YES \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            | xcpretty && exit ${PIPESTATUS[0]}
+        continue-on-error: true
+
+      - name: Parse coverage
+        run: |
+          echo "Coverage report will be available in artifacts"
+        continue-on-error: true
+
+  # Job 9: Security Scan
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for sensitive files
+        run: |
+          echo "Checking for sensitive files..."
+          SENSITIVE_PATTERNS=".env .pem .key credentials.json secrets.yml"
+          for pattern in $SENSITIVE_PATTERNS; do
+            if find . -name "$pattern" -type f | grep -q .; then
+              echo "::warning::Found potential sensitive file: $pattern"
+            fi
+          done
+
+      - name: Check for hardcoded secrets
+        run: |
+          echo "Checking for hardcoded secrets..."
+          # Check for API keys, passwords, tokens
+          PATTERNS="api.?key|password|secret|token|api.?secret"
+          if grep -r -i -E "$PATTERNS" SpatialMusicStudio --include="*.swift" | grep -v "// " | grep -q .; then
+            echo "::warning::Potential hardcoded secrets found"
+          else
+            echo "✓ No obvious hardcoded secrets"
+          fi
+
+  # Job 10: Report Status
+  report:
+    name: Build Report
+    runs-on: ubuntu-latest
+    needs: [build, unit-tests, documentation, landing-page]
+    if: always()
+
+    steps:
+      - name: Generate summary
+        run: |
+          echo "# CI/CD Pipeline Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Status:** Pipeline completed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Jobs:" >> $GITHUB_STEP_SUMMARY
+          echo "- Code Quality: ${{ needs.code-quality.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Build: ${{ needs.build.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Unit Tests: ${{ needs.unit-tests.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Documentation: ${{ needs.documentation.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Landing Page: ${{ needs.landing-page.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Build Time:** $(date)" >> $GITHUB_STEP_SUMMARY

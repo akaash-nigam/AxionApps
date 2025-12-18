@@ -1,0 +1,110 @@
+PROPRIETARY LICENSE
+
+Copyright (c) 2025 Spatial Music Studio. All rights reserved.
+
+This software and associated documentation files (the "Software") are the
+proprietary and confidential information of Spatial Music Studio.
+
+NOTICE: All information contained herein is, and remains the property of
+Spatial Music Studio and its suppliers, if any. The intellectual and
+technical concepts contained herein are proprietary to Spatial Music Studio
+and its suppliers and may be covered by U.S. and Foreign Patents, patents
+in process, and are protected by trade secret or copyright law.
+
+Dissemination of this information or reproduction of this material is
+strictly forbidden unless prior written permission is obtained from
+Spatial Music Studio.
+
+TERMS AND CONDITIONS
+
+1. OWNERSHIP
+   All right, title, and interest in and to the Software, including all
+   intellectual property rights therein, are and will remain the exclusive
+   property of Spatial Music Studio.
+
+2. RESTRICTIONS
+   You may NOT:
+   - Use, copy, modify, merge, publish, distribute, sublicense, or sell
+     copies of the Software
+   - Reverse engineer, decompile, or disassemble the Software
+   - Remove or alter any proprietary notices or labels on the Software
+   - Use the Software for any commercial purpose without explicit written
+     permission
+   - Transfer or assign your rights under this license
+
+3. NO WARRANTY
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+
+4. LIMITATION OF LIABILITY
+   IN NO EVENT SHALL SPATIAL MUSIC STUDIO BE LIABLE FOR ANY CLAIM, DAMAGES
+   OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+   ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+   OTHER DEALINGS IN THE SOFTWARE.
+
+5. TERMINATION
+   This license is effective until terminated. Your rights under this
+   license will terminate automatically without notice if you fail to
+   comply with any term of this license.
+
+6. GOVERNING LAW
+   This license shall be governed by and construed in accordance with the
+   laws of the United States, without regard to its conflict of law
+   provisions.
+
+7. CONTACT
+   For licensing inquiries, permissions, or other questions, please contact:
+
+   Spatial Music Studio
+   Email: [Contact information to be added]
+
+   Repository: https://github.com/akaash-nigam/visionOS_Gaming_spatial-music-studio
+
+---
+
+THIRD-PARTY LICENSES
+
+This Software makes use of third-party open source libraries. The following
+is a list of such libraries and their respective licenses:
+
+1. AudioKit (MIT License)
+   Copyright (c) AudioKit Contributors
+   https://github.com/AudioKit/AudioKit
+
+2. MusicTheory (MIT License)
+   Copyright (c) Cem Olcay
+   https://github.com/cemolcay/MusicTheory
+
+3. AudioKitEX (MIT License)
+   Copyright (c) AudioKit Contributors
+   https://github.com/AudioKit/AudioKitEX
+
+For full text of third-party licenses, see the respective package
+repositories.
+
+---
+
+Apple Technologies Used:
+
+This Software uses the following Apple frameworks and technologies, which
+are subject to Apple's standard license agreements:
+
+- visionOS SDK
+- Swift Programming Language
+- SwiftUI
+- RealityKit
+- ARKit
+- AVFoundation
+- Core ML
+- CloudKit
+- SharePlay/GroupActivities
+- CoreData
+
+Use of these technologies is subject to the Apple Developer Program License
+Agreement. See https://developer.apple.com for details.
+
+---
+
+Last Updated: January 19, 2025
+Version: 1.0.0-alpha

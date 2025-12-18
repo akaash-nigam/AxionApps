@@ -1,0 +1,147 @@
+name: Documentation Validation
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - '**/*.md'
+      - 'docs/**'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - '**/*.md'
+      - 'docs/**'
+
+jobs:
+  markdown-lint:
+    name: Lint Markdown Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Lint markdown files
+        uses: actionshub/markdownlint@main
+        with:
+          path: '**/*.md'
+          ignore: 'node_modules'
+          config: .markdownlint.json
+        continue-on-error: true
+
+  link-checker:
+    name: Check Documentation Links
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check links in markdown files
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: 'yes'
+          use-verbose-mode: 'yes'
+          config-file: '.markdown-link-check.json'
+        continue-on-error: true
+
+  spell-check:
+    name: Spell Check Documentation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Spell check
+        uses: streetsidesoftware/cspell-action@v5
+        with:
+          files: |
+            **/*.md
+            !node_modules/**
+          config: .cspell.json
+        continue-on-error: true
+
+  validate-case-schema:
+    name: Validate Case JSON Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install JSON Schema validator
+        run: npm install -g ajv-cli
+
+      - name: Validate case files
+        run: |
+          if [ -d "cases" ]; then
+            for file in cases/*.json; do
+              if [ -f "$file" ]; then
+                echo "Validating $file"
+                ajv validate -s docs/case-schema.json -d "$file" || echo "Warning: $file validation failed"
+              fi
+            done
+          else
+            echo "No cases directory found, skipping validation"
+          fi
+        continue-on-error: true
+
+  docs-build:
+    name: Test Documentation Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install MkDocs (if using MkDocs)
+        run: |
+          pip install mkdocs mkdocs-material
+        continue-on-error: true
+
+      - name: Test documentation build
+        run: |
+          if [ -f "mkdocs.yml" ]; then
+            mkdocs build --strict
+          else
+            echo "No MkDocs configuration found"
+          fi
+        continue-on-error: true
+
+  check-todos:
+    name: Check for TODO Comments
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Find TODO comments in docs
+        run: |
+          echo "Checking for TODO items in documentation..."
+          grep -r "TODO" docs/ || echo "No TODOs found in docs"
+          grep -r "FIXME" docs/ || echo "No FIXMEs found in docs"
+        continue-on-error: true
+
+  summary:
+    name: Documentation Check Summary
+    runs-on: ubuntu-latest
+    needs: [markdown-lint, link-checker, spell-check, validate-case-schema, docs-build]
+    if: always()
+
+    steps:
+      - name: Summary
+        run: |
+          echo "📚 Documentation validation complete"
+          echo "All checks have been performed on documentation files"

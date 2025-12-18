@@ -1,0 +1,303 @@
+name: Test Suite
+
+on:
+  push:
+    branches: [ main, develop, claude/* ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # Run nightly at 2 AM UTC
+    - cron: '0 2 * * *'
+
+jobs:
+  landing-page-tests:
+    name: Landing Page Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run Landing Page Tests
+        run: |
+          python3 Tests/Landing/validate_html.py
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: landing-page-test-results
+          path: |
+            Tests/Landing/*.log
+            Tests/Landing/*.html
+
+  swift-tests:
+    name: Swift Tests (Unit, Integration, UI)
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_16.0.app
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      - name: Install visionOS SDK
+        run: |
+          xcodebuild -downloadPlatform visionOS || true
+
+      - name: Build for testing
+        run: |
+          xcodebuild build-for-testing \
+            -project RhythmFlow/RhythmFlow.xcodeproj \
+            -scheme RhythmFlow \
+            -sdk xrsimulator \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro'
+
+      - name: Run Unit Tests
+        run: |
+          xcodebuild test \
+            -project RhythmFlow/RhythmFlow.xcodeproj \
+            -scheme RhythmFlow \
+            -sdk xrsimulator \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -only-testing:RhythmFlowTests \
+            -enableCodeCoverage YES \
+            -resultBundlePath TestResults.xcresult
+
+      - name: Run UI Tests
+        run: |
+          xcodebuild test \
+            -project RhythmFlow/RhythmFlow.xcodeproj \
+            -scheme RhythmFlow \
+            -sdk xrsimulator \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -only-testing:RhythmFlowUITests \
+            -resultBundlePath UITestResults.xcresult
+
+      - name: Generate coverage report
+        if: always()
+        run: |
+          xcrun xccov view --report --json TestResults.xcresult > coverage.json
+          xcrun xccov view --report TestResults.xcresult > coverage.txt
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: swift-test-results
+          path: |
+            TestResults.xcresult
+            UITestResults.xcresult
+            coverage.json
+            coverage.txt
+
+      - name: Check code coverage
+        run: |
+          coverage=$(xcrun xccov view --report --json TestResults.xcresult | \
+            python3 -c "import sys, json; print(json.load(sys.stdin)['lineCoverage'])")
+          echo "Code Coverage: $coverage"
+
+          # Fail if coverage < 70%
+          if (( $(echo "$coverage < 0.70" | bc -l) )); then
+            echo "❌ Code coverage is below 70%: $coverage"
+            exit 1
+          else
+            echo "✅ Code coverage is acceptable: $coverage"
+          fi
+
+  performance-tests:
+    name: Performance Tests
+    runs-on: macos-14
+    if: github.event_name == 'schedule' || contains(github.event.head_commit.message, '[perf]')
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_16.0.app
+
+      - name: Run Performance Tests
+        run: |
+          xcodebuild test \
+            -project RhythmFlow/RhythmFlow.xcodeproj \
+            -scheme RhythmFlow \
+            -sdk xrsimulator \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -only-testing:RhythmFlowTests/PerformanceTests \
+            -resultBundlePath PerformanceResults.xcresult
+
+      - name: Upload performance results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-test-results
+          path: PerformanceResults.xcresult
+
+  accessibility-tests:
+    name: Accessibility Tests
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_16.0.app
+
+      - name: Run Accessibility Tests
+        run: |
+          xcodebuild test \
+            -project RhythmFlow/RhythmFlow.xcodeproj \
+            -scheme RhythmFlow \
+            -sdk xrsimulator \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -only-testing:RhythmFlowTests/AccessibilityTests \
+            -resultBundlePath AccessibilityResults.xcresult
+
+      - name: Upload accessibility results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: accessibility-test-results
+          path: AccessibilityResults.xcresult
+
+  lint:
+    name: SwiftLint
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install SwiftLint
+        run: brew install swiftlint
+
+      - name: Run SwiftLint
+        run: |
+          swiftlint lint --reporter github-actions-logging RhythmFlow/RhythmFlow
+
+  documentation-check:
+    name: Documentation Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for broken links
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: 'yes'
+          config-file: '.github/markdown-link-check-config.json'
+
+      - name: Check documentation completeness
+        run: |
+          echo "Checking required documentation files..."
+          required_files=(
+            "README.md"
+            "CONTRIBUTING.md"
+            "CODE_OF_CONDUCT.md"
+            "SECURITY.md"
+            "ARCHITECTURE.md"
+            "TECHNICAL_SPEC.md"
+            "DESIGN.md"
+            "IMPLEMENTATION_PLAN.md"
+            "Tests/TEST_GUIDE.md"
+          )
+
+          missing_files=()
+          for file in "${required_files[@]}"; do
+            if [ ! -f "$file" ]; then
+              missing_files+=("$file")
+            fi
+          done
+
+          if [ ${#missing_files[@]} -ne 0 ]; then
+            echo "❌ Missing required documentation files:"
+            printf '%s\n' "${missing_files[@]}"
+            exit 1
+          else
+            echo "✅ All required documentation files present"
+          fi
+
+  build-check:
+    name: Build Check
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_16.0.app
+
+      - name: Build project
+        run: |
+          xcodebuild build \
+            -project RhythmFlow/RhythmFlow.xcodeproj \
+            -scheme RhythmFlow \
+            -sdk xrsimulator \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -configuration Debug \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO
+
+      - name: Check for warnings
+        run: |
+          # Build and capture warnings
+          xcodebuild build \
+            -project RhythmFlow/RhythmFlow.xcodeproj \
+            -scheme RhythmFlow \
+            -sdk xrsimulator \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            2>&1 | tee build.log
+
+          # Count warnings
+          warning_count=$(grep -c "warning:" build.log || true)
+          echo "Total warnings: $warning_count"
+
+          if [ $warning_count -gt 10 ]; then
+            echo "❌ Too many warnings: $warning_count (max 10 allowed)"
+            exit 1
+          else
+            echo "✅ Warning count acceptable: $warning_count"
+          fi
+
+  pr-labeler:
+    name: Auto Label PR
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Label PR
+        uses: actions/labeler@v5
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+  notify:
+    name: Notify on Failure
+    runs-on: ubuntu-latest
+    needs: [landing-page-tests, swift-tests, accessibility-tests, build-check]
+    if: failure() && github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Send notification
+        run: |
+          echo "Tests failed on main branch!"
+          echo "Workflow: ${{ github.workflow }}"
+          echo "Commit: ${{ github.sha }}"
+          echo "Author: ${{ github.actor }}"
+          # Add your notification mechanism here (email, Slack, etc.)

@@ -1,0 +1,101 @@
+name: Lint
+
+on:
+  push:
+    branches: [main, develop, "claude/**"]
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+
+jobs:
+  swiftlint:
+    name: SwiftLint
+    runs-on: macos-14
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install SwiftLint
+        run: |
+          brew install swiftlint
+
+      - name: Run SwiftLint
+        run: |
+          swiftlint --reporter github-actions-logging
+
+      - name: Run SwiftLint (strict)
+        run: |
+          swiftlint --strict --reporter json > swiftlint-results.json || true
+
+      - name: Upload SwiftLint Results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: swiftlint-results
+          path: swiftlint-results.json
+
+      - name: Comment PR with Lint Results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const results = JSON.parse(fs.readFileSync('swiftlint-results.json', 'utf8'));
+
+            const warnings = results.filter(r => r.severity === 'Warning').length;
+            const errors = results.filter(r => r.severity === 'Error').length;
+
+            let body = '## SwiftLint Results\n\n';
+            body += `- ⚠️ Warnings: ${warnings}\n`;
+            body += `- ❌ Errors: ${errors}\n\n`;
+
+            if (errors === 0 && warnings === 0) {
+              body += '✅ No issues found!';
+            } else if (errors > 0) {
+              body += '❌ Please fix errors before merging.';
+            } else {
+              body += '⚠️ Please address warnings.';
+            }
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });
+
+  swift-format:
+    name: Swift Format Check
+    runs-on: macos-14
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install swift-format
+        run: |
+          brew install swift-format
+
+      - name: Check Formatting
+        run: |
+          swift-format lint --recursive NarrativeStoryWorlds/
+
+  markdown-lint:
+    name: Markdown Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run markdownlint
+        uses: nosborn/github-action-markdown-cli@v3.3.0
+        with:
+          files: .
+          config_file: .markdownlint.json
+          ignore_files: node_modules/
+        continue-on-error: true

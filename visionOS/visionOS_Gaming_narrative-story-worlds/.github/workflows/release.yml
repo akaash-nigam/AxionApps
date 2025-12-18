@@ -1,0 +1,204 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., 1.0.0)'
+        required: true
+        type: string
+
+jobs:
+  validate:
+    name: Validate Release
+    runs-on: macos-14
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_15.2.app
+
+      - name: Run All Tests
+        run: |
+          xcodebuild test \
+            -scheme NarrativeStoryWorlds \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -enableCodeCoverage YES \
+            -resultBundlePath ReleaseTests.xcresult
+
+      - name: Verify Coverage
+        run: |
+          COVERAGE=$(xcrun xccov view --report --json ReleaseTests.xcresult | \
+            jq '.targets[] | select(.name=="NarrativeStoryWorlds") | .lineCoverage' | \
+            awk '{print int($1*100)}')
+          if [ $COVERAGE -lt 70 ]; then
+            echo "❌ Coverage ${COVERAGE}% below 70% - blocking release"
+            exit 1
+          fi
+
+      - name: Run SwiftLint
+        run: |
+          brew install swiftlint
+          swiftlint --strict
+
+  build:
+    name: Build Release
+    runs-on: macos-14
+    needs: validate
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_15.2.app
+
+      - name: Extract Version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            VERSION="${{ inputs.version }}"
+          else
+            VERSION="${GITHUB_REF#refs/tags/v}"
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Building version: $VERSION"
+
+      - name: Update Version Number
+        run: |
+          # Update Info.plist or version file
+          echo "Version: ${{ steps.version.outputs.version }}"
+
+      - name: Build Archive
+        run: |
+          xcodebuild archive \
+            -scheme NarrativeStoryWorlds \
+            -destination 'generic/platform=visionOS' \
+            -archivePath NarrativeStoryWorlds.xcarchive \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Create Release Notes
+        id: release_notes
+        run: |
+          cat > RELEASE_NOTES.md << EOF
+          # Narrative Story Worlds v${{ steps.version.outputs.version }}
+
+          ## What's New
+
+          <!-- Auto-generated from commits since last tag -->
+          $(git log $(git describe --tags --abbrev=0 HEAD^)..HEAD --pretty=format:"- %s")
+
+          ## Requirements
+
+          - visionOS 2.0 or later
+          - Apple Vision Pro
+
+          ## Installation
+
+          Download from the App Store or TestFlight.
+
+          ## Known Issues
+
+          See GitHub Issues for current known issues.
+
+          ---
+
+          Full Changelog: https://github.com/${{ github.repository }}/compare/v${{ steps.version.outputs.version }}...HEAD
+          EOF
+
+          cat RELEASE_NOTES.md
+
+      - name: Upload Archive
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-archive
+          path: NarrativeStoryWorlds.xcarchive
+
+      - name: Upload Release Notes
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-notes
+          path: RELEASE_NOTES.md
+
+  create-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/')
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download Release Notes
+        uses: actions/download-artifact@v3
+        with:
+          name: release-notes
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: RELEASE_NOTES.md
+          draft: true
+          prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') }}
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  testflight:
+    name: Upload to TestFlight
+    runs-on: macos-14
+    needs: build
+    if: github.event_name == 'workflow_dispatch'
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download Archive
+        uses: actions/download-artifact@v3
+        with:
+          name: release-archive
+
+      - name: Import Certificates
+        run: |
+          # Import distribution certificate
+          # This requires APP_STORE_CONNECT_API_KEY secret
+          echo "Certificate import skipped in template"
+
+      - name: Export IPA
+        run: |
+          xcodebuild -exportArchive \
+            -archivePath NarrativeStoryWorlds.xcarchive \
+            -exportPath Export \
+            -exportOptionsPlist ExportOptions.plist
+
+      - name: Upload to TestFlight
+        run: |
+          xcrun altool --upload-app \
+            --type visionos \
+            --file "Export/NarrativeStoryWorlds.ipa" \
+            --apiKey ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }} \
+            --apiIssuer ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+
+  notify:
+    name: Notify Release
+    runs-on: ubuntu-latest
+    needs: [create-release, testflight]
+    if: always()
+
+    steps:
+      - name: Notify Team
+        run: |
+          echo "Release process completed"
+          # Add Slack/Discord notification here

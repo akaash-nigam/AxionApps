@@ -1,0 +1,233 @@
+name: Documentation
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - '**.md'
+      - 'landing-page/**'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - '**.md'
+      - 'landing-page/**'
+
+jobs:
+  validate-docs:
+    name: Validate Documentation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check documentation files
+        run: |
+          echo "📚 Checking documentation files..."
+
+          # Core documentation
+          REQUIRED_DOCS=(
+            "README.md"
+            "ARCHITECTURE.md"
+            "TECHNICAL_SPEC.md"
+            "DESIGN.md"
+            "IMPLEMENTATION_PLAN.md"
+            "TEST_DOCUMENTATION.md"
+            "TEST_EXECUTION_REPORT.md"
+          )
+
+          for doc in "${REQUIRED_DOCS[@]}"; do
+            if [ -f "$doc" ]; then
+              LINES=$(wc -l < "$doc")
+              SIZE=$(du -h "$doc" | cut -f1)
+              echo "✓ $doc exists ($LINES lines, $SIZE)"
+            else
+              echo "✗ $doc missing"
+              exit 1
+            fi
+          done
+
+      - name: Check for broken links
+        run: |
+          echo "🔗 Checking for broken internal links..."
+
+          # Find all markdown files
+          MD_FILES=$(find . -name "*.md" -not -path "./node_modules/*")
+
+          for file in $MD_FILES; do
+            echo "Checking links in $file..."
+            # Extract markdown links [text](link)
+            LINKS=$(grep -o '\[.*\](.*\.md)' "$file" | grep -o '(.*\.md)' | tr -d '()' || true)
+
+            for link in $LINKS; do
+              # Check if file exists
+              DIR=$(dirname "$file")
+              FULL_PATH="$DIR/$link"
+
+              if [ ! -f "$FULL_PATH" ]; then
+                echo "::warning file=$file::Broken link: $link"
+              fi
+            done
+          done
+
+      - name: Check documentation completeness
+        run: |
+          echo "📋 Checking documentation completeness..."
+
+          # Check ARCHITECTURE.md sections
+          if ! grep -q "## System Overview" ARCHITECTURE.md; then
+            echo "::warning::ARCHITECTURE.md missing System Overview section"
+          fi
+
+          # Check TEST_DOCUMENTATION.md sections
+          if ! grep -q "## Test Categories" TEST_DOCUMENTATION.md; then
+            echo "::warning::TEST_DOCUMENTATION.md missing Test Categories section"
+          fi
+
+          echo "✓ Documentation structure looks good"
+
+      - name: Check landing page
+        run: |
+          echo "🌐 Checking landing page..."
+
+          if [ -f "landing-page/index.html" ]; then
+            # Check for required sections
+            REQUIRED_SECTIONS=("hero" "features" "pricing" "footer")
+
+            for section in "${REQUIRED_SECTIONS[@]}"; do
+              if grep -q "$section" landing-page/index.html; then
+                echo "✓ Found section: $section"
+              else
+                echo "::warning::Missing section: $section"
+              fi
+            done
+
+            # Check for meta tags
+            if grep -q "viewport" landing-page/index.html; then
+              echo "✓ Has viewport meta tag"
+            else
+              echo "::warning::Missing viewport meta tag"
+            fi
+
+            # Check for proper HTML structure
+            if grep -q "<!DOCTYPE html>" landing-page/index.html; then
+              echo "✓ Valid HTML5 doctype"
+            else
+              echo "::error::Invalid or missing doctype"
+              exit 1
+            fi
+          else
+            echo "::error::landing-page/index.html not found"
+            exit 1
+          fi
+
+      - name: Generate documentation report
+        run: |
+          echo "# Documentation Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Count total lines of documentation
+          TOTAL_LINES=$(find . -name "*.md" -not -path "./node_modules/*" -exec wc -l {} \; | awk '{sum+=$1} END {print sum}')
+          echo "**Total Documentation Lines:** $TOTAL_LINES" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # List all markdown files with sizes
+          echo "## Documentation Files:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          for file in $(find . -name "*.md" -not -path "./node_modules/*" | sort); do
+            LINES=$(wc -l < "$file")
+            echo "- $file: $LINES lines" >> $GITHUB_STEP_SUMMARY
+          done
+
+  spell-check:
+    name: Spell Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install aspell
+        run: sudo apt-get install -y aspell aspell-en
+
+      - name: Run spell check on documentation
+        run: |
+          echo "🔍 Running spell check..."
+
+          # Create custom dictionary with technical terms
+          cat > .aspell.en.pws << EOF
+personal_ws-1.1 en 100
+visionOS
+SwiftUI
+RealityKit
+ARKit
+AudioKit
+CloudKit
+SharePlay
+CoreData
+AVAudioEngine
+MIDI
+CoreML
+DocC
+Xcode
+API
+APIs
+UI
+UX
+3D
+EOF
+
+          # Check markdown files
+          ERRORS=0
+          for file in $(find . -name "*.md" -not -path "./node_modules/*"); do
+            echo "Checking $file..."
+            if ! aspell --lang=en --mode=markdown --personal=.aspell.en.pws list < "$file" > /tmp/misspelled.txt; then
+              echo "Error checking $file"
+            fi
+
+            if [ -s /tmp/misspelled.txt ]; then
+              echo "::warning file=$file::Potential spelling errors found"
+              head -5 /tmp/misspelled.txt
+              ERRORS=$((ERRORS + 1))
+            fi
+          done
+
+          if [ $ERRORS -eq 0 ]; then
+            echo "✓ No spelling errors found"
+          else
+            echo "::notice::Found potential spelling errors in $ERRORS files (non-blocking)"
+          fi
+        continue-on-error: true
+
+  markdown-lint:
+    name: Markdown Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install markdownlint
+        run: npm install -g markdownlint-cli
+
+      - name: Create markdownlint config
+        run: |
+          cat > .markdownlint.json << EOF
+{
+  "default": true,
+  "MD013": false,
+  "MD033": false,
+  "MD041": false
+}
+EOF
+
+      - name: Run markdownlint
+        run: |
+          echo "Running markdownlint..."
+          markdownlint '**/*.md' --ignore node_modules --config .markdownlint.json || true
+        continue-on-error: true
