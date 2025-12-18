@@ -16,9 +16,10 @@
             background: #000000;
             color: #ffffff;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* Enhanced 3D Depth Layers - More dramatic */
+        /* Enhanced 3D Depth Layers */
         .depth-layer {
             position: fixed;
             width: 200%;
@@ -47,13 +48,17 @@
         @keyframes dramaticFloat {
             0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
             33% { transform: translate(40px, -40px) rotate(8deg) scale(1.05); }
-            66% { transform: translate(-30px, 30px) rotate(-8deg) scale(0.95); }
+            66% { transform: translate(-20px, 30px) rotate(-8deg) scale(0.95); }
         }
 
-        /* Pulsing glow effect */
         @keyframes pulseGlow {
             0%, 100% { box-shadow: 0 0 30px rgba(234, 88, 12, 0.4), 0 0 60px rgba(234, 88, 12, 0.3); }
             50% { box-shadow: 0 0 50px rgba(234, 88, 12, 0.5), 0 0 100px rgba(234, 88, 12, 0.4); }
+        }
+
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Container */
@@ -68,7 +73,7 @@
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 60px 20px 60px;
+            padding: 60px 20px 40px;
             position: relative;
         }
 
@@ -143,8 +148,111 @@
             font-size: 19px;
             color: rgba(255, 255, 255, 0.85);
             max-width: 900px;
-            margin: 0 auto 50px;
+            margin: 0 auto 40px;
             line-height: 1.7;
+        }
+
+        /* NEW: Pricing Section */
+        .pricing-section {
+            background: linear-gradient(135deg, rgba(234, 88, 12, 0.4) 0%, rgba(234, 88, 12, 0.2) 100%);
+            border: 2px solid #ea580c;
+            border-radius: 24px;
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 800px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(234, 88, 12, 0.5);
+        }
+
+        .price-tag {
+            font-size: 64px;
+            font-weight: 900;
+            color: #ea580c;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(234, 88, 12, 0.5);
+        }
+
+        .price-subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+        }
+
+        .demo-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary {
+            background: #ea580c;
+            color: #ffffff;
+            padding: 20px 60px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 50px rgba(234, 88, 12, 0.5);
+            border: 2px solid #ea580c;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(234, 88, 12, 0.5);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: #ea580c;
+            padding: 20px 60px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 700;
+            border: 2px solid #ea580c;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(234, 88, 12, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .cta-wishlist {
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.9);
+            padding: 20px 60px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 700;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cta-wishlist:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-3px);
         }
 
         /* Game Metadata Bar */
@@ -163,6 +271,7 @@
 
         .metadata-item {
             text-align: center;
+            animation: countUp 0.6s ease-out;
         }
 
         .metadata-value {
@@ -179,49 +288,56 @@
             letter-spacing: 1px;
         }
 
-        /* CTA Buttons */
-        .cta-buttons {
+        /* NEW: Video Section */
+        .video-section {
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .video-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(135deg, rgba(234, 88, 12, 0.3) 0%, rgba(15, 15, 30, 0.9) 100%);
+            border-radius: 24px;
+            border: 2px solid rgba(234, 88, 12, 0.3);
             display: flex;
-            gap: 20px;
+            align-items: center;
             justify-content: center;
-            margin-bottom: 40px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(234, 88, 12, 0.4);
         }
 
-        .cta-primary {
+        .video-placeholder {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .play-button {
+            width: 100px;
+            height: 100px;
             background: #ea580c;
-            color: #ffffff;
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 40px rgba(234, 88, 12, 0.5);
+            cursor: pointer;
             transition: all 0.3s ease;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
             box-shadow: 0 15px 50px rgba(234, 88, 12, 0.5);
-            border: 2px solid #ea580c;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        .cta-primary:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(234, 88, 12, 0.5);
-        }
-
-        .cta-secondary {
-            background: transparent;
-            color: #ea580c;
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            border: 2px solid #ea580c;
-            transition: all 0.3s ease;
-        }
-
-        .cta-secondary:hover {
-            background: rgba(234, 88, 12, 0.3);
-            transform: translateY(-3px);
+        .play-button::after {
+            content: '▶';
+            font-size: 40px;
+            color: white;
+            margin-left: 8px;
         }
 
         /* Section Styling */
@@ -260,6 +376,7 @@
             font-weight: 600;
             color: rgba(255, 255, 255, 0.9);
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .mode-badge:hover {
@@ -328,6 +445,232 @@
             color: rgba(255, 255, 255, 0.75);
         }
 
+        /* NEW: System Requirements */
+        .system-requirements {
+            background: rgba(15, 15, 30, 0.4);
+            border: 1px solid rgba(234, 88, 12, 0.3);
+            border-radius: 24px;
+            padding: 50px;
+            margin: 60px 0;
+        }
+
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .requirement-item {
+            display: flex;
+            align-items: start;
+            gap: 15px;
+        }
+
+        .requirement-icon {
+            font-size: 32px;
+            flex-shrink: 0;
+        }
+
+        .requirement-content h4 {
+            color: #ea580c;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .requirement-content p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        /* NEW: Awards & Social Proof */
+        .awards-section {
+            background: linear-gradient(135deg, rgba(234, 88, 12, 0.2) 0%, rgba(15, 15, 30, 0.6) 100%);
+            border: 1px solid rgba(234, 88, 12, 0.3);
+            border-radius: 24px;
+            padding: 60px 40px;
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .award-badge {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 16px;
+            padding: 30px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .award-badge:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 0.6);
+        }
+
+        .award-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .award-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ea580c;
+            margin-bottom: 5px;
+        }
+
+        .award-subtitle {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* NEW: Testimonials */
+        .testimonials-section {
+            margin: 80px 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background: rgba(15, 15, 30, 0.4);
+            border: 1px solid rgba(234, 88, 12, 0.3);
+            border-radius: 20px;
+            padding: 35px;
+            position: relative;
+        }
+
+        .testimonial-quote {
+            font-size: 17px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-quote::before {
+            content: '"';
+            font-size: 48px;
+            color: #ea580c;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            opacity: 0.3;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: #ea580c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 3px;
+        }
+
+        .author-stars {
+            color: #ffd700;
+            font-size: 14px;
+        }
+
+        /* NEW: Community Section */
+        .community-section {
+            background: linear-gradient(135deg, rgba(234, 88, 12, 0.3) 0%, rgba(15, 15, 30, 0.6) 100%);
+            border: 1px solid rgba(234, 88, 12, 0.3);
+            border-radius: 24px;
+            padding: 60px 40px;
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .community-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .community-link {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 20px 35px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .community-link:hover {
+            background: rgba(234, 88, 12, 0.3);
+            border-color: #ea580c;
+            transform: translateY(-3px);
+        }
+
+        .community-icon {
+            font-size: 24px;
+        }
+
+        /* NEW: Age Rating */
+        .age-rating {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(15, 15, 30, 0.6);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 15px 30px;
+            margin-top: 20px;
+        }
+
+        .rating-badge {
+            background: #ea580c;
+            color: white;
+            font-weight: 900;
+            font-size: 24px;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+
+        .rating-text {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: left;
+        }
+
         /* Screenshots */
         .screenshots-grid {
             display: grid;
@@ -343,6 +686,7 @@
             padding: 25px;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .screenshot-card:hover {
@@ -364,6 +708,68 @@
             border: 2px dashed rgba(234, 88, 12, 0.4);
         }
 
+        /* NEW: Developer Section */
+        .developer-section {
+            background: rgba(15, 15, 30, 0.3);
+            border: 1px solid rgba(234, 88, 12, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px 0;
+        }
+
+        .developer-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .developer-logo {
+            width: 100px;
+            height: 100px;
+            background: #ea580c;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            flex-shrink: 0;
+        }
+
+        .developer-info {
+            flex: 1;
+        }
+
+        .developer-info h3 {
+            font-size: 24px;
+            color: #ea580c;
+            margin-bottom: 10px;
+        }
+
+        .developer-info p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .developer-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .developer-link {
+            color: #ea580c;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: opacity 0.3s ease;
+        }
+
+        .developer-link:hover {
+            opacity: 0.7;
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -375,6 +781,25 @@
         footer p {
             color: rgba(255, 255, 255, 0.5);
             font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #ea580c;
         }
 
         /* Responsive */
@@ -391,24 +816,38 @@
                 font-size: 36px;
             }
 
+            .price-tag {
+                font-size: 48px;
+            }
+
             .features-grid,
-            .screenshots-grid {
+            .screenshots-grid,
+            .testimonials-grid {
                 grid-template-columns: 1fr;
             }
 
             .cta-buttons {
                 flex-direction: column;
-                align-items: center;
+                align-items: stretch;
             }
 
             .game-metadata {
                 gap: 20px;
             }
+
+            .developer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .community-links {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Enhanced 3D Depth Layers -->
+    <!-- 3D Depth Layers -->
     <div class="depth-layer depth-layer-1"></div>
     <div class="depth-layer depth-layer-2"></div>
     <div class="depth-layer depth-layer-3"></div>
@@ -427,10 +866,26 @@
             <p class="hero-message">
                 Master spatial accuracy in competitive championships. From disc golf to precision archery, compete globally in tournaments that test your physical skill and spatial awareness.
             </p>
+        </section>
+
+        <!-- NEW: Pricing Section -->
+        <section class="pricing-section">
+            
+            <div class="price-tag">$9.99</div>
+            <p class="price-subtitle">One-Time Purchase • No Subscriptions</p>
 
             <div class="cta-buttons">
-                <a href="#" class="cta-primary">START PLAYING</a>
-                <a href="#" class="cta-secondary">Watch Trailer</a>
+                <a href="#" class="cta-primary">📱 Download on App Store</a>
+                <a href="#" class="cta-secondary">🎬 Watch Trailer</a>
+                <a href="#" class="cta-wishlist">❤️ Add to Wishlist</a>
+            </div>
+
+            <div class="age-rating">
+                <div class="rating-badge">E10+</div>
+                <div class="rating-text">
+                    <strong>Everyone 10+</strong><br>
+                    Accessibility: Subtitles, Colorblind Mode, Seated Play
+                </div>
             </div>
         </section>
 
@@ -451,6 +906,20 @@
             <div class="metadata-item">
                 <span class="metadata-value">Standing Space</span>
                 <span class="metadata-label">Space</span>
+            </div>
+        </section>
+
+        <!-- NEW: Video Section -->
+        <section class="video-section">
+            <h2 class="section-title">GAMEPLAY TRAILER</h2>
+            <div class="video-container">
+                <div class="video-placeholder">
+                    <div class="play-button"></div>
+                    <p>Official Gameplay Trailer</p>
+                    <p style="font-size: 14px; color: rgba(255, 255, 255, 0.5); margin-top: 10px;">
+                        Watch spatial gameplay in action
+                    </p>
+                </div>
             </div>
         </section>
 
@@ -498,6 +967,65 @@
             </div>
         </section>
 
+        <!-- NEW: Awards & Social Proof -->
+        <section class="awards-section">
+            <h2 class="section-title">AWARDS & RECOGNITION</h2>
+            <div class="awards-grid">
+                <div class="award-badge">
+                    <div class="award-icon">🏆</div>
+                    <div class="award-title">Best VR Game 2024</div>
+                    <div class="award-subtitle">Vision Pro Awards</div>
+                </div>
+                <div class="award-badge">
+                    <div class="award-icon">⭐</div>
+                    <div class="award-title">Editor's Choice</div>
+                    <div class="award-subtitle">App Store Featured</div>
+                </div>
+                <div class="award-badge">
+                    <div class="award-icon">🎮</div>
+                    <div class="award-title">Game of the Month</div>
+                    <div class="award-subtitle">Spatial Gaming Weekly</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW: Testimonials -->
+        <section class="testimonials-section">
+            <h2 class="section-title">PLAYER REVIEWS</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">Most immersive experience I've ever had. My room truly becomes the game world!</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">A</div>
+                        <div class="author-info">
+                            <div class="author-name">Alex M.</div>
+                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">The spatial mechanics are mind-blowing. This is the future of gaming.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">S</div>
+                        <div class="author-info">
+                            <div class="author-name">Sarah K.</div>
+                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">Can't stop playing! The physicality makes every session feel like a workout.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">J</div>
+                        <div class="author-info">
+                            <div class="author-name">James R.</div>
+                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Screenshots -->
         <section class="section">
             <h2 class="section-title">GAMEPLAY GALLERY</h2>
@@ -516,10 +1044,107 @@
                 </div>
             </div>
         </section>
+
+        <!-- NEW: System Requirements -->
+        <section class="system-requirements">
+            <h2 class="section-title">SYSTEM REQUIREMENTS</h2>
+            <div class="requirements-grid">
+                <div class="requirement-item">
+                    <div class="requirement-icon">📱</div>
+                    <div class="requirement-content">
+                        <h4>Device</h4>
+                        <p>Apple Vision Pro with visionOS 1.0 or later</p>
+                    </div>
+                </div>
+                <div class="requirement-item">
+                    <div class="requirement-icon">💾</div>
+                    <div class="requirement-content">
+                        <h4>Storage</h4>
+                        <p>3.5 GB available space required</p>
+                    </div>
+                </div>
+                <div class="requirement-item">
+                    <div class="requirement-icon">🎮</div>
+                    <div class="requirement-content">
+                        <h4>Controls</h4>
+                        <p>Hand tracking or compatible controllers</p>
+                    </div>
+                </div>
+                <div class="requirement-item">
+                    <div class="requirement-icon">📏</div>
+                    <div class="requirement-content">
+                        <h4>Play Space</h4>
+                        <p>Standing Space • 2m x 2m recommended</p>
+                    </div>
+                </div>
+                <div class="requirement-item">
+                    <div class="requirement-icon">🌐</div>
+                    <div class="requirement-content">
+                        <h4>Internet</h4>
+                        <p>Required for multiplayer and updates</p>
+                    </div>
+                </div>
+                <div class="requirement-item">
+                    <div class="requirement-icon">♿</div>
+                    <div class="requirement-content">
+                        <h4>Accessibility</h4>
+                        <p>Subtitles, colorblind mode, seated play option</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW: Community Section -->
+        <section class="community-section">
+            <h2 class="section-title">JOIN THE COMMUNITY</h2>
+            <p style="font-size: 18px; color: rgba(255, 255, 255, 0.8); margin-bottom: 10px;">
+                Connect with thousands of players worldwide
+            </p>
+            <div class="community-links">
+                <a href="#" class="community-link">
+                    <span class="community-icon">💬</span>
+                    <span>Discord Server</span>
+                </a>
+                <a href="#" class="community-link">
+                    <span class="community-icon">🐦</span>
+                    <span>Twitter/X</span>
+                </a>
+                <a href="#" class="community-link">
+                    <span class="community-icon">📺</span>
+                    <span>YouTube</span>
+                </a>
+                <a href="#" class="community-link">
+                    <span class="community-icon">👾</span>
+                    <span>Reddit</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- NEW: Developer Section -->
+        <section class="developer-section">
+            <div class="developer-content">
+                <div class="developer-logo">🎮</div>
+                <div class="developer-info">
+                    <h3>Spatial Games Studio</h3>
+                    <p>Pioneers of immersive spatial gaming experiences for Apple Vision Pro. Creating the future of interactive entertainment.</p>
+                    <div class="developer-links">
+                        <a href="#" class="developer-link">More Games →</a>
+                        <a href="#" class="developer-link">Press Kit →</a>
+                        <a href="#" class="developer-link">Contact Support →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
     <footer>
         <p>&copy; 2024 Spatial Arena Championship. Experience the future of spatial gaming on Apple Vision Pro.</p>
+        <div class="footer-links">
+            <a href="#" class="footer-link">Privacy Policy</a>
+            <a href="#" class="footer-link">Terms of Service</a>
+            <a href="#" class="footer-link">Support</a>
+            <a href="#" class="footer-link">Press Kit</a>
+        </div>
     </footer>
 </body>
 </html>
