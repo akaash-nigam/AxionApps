@@ -1,0 +1,176 @@
+{
+  "" : {
+    "const-values" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AIAgentCoordinator-primary.swiftconstvalues",
+    "dependencies" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AIAgentCoordinator-primary.d",
+    "diagnostics" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AIAgentCoordinator-primary.dia",
+    "emit-module-dependencies" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AIAgentCoordinator-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AIAgentCoordinator-primary-emit-module.dia",
+    "pch" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AIAgentCoordinator-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AIAgentCoordinator-primary.swiftdeps"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/App/AIAgentCoordinatorApp.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AIAgentCoordinatorApp.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AIAgentCoordinatorApp.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AIAgentCoordinatorApp.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Models/AIAgent.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AIAgent.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AIAgent.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AIAgent.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Models/AgentMetrics.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AgentMetrics.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AgentMetrics.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AgentMetrics.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Models/AgentNetworkViewModel.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AgentNetworkViewModel.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AgentNetworkViewModel.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AgentNetworkViewModel.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Models/CollaborationViewModel.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/CollaborationViewModel.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/CollaborationViewModel.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/CollaborationViewModel.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Models/OrchestrationViewModel.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/OrchestrationViewModel.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/OrchestrationViewModel.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/OrchestrationViewModel.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Models/PerformanceViewModel.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/PerformanceViewModel.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/PerformanceViewModel.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/PerformanceViewModel.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Models/UserWorkspace.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/UserWorkspace.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/UserWorkspace.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/UserWorkspace.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Services/AWSSageMakerAdapter.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AWSSageMakerAdapter.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AWSSageMakerAdapter.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AWSSageMakerAdapter.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Services/AgentCoordinator.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AgentCoordinator.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AgentCoordinator.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AgentCoordinator.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Services/AgentRepository.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AgentRepository.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AgentRepository.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AgentRepository.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Services/AnthropicAdapter.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AnthropicAdapter.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AnthropicAdapter.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AnthropicAdapter.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Services/CollaborationManager.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/CollaborationManager.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/CollaborationManager.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/CollaborationManager.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Services/MetricsCollector.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/MetricsCollector.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/MetricsCollector.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/MetricsCollector.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Services/OpenAIAdapter.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/OpenAIAdapter.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/OpenAIAdapter.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/OpenAIAdapter.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Services/PlatformAdapter.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/PlatformAdapter.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/PlatformAdapter.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/PlatformAdapter.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Services/Protocols.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/Protocols.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/Protocols.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/Protocols.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Services/ServiceContainer.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/ServiceContainer.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/ServiceContainer.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/ServiceContainer.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Services/VisualizationEngine.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/VisualizationEngine.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/VisualizationEngine.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/VisualizationEngine.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Utilities/AccessibilityHelpers.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AccessibilityHelpers.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AccessibilityHelpers.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AccessibilityHelpers.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Utilities/CircularBuffer.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/CircularBuffer.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/CircularBuffer.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/CircularBuffer.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Utilities/Constants.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/Constants.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/Constants.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/Constants.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Utilities/Extensions.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/Extensions.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/Extensions.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/Extensions.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Utilities/Logger.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/Logger.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/Logger.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/Logger.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Utilities/RateLimiter.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/RateLimiter.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/RateLimiter.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/RateLimiter.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Utilities/RetryUtility.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/RetryUtility.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/RetryUtility.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/RetryUtility.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Views/ImmersiveViews/AgentGalaxyView.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AgentGalaxyView.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AgentGalaxyView.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AgentGalaxyView.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Views/ImmersiveViews/DecisionFlowView.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/DecisionFlowView.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/DecisionFlowView.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/DecisionFlowView.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Views/ImmersiveViews/PerformanceLandscapeView.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/PerformanceLandscapeView.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/PerformanceLandscapeView.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/PerformanceLandscapeView.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Views/Volumes/AgentDetailVolumeView.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AgentDetailVolumeView.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AgentDetailVolumeView.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AgentDetailVolumeView.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Views/Windows/AgentListView.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AgentListView.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AgentListView.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AgentListView.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Views/Windows/ControlPanelView.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/ControlPanelView.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/ControlPanelView.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/ControlPanelView.o"
+  },
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Views/Windows/SettingsView.swift" : {
+    "index-unit-output-path" : "/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/SettingsView.o",
+    "llvm-bc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/SettingsView.bc",
+    "object" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/SettingsView.o"
+  }
+}

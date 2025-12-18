@@ -1,0 +1,98 @@
+name: Load Testing
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_type:
+        description: 'Type of load test to run'
+        required: true
+        default: 'api'
+        type: choice
+        options:
+          - api
+          - meeting
+          - websocket
+          - stress
+          - all
+      target_url:
+        description: 'Target URL for testing'
+        required: false
+        default: 'http://localhost:3000/api'
+
+  schedule:
+    - cron: '0 2 * * 0'  # Weekly on Sunday at 2 AM
+
+jobs:
+  load-test:
+    name: Run Load Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install k6
+        run: |
+          sudo gpg -k
+          sudo gpg --no-default-keyring --keyring /usr/share/keyrings/k6-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69
+          echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+          sudo apt-get update
+          sudo apt-get install k6
+
+      - name: Run API Load Test
+        if: github.event.inputs.test_type == 'api' || github.event.inputs.test_type == 'all' || github.event_name == 'schedule'
+        working-directory: load-tests
+        run: k6 run api-load-test.js --out json=api-results.json
+        env:
+          API_URL: ${{ github.event.inputs.target_url || secrets.STAGING_API_URL }}
+
+      - name: Run Meeting Load Test
+        if: github.event.inputs.test_type == 'meeting' || github.event.inputs.test_type == 'all'
+        working-directory: load-tests
+        run: k6 run meeting-load-test.js --out json=meeting-results.json
+        env:
+          API_URL: ${{ github.event.inputs.target_url || secrets.STAGING_API_URL }}
+
+      - name: Run WebSocket Load Test
+        if: github.event.inputs.test_type == 'websocket' || github.event.inputs.test_type == 'all'
+        working-directory: load-tests
+        run: k6 run websocket-load-test.js --out json=ws-results.json
+        env:
+          API_URL: ${{ secrets.STAGING_API_URL }}
+          WS_URL: ${{ secrets.STAGING_WS_URL }}
+
+      - name: Run Stress Test
+        if: github.event.inputs.test_type == 'stress'
+        working-directory: load-tests
+        run: k6 run stress-test.js --out json=stress-results.json
+        env:
+          API_URL: ${{ github.event.inputs.target_url || secrets.STAGING_API_URL }}
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: load-test-results
+          path: load-tests/*.json
+
+      - name: Comment PR with results
+        if: github.event_name == 'pull_request' && always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            try {
+              const results = JSON.parse(fs.readFileSync('load-tests/api-results.json', 'utf8'));
+              const body = `## Load Test Results\n\n` +
+                `- **Requests**: ${results.metrics.http_reqs.values.count}\n` +
+                `- **Success Rate**: ${((1 - results.metrics.http_req_failed.values.rate) * 100).toFixed(2)}%\n` +
+                `- **P95 Response Time**: ${results.metrics.http_req_duration.values['p(95)'].toFixed(2)}ms\n`;
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: body
+              });
+            } catch (e) {
+              console.log('Could not post results:', e);
+            }

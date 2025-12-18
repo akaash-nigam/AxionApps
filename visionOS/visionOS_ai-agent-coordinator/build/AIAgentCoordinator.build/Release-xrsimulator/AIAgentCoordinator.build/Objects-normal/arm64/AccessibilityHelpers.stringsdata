@@ -1,0 +1,72 @@
+{
+  "source": "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Utilities/AccessibilityHelpers.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "%@ agents",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 32
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld of %lld, %@",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 33
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ immersive space",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 39
+        }
+      },
+      {
+        "comment": "",
+        "key": "Active",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 40
+        }
+      },
+      {
+        "comment": "",
+        "key": "Inactive",
+        "location": {
+          "startingColumn": 55,
+          "startingLine": 40
+        }
+      },
+      {
+        "comment": "",
+        "key": "Double tap to exit",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 41
+        }
+      },
+      {
+        "comment": "",
+        "key": "Double tap to enter",
+        "location": {
+          "startingColumn": 66,
+          "startingLine": 41
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@, %@",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 49
+        }
+      }
+    ]
+  },
+  "version": 1
+}

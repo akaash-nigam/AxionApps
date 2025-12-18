@@ -1,0 +1,48 @@
+{
+  "source": "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Views/ImmersiveViews/AgentGalaxyView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Galaxy",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 49
+        }
+      },
+      {
+        "comment": "",
+        "key": "Grid",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 55
+        }
+      },
+      {
+        "comment": "",
+        "key": "Cluster",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 61
+        }
+      },
+      {
+        "comment": "",
+        "key": "Connections",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 70
+        }
+      },
+      {
+        "comment": "",
+        "key": "LOD",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 78
+        }
+      }
+    ]
+  },
+  "version": 1
+}

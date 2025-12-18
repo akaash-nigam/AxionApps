@@ -1,0 +1,186 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main, develop, 'claude/**' ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Run Unit Tests
+    runs-on: macos-14
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_16.0.app/Contents/Developer
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      - name: Cache SPM dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/Library/Developer/Xcode/DerivedData
+            .build
+          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-spm-
+
+      - name: Build for testing
+        run: |
+          cd SurgicalTrainingUniverse
+          xcodebuild build-for-testing \
+            -scheme SurgicalTrainingUniverse \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -derivedDataPath .build \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Run tests
+        run: |
+          cd SurgicalTrainingUniverse
+          xcodebuild test-without-building \
+            -scheme SurgicalTrainingUniverse \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -derivedDataPath .build \
+            -enableCodeCoverage YES \
+            -resultBundlePath ./test-results/ci.xcresult \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Generate code coverage report
+        if: success()
+        run: |
+          cd SurgicalTrainingUniverse
+          xcrun xccov view --report ./test-results/ci.xcresult > coverage-report.txt
+          cat coverage-report.txt
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: SurgicalTrainingUniverse/test-results/
+          retention-days: 7
+
+      - name: Upload coverage report
+        if: success()
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: SurgicalTrainingUniverse/coverage-report.txt
+          retention-days: 7
+
+      - name: Check test coverage threshold
+        if: success()
+        run: |
+          cd SurgicalTrainingUniverse
+          COVERAGE=$(xcrun xccov view --report ./test-results/ci.xcresult | grep "All" | awk '{print $NF}' | sed 's/%//')
+          echo "Code coverage: $COVERAGE%"
+          if (( $(echo "$COVERAGE < 80" | bc -l) )); then
+            echo "❌ Code coverage ($COVERAGE%) is below threshold (80%)"
+            exit 1
+          else
+            echo "✅ Code coverage ($COVERAGE%) meets threshold (80%)"
+          fi
+
+  test-models:
+    name: Run Model Tests
+    runs-on: macos-14
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_16.0.app/Contents/Developer
+
+      - name: Run model tests
+        run: |
+          cd SurgicalTrainingUniverse
+          xcodebuild test \
+            -scheme SurgicalTrainingUniverse \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -only-testing:SurgicalTrainingUniverseTests/SurgeonProfileTests \
+            CODE_SIGNING_ALLOWED=NO
+
+  test-services:
+    name: Run Service Tests
+    runs-on: macos-14
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_16.0.app/Contents/Developer
+
+      - name: Run service tests
+        run: |
+          cd SurgicalTrainingUniverse
+          xcodebuild test \
+            -scheme SurgicalTrainingUniverse \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -only-testing:SurgicalTrainingUniverseTests/ProcedureServiceTests \
+            -only-testing:SurgicalTrainingUniverseTests/AnalyticsServiceTests \
+            CODE_SIGNING_ALLOWED=NO
+
+  build-validation:
+    name: Validate Build
+    runs-on: macos-14
+    timeout-minutes: 20
+
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_16.0.app/Contents/Developer
+
+      - name: Build ${{ matrix.configuration }}
+        run: |
+          cd SurgicalTrainingUniverse
+          xcodebuild build \
+            -scheme SurgicalTrainingUniverse \
+            -configuration ${{ matrix.configuration }} \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            CODE_SIGNING_ALLOWED=NO
+
+  summary:
+    name: Test Summary
+    needs: [test, test-models, test-services, build-validation]
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+      - name: Check test results
+        run: |
+          if [ "${{ needs.test.result }}" == "success" ] && \
+             [ "${{ needs.test-models.result }}" == "success" ] && \
+             [ "${{ needs.test-services.result }}" == "success" ] && \
+             [ "${{ needs.build-validation.result }}" == "success" ]; then
+            echo "✅ All tests and builds passed!"
+            exit 0
+          else
+            echo "❌ Some tests or builds failed"
+            echo "Test: ${{ needs.test.result }}"
+            echo "Model Tests: ${{ needs.test-models.result }}"
+            echo "Service Tests: ${{ needs.test-services.result }}"
+            echo "Build Validation: ${{ needs.build-validation.result }}"
+            exit 1
+          fi

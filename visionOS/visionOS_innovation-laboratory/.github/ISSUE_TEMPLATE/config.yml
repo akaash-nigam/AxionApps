@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 GitHub Discussions
+    url: https://github.com/your-org/visionOS_innovation-laboratory/discussions
+    about: Ask questions and discuss ideas with the community
+  - name: 📧 Email Support
+    url: mailto:support@innovationlab.com
+    about: Contact our support team directly
+  - name: 📚 Documentation
+    url: https://innovationlab.com/docs
+    about: Browse the complete documentation
+  - name: 🔒 Security Vulnerability
+    url: https://github.com/your-org/visionOS_innovation-laboratory/security/advisories/new
+    about: Report a security vulnerability (private)

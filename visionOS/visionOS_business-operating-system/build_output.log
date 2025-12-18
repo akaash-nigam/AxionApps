@@ -1,0 +1,645 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -scheme BusinessOperatingSystem -destination "platform=visionOS Simulator,id=242E2CB2-BDE1-4609-8207-3D1EC9CA10EB" build
+
+Resolve Package Graph
+2025-12-04 17:41:37.066 xcodebuild[82329:50771193] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+
+
+Resolved source packages:
+  BusinessOperatingSystem: /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (2 targets)
+    Target 'BusinessOperatingSystem' in project 'BusinessOperatingSystem'
+        ➜ Explicit dependency on target 'BusinessOperatingSystem' in project 'BusinessOperatingSystem'
+    Target 'BusinessOperatingSystem' in project 'BusinessOperatingSystem' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/SDKs/XRSimulator26.1.sdk /Users/aakashnigam/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/xrsimulator26.1-23N45-5f70b2714d3817e330ea0fe7cf3d07ac.sdkstatcache
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/SDKs/XRSimulator26.1.sdk -o /Users/aakashnigam/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/xrsimulator26.1-23N45-5f70b2714d3817e330ea0fe7cf3d07ac.sdkstatcache
+
+SwiftDriver BusinessOperatingSystem normal arm64 com.apple.xcode.tools.swift.compiler (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name BusinessOperatingSystem -Onone -enforce-exclusivity\=checked @/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/BusinessOperatingSystem.SwiftFileList -DSWIFT_PACKAGE -DDEBUG -DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -DXcode -enable-upcoming-feature BareSlashRegexLiterals -enable-upcoming-feature ConciseMagicFile -enable-upcoming-feature ExistentialAny -enable-upcoming-feature ForwardTrailingClosures -enable-upcoming-feature ImplicitOpenExistentials -enable-upcoming-feature StrictConcurrency -enable-actor-data-race-checks -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/SDKs/XRSimulator26.1.sdk -target arm64-apple-xros2.0-simulator -g -module-cache-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -index-store-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Products/Debug-xrsimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/usr/lib -F /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Products/Debug-xrsimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/SDKs/XRSimulator26.1.sdk/Developer/Library/Frameworks -c -j14 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/aakashnigam/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/xrsimulator26.1-23N45-5f70b2714d3817e330ea0fe7cf3d07ac.sdkstatcache -output-file-map /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/BusinessOperatingSystem-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/BusinessOperatingSystem.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/aakashnigam/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -package-name visionos_business_operating_system -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/BusinessOperatingSystem_const_extract_protocols.json -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Products/Debug-xrsimulator/include -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/DerivedSources-normal/arm64 -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/DerivedSources/arm64 -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/BusinessOperatingSystem-Swift.h -working-directory /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode -experimental-emit-module-separately -disable-cmo
+warning: upcoming feature 'ImplicitOpenExistentials' is already enabled as of Swift version 6
+warning: upcoming feature 'ForwardTrailingClosures' is already enabled as of Swift version 6
+warning: upcoming feature 'ConciseMagicFile' is already enabled as of Swift version 6
+warning: upcoming feature 'BareSlashRegexLiterals' is already enabled as of Swift version 6
+warning: Upcoming feature 'ImplicitOpenExistentials' is already enabled as of Swift version 6 (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+warning: Upcoming feature 'ForwardTrailingClosures' is already enabled as of Swift version 6 (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+warning: Upcoming feature 'ConciseMagicFile' is already enabled as of Swift version 6 (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+warning: Upcoming feature 'BareSlashRegexLiterals' is already enabled as of Swift version 6 (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+
+SwiftCompile normal arm64 Compiling\ FormatUtilities.swift,\ HandTrackingManager.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/FormatUtilities.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/HandTrackingManager.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+
+SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/FormatUtilities.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    
+
+SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/HandTrackingManager.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    
+
+<unknown>:0: warning: upcoming feature 'ImplicitOpenExistentials' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ForwardTrailingClosures' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ConciseMagicFile' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'BareSlashRegexLiterals' is already enabled as of Swift version 6
+SwiftCompile normal arm64 Compiling\ ServiceProtocols.swift,\ ConnectivityMonitor.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Services/ServiceProtocols.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ConnectivityMonitor.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+<unknown>:0: warning: upcoming feature 'ImplicitOpenExistentials' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ForwardTrailingClosures' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ConciseMagicFile' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'BareSlashRegexLiterals' is already enabled as of Swift version 6
+Failed frontend command:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend -frontend -c /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/AppState.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/BusinessOperatingSystemApp.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/NavigationCoordinator.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/Cache/CachedModels.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/Department/Department.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/DomainModels.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/Employee/Employee.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/KPI/KPI.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/Organization/Organization.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/Report/Report.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/User/User.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/Visualization/Visualization.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Services/MockServiceImplementations.swift -primary-file /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Services/ServiceProtocols.swift -primary-file /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ConnectivityMonitor.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/EntityPool.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ErrorHandling.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/FormatUtilities.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/HandTrackingManager.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ImmersionManager.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/SpatialAudioManager.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/SpatialLayoutEngine.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/ViewModels/DashboardViewModel.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/ViewModels/DepartmentViewModel.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Components/WindowOrnaments.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/ImmersiveViews/BusinessUniverseView.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Spatial/BusinessEntity3D.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Spatial/SpatialGestureHandlers.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Volumes/DataVisualizationVolume.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Volumes/DepartmentVolumeView.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Windows/DashboardView.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Windows/DepartmentDetailView.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Windows/ReportDetailView.swift -emit-dependencies-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/ServiceProtocols.d -emit-const-values-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/ServiceProtocols.swiftconstvalues -emit-reference-dependencies-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/ServiceProtocols.swiftdeps -serialize-diagnostics-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/ServiceProtocols.dia -emit-dependencies-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/ConnectivityMonitor.d -emit-const-values-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/ConnectivityMonitor.swiftconstvalues -emit-reference-dependencies-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/ConnectivityMonitor.swiftdeps -serialize-diagnostics-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/ConnectivityMonitor.dia -target arm64-apple-xros2.0-simulator -disable-cross-import-overlay-search -swift-module-cross-import RealityKit /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/SDKs/XRSimulator26.1.sdk/System/Library/Frameworks/RealityKit.framework/Modules/RealityKit.swiftcrossimport/SwiftUI.swiftoverlay -swift-module-cross-import SwiftData /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/SDKs/XRSimulator26.1.sdk/System/Library/Frameworks/SwiftData.framework/Modules/SwiftData.swiftcrossimport/CoreData.swiftoverlay -swift-module-cross-import SwiftData /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/SDKs/XRSimulator26.1.sdk/System/Library/Frameworks/SwiftData.framework/Modules/SwiftData.swiftcrossimport/SwiftUI.swiftoverlay -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/lib/swift/host/plugins/libFoundationMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/bin/swift-plugin-server\#FoundationMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/lib/swift/host/plugins/libObservationMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/bin/swift-plugin-server\#ObservationMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/lib/swift/host/plugins/libPreviewsMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/bin/swift-plugin-server\#PreviewsMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/lib/swift/host/plugins/libSwiftDataMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/bin/swift-plugin-server\#SwiftDataMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/lib/swift/host/plugins/libSwiftMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/bin/swift-plugin-server\#SwiftMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/lib/swift/host/plugins/libSwiftUIMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/bin/swift-plugin-server\#SwiftUIMacros -disable-implicit-swift-modules -Xcc -fno-implicit-modules -Xcc -fno-implicit-module-maps -explicit-swift-module-map-file /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/BusinessOperatingSystem-dependencies-1.json -Xllvm -aarch64-use-tbi -enable-objc-interop -stack-check -sdk /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/SDKs/XRSimulator26.1.sdk -I /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Products/Debug-xrsimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/usr/lib -F /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Products/Debug-xrsimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/SDKs/XRSimulator26.1.sdk/Developer/Library/Frameworks -no-color-diagnostics -Xcc -fno-color-diagnostics -enable-testing -g -debug-info-format\=dwarf -dwarf-version\=5 -module-cache-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -profile-generate -profile-coverage-mapping -swift-version 6 -enforce-exclusivity\=checked -Onone -enable-actor-data-race-checks -D SWIFT_PACKAGE -D DEBUG -D SWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -D Xcode -serialize-debugging-options -const-gather-protocols-file /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/BusinessOperatingSystem_const_extract_protocols.json -enable-upcoming-feature BareSlashRegexLiterals -enable-upcoming-feature ConciseMagicFile -enable-upcoming-feature ExistentialAny -enable-upcoming-feature ForwardTrailingClosures -enable-upcoming-feature ImplicitOpenExistentials -enable-upcoming-feature StrictConcurrency -enable-experimental-feature DebugDescriptionMacro -empty-abi-descriptor -validate-clang-modules-once -clang-build-session-file /Users/aakashnigam/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -working-directory -Xcc /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode -enable-anonymous-context-mangled-names -file-compilation-dir /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -Xcc -ivfsstatcache -Xcc /Users/aakashnigam/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/xrsimulator26.1-23N45-5f70b2714d3817e330ea0fe7cf3d07ac.sdkstatcache -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/swift-overrides.hmap -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Products/Debug-xrsimulator/include -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/DerivedSources-normal/arm64 -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/DerivedSources/arm64 -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\=1 -no-auto-bridging-header-chaining -module-name BusinessOperatingSystem -package-name visionos_business_operating_system -frontend-parseable-output -disable-clang-spi -target-sdk-version 26.1 -target-sdk-name xrsimulator26.1 -clang-target arm64-apple-xros26.1-simulator -in-process-plugin-server-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/libSwiftInProcPluginServer.dylib -o /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/ServiceProtocols.o -o /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/ConnectivityMonitor.o -index-unit-output-path /BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/ServiceProtocols.o -index-unit-output-path /BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/ConnectivityMonitor.o -index-store-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Index.noindex/DataStore -index-system-modules
+
+SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Services/ServiceProtocols.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Services/ServiceProtocols.swift:249:16: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+    case error(Error)
+               ^~~~~
+               any Error
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Services/ServiceProtocols.swift:595:24: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+    case errorOccurred(Error)
+                       ^~~~~
+                       any Error
+
+SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ConnectivityMonitor.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ConnectivityMonitor.swift:146:35: warning: use of protocol 'BusinessDataRepository' as a type must be written 'any BusinessDataRepository'; this will be an error in a future Swift language mode
+    private let onlineRepository: BusinessDataRepository
+                                  ^~~~~~~~~~~~~~~~~~~~~~
+                                  any BusinessDataRepository
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ConnectivityMonitor.swift:147:34: warning: use of protocol 'BusinessDataRepository' as a type must be written 'any BusinessDataRepository'; this will be an error in a future Swift language mode
+    private let cacheRepository: BusinessDataRepository
+                                 ^~~~~~~~~~~~~~~~~~~~~~
+                                 any BusinessDataRepository
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ConnectivityMonitor.swift:151:27: warning: use of protocol 'BusinessDataRepository' as a type must be written 'any BusinessDataRepository'; this will be an error in a future Swift language mode
+        onlineRepository: BusinessDataRepository,
+                          ^~~~~~~~~~~~~~~~~~~~~~
+                          any BusinessDataRepository
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ConnectivityMonitor.swift:152:26: warning: use of protocol 'BusinessDataRepository' as a type must be written 'any BusinessDataRepository'; this will be an error in a future Swift language mode
+        cacheRepository: BusinessDataRepository
+                         ^~~~~~~~~~~~~~~~~~~~~~
+                         any BusinessDataRepository
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ConnectivityMonitor.swift:229:43: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+    static func fromNetworkError(_ error: Error, connectivity: ConnectivityMonitor) -> BOSError {
+                                          ^~~~~
+                                          any Error
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ConnectivityMonitor.swift:73:17: error: capture of 'self' with non-Sendable type 'ConnectivityMonitor?' in a '@Sendable' closure
+                self?.updateConnectivity(from: path)
+                ^
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ConnectivityMonitor.swift:14:13: note: class 'ConnectivityMonitor' does not conform to the 'Sendable' protocol
+final class ConnectivityMonitor {
+            ^
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ConnectivityMonitor.swift:166:46: error: non-Sendable type 'ConnectivityMonitor' of property 'connectivity' cannot exit actor-isolated context
+        let isOnline = await MainActor.run { connectivity.isConnected }
+                                             ^
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ConnectivityMonitor.swift:14:13: note: class 'ConnectivityMonitor' does not conform to the 'Sendable' protocol
+final class ConnectivityMonitor {
+            ^
+
+SwiftCompile normal arm64 Compiling\ NavigationCoordinator.swift,\ ServiceContainer.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/NavigationCoordinator.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+<unknown>:0: warning: upcoming feature 'ImplicitOpenExistentials' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ForwardTrailingClosures' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ConciseMagicFile' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'BareSlashRegexLiterals' is already enabled as of Swift version 6
+Failed frontend command:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend -frontend -c /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/AppState.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/BusinessOperatingSystemApp.swift -primary-file /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/NavigationCoordinator.swift -primary-file /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/Cache/CachedModels.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/Department/Department.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/DomainModels.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/Employee/Employee.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/KPI/KPI.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/Organization/Organization.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/Report/Report.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/User/User.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/Visualization/Visualization.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Services/MockServiceImplementations.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Services/ServiceProtocols.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ConnectivityMonitor.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/EntityPool.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ErrorHandling.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/FormatUtilities.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/HandTrackingManager.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ImmersionManager.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/SpatialAudioManager.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/SpatialLayoutEngine.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/ViewModels/DashboardViewModel.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/ViewModels/DepartmentViewModel.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Components/WindowOrnaments.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/ImmersiveViews/BusinessUniverseView.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Spatial/BusinessEntity3D.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Spatial/SpatialGestureHandlers.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Volumes/DataVisualizationVolume.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Volumes/DepartmentVolumeView.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Windows/DashboardView.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Windows/DepartmentDetailView.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Windows/ReportDetailView.swift -emit-dependencies-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/NavigationCoordinator.d -emit-const-values-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/NavigationCoordinator.swiftconstvalues -emit-reference-dependencies-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/NavigationCoordinator.swiftdeps -serialize-diagnostics-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/NavigationCoordinator.dia -emit-dependencies-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/ServiceContainer.d -emit-const-values-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/ServiceContainer.swiftconstvalues -emit-reference-dependencies-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/ServiceContainer.swiftdeps -serialize-diagnostics-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/ServiceContainer.dia -target arm64-apple-xros2.0-simulator -disable-cross-import-overlay-search -swift-module-cross-import RealityKit /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/SDKs/XRSimulator26.1.sdk/System/Library/Frameworks/RealityKit.framework/Modules/RealityKit.swiftcrossimport/SwiftUI.swiftoverlay -swift-module-cross-import SwiftData /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/SDKs/XRSimulator26.1.sdk/System/Library/Frameworks/SwiftData.framework/Modules/SwiftData.swiftcrossimport/CoreData.swiftoverlay -swift-module-cross-import SwiftData /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/SDKs/XRSimulator26.1.sdk/System/Library/Frameworks/SwiftData.framework/Modules/SwiftData.swiftcrossimport/SwiftUI.swiftoverlay -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/lib/swift/host/plugins/libFoundationMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/bin/swift-plugin-server\#FoundationMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/lib/swift/host/plugins/libObservationMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/bin/swift-plugin-server\#ObservationMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/lib/swift/host/plugins/libPreviewsMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/bin/swift-plugin-server\#PreviewsMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/lib/swift/host/plugins/libSwiftDataMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/bin/swift-plugin-server\#SwiftDataMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/lib/swift/host/plugins/libSwiftMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/bin/swift-plugin-server\#SwiftMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/lib/swift/host/plugins/libSwiftUIMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/bin/swift-plugin-server\#SwiftUIMacros -disable-implicit-swift-modules -Xcc -fno-implicit-modules -Xcc -fno-implicit-module-maps -explicit-swift-module-map-file /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/BusinessOperatingSystem-dependencies-1.json -Xllvm -aarch64-use-tbi -enable-objc-interop -stack-check -sdk /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/SDKs/XRSimulator26.1.sdk -I /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Products/Debug-xrsimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/usr/lib -F /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Products/Debug-xrsimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/SDKs/XRSimulator26.1.sdk/Developer/Library/Frameworks -no-color-diagnostics -Xcc -fno-color-diagnostics -enable-testing -g -debug-info-format\=dwarf -dwarf-version\=5 -module-cache-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -profile-generate -profile-coverage-mapping -swift-version 6 -enforce-exclusivity\=checked -Onone -enable-actor-data-race-checks -D SWIFT_PACKAGE -D DEBUG -D SWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -D Xcode -serialize-debugging-options -const-gather-protocols-file /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/BusinessOperatingSystem_const_extract_protocols.json -enable-upcoming-feature BareSlashRegexLiterals -enable-upcoming-feature ConciseMagicFile -enable-upcoming-feature ExistentialAny -enable-upcoming-feature ForwardTrailingClosures -enable-upcoming-feature ImplicitOpenExistentials -enable-upcoming-feature StrictConcurrency -enable-experimental-feature DebugDescriptionMacro -empty-abi-descriptor -validate-clang-modules-once -clang-build-session-file /Users/aakashnigam/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -working-directory -Xcc /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode -enable-anonymous-context-mangled-names -file-compilation-dir /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -Xcc -ivfsstatcache -Xcc /Users/aakashnigam/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/xrsimulator26.1-23N45-5f70b2714d3817e330ea0fe7cf3d07ac.sdkstatcache -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/swift-overrides.hmap -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Products/Debug-xrsimulator/include -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/DerivedSources-normal/arm64 -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/DerivedSources/arm64 -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\=1 -no-auto-bridging-header-chaining -module-name BusinessOperatingSystem -package-name visionos_business_operating_system -frontend-parseable-output -disable-clang-spi -target-sdk-version 26.1 -target-sdk-name xrsimulator26.1 -clang-target arm64-apple-xros26.1-simulator -in-process-plugin-server-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/libSwiftInProcPluginServer.dylib -o /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/NavigationCoordinator.o -o /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/ServiceContainer.o -index-unit-output-path /BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/NavigationCoordinator.o -index-unit-output-path /BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/ServiceContainer.o -index-store-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Index.noindex/DataStore -index-system-modules
+
+SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/NavigationCoordinator.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/NavigationCoordinator.swift:320:5: warning: 'nonisolated(unsafe)' is unnecessary for a constant with 'Sendable' type 'NavigationCoordinator', consider removing it
+    nonisolated(unsafe) static let defaultValue = NavigationCoordinator()
+    ^~~~~~~~~~~~~~~~~~~~
+    
+
+SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:62:19: error: passing closure as a 'sending' parameter risks causing data races between code in the current task and concurrent execution of the closure
+            group.addTask { try await auth.initialize() }
+            ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:62:44: note: closure captures 'auth' which is accessible to code in the current task
+            group.addTask { try await auth.initialize() }
+                                           ^
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:63:19: error: passing closure as a 'sending' parameter risks causing data races between code in the current task and concurrent execution of the closure
+            group.addTask { try await repository.initialize() }
+            ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:63:50: note: closure captures 'repository' which is accessible to code in the current task
+            group.addTask { try await repository.initialize() }
+                                                 ^
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:64:19: error: passing closure as a 'sending' parameter risks causing data races between code in the current task and concurrent execution of the closure
+            group.addTask { try await sync.initialize() }
+            ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:64:44: note: closure captures 'sync' which is accessible to code in the current task
+            group.addTask { try await sync.initialize() }
+                                           ^
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:65:19: error: passing closure as a 'sending' parameter risks causing data races between code in the current task and concurrent execution of the closure
+            group.addTask { try await ai.initialize() }
+            ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:65:42: note: closure captures 'ai' which is accessible to code in the current task
+            group.addTask { try await ai.initialize() }
+                                         ^
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:66:19: error: passing closure as a 'sending' parameter risks causing data races between code in the current task and concurrent execution of the closure
+            group.addTask { try await collaboration.initialize() }
+            ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:66:53: note: closure captures 'collaboration' which is accessible to code in the current task
+            group.addTask { try await collaboration.initialize() }
+                                                    ^
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:67:19: error: passing closure as a 'sending' parameter risks causing data races between code in the current task and concurrent execution of the closure
+            group.addTask { try await network.initialize() }
+            ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:67:47: note: closure captures 'network' which is accessible to code in the current task
+            group.addTask { try await network.initialize() }
+                                              ^
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:68:19: error: passing closure as a 'sending' parameter risks causing data races between code in the current task and concurrent execution of the closure
+            group.addTask { try await analytics.initialize() }
+            ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:68:49: note: closure captures 'analytics' which is accessible to code in the current task
+            group.addTask { try await analytics.initialize() }
+                                                ^
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:90:19: error: passing closure as a 'sending' parameter risks causing data races between code in the current task and concurrent execution of the closure
+            group.addTask { await auth.shutdown() }
+            ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:90:40: note: closure captures 'auth' which is accessible to code in the current task
+            group.addTask { await auth.shutdown() }
+                                       ^
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:91:19: error: passing closure as a 'sending' parameter risks causing data races between code in the current task and concurrent execution of the closure
+            group.addTask { await repository.shutdown() }
+            ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:91:46: note: closure captures 'repository' which is accessible to code in the current task
+            group.addTask { await repository.shutdown() }
+                                             ^
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:92:19: error: passing closure as a 'sending' parameter risks causing data races between code in the current task and concurrent execution of the closure
+            group.addTask { await sync.shutdown() }
+            ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:92:40: note: closure captures 'sync' which is accessible to code in the current task
+            group.addTask { await sync.shutdown() }
+                                       ^
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:93:19: error: passing closure as a 'sending' parameter risks causing data races between code in the current task and concurrent execution of the closure
+            group.addTask { await ai.shutdown() }
+            ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:93:38: note: closure captures 'ai' which is accessible to code in the current task
+            group.addTask { await ai.shutdown() }
+                                     ^
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:94:19: error: passing closure as a 'sending' parameter risks causing data races between code in the current task and concurrent execution of the closure
+            group.addTask { await collaboration.shutdown() }
+            ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:94:49: note: closure captures 'collaboration' which is accessible to code in the current task
+            group.addTask { await collaboration.shutdown() }
+                                                ^
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:95:19: error: passing closure as a 'sending' parameter risks causing data races between code in the current task and concurrent execution of the closure
+            group.addTask { await network.shutdown() }
+            ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:95:43: note: closure captures 'network' which is accessible to code in the current task
+            group.addTask { await network.shutdown() }
+                                          ^
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:96:19: error: passing closure as a 'sending' parameter risks causing data races between code in the current task and concurrent execution of the closure
+            group.addTask { await analytics.shutdown() }
+            ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift:96:45: note: closure captures 'analytics' which is accessible to code in the current task
+            group.addTask { await analytics.shutdown() }
+                                            ^
+
+SwiftCompile normal arm64 Compiling\ AppState.swift,\ BusinessOperatingSystemApp.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/AppState.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/BusinessOperatingSystemApp.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/AppState.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    
+
+SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/BusinessOperatingSystemApp.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/BusinessOperatingSystemApp.swift:17:40: warning: use of protocol 'ImmersionStyle' as a type must be written 'any ImmersionStyle'; this will be an error in a future Swift language mode
+    @State private var immersionLevel: ImmersionStyle = .full
+                                       ^~~~~~~~~~~~~~
+                                       any ImmersionStyle
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/BusinessOperatingSystemApp.swift:18:45: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+    @State private var initializationError: Error?
+                                            ^~~~~
+                                            (any Error)
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/BusinessOperatingSystemApp.swift:196:5: warning: 'nonisolated(unsafe)' is unnecessary for a constant with 'Sendable' type 'AppState', consider removing it
+    nonisolated(unsafe) static let defaultValue = AppState()
+    ^~~~~~~~~~~~~~~~~~~~
+    
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/BusinessOperatingSystemApp.swift:200:5: warning: 'nonisolated(unsafe)' is unnecessary for a constant with 'Sendable' type 'ServiceContainer', consider removing it
+    nonisolated(unsafe) static let defaultValue = ServiceContainer()
+    ^~~~~~~~~~~~~~~~~~~~
+    
+
+<unknown>:0: warning: upcoming feature 'ImplicitOpenExistentials' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ForwardTrailingClosures' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ConciseMagicFile' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'BareSlashRegexLiterals' is already enabled as of Swift version 6
+SwiftCompile normal arm64 Compiling\ ImmersionManager.swift,\ SpatialAudioManager.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ImmersionManager.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/SpatialAudioManager.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+<unknown>:0: warning: upcoming feature 'ImplicitOpenExistentials' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ForwardTrailingClosures' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ConciseMagicFile' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'BareSlashRegexLiterals' is already enabled as of Swift version 6
+
+SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ImmersionManager.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    
+
+SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/SpatialAudioManager.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    
+
+SwiftCompile normal arm64 Compiling\ DepartmentViewModel.swift,\ WindowOrnaments.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/ViewModels/DepartmentViewModel.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Components/WindowOrnaments.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+<unknown>:0: warning: upcoming feature 'ImplicitOpenExistentials' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ForwardTrailingClosures' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ConciseMagicFile' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'BareSlashRegexLiterals' is already enabled as of Swift version 6
+Failed frontend command:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend -frontend -c /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/AppState.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/BusinessOperatingSystemApp.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/NavigationCoordinator.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/Cache/CachedModels.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/Department/Department.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/DomainModels.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/Employee/Employee.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/KPI/KPI.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/Organization/Organization.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/Report/Report.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/User/User.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Models/Visualization/Visualization.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Services/MockServiceImplementations.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Services/ServiceProtocols.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ConnectivityMonitor.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/EntityPool.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ErrorHandling.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/FormatUtilities.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/HandTrackingManager.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ImmersionManager.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/SpatialAudioManager.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/SpatialLayoutEngine.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/ViewModels/DashboardViewModel.swift -primary-file /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/ViewModels/DepartmentViewModel.swift -primary-file /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Components/WindowOrnaments.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/ImmersiveViews/BusinessUniverseView.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Spatial/BusinessEntity3D.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Spatial/SpatialGestureHandlers.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Volumes/DataVisualizationVolume.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Volumes/DepartmentVolumeView.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Windows/DashboardView.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Windows/DepartmentDetailView.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Windows/ReportDetailView.swift -emit-dependencies-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/DepartmentViewModel.d -emit-const-values-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/DepartmentViewModel.swiftconstvalues -emit-reference-dependencies-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/DepartmentViewModel.swiftdeps -serialize-diagnostics-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/DepartmentViewModel.dia -emit-dependencies-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/WindowOrnaments.d -emit-const-values-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/WindowOrnaments.swiftconstvalues -emit-reference-dependencies-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/WindowOrnaments.swiftdeps -serialize-diagnostics-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/WindowOrnaments.dia -target arm64-apple-xros2.0-simulator -disable-cross-import-overlay-search -swift-module-cross-import RealityKit /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/SDKs/XRSimulator26.1.sdk/System/Library/Frameworks/RealityKit.framework/Modules/RealityKit.swiftcrossimport/SwiftUI.swiftoverlay -swift-module-cross-import SwiftData /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/SDKs/XRSimulator26.1.sdk/System/Library/Frameworks/SwiftData.framework/Modules/SwiftData.swiftcrossimport/CoreData.swiftoverlay -swift-module-cross-import SwiftData /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/SDKs/XRSimulator26.1.sdk/System/Library/Frameworks/SwiftData.framework/Modules/SwiftData.swiftcrossimport/SwiftUI.swiftoverlay -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/lib/swift/host/plugins/libFoundationMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/bin/swift-plugin-server\#FoundationMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/lib/swift/host/plugins/libObservationMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/bin/swift-plugin-server\#ObservationMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/lib/swift/host/plugins/libPreviewsMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/bin/swift-plugin-server\#PreviewsMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/lib/swift/host/plugins/libSwiftDataMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/bin/swift-plugin-server\#SwiftDataMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/lib/swift/host/plugins/libSwiftMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/bin/swift-plugin-server\#SwiftMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/lib/swift/host/plugins/libSwiftUIMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/XROS.platform/Developer/usr/bin/swift-plugin-server\#SwiftUIMacros -disable-implicit-swift-modules -Xcc -fno-implicit-modules -Xcc -fno-implicit-module-maps -explicit-swift-module-map-file /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/BusinessOperatingSystem-dependencies-1.json -Xllvm -aarch64-use-tbi -enable-objc-interop -stack-check -sdk /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/SDKs/XRSimulator26.1.sdk -I /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Products/Debug-xrsimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/usr/lib -F /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Products/Debug-xrsimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/SDKs/XRSimulator26.1.sdk/Developer/Library/Frameworks -no-color-diagnostics -Xcc -fno-color-diagnostics -enable-testing -g -debug-info-format\=dwarf -dwarf-version\=5 -module-cache-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -profile-generate -profile-coverage-mapping -swift-version 6 -enforce-exclusivity\=checked -Onone -enable-actor-data-race-checks -D SWIFT_PACKAGE -D DEBUG -D SWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -D Xcode -serialize-debugging-options -const-gather-protocols-file /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/BusinessOperatingSystem_const_extract_protocols.json -enable-upcoming-feature BareSlashRegexLiterals -enable-upcoming-feature ConciseMagicFile -enable-upcoming-feature ExistentialAny -enable-upcoming-feature ForwardTrailingClosures -enable-upcoming-feature ImplicitOpenExistentials -enable-upcoming-feature StrictConcurrency -enable-experimental-feature DebugDescriptionMacro -empty-abi-descriptor -validate-clang-modules-once -clang-build-session-file /Users/aakashnigam/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -working-directory -Xcc /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode -enable-anonymous-context-mangled-names -file-compilation-dir /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -Xcc -ivfsstatcache -Xcc /Users/aakashnigam/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/xrsimulator26.1-23N45-5f70b2714d3817e330ea0fe7cf3d07ac.sdkstatcache -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/swift-overrides.hmap -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Products/Debug-xrsimulator/include -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/DerivedSources-normal/arm64 -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/DerivedSources/arm64 -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\=1 -no-auto-bridging-header-chaining -module-name BusinessOperatingSystem -package-name visionos_business_operating_system -frontend-parseable-output -disable-clang-spi -target-sdk-version 26.1 -target-sdk-name xrsimulator26.1 -clang-target arm64-apple-xros26.1-simulator -in-process-plugin-server-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/libSwiftInProcPluginServer.dylib -o /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/DepartmentViewModel.o -o /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/WindowOrnaments.o -index-unit-output-path /BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/DepartmentViewModel.o -index-unit-output-path /BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/WindowOrnaments.o -index-store-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Index.noindex/DataStore -index-system-modules
+
+SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/ViewModels/DepartmentViewModel.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/ViewModels/DepartmentViewModel.swift:21:16: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+    var error: Error?
+               ^~~~~
+               (any Error)
+@__swiftmacro_23BusinessOperatingSystem19DepartmentViewModelC5error18ObservationTrackedfMp_.swift:1:42: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+@ObservationIgnored private  var _error: Error?
+                                         ^
+@__swiftmacro_23BusinessOperatingSystem19DepartmentViewModelC5error10ObservablefMr5_.swift:1:1: note: in expansion of macro 'ObservationTracked' on property 'error' here
+@ObservationTracked
+^
+@__swiftmacro_23BusinessOperatingSystem19DepartmentViewModelC5error10ObservablefMr5_.swift:1:1: note: in expansion of macro 'ObservationTracked' on property 'error' here
+@ObservationTracked
+^
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/ViewModels/DepartmentViewModel.swift:26:29: warning: use of protocol 'BusinessDataRepository' as a type must be written 'any BusinessDataRepository'; this will be an error in a future Swift language mode
+    private let repository: BusinessDataRepository
+                            ^~~~~~~~~~~~~~~~~~~~~~
+                            any BusinessDataRepository
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/ViewModels/DepartmentViewModel.swift:27:28: warning: use of protocol 'AnalyticsService' as a type must be written 'any AnalyticsService'; this will be an error in a future Swift language mode
+    private let analytics: AnalyticsService
+                           ^~~~~~~~~~~~~~~~
+                           any AnalyticsService
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/ViewModels/DepartmentViewModel.swift:32:22: warning: use of protocol 'BusinessDataRepository' as a type must be written 'any BusinessDataRepository'; this will be an error in a future Swift language mode
+         repository: BusinessDataRepository,
+                     ^~~~~~~~~~~~~~~~~~~~~~
+                     any BusinessDataRepository
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/ViewModels/DepartmentViewModel.swift:33:21: warning: use of protocol 'AnalyticsService' as a type must be written 'any AnalyticsService'; this will be an error in a future Swift language mode
+         analytics: AnalyticsService) {
+                    ^~~~~~~~~~~~~~~~
+                    any AnalyticsService
+
+SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Components/WindowOrnaments.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    
+@__swiftmacro_23BusinessOperatingSystem19DepartmentViewModelC5error18ObservationTrackedfMp_.swift:1:42: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+@ObservationIgnored private  var _error: Error?
+                                         ^
+@__swiftmacro_23BusinessOperatingSystem19DepartmentViewModelC5error10ObservablefMr5_.swift:1:1: note: in expansion of macro 'ObservationTracked' on property 'error' here
+@ObservationTracked
+^
+@__swiftmacro_23BusinessOperatingSystem19DepartmentViewModelC5error10ObservablefMr5_.swift:1:1: note: in expansion of macro 'ObservationTracked' on property 'error' here
+@ObservationTracked
+^
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Components/WindowOrnaments.swift:150:43: error: value of type 'AppState' has no member 'selectedOrganization'
+                    if let org = appState.selectedOrganization {
+                                 ~~~~~~~~ ^~~~~~~~~~~~~~~~~~~~
+
+SwiftCompile normal arm64 Compiling\ EntityPool.swift,\ ErrorHandling.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/EntityPool.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ErrorHandling.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/EntityPool.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    
+
+SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ErrorHandling.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    
+
+<unknown>:0: warning: upcoming feature 'ImplicitOpenExistentials' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ForwardTrailingClosures' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ConciseMagicFile' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'BareSlashRegexLiterals' is already enabled as of Swift version 6
+SwiftCompile normal arm64 Compiling\ BusinessUniverseView.swift,\ BusinessEntity3D.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/ImmersiveViews/BusinessUniverseView.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Spatial/BusinessEntity3D.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+<unknown>:0: warning: upcoming feature 'ImplicitOpenExistentials' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ForwardTrailingClosures' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ConciseMagicFile' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'BareSlashRegexLiterals' is already enabled as of Swift version 6
+
+SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/ImmersiveViews/BusinessUniverseView.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    
+
+SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Spatial/BusinessEntity3D.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    
+
+SwiftCompile normal arm64 Compiling\ SpatialGestureHandlers.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Spatial/SpatialGestureHandlers.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+<unknown>:0: warning: upcoming feature 'ImplicitOpenExistentials' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ForwardTrailingClosures' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ConciseMagicFile' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'BareSlashRegexLiterals' is already enabled as of Swift version 6
+
+SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Spatial/SpatialGestureHandlers.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Spatial/SpatialGestureHandlers.swift:234:40: warning: use of protocol 'Material' as a type must be written 'any Material'; this will be an error in a future Swift language mode
+    var originalMaterials: [RealityKit.Material] = []
+                            ~~~~~~~~~~~^~~~~~~~
+                            any RealityKit.Material
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Spatial/SpatialGestureHandlers.swift:89:43: error: initializer for conditional binding must have Optional type, not 'String'
+        guard let targetEntity = current, let name = targetEntity.name else { return }
+                                          ^          ~~~~~~~~~~~~~~~~~
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Spatial/SpatialGestureHandlers.swift:168:44: warning: left side of nil coalescing operator '??' has non-optional type 'String', so the right side is never used
+        onEntityDragged?(targetEntity.name ?? "", offset)
+                         ~~~~~~~~~~~~~~~~~~^~~~~
+                                          
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Spatial/SpatialGestureHandlers.swift:195:43: error: initializer for conditional binding must have Optional type, not 'String'
+        guard let targetEntity = current, let name = targetEntity.name else { return }
+                                          ^          ~~~~~~~~~~~~~~~~~
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Spatial/SpatialGestureHandlers.swift:288:49: warning: main actor-isolated property 'position' can not be referenced from a nonisolated context
+            let distance = simd_distance(entity.position, gaze)
+                                                ^
+RealityKit.HasTransform.position:2:39: note: property declared here
+@MainActor @preconcurrency public var position: SIMD3<Float> { get set }}
+                                      ^
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Spatial/SpatialGestureHandlers.swift:280:10: note: add '@MainActor' to make instance method 'entityAtGaze(in:)' part of global actor 'MainActor'
+    func entityAtGaze(in entities: [Entity]) -> Entity? {
+         ^
+    @MainActor 
+
+SwiftCompile normal arm64 Compiling\ DataVisualizationVolume.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Volumes/DataVisualizationVolume.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+<unknown>:0: warning: upcoming feature 'ImplicitOpenExistentials' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ForwardTrailingClosures' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ConciseMagicFile' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'BareSlashRegexLiterals' is already enabled as of Swift version 6
+
+SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Volumes/DataVisualizationVolume.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    
+
+SwiftCompile normal arm64 Compiling\ DashboardView.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Windows/DashboardView.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+<unknown>:0: warning: upcoming feature 'ImplicitOpenExistentials' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ForwardTrailingClosures' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ConciseMagicFile' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'BareSlashRegexLiterals' is already enabled as of Swift version 6
+
+SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Windows/DashboardView.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    
+
+SwiftCompile normal arm64 Compiling\ ReportDetailView.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Windows/ReportDetailView.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+<unknown>:0: warning: upcoming feature 'ImplicitOpenExistentials' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ForwardTrailingClosures' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ConciseMagicFile' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'BareSlashRegexLiterals' is already enabled as of Swift version 6
+
+SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Windows/ReportDetailView.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    
+
+SwiftCompile normal arm64 Compiling\ DepartmentDetailView.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Windows/DepartmentDetailView.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+<unknown>:0: warning: upcoming feature 'ImplicitOpenExistentials' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ForwardTrailingClosures' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ConciseMagicFile' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'BareSlashRegexLiterals' is already enabled as of Swift version 6
+
+SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Windows/DepartmentDetailView.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Windows/DepartmentDetailView.swift:65:29: warning: 'appendInterpolation' is deprecated: Localized string interpolation produces an unlocalized, debug description for this type of value. Use a type supported by LocalizedStringKey.StringInterpolation or initialize a LocalizedStringResource instead with an interpolated value that conforms to CustomLocalizedStringResourceConvertible.
+                    Text("$\(department.budget.allocated)")
+                            ^
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ BusinessOperatingSystem (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+<unknown>:0: warning: upcoming feature 'ImplicitOpenExistentials' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ForwardTrailingClosures' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ConciseMagicFile' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'BareSlashRegexLiterals' is already enabled as of Swift version 6
+
+EmitSwiftModule normal arm64 (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/BusinessOperatingSystemApp.swift:17:40: warning: use of protocol 'ImmersionStyle' as a type must be written 'any ImmersionStyle'; this will be an error in a future Swift language mode
+    @State private var immersionLevel: ImmersionStyle = .full
+                                       ^~~~~~~~~~~~~~
+                                       any ImmersionStyle
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/BusinessOperatingSystemApp.swift:18:45: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+    @State private var initializationError: Error?
+                                            ^~~~~
+                                            (any Error)
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/BusinessOperatingSystemApp.swift:196:5: warning: 'nonisolated(unsafe)' is unnecessary for a constant with 'Sendable' type 'AppState', consider removing it
+    nonisolated(unsafe) static let defaultValue = AppState()
+    ^~~~~~~~~~~~~~~~~~~~
+    
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/BusinessOperatingSystemApp.swift:200:5: warning: 'nonisolated(unsafe)' is unnecessary for a constant with 'Sendable' type 'ServiceContainer', consider removing it
+    nonisolated(unsafe) static let defaultValue = ServiceContainer()
+    ^~~~~~~~~~~~~~~~~~~~
+    
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/NavigationCoordinator.swift:320:5: warning: 'nonisolated(unsafe)' is unnecessary for a constant with 'Sendable' type 'NavigationCoordinator', consider removing it
+    nonisolated(unsafe) static let defaultValue = NavigationCoordinator()
+    ^~~~~~~~~~~~~~~~~~~~
+    
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Services/ServiceProtocols.swift:249:16: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+    case error(Error)
+               ^~~~~
+               any Error
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Services/ServiceProtocols.swift:595:24: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+    case errorOccurred(Error)
+                       ^~~~~
+                       any Error
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ConnectivityMonitor.swift:146:35: warning: use of protocol 'BusinessDataRepository' as a type must be written 'any BusinessDataRepository'; this will be an error in a future Swift language mode
+    private let onlineRepository: BusinessDataRepository
+                                  ^~~~~~~~~~~~~~~~~~~~~~
+                                  any BusinessDataRepository
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ConnectivityMonitor.swift:147:34: warning: use of protocol 'BusinessDataRepository' as a type must be written 'any BusinessDataRepository'; this will be an error in a future Swift language mode
+    private let cacheRepository: BusinessDataRepository
+                                 ^~~~~~~~~~~~~~~~~~~~~~
+                                 any BusinessDataRepository
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ConnectivityMonitor.swift:151:27: warning: use of protocol 'BusinessDataRepository' as a type must be written 'any BusinessDataRepository'; this will be an error in a future Swift language mode
+        onlineRepository: BusinessDataRepository,
+                          ^~~~~~~~~~~~~~~~~~~~~~
+                          any BusinessDataRepository
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ConnectivityMonitor.swift:152:26: warning: use of protocol 'BusinessDataRepository' as a type must be written 'any BusinessDataRepository'; this will be an error in a future Swift language mode
+        cacheRepository: BusinessDataRepository
+                         ^~~~~~~~~~~~~~~~~~~~~~
+                         any BusinessDataRepository
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ConnectivityMonitor.swift:229:43: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+    static func fromNetworkError(_ error: Error, connectivity: ConnectivityMonitor) -> BOSError {
+                                          ^~~~~
+                                          any Error
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/EntityPool.swift:161:57: warning: use of protocol 'Material' as a type must be written 'any Material'; this will be an error in a future Swift language mode
+    func acquire(type: EntityType, material: RealityKit.Material? = nil) -> ModelEntity {
+                                             ~~~~~~~~~~~^~~~~~~~
+                                             (any RealityKit.Material)
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/EntityPool.swift:205:74: warning: use of protocol 'Material' as a type must be written 'any Material'; this will be an error in a future Swift language mode
+    func acquireBatch(type: EntityType, count: Int, material: RealityKit.Material? = nil) -> [ModelEntity] {
+                                                              ~~~~~~~~~~~^~~~~~~~
+                                                              (any RealityKit.Material)
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/EntityPool.swift:412:48: warning: use of protocol 'Material' as a type must be written 'any Material'; this will be an error in a future Swift language mode
+    private var materials: [String: RealityKit.Material] = [:]
+                                    ~~~~~~~~~~~^~~~~~~~
+                                    any RealityKit.Material
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/EntityPool.swift:434:65: warning: use of protocol 'Material' as a type must be written 'any Material'; this will be an error in a future Swift language mode
+    func material(for standard: StandardMaterial) -> RealityKit.Material {
+                                                     ~~~~~~~~~~~^~~~~~~~
+                                                     any RealityKit.Material
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/EntityPool.swift:438:96: warning: use of protocol 'Material' as a type must be written 'any Material'; this will be an error in a future Swift language mode
+    func material(color: UIColor, metallic: Float = 0.3, roughness: Float = 0.6) -> RealityKit.Material {
+                                                                                    ~~~~~~~~~~~^~~~~~~~
+                                                                                    any RealityKit.Material
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/EntityPool.swift:454:81: warning: use of protocol 'Material' as a type must be written 'any Material'; this will be an error in a future Swift language mode
+    func emissiveMaterial(color: UIColor, intensity: Float = 0.5) -> RealityKit.Material {
+                                                                     ~~~~~~~~~~~^~~~~~~~
+                                                                     any RealityKit.Material
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/EntityPool.swift:470:54: warning: use of protocol 'Material' as a type must be written 'any Material'; this will be an error in a future Swift language mode
+    func unlitMaterial(color: UIColor) -> RealityKit.Material {
+                                          ~~~~~~~~~~~^~~~~~~~
+                                          any RealityKit.Material
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/EntityPool.swift:501:79: warning: use of protocol 'Material' as a type must be written 'any Material'; this will be an error in a future Swift language mode
+    private func createMaterial(for standard: StandardMaterial) -> RealityKit.Material {
+                                                                   ~~~~~~~~~~~^~~~~~~~
+                                                                   any RealityKit.Material
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ErrorHandling.swift:21:25: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+    case decodingFailed(Error)
+                        ^~~~~
+                        any Error
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ErrorHandling.swift:22:25: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+    case encodingFailed(Error)
+                        ^~~~~
+                        any Error
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ErrorHandling.swift:126:40: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+    private var errors: [UUID: (error: Error, timestamp: Date)] = [:]
+                                       ^~~~~
+                                       any Error
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ErrorHandling.swift:129:24: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+    func record(error: Error) -> UUID {
+                       ^~~~~
+                       any Error
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ErrorHandling.swift:136:36: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+    func getError(for id: UUID) -> Error? {
+                                   ^~~~~
+                                   (any Error)
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ErrorHandling.swift:158:70: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+    func mapBOSError() -> Result<Success, BOSError> where Failure == Error {
+                                                                     ^~~~~
+                                                                     any Error
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ErrorHandling.swift:195:29: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+    static func from(error: Error) -> ErrorAlertConfig {
+                            ^~~~~
+                            any Error
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/HandTrackingManager.swift:37:37: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+    private(set) var trackingError: Error?
+                                    ^~~~~
+                                    (any Error)
+@__swiftmacro_23BusinessOperatingSystem19HandTrackingManagerC13trackingError18ObservationTrackedfMp_.swift:2:59: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+         @ObservationIgnored private  var _trackingError: Error?
+                                                          ^
+@__swiftmacro_23BusinessOperatingSystem19HandTrackingManagerC13trackingError10ObservablefMr5_.swift:1:1: note: in expansion of macro 'ObservationTracked' on property 'trackingError' here
+@ObservationTracked
+^
+@__swiftmacro_23BusinessOperatingSystem19HandTrackingManagerC13trackingError10ObservablefMr5_.swift:1:1: note: in expansion of macro 'ObservationTracked' on property 'trackingError' here
+@ObservationTracked
+^
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/HandTrackingManager.swift:375:24: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+    case sessionFailed(Error)
+                       ^~~~~
+                       any Error
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/HandTrackingManager.swift:394:35: warning: conformance of 'HandSkeleton.JointName' to protocol 'CaseIterable' was already stated in the type's module 'ARKit'
+extension HandSkeleton.JointName: CaseIterable {
+                                  ^
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/HandTrackingManager.swift:395:23: note: static property 'allCases' will not be used to satisfy the conformance to 'CaseIterable'
+    public static var allCases: [HandSkeleton.JointName] {
+                      ^
+ARKit.HandSkeleton.JointName:3:15: note: 'HandSkeleton.JointName' declares conformance to protocol 'CaseIterable' here
+  public enum JointName : CaseIterable, CustomStringConvertible, Hashable, @unchecked Sendable {
+              ^
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/ViewModels/DepartmentViewModel.swift:21:16: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+    var error: Error?
+               ^~~~~
+               (any Error)
+@__swiftmacro_23BusinessOperatingSystem19DepartmentViewModelC5error18ObservationTrackedfMp_.swift:1:42: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+@ObservationIgnored private  var _error: Error?
+                                         ^
+@__swiftmacro_23BusinessOperatingSystem19DepartmentViewModelC5error10ObservablefMr5_.swift:1:1: note: in expansion of macro 'ObservationTracked' on property 'error' here
+@ObservationTracked
+^
+@__swiftmacro_23BusinessOperatingSystem19DepartmentViewModelC5error10ObservablefMr5_.swift:1:1: note: in expansion of macro 'ObservationTracked' on property 'error' here
+@ObservationTracked
+^
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/ViewModels/DepartmentViewModel.swift:26:29: warning: use of protocol 'BusinessDataRepository' as a type must be written 'any BusinessDataRepository'; this will be an error in a future Swift language mode
+    private let repository: BusinessDataRepository
+                            ^~~~~~~~~~~~~~~~~~~~~~
+                            any BusinessDataRepository
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/ViewModels/DepartmentViewModel.swift:27:28: warning: use of protocol 'AnalyticsService' as a type must be written 'any AnalyticsService'; this will be an error in a future Swift language mode
+    private let analytics: AnalyticsService
+                           ^~~~~~~~~~~~~~~~
+                           any AnalyticsService
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/ViewModels/DepartmentViewModel.swift:32:22: warning: use of protocol 'BusinessDataRepository' as a type must be written 'any BusinessDataRepository'; this will be an error in a future Swift language mode
+         repository: BusinessDataRepository,
+                     ^~~~~~~~~~~~~~~~~~~~~~
+                     any BusinessDataRepository
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/ViewModels/DepartmentViewModel.swift:33:21: warning: use of protocol 'AnalyticsService' as a type must be written 'any AnalyticsService'; this will be an error in a future Swift language mode
+         analytics: AnalyticsService) {
+                    ^~~~~~~~~~~~~~~~
+                    any AnalyticsService
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/ImmersiveViews/BusinessUniverseView.swift:18:35: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+    @State private var loadError: Error?
+                                  ^~~~~
+                                  (any Error)
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/ImmersiveViews/BusinessUniverseView.swift:155:42: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+    private func errorOverlay(for error: Error) -> some View {
+                                         ^~~~~
+                                         any Error
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Spatial/SpatialGestureHandlers.swift:234:40: warning: use of protocol 'Material' as a type must be written 'any Material'; this will be an error in a future Swift language mode
+    var originalMaterials: [RealityKit.Material] = []
+                            ~~~~~~~~~~~^~~~~~~~
+                            any RealityKit.Material
+/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Windows/DashboardView.swift:23:30: warning: use of protocol 'Error' as a type must be written 'any Error'; this will be an error in a future Swift language mode
+    var initializationError: Error?
+                             ^~~~~
+                             (any Error)
+
+SwiftCompile normal arm64 Compiling\ DepartmentVolumeView.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Volumes/DepartmentVolumeView.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+<unknown>:0: warning: upcoming feature 'ImplicitOpenExistentials' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ForwardTrailingClosures' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'ConciseMagicFile' is already enabled as of Swift version 6
+<unknown>:0: warning: upcoming feature 'BareSlashRegexLiterals' is already enabled as of Swift version 6
+
+SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Volumes/DepartmentVolumeView.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for BusinessOperatingSystem (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+
+SwiftDriverJobDiscovery normal arm64 Compiling DepartmentDetailView.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+
+SwiftDriver\ Compilation\ Requirements BusinessOperatingSystem normal arm64 com.apple.xcode.tools.swift.compiler (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+    cd /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name BusinessOperatingSystem -Onone -enforce-exclusivity\=checked @/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/BusinessOperatingSystem.SwiftFileList -DSWIFT_PACKAGE -DDEBUG -DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -DXcode -enable-upcoming-feature BareSlashRegexLiterals -enable-upcoming-feature ConciseMagicFile -enable-upcoming-feature ExistentialAny -enable-upcoming-feature ForwardTrailingClosures -enable-upcoming-feature ImplicitOpenExistentials -enable-upcoming-feature StrictConcurrency -enable-actor-data-race-checks -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/SDKs/XRSimulator26.1.sdk -target arm64-apple-xros2.0-simulator -g -module-cache-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -index-store-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Products/Debug-xrsimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/usr/lib -F /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Products/Debug-xrsimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/XRSimulator.platform/Developer/SDKs/XRSimulator26.1.sdk/Developer/Library/Frameworks -c -j14 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/aakashnigam/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/xrsimulator26.1-23N45-5f70b2714d3817e330ea0fe7cf3d07ac.sdkstatcache -output-file-map /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/BusinessOperatingSystem-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/BusinessOperatingSystem.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/aakashnigam/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -package-name visionos_business_operating_system -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/BusinessOperatingSystem_const_extract_protocols.json -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Products/Debug-xrsimulator/include -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/DerivedSources-normal/arm64 -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/DerivedSources/arm64 -Xcc -I/Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/aakashnigam/Library/Developer/Xcode/DerivedData/visionOS_business-operating-system-gjqsbtwcmcyqttfysbswdhyqzmvg/Build/Intermediates.noindex/BusinessOperatingSystem.build/Debug-xrsimulator/BusinessOperatingSystem.build/Objects-normal/arm64/BusinessOperatingSystem-Swift.h -working-directory /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/.swiftpm/xcode -experimental-emit-module-separately -disable-cmo
+
+** BUILD FAILED **
+
+
+The following build commands failed:
+	SwiftCompile normal arm64 Compiling\ ServiceProtocols.swift,\ ConnectivityMonitor.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Services/ServiceProtocols.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ConnectivityMonitor.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+	SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Utilities/ConnectivityMonitor.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+	SwiftCompile normal arm64 Compiling\ NavigationCoordinator.swift,\ ServiceContainer.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/NavigationCoordinator.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+	SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/App/ServiceContainer.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+	SwiftCompile normal arm64 Compiling\ DepartmentViewModel.swift,\ WindowOrnaments.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/ViewModels/DepartmentViewModel.swift /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Components/WindowOrnaments.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+	SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Components/WindowOrnaments.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+	SwiftCompile normal arm64 /Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_business-operating-system/BusinessOperatingSystem/Views/Spatial/SpatialGestureHandlers.swift (in target 'BusinessOperatingSystem' from project 'BusinessOperatingSystem')
+	Building workspace visionOS_business-operating-system with scheme BusinessOperatingSystem
+(8 failures)

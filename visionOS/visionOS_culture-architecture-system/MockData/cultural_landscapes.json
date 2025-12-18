@@ -1,0 +1,502 @@
+[
+  {
+    "id": "bb4b7752-1e3c-494d-9842-fae44e37c4a5",
+    "organizationId": "1a50d0f7-eedc-4f49-9ea1-3807bebd9947",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 10,
+    "totalArea": 1907,
+    "healthScore": 90.4,
+    "lastUpdated": "2025-11-17T20:33:44.222648"
+  },
+  {
+    "id": "4bc5357e-d853-4d6c-a3b3-655dca5a867f",
+    "organizationId": "14ce0afd-539f-4aef-b356-cb0d114c156f",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 8,
+    "totalArea": 4895,
+    "healthScore": 69.6,
+    "lastUpdated": "2025-11-17T20:33:44.249882"
+  },
+  {
+    "id": "68023269-0dc0-4aae-a401-787321abf1dc",
+    "organizationId": "73b8f40c-8497-4466-9fa2-3e7d49686bf1",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 6,
+    "totalArea": 2478,
+    "healthScore": 81.0,
+    "lastUpdated": "2025-11-17T20:33:44.259453"
+  },
+  {
+    "id": "6c627943-890e-4adb-a447-858b18e4bd94",
+    "organizationId": "16515368-eaa7-4613-9890-9e32f0aeb2ba",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 6,
+    "totalArea": 2404,
+    "healthScore": 68.0,
+    "lastUpdated": "2025-11-17T20:33:44.287498"
+  },
+  {
+    "id": "035122e9-0a20-4fae-a16a-9b789e6ac2bd",
+    "organizationId": "497bcb7e-9da5-40e5-8031-e847512b8e93",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 10,
+    "totalArea": 4780,
+    "healthScore": 69.0,
+    "lastUpdated": "2025-11-17T20:33:44.310747"
+  },
+  {
+    "id": "b95dc604-f7ac-4cbc-8739-044d81f07507",
+    "organizationId": "6031510e-9ab6-4a91-8041-36d78c7abedb",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 6,
+    "totalArea": 4149,
+    "healthScore": 61.6,
+    "lastUpdated": "2025-11-17T20:33:44.321253"
+  },
+  {
+    "id": "57c30d00-98d1-442b-91b8-ff876db13f00",
+    "organizationId": "09713e14-8a54-474e-a48a-64a44426ede0",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 6,
+    "totalArea": 4644,
+    "healthScore": 63.0,
+    "lastUpdated": "2025-11-17T20:33:44.350158"
+  },
+  {
+    "id": "428d4ee3-0a43-44f1-ac0e-4de6c166af89",
+    "organizationId": "4ed7866c-d31b-42aa-8b74-5094e869c4d3",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 7,
+    "totalArea": 2041,
+    "healthScore": 65.6,
+    "lastUpdated": "2025-11-17T20:33:44.379256"
+  },
+  {
+    "id": "5e881a59-a6ea-47f8-8062-639fa10bd3c7",
+    "organizationId": "543ad69e-2c6c-47b8-b2c1-b4a2238a5985",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 9,
+    "totalArea": 1617,
+    "healthScore": 85.5,
+    "lastUpdated": "2025-11-17T20:33:44.410246"
+  },
+  {
+    "id": "85d99164-ce3f-47ed-b3b5-4e1454a434b5",
+    "organizationId": "bc233657-babe-4732-b78f-26e216b55361",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 9,
+    "totalArea": 3180,
+    "healthScore": 63.1,
+    "lastUpdated": "2025-11-17T20:33:44.443899"
+  },
+  {
+    "id": "d61825a0-e982-45a9-8a42-3d85af2b1b88",
+    "organizationId": "567c5c32-9f20-4cb6-9ef2-db2cc27266a5",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 5,
+    "totalArea": 3152,
+    "healthScore": 90.4,
+    "lastUpdated": "2025-11-17T20:33:44.452931"
+  },
+  {
+    "id": "3a1383e6-6497-44c4-ae71-8e0979ea2b8c",
+    "organizationId": "f856ace8-12a1-4915-96b4-b915acb7f177",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 10,
+    "totalArea": 3374,
+    "healthScore": 65.7,
+    "lastUpdated": "2025-11-17T20:33:44.471714"
+  },
+  {
+    "id": "e6f1bcf5-f89c-4161-b4c9-91e1d9605c76",
+    "organizationId": "271c5fe7-9739-419b-9031-53df2444ec52",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 10,
+    "totalArea": 3436,
+    "healthScore": 62.0,
+    "lastUpdated": "2025-11-17T20:33:44.498763"
+  },
+  {
+    "id": "ef16a528-adb1-45dd-ba79-d649a977227c",
+    "organizationId": "06f99088-7e28-432c-b060-7420064cdb73",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 5,
+    "totalArea": 1138,
+    "healthScore": 67.1,
+    "lastUpdated": "2025-11-17T20:33:44.542183"
+  },
+  {
+    "id": "151d6278-d50b-413c-b93b-9298b90cd47c",
+    "organizationId": "f87be78c-30bd-4c50-b424-6bdf3a6902b1",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 10,
+    "totalArea": 2189,
+    "healthScore": 71.2,
+    "lastUpdated": "2025-11-17T20:33:44.556888"
+  },
+  {
+    "id": "822a422b-56b5-49b5-8e9e-8d34d73b102f",
+    "organizationId": "c37805f3-0cfa-4cf7-9328-d9b9514cfa0e",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 5,
+    "totalArea": 2977,
+    "healthScore": 79.8,
+    "lastUpdated": "2025-11-17T20:33:44.568182"
+  },
+  {
+    "id": "b72dd7eb-38b1-4ea0-9693-353eb94a4e53",
+    "organizationId": "bcf20639-4502-44da-9159-c857efba54c0",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 7,
+    "totalArea": 4416,
+    "healthScore": 72.6,
+    "lastUpdated": "2025-11-17T20:33:44.583620"
+  },
+  {
+    "id": "67aec43e-dc51-435b-a670-e0e8374783c0",
+    "organizationId": "921471e5-440b-43b6-b0a8-66de633bd0f2",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 8,
+    "totalArea": 3444,
+    "healthScore": 69.4,
+    "lastUpdated": "2025-11-17T20:33:44.622988"
+  },
+  {
+    "id": "4e70cda4-db93-4265-8c97-35eb5b81148c",
+    "organizationId": "df2b6147-118d-4f62-b719-a077a69bf8bc",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 9,
+    "totalArea": 3333,
+    "healthScore": 70.0,
+    "lastUpdated": "2025-11-17T20:33:44.658370"
+  },
+  {
+    "id": "e6b2204a-7fcb-42e0-a30c-9a81bd94cb96",
+    "organizationId": "a1fd2ec2-6c83-478c-97a5-d9140fce1b05",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 6,
+    "totalArea": 1186,
+    "healthScore": 82.7,
+    "lastUpdated": "2025-11-17T20:33:44.671734"
+  },
+  {
+    "id": "8950fa4c-242a-4b96-8ace-b0827574bf09",
+    "organizationId": "e0d4c03d-9843-429e-a685-8efbd726dab3",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 10,
+    "totalArea": 1959,
+    "healthScore": 66.8,
+    "lastUpdated": "2025-11-17T20:33:44.694351"
+  },
+  {
+    "id": "2e8c56f8-d413-4de3-9582-629bc021eb06",
+    "organizationId": "ac722a25-e4f0-4609-b4dd-14a13dfead9f",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 8,
+    "totalArea": 2754,
+    "healthScore": 68.8,
+    "lastUpdated": "2025-11-17T20:33:44.703232"
+  },
+  {
+    "id": "51afebd1-839e-4644-9475-6048b8646824",
+    "organizationId": "34e4bbed-be9a-4e32-a676-9d1883ce1bbe",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 7,
+    "totalArea": 1973,
+    "healthScore": 71.1,
+    "lastUpdated": "2025-11-17T20:33:44.734358"
+  },
+  {
+    "id": "939db897-f694-4671-bd50-f593d5f4e4cd",
+    "organizationId": "b2507ebb-d326-47be-be1e-9a09a01657fa",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 7,
+    "totalArea": 4930,
+    "healthScore": 91.4,
+    "lastUpdated": "2025-11-17T20:33:44.750741"
+  },
+  {
+    "id": "c34f600c-2a79-41ef-bce4-f0cd63efcadc",
+    "organizationId": "7dee464b-5344-4ca6-a355-8ed45977834d",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 10,
+    "totalArea": 2309,
+    "healthScore": 64.9,
+    "lastUpdated": "2025-11-17T20:33:44.770901"
+  },
+  {
+    "id": "31d34485-fade-4f17-85ae-631222e21c8b",
+    "organizationId": "606e1379-5df9-496e-b973-4d51acfa5de8",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 6,
+    "totalArea": 3608,
+    "healthScore": 83.5,
+    "lastUpdated": "2025-11-17T20:33:44.793237"
+  },
+  {
+    "id": "11f85cb5-97f7-45c7-9cd1-789527622b0a",
+    "organizationId": "6c1f1815-ec02-43eb-91bf-a44446b6aa14",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 6,
+    "totalArea": 2486,
+    "healthScore": 92.3,
+    "lastUpdated": "2025-11-17T20:33:44.802597"
+  },
+  {
+    "id": "05e1d84c-f604-484a-8acf-b97eaf63c48b",
+    "organizationId": "387b2a28-4445-46d0-85c5-a4fd58635e66",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 9,
+    "totalArea": 4872,
+    "healthScore": 84.3,
+    "lastUpdated": "2025-11-17T20:33:44.826855"
+  },
+  {
+    "id": "9d9d64a0-ee45-4591-acdc-c2f5c5c08373",
+    "organizationId": "a6914b19-adbb-465e-ac02-caaa50eedb0f",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 7,
+    "totalArea": 4995,
+    "healthScore": 71.5,
+    "lastUpdated": "2025-11-17T20:33:44.849454"
+  },
+  {
+    "id": "8d1cd043-17ce-4f39-9e94-77c077cb72cf",
+    "organizationId": "5d5c6f21-13c1-4cbc-9dc1-c67f14247847",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 9,
+    "totalArea": 4760,
+    "healthScore": 80.1,
+    "lastUpdated": "2025-11-17T20:33:44.888417"
+  },
+  {
+    "id": "c4cfa716-0dd9-41d1-b57e-030407f9333c",
+    "organizationId": "10f04d13-83f8-4976-8f5b-9f5ab4be5862",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 8,
+    "totalArea": 1187,
+    "healthScore": 89.2,
+    "lastUpdated": "2025-11-17T20:33:44.900340"
+  },
+  {
+    "id": "a6c3cf74-f23f-4be3-ab2f-78f96f8619d1",
+    "organizationId": "d69f95b5-d0f9-49ad-9d45-42f7007be44f",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 10,
+    "totalArea": 1276,
+    "healthScore": 92.2,
+    "lastUpdated": "2025-11-17T20:33:44.918108"
+  },
+  {
+    "id": "4d01a274-6dcb-4360-bae0-de613f07db78",
+    "organizationId": "403d4034-bfa2-4963-98e9-e7c9f9799498",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 9,
+    "totalArea": 2975,
+    "healthScore": 76.4,
+    "lastUpdated": "2025-11-17T20:33:44.935075"
+  },
+  {
+    "id": "95f7c714-1a81-4155-859f-e452615f81e5",
+    "organizationId": "2bf694d5-e059-40ae-bce2-c4a09cabf37f",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 5,
+    "totalArea": 1937,
+    "healthScore": 69.9,
+    "lastUpdated": "2025-11-17T20:33:44.949729"
+  },
+  {
+    "id": "fd31e679-979d-499f-865a-0cd0b4e81172",
+    "organizationId": "f929e9e8-cadb-42c6-97da-cbfb83e04b1c",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 8,
+    "totalArea": 2188,
+    "healthScore": 80.4,
+    "lastUpdated": "2025-11-17T20:33:44.981274"
+  },
+  {
+    "id": "afe8b2de-6d97-4c94-bca9-509e0d08e4dc",
+    "organizationId": "a72d731d-4bfb-4eff-b763-654017270de8",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 6,
+    "totalArea": 3762,
+    "healthScore": 60.7,
+    "lastUpdated": "2025-11-17T20:33:45.011574"
+  },
+  {
+    "id": "b90e13d4-157a-4a69-bea7-50931a4a4ed7",
+    "organizationId": "08c331d1-f2ae-4899-9820-a4c51c555c0e",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 7,
+    "totalArea": 4416,
+    "healthScore": 72.5,
+    "lastUpdated": "2025-11-17T20:33:45.056650"
+  },
+  {
+    "id": "5bd1dbfe-e64d-4085-b9b8-18f456a0167f",
+    "organizationId": "cc7e759f-bd14-4a0e-af00-97f69c312cf6",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 6,
+    "totalArea": 2247,
+    "healthScore": 87.7,
+    "lastUpdated": "2025-11-17T20:33:45.078867"
+  },
+  {
+    "id": "bfe6ce83-66d4-48b7-a8c7-799ea64d7288",
+    "organizationId": "f8497bdf-63ea-4838-a2c7-d5ee50fa698f",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 8,
+    "totalArea": 4629,
+    "healthScore": 83.0,
+    "lastUpdated": "2025-11-17T20:33:45.089149"
+  },
+  {
+    "id": "41f8a83c-7f83-4045-9ebf-e8e4a10ec0e8",
+    "organizationId": "027af966-b16a-430f-b0a8-b4f7de265c2b",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 8,
+    "totalArea": 1337,
+    "healthScore": 67.2,
+    "lastUpdated": "2025-11-17T20:33:45.116467"
+  },
+  {
+    "id": "64fcac8f-e758-4ef7-a51c-6f9ec4d14433",
+    "organizationId": "55f6554c-55d0-4fbf-8743-1e0539f0f818",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 8,
+    "totalArea": 2549,
+    "healthScore": 86.2,
+    "lastUpdated": "2025-11-17T20:33:45.150146"
+  },
+  {
+    "id": "5a455007-037a-49b7-b17b-1e8b3022c5c1",
+    "organizationId": "ff7b8e4e-92e3-43db-96e7-988a8e07effe",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 6,
+    "totalArea": 2113,
+    "healthScore": 81.4,
+    "lastUpdated": "2025-11-17T20:33:45.172488"
+  },
+  {
+    "id": "03552500-d5b6-4732-b2b8-8c03263fe6dc",
+    "organizationId": "33eba272-53ed-420f-9c57-0b4cc7e20db6",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 6,
+    "totalArea": 4344,
+    "healthScore": 79.6,
+    "lastUpdated": "2025-11-17T20:33:45.193768"
+  },
+  {
+    "id": "30b561ad-9eaf-4ac3-9301-764672a3ecc3",
+    "organizationId": "f34c2c97-575b-493e-b555-137383e5a6ee",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 8,
+    "totalArea": 2166,
+    "healthScore": 69.3,
+    "lastUpdated": "2025-11-17T20:33:45.230093"
+  },
+  {
+    "id": "4217c80f-679b-4bda-ac7a-eeda5289487c",
+    "organizationId": "052e496c-138d-4d9f-8c6d-bb749aca23ea",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 9,
+    "totalArea": 1736,
+    "healthScore": 65.6,
+    "lastUpdated": "2025-11-17T20:33:45.260722"
+  },
+  {
+    "id": "891cdb9b-2ca0-4c76-83a2-2f2da404ed11",
+    "organizationId": "0a759a54-93ca-4a16-ad26-fe19f4ef92b8",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 9,
+    "totalArea": 3441,
+    "healthScore": 88.4,
+    "lastUpdated": "2025-11-17T20:33:45.290394"
+  },
+  {
+    "id": "9f86fedc-e04f-434d-926c-8edfdcbc2f23",
+    "organizationId": "59967385-3216-4557-ac57-be74c8e88c10",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 6,
+    "totalArea": 1751,
+    "healthScore": 70.2,
+    "lastUpdated": "2025-11-17T20:33:45.303786"
+  },
+  {
+    "id": "a8e19740-af65-44c4-87c6-cd797ec8c839",
+    "organizationId": "dc1aa6c7-7ecf-4639-b748-71fd2c96f958",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 9,
+    "totalArea": 3123,
+    "healthScore": 66.1,
+    "lastUpdated": "2025-11-17T20:33:45.321520"
+  },
+  {
+    "id": "26dbe9a6-9448-490f-a372-2bff5e46a4b7",
+    "organizationId": "ff093b7a-4474-4066-a7fc-27323a46e2a1",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 10,
+    "totalArea": 4222,
+    "healthScore": 78.3,
+    "lastUpdated": "2025-11-17T20:33:45.356255"
+  },
+  {
+    "id": "76dabbf7-ba50-4010-8211-52eca769b368",
+    "organizationId": "4fef0c1f-6638-4952-a4a0-ecb0ba379ff3",
+    "name": "Primary Culture Landscape",
+    "description": "Main organizational culture visualization",
+    "regionCount": 8,
+    "totalArea": 1222,
+    "healthScore": 60.4,
+    "lastUpdated": "2025-11-17T20:33:45.364581"
+  }
+]

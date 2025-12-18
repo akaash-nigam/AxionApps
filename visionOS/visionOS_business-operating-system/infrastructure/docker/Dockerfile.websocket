@@ -1,0 +1,37 @@
+# Dockerfile for WebSocket Server
+FROM node:20-alpine AS base
+
+# Install dependencies
+FROM base AS deps
+WORKDIR /app
+COPY package.json package-lock.json* ./
+RUN npm ci --only=production && npm cache clean --force
+
+# Build stage
+FROM base AS builder
+WORKDIR /app
+COPY package.json package-lock.json* ./
+RUN npm ci
+COPY . .
+RUN npm run build:websocket
+
+# Production image
+FROM base AS runner
+WORKDIR /app
+
+# Create non-root user
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 wsserver
+
+# Copy files
+COPY --from=builder --chown=wsserver:nodejs /app/dist/websocket ./dist
+COPY --from=builder --chown=wsserver:nodejs /app/node_modules ./node_modules
+
+USER wsserver
+
+EXPOSE 8080
+
+HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
+    CMD node -e "require('http').get('http://localhost:8080/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"
+
+CMD ["node", "dist/websocket-server.js"]

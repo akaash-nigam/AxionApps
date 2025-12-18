@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>NSHomeKitUsageDescription</key>
+    <string>Living Building System needs access to HomeKit to discover and control your smart home devices.</string>
+    <key>NSLocalNetworkUsageDescription</key>
+    <string>Living Building System needs access to your local network to communicate with smart home devices.</string>
+    <key>NSBonjourServices</key>
+    <array>
+        <string>_hap._tcp</string>
+        <string>_matter._tcp</string>
+    </array>
+</dict>
+</plist>

@@ -1,0 +1,12 @@
+{
+  "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/App/AIAgentCoordinatorApp.swift" : {
+    "abi-baseline-json" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AIAgentCoordinator.abi.json",
+    "const-values" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AIAgentCoordinator-primary.swiftconstvalues",
+    "dependencies" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AIAgentCoordinator-primary.d",
+    "diagnostics" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AIAgentCoordinator-primary.dia",
+    "objc-header" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AIAgentCoordinator-Swift.h",
+    "swiftdoc" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AIAgentCoordinator.swiftdoc",
+    "swiftmodule" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AIAgentCoordinator.swiftmodule",
+    "swiftsourceinfo" : "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/AIAgentCoordinator.build/Release-xrsimulator/AIAgentCoordinator.build/Objects-normal/arm64/AIAgentCoordinator.swiftsourceinfo"
+  }
+}

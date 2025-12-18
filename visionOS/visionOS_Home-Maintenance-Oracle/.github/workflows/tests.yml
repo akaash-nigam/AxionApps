@@ -1,0 +1,42 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: macos-14
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Select Xcode version
+      run: sudo xcode-select -s /Applications/Xcode_15.2.app
+    
+    - name: Show Xcode version
+      run: xcodebuild -version
+    
+    - name: Run Unit Tests
+      run: |
+        xcodebuild test \
+          -scheme HomeMaintenanceOracle \
+          -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+          -only-testing:HomeMaintenanceOracleTests \
+          -enableCodeCoverage YES
+    
+    - name: Generate Coverage Report
+      run: |
+        xcrun xccov view --report \
+          ~/Library/Developer/Xcode/DerivedData/HomeMaintenanceOracle-*/Logs/Test/*.xcresult \
+          > coverage.txt
+    
+    - name: Upload Coverage
+      uses: codecov/codecov-action@v3
+      with:
+        files: ./coverage.txt
+        fail_ci_if_error: true

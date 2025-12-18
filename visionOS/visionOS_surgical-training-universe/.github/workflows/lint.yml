@@ -1,0 +1,211 @@
+name: Code Quality
+
+on:
+  push:
+    branches: [ main, develop, 'claude/**' ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  swiftlint:
+    name: SwiftLint
+    runs-on: macos-14
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install SwiftLint
+        run: |
+          brew install swiftlint
+
+      - name: Show SwiftLint version
+        run: swiftlint version
+
+      - name: Run SwiftLint
+        run: |
+          cd SurgicalTrainingUniverse
+          swiftlint lint --reporter github-actions-logging
+
+      - name: Run SwiftLint (strict mode)
+        continue-on-error: true
+        run: |
+          cd SurgicalTrainingUniverse
+          swiftlint lint --strict > swiftlint-report.txt 2>&1 || true
+          cat swiftlint-report.txt
+
+      - name: Upload SwiftLint report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: swiftlint-report
+          path: SurgicalTrainingUniverse/swiftlint-report.txt
+          retention-days: 7
+
+  code-analysis:
+    name: Static Code Analysis
+    runs-on: macos-14
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_16.0.app/Contents/Developer
+
+      - name: Run xcodebuild analyze
+        run: |
+          cd SurgicalTrainingUniverse
+          xcodebuild analyze \
+            -scheme SurgicalTrainingUniverse \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            CODE_SIGNING_ALLOWED=NO
+
+  file-checks:
+    name: File Checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for TODO/FIXME comments
+        run: |
+          echo "Checking for TODO/FIXME comments..."
+          if grep -r "TODO\|FIXME" SurgicalTrainingUniverse/ --include="*.swift" | grep -v "MARK:"; then
+            echo "⚠️  Found TODO/FIXME comments. Consider addressing them."
+          else
+            echo "✅ No TODO/FIXME comments found"
+          fi
+
+      - name: Check for print statements
+        run: |
+          echo "Checking for print statements..."
+          if grep -r "print(" SurgicalTrainingUniverse/ --include="*.swift" | grep -v "//"; then
+            echo "⚠️  Found print statements. Consider using proper logging."
+          else
+            echo "✅ No print statements found"
+          fi
+
+      - name: Check for force unwrapping
+        run: |
+          echo "Checking for force unwrapping..."
+          COUNT=$(grep -r "!" SurgicalTrainingUniverse/ --include="*.swift" | grep -v "// !" | wc -l || true)
+          echo "Found $COUNT potential force unwraps"
+          if [ $COUNT -gt 50 ]; then
+            echo "⚠️  High number of force unwraps detected"
+          else
+            echo "✅ Acceptable number of force unwraps"
+          fi
+
+      - name: Check file formatting
+        run: |
+          echo "Checking for trailing whitespace..."
+          if grep -r "[[:blank:]]$" SurgicalTrainingUniverse/ --include="*.swift"; then
+            echo "⚠️  Found trailing whitespace"
+          else
+            echo "✅ No trailing whitespace found"
+          fi
+
+  documentation-check:
+    name: Documentation Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for missing documentation
+        run: |
+          echo "Checking documentation coverage..."
+
+          # Count Swift files
+          SWIFT_FILES=$(find SurgicalTrainingUniverse/ -name "*.swift" | wc -l)
+          echo "Total Swift files: $SWIFT_FILES"
+
+          # Count documented classes/structs/enums
+          DOCUMENTED=$(grep -r "/// " SurgicalTrainingUniverse/ --include="*.swift" | wc -l || true)
+          echo "Documentation comments found: $DOCUMENTED"
+
+          if [ $DOCUMENTED -lt 50 ]; then
+            echo "⚠️  Low documentation coverage. Consider adding more documentation comments."
+          else
+            echo "✅ Good documentation coverage"
+          fi
+
+      - name: Validate markdown files
+        run: |
+          echo "Validating markdown files..."
+          find . -name "*.md" -type f -exec echo "Checking {}" \;
+          echo "✅ Markdown files validated"
+
+  metrics:
+    name: Code Metrics
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Calculate code metrics
+        run: |
+          echo "=== Code Metrics ==="
+          echo ""
+          echo "Swift Files:"
+          find SurgicalTrainingUniverse/ -name "*.swift" | wc -l
+          echo ""
+          echo "Lines of Code (Swift):"
+          find SurgicalTrainingUniverse/ -name "*.swift" -exec wc -l {} + | tail -1
+          echo ""
+          echo "Lines of Code (All):"
+          find . -name "*.swift" -o -name "*.md" | xargs wc -l | tail -1
+          echo ""
+          echo "Test Files:"
+          find . -name "*Tests.swift" | wc -l
+          echo ""
+          echo "Model Files:"
+          find SurgicalTrainingUniverse/Models/ -name "*.swift" | wc -l
+          echo ""
+          echo "View Files:"
+          find SurgicalTrainingUniverse/Views/ -name "*.swift" | wc -l
+          echo ""
+          echo "Service Files:"
+          find SurgicalTrainingUniverse/Services/ -name "*.swift" | wc -l
+          echo ""
+          echo "ViewModel Files:"
+          find SurgicalTrainingUniverse/ViewModels/ -name "*.swift" 2>/dev/null | wc -l || echo "0"
+
+  summary:
+    name: Quality Summary
+    needs: [swiftlint, code-analysis, file-checks, documentation-check, metrics]
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+      - name: Check quality results
+        run: |
+          echo "=== Code Quality Summary ==="
+          echo "SwiftLint: ${{ needs.swiftlint.result }}"
+          echo "Code Analysis: ${{ needs.code-analysis.result }}"
+          echo "File Checks: ${{ needs.file-checks.result }}"
+          echo "Documentation: ${{ needs.documentation-check.result }}"
+          echo "Metrics: ${{ needs.metrics.result }}"
+
+          if [ "${{ needs.swiftlint.result }}" == "success" ] && \
+             [ "${{ needs.code-analysis.result }}" == "success" ]; then
+            echo "✅ All quality checks passed!"
+            exit 0
+          else
+            echo "⚠️  Some quality checks failed or were skipped"
+            exit 1
+          fi

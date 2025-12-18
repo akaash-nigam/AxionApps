@@ -1,0 +1,15 @@
+{
+  "name": "spatial-meeting-load-tests",
+  "version": "1.0.0",
+  "description": "Load tests for Spatial Meeting Platform API",
+  "scripts": {
+    "test:api": "k6 run api-load-test.js",
+    "test:meetings": "k6 run meeting-load-test.js",
+    "test:websocket": "k6 run websocket-load-test.js",
+    "test:stress": "k6 run stress-test.js",
+    "test:all": "npm run test:api && npm run test:meetings && npm run test:websocket"
+  },
+  "keywords": ["k6", "load-testing", "performance"],
+  "author": "Spatial Meeting Platform Team",
+  "license": "MIT"
+}

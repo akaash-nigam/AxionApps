@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- App Information -->
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Spatial Wellness</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+
+	<!-- Platform Support -->
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.healthcare-fitness</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+
+	<!-- Privacy - Health Data Usage -->
+	<key>NSHealthShareUsageDescription</key>
+	<string>Spatial Wellness needs access to your health data to provide personalized wellness insights and track your progress toward health goals.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Spatial Wellness will write activity and wellness data to HealthKit to keep your health information synchronized across all your devices.</string>
+
+	<!-- Privacy - Motion & Fitness -->
+	<key>NSMotionUsageDescription</key>
+	<string>Spatial Wellness uses motion data to track your activities and provide accurate exercise form feedback.</string>
+
+	<!-- Privacy - Camera (for future hand tracking features) -->
+	<key>NSCameraUsageDescription</key>
+	<string>Spatial Wellness uses camera for exercise form detection and pose tracking during workouts.</string>
+
+	<!-- Privacy - Location (for outdoor activities) -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Spatial Wellness uses your location to track outdoor activities like running and cycling.</string>
+
+	<!-- visionOS Specific -->
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>arm64</string>
+	</array>
+
+	<!-- Scene Configuration -->
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<true/>
+		<key>UISceneConfigurations</key>
+		<dict/>
+	</dict>
+
+	<!-- Supported Interface Orientations -->
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+
+	<!-- HealthKit -->
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>healthkit</string>
+	</array>
+
+	<!-- Background Modes (for health data syncing) -->
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>processing</string>
+	</array>
+
+	<!-- App Privacy -->
+	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
+	<string>Spatial Wellness can integrate with your clinical health records to provide comprehensive wellness insights.</string>
+
+	<!-- Accessibility -->
+	<key>UIAccessibilityAppLabel</key>
+	<string>Spatial Wellness Platform</string>
+
+	<!-- Network Configuration -->
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<false/>
+	</dict>
+</dict>
+</plist>

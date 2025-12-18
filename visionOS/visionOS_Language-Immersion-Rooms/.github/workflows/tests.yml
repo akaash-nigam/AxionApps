@@ -1,0 +1,141 @@
+name: CI - Tests
+
+on:
+  push:
+    branches: [ main, develop, claude/* ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  unit-tests:
+    name: Unit Tests
+    runs-on: macos-14
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_16.0.app/Contents/Developer
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      - name: Show available simulators
+        run: xcrun simctl list devices
+
+      - name: Cache Swift packages
+        uses: actions/cache@v3
+        with:
+          path: |
+            .build
+            ~/Library/Developer/Xcode/DerivedData
+          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-spm-
+
+      - name: Run Unit Tests
+        run: |
+          set -o pipefail
+          xcodebuild test \
+            -scheme LanguageImmersionRooms \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -only-testing:LanguageImmersionRoomsTests/Unit \
+            -enableCodeCoverage YES \
+            | xcpretty --color
+
+      - name: Generate code coverage report
+        run: |
+          xcrun xccov view --report --json \
+            ~/Library/Developer/Xcode/DerivedData/*/Logs/Test/*.xcresult \
+            > coverage.json
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage.json
+          fail_ci_if_error: false
+          verbose: true
+
+      - name: Archive test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: |
+            ~/Library/Developer/Xcode/DerivedData/*/Logs/Test/*.xcresult
+          retention-days: 7
+
+  integration-tests:
+    name: Integration Tests (Without API)
+    runs-on: macos-14
+    timeout-minutes: 20
+    needs: unit-tests
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_16.0.app/Contents/Developer
+
+      - name: Run Integration Tests (No API Key)
+        run: |
+          set -o pipefail
+          xcodebuild test \
+            -scheme LanguageImmersionRooms \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -only-testing:LanguageImmersionRoomsTests/Integration/ServiceIntegrationTests/testDetectAndTranslateObjects \
+            -only-testing:LanguageImmersionRoomsTests/Integration/ServiceIntegrationTests/testDetectObjectsAndCreateVocabularyWords \
+            -only-testing:LanguageImmersionRoomsTests/Integration/ServiceIntegrationTests/testConcurrentDetectionAndTranslation \
+            | xcpretty --color
+
+  integration-tests-with-api:
+    name: Integration Tests (With API)
+    runs-on: macos-14
+    timeout-minutes: 30
+    needs: unit-tests
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_16.0.app/Contents/Developer
+
+      - name: Run Integration Tests (With API Key)
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          set -o pipefail
+          xcodebuild test \
+            -scheme LanguageImmersionRooms \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -only-testing:LanguageImmersionRoomsTests/Integration \
+            | xcpretty --color
+
+  test-summary:
+    name: Test Summary
+    runs-on: ubuntu-latest
+    needs: [unit-tests, integration-tests]
+    if: always()
+
+    steps:
+      - name: Check test results
+        run: |
+          echo "## Test Results Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Unit Tests: ${{ needs.unit-tests.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Integration Tests (No API): ${{ needs.integration-tests.result }}" >> $GITHUB_STEP_SUMMARY
+
+          if [[ "${{ needs.unit-tests.result }}" == "success" && "${{ needs.integration-tests.result }}" == "success" ]]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "🎉 All tests passed!" >> $GITHUB_STEP_SUMMARY
+            exit 0
+          else
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "❌ Some tests failed" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi

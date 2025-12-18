@@ -1,0 +1,189 @@
+# SwiftLint Configuration for Wardrobe Consultant
+# https://realm.github.io/SwiftLint/
+
+# Paths to include/exclude
+included:
+  - WardrobeConsultant/Domain
+  - WardrobeConsultant/Infrastructure
+  - WardrobeConsultant/Presentation
+  - WardrobeConsultant/Tests
+
+excluded:
+  - Pods
+  - .build
+  - DerivedData
+  - SourcePackages
+  - vendor
+
+# Enabled rules
+opt_in_rules:
+  - array_init
+  - attributes
+  - closure_end_indentation
+  - closure_spacing
+  - collection_alignment
+  - contains_over_first_not_nil
+  - empty_count
+  - empty_string
+  - explicit_init
+  - fatal_error_message
+  - first_where
+  - force_unwrapping
+  - implicit_return
+  - joined_default_parameter
+  - last_where
+  - literal_expression_end_indentation
+  - modifier_order
+  - multiline_arguments
+  - multiline_function_chains
+  - multiline_literal_brackets
+  - multiline_parameters
+  - operator_usage_whitespace
+  - overridden_super_call
+  - prefer_self_type_over_type_of_self
+  - redundant_nil_coalescing
+  - redundant_type_annotation
+  - sorted_first_last
+  - toggle_bool
+  - trailing_closure
+  - unneeded_parentheses_in_closure_argument
+  - vertical_parameter_alignment_on_call
+  - vertical_whitespace_closing_braces
+  - vertical_whitespace_opening_braces
+  - yoda_condition
+
+# Disabled rules
+disabled_rules:
+  - todo # We use TODOs for tracking work
+  - trailing_comma # Allow trailing commas in collections
+
+# Rule configurations
+line_length:
+  warning: 120
+  error: 150
+  ignores_comments: true
+  ignores_urls: true
+  ignores_function_declarations: true
+
+file_length:
+  warning: 500
+  error: 800
+  ignore_comment_only_lines: true
+
+function_body_length:
+  warning: 50
+  error: 100
+
+function_parameter_count:
+  warning: 6
+  error: 8
+
+type_body_length:
+  warning: 300
+  error: 500
+
+cyclomatic_complexity:
+  warning: 15
+  error: 25
+  ignores_case_statements: true
+
+nesting:
+  type_level:
+    warning: 2
+    error: 3
+  statement_level:
+    warning: 5
+    error: 10
+
+identifier_name:
+  min_length:
+    warning: 2
+    error: 1
+  max_length:
+    warning: 50
+    error: 60
+  excluded:
+    - id
+    - x
+    - y
+    - z
+    - r
+    - g
+    - b
+    - h
+    - s
+    - l
+
+type_name:
+  min_length:
+    warning: 3
+    error: 2
+  max_length:
+    warning: 50
+    error: 60
+  excluded:
+    - T
+    - U
+    - V
+
+large_tuple:
+  warning: 3
+  error: 4
+
+# Force unwrapping configuration
+force_unwrapping:
+  severity: warning
+
+# Implicit return configuration
+implicit_return:
+  included:
+    - closure
+    - function
+    - getter
+
+# Multiline arguments
+multiline_arguments:
+  first_argument_location: next_line
+  only_enforce_after_first_closure_on_first_line: true
+
+# Trailing closure
+trailing_closure:
+  only_single_muted_parameter: true
+
+# Custom rules
+custom_rules:
+  # Mark comments should have space after //
+  marks_should_have_space:
+    name: "MARK comments should have space"
+    regex: '\/\/MARK:'
+    message: "MARK comments should have a space after //. Use: // MARK:"
+    severity: warning
+
+  # Require explicit self in closures
+  explicit_self_in_closure:
+    name: "Explicit self in closures"
+    regex: '\{\s*\n\s*(?!self\.)[a-zA-Z_]'
+    message: "Use explicit self in closures to avoid retain cycles"
+    severity: warning
+
+  # No empty lines at start of block
+  no_empty_line_after_opening_brace:
+    name: "No empty line after opening brace"
+    regex: '\{\n\n'
+    message: "Don't start blocks with an empty line"
+    severity: warning
+
+  # Prefer private over fileprivate
+  prefer_private:
+    name: "Prefer private over fileprivate"
+    regex: 'fileprivate'
+    message: "Use private instead of fileprivate when possible"
+    severity: warning
+
+# Analyzer rules (require full builds)
+analyzer_rules:
+  - unused_declaration
+  - unused_import
+
+# Reporter
+reporter: "xcode"

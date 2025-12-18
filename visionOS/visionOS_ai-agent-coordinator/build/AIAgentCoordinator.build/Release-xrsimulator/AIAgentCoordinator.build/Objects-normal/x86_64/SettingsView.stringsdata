@@ -1,0 +1,520 @@
+{
+  "source": "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Views/Windows/SettingsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Settings",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 73
+        }
+      },
+      {
+        "comment": "",
+        "key": "General",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 44
+        }
+      },
+      {
+        "comment": "",
+        "key": "Visualization",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 50
+        }
+      },
+      {
+        "comment": "",
+        "key": "Performance",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 56
+        }
+      },
+      {
+        "comment": "",
+        "key": "Integrations",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 62
+        }
+      },
+      {
+        "comment": "",
+        "key": "Privacy",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 68
+        }
+      },
+      {
+        "comment": "",
+        "key": "Workspace",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 81
+        }
+      },
+      {
+        "comment": "",
+        "key": "Updates",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 92
+        }
+      },
+      {
+        "comment": "",
+        "key": "Collaboration",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 105
+        }
+      },
+      {
+        "comment": "",
+        "key": "Notifications",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 110
+        }
+      },
+      {
+        "comment": "",
+        "key": "Save spatial layout",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 82
+        }
+      },
+      {
+        "comment": "",
+        "key": "Remember window and agent positions between sessions",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 83
+        }
+      },
+      {
+        "comment": "",
+        "key": "Auto-arrange new agents",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 85
+        }
+      },
+      {
+        "comment": "",
+        "key": "Automatically position new agents in the visualization",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 86
+        }
+      },
+      {
+        "comment": "",
+        "key": "Enable spatial audio cues",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 88
+        }
+      },
+      {
+        "comment": "",
+        "key": "Play audio cues for agent events",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 89
+        }
+      },
+      {
+        "comment": "",
+        "key": "Real-time monitoring",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 101
+        }
+      },
+      {
+        "comment": "",
+        "key": "Continuously update agent metrics",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 102
+        }
+      },
+      {
+        "comment": "",
+        "key": "Refresh interval:",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 94
+        }
+      },
+      {
+        "comment": "",
+        "key": "%llds",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 96
+        }
+      },
+      {
+        "comment": "",
+        "key": "Enable SharePlay",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 106
+        }
+      },
+      {
+        "comment": "",
+        "key": "Allow multi-user collaboration sessions",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 107
+        }
+      },
+      {
+        "comment": "",
+        "key": "Enable notifications",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 111
+        }
+      },
+      {
+        "comment": "",
+        "key": "Show system notifications for important events",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 112
+        }
+      },
+      {
+        "comment": "",
+        "key": "Display",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 124
+        }
+      },
+      {
+        "comment": "",
+        "key": "Effects",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 142
+        }
+      },
+      {
+        "comment": "",
+        "key": "3D Scene",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 147
+        }
+      },
+      {
+        "comment": "",
+        "key": "Visual quality",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 125
+        }
+      },
+      {
+        "comment": "",
+        "key": "Enable Level of Detail (LOD)",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 132
+        }
+      },
+      {
+        "comment": "",
+        "key": "Reduce detail for distant objects to improve performance",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 133
+        }
+      },
+      {
+        "comment": "",
+        "key": "Show agent labels",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 135
+        }
+      },
+      {
+        "comment": "",
+        "key": "Display names and info for agents",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 136
+        }
+      },
+      {
+        "comment": "",
+        "key": "Show connections",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 138
+        }
+      },
+      {
+        "comment": "",
+        "key": "Visualize data flow between agents",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 139
+        }
+      },
+      {
+        "comment": "",
+        "key": "Low",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 126
+        }
+      },
+      {
+        "comment": "",
+        "key": "Medium",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 127
+        }
+      },
+      {
+        "comment": "",
+        "key": "High",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 128
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ultra",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 129
+        }
+      },
+      {
+        "comment": "",
+        "key": "Particle effects",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 143
+        }
+      },
+      {
+        "comment": "",
+        "key": "Show animated particles for data flow",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 144
+        }
+      },
+      {
+        "comment": "",
+        "key": "Max agents displayed:",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 149
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 154
+        }
+      },
+      {
+        "comment": "",
+        "key": "Optimization",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 169
+        }
+      },
+      {
+        "comment": "",
+        "key": "Resource Usage",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 177
+        }
+      },
+      {
+        "comment": "",
+        "key": "These settings affect rendering performance and frame rate",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 172
+        }
+      },
+      {
+        "comment": "",
+        "key": "Enable aggressive LOD",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 170
+        }
+      },
+      {
+        "comment": "",
+        "key": "Memory Usage",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 180
+        }
+      },
+      {
+        "comment": "",
+        "key": "~2.4 GB",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 182
+        }
+      },
+      {
+        "comment": "",
+        "key": "Frame Rate",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 189
+        }
+      },
+      {
+        "comment": "",
+        "key": "60 fps",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 191
+        }
+      },
+      {
+        "comment": "",
+        "key": "Clear Cache",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 199
+        }
+      },
+      {
+        "comment": "",
+        "key": "Reset Performance Settings",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 203
+        }
+      },
+      {
+        "comment": "",
+        "key": "AI Platforms",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 217
+        }
+      },
+      {
+        "comment": "",
+        "key": "Custom Endpoints",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 225
+        }
+      },
+      {
+        "comment": "",
+        "key": "Add Custom Endpoint",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 229
+        }
+      },
+      {
+        "comment": "",
+        "key": "Data Collection",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 242
+        }
+      },
+      {
+        "comment": "",
+        "key": "SharePlay",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 252
+        }
+      },
+      {
+        "comment": "",
+        "key": "AI Agent Coordinator does not collect or transmit any personal data.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 243
+        }
+      },
+      {
+        "comment": "",
+        "key": "All agent data is stored locally on your device.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 247
+        }
+      },
+      {
+        "comment": "",
+        "key": "When using SharePlay, agent data is shared only with participants in your session.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 253
+        }
+      },
+      {
+        "comment": "",
+        "key": "View Privacy Policy",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 259
+        }
+      },
+      {
+        "comment": "",
+        "key": "View Terms of Service",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 263
+        }
+      },
+      {
+        "comment": "",
+        "key": "Connected",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 287
+        }
+      },
+      {
+        "comment": "",
+        "key": "Connect",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 291
+        }
+      }
+    ]
+  },
+  "version": 1
+}

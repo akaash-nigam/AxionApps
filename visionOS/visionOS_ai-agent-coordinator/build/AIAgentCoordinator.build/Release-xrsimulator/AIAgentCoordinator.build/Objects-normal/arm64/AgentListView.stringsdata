@@ -1,0 +1,232 @@
+{
+  "source": "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Views/Windows/AgentListView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Search agents...",
+        "location": {
+          "startingColumn": 52,
+          "startingLine": 68
+        }
+      },
+      {
+        "comment": "",
+        "key": "Agents",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 69
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld Agents",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 60
+        }
+      },
+      {
+        "comment": "",
+        "key": "Status",
+        "location": {
+          "startingColumn": 14,
+          "startingLine": 104
+        }
+      },
+      {
+        "comment": "",
+        "key": "Platform",
+        "location": {
+          "startingColumn": 14,
+          "startingLine": 116
+        }
+      },
+      {
+        "comment": "",
+        "key": "Clear Filters",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 130
+        }
+      },
+      {
+        "comment": "",
+        "key": "Filter",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 75
+        }
+      },
+      {
+        "comment": "",
+        "key": "New Agent",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 83
+        }
+      },
+      {
+        "comment": "",
+        "key": "Select an agent from the list",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 94
+        }
+      },
+      {
+        "comment": "",
+        "key": "No Agent Selected",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 92
+        }
+      },
+      {
+        "comment": "",
+        "key": "✓ All",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 105
+        }
+      },
+      {
+        "comment": "",
+        "key": "All",
+        "location": {
+          "startingColumn": 56,
+          "startingLine": 105
+        }
+      },
+      {
+        "comment": "",
+        "key": "✓ All",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 117
+        }
+      },
+      {
+        "comment": "",
+        "key": "All",
+        "location": {
+          "startingColumn": 58,
+          "startingLine": 117
+        }
+      },
+      {
+        "comment": "",
+        "key": "Start",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 143
+        }
+      },
+      {
+        "comment": "",
+        "key": "Stop",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 152
+        }
+      },
+      {
+        "comment": "",
+        "key": "Restart",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 161
+        }
+      },
+      {
+        "comment": "",
+        "key": "View Details",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 169
+        }
+      },
+      {
+        "comment": "",
+        "key": "Delete",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 175
+        }
+      },
+      {
+        "comment": "",
+        "key": "CPU: %lld%%",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 245
+        }
+      },
+      {
+        "comment": "",
+        "key": "Agent Details",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 373
+        }
+      },
+      {
+        "comment": "",
+        "key": "Type:",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 307
+        }
+      },
+      {
+        "comment": "",
+        "key": "Platform:",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 313
+        }
+      },
+      {
+        "comment": "",
+        "key": "Endpoint:",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 320
+        }
+      },
+      {
+        "comment": "",
+        "key": "Created:",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 328
+        }
+      },
+      {
+        "comment": "",
+        "key": "Last Active:",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 334
+        }
+      },
+      {
+        "comment": "",
+        "key": "Current Metrics",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 345
+        }
+      },
+      {
+        "comment": "",
+        "key": "Tags",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 355
+        }
+      }
+    ]
+  },
+  "version": 1
+}

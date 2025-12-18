@@ -1,0 +1,226 @@
+name: Test Suite
+
+on:
+  push:
+    branches: [ main, develop, 'claude/**' ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  validate:
+    name: Validate Project Structure
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Run validation tests
+        run: |
+          cd tests
+          python3 validate.py
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: validation-results
+          path: tests/results/
+
+  swift-tests:
+    name: Swift Unit Tests
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_16.0.app
+
+      - name: Build for testing
+        run: |
+          xcodebuild build-for-testing \
+            -scheme FieldServiceAR \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -derivedDataPath ./DerivedData
+
+      - name: Run tests
+        run: |
+          xcodebuild test-without-building \
+            -scheme FieldServiceAR \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -derivedDataPath ./DerivedData \
+            -resultBundlePath ./TestResults.xcresult
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: swift-test-results
+          path: TestResults.xcresult
+
+  lint:
+    name: SwiftLint
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install SwiftLint
+        run: brew install swiftlint
+
+      - name: Run SwiftLint
+        run: swiftlint lint --reporter github-actions-logging
+
+  landing-page:
+    name: Landing Page Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install HTML validator
+        run: npm install -g html-validate
+
+      - name: Validate HTML
+        run: html-validate landing-page/index.html
+
+      - name: Check CSS syntax
+        run: |
+          npm install -g stylelint stylelint-config-standard
+          echo '{"extends": "stylelint-config-standard"}' > .stylelintrc
+          stylelint "landing-page/css/**/*.css"
+
+      - name: Check JavaScript syntax
+        run: |
+          npm install -g eslint
+          npx eslint landing-page/js/script.js --no-eslintrc \
+            --env browser \
+            --parser-options ecmaVersion:2022
+
+      - name: Test landing page server
+        run: |
+          cd landing-page
+          python3 serve.py &
+          sleep 2
+          curl -f http://localhost:8000 || exit 1
+          kill %1
+
+  documentation:
+    name: Documentation Quality
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check markdown files
+        run: |
+          npm install -g markdownlint-cli
+          markdownlint '*.md' --ignore node_modules
+
+      - name: Verify documentation completeness
+        run: |
+          python3 -c "
+          import os
+          import sys
+
+          required_docs = [
+              'README.md',
+              'ARCHITECTURE.md',
+              'TECHNICAL_SPEC.md',
+              'DESIGN.md',
+              'IMPLEMENTATION_PLAN.md',
+              'TESTING.md',
+              'PROJECT_SUMMARY.md'
+          ]
+
+          missing = [doc for doc in required_docs if not os.path.exists(doc)]
+
+          if missing:
+              print(f'Missing documentation: {missing}')
+              sys.exit(1)
+
+          print('✓ All required documentation present')
+          "
+
+      - name: Check documentation length
+        run: |
+          python3 -c "
+          docs = {
+              'ARCHITECTURE.md': 500,
+              'TECHNICAL_SPEC.md': 500,
+              'DESIGN.md': 500,
+              'IMPLEMENTATION_PLAN.md': 500,
+              'TESTING.md': 200
+          }
+
+          for doc, min_lines in docs.items():
+              with open(doc) as f:
+                  lines = len(f.readlines())
+              if lines < min_lines:
+                  print(f'⚠ {doc}: {lines} lines (expected {min_lines}+)')
+              else:
+                  print(f'✓ {doc}: {lines} lines')
+          "
+
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run security scan
+        uses: github/super-linter@v5
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_JAVASCRIPT_STANDARD: true
+          VALIDATE_CSS: true
+          VALIDATE_HTML: true
+          VALIDATE_MARKDOWN: true
+
+  coverage:
+    name: Code Coverage
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_16.0.app
+
+      - name: Run tests with coverage
+        run: |
+          xcodebuild test \
+            -scheme FieldServiceAR \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -enableCodeCoverage YES \
+            -derivedDataPath ./DerivedData
+
+      - name: Generate coverage report
+        run: |
+          xcrun xccov view --report --json \
+            ./DerivedData/Logs/Test/*.xcresult > coverage.json
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage.json
+          fail_ci_if_error: false

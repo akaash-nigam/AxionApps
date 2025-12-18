@@ -1,0 +1,288 @@
+name: Pull Request Checks
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+jobs:
+  pr-title-check:
+    name: Check PR Title Format
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Validate PR title
+      uses: amannn/action-semantic-pull-request@v5
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        types: |
+          feat
+          fix
+          docs
+          style
+          refactor
+          perf
+          test
+          build
+          ci
+          chore
+          revert
+        requireScope: false
+        subjectPattern: ^[A-Z].+$
+        subjectPatternError: |
+          The subject should start with an uppercase letter.
+
+  pr-size-check:
+    name: Check PR Size
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Check PR size
+      run: |
+        LINES_CHANGED=$(git diff --shortstat origin/${{ github.base_ref }}...HEAD | grep -oE '[0-9]+ insertions|[0-9]+ deletions' | grep -oE '[0-9]+' | awk '{s+=$1} END {print s}')
+
+        echo "Lines changed: $LINES_CHANGED"
+        echo "## PR Size Analysis" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "Total lines changed: $LINES_CHANGED" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+
+        if [ "$LINES_CHANGED" -lt 300 ]; then
+          echo "✅ Small PR (< 300 lines) - Easy to review!" >> $GITHUB_STEP_SUMMARY
+        elif [ "$LINES_CHANGED" -lt 1000 ]; then
+          echo "⚠️ Medium PR (300-1000 lines) - Consider breaking into smaller PRs" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "❌ Large PR (> 1000 lines) - Should be broken into smaller PRs" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Recommendation:** Split into multiple focused PRs for better review quality" >> $GITHUB_STEP_SUMMARY
+        fi
+
+  pr-description-check:
+    name: Check PR Description
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check description content
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const pr = context.payload.pull_request;
+          const body = pr.body || '';
+
+          const requiredSections = [
+            '## Summary',
+            '## Changes',
+            '## Testing'
+          ];
+
+          let missing = [];
+          for (const section of requiredSections) {
+            if (!body.includes(section)) {
+              missing.push(section);
+            }
+          }
+
+          if (missing.length > 0) {
+            core.warning(`PR description is missing sections: ${missing.join(', ')}`);
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+              body: `⚠️ **PR Description Check**\n\nYour PR description is missing the following sections:\n${missing.map(s => `- ${s}`).join('\n')}\n\nPlease update the description to include these sections for better review.`
+            });
+          } else {
+            core.info('PR description includes all required sections ✓');
+          }
+
+  code-review-checklist:
+    name: Code Review Checklist
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Post review checklist
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const pr = context.payload.pull_request;
+
+          // Only post on newly opened PRs
+          if (context.payload.action !== 'opened') {
+            return;
+          }
+
+          const checklist = `## Code Review Checklist
+
+          ### Functional Review
+          - [ ] Code implements the intended functionality
+          - [ ] Edge cases are handled appropriately
+          - [ ] Error handling is comprehensive
+          - [ ] No obvious bugs or logic errors
+
+          ### Code Quality
+          - [ ] Code follows Swift/web best practices
+          - [ ] Functions are focused and single-purpose
+          - [ ] Variable/function names are clear and descriptive
+          - [ ] No unnecessary complexity
+
+          ### Testing
+          - [ ] Unit tests added/updated
+          - [ ] Test coverage is adequate
+          - [ ] Manual testing completed
+          - [ ] No test failures
+
+          ### Documentation
+          - [ ] Code comments where needed
+          - [ ] Documentation updated (if applicable)
+          - [ ] README updated (if applicable)
+          - [ ] API changes documented
+
+          ### Security & Privacy
+          - [ ] No sensitive data exposed
+          - [ ] HIPAA compliance maintained
+          - [ ] No security vulnerabilities introduced
+          - [ ] Authentication/authorization proper
+
+          ### Performance
+          - [ ] No obvious performance issues
+          - [ ] Resource usage is reasonable
+          - [ ] No memory leaks
+          - [ ] Async operations handled properly
+
+          ### Healthcare Specific
+          - [ ] Clinical accuracy verified
+          - [ ] Patient data handling correct
+          - [ ] Alert logic is safe
+          - [ ] No potential for clinical errors
+          `;
+
+          await github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: pr.number,
+            body: checklist
+          });
+
+  breaking-changes-check:
+    name: Check for Breaking Changes
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Detect breaking changes
+      run: |
+        echo "## Breaking Changes Analysis" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+
+        # Check for deleted files
+        DELETED_FILES=$(git diff --name-status origin/${{ github.base_ref }}...HEAD | grep '^D' | wc -l)
+
+        # Check for renamed public APIs in Swift
+        RENAMED_APIS=$(git diff origin/${{ github.base_ref }}...HEAD -- '*.swift' | grep -E '^\-.*public (func|var|let|class|struct|enum)' | wc -l)
+
+        if [ "$DELETED_FILES" -gt 0 ]; then
+          echo "⚠️ $DELETED_FILES file(s) deleted - may be breaking change" >> $GITHUB_STEP_SUMMARY
+        fi
+
+        if [ "$RENAMED_APIS" -gt 0 ]; then
+          echo "⚠️ Public API changes detected - may be breaking change" >> $GITHUB_STEP_SUMMARY
+        fi
+
+        if [ "$DELETED_FILES" -eq 0 ] && [ "$RENAMED_APIS" -eq 0 ]; then
+          echo "✅ No obvious breaking changes detected" >> $GITHUB_STEP_SUMMARY
+        fi
+
+  files-changed-summary:
+    name: Files Changed Summary
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Analyze changed files
+      run: |
+        echo "## Files Changed Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+
+        SWIFT_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep '\.swift$' | wc -l)
+        HTML_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep '\.html$' | wc -l)
+        CSS_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep '\.css$' | wc -l)
+        JS_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep '\.js$' | wc -l)
+        MD_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep '\.md$' | wc -l)
+        CONFIG_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -E '\.(yml|yaml|json|plist)$' | wc -l)
+
+        echo "| File Type | Count |" >> $GITHUB_STEP_SUMMARY
+        echo "|-----------|-------|" >> $GITHUB_STEP_SUMMARY
+        echo "| Swift | $SWIFT_FILES |" >> $GITHUB_STEP_SUMMARY
+        echo "| HTML | $HTML_FILES |" >> $GITHUB_STEP_SUMMARY
+        echo "| CSS | $CSS_FILES |" >> $GITHUB_STEP_SUMMARY
+        echo "| JavaScript | $JS_FILES |" >> $GITHUB_STEP_SUMMARY
+        echo "| Markdown | $MD_FILES |" >> $GITHUB_STEP_SUMMARY
+        echo "| Config | $CONFIG_FILES |" >> $GITHUB_STEP_SUMMARY
+
+  labeler:
+    name: Auto Label PR
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+    - name: Auto-label PR
+      uses: actions/labeler@v5
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+  assign-reviewers:
+    name: Auto-assign Reviewers
+    runs-on: ubuntu-latest
+    if: github.event.action == 'opened'
+
+    steps:
+    - name: Assign reviewers based on files changed
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const pr = context.payload.pull_request;
+
+          // Get files changed
+          const files = await github.rest.pulls.listFiles({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: pr.number
+          });
+
+          const changedFiles = files.data.map(f => f.filename);
+
+          // Determine reviewers based on file patterns
+          let reviewers = new Set();
+
+          if (changedFiles.some(f => f.includes('HealthcareOrchestrator'))) {
+            // Swift/visionOS changes - need iOS reviewer
+            console.log('Swift changes detected');
+          }
+
+          if (changedFiles.some(f => f.includes('landing-page'))) {
+            // Web changes - need web reviewer
+            console.log('Web changes detected');
+          }
+
+          if (changedFiles.some(f => f.endsWith('.md'))) {
+            // Documentation changes
+            console.log('Documentation changes detected');
+          }
+
+          // Note: Actual reviewer assignment would require team configuration
+          console.log('PR analysis complete');

@@ -1,0 +1,99 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main, develop, claude/** ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: macos-14
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Select Xcode version
+      run: sudo xcode-select -s /Applications/Xcode_16.0.app/Contents/Developer
+
+    - name: Show Xcode version
+      run: xcodebuild -version
+
+    - name: Show Swift version
+      run: swift --version
+
+    - name: Cache Swift Package Manager
+      uses: actions/cache@v3
+      with:
+        path: |
+          .build
+          ~/Library/Caches/org.swift.swiftpm
+        key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-spm-
+
+    - name: Run Swift tests
+      run: swift test --parallel
+      working-directory: ./SupplyChainControlTower
+      continue-on-error: false
+
+    - name: Run tests with coverage
+      run: |
+        xcodebuild test \
+          -scheme SupplyChainControlTower \
+          -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+          -enableCodeCoverage YES \
+          -resultBundlePath TestResults.xcresult
+      working-directory: ./SupplyChainControlTower
+      continue-on-error: true
+
+    - name: Generate coverage report
+      if: always()
+      run: |
+        xcrun xccov view --report --json TestResults.xcresult > coverage.json || true
+      working-directory: ./SupplyChainControlTower
+
+    - name: Upload coverage reports
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: coverage-report
+        path: |
+          SupplyChainControlTower/TestResults.xcresult
+          SupplyChainControlTower/coverage.json
+        retention-days: 30
+
+    - name: Check coverage threshold
+      if: always()
+      run: |
+        # Extract overall coverage percentage
+        # This is a placeholder - would need proper parsing of coverage.json
+        echo "Coverage check would go here"
+      working-directory: ./SupplyChainControlTower
+
+  performance-tests:
+    name: Performance Tests
+    runs-on: macos-14
+    needs: test
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Select Xcode version
+      run: sudo xcode-select -s /Applications/Xcode_16.0.app/Contents/Developer
+
+    - name: Run performance tests
+      run: swift test --filter PerformanceTests
+      working-directory: ./SupplyChainControlTower
+
+    - name: Upload performance results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: performance-results
+        path: SupplyChainControlTower/.build/
+        retention-days: 7

@@ -1,0 +1,1272 @@
+openapi: 3.0.3
+info:
+  title: Financial Trading Dimension API
+  description: |
+    REST API for Financial Trading Dimension - A visionOS spatial trading application.
+
+    This API provides endpoints for:
+    - Market data retrieval (quotes, historical data, news)
+    - Trading operations (orders, positions, portfolio)
+    - User management (authentication, preferences)
+    - Analytics and reporting
+
+    ## Authentication
+    All endpoints (except `/auth/login`) require Bearer token authentication.
+    Include the token in the Authorization header:
+    ```
+    Authorization: Bearer <your-token-here>
+    ```
+
+    ## Rate Limiting
+    - Free tier: 100 requests/minute
+    - Premium tier: 1000 requests/minute
+    - Professional tier: 5000 requests/minute
+    - Enterprise tier: Custom limits
+
+    ## Webhooks
+    Configure webhooks for real-time notifications of:
+    - Order fills
+    - Price alerts
+    - Portfolio updates
+
+  version: 1.0.0
+  contact:
+    name: Financial Trading Dimension API Support
+    email: api-support@financialtradingdimension.com
+    url: https://docs.financialtradingdimension.com
+  license:
+    name: Proprietary
+    url: https://financialtradingdimension.com/terms
+
+servers:
+  - url: https://api.financialtradingdimension.com/v1
+    description: Production server
+  - url: https://api-staging.financialtradingdimension.com/v1
+    description: Staging server
+  - url: http://localhost:8080/v1
+    description: Local development server
+
+tags:
+  - name: Authentication
+    description: User authentication and session management
+  - name: Market Data
+    description: Real-time and historical market data
+  - name: Trading
+    description: Order placement and management
+  - name: Portfolio
+    description: Portfolio and position management
+  - name: Analytics
+    description: Technical indicators and analytics
+  - name: User
+    description: User profile and preferences
+  - name: Webhooks
+    description: Webhook configuration and management
+
+paths:
+  # ===========================================================================
+  # Authentication
+  # ===========================================================================
+
+  /auth/login:
+    post:
+      tags: [Authentication]
+      summary: User login
+      description: Authenticate user and receive JWT token
+      operationId: login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: trader@example.com
+                password:
+                  type: string
+                  format: password
+                  example: SecurePass123!
+                deviceId:
+                  type: string
+                  description: Unique device identifier
+                  example: vision-pro-abc123
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+
+  /auth/refresh:
+    post:
+      tags: [Authentication]
+      summary: Refresh access token
+      description: Obtain a new access token using refresh token
+      operationId: refreshToken
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [refreshToken]
+              properties:
+                refreshToken:
+                  type: string
+                  example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+      responses:
+        '200':
+          description: Token refreshed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /auth/logout:
+    post:
+      tags: [Authentication]
+      summary: User logout
+      description: Invalidate current session and token
+      operationId: logout
+      security:
+        - BearerAuth: []
+      responses:
+        '204':
+          description: Logout successful
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  # ===========================================================================
+  # Market Data
+  # ===========================================================================
+
+  /market/quote/{symbol}:
+    get:
+      tags: [Market Data]
+      summary: Get real-time quote
+      description: Retrieve current price and quote data for a symbol
+      operationId: getQuote
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: symbol
+          in: path
+          required: true
+          description: Stock ticker symbol
+          schema:
+            type: string
+            example: AAPL
+      responses:
+        '200':
+          description: Quote data retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketQuote'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+
+  /market/quotes:
+    post:
+      tags: [Market Data]
+      summary: Get multiple quotes
+      description: Retrieve quotes for multiple symbols in a single request
+      operationId: getQuotes
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [symbols]
+              properties:
+                symbols:
+                  type: array
+                  items:
+                    type: string
+                  example: [AAPL, GOOGL, MSFT, AMZN]
+                  maxItems: 50
+      responses:
+        '200':
+          description: Quotes retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  quotes:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MarketQuote'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /market/historical/{symbol}:
+    get:
+      tags: [Market Data]
+      summary: Get historical data
+      description: Retrieve historical OHLCV data for charting
+      operationId: getHistoricalData
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: symbol
+          in: path
+          required: true
+          schema:
+            type: string
+            example: AAPL
+        - name: range
+          in: query
+          required: true
+          description: Time range for data
+          schema:
+            type: string
+            enum: [1D, 5D, 1M, 3M, 6M, 1Y, 2Y, 5Y, YTD, MAX]
+            example: 1Y
+        - name: interval
+          in: query
+          required: true
+          description: Data interval
+          schema:
+            type: string
+            enum: [1m, 5m, 15m, 30m, 1h, 1d, 1wk, 1mo]
+            example: 1d
+      responses:
+        '200':
+          description: Historical data retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoricalData'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /market/search:
+    get:
+      tags: [Market Data]
+      summary: Search symbols
+      description: Search for stock symbols by keyword
+      operationId: searchSymbols
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: query
+          in: query
+          required: true
+          description: Search query (company name or symbol)
+          schema:
+            type: string
+            minLength: 1
+            example: apple
+        - name: limit
+          in: query
+          description: Maximum number of results
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 10
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SymbolSearchResult'
+
+  # ===========================================================================
+  # Trading
+  # ===========================================================================
+
+  /trading/orders:
+    get:
+      tags: [Trading]
+      summary: Get orders
+      description: Retrieve list of orders with optional filtering
+      operationId: getOrders
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: status
+          in: query
+          description: Filter by order status
+          schema:
+            type: string
+            enum: [pending, filled, partial, cancelled, rejected]
+        - name: symbol
+          in: query
+          description: Filter by symbol
+          schema:
+            type: string
+            example: AAPL
+        - name: limit
+          in: query
+          description: Maximum number of orders to return
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 50
+        - name: offset
+          in: query
+          description: Pagination offset
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+      responses:
+        '200':
+          description: Orders retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orders:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+
+    post:
+      tags: [Trading]
+      summary: Place order
+      description: Submit a new order to buy or sell
+      operationId: placeOrder
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '201':
+          description: Order placed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /trading/orders/{orderId}:
+    get:
+      tags: [Trading]
+      summary: Get order details
+      description: Retrieve detailed information about a specific order
+      operationId: getOrder
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          description: Order ID
+          schema:
+            type: string
+            format: uuid
+            example: 550e8400-e29b-41d4-a716-446655440000
+      responses:
+        '200':
+          description: Order details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    delete:
+      tags: [Trading]
+      summary: Cancel order
+      description: Cancel a pending order
+      operationId: cancelOrder
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Order cancelled successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          description: Order cannot be cancelled (already filled/cancelled)
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  # ===========================================================================
+  # Portfolio
+  # ===========================================================================
+
+  /portfolio:
+    get:
+      tags: [Portfolio]
+      summary: Get portfolio summary
+      description: Retrieve portfolio summary including total value and P&L
+      operationId: getPortfolio
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Portfolio summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Portfolio'
+
+  /portfolio/positions:
+    get:
+      tags: [Portfolio]
+      summary: Get positions
+      description: Retrieve all current positions
+      operationId: getPositions
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Positions retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  positions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Position'
+
+  /portfolio/performance:
+    get:
+      tags: [Portfolio]
+      summary: Get performance metrics
+      description: Retrieve portfolio performance over time
+      operationId: getPerformance
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: range
+          in: query
+          description: Time range for performance data
+          schema:
+            type: string
+            enum: [1D, 1W, 1M, 3M, 6M, 1Y, YTD, ALL]
+            default: 1M
+      responses:
+        '200':
+          description: Performance data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerformanceData'
+
+  # ===========================================================================
+  # Analytics
+  # ===========================================================================
+
+  /analytics/indicators/{symbol}:
+    get:
+      tags: [Analytics]
+      summary: Get technical indicators
+      description: Calculate technical indicators for a symbol
+      operationId: getTechnicalIndicators
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: symbol
+          in: path
+          required: true
+          schema:
+            type: string
+            example: AAPL
+        - name: indicators
+          in: query
+          required: true
+          description: Comma-separated list of indicators
+          schema:
+            type: string
+            example: SMA,RSI,MACD
+        - name: period
+          in: query
+          description: Period for calculations
+          schema:
+            type: integer
+            default: 14
+      responses:
+        '200':
+          description: Technical indicators calculated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TechnicalIndicators'
+
+  /analytics/correlation:
+    post:
+      tags: [Analytics]
+      summary: Calculate correlation matrix
+      description: Compute correlation matrix for multiple symbols
+      operationId: getCorrelation
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [symbols, range]
+              properties:
+                symbols:
+                  type: array
+                  items:
+                    type: string
+                  example: [AAPL, GOOGL, MSFT, AMZN]
+                  minItems: 2
+                  maxItems: 20
+                range:
+                  type: string
+                  enum: [1M, 3M, 6M, 1Y]
+                  example: 3M
+      responses:
+        '200':
+          description: Correlation matrix
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CorrelationMatrix'
+
+  # ===========================================================================
+  # User
+  # ===========================================================================
+
+  /user/profile:
+    get:
+      tags: [User]
+      summary: Get user profile
+      description: Retrieve current user's profile information
+      operationId: getUserProfile
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: User profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+
+    put:
+      tags: [User]
+      summary: Update user profile
+      description: Update user profile information
+      operationId: updateUserProfile
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserProfileUpdate'
+      responses:
+        '200':
+          description: Profile updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+
+  /user/watchlist:
+    get:
+      tags: [User]
+      summary: Get watchlist
+      description: Retrieve user's watchlist symbols
+      operationId: getWatchlist
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Watchlist retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  symbols:
+                    type: array
+                    items:
+                      type: string
+                    example: [AAPL, GOOGL, MSFT]
+
+    post:
+      tags: [User]
+      summary: Add to watchlist
+      description: Add a symbol to watchlist
+      operationId: addToWatchlist
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [symbol]
+              properties:
+                symbol:
+                  type: string
+                  example: AAPL
+      responses:
+        '201':
+          description: Symbol added to watchlist
+        '409':
+          description: Symbol already in watchlist
+
+  /user/watchlist/{symbol}:
+    delete:
+      tags: [User]
+      summary: Remove from watchlist
+      description: Remove a symbol from watchlist
+      operationId: removeFromWatchlist
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: symbol
+          in: path
+          required: true
+          schema:
+            type: string
+            example: AAPL
+      responses:
+        '204':
+          description: Symbol removed from watchlist
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  # ===========================================================================
+  # Webhooks
+  # ===========================================================================
+
+  /webhooks:
+    get:
+      tags: [Webhooks]
+      summary: List webhooks
+      description: Retrieve all configured webhooks
+      operationId: listWebhooks
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Webhooks list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  webhooks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Webhook'
+
+    post:
+      tags: [Webhooks]
+      summary: Create webhook
+      description: Register a new webhook
+      operationId: createWebhook
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookCreate'
+      responses:
+        '201':
+          description: Webhook created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+
+  /webhooks/{webhookId}:
+    delete:
+      tags: [Webhooks]
+      summary: Delete webhook
+      description: Remove a webhook configuration
+      operationId: deleteWebhook
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: webhookId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Webhook deleted successfully
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+# =============================================================================
+# Components
+# =============================================================================
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from /auth/login
+
+  schemas:
+    # Authentication
+    AuthResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          description: JWT access token
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        refreshToken:
+          type: string
+          description: Refresh token for obtaining new access token
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        expiresIn:
+          type: integer
+          description: Token expiration time in seconds
+          example: 3600
+        tokenType:
+          type: string
+          example: Bearer
+        user:
+          $ref: '#/components/schemas/User'
+
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426614174000
+        email:
+          type: string
+          format: email
+          example: trader@example.com
+        name:
+          type: string
+          example: John Doe
+        tier:
+          type: string
+          enum: [free, premium, professional, enterprise]
+          example: premium
+
+    # Market Data
+    MarketQuote:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: AAPL
+        companyName:
+          type: string
+          example: Apple Inc.
+        price:
+          type: number
+          format: decimal
+          example: 189.45
+        change:
+          type: number
+          format: decimal
+          example: 2.15
+        changePercent:
+          type: number
+          format: decimal
+          example: 1.15
+        volume:
+          type: integer
+          example: 52478930
+        open:
+          type: number
+          format: decimal
+          example: 187.30
+        high:
+          type: number
+          format: decimal
+          example: 190.12
+        low:
+          type: number
+          format: decimal
+          example: 186.89
+        previousClose:
+          type: number
+          format: decimal
+          example: 187.30
+        timestamp:
+          type: string
+          format: date-time
+          example: 2025-11-17T15:30:00Z
+        marketState:
+          type: string
+          enum: [pre, regular, post, closed]
+          example: regular
+
+    HistoricalData:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: AAPL
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              timestamp:
+                type: string
+                format: date-time
+              open:
+                type: number
+                format: decimal
+              high:
+                type: number
+                format: decimal
+              low:
+                type: number
+                format: decimal
+              close:
+                type: number
+                format: decimal
+              volume:
+                type: integer
+
+    SymbolSearchResult:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: AAPL
+        name:
+          type: string
+          example: Apple Inc.
+        exchange:
+          type: string
+          example: NASDAQ
+        type:
+          type: string
+          enum: [stock, etf, index]
+          example: stock
+
+    # Trading
+    OrderRequest:
+      type: object
+      required: [symbol, side, type, quantity]
+      properties:
+        symbol:
+          type: string
+          example: AAPL
+        side:
+          type: string
+          enum: [buy, sell]
+          example: buy
+        type:
+          type: string
+          enum: [market, limit, stop, stop_limit]
+          example: limit
+        quantity:
+          type: integer
+          minimum: 1
+          example: 100
+        price:
+          type: number
+          format: decimal
+          description: Required for limit and stop_limit orders
+          example: 185.00
+        stopPrice:
+          type: number
+          format: decimal
+          description: Required for stop and stop_limit orders
+          example: 180.00
+        timeInForce:
+          type: string
+          enum: [day, gtc, ioc, fok]
+          default: day
+          example: gtc
+
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        symbol:
+          type: string
+        side:
+          type: string
+          enum: [buy, sell]
+        type:
+          type: string
+          enum: [market, limit, stop, stop_limit]
+        quantity:
+          type: integer
+        filledQuantity:
+          type: integer
+        remainingQuantity:
+          type: integer
+        price:
+          type: number
+          format: decimal
+        averageFillPrice:
+          type: number
+          format: decimal
+        status:
+          type: string
+          enum: [pending, partial, filled, cancelled, rejected]
+        submittedAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        filledAt:
+          type: string
+          format: date-time
+
+    # Portfolio
+    Portfolio:
+      type: object
+      properties:
+        totalValue:
+          type: number
+          format: decimal
+          description: Total portfolio value
+          example: 125890.45
+        cashBalance:
+          type: number
+          format: decimal
+          example: 25000.00
+        positionsValue:
+          type: number
+          format: decimal
+          example: 100890.45
+        totalPnL:
+          type: number
+          format: decimal
+          description: Total unrealized P&L
+          example: 8750.30
+        totalPnLPercent:
+          type: number
+          format: decimal
+          example: 9.50
+        dayPnL:
+          type: number
+          format: decimal
+          example: 1250.75
+        dayPnLPercent:
+          type: number
+          format: decimal
+          example: 1.01
+        positionCount:
+          type: integer
+          example: 15
+
+    Position:
+      type: object
+      properties:
+        symbol:
+          type: string
+          example: AAPL
+        quantity:
+          type: integer
+          example: 100
+        averageCost:
+          type: number
+          format: decimal
+          example: 175.50
+        currentPrice:
+          type: number
+          format: decimal
+          example: 189.45
+        marketValue:
+          type: number
+          format: decimal
+          example: 18945.00
+        unrealizedPnL:
+          type: number
+          format: decimal
+          example: 1395.00
+        unrealizedPnLPercent:
+          type: number
+          format: decimal
+          example: 7.95
+        dayPnL:
+          type: number
+          format: decimal
+          example: 215.00
+        dayPnLPercent:
+          type: number
+          format: decimal
+          example: 1.15
+
+    PerformanceData:
+      type: object
+      properties:
+        startValue:
+          type: number
+          format: decimal
+        endValue:
+          type: number
+          format: decimal
+        totalReturn:
+          type: number
+          format: decimal
+        totalReturnPercent:
+          type: number
+          format: decimal
+        timeSeries:
+          type: array
+          items:
+            type: object
+            properties:
+              timestamp:
+                type: string
+                format: date-time
+              value:
+                type: number
+                format: decimal
+
+    # Analytics
+    TechnicalIndicators:
+      type: object
+      properties:
+        symbol:
+          type: string
+        indicators:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                type: number
+              signal:
+                type: string
+                enum: [buy, sell, neutral]
+
+    CorrelationMatrix:
+      type: object
+      properties:
+        symbols:
+          type: array
+          items:
+            type: string
+        matrix:
+          type: array
+          items:
+            type: array
+            items:
+              type: number
+              format: decimal
+              minimum: -1
+              maximum: 1
+
+    # User
+    UserProfile:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        tier:
+          type: string
+          enum: [free, premium, professional, enterprise]
+        createdAt:
+          type: string
+          format: date-time
+        settings:
+          type: object
+          properties:
+            notifications:
+              type: boolean
+            darkMode:
+              type: boolean
+            currency:
+              type: string
+              example: USD
+
+    UserProfileUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        settings:
+          type: object
+
+    # Webhooks
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        url:
+          type: string
+          format: uri
+        events:
+          type: array
+          items:
+            type: string
+            enum: [order.filled, price.alert, portfolio.update]
+        active:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+
+    WebhookCreate:
+      type: object
+      required: [url, events]
+      properties:
+        url:
+          type: string
+          format: uri
+          example: https://example.com/webhook
+        events:
+          type: array
+          items:
+            type: string
+            enum: [order.filled, price.alert, portfolio.update]
+          example: [order.filled, price.alert]
+
+    # Common
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
+        hasMore:
+          type: boolean
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          example: invalid_request
+        message:
+          type: string
+          example: The request parameters were invalid
+        details:
+          type: object
+          additionalProperties: true
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: unauthorized
+            message: Invalid or expired token
+
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: forbidden
+            message: Insufficient permissions
+
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: not_found
+            message: The requested resource was not found
+
+    RateLimitExceeded:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: rate_limit_exceeded
+            message: Too many requests. Please try again later.
+      headers:
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+          description: Request limit per time window
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+          description: Remaining requests in current window
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+          description: Unix timestamp when limit resets
+
+security:
+  - BearerAuth: []

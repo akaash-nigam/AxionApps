@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- App Display Name -->
+    <key>CFBundleDisplayName</key>
+    <string>Spatial Code Reviewer</string>
+
+    <!-- Bundle Identifier -->
+    <key>CFBundleIdentifier</key>
+    <string>com.spatialcodereviewer.app</string>
+
+    <!-- App Version -->
+    <key>CFBundleShortVersionString</key>
+    <string>0.1.0</string>
+
+    <!-- Build Number -->
+    <key>CFBundleVersion</key>
+    <string>1</string>
+
+    <!-- OAuth URL Scheme Configuration -->
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLName</key>
+            <string>com.spatialcodereviewer.oauth</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>spatialcodereviewer</string>
+            </array>
+        </dict>
+    </array>
+
+    <!-- visionOS Requirements -->
+    <key>UIRequiredDeviceCapabilities</key>
+    <array>
+        <string>arm64</string>
+    </array>
+
+    <!-- Supported Platforms -->
+    <key>LSMinimumSystemVersion</key>
+    <string>2.0</string>
+
+    <!-- App Category -->
+    <key>LSApplicationCategoryType</key>
+    <string>public.app-category.developer-tools</string>
+
+    <!-- Privacy Descriptions -->
+    <key>NSUserTrackingUsageDescription</key>
+    <string>This app does not track you.</string>
+
+    <!-- Network Usage -->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <false/>
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>github.com</key>
+            <dict>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <false/>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+                <key>NSExceptionMinimumTLSVersion</key>
+                <string>TLSv1.2</string>
+            </dict>
+            <key>api.github.com</key>
+            <dict>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <false/>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+                <key>NSExceptionMinimumTLSVersion</key>
+                <string>TLSv1.2</string>
+            </dict>
+        </dict>
+    </dict>
+
+    <!-- Scene Configuration for visionOS -->
+    <key>UIApplicationSceneManifest</key>
+    <dict>
+        <key>UIApplicationSupportsMultipleScenes</key>
+        <true/>
+        <key>UISceneConfigurations</key>
+        <dict/>
+    </dict>
+
+    <!-- Launch Services -->
+    <key>LSSupportsOpeningDocumentsInPlace</key>
+    <true/>
+
+    <!-- File Sharing -->
+    <key>UIFileSharingEnabled</key>
+    <false/>
+
+    <!-- Background Modes (if needed later) -->
+    <key>UIBackgroundModes</key>
+    <array>
+        <!-- Add background modes as needed -->
+    </array>
+</dict>
+</plist>

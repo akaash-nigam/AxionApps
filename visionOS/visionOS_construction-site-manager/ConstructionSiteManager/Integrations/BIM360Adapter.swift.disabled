@@ -1,0 +1,748 @@
+import Foundation
+
+/// Integration adapter for Autodesk BIM 360 / Autodesk Construction Cloud
+/// Handles authentication, model access, issues, and document management
+actor BIM360Adapter {
+    // MARK: - Properties
+
+    private let authURL = "https://developer.api.autodesk.com/authentication/v1/authenticate"
+    private let baseURL = "https://developer.api.autodesk.com"
+
+    private var accessToken: String?
+    private var tokenExpiration: Date?
+
+    private let clientId: String
+    private let clientSecret: String
+
+    private let apiClient: APIClient
+
+    // MARK: - Initialization
+
+    init(clientId: String, clientSecret: String) {
+        self.clientId = clientId
+        self.clientSecret = clientSecret
+        self.apiClient = APIClient(baseURL: baseURL)
+    }
+
+    // MARK: - Authentication
+
+    /// Authenticate with client credentials
+    func authenticate() async throws {
+        let credentials = "\(clientId):\(clientSecret)"
+        guard let credentialsData = credentials.data(using: .utf8) else {
+            throw BIM360Error.invalidCredentials
+        }
+
+        let base64Credentials = credentialsData.base64EncodedString()
+
+        let headers = [
+            "Authorization": "Basic \(base64Credentials)",
+            "Content-Type": "application/x-www-form-urlencoded"
+        ]
+
+        let body = "grant_type=client_credentials&scope=data:read data:write"
+
+        let response: AuthResponse = try await apiClient.post(
+            authURL,
+            body: body,
+            headers: headers
+        )
+
+        accessToken = response.access_token
+        tokenExpiration = Date().addingTimeInterval(TimeInterval(response.expires_in))
+    }
+
+    /// Authenticate with OAuth (for user context)
+    func authenticateWithOAuth(authorizationCode: String) async throws {
+        let parameters = [
+            "grant_type": "authorization_code",
+            "code": authorizationCode,
+            "client_id": clientId,
+            "client_secret": clientSecret,
+            "redirect_uri": "http://localhost:8080/callback"
+        ]
+
+        let response: AuthResponse = try await apiClient.post(
+            authURL,
+            body: parameters
+        )
+
+        accessToken = response.access_token
+        tokenExpiration = Date().addingTimeInterval(TimeInterval(response.expires_in))
+    }
+
+    // MARK: - Hubs (Top-level accounts)
+
+    /// Get all hubs (accounts) accessible to the user
+    func getHubs() async throws -> [BIM360Hub] {
+        try await ensureAuthenticated()
+
+        let endpoint = "/project/v1/hubs"
+
+        let response: HubsResponse = try await apiClient.get(
+            endpoint,
+            headers: authHeaders()
+        )
+
+        return response.data.map { BIM360Hub(from: $0) }
+    }
+
+    // MARK: - Projects
+
+    /// Get projects within a hub
+    func getProjects(hubId: String) async throws -> [BIM360Project] {
+        try await ensureAuthenticated()
+
+        let endpoint = "/project/v1/hubs/\(hubId)/projects"
+
+        let response: ProjectsResponse = try await apiClient.get(
+            endpoint,
+            headers: authHeaders()
+        )
+
+        return response.data.map { BIM360Project(from: $0) }
+    }
+
+    /// Get project details
+    func getProject(hubId: String, projectId: String) async throws -> BIM360Project {
+        try await ensureAuthenticated()
+
+        let endpoint = "/project/v1/hubs/\(hubId)/projects/\(projectId)"
+
+        let response: ProjectResponse = try await apiClient.get(
+            endpoint,
+            headers: authHeaders()
+        )
+
+        return BIM360Project(from: response.data)
+    }
+
+    // MARK: - Folders & Files
+
+    /// Get top folders in a project
+    func getTopFolders(hubId: String, projectId: String) async throws -> [BIM360Folder] {
+        try await ensureAuthenticated()
+
+        let endpoint = "/project/v1/hubs/\(hubId)/projects/\(projectId)/topFolders"
+
+        let response: FoldersResponse = try await apiClient.get(
+            endpoint,
+            headers: authHeaders()
+        )
+
+        return response.data.map { BIM360Folder(from: $0) }
+    }
+
+    /// Get folder contents
+    func getFolderContents(projectId: String, folderId: String) async throws -> BIM360FolderContents {
+        try await ensureAuthenticated()
+
+        let endpoint = "/data/v1/projects/\(projectId)/folders/\(folderId)/contents"
+
+        let response: FolderContentsResponse = try await apiClient.get(
+            endpoint,
+            headers: authHeaders()
+        )
+
+        let folders = response.data
+            .filter { $0.type == "folders" }
+            .map { BIM360Folder(from: $0) }
+
+        let files = response.data
+            .filter { $0.type == "items" }
+            .map { BIM360File(from: $0) }
+
+        return BIM360FolderContents(folders: folders, files: files)
+    }
+
+    /// Download file
+    func downloadFile(projectId: String, itemId: String) async throws -> Data {
+        try await ensureAuthenticated()
+
+        let endpoint = "/data/v1/projects/\(projectId)/items/\(itemId)"
+
+        let itemResponse: ItemResponse = try await apiClient.get(
+            endpoint,
+            headers: authHeaders()
+        )
+
+        // Get download URL from relationships
+        guard let downloadURL = itemResponse.data.relationships?.storage?.meta?.link?.href else {
+            throw BIM360Error.downloadFailed
+        }
+
+        let data: Data = try await apiClient.download(
+            downloadURL,
+            headers: authHeaders()
+        )
+
+        return data
+    }
+
+    /// Upload file
+    func uploadFile(projectId: String, folderId: String, fileName: String, fileURL: URL) async throws -> BIM360File {
+        try await ensureAuthenticated()
+
+        // Step 1: Create storage location
+        let storageEndpoint = "/data/v1/projects/\(projectId)/storage"
+
+        let storageRequest = CreateStorageRequest(
+            jsonapi: JSONAPI(version: "1.0"),
+            data: StorageData(
+                type: "objects",
+                attributes: StorageAttributes(name: fileName),
+                relationships: StorageRelationships(
+                    target: Target(
+                        data: TargetData(type: "folders", id: folderId)
+                    )
+                )
+            )
+        )
+
+        let storageResponse: StorageResponse = try await apiClient.post(
+            storageEndpoint,
+            body: storageRequest,
+            headers: authHeaders()
+        )
+
+        let storageId = storageResponse.data.id
+
+        // Step 2: Upload file to storage
+        let uploadURL = storageResponse.data.relationships?.storage?.meta?.link?.href ?? ""
+
+        try await apiClient.uploadData(
+            uploadURL,
+            data: try Data(contentsOf: fileURL),
+            headers: authHeaders()
+        )
+
+        // Step 3: Create item (finalize upload)
+        let itemEndpoint = "/data/v1/projects/\(projectId)/items"
+
+        let itemRequest = CreateItemRequest(
+            jsonapi: JSONAPI(version: "1.0"),
+            data: ItemData(
+                type: "items",
+                attributes: ItemAttributes(
+                    displayName: fileName,
+                    itemExtension: ItemExtension(
+                        type: "items:autodesk.core:File",
+                        version: "1.0"
+                    )
+                ),
+                relationships: ItemRelationships(
+                    tip: Tip(
+                        data: TipData(type: "versions", id: "1")
+                    ),
+                    parent: Parent(
+                        data: ParentData(type: "folders", id: folderId)
+                    )
+                )
+            )
+        )
+
+        let itemResponse: ItemResponse = try await apiClient.post(
+            itemEndpoint,
+            body: itemRequest,
+            headers: authHeaders()
+        )
+
+        return BIM360File(from: itemResponse.data)
+    }
+
+    // MARK: - Issues
+
+    /// Get issues for a project
+    func getIssues(containerId: String, projectId: String) async throws -> [BIM360Issue] {
+        try await ensureAuthenticated()
+
+        let endpoint = "/issues/v1/containers/\(containerId)/quality-issues"
+
+        let queryItems = [
+            URLQueryItem(name: "filter[target_urn]", value: projectId)
+        ]
+
+        let response: IssuesResponse = try await apiClient.get(
+            endpoint,
+            queryItems: queryItems,
+            headers: authHeaders()
+        )
+
+        return response.data.map { BIM360Issue(from: $0) }
+    }
+
+    /// Create issue
+    func createIssue(containerId: String, issue: CreateIssueRequest) async throws -> BIM360Issue {
+        try await ensureAuthenticated()
+
+        let endpoint = "/issues/v1/containers/\(containerId)/quality-issues"
+
+        let response: IssueResponse = try await apiClient.post(
+            endpoint,
+            body: issue,
+            headers: authHeaders()
+        )
+
+        return BIM360Issue(from: response.data)
+    }
+
+    /// Update issue
+    func updateIssue(containerId: String, issueId: String, updates: UpdateIssueRequest) async throws -> BIM360Issue {
+        try await ensureAuthenticated()
+
+        let endpoint = "/issues/v1/containers/\(containerId)/quality-issues/\(issueId)"
+
+        let response: IssueResponse = try await apiClient.patch(
+            endpoint,
+            body: updates,
+            headers: authHeaders()
+        )
+
+        return BIM360Issue(from: response.data)
+    }
+
+    // MARK: - Model Derivative (Model viewing/conversion)
+
+    /// Get model manifest
+    func getModelManifest(urn: String) async throws -> ModelManifest {
+        try await ensureAuthenticated()
+
+        let encodedUrn = urn.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? urn
+        let endpoint = "/modelderivative/v2/designdata/\(encodedUrn)/manifest"
+
+        let response: ModelManifest = try await apiClient.get(
+            endpoint,
+            headers: authHeaders()
+        )
+
+        return response
+    }
+
+    /// Get model metadata
+    func getModelMetadata(urn: String) async throws -> ModelMetadata {
+        try await ensureAuthenticated()
+
+        let encodedUrn = urn.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? urn
+        let endpoint = "/modelderivative/v2/designdata/\(encodedUrn)/metadata"
+
+        let response: ModelMetadata = try await apiClient.get(
+            endpoint,
+            headers: authHeaders()
+        )
+
+        return response
+    }
+
+    /// Get model properties
+    func getModelProperties(urn: String, guid: String) async throws -> ModelProperties {
+        try await ensureAuthenticated()
+
+        let encodedUrn = urn.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? urn
+        let endpoint = "/modelderivative/v2/designdata/\(encodedUrn)/metadata/\(guid)/properties"
+
+        let response: ModelProperties = try await apiClient.get(
+            endpoint,
+            headers: authHeaders()
+        )
+
+        return response
+    }
+
+    // MARK: - Helper Methods
+
+    private func ensureAuthenticated() async throws {
+        guard let token = accessToken, let expiration = tokenExpiration else {
+            try await authenticate()
+            return
+        }
+
+        // Re-authenticate if token expired
+        if expiration < Date() {
+            try await authenticate()
+        }
+    }
+
+    private func authHeaders() -> [String: String] {
+        guard let token = accessToken else { return [:] }
+        return [
+            "Authorization": "Bearer \(token)",
+            "Content-Type": "application/vnd.api+json"
+        ]
+    }
+}
+
+// MARK: - Data Models
+
+struct AuthResponse: Codable {
+    let access_token: String
+    let expires_in: Int
+    let token_type: String
+}
+
+struct BIM360Hub: Identifiable {
+    let id: String
+    let name: String
+    let region: String?
+
+    init(from data: HubData) {
+        self.id = data.id
+        self.name = data.attributes.name
+        self.region = data.attributes.region
+    }
+}
+
+struct BIM360Project: Identifiable {
+    let id: String
+    let name: String
+    let startDate: String?
+    let endDate: String?
+
+    init(from data: ProjectData) {
+        self.id = data.id
+        self.name = data.attributes.name
+        self.startDate = data.attributes.startDate
+        self.endDate = data.attributes.endDate
+    }
+}
+
+struct BIM360Folder: Identifiable {
+    let id: String
+    let name: String
+    let createTime: String?
+
+    init(from data: FolderData) {
+        self.id = data.id
+        self.name = data.attributes.name
+        self.createTime = data.attributes.createTime
+    }
+}
+
+struct BIM360File: Identifiable {
+    let id: String
+    let name: String
+    let displayName: String?
+    let createTime: String?
+    let fileSize: Int?
+
+    init(from data: FileData) {
+        self.id = data.id
+        self.name = data.attributes.name ?? ""
+        self.displayName = data.attributes.displayName
+        self.createTime = data.attributes.createTime
+        self.fileSize = data.attributes.storageSize
+    }
+}
+
+struct BIM360FolderContents {
+    let folders: [BIM360Folder]
+    let files: [BIM360File]
+}
+
+struct BIM360Issue: Identifiable {
+    let id: String
+    let title: String
+    let description: String?
+    let status: String
+    let assignedTo: String?
+    let dueDate: String?
+    let priority: String?
+
+    init(from data: IssueData) {
+        self.id = data.id
+        self.title = data.attributes.title
+        self.description = data.attributes.description
+        self.status = data.attributes.status
+        self.assignedTo = data.attributes.assignedTo
+        self.dueDate = data.attributes.dueDate
+        self.priority = data.attributes.priority
+    }
+}
+
+// MARK: - Response Models
+
+struct HubsResponse: Codable {
+    let data: [HubData]
+}
+
+struct HubData: Codable {
+    let id: String
+    let type: String
+    let attributes: HubAttributes
+}
+
+struct HubAttributes: Codable {
+    let name: String
+    let region: String?
+}
+
+struct ProjectsResponse: Codable {
+    let data: [ProjectData]
+}
+
+struct ProjectResponse: Codable {
+    let data: ProjectData
+}
+
+struct ProjectData: Codable {
+    let id: String
+    let type: String
+    let attributes: ProjectAttributes
+}
+
+struct ProjectAttributes: Codable {
+    let name: String
+    let startDate: String?
+    let endDate: String?
+}
+
+struct FoldersResponse: Codable {
+    let data: [FolderData]
+}
+
+struct FolderData: Codable {
+    let id: String
+    let type: String
+    let attributes: FolderAttributes
+}
+
+struct FolderAttributes: Codable {
+    let name: String
+    let createTime: String?
+}
+
+struct FolderContentsResponse: Codable {
+    let data: [FileData]
+}
+
+struct FileData: Codable {
+    let id: String
+    let type: String
+    let attributes: FileAttributes
+    let relationships: FileRelationships?
+}
+
+struct FileAttributes: Codable {
+    let name: String?
+    let displayName: String?
+    let createTime: String?
+    let storageSize: Int?
+}
+
+struct FileRelationships: Codable {
+    let storage: Storage?
+}
+
+struct Storage: Codable {
+    let meta: StorageMeta?
+}
+
+struct StorageMeta: Codable {
+    let link: Link?
+}
+
+struct Link: Codable {
+    let href: String
+}
+
+struct ItemResponse: Codable {
+    let data: FileData
+}
+
+struct IssuesResponse: Codable {
+    let data: [IssueData]
+}
+
+struct IssueResponse: Codable {
+    let data: IssueData
+}
+
+struct IssueData: Codable {
+    let id: String
+    let type: String
+    let attributes: IssueAttributes
+}
+
+struct IssueAttributes: Codable {
+    let title: String
+    let description: String?
+    let status: String
+    let assignedTo: String?
+    let dueDate: String?
+    let priority: String?
+}
+
+struct ModelManifest: Codable {
+    let type: String
+    let hasThumbnail: String?
+    let status: String
+    let progress: String
+    let region: String?
+    let urn: String
+    let derivatives: [Derivative]?
+}
+
+struct Derivative: Codable {
+    let name: String
+    let hasThumbnail: String?
+    let status: String
+    let progress: String
+}
+
+struct ModelMetadata: Codable {
+    let data: MetadataData
+}
+
+struct MetadataData: Codable {
+    let type: String
+    let metadata: [Metadata]
+}
+
+struct Metadata: Codable {
+    let name: String
+    let guid: String
+}
+
+struct ModelProperties: Codable {
+    let data: PropertiesData
+}
+
+struct PropertiesData: Codable {
+    let type: String
+    let collection: [PropertyObject]
+}
+
+struct PropertyObject {
+    let objectid: Int
+    let name: String
+    let properties: [String: Any]
+}
+
+// MARK: - Request Models
+
+struct JSONAPI: Codable {
+    let version: String
+}
+
+struct CreateStorageRequest: Codable {
+    let jsonapi: JSONAPI
+    let data: StorageData
+}
+
+struct StorageData: Codable {
+    let type: String
+    let attributes: StorageAttributes
+    let relationships: StorageRelationships
+}
+
+struct StorageAttributes: Codable {
+    let name: String
+}
+
+struct StorageRelationships: Codable {
+    let target: Target
+}
+
+struct Target: Codable {
+    let data: TargetData
+}
+
+struct TargetData: Codable {
+    let type: String
+    let id: String
+}
+
+struct StorageResponse: Codable {
+    let data: StorageResponseData
+}
+
+struct StorageResponseData: Codable {
+    let id: String
+    let relationships: FileRelationships?
+}
+
+struct CreateItemRequest: Codable {
+    let jsonapi: JSONAPI
+    let data: ItemData
+}
+
+struct ItemData: Codable {
+    let type: String
+    let attributes: ItemAttributes
+    let relationships: ItemRelationships
+}
+
+struct ItemAttributes: Codable {
+    let displayName: String
+    let itemExtension: ItemExtension
+
+    enum CodingKeys: String, CodingKey {
+        case displayName
+        case itemExtension = "extension"
+    }
+}
+
+struct ItemExtension: Codable {
+    let type: String
+    let version: String
+}
+
+struct ItemRelationships: Codable {
+    let tip: Tip
+    let parent: Parent
+}
+
+struct Tip: Codable {
+    let data: TipData
+}
+
+struct TipData: Codable {
+    let type: String
+    let id: String
+}
+
+struct Parent: Codable {
+    let data: ParentData
+}
+
+struct ParentData: Codable {
+    let type: String
+    let id: String
+}
+
+struct CreateIssueRequest: Codable {
+    let title: String
+    let description: String?
+    let status: String
+    let assignedTo: String?
+    let dueDate: String?
+}
+
+struct UpdateIssueRequest: Codable {
+    let status: String?
+    let assignedTo: String?
+}
+
+// MARK: - Errors
+
+enum BIM360Error: LocalizedError {
+    case notAuthenticated
+    case invalidCredentials
+    case downloadFailed
+    case uploadFailed
+    case invalidRequest
+
+    var errorDescription: String? {
+        switch self {
+        case .notAuthenticated:
+            return "Not authenticated with BIM 360"
+        case .invalidCredentials:
+            return "Invalid BIM 360 credentials"
+        case .downloadFailed:
+            return "Failed to download file"
+        case .uploadFailed:
+            return "Failed to upload file"
+        case .invalidRequest:
+            return "Invalid request to BIM 360 API"
+        }
+    }
+}

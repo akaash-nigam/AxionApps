@@ -1,0 +1,39 @@
+{
+  "name": "field-service-ar",
+  "version": "1.0.0",
+  "description": "Field Service AR Assistant for Apple Vision Pro",
+  "main": "landing-page/js/script.js",
+  "scripts": {
+    "test": "npm run test:validate && npm run test:html && npm run test:css && npm run test:js",
+    "test:validate": "python3 tests/validate.py",
+    "test:html": "html-validate landing-page/index.html",
+    "test:css": "stylelint 'landing-page/css/**/*.css'",
+    "test:js": "eslint landing-page/js/script.js",
+    "lint": "npm run lint:css && npm run lint:js",
+    "lint:css": "stylelint --fix 'landing-page/css/**/*.css'",
+    "lint:js": "eslint --fix landing-page/js/script.js",
+    "serve": "python3 landing-page/serve.py",
+    "validate:docs": "markdownlint '*.md' --ignore node_modules"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akaash-nigam/visionOS_field-service-ar"
+  },
+  "keywords": [
+    "visionOS",
+    "augmented-reality",
+    "field-service",
+    "apple-vision-pro",
+    "spatial-computing"
+  ],
+  "author": "Field Service AR Team",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "html-validate": "^8.9.1",
+    "markdownlint-cli": "^0.38.0",
+    "stylelint": "^16.1.0",
+    "stylelint-config-standard": "^36.0.0"
+  }
+}

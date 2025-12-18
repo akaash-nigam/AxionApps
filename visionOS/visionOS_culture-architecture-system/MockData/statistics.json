@@ -1,0 +1,13 @@
+{
+  "organizations": 50,
+  "departments": 500,
+  "employees": 15226,
+  "culturalValues": 385,
+  "recognitions": 37400,
+  "behaviorEvents": 60686,
+  "culturalLandscapes": 50,
+  "avgEmployeesPerOrg": 304.52,
+  "avgValuesPerOrg": 7.7,
+  "avgRecognitionsPerEmployee": 2.456324707736766,
+  "generatedAt": "2025-11-17T20:33:48.276494"
+}

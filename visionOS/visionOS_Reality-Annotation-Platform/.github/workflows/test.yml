@@ -1,0 +1,252 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
+
+env:
+  SCHEME: RealityAnnotation
+  PLATFORM: visionOS Simulator
+  DEVICE: Apple Vision Pro
+  VISIONOS_VERSION: latest
+
+jobs:
+  test-unit:
+    name: Unit Tests
+    runs-on: macos-14  # macOS Sonoma with Xcode 15.2+
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for Xcode project
+        id: check-project
+        run: |
+          if [ -f "RealityAnnotation.xcodeproj/project.pbxproj" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Setup Xcode
+        if: steps.check-project.outputs.exists == 'true'
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Show Xcode version
+        if: steps.check-project.outputs.exists == 'true'
+        run: xcodebuild -version
+
+      - name: List available simulators
+        if: steps.check-project.outputs.exists == 'true'
+        run: xcrun simctl list devices available
+
+      - name: Run unit tests
+        if: steps.check-project.outputs.exists == 'true'
+        run: |
+          xcodebuild test \
+            -scheme "${{ env.SCHEME }}" \
+            -destination "platform=${{ env.PLATFORM }},name=${{ env.DEVICE }}" \
+            -resultBundlePath TestResults \
+            -enableCodeCoverage YES \
+            | xcpretty
+
+      - name: Generate code coverage report
+        if: steps.check-project.outputs.exists == 'true'
+        run: |
+          xcrun xccov view --report --json TestResults.xcresult > coverage.json
+
+      - name: Upload test results
+        if: steps.check-project.outputs.exists == 'true' && always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results-unit
+          path: TestResults.xcresult
+          retention-days: 30
+
+      - name: Upload coverage report
+        if: steps.check-project.outputs.exists == 'true'
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage.json
+          retention-days: 30
+
+      - name: Skip message
+        if: steps.check-project.outputs.exists == 'false'
+        run: |
+          echo "⚠️ Xcode project not found. Skipping tests."
+          echo "Follow Xcode_Setup_Guide.md to create the project first."
+
+  test-integration:
+    name: Integration Tests
+    runs-on: macos-14
+    timeout-minutes: 30
+    needs: test-unit
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for Xcode project
+        id: check-project
+        run: |
+          if [ -f "RealityAnnotation.xcodeproj/project.pbxproj" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Setup Xcode
+        if: steps.check-project.outputs.exists == 'true'
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Run integration tests
+        if: steps.check-project.outputs.exists == 'true'
+        run: |
+          xcodebuild test \
+            -scheme "${{ env.SCHEME }}" \
+            -destination "platform=${{ env.PLATFORM }},name=${{ env.DEVICE }}" \
+            -only-testing:RealityAnnotationTests/IntegrationTests \
+            -resultBundlePath IntegrationTestResults \
+            | xcpretty
+
+      - name: Upload integration test results
+        if: steps.check-project.outputs.exists == 'true' && always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results-integration
+          path: IntegrationTestResults.xcresult
+          retention-days: 30
+
+  test-ui:
+    name: UI Tests
+    runs-on: macos-14
+    timeout-minutes: 45
+    needs: test-unit
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for Xcode project
+        id: check-project
+        run: |
+          if [ -f "RealityAnnotation.xcodeproj/project.pbxproj" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Setup Xcode
+        if: steps.check-project.outputs.exists == 'true'
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Run UI tests
+        if: steps.check-project.outputs.exists == 'true'
+        run: |
+          xcodebuild test \
+            -scheme "${{ env.SCHEME }}" \
+            -destination "platform=${{ env.PLATFORM }},name=${{ env.DEVICE }}" \
+            -only-testing:RealityAnnotationUITests \
+            -resultBundlePath UITestResults \
+            | xcpretty
+
+      - name: Upload UI test results
+        if: steps.check-project.outputs.exists == 'true' && always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results-ui
+          path: UITestResults.xcresult
+          retention-days: 30
+
+      - name: Upload UI test screenshots
+        if: steps.check-project.outputs.exists == 'true' && failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: ui-test-screenshots
+          path: UITestResults.xcresult/*/action_*.png
+          retention-days: 7
+
+  test-performance:
+    name: Performance Tests
+    runs-on: macos-14
+    timeout-minutes: 30
+    needs: test-unit
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for Xcode project
+        id: check-project
+        run: |
+          if [ -f "RealityAnnotation.xcodeproj/project.pbxproj" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Setup Xcode
+        if: steps.check-project.outputs.exists == 'true'
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Run performance tests
+        if: steps.check-project.outputs.exists == 'true'
+        run: |
+          xcodebuild test \
+            -scheme "${{ env.SCHEME }}" \
+            -destination "platform=${{ env.PLATFORM }},name=${{ env.DEVICE }}" \
+            -only-testing:RealityAnnotationTests/PerformanceTests \
+            -resultBundlePath PerformanceTestResults \
+            | xcpretty
+
+      - name: Upload performance test results
+        if: steps.check-project.outputs.exists == 'true' && always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results-performance
+          path: PerformanceTestResults.xcresult
+          retention-days: 30
+
+  test-summary:
+    name: Test Summary
+    runs-on: ubuntu-latest
+    needs: [test-unit, test-integration, test-ui, test-performance]
+    if: always()
+
+    steps:
+      - name: Generate summary
+        run: |
+          echo "# Test Results Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Test Status" >> $GITHUB_STEP_SUMMARY
+          echo "- Unit Tests: ${{ needs.test-unit.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Integration Tests: ${{ needs.test-integration.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- UI Tests: ${{ needs.test-ui.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Performance Tests: ${{ needs.test-performance.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [[ "${{ needs.test-unit.result }}" == "success" ]] && \
+             [[ "${{ needs.test-integration.result }}" == "success" ]] && \
+             [[ "${{ needs.test-ui.result }}" == "success" ]] && \
+             [[ "${{ needs.test-performance.result }}" == "success" ]]; then
+            echo "✅ All tests passed!" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ Some tests failed. Check individual job logs for details." >> $GITHUB_STEP_SUMMARY
+          fi

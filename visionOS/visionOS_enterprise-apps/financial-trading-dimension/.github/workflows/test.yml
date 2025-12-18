@@ -1,0 +1,231 @@
+name: Test Financial Trading Dimension
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'financial-trading-dimension/**/*.swift'
+      - 'financial-trading-dimension/**/*.xcodeproj'
+      - '.github/workflows/test.yml'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'financial-trading-dimension/**/*.swift'
+      - 'financial-trading-dimension/**/*.xcodeproj'
+
+env:
+  XCODE_VERSION: '16.0'
+  PLATFORM: 'visionOS Simulator'
+  DEVICE: 'Apple Vision Pro'
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: macos-14
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_${{ env.XCODE_VERSION }}.app/Contents/Developer
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      - name: Show available simulators
+        run: xcrun simctl list devices visionOS
+
+      - name: Install visionOS Simulator if needed
+        run: |
+          xcrun simctl list runtimes | grep visionOS || \
+          xcodebuild -downloadPlatform visionOS
+
+      - name: Cache derived data
+        uses: actions/cache@v3
+        with:
+          path: ~/Library/Developer/Xcode/DerivedData
+          key: ${{ runner.os }}-derived-data-${{ hashFiles('**/*.swift') }}
+          restore-keys: |
+            ${{ runner.os }}-derived-data-
+
+      - name: Build for testing
+        working-directory: financial-trading-dimension
+        run: |
+          xcodebuild build-for-testing \
+            -scheme FinancialTradingDimension \
+            -destination "platform=${{ env.PLATFORM }},name=${{ env.DEVICE }}" \
+            -derivedDataPath build/
+
+      - name: Run unit tests
+        working-directory: financial-trading-dimension
+        run: |
+          xcodebuild test-without-building \
+            -scheme FinancialTradingDimension \
+            -destination "platform=${{ env.PLATFORM }},name=${{ env.DEVICE }}" \
+            -derivedDataPath build/ \
+            -resultBundlePath TestResults.xcresult \
+            -enableCodeCoverage YES \
+            | xcpretty --color --report html
+
+      - name: Generate code coverage report
+        if: success()
+        working-directory: financial-trading-dimension
+        run: |
+          xcrun xccov view --report --json TestResults.xcresult > coverage.json
+          xcrun xccov view --report TestResults.xcresult > coverage.txt
+
+      - name: Check code coverage threshold
+        if: success()
+        working-directory: financial-trading-dimension
+        run: |
+          COVERAGE=$(xcrun xccov view --report TestResults.xcresult | grep -oE '[0-9]+\.[0-9]+%' | head -1 | tr -d '%')
+          echo "Code coverage: $COVERAGE%"
+          if (( $(echo "$COVERAGE < 80" | bc -l) )); then
+            echo "::error::Code coverage $COVERAGE% is below threshold of 80%"
+            exit 1
+          fi
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: |
+            financial-trading-dimension/TestResults.xcresult
+            financial-trading-dimension/build/Logs/Test/*.xcresult
+            financial-trading-dimension/coverage.*
+          retention-days: 30
+
+      - name: Upload coverage to Codecov
+        if: success()
+        uses: codecov/codecov-action@v3
+        with:
+          files: financial-trading-dimension/coverage.json
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: false
+
+      - name: Comment PR with coverage
+        if: github.event_name == 'pull_request' && success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const coverage = fs.readFileSync('financial-trading-dimension/coverage.txt', 'utf8');
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## Test Coverage Report\n\n\`\`\`\n${coverage}\n\`\`\``
+            });
+
+  lint:
+    name: Swift Lint
+    runs-on: macos-14
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install SwiftLint
+        run: brew install swiftlint
+
+      - name: Run SwiftLint
+        working-directory: financial-trading-dimension
+        run: swiftlint lint --reporter github-actions-logging
+        continue-on-error: true
+
+      - name: Run SwiftLint (strict)
+        working-directory: financial-trading-dimension
+        run: swiftlint lint --strict --reporter json > swiftlint-results.json
+        continue-on-error: true
+
+      - name: Upload lint results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: lint-results
+          path: financial-trading-dimension/swiftlint-results.json
+          retention-days: 30
+
+  build:
+    name: Build Release
+    runs-on: macos-14
+    timeout-minutes: 30
+    needs: [test, lint]
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_${{ env.XCODE_VERSION }}.app
+
+      - name: Cache derived data
+        uses: actions/cache@v3
+        with:
+          path: ~/Library/Developer/Xcode/DerivedData
+          key: ${{ runner.os }}-derived-data-release-${{ hashFiles('**/*.swift') }}
+
+      - name: Build for release
+        working-directory: financial-trading-dimension
+        run: |
+          xcodebuild build \
+            -scheme FinancialTradingDimension \
+            -destination "platform=${{ env.PLATFORM }},name=${{ env.DEVICE }}" \
+            -configuration Release \
+            -derivedDataPath build/ \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO
+
+      - name: Archive build artifacts
+        if: success()
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: financial-trading-dimension/build/
+          retention-days: 7
+
+  performance:
+    name: Performance Tests
+    runs-on: macos-14
+    timeout-minutes: 45
+    needs: test
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_${{ env.XCODE_VERSION }}.app
+
+      - name: Run performance tests
+        working-directory: financial-trading-dimension
+        run: |
+          xcodebuild test \
+            -scheme FinancialTradingDimension \
+            -destination "platform=${{ env.PLATFORM }},name=${{ env.DEVICE }}" \
+            -only-testing:FinancialTradingDimensionTests/PerformanceTests \
+            -resultBundlePath PerformanceResults.xcresult
+        continue-on-error: true
+
+      - name: Extract performance metrics
+        if: always()
+        working-directory: financial-trading-dimension
+        run: |
+          xcrun xcresulttool get --format json --path PerformanceResults.xcresult > performance.json
+
+      - name: Upload performance results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: performance-results
+          path: |
+            financial-trading-dimension/PerformanceResults.xcresult
+            financial-trading-dimension/performance.json
+          retention-days: 30

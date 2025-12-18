@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>$(DEVELOPMENT_LANGUAGE)</string>
+    <key>CFBundleDisplayName</key>
+    <string>Supply Chain Control Tower</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>$(PRODUCT_NAME)</string>
+    <key>CFBundlePackageType</key>
+    <string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+    <key>UIApplicationSceneManifest</key>
+    <dict>
+        <key>UIApplicationSupportsMultipleScenes</key>
+        <true/>
+        <key>UISceneConfigurations</key>
+        <dict/>
+    </dict>
+    <key>UIApplicationSupportsIndirectInputEvents</key>
+    <true/>
+    <key>UILaunchScreen</key>
+    <dict/>
+    <key>UIRequiredDeviceCapabilities</key>
+    <array>
+        <string>arm64</string>
+    </array>
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+
+    <!-- visionOS Specific -->
+    <key>UIRequiresFullScreen</key>
+    <false/>
+
+    <!-- Capabilities -->
+    <key>NSCameraUsageDescription</key>
+    <string>Camera access is required for hand tracking and spatial interactions.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Location access is used to provide regional supply chain views.</string>
+
+    <!-- Privacy - Eye Tracking (opt-in) -->
+    <key>NSEyeTrackingUsageDescription</key>
+    <string>Eye tracking enables natural navigation and focus-based interactions in the 3D environment.</string>
+
+    <!-- Supported Documents -->
+    <key>CFBundleDocumentTypes</key>
+    <array/>
+
+    <!-- URL Schemes -->
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>supplychain</string>
+            </array>
+            <key>CFBundleURLName</key>
+            <string>com.example.supplychain</string>
+        </dict>
+    </array>
+
+    <!-- Preferred Scene Session Role -->
+    <key>UIApplicationPreferredDefaultSceneSessionRole</key>
+    <string>UIWindowSceneSessionRoleApplication</string>
+</dict>
+</plist>

@@ -1,0 +1,1434 @@
+openapi: 3.0.3
+info:
+  title: Culture Architecture System API
+  description: |
+    RESTful API for the Culture Architecture System visionOS application.
+
+    ## Overview
+    This API enables mobile and spatial applications to interact with organizational culture data,
+    analytics, recognition systems, and behavioral tracking.
+
+    ## Authentication
+    All endpoints require OAuth 2.0 authentication with PKCE flow.
+    Include the access token in the Authorization header: `Authorization: Bearer {token}`
+
+    ## Rate Limiting
+    - 1000 requests per hour per user
+    - 10000 requests per hour per organization
+
+    ## Data Privacy
+    All employee data is anonymized using SHA256 hashing. No PII is stored or transmitted.
+
+  version: 1.0.0
+  contact:
+    name: Culture Architecture API Support
+    email: api@culturearchitecture.com
+  license:
+    name: Proprietary
+    url: https://culturearchitecture.com/license
+
+servers:
+  - url: https://api.culturearchitecture.com/v1
+    description: Production server
+  - url: https://staging-api.culturearchitecture.com/v1
+    description: Staging server
+  - url: http://localhost:8080/v1
+    description: Local development server
+
+tags:
+  - name: Authentication
+    description: OAuth 2.0 authentication endpoints
+  - name: Organizations
+    description: Organization management
+  - name: Culture
+    description: Cultural values and landscapes
+  - name: Analytics
+    description: Culture analytics and insights
+  - name: Recognition
+    description: Peer recognition system
+  - name: Behaviors
+    description: Behavior tracking and events
+  - name: Employees
+    description: Anonymized employee data
+  - name: Departments
+    description: Department management
+
+security:
+  - BearerAuth: []
+
+paths:
+  # ==========================================
+  # AUTHENTICATION
+  # ==========================================
+  /auth/login:
+    post:
+      tags:
+        - Authentication
+      summary: Authenticate user
+      description: OAuth 2.0 + PKCE authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+                - codeVerifier
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+                codeVerifier:
+                  type: string
+                  description: PKCE code verifier
+      responses:
+        '200':
+          description: Successfully authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '401':
+          description: Invalid credentials
+        '429':
+          description: Too many requests
+
+  /auth/refresh:
+    post:
+      tags:
+        - Authentication
+      summary: Refresh access token
+      description: Use refresh token to get new access token
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - refreshToken
+              properties:
+                refreshToken:
+                  type: string
+      responses:
+        '200':
+          description: Token refreshed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '401':
+          description: Invalid refresh token
+
+  /auth/logout:
+    post:
+      tags:
+        - Authentication
+      summary: Logout user
+      description: Invalidate current session
+      responses:
+        '204':
+          description: Successfully logged out
+
+  /auth/me:
+    get:
+      tags:
+        - Authentication
+      summary: Get current user
+      description: Returns current authenticated user profile
+      responses:
+        '200':
+          description: User profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+  # ==========================================
+  # ORGANIZATIONS
+  # ==========================================
+  /organizations:
+    get:
+      tags:
+        - Organizations
+      summary: List organizations
+      description: Get all organizations user has access to
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+            maximum: 100
+      responses:
+        '200':
+          description: List of organizations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Organization'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+
+    post:
+      tags:
+        - Organizations
+      summary: Create organization
+      description: Create new organization (admin only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationCreate'
+      responses:
+        '201':
+          description: Organization created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '403':
+          description: Forbidden
+
+  /organizations/{organizationId}:
+    parameters:
+      - $ref: '#/components/parameters/OrganizationId'
+
+    get:
+      tags:
+        - Organizations
+      summary: Get organization
+      description: Get organization by ID
+      responses:
+        '200':
+          description: Organization details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '404':
+          description: Organization not found
+
+    put:
+      tags:
+        - Organizations
+      summary: Update organization
+      description: Update organization details
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationUpdate'
+      responses:
+        '200':
+          description: Organization updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+
+    delete:
+      tags:
+        - Organizations
+      summary: Delete organization
+      description: Delete organization (admin only)
+      responses:
+        '204':
+          description: Organization deleted
+        '403':
+          description: Forbidden
+
+  /organizations/{organizationId}/health:
+    parameters:
+      - $ref: '#/components/parameters/OrganizationId'
+
+    get:
+      tags:
+        - Organizations
+      summary: Get organization health
+      description: Get real-time culture health metrics
+      responses:
+        '200':
+          description: Health metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationHealth'
+
+  # ==========================================
+  # CULTURE VALUES
+  # ==========================================
+  /values:
+    get:
+      tags:
+        - Culture
+      summary: List cultural values
+      description: Get all cultural values for organization
+      parameters:
+        - name: organizationId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: List of values
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CulturalValue'
+
+    post:
+      tags:
+        - Culture
+      summary: Create cultural value
+      description: Add new cultural value
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CulturalValueCreate'
+      responses:
+        '201':
+          description: Value created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CulturalValue'
+
+  /values/{valueId}:
+    parameters:
+      - name: valueId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+
+    get:
+      tags:
+        - Culture
+      summary: Get cultural value
+      description: Get value by ID
+      responses:
+        '200':
+          description: Value details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CulturalValue'
+
+    put:
+      tags:
+        - Culture
+      summary: Update cultural value
+      description: Update value details
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CulturalValueUpdate'
+      responses:
+        '200':
+          description: Value updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CulturalValue'
+
+  /landscapes:
+    get:
+      tags:
+        - Culture
+      summary: Get cultural landscapes
+      description: Get 3D cultural landscape data
+      parameters:
+        - name: organizationId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Landscape data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CulturalLandscape'
+
+  /culture/health:
+    get:
+      tags:
+        - Culture
+      summary: Get culture health
+      description: Get overall culture health metrics
+      parameters:
+        - name: organizationId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Culture health
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CultureHealth'
+
+  /culture/trends:
+    get:
+      tags:
+        - Culture
+      summary: Get culture trends
+      description: Get culture trend data over time
+      parameters:
+        - name: organizationId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: period
+          in: query
+          schema:
+            type: string
+            enum: [week, month, quarter, year]
+            default: month
+      responses:
+        '200':
+          description: Trend data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CultureTrends'
+
+  # ==========================================
+  # ANALYTICS
+  # ==========================================
+  /analytics/dashboard:
+    get:
+      tags:
+        - Analytics
+      summary: Get dashboard data
+      description: Get all dashboard metrics
+      parameters:
+        - name: organizationId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Dashboard data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardData'
+
+  /analytics/engagement:
+    get:
+      tags:
+        - Analytics
+      summary: Get engagement metrics
+      description: Get employee engagement analytics
+      parameters:
+        - name: organizationId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: departmentId
+          in: query
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Engagement metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EngagementMetrics'
+
+  /analytics/alignment:
+    get:
+      tags:
+        - Analytics
+      summary: Get alignment metrics
+      description: Get values-behavior alignment analytics
+      parameters:
+        - name: organizationId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Alignment metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlignmentMetrics'
+
+  /analytics/trends:
+    get:
+      tags:
+        - Analytics
+      summary: Get analytics trends
+      description: Get trend analysis over time
+      parameters:
+        - name: organizationId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: metric
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [engagement, alignment, health, recognition]
+        - name: period
+          in: query
+          schema:
+            type: string
+            enum: [day, week, month, quarter]
+            default: week
+        - name: duration
+          in: query
+          schema:
+            type: integer
+            default: 30
+            description: Number of periods to include
+      responses:
+        '200':
+          description: Trend data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrendData'
+
+  /analytics/teams/{teamId}:
+    parameters:
+      - name: teamId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+
+    get:
+      tags:
+        - Analytics
+      summary: Get team analytics
+      description: Get analytics for specific team
+      responses:
+        '200':
+          description: Team analytics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamAnalytics'
+
+  /analytics/export:
+    post:
+      tags:
+        - Analytics
+      summary: Export analytics
+      description: Export analytics data in various formats
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - organizationId
+                - format
+              properties:
+                organizationId:
+                  type: string
+                  format: uuid
+                format:
+                  type: string
+                  enum: [csv, xlsx, json, pdf]
+                metrics:
+                  type: array
+                  items:
+                    type: string
+                dateRange:
+                  type: object
+                  properties:
+                    start:
+                      type: string
+                      format: date-time
+                    end:
+                      type: string
+                      format: date-time
+      responses:
+        '200':
+          description: Export file
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+
+  # ==========================================
+  # RECOGNITION
+  # ==========================================
+  /recognitions:
+    get:
+      tags:
+        - Recognition
+      summary: List recognitions
+      description: Get recognition feed
+      parameters:
+        - name: organizationId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: filter
+          in: query
+          schema:
+            type: string
+            enum: [all, given, received, team]
+            default: all
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: Recognition feed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Recognition'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+
+    post:
+      tags:
+        - Recognition
+      summary: Give recognition
+      description: Create new recognition
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecognitionCreate'
+      responses:
+        '201':
+          description: Recognition created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recognition'
+
+  /recognitions/{recognitionId}:
+    parameters:
+      - name: recognitionId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+
+    get:
+      tags:
+        - Recognition
+      summary: Get recognition
+      description: Get recognition by ID
+      responses:
+        '200':
+          description: Recognition details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recognition'
+
+  /recognitions/{recognitionId}/react:
+    parameters:
+      - name: recognitionId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+
+    post:
+      tags:
+        - Recognition
+      summary: React to recognition
+      description: Add reaction to recognition
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - emoji
+              properties:
+                emoji:
+                  type: string
+                  enum: ['👍', '❤️', '🎉', '👏', '🚀']
+      responses:
+        '200':
+          description: Reaction added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recognition'
+
+  # ==========================================
+  # BEHAVIORS
+  # ==========================================
+  /behaviors:
+    post:
+      tags:
+        - Behaviors
+      summary: Track behavior
+      description: Record behavior event
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BehaviorEventCreate'
+      responses:
+        '201':
+          description: Behavior recorded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BehaviorEvent'
+
+    get:
+      tags:
+        - Behaviors
+      summary: Get behaviors
+      description: Get behavior history
+      parameters:
+        - name: organizationId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: employeeId
+          in: query
+          schema:
+            type: string
+            format: uuid
+        - name: valueId
+          in: query
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Behavior events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BehaviorEvent'
+
+  /behaviors/analytics:
+    get:
+      tags:
+        - Behaviors
+      summary: Get behavior analytics
+      description: Get behavior pattern analytics
+      parameters:
+        - name: organizationId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Behavior analytics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BehaviorAnalytics'
+
+  # ==========================================
+  # EMPLOYEES (Anonymized)
+  # ==========================================
+  /employees:
+    get:
+      tags:
+        - Employees
+      summary: List employees
+      description: Get anonymized employee list
+      parameters:
+        - name: organizationId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: departmentId
+          in: query
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Employee list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Employee'
+
+  /employees/{employeeId}:
+    parameters:
+      - name: employeeId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          description: Anonymous employee ID
+
+    get:
+      tags:
+        - Employees
+      summary: Get employee
+      description: Get anonymized employee data
+      responses:
+        '200':
+          description: Employee details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+
+  # ==========================================
+  # DEPARTMENTS
+  # ==========================================
+  /departments:
+    get:
+      tags:
+        - Departments
+      summary: List departments
+      description: Get all departments
+      parameters:
+        - name: organizationId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Department list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Department'
+
+# ==========================================
+# COMPONENTS
+# ==========================================
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    OrganizationId:
+      name: organizationId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: Organization ID
+
+  schemas:
+    # Authentication
+    AuthResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          description: JWT access token
+        refreshToken:
+          type: string
+          description: Refresh token
+        expiresIn:
+          type: integer
+          description: Token expiration in seconds
+        tokenType:
+          type: string
+          default: Bearer
+
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        role:
+          type: string
+          enum: [admin, manager, user]
+        organizationId:
+          type: string
+          format: uuid
+
+    # Organizations
+    Organization:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        industry:
+          type: string
+        employeeCount:
+          type: integer
+        foundedYear:
+          type: integer
+        healthScore:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 100
+        engagementScore:
+          type: number
+          format: float
+        alignmentScore:
+          type: number
+          format: float
+        retentionRate:
+          type: number
+          format: float
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    OrganizationCreate:
+      type: object
+      required:
+        - name
+        - industry
+      properties:
+        name:
+          type: string
+        industry:
+          type: string
+        foundedYear:
+          type: integer
+
+    OrganizationUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        industry:
+          type: string
+
+    OrganizationHealth:
+      type: object
+      properties:
+        healthScore:
+          type: number
+        engagementScore:
+          type: number
+        alignmentScore:
+          type: number
+        trends:
+          type: object
+          properties:
+            health:
+              type: string
+              enum: [improving, stable, declining]
+            engagement:
+              type: string
+              enum: [improving, stable, declining]
+
+    # Cultural Values
+    CulturalValue:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        organizationId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        dimension:
+          type: string
+          enum: [Individual, Team, Organizational]
+        priority:
+          type: integer
+          minimum: 1
+          maximum: 5
+        adoptionRate:
+          type: number
+          format: float
+        behaviorCount:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+
+    CulturalValueCreate:
+      type: object
+      required:
+        - organizationId
+        - name
+        - description
+      properties:
+        organizationId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        dimension:
+          type: string
+        priority:
+          type: integer
+
+    CulturalValueUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        priority:
+          type: integer
+
+    # Cultural Landscape
+    CulturalLandscape:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        organizationId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        regionCount:
+          type: integer
+        totalArea:
+          type: integer
+        healthScore:
+          type: number
+        lastUpdated:
+          type: string
+          format: date-time
+
+    # Culture Health
+    CultureHealth:
+      type: object
+      properties:
+        overallScore:
+          type: number
+        valueAlignment:
+          type: number
+        behaviorConsistency:
+          type: number
+        engagement:
+          type: number
+        sentiment:
+          type: string
+          enum: [positive, neutral, negative]
+
+    CultureTrends:
+      type: object
+      properties:
+        period:
+          type: string
+        dataPoints:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+                format: date
+              healthScore:
+                type: number
+              engagement:
+                type: number
+
+    # Analytics
+    DashboardData:
+      type: object
+      properties:
+        healthScore:
+          type: number
+        engagementScore:
+          type: number
+        alignmentScore:
+          type: number
+        recognitionCount:
+          type: integer
+        recentActivities:
+          type: array
+          items:
+            type: object
+
+    EngagementMetrics:
+      type: object
+      properties:
+        overall:
+          type: number
+        byDepartment:
+          type: array
+          items:
+            type: object
+            properties:
+              departmentId:
+                type: string
+              score:
+                type: number
+        trend:
+          type: string
+          enum: [up, stable, down]
+
+    AlignmentMetrics:
+      type: object
+      properties:
+        overallAlignment:
+          type: number
+        valueAlignment:
+          type: array
+          items:
+            type: object
+            properties:
+              valueId:
+                type: string
+              alignmentScore:
+                type: number
+
+    TrendData:
+      type: object
+      properties:
+        metric:
+          type: string
+        period:
+          type: string
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              timestamp:
+                type: string
+                format: date-time
+              value:
+                type: number
+
+    TeamAnalytics:
+      type: object
+      properties:
+        teamId:
+          type: string
+        healthScore:
+          type: number
+        engagement:
+          type: number
+        memberCount:
+          type: integer
+        recognitionCount:
+          type: integer
+
+    # Recognition
+    Recognition:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        organizationId:
+          type: string
+          format: uuid
+        giverId:
+          type: string
+          format: uuid
+          description: Anonymous employee ID
+        receiverId:
+          type: string
+          format: uuid
+          description: Anonymous employee ID
+        valueId:
+          type: string
+          format: uuid
+        type:
+          type: string
+        message:
+          type: string
+        visibility:
+          type: string
+          enum: [Public, Team, Private]
+        reactionCount:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+
+    RecognitionCreate:
+      type: object
+      required:
+        - organizationId
+        - receiverId
+        - message
+      properties:
+        organizationId:
+          type: string
+          format: uuid
+        receiverId:
+          type: string
+          format: uuid
+        valueId:
+          type: string
+          format: uuid
+        type:
+          type: string
+        message:
+          type: string
+        visibility:
+          type: string
+          default: Public
+
+    # Behavior Events
+    BehaviorEvent:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        organizationId:
+          type: string
+          format: uuid
+        employeeId:
+          type: string
+          format: uuid
+          description: Anonymous employee ID
+        valueId:
+          type: string
+          format: uuid
+        behaviorType:
+          type: string
+        impact:
+          type: string
+          enum: [Low, Medium, High]
+        context:
+          type: string
+        observed:
+          type: boolean
+        timestamp:
+          type: string
+          format: date-time
+
+    BehaviorEventCreate:
+      type: object
+      required:
+        - organizationId
+        - employeeId
+        - behaviorType
+      properties:
+        organizationId:
+          type: string
+          format: uuid
+        employeeId:
+          type: string
+          format: uuid
+        valueId:
+          type: string
+          format: uuid
+        behaviorType:
+          type: string
+        impact:
+          type: string
+        context:
+          type: string
+
+    BehaviorAnalytics:
+      type: object
+      properties:
+        totalEvents:
+          type: integer
+        byType:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              count:
+                type: integer
+        byValue:
+          type: array
+          items:
+            type: object
+            properties:
+              valueId:
+                type: string
+              count:
+                type: integer
+
+    # Employee (Anonymized)
+    Employee:
+      type: object
+      description: All employee data is anonymized. No PII is stored.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Anonymous ID (SHA256 hash)
+        organizationId:
+          type: string
+          format: uuid
+        departmentId:
+          type: string
+          format: uuid
+        teamId:
+          type: string
+          format: uuid
+        role:
+          type: string
+          description: Generalized role (no specific titles)
+        tenureMonths:
+          type: integer
+        engagementScore:
+          type: number
+        culturalContributions:
+          type: integer
+        recognitionsReceived:
+          type: integer
+        recognitionsGiven:
+          type: integer
+        lastActiveDate:
+          type: string
+          format: date-time
+
+    # Department
+    Department:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        organizationId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        headcount:
+          type: integer
+        healthScore:
+          type: number
+        createdAt:
+          type: string
+          format: date-time
+
+    # Pagination
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        pages:
+          type: integer
+
+    # Error
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: object

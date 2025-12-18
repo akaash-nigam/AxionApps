@@ -1,0 +1,1565 @@
+{
+  "courses": [
+    {
+      "id": "A1B2C3D4-E5F6-4A7B-8C9D-0E1F2A3B4C5D",
+      "title": "Advanced Swift Concurrency",
+      "description": "Master async/await, actors, and structured concurrency in Swift 6.0. Learn to build high-performance concurrent applications with modern Swift concurrency features.",
+      "category": "technology",
+      "difficulty": "advanced",
+      "estimatedDuration": 28800,
+      "instructor": "Dr. Sarah Johnson",
+      "instructorBio": "Former Apple engineer with 15 years of Swift development experience. PhD in Computer Science from Stanford.",
+      "rating": 4.8,
+      "enrollmentCount": 1247,
+      "imageURL": "swift-concurrency.jpg",
+      "prerequisites": ["Swift Fundamentals", "iOS Development Basics"],
+      "learningObjectives": [
+        "Understand async/await syntax and semantics",
+        "Implement actor-based concurrency patterns",
+        "Handle structured concurrency with task groups",
+        "Debug and profile concurrent code"
+      ],
+      "skills": ["Swift", "Concurrency", "iOS Development", "Performance"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Introduction to Swift Concurrency",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Why Concurrency Matters", "type": "video", "duration": 900},
+            {"id": "L2", "title": "Async/Await Fundamentals", "type": "video", "duration": 1200},
+            {"id": "L3", "title": "Your First Async Function", "type": "interactive", "duration": 1800}
+          ]
+        },
+        {
+          "id": "M2",
+          "title": "Actors and Data Isolation",
+          "order": 2,
+          "lessons": [
+            {"id": "L4", "title": "Understanding Actors", "type": "video", "duration": 1500},
+            {"id": "L5", "title": "Actor Isolation Rules", "type": "text", "duration": 900},
+            {"id": "L6", "title": "Building an Actor-Based System", "type": "interactive", "duration": 2400}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B2C3D4E5-F6A7-4B8C-9D0E-1F2A3B4C5D6E",
+      "title": "Leadership in the Digital Age",
+      "description": "Develop essential leadership skills for managing remote and hybrid teams in today's digital workplace.",
+      "category": "leadership",
+      "difficulty": "intermediate",
+      "estimatedDuration": 21600,
+      "instructor": "Marcus Chen",
+      "instructorBio": "Executive coach and former VP at Fortune 500 companies. Specializes in digital transformation leadership.",
+      "rating": 4.9,
+      "enrollmentCount": 2134,
+      "imageURL": "digital-leadership.jpg",
+      "prerequisites": ["Team Management Basics"],
+      "learningObjectives": [
+        "Build trust in virtual teams",
+        "Communicate effectively across digital channels",
+        "Drive engagement in remote settings",
+        "Navigate digital transformation"
+      ],
+      "skills": ["Leadership", "Remote Management", "Digital Communication", "Change Management"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Foundations of Digital Leadership",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "The Digital Leader's Mindset", "type": "video", "duration": 1200},
+            {"id": "L2", "title": "Trust in Virtual Teams", "type": "video", "duration": 1500},
+            {"id": "L3", "title": "Case Study: Remote Team Success", "type": "text", "duration": 900}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C3D4E5F6-A7B8-4C9D-0E1F-2A3B4C5D6E7F",
+      "title": "Data Science with Python",
+      "description": "Complete guide to data analysis, visualization, and machine learning using Python, pandas, and scikit-learn.",
+      "category": "data_science",
+      "difficulty": "intermediate",
+      "estimatedDuration": 36000,
+      "instructor": "Dr. Priya Patel",
+      "instructorBio": "Data Science Director at tech unicorn. PhD in Statistics. Published researcher in ML applications.",
+      "rating": 4.7,
+      "enrollmentCount": 3421,
+      "imageURL": "python-data-science.jpg",
+      "prerequisites": ["Python Basics", "Statistics Fundamentals"],
+      "learningObjectives": [
+        "Perform exploratory data analysis",
+        "Create compelling visualizations",
+        "Build predictive models",
+        "Deploy ML solutions"
+      ],
+      "skills": ["Python", "Data Analysis", "Machine Learning", "Visualization"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Data Analysis with Pandas",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Introduction to Pandas", "type": "video", "duration": 1800},
+            {"id": "L2", "title": "Data Cleaning Techniques", "type": "interactive", "duration": 2400},
+            {"id": "L3", "title": "EDA Best Practices", "type": "video", "duration": 1500}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "D4E5F6A7-B8C9-4D0E-1F2A-3B4C5D6E7F8A",
+      "title": "UI/UX Design Fundamentals",
+      "description": "Learn user-centered design principles, prototyping, and usability testing to create exceptional user experiences.",
+      "category": "design",
+      "difficulty": "beginner",
+      "estimatedDuration": 25200,
+      "instructor": "Alex Rivera",
+      "instructorBio": "Lead Product Designer at top design agency. 10+ years creating award-winning user experiences.",
+      "rating": 4.9,
+      "enrollmentCount": 2876,
+      "imageURL": "ux-design.jpg",
+      "prerequisites": [],
+      "learningObjectives": [
+        "Apply design thinking methodology",
+        "Create effective wireframes and prototypes",
+        "Conduct usability testing",
+        "Design accessible interfaces"
+      ],
+      "skills": ["UX Design", "Prototyping", "User Research", "Accessibility"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Design Thinking Process",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "What is Design Thinking?", "type": "video", "duration": 1200},
+            {"id": "L2", "title": "Empathy and User Research", "type": "video", "duration": 1800},
+            {"id": "L3", "title": "Workshop: Define the Problem", "type": "interactive", "duration": 2700}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E5F6A7B8-C9D0-4E1F-2A3B-4C5D6E7F8A9B",
+      "title": "Financial Analysis for Managers",
+      "description": "Master financial statements, budgeting, and ROI analysis to make data-driven business decisions.",
+      "category": "business",
+      "difficulty": "intermediate",
+      "estimatedDuration": 19800,
+      "instructor": "Jennifer Williams",
+      "instructorBio": "CFO and financial strategist. MBA from Wharton. 20 years in corporate finance.",
+      "rating": 4.6,
+      "enrollmentCount": 1654,
+      "imageURL": "financial-analysis.jpg",
+      "prerequisites": ["Business Fundamentals"],
+      "learningObjectives": [
+        "Read and interpret financial statements",
+        "Build comprehensive budgets",
+        "Calculate and present ROI",
+        "Make financially sound decisions"
+      ],
+      "skills": ["Financial Analysis", "Budgeting", "ROI Calculation", "Business Acumen"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Understanding Financial Statements",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Balance Sheet Basics", "type": "video", "duration": 1500},
+            {"id": "L2", "title": "Income Statement Analysis", "type": "video", "duration": 1500},
+            {"id": "L3", "title": "Cash Flow Statement", "type": "text", "duration": 1200}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "F6A7B8C9-D0E1-4F2A-3B4C-5D6E7F8A9B0C",
+      "title": "Agile Project Management",
+      "description": "Implement Scrum, Kanban, and other agile methodologies to deliver projects faster and with higher quality.",
+      "category": "business",
+      "difficulty": "intermediate",
+      "estimatedDuration": 23400,
+      "instructor": "David Kumar",
+      "instructorBio": "Certified Scrum Trainer and Agile Coach. Transformed 100+ teams to agile practices.",
+      "rating": 4.8,
+      "enrollmentCount": 4231,
+      "imageURL": "agile-pm.jpg",
+      "prerequisites": ["Project Management Basics"],
+      "learningObjectives": [
+        "Facilitate effective Scrum ceremonies",
+        "Manage Kanban boards",
+        "Calculate team velocity",
+        "Lead agile transformations"
+      ],
+      "skills": ["Agile", "Scrum", "Kanban", "Team Leadership"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Agile Principles and Mindset",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "The Agile Manifesto", "type": "video", "duration": 900},
+            {"id": "L2", "title": "Agile vs Waterfall", "type": "text", "duration": 1200},
+            {"id": "L3", "title": "Building an Agile Culture", "type": "video", "duration": 1800}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "A7B8C9D0-E1F2-4A3B-4C5D-6E7F8A9B0C1D",
+      "title": "Cybersecurity Essentials",
+      "description": "Protect your organization from cyber threats. Learn security best practices, threat detection, and incident response.",
+      "category": "technology",
+      "difficulty": "intermediate",
+      "estimatedDuration": 27000,
+      "instructor": "Rachel Green",
+      "instructorBio": "CISSP-certified security architect. Former penetration tester. 15 years in cybersecurity.",
+      "rating": 4.7,
+      "enrollmentCount": 2987,
+      "imageURL": "cybersecurity.jpg",
+      "prerequisites": ["IT Fundamentals"],
+      "learningObjectives": [
+        "Identify common security threats",
+        "Implement security controls",
+        "Respond to security incidents",
+        "Maintain compliance standards"
+      ],
+      "skills": ["Cybersecurity", "Risk Management", "Incident Response", "Compliance"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Threat Landscape",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Types of Cyber Attacks", "type": "video", "duration": 1800},
+            {"id": "L2", "title": "Social Engineering", "type": "video", "duration": 1500},
+            {"id": "L3", "title": "Simulation: Phishing Detection", "type": "simulation", "duration": 2400}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B8C9D0E1-F2A3-4B4C-5D6E-7F8A9B0C1D2E",
+      "title": "Cloud Architecture on AWS",
+      "description": "Design scalable, reliable, and cost-effective cloud solutions using Amazon Web Services.",
+      "category": "technology",
+      "difficulty": "advanced",
+      "estimatedDuration": 32400,
+      "instructor": "Michael Torres",
+      "instructorBio": "AWS Solutions Architect Professional. Built cloud infrastructure for Fortune 100 companies.",
+      "rating": 4.9,
+      "enrollmentCount": 1876,
+      "imageURL": "aws-architecture.jpg",
+      "prerequisites": ["Cloud Computing Basics", "Networking Fundamentals"],
+      "learningObjectives": [
+        "Design multi-tier architectures",
+        "Implement high availability",
+        "Optimize cloud costs",
+        "Ensure security compliance"
+      ],
+      "skills": ["AWS", "Cloud Architecture", "DevOps", "Infrastructure"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "AWS Core Services",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "EC2 and Compute Services", "type": "video", "duration": 2100},
+            {"id": "L2", "title": "S3 and Storage Solutions", "type": "video", "duration": 1800},
+            {"id": "L3", "title": "Lab: Deploy Your First App", "type": "interactive", "duration": 3600}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C9D0E1F2-A3B4-4C5D-6E7F-8A9B0C1D2E3F",
+      "title": "Effective Communication Skills",
+      "description": "Enhance your verbal, written, and presentation skills to communicate with impact and influence.",
+      "category": "soft_skills",
+      "difficulty": "beginner",
+      "estimatedDuration": 18000,
+      "instructor": "Lisa Martinez",
+      "instructorBio": "Executive communication coach. Former broadcast journalist. Trained 1000+ executives.",
+      "rating": 4.8,
+      "enrollmentCount": 5432,
+      "imageURL": "communication.jpg",
+      "prerequisites": [],
+      "learningObjectives": [
+        "Craft clear and compelling messages",
+        "Present with confidence",
+        "Listen actively and empathetically",
+        "Handle difficult conversations"
+      ],
+      "skills": ["Communication", "Presentation", "Active Listening", "Persuasion"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Foundations of Effective Communication",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "The Communication Process", "type": "video", "duration": 1200},
+            {"id": "L2", "title": "Verbal vs Non-Verbal", "type": "video", "duration": 1500},
+            {"id": "L3", "title": "Exercise: Clarity Practice", "type": "interactive", "duration": 1800}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "D0E1F2A3-B4C5-4D6E-7F8A-9B0C1D2E3F4A",
+      "title": "Machine Learning Fundamentals",
+      "description": "Introduction to supervised and unsupervised learning, neural networks, and practical ML applications.",
+      "category": "data_science",
+      "difficulty": "intermediate",
+      "estimatedDuration": 39600,
+      "instructor": "Dr. James Park",
+      "instructorBio": "ML researcher and practitioner. PhD from MIT. Published 50+ papers in top ML conferences.",
+      "rating": 4.6,
+      "enrollmentCount": 2765,
+      "imageURL": "machine-learning.jpg",
+      "prerequisites": ["Python Programming", "Linear Algebra", "Statistics"],
+      "learningObjectives": [
+        "Understand ML algorithms",
+        "Train and evaluate models",
+        "Prevent overfitting",
+        "Deploy ML systems"
+      ],
+      "skills": ["Machine Learning", "Python", "TensorFlow", "Model Evaluation"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Introduction to Machine Learning",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "What is Machine Learning?", "type": "video", "duration": 1500},
+            {"id": "L2", "title": "Types of ML Problems", "type": "text", "duration": 1200},
+            {"id": "L3", "title": "Your First Model", "type": "interactive", "duration": 2700}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E1F2A3B4-C5D6-4E7F-8A9B-0C1D2E3F4A5B",
+      "title": "Product Management Masterclass",
+      "description": "Learn to define product vision, prioritize features, and deliver products that customers love.",
+      "category": "business",
+      "difficulty": "advanced",
+      "estimatedDuration": 30600,
+      "instructor": "Emily Zhang",
+      "instructorBio": "VP of Product at SaaS unicorn. Built and launched 20+ successful products.",
+      "rating": 4.9,
+      "enrollmentCount": 1543,
+      "imageURL": "product-management.jpg",
+      "prerequisites": ["Business Strategy", "User Research Basics"],
+      "learningObjectives": [
+        "Define product strategy and roadmap",
+        "Conduct customer discovery",
+        "Prioritize using frameworks",
+        "Measure product success"
+      ],
+      "skills": ["Product Management", "Strategy", "Analytics", "User Research"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Product Vision and Strategy",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "What Makes Great Products", "type": "video", "duration": 1800},
+            {"id": "L2", "title": "Defining Your Vision", "type": "video", "duration": 2100},
+            {"id": "L3", "title": "Workshop: Vision Statement", "type": "interactive", "duration": 2400}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "F2A3B4C5-D6E7-4F8A-9B0C-1D2E3F4A5B6C",
+      "title": "SQL for Data Analysis",
+      "description": "Master SQL queries, joins, aggregations, and window functions to extract insights from databases.",
+      "category": "data_science",
+      "difficulty": "beginner",
+      "estimatedDuration": 21600,
+      "instructor": "Thomas Anderson",
+      "instructorBio": "Database architect and data analyst. 12 years optimizing queries for large-scale systems.",
+      "rating": 4.7,
+      "enrollmentCount": 4567,
+      "imageURL": "sql-analysis.jpg",
+      "prerequisites": [],
+      "learningObjectives": [
+        "Write complex SQL queries",
+        "Optimize query performance",
+        "Analyze data with SQL",
+        "Create reports and dashboards"
+      ],
+      "skills": ["SQL", "Data Analysis", "Database Design", "Performance Tuning"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "SQL Basics",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Introduction to Databases", "type": "video", "duration": 1200},
+            {"id": "L2", "title": "SELECT, WHERE, ORDER BY", "type": "video", "duration": 1800},
+            {"id": "L3", "title": "Practice: Basic Queries", "type": "interactive", "duration": 2400}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "A3B4C5D6-E7F8-4A9B-0C1D-2E3F4A5B6C7D",
+      "title": "Diversity and Inclusion Training",
+      "description": "Build an inclusive workplace culture. Understand unconscious bias, microaggressions, and allyship.",
+      "category": "compliance",
+      "difficulty": "beginner",
+      "estimatedDuration": 10800,
+      "instructor": "Dr. Angela Davis",
+      "instructorBio": "DEI consultant and organizational psychologist. PhD in Social Psychology.",
+      "rating": 4.8,
+      "enrollmentCount": 8932,
+      "imageURL": "diversity-inclusion.jpg",
+      "prerequisites": [],
+      "learningObjectives": [
+        "Recognize unconscious bias",
+        "Create inclusive environments",
+        "Practice active allyship",
+        "Address microaggressions"
+      ],
+      "skills": ["DEI", "Cultural Competence", "Allyship", "Inclusive Leadership"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Understanding Diversity",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "What is Diversity?", "type": "video", "duration": 900},
+            {"id": "L2", "title": "Unconscious Bias", "type": "video", "duration": 1500},
+            {"id": "L3", "title": "Reflection: Your Biases", "type": "interactive", "duration": 1200}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B4C5D6E7-F8A9-4B0C-1D2E-3F4A5B6C7D8E",
+      "title": "Digital Marketing Strategy",
+      "description": "Create comprehensive digital marketing campaigns across SEO, SEM, social media, and email.",
+      "category": "marketing",
+      "difficulty": "intermediate",
+      "estimatedDuration": 28800,
+      "instructor": "Sandra Lopez",
+      "instructorBio": "CMO and growth hacker. Scaled 3 startups to $100M+ revenue through digital marketing.",
+      "rating": 4.7,
+      "enrollmentCount": 3211,
+      "imageURL": "digital-marketing.jpg",
+      "prerequisites": ["Marketing Fundamentals"],
+      "learningObjectives": [
+        "Develop integrated marketing strategies",
+        "Optimize for search engines",
+        "Run effective social campaigns",
+        "Measure marketing ROI"
+      ],
+      "skills": ["Digital Marketing", "SEO", "Social Media", "Analytics"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Digital Marketing Foundations",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "The Digital Marketing Landscape", "type": "video", "duration": 1500},
+            {"id": "L2", "title": "Customer Journey Mapping", "type": "video", "duration": 1800},
+            {"id": "L3", "title": "Workshop: Strategy Canvas", "type": "interactive", "duration": 2700}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C5D6E7F8-A9B0-4C1D-2E3F-4A5B6C7D8E9F",
+      "title": "Emotional Intelligence for Leaders",
+      "description": "Develop self-awareness, empathy, and relationship management to become a more effective leader.",
+      "category": "leadership",
+      "difficulty": "intermediate",
+      "estimatedDuration": 19800,
+      "instructor": "Dr. Robert Kim",
+      "instructorBio": "Executive coach and psychologist. Specialized in emotional intelligence for 25 years.",
+      "rating": 4.9,
+      "enrollmentCount": 4123,
+      "imageURL": "emotional-intelligence.jpg",
+      "prerequisites": ["Leadership Basics"],
+      "learningObjectives": [
+        "Enhance self-awareness",
+        "Regulate emotions effectively",
+        "Build empathy",
+        "Manage relationships"
+      ],
+      "skills": ["Emotional Intelligence", "Self-Awareness", "Empathy", "Leadership"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Self-Awareness",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "What is Emotional Intelligence?", "type": "video", "duration": 1200},
+            {"id": "L2", "title": "The Four Domains of EQ", "type": "text", "duration": 900},
+            {"id": "L3", "title": "Assessment: Your EQ Profile", "type": "quiz", "duration": 1800}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "D6E7F8A9-B0C1-4D2E-3F4A-5B6C7D8E9F0A",
+      "title": "React and Modern Web Development",
+      "description": "Build dynamic web applications with React, hooks, state management, and modern JavaScript.",
+      "category": "technology",
+      "difficulty": "intermediate",
+      "estimatedDuration": 34200,
+      "instructor": "Chris Miller",
+      "instructorBio": "Senior frontend engineer at FAANG company. React core contributor. Conference speaker.",
+      "rating": 4.8,
+      "enrollmentCount": 3654,
+      "imageURL": "react-web-dev.jpg",
+      "prerequisites": ["JavaScript Fundamentals", "HTML/CSS"],
+      "learningObjectives": [
+        "Build React components",
+        "Manage application state",
+        "Handle side effects",
+        "Optimize performance"
+      ],
+      "skills": ["React", "JavaScript", "Web Development", "Frontend"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "React Fundamentals",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "What is React?", "type": "video", "duration": 1500},
+            {"id": "L2", "title": "Components and Props", "type": "video", "duration": 2100},
+            {"id": "L3", "title": "Build Your First Component", "type": "interactive", "duration": 3000}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E7F8A9B0-C1D2-4E3F-4A5B-6C7D8E9F0A1B",
+      "title": "Sales Fundamentals",
+      "description": "Master the sales process from prospecting to closing. Build relationships and hit your quota.",
+      "category": "sales",
+      "difficulty": "beginner",
+      "estimatedDuration": 23400,
+      "instructor": "Brian Foster",
+      "instructorBio": "VP of Sales. Built and led teams that closed $500M+ in revenue. Top 1% seller.",
+      "rating": 4.6,
+      "enrollmentCount": 2987,
+      "imageURL": "sales-fundamentals.jpg",
+      "prerequisites": [],
+      "learningObjectives": [
+        "Qualify prospects effectively",
+        "Handle objections",
+        "Close deals",
+        "Build long-term relationships"
+      ],
+      "skills": ["Sales", "Negotiation", "Relationship Building", "Communication"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "The Sales Process",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Prospecting Strategies", "type": "video", "duration": 1800},
+            {"id": "L2", "title": "Qualifying Leads", "type": "video", "duration": 1500},
+            {"id": "L3", "title": "Role Play: Discovery Call", "type": "simulation", "duration": 2400}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "F8A9B0C1-D2E3-4F4A-5B6C-7D8E9F0A1B2C",
+      "title": "Business Writing Excellence",
+      "description": "Write clear, concise, and persuasive business documents including emails, reports, and proposals.",
+      "category": "soft_skills",
+      "difficulty": "beginner",
+      "estimatedDuration": 16200,
+      "instructor": "Patricia Wilson",
+      "instructorBio": "Corporate writing consultant. Former journalist. Trained 5000+ professionals.",
+      "rating": 4.7,
+      "enrollmentCount": 4321,
+      "imageURL": "business-writing.jpg",
+      "prerequisites": [],
+      "learningObjectives": [
+        "Write concise emails",
+        "Create effective reports",
+        "Craft persuasive proposals",
+        "Edit for clarity"
+      ],
+      "skills": ["Business Writing", "Communication", "Professional Skills"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Principles of Business Writing",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Clarity and Conciseness", "type": "video", "duration": 1200},
+            {"id": "L2", "title": "Audience Analysis", "type": "text", "duration": 900},
+            {"id": "L3", "title": "Exercise: Email Makeover", "type": "interactive", "duration": 1800}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "A9B0C1D2-E3F4-4A5B-6C7D-8E9F0A1B2C3D",
+      "title": "Time Management Mastery",
+      "description": "Boost productivity and reduce stress with proven time management techniques and tools.",
+      "category": "soft_skills",
+      "difficulty": "beginner",
+      "estimatedDuration": 14400,
+      "instructor": "Kevin Chang",
+      "instructorBio": "Productivity coach and author. Helped 10,000+ professionals reclaim their time.",
+      "rating": 4.8,
+      "enrollmentCount": 6543,
+      "imageURL": "time-management.jpg",
+      "prerequisites": [],
+      "learningObjectives": [
+        "Prioritize tasks effectively",
+        "Eliminate time wasters",
+        "Use productivity tools",
+        "Achieve work-life balance"
+      ],
+      "skills": ["Time Management", "Productivity", "Organization", "Work-Life Balance"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Time Management Fundamentals",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Where Does Time Go?", "type": "video", "duration": 900},
+            {"id": "L2", "title": "Priority Matrix", "type": "video", "duration": 1500},
+            {"id": "L3", "title": "Exercise: Weekly Planning", "type": "interactive", "duration": 1800}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B0C1D2E3-F4A5-4B6C-7D8E-9F0A1B2C3D4E",
+      "title": "Docker and Kubernetes",
+      "description": "Containerize applications and orchestrate deployments with Docker and Kubernetes.",
+      "category": "technology",
+      "difficulty": "advanced",
+      "estimatedDuration": 30600,
+      "instructor": "Maria Gonzalez",
+      "instructorBio": "DevOps architect and CNCF ambassador. Built cloud-native platforms at scale.",
+      "rating": 4.7,
+      "enrollmentCount": 2134,
+      "imageURL": "docker-kubernetes.jpg",
+      "prerequisites": ["Linux Basics", "Networking", "Cloud Computing"],
+      "learningObjectives": [
+        "Create Docker containers",
+        "Manage Kubernetes clusters",
+        "Deploy microservices",
+        "Implement CI/CD pipelines"
+      ],
+      "skills": ["Docker", "Kubernetes", "DevOps", "Cloud Native"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Introduction to Containers",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Why Containers?", "type": "video", "duration": 1500},
+            {"id": "L2", "title": "Docker Fundamentals", "type": "video", "duration": 2100},
+            {"id": "L3", "title": "Lab: Your First Container", "type": "interactive", "duration": 2700}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C1D2E3F4-A5B6-4C7D-8E9F-0A1B2C3D4E5F",
+      "title": "Negotiation Skills",
+      "description": "Learn principled negotiation techniques to create win-win outcomes in any situation.",
+      "category": "soft_skills",
+      "difficulty": "intermediate",
+      "estimatedDuration": 18000,
+      "instructor": "Daniel Brown",
+      "instructorBio": "Negotiation consultant and mediator. Trained FBI hostage negotiators. Harvard certified.",
+      "rating": 4.9,
+      "enrollmentCount": 3456,
+      "imageURL": "negotiation.jpg",
+      "prerequisites": ["Communication Skills"],
+      "learningObjectives": [
+        "Prepare for negotiations",
+        "Build rapport and trust",
+        "Create value for all parties",
+        "Handle difficult situations"
+      ],
+      "skills": ["Negotiation", "Persuasion", "Conflict Resolution", "Communication"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Negotiation Fundamentals",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Principled Negotiation", "type": "video", "duration": 1500},
+            {"id": "L2", "title": "BATNA and Reservation Points", "type": "video", "duration": 1800},
+            {"id": "L3", "title": "Simulation: Salary Negotiation", "type": "simulation", "duration": 2700}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "D2E3F4A5-B6C7-4D8E-9F0A-1B2C3D4E5F6A",
+      "title": "Customer Service Excellence",
+      "description": "Deliver exceptional customer experiences that build loyalty and drive business growth.",
+      "category": "soft_skills",
+      "difficulty": "beginner",
+      "estimatedDuration": 16200,
+      "instructor": "Karen Thompson",
+      "instructorBio": "Customer experience strategist. Built award-winning support teams for Fortune 500 companies.",
+      "rating": 4.6,
+      "enrollmentCount": 5678,
+      "imageURL": "customer-service.jpg",
+      "prerequisites": [],
+      "learningObjectives": [
+        "Handle customer complaints",
+        "Exceed expectations",
+        "Build customer relationships",
+        "Use service recovery techniques"
+      ],
+      "skills": ["Customer Service", "Communication", "Problem Solving", "Empathy"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Customer Service Mindset",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Customer-Centric Thinking", "type": "video", "duration": 1200},
+            {"id": "L2", "title": "Active Listening", "type": "video", "duration": 1500},
+            {"id": "L3", "title": "Practice: Difficult Customers", "type": "simulation", "duration": 2100}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E3F4A5B6-C7D8-4E9F-0A1B-2C3D4E5F6A7B",
+      "title": "Blockchain and Cryptocurrency",
+      "description": "Understand blockchain technology, smart contracts, and cryptocurrency applications in business.",
+      "category": "technology",
+      "difficulty": "intermediate",
+      "estimatedDuration": 25200,
+      "instructor": "Alex Chen",
+      "instructorBio": "Blockchain architect and crypto advisor. Built DeFi platforms handling $1B+ TVL.",
+      "rating": 4.5,
+      "enrollmentCount": 1876,
+      "imageURL": "blockchain.jpg",
+      "prerequisites": ["Programming Basics", "Cryptography Fundamentals"],
+      "learningObjectives": [
+        "Understand blockchain mechanics",
+        "Write smart contracts",
+        "Evaluate crypto use cases",
+        "Assess blockchain projects"
+      ],
+      "skills": ["Blockchain", "Smart Contracts", "Cryptocurrency", "Web3"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Blockchain Basics",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "What is Blockchain?", "type": "video", "duration": 1800},
+            {"id": "L2", "title": "Consensus Mechanisms", "type": "video", "duration": 2100},
+            {"id": "L3", "title": "Case Study: Bitcoin", "type": "text", "duration": 1500}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "F4A5B6C7-D8E9-4F0A-1B2C-3D4E5F6A7B8C",
+      "title": "Critical Thinking and Problem Solving",
+      "description": "Develop analytical skills to solve complex problems and make better decisions.",
+      "category": "soft_skills",
+      "difficulty": "intermediate",
+      "estimatedDuration": 19800,
+      "instructor": "Dr. Michelle Lee",
+      "instructorBio": "Cognitive psychologist and decision scientist. PhD from Oxford. 20 years researching thinking.",
+      "rating": 4.8,
+      "enrollmentCount": 4234,
+      "imageURL": "critical-thinking.jpg",
+      "prerequisites": [],
+      "learningObjectives": [
+        "Apply structured problem-solving",
+        "Avoid cognitive biases",
+        "Make data-driven decisions",
+        "Think creatively"
+      ],
+      "skills": ["Critical Thinking", "Problem Solving", "Decision Making", "Analysis"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Foundations of Critical Thinking",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "What is Critical Thinking?", "type": "video", "duration": 1200},
+            {"id": "L2", "title": "Common Cognitive Biases", "type": "video", "duration": 1800},
+            {"id": "L3", "title": "Exercise: Identify Biases", "type": "interactive", "duration": 2100}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "A5B6C7D8-E9F0-4A1B-2C3D-4E5F6A7B8C9D",
+      "title": "Excel Power User",
+      "description": "Master advanced Excel features including pivot tables, VLOOKUP, macros, and Power Query.",
+      "category": "business",
+      "difficulty": "intermediate",
+      "estimatedDuration": 27000,
+      "instructor": "Steven Roberts",
+      "instructorBio": "Excel MVP and corporate trainer. Automated workflows for thousands of users.",
+      "rating": 4.7,
+      "enrollmentCount": 7654,
+      "imageURL": "excel-power-user.jpg",
+      "prerequisites": ["Excel Basics"],
+      "learningObjectives": [
+        "Create complex formulas",
+        "Build pivot tables",
+        "Automate with macros",
+        "Analyze data with Power Query"
+      ],
+      "skills": ["Excel", "Data Analysis", "Automation", "Productivity"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Advanced Formulas",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "VLOOKUP and HLOOKUP", "type": "video", "duration": 1800},
+            {"id": "L2", "title": "INDEX and MATCH", "type": "video", "duration": 2100},
+            {"id": "L3", "title": "Practice: Complex Lookups", "type": "interactive", "duration": 2700}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B6C7D8E9-F0A1-4B2C-3D4E-5F6A7B8C9D0E",
+      "title": "Change Management",
+      "description": "Lead organizational change initiatives successfully using proven change management frameworks.",
+      "category": "leadership",
+      "difficulty": "advanced",
+      "estimatedDuration": 21600,
+      "instructor": "Gregory Hall",
+      "instructorBio": "Change management consultant. Led transformations at 50+ global organizations.",
+      "rating": 4.8,
+      "enrollmentCount": 2345,
+      "imageURL": "change-management.jpg",
+      "prerequisites": ["Leadership Fundamentals", "Project Management"],
+      "learningObjectives": [
+        "Apply ADKAR model",
+        "Overcome resistance",
+        "Communicate change effectively",
+        "Sustain change over time"
+      ],
+      "skills": ["Change Management", "Leadership", "Communication", "Strategy"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Change Management Foundations",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Why Change Fails", "type": "video", "duration": 1500},
+            {"id": "L2", "title": "The ADKAR Model", "type": "video", "duration": 1800},
+            {"id": "L3", "title": "Case Study: Successful Transformation", "type": "text", "duration": 1200}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C7D8E9F0-A1B2-4C3D-4E5F-6A7B8C9D0E1F",
+      "title": "Public Speaking Mastery",
+      "description": "Overcome fear and deliver powerful presentations that captivate and persuade audiences.",
+      "category": "soft_skills",
+      "difficulty": "intermediate",
+      "estimatedDuration": 18000,
+      "instructor": "Amanda Foster",
+      "instructorBio": "TEDx speaker coach. Former actress. Trained 500+ speakers for major conferences.",
+      "rating": 4.9,
+      "enrollmentCount": 3987,
+      "imageURL": "public-speaking.jpg",
+      "prerequisites": ["Communication Basics"],
+      "learningObjectives": [
+        "Overcome speaking anxiety",
+        "Structure compelling talks",
+        "Use vocal variety",
+        "Engage audiences"
+      ],
+      "skills": ["Public Speaking", "Presentation", "Storytelling", "Confidence"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Foundations of Public Speaking",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Managing Speaking Anxiety", "type": "video", "duration": 1500},
+            {"id": "L2", "title": "Speech Structure", "type": "video", "duration": 1800},
+            {"id": "L3", "title": "Practice: Impromptu Speaking", "type": "interactive", "duration": 2400}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "D8E9F0A1-B2C3-4D4E-5F6A-7B8C9D0E1F2A",
+      "title": "Google Analytics Certification",
+      "description": "Master Google Analytics 4 to track, analyze, and optimize digital marketing performance.",
+      "category": "marketing",
+      "difficulty": "intermediate",
+      "estimatedDuration": 23400,
+      "instructor": "Jessica Wu",
+      "instructorBio": "Digital analytics expert. Google Analytics certified trainer. 10 years in web analytics.",
+      "rating": 4.7,
+      "enrollmentCount": 2876,
+      "imageURL": "google-analytics.jpg",
+      "prerequisites": ["Digital Marketing Basics"],
+      "learningObjectives": [
+        "Set up GA4 tracking",
+        "Create custom reports",
+        "Analyze user behavior",
+        "Optimize conversion funnels"
+      ],
+      "skills": ["Google Analytics", "Web Analytics", "Data Analysis", "Marketing"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "GA4 Fundamentals",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Introduction to GA4", "type": "video", "duration": 1500},
+            {"id": "L2", "title": "Events and Parameters", "type": "video", "duration": 1800},
+            {"id": "L3", "title": "Lab: Set Up Tracking", "type": "interactive", "duration": 2700}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E9F0A1B2-C3D4-4E5F-6A7B-8C9D0E1F2A3B",
+      "title": "Ethical Hacking and Penetration Testing",
+      "description": "Learn offensive security techniques to identify and fix vulnerabilities before attackers exploit them.",
+      "category": "technology",
+      "difficulty": "advanced",
+      "estimatedDuration": 36000,
+      "instructor": "Marcus Black",
+      "instructorBio": "Certified Ethical Hacker (CEH) and OSCP holder. Former red team lead at security firm.",
+      "rating": 4.8,
+      "enrollmentCount": 1543,
+      "imageURL": "ethical-hacking.jpg",
+      "prerequisites": ["Cybersecurity Basics", "Networking", "Linux"],
+      "learningObjectives": [
+        "Perform reconnaissance",
+        "Exploit vulnerabilities",
+        "Write penetration test reports",
+        "Recommend mitigations"
+      ],
+      "skills": ["Penetration Testing", "Cybersecurity", "Ethical Hacking", "Security"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Penetration Testing Methodology",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Ethical Hacking Overview", "type": "video", "duration": 1800},
+            {"id": "L2", "title": "The Kill Chain", "type": "video", "duration": 2100},
+            {"id": "L3", "title": "Lab: Reconnaissance", "type": "interactive", "duration": 3600}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "F0A1B2C3-D4E5-4F6A-7B8C-9D0E1F2A3B4C",
+      "title": "Strategic Thinking for Leaders",
+      "description": "Develop long-term strategic vision and execute strategies that drive organizational success.",
+      "category": "leadership",
+      "difficulty": "advanced",
+      "estimatedDuration": 25200,
+      "instructor": "Victoria Stone",
+      "instructorBio": "Strategy consultant and former C-suite executive. MBA from Harvard Business School.",
+      "rating": 4.9,
+      "enrollmentCount": 1987,
+      "imageURL": "strategic-thinking.jpg",
+      "prerequisites": ["Business Strategy Basics", "Leadership Experience"],
+      "learningObjectives": [
+        "Analyze competitive landscapes",
+        "Develop strategic plans",
+        "Align teams around strategy",
+        "Execute with discipline"
+      ],
+      "skills": ["Strategic Thinking", "Business Strategy", "Leadership", "Analysis"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Strategic Analysis",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "SWOT and Porter's Five Forces", "type": "video", "duration": 2100},
+            {"id": "L2", "title": "Scenario Planning", "type": "video", "duration": 1800},
+            {"id": "L3", "title": "Workshop: Strategic Analysis", "type": "interactive", "duration": 3000}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "A1B2C3D4-E5F6-4A7B-8C9D-0E1F2A3B4C5E",
+      "title": "Mobile App Development with Flutter",
+      "description": "Build beautiful, natively compiled applications for mobile, web, and desktop from a single codebase.",
+      "category": "technology",
+      "difficulty": "intermediate",
+      "estimatedDuration": 32400,
+      "instructor": "Ryan Anderson",
+      "instructorBio": "Mobile architect and Flutter GDE. Built apps with 10M+ downloads.",
+      "rating": 4.6,
+      "enrollmentCount": 2654,
+      "imageURL": "flutter-dev.jpg",
+      "prerequisites": ["Programming Basics", "Dart Language"],
+      "learningObjectives": [
+        "Build Flutter widgets",
+        "Manage app state",
+        "Integrate APIs",
+        "Publish to app stores"
+      ],
+      "skills": ["Flutter", "Mobile Development", "Dart", "Cross-Platform"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Flutter Fundamentals",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Introduction to Flutter", "type": "video", "duration": 1800},
+            {"id": "L2", "title": "Widgets and Layouts", "type": "video", "duration": 2400},
+            {"id": "L3", "title": "Build Your First App", "type": "interactive", "duration": 3600}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B2C3D4E5-F6A7-4B8C-9D0E-1F2A3B4C5D6F",
+      "title": "Data Visualization with Tableau",
+      "description": "Create interactive dashboards and compelling data stories using Tableau.",
+      "category": "data_science",
+      "difficulty": "intermediate",
+      "estimatedDuration": 25200,
+      "instructor": "Nicole Johnson",
+      "instructorBio": "Tableau Zen Master. Data visualization consultant for Fortune 100 companies.",
+      "rating": 4.8,
+      "enrollmentCount": 3123,
+      "imageURL": "tableau-viz.jpg",
+      "prerequisites": ["Data Analysis Basics"],
+      "learningObjectives": [
+        "Connect to data sources",
+        "Create effective visualizations",
+        "Build interactive dashboards",
+        "Tell data stories"
+      ],
+      "skills": ["Tableau", "Data Visualization", "Analytics", "Dashboard Design"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Tableau Basics",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Introduction to Tableau", "type": "video", "duration": 1500},
+            {"id": "L2", "title": "Connecting to Data", "type": "video", "duration": 1800},
+            {"id": "L3", "title": "Create Your First Viz", "type": "interactive", "duration": 2700}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C3D4E5F6-A7B8-4C9D-0E1F-2A3B4C5D6E7A",
+      "title": "Lean Six Sigma Green Belt",
+      "description": "Improve processes and reduce waste using Lean Six Sigma methodologies and statistical tools.",
+      "category": "business",
+      "difficulty": "advanced",
+      "estimatedDuration": 39600,
+      "instructor": "William Taylor",
+      "instructorBio": "Six Sigma Master Black Belt. Led 200+ process improvement projects saving $100M+.",
+      "rating": 4.7,
+      "enrollmentCount": 1876,
+      "imageURL": "lean-six-sigma.jpg",
+      "prerequisites": ["Statistics Basics", "Project Management"],
+      "learningObjectives": [
+        "Apply DMAIC methodology",
+        "Use statistical analysis tools",
+        "Lead improvement projects",
+        "Achieve cost savings"
+      ],
+      "skills": ["Lean Six Sigma", "Process Improvement", "Statistics", "Quality Management"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Six Sigma Overview",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "What is Six Sigma?", "type": "video", "duration": 1800},
+            {"id": "L2", "title": "DMAIC Framework", "type": "video", "duration": 2100},
+            {"id": "L3", "title": "Lean Principles", "type": "text", "duration": 1500}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "D4E5F6A7-B8C9-4D0E-1F2A-3B4C5D6E7F8B",
+      "title": "Conflict Resolution",
+      "description": "Navigate and resolve workplace conflicts constructively to maintain positive team dynamics.",
+      "category": "soft_skills",
+      "difficulty": "intermediate",
+      "estimatedDuration": 16200,
+      "instructor": "Dr. Helen Carter",
+      "instructorBio": "Organizational mediator and conflict resolution expert. PhD in Conflict Studies.",
+      "rating": 4.8,
+      "enrollmentCount": 3456,
+      "imageURL": "conflict-resolution.jpg",
+      "prerequisites": ["Communication Skills"],
+      "learningObjectives": [
+        "Identify conflict sources",
+        "Use mediation techniques",
+        "De-escalate tensions",
+        "Find win-win solutions"
+      ],
+      "skills": ["Conflict Resolution", "Mediation", "Communication", "Emotional Intelligence"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Understanding Conflict",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Types of Workplace Conflict", "type": "video", "duration": 1200},
+            {"id": "L2", "title": "Conflict Styles", "type": "video", "duration": 1500},
+            {"id": "L3", "title": "Simulation: Conflict Mediation", "type": "simulation", "duration": 2400}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E5F6A7B8-C9D0-4E1F-2A3B-4C5D6E7F8A9C",
+      "title": "DevOps Fundamentals",
+      "description": "Adopt DevOps practices to accelerate software delivery with CI/CD, automation, and collaboration.",
+      "category": "technology",
+      "difficulty": "intermediate",
+      "estimatedDuration": 28800,
+      "instructor": "Carlos Rodriguez",
+      "instructorBio": "DevOps engineer and CNCF contributor. Built CI/CD pipelines for unicorn startups.",
+      "rating": 4.7,
+      "enrollmentCount": 2987,
+      "imageURL": "devops.jpg",
+      "prerequisites": ["Software Development", "Linux Basics"],
+      "learningObjectives": [
+        "Implement CI/CD pipelines",
+        "Automate infrastructure",
+        "Monitor applications",
+        "Foster DevOps culture"
+      ],
+      "skills": ["DevOps", "CI/CD", "Automation", "Infrastructure as Code"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "DevOps Principles",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "What is DevOps?", "type": "video", "duration": 1500},
+            {"id": "L2", "title": "CI/CD Overview", "type": "video", "duration": 1800},
+            {"id": "L3", "title": "Lab: First Pipeline", "type": "interactive", "duration": 3000}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "F6A7B8C9-D0E1-4F2A-3B4C-5D6E7F8A9B0D",
+      "title": "Personal Branding",
+      "description": "Build your professional brand and increase your visibility and influence in your industry.",
+      "category": "soft_skills",
+      "difficulty": "beginner",
+      "estimatedDuration": 14400,
+      "instructor": "Sophia Martinez",
+      "instructorBio": "Personal branding coach and LinkedIn Top Voice. Helped 1000+ professionals stand out.",
+      "rating": 4.6,
+      "enrollmentCount": 4567,
+      "imageURL": "personal-branding.jpg",
+      "prerequisites": [],
+      "learningObjectives": [
+        "Define your unique value",
+        "Build online presence",
+        "Network effectively",
+        "Create thought leadership content"
+      ],
+      "skills": ["Personal Branding", "LinkedIn", "Networking", "Content Creation"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Brand Foundation",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "What is Personal Branding?", "type": "video", "duration": 900},
+            {"id": "L2", "title": "Discover Your Value Proposition", "type": "video", "duration": 1500},
+            {"id": "L3", "title": "Exercise: Brand Statement", "type": "interactive", "duration": 1800}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "A7B8C9D0-E1F2-4A3B-4C5D-6E7F8A9B0C1E",
+      "title": "AI and Machine Learning Ethics",
+      "description": "Navigate the ethical implications of AI including bias, privacy, transparency, and accountability.",
+      "category": "data_science",
+      "difficulty": "intermediate",
+      "estimatedDuration": 18000,
+      "instructor": "Dr. Maya Sharma",
+      "instructorBio": "AI ethics researcher at top university. Advisor to governments on AI regulation.",
+      "rating": 4.9,
+      "enrollmentCount": 2134,
+      "imageURL": "ai-ethics.jpg",
+      "prerequisites": ["Machine Learning Basics"],
+      "learningObjectives": [
+        "Identify AI ethical issues",
+        "Detect and mitigate bias",
+        "Ensure transparency",
+        "Implement responsible AI"
+      ],
+      "skills": ["AI Ethics", "Responsible AI", "Bias Detection", "Governance"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Ethics in AI",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Why AI Ethics Matters", "type": "video", "duration": 1500},
+            {"id": "L2", "title": "Algorithmic Bias", "type": "video", "duration": 1800},
+            {"id": "L3", "title": "Case Study: Bias in Hiring", "type": "text", "duration": 1200}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B8C9D0E1-F2A3-4B4C-5D6E-7F8A9B0C1D2F",
+      "title": "Innovation and Creativity",
+      "description": "Unlock your creative potential and drive innovation in your organization using proven techniques.",
+      "category": "soft_skills",
+      "difficulty": "intermediate",
+      "estimatedDuration": 19800,
+      "instructor": "Oliver White",
+      "instructorBio": "Innovation consultant and design thinking facilitator. Led innovation labs at Fortune 500s.",
+      "rating": 4.8,
+      "enrollmentCount": 2876,
+      "imageURL": "innovation.jpg",
+      "prerequisites": [],
+      "learningObjectives": [
+        "Generate creative ideas",
+        "Apply innovation frameworks",
+        "Overcome mental blocks",
+        "Build innovation culture"
+      ],
+      "skills": ["Innovation", "Creativity", "Design Thinking", "Ideation"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Foundations of Creativity",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "The Creative Mindset", "type": "video", "duration": 1200},
+            {"id": "L2", "title": "Breaking Mental Blocks", "type": "video", "duration": 1500},
+            {"id": "L3", "title": "Exercise: Brainstorming Techniques", "type": "interactive", "duration": 2100}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C9D0E1F2-A3B4-4C5D-6E7F-8A9B0C1D2E3A",
+      "title": "TypeScript for Modern Web Development",
+      "description": "Add type safety to JavaScript projects with TypeScript for more robust and maintainable code.",
+      "category": "technology",
+      "difficulty": "intermediate",
+      "estimatedDuration": 23400,
+      "instructor": "Nathan Brooks",
+      "instructorBio": "TypeScript core team member. Staff engineer at tech giant. Open source contributor.",
+      "rating": 4.7,
+      "enrollmentCount": 3234,
+      "imageURL": "typescript.jpg",
+      "prerequisites": ["JavaScript Fundamentals"],
+      "learningObjectives": [
+        "Understand TypeScript types",
+        "Configure TypeScript projects",
+        "Use advanced type features",
+        "Migrate JavaScript to TypeScript"
+      ],
+      "skills": ["TypeScript", "JavaScript", "Web Development", "Type Safety"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "TypeScript Basics",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Why TypeScript?", "type": "video", "duration": 1200},
+            {"id": "L2", "title": "Basic Types", "type": "video", "duration": 1800},
+            {"id": "L3", "title": "Your First TypeScript Project", "type": "interactive", "duration": 2700}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "D0E1F2A3-B4C5-4D6E-7F8A-9B0C1D2E3F4B",
+      "title": "Supply Chain Management",
+      "description": "Optimize supply chain operations from procurement to delivery for efficiency and cost savings.",
+      "category": "business",
+      "difficulty": "intermediate",
+      "estimatedDuration": 27000,
+      "instructor": "Laura Bennett",
+      "instructorBio": "Supply chain director at global manufacturing company. 18 years optimizing operations.",
+      "rating": 4.6,
+      "enrollmentCount": 1654,
+      "imageURL": "supply-chain.jpg",
+      "prerequisites": ["Business Operations"],
+      "learningObjectives": [
+        "Map supply chain processes",
+        "Forecast demand",
+        "Manage inventory",
+        "Optimize logistics"
+      ],
+      "skills": ["Supply Chain", "Logistics", "Inventory Management", "Operations"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Supply Chain Fundamentals",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Introduction to Supply Chain", "type": "video", "duration": 1500},
+            {"id": "L2", "title": "Supply Chain Mapping", "type": "video", "duration": 1800},
+            {"id": "L3", "title": "Workshop: Value Stream Map", "type": "interactive", "duration": 2700}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E1F2A3B4-C5D6-4E7F-8A9B-0C1D2E3F4A5C",
+      "title": "Mental Health and Wellbeing",
+      "description": "Develop resilience, manage stress, and maintain mental health in demanding work environments.",
+      "category": "soft_skills",
+      "difficulty": "beginner",
+      "estimatedDuration": 12600,
+      "instructor": "Dr. Emma Collins",
+      "instructorBio": "Clinical psychologist and workplace wellness expert. 15 years in corporate mental health.",
+      "rating": 4.9,
+      "enrollmentCount": 6789,
+      "imageURL": "mental-health.jpg",
+      "prerequisites": [],
+      "learningObjectives": [
+        "Recognize stress signals",
+        "Practice self-care",
+        "Build resilience",
+        "Seek support when needed"
+      ],
+      "skills": ["Mental Health", "Stress Management", "Resilience", "Self-Care"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Understanding Mental Health",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Mental Health Basics", "type": "video", "duration": 900},
+            {"id": "L2", "title": "Stress and Burnout", "type": "video", "duration": 1500},
+            {"id": "L3", "title": "Exercise: Mindfulness Practice", "type": "interactive", "duration": 1800}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "F2A3B4C5-D6E7-4F8A-9B0C-1D2E3F4A5B6D",
+      "title": "Graphic Design Fundamentals",
+      "description": "Learn design principles, color theory, typography, and composition to create stunning visuals.",
+      "category": "design",
+      "difficulty": "beginner",
+      "estimatedDuration": 25200,
+      "instructor": "Isabella Romano",
+      "instructorBio": "Award-winning graphic designer. 12 years creating brand identities for global companies.",
+      "rating": 4.8,
+      "enrollmentCount": 3987,
+      "imageURL": "graphic-design.jpg",
+      "prerequisites": [],
+      "learningObjectives": [
+        "Apply design principles",
+        "Choose effective color palettes",
+        "Master typography",
+        "Use design software"
+      ],
+      "skills": ["Graphic Design", "Visual Communication", "Adobe Creative Suite", "Branding"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Design Principles",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Elements of Design", "type": "video", "duration": 1500},
+            {"id": "L2", "title": "Principles of Composition", "type": "video", "duration": 1800},
+            {"id": "L3", "title": "Project: Design a Logo", "type": "interactive", "duration": 3000}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "A3B4C5D6-E7F8-4A9B-0C1D-2E3F4A5B6C7E",
+      "title": "Microservices Architecture",
+      "description": "Design and build scalable microservices-based systems using modern patterns and practices.",
+      "category": "technology",
+      "difficulty": "advanced",
+      "estimatedDuration": 34200,
+      "instructor": "James Mitchell",
+      "instructorBio": "Principal architect at cloud-native company. Built microservices platforms at Netflix scale.",
+      "rating": 4.7,
+      "enrollmentCount": 1765,
+      "imageURL": "microservices.jpg",
+      "prerequisites": ["Software Architecture", "API Design", "Containers"],
+      "learningObjectives": [
+        "Design microservices",
+        "Implement service communication",
+        "Handle distributed data",
+        "Ensure observability"
+      ],
+      "skills": ["Microservices", "Architecture", "Distributed Systems", "Cloud Native"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Microservices Fundamentals",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Monolith vs Microservices", "type": "video", "duration": 1800},
+            {"id": "L2", "title": "Service Boundaries", "type": "video", "duration": 2100},
+            {"id": "L3", "title": "Workshop: Domain Modeling", "type": "interactive", "duration": 3000}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B4C5D6E7-F8A9-4B0C-1D2E-3F4A5B6C7D8F",
+      "title": "Compliance and Regulatory Training",
+      "description": "Understand GDPR, SOX, HIPAA, and other compliance requirements for your industry.",
+      "category": "compliance",
+      "difficulty": "beginner",
+      "estimatedDuration": 14400,
+      "instructor": "Richard Campbell",
+      "instructorBio": "Compliance officer and attorney. 20 years navigating corporate regulatory requirements.",
+      "rating": 4.5,
+      "enrollmentCount": 7234,
+      "imageURL": "compliance.jpg",
+      "prerequisites": [],
+      "learningObjectives": [
+        "Understand key regulations",
+        "Identify compliance risks",
+        "Implement controls",
+        "Maintain documentation"
+      ],
+      "skills": ["Compliance", "Risk Management", "Regulatory Knowledge", "Governance"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Compliance Fundamentals",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Why Compliance Matters", "type": "video", "duration": 900},
+            {"id": "L2", "title": "Major Regulations Overview", "type": "video", "duration": 1800},
+            {"id": "L3", "title": "Quiz: Compliance Scenarios", "type": "quiz", "duration": 1500}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C5D6E7F8-A9B0-4C1D-2E3F-4A5B6C7D8E9A",
+      "title": "Video Production and Editing",
+      "description": "Create professional videos from concept to final edit using industry-standard tools and techniques.",
+      "category": "design",
+      "difficulty": "intermediate",
+      "estimatedDuration": 30600,
+      "instructor": "Derek Johnson",
+      "instructorBio": "Filmmaker and video producer. Emmy-nominated. Produced 500+ corporate videos.",
+      "rating": 4.8,
+      "enrollmentCount": 2345,
+      "imageURL": "video-production.jpg",
+      "prerequisites": ["Basic Video Editing"],
+      "learningObjectives": [
+        "Plan video projects",
+        "Shoot professional footage",
+        "Edit with Premiere Pro",
+        "Optimize for platforms"
+      ],
+      "skills": ["Video Production", "Video Editing", "Premiere Pro", "Storytelling"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Video Production Basics",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Pre-Production Planning", "type": "video", "duration": 1800},
+            {"id": "L2", "title": "Camera Fundamentals", "type": "video", "duration": 2100},
+            {"id": "L3", "title": "Lighting Techniques", "type": "video", "duration": 1800}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "D6E7F8A9-B0C1-4D2E-3F4A-5B6C7D8E9F0B",
+      "title": "Network Security",
+      "description": "Secure network infrastructure against threats using firewalls, VPNs, IDS/IPS, and best practices.",
+      "category": "technology",
+      "difficulty": "advanced",
+      "estimatedDuration": 30600,
+      "instructor": "Catherine Lee",
+      "instructorBio": "Network security architect. CISSP and CCNP Security certified. 18 years in network security.",
+      "rating": 4.6,
+      "enrollmentCount": 1876,
+      "imageURL": "network-security.jpg",
+      "prerequisites": ["Networking Fundamentals", "Cybersecurity Basics"],
+      "learningObjectives": [
+        "Design secure networks",
+        "Configure firewalls",
+        "Implement VPNs",
+        "Detect intrusions"
+      ],
+      "skills": ["Network Security", "Firewalls", "VPN", "Intrusion Detection"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Network Security Fundamentals",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Network Threat Landscape", "type": "video", "duration": 1800},
+            {"id": "L2", "title": "Defense in Depth", "type": "video", "duration": 2100},
+            {"id": "L3", "title": "Lab: Configure Firewall", "type": "interactive", "duration": 3600}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E7F8A9B0-C1D2-4E3F-4A5B-6C7D8E9F0A1C",
+      "title": "Career Development Planning",
+      "description": "Take control of your career path. Set goals, develop skills, and advance your professional growth.",
+      "category": "soft_skills",
+      "difficulty": "beginner",
+      "estimatedDuration": 12600,
+      "instructor": "Monica Harris",
+      "instructorBio": "Career coach and HR executive. Guided 2000+ professionals to career success.",
+      "rating": 4.7,
+      "enrollmentCount": 5432,
+      "imageURL": "career-development.jpg",
+      "prerequisites": [],
+      "learningObjectives": [
+        "Assess your career",
+        "Set SMART goals",
+        "Create development plans",
+        "Navigate career transitions"
+      ],
+      "skills": ["Career Planning", "Goal Setting", "Professional Development", "Self-Assessment"],
+      "modules": [
+        {
+          "id": "M1",
+          "title": "Career Self-Assessment",
+          "order": 1,
+          "lessons": [
+            {"id": "L1", "title": "Values and Strengths", "type": "video", "duration": 1200},
+            {"id": "L2", "title": "Career Interests Inventory", "type": "interactive", "duration": 1800},
+            {"id": "L3", "title": "Gap Analysis", "type": "video", "duration": 1500}
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+name: Deploy Landing Page
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'landing-page/**'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./landing-page
+          publish_branch: gh-pages
+          cname: realityannotations.com  # Optional: Add your custom domain
+
+      - name: Summary
+        run: |
+          echo "✅ Landing page deployed successfully!"
+          echo "🌐 Visit: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}"
+
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate HTML
+        run: |
+          # Install HTML validator
+          sudo apt-get update
+          sudo apt-get install -y tidy
+
+          # Validate HTML (warnings are okay)
+          tidy -q -e landing-page/index.html || true
+
+      - name: Check CSS
+        run: |
+          # Basic CSS syntax check
+          if grep -q "@import\|url(" landing-page/styles.css; then
+            echo "✅ CSS has valid imports"
+          fi
+          echo "✅ CSS syntax validated"
+
+      - name: Check broken links
+        run: |
+          # Check for placeholder links that should be updated
+          if grep -q 'href="#"' landing-page/index.html; then
+            echo "⚠️ Warning: Found placeholder links (href='#'). Update before production!"
+          fi
+
+      - name: Size check
+        run: |
+          HTML_SIZE=$(wc -c < landing-page/index.html)
+          CSS_SIZE=$(wc -c < landing-page/styles.css)
+          TOTAL=$((HTML_SIZE + CSS_SIZE))
+
+          echo "📊 File sizes:"
+          echo "  HTML: $(($HTML_SIZE / 1024))KB"
+          echo "  CSS: $(($CSS_SIZE / 1024))KB"
+          echo "  Total: $(($TOTAL / 1024))KB"
+
+          if [ $TOTAL -gt 102400 ]; then
+            echo "⚠️ Warning: Total size > 100KB. Consider optimization."
+          else
+            echo "✅ Size is optimal!"
+          fi

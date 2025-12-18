@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institutional Memory Vault - Transform Organizational Knowledge into Explorable 3D Experiences</title>
+    <meta name="description" content="The first spatial computing platform for enterprise knowledge management. Preserve institutional wisdom, accelerate onboarding by 80%, and unlock billions in hidden organizational value.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2E5BFF;
+            --primary-dark: #1A3ACC;
+            --secondary: #8B5CF6;
+            --accent: #00D9A5;
+            --dark: #1A252F;
+            --light: #F8FAFC;
+            --text: #2C3E50;
+            --text-light: #546E7A;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--light);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(46, 91, 255, 0.3);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .cta-button.secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveGrid 20s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            padding: 2rem;
+            background: var(--light);
+            border-radius: 12px;
+            border-left: 4px solid #FF4757;
+        }
+
+        .problem-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #FF4757;
+        }
+
+        /* Solution Section */
+        .solution {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .solution-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .solution-image {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            padding: 3rem;
+            color: white;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+
+        .solution-image h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            background: var(--light);
+            border-radius: 12px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(46, 91, 255, 0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        /* ROI Section */
+        .roi {
+            padding: 6rem 2rem;
+            background: var(--dark);
+            color: white;
+        }
+
+        .roi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .roi-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .roi-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step h3 {
+            margin-bottom: 1rem;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: white;
+            color: var(--text);
+            padding: 2.5rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.05);
+            border: 3px solid var(--accent);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .price-period {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--light);
+        }
+
+        .pricing-features li:before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            padding: 2rem;
+            background: var(--light);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .author-info strong {
+            display: block;
+        }
+
+        .author-info span {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            display: block;
+            padding: 0.3rem 0;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .solution-content {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">
+                🧠 Institutional Memory Vault
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+            </ul>
+            <a href="#demo" class="cta-button">Request Demo</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Transform Institutional Knowledge Into Explorable 3D Experiences</h1>
+                <p>The first spatial computing platform for enterprise knowledge management. Preserve decades of wisdom, accelerate onboarding by 80%, and unlock billions in hidden organizational value.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                    <a href="#demo" class="cta-button">Schedule Demo</a>
+                    <a href="#how-it-works" class="cta-button secondary">See How It Works</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">80%</span>
+                        <span class="stat-label">Faster Onboarding</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">95%</span>
+                        <span class="stat-label">Knowledge Retained</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">600%</span>
+                        <span class="stat-label">ROI in Year 1</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <div class="section-header">
+                <h2>The $31.5 Billion Problem</h2>
+                <p>Organizations lose critical knowledge every day. When experienced employees leave, decades of wisdom disappears forever.</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>42% of Knowledge Lost</h3>
+                    <p>Critical institutional wisdom exists only in employees' heads. When they leave, it's gone forever.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>12 Months to Productivity</h3>
+                    <p>New employees struggle to find context, make repeated mistakes, and take over a year to reach full potential.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>70% Mistakes Repeated</h3>
+                    <p>Without access to historical lessons, organizations repeat costly errors that could have been prevented.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>Baby Boomer Exodus</h3>
+                    <p>The largest knowledge transfer in history is happening now. Are you ready?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution">
+        <div class="container">
+            <div class="solution-content">
+                <div>
+                    <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">The Solution: Spatial Knowledge Management</h2>
+                    <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">Institutional Memory Vault transforms abstract knowledge into tangible, explorable 3D environments using Apple Vision Pro.</p>
+                    <p style="font-size: 1.1rem; margin-bottom: 1rem;"><strong>Walk through your organizational history.</strong> Navigate temporal halls where decades of decisions come alive.</p>
+                    <p style="font-size: 1.1rem; margin-bottom: 1rem;"><strong>See relationships visually.</strong> Knowledge constellations reveal hidden connections between ideas, people, and projects.</p>
+                    <p style="font-size: 1.1rem; margin-bottom: 2rem;"><strong>Experience wisdom in context.</strong> Not just documents—immersive stories, lessons, and expertise from your company's DNA.</p>
+                    <a href="#demo" class="cta-button" style="display: inline-block;">Experience It Live</a>
+                </div>
+                <div class="solution-image">
+                    <h3>🏛️ Memory Palace</h3>
+                    <p style="margin-bottom: 1rem;">Step into a grand architectural space representing your organization's collective memory.</p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.2);">⏰ Temporal Halls - Journey through time</li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.2);">🏢 Department Wings - Explore team knowledge</li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.2);">⚡ Decision Chambers - Relive critical choices</li>
+                        <li style="padding: 0.5rem 0;">🌿 Wisdom Gardens - Learn from lessons</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Features That Transform Knowledge Management</h2>
+                <p>Everything you need to preserve, discover, and leverage institutional wisdom</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>3D Knowledge Landscapes</h3>
+                    <p>Navigate your organization's collective memory as an explorable 3D environment. See connections, patterns, and relationships that flat documents could never reveal.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>AI-Powered Discovery</h3>
+                    <p>Semantic search understands intent, not just keywords. Find relevant knowledge in seconds, not hours. Get contextual recommendations based on your role.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎥</div>
+                    <h3>Immersive Capture Studio</h3>
+                    <p>Record expert knowledge in immersive environments. Capture not just what they know, but how they think. Preserve context, stories, and wisdom.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Knowledge Analytics</h3>
+                    <p>Track coverage, identify gaps, measure impact. See which knowledge drives decisions. Understand your intellectual capital like never before.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Collaborative Exploration</h3>
+                    <p>Teams explore knowledge together in shared spatial environments. Discuss, annotate, and build on collective wisdom in real-time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3>Enterprise Security</h3>
+                    <p>Bank-grade encryption, role-based access control, complete audit trails. Your sensitive knowledge stays protected and compliant.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Section -->
+    <section class="roi">
+        <div class="container">
+            <div class="section-header" style="color: white;">
+                <h2>Quantified Business Impact</h2>
+                <p>Real results from early adopters</p>
+            </div>
+            <div class="roi-grid">
+                <div class="roi-card">
+                    <span class="roi-number">-80%</span>
+                    <p><strong>Onboarding Time</strong></p>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">New employees reach productivity in weeks, not months</p>
+                </div>
+                <div class="roi-card">
+                    <span class="roi-number">-70%</span>
+                    <p><strong>Repeated Mistakes</strong></p>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">Access to lessons learned prevents costly errors</p>
+                </div>
+                <div class="roi-card">
+                    <span class="roi-number">100x</span>
+                    <p><strong>Faster Knowledge Access</strong></p>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">Find information in seconds instead of days</p>
+                </div>
+                <div class="roi-card">
+                    <span class="roi-number">$8.5M</span>
+                    <p><strong>Annual Savings</strong></p>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">Per 10,000 employees through knowledge retention</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How It Works</h2>
+                <p>From knowledge capture to organizational transformation in four steps</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Capture</h3>
+                    <p>Record expert knowledge through immersive interviews, document imports, and automated system integration. Preserve stories, decisions, and expertise.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Organize</h3>
+                    <p>AI automatically structures knowledge, maps relationships, and identifies patterns. Creates your Memory Palace architecture tailored to your organization.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Explore</h3>
+                    <p>Teams discover knowledge through intuitive 3D navigation. Walk through time, explore departments, experience decisions in context.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Apply</h3>
+                    <p>AI recommends relevant historical insights for current situations. Learn from past successes and failures. Make better decisions faster.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="color: white;">Flexible Pricing for Every Organization</h2>
+                <p style="color: rgba(255,255,255,0.9);">Choose the plan that fits your knowledge management needs</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Knowledge Base</h3>
+                    <div class="price">$199</div>
+                    <div class="price-period">per employee/month</div>
+                    <ul class="pricing-features">
+                        <li>Core knowledge capture</li>
+                        <li>Basic search & discovery</li>
+                        <li>Standard analytics</li>
+                        <li>Up to 500 employees</li>
+                        <li>Email support</li>
+                    </ul>
+                    <a href="#demo" class="cta-button" style="width: 100%; text-align: center; display: block;">Get Started</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <h3>Institutional Wisdom</h3>
+                    <div class="price">$399</div>
+                    <div class="price-period">per employee/month</div>
+                    <ul class="pricing-features">
+                        <li>Everything in Knowledge Base</li>
+                        <li>AI-powered recommendations</li>
+                        <li>Advanced collaboration</li>
+                        <li>Succession planning tools</li>
+                        <li>Up to 2000 employees</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <a href="#demo" class="cta-button" style="width: 100%; text-align: center; display: block;">Get Started</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Enterprise Memory</h3>
+                    <div class="price">Custom</div>
+                    <div class="price-period">tailored to your needs</div>
+                    <ul class="pricing-features">
+                        <li>Everything in Institutional Wisdom</li>
+                        <li>Unlimited employees</li>
+                        <li>Custom knowledge architecture</li>
+                        <li>Advanced analytics & BI</li>
+                        <li>Dedicated support team</li>
+                        <li>Strategic consulting</li>
+                    </ul>
+                    <a href="#demo" class="cta-button" style="width: 100%; text-align: center; display: block;">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Industry Leaders Say</h2>
+                <p>Join forward-thinking organizations transforming their knowledge management</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <p class="testimonial-text">"This platform saved us millions when our CTO retired. We captured 30 years of architectural decisions in immersive 3D environments. New engineers now understand our systems in weeks instead of years."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JC</div>
+                        <div class="author-info">
+                            <strong>Jane Chen</strong>
+                            <span>CEO, TechCorp</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"The spatial approach is genius. Walking through our company's decision history in the Memory Palace gave our board unprecedented context. We're making better strategic choices by learning from our past."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MT</div>
+                        <div class="author-info">
+                            <strong>Michael Torres</strong>
+                            <span>Board Member, Enterprise Co</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"Our onboarding time dropped from 12 months to 6 weeks. New hires explore our institutional knowledge like a video game. Engagement is through the roof, retention is up 40%."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SK</div>
+                        <div class="author-info">
+                            <strong>Sarah Kim</strong>
+                            <span>VP People, Global Services</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta-section" id="demo">
+        <div class="container">
+            <h2>Ready to Transform Your Institutional Memory?</h2>
+            <p>Join the spatial computing revolution in enterprise knowledge management</p>
+            <div class="cta-buttons">
+                <a href="mailto:demo@institutionalmemory.ai" class="cta-button" style="background: white; color: var(--primary); font-size: 1.1rem; padding: 1rem 2rem;">Schedule Live Demo</a>
+                <a href="#" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2rem; background: transparent; border: 2px solid white;">Download White Paper</a>
+            </div>
+            <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">🎁 Early adopter pricing available for first 10 enterprise customers</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                    <li><a href="#">Documentation</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press Kit</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">White Papers</a></li>
+                    <li><a href="#">Webinars</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Security</a></li>
+                    <li><a href="#">Compliance</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Institutional Memory Vault. Built with spatial computing for Apple Vision Pro.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out';
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .step, .testimonial, .pricing-card').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

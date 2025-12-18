@@ -1,0 +1,31 @@
+╔════════════════════════════════════════════════════════════════╗
+║  Healthcare Ecosystem Orchestrator - Test Report               ║
+║  Generated: Mon Nov 17 19:14:22 UTC 2025                           ║
+╚════════════════════════════════════════════════════════════════╝
+
+TEST SUMMARY
+============
+Total Tests:     58
+Passed:          55
+Failed:          0
+Warnings:        3
+
+Pass Rate:       94%
+
+PROJECT STATISTICS
+==================
+Swift Files:     14
+Swift Lines:     3244
+HTML Lines:      579
+CSS Lines:       1239
+JS Lines:        485
+
+Documentation Files: 11
+Total Documentation: 5011 lines
+
+RECOMMENDATIONS
+===============
+ℹ Review 3 warnings for potential improvements
+
+TESTING COMPLETE
+Report saved to: test-results/test-report-20251117-191422.txt

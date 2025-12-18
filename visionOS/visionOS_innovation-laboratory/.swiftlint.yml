@@ -1,0 +1,160 @@
+# SwiftLint Configuration for Innovation Laboratory
+
+# Opt-in rules
+opt_in_rules:
+  - empty_count
+  - explicit_init
+  - closure_spacing
+  - contains_over_first_not_nil
+  - empty_string
+  - fallthrough
+  - fatal_error_message
+  - first_where
+  - force_unwrapping
+  - implicit_return
+  - joined_default_parameter
+  - literal_expression_end_indentation
+  - multiline_parameters
+  - operator_usage_whitespace
+  - overridden_super_call
+  - redundant_nil_coalescing
+  - single_test_class
+  - sorted_first_last
+  - unneeded_parentheses_in_closure_argument
+  - vertical_parameter_alignment_on_call
+
+# Disabled rules
+disabled_rules:
+  - trailing_whitespace
+  - todo
+  - line_length  # Handled by custom rule below
+
+# Custom Rules
+
+# Line length
+line_length:
+  warning: 120
+  error: 200
+  ignores_function_declarations: true
+  ignores_comments: true
+  ignores_urls: true
+
+# File length
+file_length:
+  warning: 500
+  error: 1000
+  ignore_comment_only_lines: true
+
+# Function body length
+function_body_length:
+  warning: 60
+  error: 100
+
+# Type body length
+type_body_length:
+  warning: 300
+  error: 500
+
+# Nesting depth
+nesting:
+  type_level:
+    warning: 2
+  statement_level:
+    warning: 5
+
+# Identifier naming
+identifier_name:
+  min_length:
+    warning: 2
+    error: 1
+  max_length:
+    warning: 50
+    error: 60
+  excluded:
+    - id
+    - x
+    - y
+    - z
+    - i
+    - j
+    - k
+
+type_name:
+  min_length: 3
+  max_length: 50
+
+# Cyclomatic complexity
+cyclomatic_complexity:
+  warning: 10
+  error: 20
+
+# Force unwrapping
+force_unwrapping: error
+
+# Force cast
+force_cast: warning
+
+# Force try
+force_try: warning
+
+# Excluded paths
+excluded:
+  - Pods
+  - vendor
+  - .build
+  - DerivedData
+  - Tests/LinuxMain.swift
+  - fastlane
+  - build
+  - .swiftpm
+
+# Included paths
+included:
+  - InnovationLaboratory
+
+# Reporter
+reporter: "xcode"
+
+# Custom rules
+custom_rules:
+  # No direct print statements (use os_log instead)
+  no_print:
+    name: "Print Usage"
+    regex: '((^|[^/])print\()'
+    match_kinds:
+      - identifier
+    message: "Use os_log instead of print() for logging"
+    severity: warning
+
+  # No direct NSLog (use os_log)
+  no_nslog:
+    name: "NSLog Usage"
+    regex: 'NSLog\('
+    match_kinds:
+      - identifier
+    message: "Use os_log instead of NSLog"
+    severity: warning
+
+  # Require MARK comments for organization
+  mark_required:
+    name: "MARK Required"
+    regex: '(class|struct|enum) [a-zA-Z0-9]+[^{]*\{(?![^}]*\/\/ MARK:)'
+    message: "Types should have MARK comments for organization"
+    severity: warning
+
+# Analyzer rules (when using --analyze)
+analyzer_rules:
+  - unused_declaration
+  - unused_import
+
+# Auto-correct when running with --fix
+auto_correction_enabled: true
+
+# Run in strict mode (treat warnings as errors)
+# strict: false
+
+# Number of files to process in parallel
+parallel_execution: true
+
+# Show warning count in output
+print_warnings: true

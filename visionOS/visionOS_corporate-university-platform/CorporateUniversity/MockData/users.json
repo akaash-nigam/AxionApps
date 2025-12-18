@@ -1,0 +1,348 @@
+{
+  "users": [
+    {
+      "id": "U001-A1B2-C3D4-E5F6",
+      "employeeId": "EMP001",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john.doe@company.com",
+      "department": "Engineering",
+      "role": "Senior Software Engineer",
+      "hireDate": "2020-03-15",
+      "profileImage": "avatar-001.jpg",
+      "enrollments": [
+        {
+          "courseId": "A1B2C3D4-E5F6-4A7B-8C9D-0E1F2A3B4C5D",
+          "enrolledAt": "2024-10-01",
+          "progressPercentage": 85,
+          "completedLessons": 17,
+          "totalLessons": 20,
+          "lastAccessedAt": "2024-11-15"
+        },
+        {
+          "courseId": "D6E7F8A9-B0C1-4D2E-3F4A-5B6C7D8E9F0A",
+          "enrolledAt": "2024-09-15",
+          "progressPercentage": 100,
+          "completedLessons": 24,
+          "totalLessons": 24,
+          "completedAt": "2024-10-20",
+          "lastAccessedAt": "2024-10-20"
+        }
+      ],
+      "achievements": ["quick-learner", "course-completion-5", "7-day-streak"],
+      "totalLearningHours": 42.5,
+      "currentStreak": 12,
+      "longestStreak": 24
+    },
+    {
+      "id": "U002-B2C3-D4E5-F6A7",
+      "employeeId": "EMP002",
+      "firstName": "Sarah",
+      "lastName": "Johnson",
+      "email": "sarah.johnson@company.com",
+      "department": "Product Management",
+      "role": "Product Manager",
+      "hireDate": "2019-07-22",
+      "profileImage": "avatar-002.jpg",
+      "enrollments": [
+        {
+          "courseId": "E1F2A3B4-C5D6-4E7F-8A9B-0C1D2E3F4A5B",
+          "enrolledAt": "2024-11-01",
+          "progressPercentage": 45,
+          "completedLessons": 9,
+          "totalLessons": 20,
+          "lastAccessedAt": "2024-11-16"
+        },
+        {
+          "courseId": "B2C3D4E5-F6A7-4B8C-9D0E-1F2A3B4C5D6E",
+          "enrolledAt": "2024-10-10",
+          "progressPercentage": 100,
+          "completedLessons": 18,
+          "totalLessons": 18,
+          "completedAt": "2024-11-05",
+          "lastAccessedAt": "2024-11-05"
+        }
+      ],
+      "achievements": ["leadership-master", "course-completion-10", "14-day-streak"],
+      "totalLearningHours": 67.8,
+      "currentStreak": 18,
+      "longestStreak": 32
+    },
+    {
+      "id": "U003-C3D4-E5F6-A7B8",
+      "employeeId": "EMP003",
+      "firstName": "Michael",
+      "lastName": "Chen",
+      "email": "michael.chen@company.com",
+      "department": "Data Science",
+      "role": "Data Scientist",
+      "hireDate": "2021-01-10",
+      "profileImage": "avatar-003.jpg",
+      "enrollments": [
+        {
+          "courseId": "C3D4E5F6-A7B8-4C9D-0E1F-2A3B4C5D6E7F",
+          "enrolledAt": "2024-10-15",
+          "progressPercentage": 75,
+          "completedLessons": 15,
+          "totalLessons": 20,
+          "lastAccessedAt": "2024-11-17"
+        },
+        {
+          "courseId": "D0E1F2A3-B4C5-4D6E-7F8A-9B0C1D2E3F4A",
+          "enrolledAt": "2024-09-01",
+          "progressPercentage": 100,
+          "completedLessons": 25,
+          "totalLessons": 25,
+          "completedAt": "2024-10-15",
+          "lastAccessedAt": "2024-10-15"
+        }
+      ],
+      "achievements": ["data-science-pro", "course-completion-8", "30-day-streak"],
+      "totalLearningHours": 89.3,
+      "currentStreak": 24,
+      "longestStreak": 45
+    },
+    {
+      "id": "U004-D4E5-F6A7-B8C9",
+      "employeeId": "EMP004",
+      "firstName": "Emily",
+      "lastName": "Rodriguez",
+      "email": "emily.rodriguez@company.com",
+      "department": "Design",
+      "role": "UX Designer",
+      "hireDate": "2020-09-05",
+      "profileImage": "avatar-004.jpg",
+      "enrollments": [
+        {
+          "courseId": "D4E5F6A7-B8C9-4D0E-1F2A-3B4C5D6E7F8A",
+          "enrolledAt": "2024-10-20",
+          "progressPercentage": 90,
+          "completedLessons": 18,
+          "totalLessons": 20,
+          "lastAccessedAt": "2024-11-17"
+        },
+        {
+          "courseId": "F2A3B4C5-D6E7-4F8A-9B0C-1D2E3F4A5B6D",
+          "enrolledAt": "2024-11-01",
+          "progressPercentage": 60,
+          "completedLessons": 12,
+          "totalLessons": 20,
+          "lastAccessedAt": "2024-11-16"
+        }
+      ],
+      "achievements": ["design-expert", "course-completion-12", "10-day-streak"],
+      "totalLearningHours": 54.2,
+      "currentStreak": 10,
+      "longestStreak": 28
+    },
+    {
+      "id": "U005-E5F6-A7B8-C9D0",
+      "employeeId": "EMP005",
+      "firstName": "David",
+      "lastName": "Kumar",
+      "email": "david.kumar@company.com",
+      "department": "Operations",
+      "role": "Operations Manager",
+      "hireDate": "2018-04-12",
+      "profileImage": "avatar-005.jpg",
+      "enrollments": [
+        {
+          "courseId": "F6A7B8C9-D0E1-4F2A-3B4C-5D6E7F8A9B0C",
+          "enrolledAt": "2024-09-20",
+          "progressPercentage": 100,
+          "completedLessons": 22,
+          "totalLessons": 22,
+          "completedAt": "2024-10-30",
+          "lastAccessedAt": "2024-10-30"
+        },
+        {
+          "courseId": "C5D6E7F8-A9B0-4C1D-2E3F-4A5B6C7D8E9F",
+          "enrolledAt": "2024-11-05",
+          "progressPercentage": 35,
+          "completedLessons": 7,
+          "totalLessons": 20,
+          "lastAccessedAt": "2024-11-17"
+        }
+      ],
+      "achievements": ["agile-champion", "course-completion-15", "21-day-streak"],
+      "totalLearningHours": 103.7,
+      "currentStreak": 14,
+      "longestStreak": 38
+    },
+    {
+      "id": "U006-F6A7-B8C9-D0E1",
+      "employeeId": "EMP006",
+      "firstName": "Rachel",
+      "lastName": "Green",
+      "email": "rachel.green@company.com",
+      "department": "Security",
+      "role": "Security Analyst",
+      "hireDate": "2021-06-18",
+      "profileImage": "avatar-006.jpg",
+      "enrollments": [
+        {
+          "courseId": "A7B8C9D0-E1F2-4A3B-4C5D-6E7F8A9B0C1D",
+          "enrolledAt": "2024-10-01",
+          "progressPercentage": 80,
+          "completedLessons": 16,
+          "totalLessons": 20,
+          "lastAccessedAt": "2024-11-17"
+        },
+        {
+          "courseId": "E9F0A1B2-C3D4-4E5F-6A7B-8C9D0E1F2A3B",
+          "enrolledAt": "2024-09-10",
+          "progressPercentage": 100,
+          "completedLessons": 28,
+          "totalLessons": 28,
+          "completedAt": "2024-10-25",
+          "lastAccessedAt": "2024-10-25"
+        }
+      ],
+      "achievements": ["security-specialist", "course-completion-6", "14-day-streak"],
+      "totalLearningHours": 71.5,
+      "currentStreak": 16,
+      "longestStreak": 29
+    },
+    {
+      "id": "U007-A7B8-C9D0-E1F2",
+      "employeeId": "EMP007",
+      "firstName": "Marcus",
+      "lastName": "Williams",
+      "email": "marcus.williams@company.com",
+      "department": "Sales",
+      "role": "Account Executive",
+      "hireDate": "2022-02-01",
+      "profileImage": "avatar-007.jpg",
+      "enrollments": [
+        {
+          "courseId": "E7F8A9B0-C1D2-4E3F-4A5B-6C7D8E9F0A1B",
+          "enrolledAt": "2024-11-01",
+          "progressPercentage": 55,
+          "completedLessons": 11,
+          "totalLessons": 20,
+          "lastAccessedAt": "2024-11-17"
+        },
+        {
+          "courseId": "C9D0E1F2-A3B4-4C5D-6E7F-8A9B0C1D2E3F",
+          "enrolledAt": "2024-10-15",
+          "progressPercentage": 100,
+          "completedLessons": 16,
+          "totalLessons": 16,
+          "completedAt": "2024-11-10",
+          "lastAccessedAt": "2024-11-10"
+        }
+      ],
+      "achievements": ["sales-ace", "course-completion-4", "7-day-streak"],
+      "totalLearningHours": 38.9,
+      "currentStreak": 9,
+      "longestStreak": 15
+    },
+    {
+      "id": "U008-B8C9-D0E1-F2A3",
+      "employeeId": "EMP008",
+      "firstName": "Jennifer",
+      "lastName": "Martinez",
+      "email": "jennifer.martinez@company.com",
+      "department": "Marketing",
+      "role": "Marketing Manager",
+      "hireDate": "2019-11-20",
+      "profileImage": "avatar-008.jpg",
+      "enrollments": [
+        {
+          "courseId": "B4C5D6E7-F8A9-4B0C-1D2E-3F4A5B6C7D8E",
+          "enrolledAt": "2024-09-25",
+          "progressPercentage": 100,
+          "completedLessons": 24,
+          "totalLessons": 24,
+          "completedAt": "2024-10-28",
+          "lastAccessedAt": "2024-10-28"
+        },
+        {
+          "courseId": "D8E9F0A1-B2C3-4D4E-5F6A-7B8C9D0E1F2A",
+          "enrolledAt": "2024-11-02",
+          "progressPercentage": 40,
+          "completedLessons": 8,
+          "totalLessons": 20,
+          "lastAccessedAt": "2024-11-16"
+        }
+      ],
+      "achievements": ["marketing-maven", "course-completion-11", "21-day-streak"],
+      "totalLearningHours": 82.4,
+      "currentStreak": 17,
+      "longestStreak": 35
+    },
+    {
+      "id": "U009-C9D0-E1F2-A3B4",
+      "employeeId": "EMP009",
+      "firstName": "Thomas",
+      "lastName": "Anderson",
+      "email": "thomas.anderson@company.com",
+      "department": "Data Analytics",
+      "role": "Data Analyst",
+      "hireDate": "2020-12-03",
+      "profileImage": "avatar-009.jpg",
+      "enrollments": [
+        {
+          "courseId": "F2A3B4C5-D6E7-4F8A-9B0C-1D2E3F4A5B6C",
+          "enrolledAt": "2024-10-05",
+          "progressPercentage": 95,
+          "completedLessons": 19,
+          "totalLessons": 20,
+          "lastAccessedAt": "2024-11-17"
+        },
+        {
+          "courseId": "B2C3D4E5-F6A7-4B8C-9D0E-1F2A3B4C5D6F",
+          "enrolledAt": "2024-09-18",
+          "progressPercentage": 100,
+          "completedLessons": 22,
+          "totalLessons": 22,
+          "completedAt": "2024-10-22",
+          "lastAccessedAt": "2024-10-22"
+        }
+      ],
+      "achievements": ["data-wizard", "course-completion-9", "28-day-streak"],
+      "totalLearningHours": 95.1,
+      "currentStreak": 22,
+      "longestStreak": 42
+    },
+    {
+      "id": "U010-D0E1-F2A3-B4C5",
+      "employeeId": "EMP010",
+      "firstName": "Lisa",
+      "lastName": "Thompson",
+      "email": "lisa.thompson@company.com",
+      "department": "HR",
+      "role": "HR Business Partner",
+      "hireDate": "2018-08-15",
+      "profileImage": "avatar-010.jpg",
+      "enrollments": [
+        {
+          "courseId": "A3B4C5D6-E7F8-4A9B-0C1D-2E3F4A5B6C7D",
+          "enrolledAt": "2024-10-12",
+          "progressPercentage": 100,
+          "completedLessons": 14,
+          "totalLessons": 14,
+          "completedAt": "2024-11-01",
+          "lastAccessedAt": "2024-11-01"
+        },
+        {
+          "courseId": "C5D6E7F8-A9B0-4C1D-2E3F-4A5B6C7D8E9F",
+          "enrolledAt": "2024-11-03",
+          "progressPercentage": 50,
+          "completedLessons": 10,
+          "totalLessons": 20,
+          "lastAccessedAt": "2024-11-17"
+        }
+      ],
+      "achievements": ["people-champion", "course-completion-13", "14-day-streak"],
+      "totalLearningHours": 76.8,
+      "currentStreak": 15,
+      "longestStreak": 27
+    }
+  ],
+  "_metadata": {
+    "totalUsers": 100,
+    "generatedSample": 10,
+    "note": "This is a representative sample of 10 users. The actual dataset would contain 100+ users following the same pattern, with varied departments including: Engineering, Product Management, Data Science, Design, Operations, Security, Sales, Marketing, Data Analytics, HR, Finance, Legal, Customer Success, IT Support, and Executive Leadership."
+  }
+}

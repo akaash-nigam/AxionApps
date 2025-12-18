@@ -1,0 +1,210 @@
+╔════════════════════════════════════════════════════════╗
+║     Spatial CRM - Comprehensive Test Suite            ║
+║     Linux Environment - Static Analysis                ║
+╚════════════════════════════════════════════════════════╝
+
+
+[0;34m━━━ 1. File Structure Validation ━━━[0m
+
+[0;32m✓[0m Found: SpatialCRM/App/SpatialCRMApp.swift
+[0;31m✗[0m Missing: SpatialCRM/App/AppState.swift
+[0;31m✗[0m Missing: SpatialCRM/App/NavigationState.swift
+[0;32m✓[0m Found: SpatialCRM/Models/Account.swift
+[0;32m✓[0m Found: SpatialCRM/Models/Contact.swift
+[0;32m✓[0m Found: SpatialCRM/Models/Opportunity.swift
+[0;32m✓[0m Found: SpatialCRM/Models/Activity.swift
+[0;32m✓[0m Found: SpatialCRM/Models/Territory.swift
+[0;31m✗[0m Missing: SpatialCRM/Models/SalesRep.swift
+[0;32m✓[0m Found: SpatialCRM/Models/CollaborationSession.swift
+[0;32m✓[0m Found: SpatialCRM/Services/CRMService.swift
+[0;32m✓[0m Found: SpatialCRM/Services/AIService.swift
+[0;32m✓[0m Found: SpatialCRM/Services/SpatialService.swift
+[0;31m✗[0m Missing: SpatialCRM/Views/ContentView.swift
+[0;32m✓[0m Found: SpatialCRM/Views/Dashboard/DashboardView.swift
+[0;31m✗[0m Missing: SpatialCRM/Views/Dashboard/MetricCardView.swift
+[0;32m✓[0m Found: SpatialCRM/Views/Pipeline/PipelineView.swift
+[0;31m✗[0m Missing: SpatialCRM/Views/Pipeline/DealCardView.swift
+[0;31m✗[0m Missing: SpatialCRM/Views/Accounts/AccountListView.swift
+[0;31m✗[0m Missing: SpatialCRM/Views/Accounts/AccountRowView.swift
+[0;31m✗[0m Missing: SpatialCRM/Views/Analytics/AnalyticsView.swift
+[0;31m✗[0m Missing: SpatialCRM/Views/Customer/CustomerDetailView.swift
+[0;31m✗[0m Missing: SpatialCRM/Views/Shared/QuickActionsMenu.swift
+[0;32m✓[0m Found: SpatialCRM/Views/Spatial/PipelineVolumeView.swift
+[0;32m✓[0m Found: SpatialCRM/Views/Spatial/CustomerGalaxyView.swift
+[0;31m✗[0m Missing: SpatialCRM/Views/Spatial/TerritoryMapView.swift
+[0;31m✗[0m Missing: SpatialCRM/Views/Spatial/CollaborationSpaceView.swift
+[0;32m✓[0m Found: SpatialCRM/Utilities/SampleDataGenerator.swift
+[0;32m✓[0m Found test: SpatialCRM/Tests/UnitTests/OpportunityTests.swift
+[0;32m✓[0m Found test: SpatialCRM/Tests/UnitTests/ContactTests.swift
+[0;32m✓[0m Found test: SpatialCRM/Tests/UnitTests/AccountTests.swift
+[0;32m✓[0m Found test: SpatialCRM/Tests/UnitTests/AIServiceTests.swift
+[0;31m✗[0m Missing test: SpatialCRM/Tests/UnitTests/CRMServiceTests.swift
+[0;32m✓[0m Found config: Package.swift
+[0;32m✓[0m Found config: SpatialCRM/Resources/Info.plist
+[0;32m✓[0m Found config: SpatialCRM/Resources/SpatialCRM.entitlements
+[0;32m✓[0m Found doc: README.md
+[0;32m✓[0m Found doc: ARCHITECTURE.md
+[0;32m✓[0m Found doc: TECHNICAL_SPEC.md
+[0;32m✓[0m Found doc: DESIGN.md
+[0;32m✓[0m Found doc: IMPLEMENTATION_PLAN.md
+[0;32m✓[0m Found doc: BUILD.md
+[0;32m✓[0m Found doc: TESTING.md
+[0;32m✓[0m Found doc: TESTING_PLAN.md
+[0;32m✓[0m Found landing page: landing-page/index.html
+[0;32m✓[0m Found landing page: landing-page/assets/css/styles.css
+[0;32m✓[0m Found landing page: landing-page/assets/js/script.js
+[0;32m✓[0m Found landing page: landing-page/README.md
+
+[0;34m━━━ 2. Swift Syntax Pattern Validation ━━━[0m
+
+[0;34mℹ[0m Checking Swift file structure...
+[0;32m✓[0m Has imports: SpatialCRMApp.swift
+[0;32m✓[0m Balanced braces: SpatialCRMApp.swift
+[0;32m✓[0m Has imports: Account.swift
+[0;32m✓[0m Balanced braces: Account.swift
+[0;32m✓[0m Has imports: Contact.swift
+[0;32m✓[0m Balanced braces: Contact.swift
+[0;32m✓[0m Has imports: Opportunity.swift
+[0;32m✓[0m Balanced braces: Opportunity.swift
+[0;32m✓[0m Has imports: Activity.swift
+[0;32m✓[0m Balanced braces: Activity.swift
+[0;32m✓[0m Has imports: Territory.swift
+[0;32m✓[0m Balanced braces: Territory.swift
+[0;32m✓[0m Has imports: CollaborationSession.swift
+[0;32m✓[0m Balanced braces: CollaborationSession.swift
+[0;32m✓[0m Has imports: CRMService.swift
+[0;32m✓[0m Balanced braces: CRMService.swift
+[0;32m✓[0m Has imports: AIService.swift
+[0;32m✓[0m Balanced braces: AIService.swift
+[0;32m✓[0m Has imports: SpatialService.swift
+[0;32m✓[0m Balanced braces: SpatialService.swift
+[0;32m✓[0m Has imports: DashboardView.swift
+[0;32m✓[0m Balanced braces: DashboardView.swift
+[0;32m✓[0m Has imports: PipelineView.swift
+[0;32m✓[0m Balanced braces: PipelineView.swift
+[0;32m✓[0m Has imports: PipelineVolumeView.swift
+[0;32m✓[0m Balanced braces: PipelineVolumeView.swift
+[0;32m✓[0m Has imports: CustomerGalaxyView.swift
+[0;32m✓[0m Balanced braces: CustomerGalaxyView.swift
+[0;32m✓[0m Has imports: SampleDataGenerator.swift
+[0;32m✓[0m Balanced braces: SampleDataGenerator.swift
+[0;34mℹ[0m Checking for @Model declarations...
+[0;32m✓[0m @Model found: Account.swift
+[0;32m✓[0m @Model found: Contact.swift
+[0;32m✓[0m @Model found: Opportunity.swift
+[0;32m✓[0m @Model found: Activity.swift
+[0;32m✓[0m @Model found: Territory.swift
+[0;32m✓[0m @Model found: CollaborationSession.swift
+[0;34mℹ[0m Checking for @Observable in services...
+[0;32m✓[0m @Observable found in AIService
+[0;32m✓[0m @Observable found in CRMService
+
+[0;34m━━━ 3. Configuration File Validation ━━━[0m
+
+[0;34mℹ[0m Validating Package.swift...
+[0;32m✓[0m Package name correct
+[0;32m✓[0m Platform specified
+[0;32m✓[0m visionOS platform found
+[0;34mℹ[0m Validating Info.plist...
+[0;32m✓[0m Hand tracking privacy description found
+[0;31m✗[0m Eye tracking privacy description missing
+[0;32m✓[0m Camera usage description found
+[0;32m✓[0m Info.plist has valid XML structure
+[0;34mℹ[0m Validating SpatialCRM.entitlements...
+[0;32m✓[0m Hand tracking entitlement found
+[0;32m✓[0m Eye tracking entitlement found
+[0;32m✓[0m CloudKit entitlement found
+
+[0;34m━━━ 4. Import Statement Validation ━━━[0m
+
+[0;34mℹ[0m Checking critical framework imports...
+[0;32m✓[0m SwiftUI imported in 13 files
+[0;32m✓[0m SwiftData imported in 14 files
+[0;32m✓[0m RealityKit imported in 5 files
+[1;33m⚠[0m ARKit not imported (may be needed for tracking)
+
+[0;34m━━━ 5. Landing Page Validation ━━━[0m
+
+[0;34mℹ[0m Validating HTML structure...
+[0;32m✓[0m HTML5 doctype present
+[0;32m✓[0m Character encoding specified
+[0;32m✓[0m Viewport meta tag found
+[1;33m⚠[0m No semantic header element
+[1;33m⚠[0m No semantic nav element
+[1;33m⚠[0m No semantic section elements
+[0;32m✓[0m Contact form present
+[0;32m✓[0m Multiple CTAs found (6)
+[0;34mℹ[0m Validating CSS...
+[0;32m✓[0m Comprehensive CSS (1403 lines)
+[0;32m✓[0m CSS custom properties used
+[0;32m✓[0m Responsive design with 3 breakpoints
+[0;32m✓[0m CSS animations defined
+[0;32m✓[0m CSS braces balanced
+[0;34mℹ[0m Validating JavaScript...
+[0;32m✓[0m Event listeners implemented
+[0;32m✓[0m Form submission handling found
+[0;32m✓[0m Smooth scrolling implemented
+[0;32m✓[0m JavaScript braces balanced
+
+[0;34m━━━ 6. Test File Validation ━━━[0m
+
+[0;34mℹ[0m Checking test structure...
+[0;32m✓[0m OpportunityTests.swift has 11 tests
+[0;32m✓[0m OpportunityTests.swift has 40 assertions
+[0;32m✓[0m ContactTests.swift has 7 tests
+[0;32m✓[0m ContactTests.swift has 28 assertions
+[0;32m✓[0m AccountTests.swift has 6 tests
+[0;32m✓[0m AccountTests.swift has 19 assertions
+[0;32m✓[0m AIServiceTests.swift has 12 tests
+[0;32m✓[0m AIServiceTests.swift has 25 assertions
+
+[0;34m━━━ 7. Documentation Completeness ━━━[0m
+
+[0;34mℹ[0m Checking documentation files...
+[0;32m✓[0m README.md is comprehensive (186 lines)
+[1;33m⚠[0m README.md has no code examples
+[0;32m✓[0m ARCHITECTURE.md is comprehensive (795 lines)
+[0;32m✓[0m ARCHITECTURE.md has code examples
+[0;32m✓[0m TECHNICAL_SPEC.md is comprehensive (1109 lines)
+[0;32m✓[0m TECHNICAL_SPEC.md has code examples
+[0;32m✓[0m DESIGN.md is comprehensive (923 lines)
+[0;32m✓[0m DESIGN.md has code examples
+[0;32m✓[0m IMPLEMENTATION_PLAN.md is comprehensive (818 lines)
+[0;32m✓[0m IMPLEMENTATION_PLAN.md has code examples
+[0;32m✓[0m BUILD.md is comprehensive (297 lines)
+[0;32m✓[0m BUILD.md has code examples
+[0;32m✓[0m TESTING.md is comprehensive (390 lines)
+[0;32m✓[0m TESTING.md has code examples
+[0;32m✓[0m TESTING_PLAN.md is comprehensive (419 lines)
+[0;32m✓[0m TESTING_PLAN.md has code examples
+
+[0;34m━━━ 8. Project Statistics ━━━[0m
+
+[0;34mℹ[0m Calculating project metrics...
+
+Project Metrics:
+  Total Swift files: 27
+  Total Swift lines: 5069
+  Model files: 6
+  View files: 10
+  Service files: 3
+  Test files: 5
+[0;32m✓[0m Substantial codebase (5069 lines)
+
+[0;34m━━━ 9. Test Summary ━━━[0m
+
+
+╔════════════════════════════════════════════════════════╗
+║                  TEST RESULTS                          ║
+╚════════════════════════════════════════════════════════╝
+
+  [0;32mPassed:[0m   122
+  [0;31mFailed:[0m   15
+  [1;33mWarnings:[0m 5
+  [0;34mTotal:[0m    137
+
+Pass Rate: 89%
+
+[0;31m✗ Some tests failed[0m
+
+Please fix the failed tests before proceeding.

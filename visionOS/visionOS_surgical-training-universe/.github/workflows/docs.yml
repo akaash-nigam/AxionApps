@@ -1,0 +1,246 @@
+name: Documentation
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  generate-docs:
+    name: Generate Documentation
+    runs-on: macos-14
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_16.0.app/Contents/Developer
+
+      - name: Generate DocC documentation
+        run: |
+          cd SurgicalTrainingUniverse
+          xcodebuild docbuild \
+            -scheme SurgicalTrainingUniverse \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -derivedDataPath .build \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Find DocC archive
+        run: |
+          find . -name "*.doccarchive" -type d
+
+      - name: Export static documentation
+        continue-on-error: true
+        run: |
+          DOCC_ARCHIVE=$(find . -name "*.doccarchive" -type d | head -1)
+          if [ -n "$DOCC_ARCHIVE" ]; then
+            echo "Found DocC archive: $DOCC_ARCHIVE"
+            mkdir -p docs-output
+            xcrun docc process-archive transform-for-static-hosting \
+              "$DOCC_ARCHIVE" \
+              --output-path docs-output \
+              --hosting-base-path visionOS_surgical-training-universe
+          else
+            echo "No DocC archive found"
+          fi
+
+      - name: Upload documentation artifact
+        if: success()
+        uses: actions/upload-artifact@v3
+        with:
+          name: documentation
+          path: docs-output/
+          retention-days: 30
+
+  validate-docs:
+    name: Validate Documentation
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate README
+        run: |
+          echo "Validating README.md..."
+          if [ ! -f "README.md" ]; then
+            echo "❌ README.md not found"
+            exit 1
+          fi
+
+          LINES=$(wc -l < README.md)
+          if [ $LINES -lt 50 ]; then
+            echo "❌ README.md is too short ($LINES lines)"
+            exit 1
+          fi
+
+          echo "✅ README.md validated ($LINES lines)"
+
+      - name: Validate ARCHITECTURE.md
+        run: |
+          echo "Validating ARCHITECTURE.md..."
+          if [ ! -f "ARCHITECTURE.md" ]; then
+            echo "❌ ARCHITECTURE.md not found"
+            exit 1
+          fi
+          echo "✅ ARCHITECTURE.md found"
+
+      - name: Validate TESTING.md
+        run: |
+          echo "Validating TESTING.md..."
+          if [ ! -f "TESTING.md" ]; then
+            echo "❌ TESTING.md not found"
+            exit 1
+          fi
+          echo "✅ TESTING.md found"
+
+      - name: Check for broken links
+        continue-on-error: true
+        run: |
+          echo "Checking for broken internal links in markdown files..."
+          # Simple check for .md links
+          for file in *.md; do
+            if [ -f "$file" ]; then
+              echo "Checking $file..."
+              grep -o '\[.*\](.*\.md)' "$file" || true
+            fi
+          done
+
+      - name: Validate documentation structure
+        run: |
+          echo "Checking documentation structure..."
+
+          # Check for required documentation files
+          REQUIRED_DOCS=(
+            "README.md"
+            "ARCHITECTURE.md"
+            "TECHNICAL_SPEC.md"
+            "DESIGN.md"
+            "IMPLEMENTATION_PLAN.md"
+            "TESTING.md"
+            "QUALITY_REPORT.md"
+          )
+
+          MISSING=0
+          for doc in "${REQUIRED_DOCS[@]}"; do
+            if [ ! -f "$doc" ]; then
+              echo "❌ Missing: $doc"
+              MISSING=$((MISSING + 1))
+            else
+              echo "✅ Found: $doc"
+            fi
+          done
+
+          if [ $MISSING -gt 0 ]; then
+            echo "❌ $MISSING required documentation files missing"
+            exit 1
+          fi
+
+          echo "✅ All required documentation files present"
+
+  documentation-metrics:
+    name: Documentation Metrics
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Calculate documentation metrics
+        run: |
+          echo "=== Documentation Metrics ==="
+          echo ""
+          echo "Markdown Files:"
+          find . -name "*.md" | wc -l
+          echo ""
+          echo "Total Documentation Lines:"
+          find . -name "*.md" -exec wc -l {} + | tail -1
+          echo ""
+          echo "Documentation Files:"
+          find . -name "*.md" -type f
+          echo ""
+          echo "File Sizes:"
+          find . -name "*.md" -exec ls -lh {} \; | awk '{print $9, $5}'
+          echo ""
+          echo "README.md Statistics:"
+          if [ -f "README.md" ]; then
+            wc -l README.md
+            du -h README.md
+          fi
+
+  landing-page-check:
+    name: Landing Page Validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate HTML
+        run: |
+          if [ -f "landing-page/index.html" ]; then
+            echo "✅ Landing page HTML found"
+            LINES=$(wc -l < landing-page/index.html)
+            echo "Lines: $LINES"
+          else
+            echo "⚠️  No landing page found"
+          fi
+
+      - name: Validate CSS
+        run: |
+          if [ -f "landing-page/css/styles.css" ]; then
+            echo "✅ Landing page CSS found"
+            CSS_RULES=$(grep -c "{" landing-page/css/styles.css || echo "0")
+            echo "CSS rules: $CSS_RULES"
+          else
+            echo "⚠️  No CSS file found"
+          fi
+
+      - name: Validate JavaScript
+        run: |
+          if [ -f "landing-page/js/main.js" ]; then
+            echo "✅ Landing page JavaScript found"
+            FUNCTIONS=$(grep -c "function" landing-page/js/main.js || echo "0")
+            echo "Functions: $FUNCTIONS"
+          else
+            echo "⚠️  No JavaScript file found"
+          fi
+
+  summary:
+    name: Documentation Summary
+    needs: [generate-docs, validate-docs, documentation-metrics, landing-page-check]
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+      - name: Check documentation results
+        run: |
+          echo "=== Documentation Summary ==="
+          echo "Generation: ${{ needs.generate-docs.result }}"
+          echo "Validation: ${{ needs.validate-docs.result }}"
+          echo "Metrics: ${{ needs.documentation-metrics.result }}"
+          echo "Landing Page: ${{ needs.landing-page-check.result }}"
+
+          if [ "${{ needs.validate-docs.result }}" == "success" ]; then
+            echo "✅ Documentation validation passed!"
+            exit 0
+          else
+            echo "❌ Documentation validation failed"
+            exit 1
+          fi

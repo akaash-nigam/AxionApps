@@ -1,0 +1,180 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop, "claude/**" ]
+  pull_request:
+    branches: [ main, develop ]
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_15.2.app/Contents/Developer
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: macos-14
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Select Xcode
+      run: sudo xcode-select -switch /Applications/Xcode_15.2.app/Contents/Developer
+
+    - name: Show Xcode version
+      run: xcodebuild -version
+
+    - name: Show Swift version
+      run: swift --version
+
+    - name: Cache Swift Package Manager
+      uses: actions/cache@v3
+      with:
+        path: |
+          .build
+          ~/Library/Caches/org.swift.swiftpm
+        key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-spm-
+
+    - name: Build
+      working-directory: LivingBuildingSystem
+      run: |
+        xcodebuild build \
+          -scheme LivingBuildingSystem \
+          -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+          -configuration Debug \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
+          | xcpretty && exit ${PIPESTATUS[0]}
+
+    - name: Run Unit Tests
+      working-directory: LivingBuildingSystem
+      run: |
+        xcodebuild test \
+          -scheme LivingBuildingSystem \
+          -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+          -configuration Debug \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
+          -resultBundlePath TestResults.xcresult \
+          | xcpretty && exit ${PIPESTATUS[0]}
+
+    - name: Upload Test Results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results
+        path: LivingBuildingSystem/TestResults.xcresult
+
+    - name: Generate Coverage Report
+      if: success()
+      working-directory: LivingBuildingSystem
+      run: |
+        xcrun xccov view --report --json TestResults.xcresult > coverage.json
+
+    - name: Upload Coverage
+      if: success()
+      uses: codecov/codecov-action@v3
+      with:
+        files: LivingBuildingSystem/coverage.json
+        fail_ci_if_error: false
+
+  lint:
+    name: SwiftLint
+    runs-on: macos-14
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install SwiftLint
+      run: |
+        brew install swiftlint
+
+    - name: Run SwiftLint
+      working-directory: LivingBuildingSystem
+      run: |
+        swiftlint lint --reporter github-actions-logging
+
+    - name: SwiftLint (Strict)
+      if: github.event_name == 'pull_request'
+      working-directory: LivingBuildingSystem
+      run: |
+        swiftlint lint --strict
+
+  build-release:
+    name: Build Release
+    runs-on: macos-14
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Select Xcode
+      run: sudo xcode-select -switch /Applications/Xcode_15.2.app/Contents/Developer
+
+    - name: Build Release
+      working-directory: LivingBuildingSystem
+      run: |
+        xcodebuild build \
+          -scheme LivingBuildingSystem \
+          -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+          -configuration Release \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
+          | xcpretty && exit ${PIPESTATUS[0]}
+
+    - name: Archive Build Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: release-build
+        path: LivingBuildingSystem/.build/
+
+  security-scan:
+    name: Security Scan
+    runs-on: macos-14
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run dependency check
+      working-directory: LivingBuildingSystem
+      run: |
+        # Check for known vulnerabilities in dependencies
+        swift package show-dependencies --format json > dependencies.json
+        cat dependencies.json
+
+    - name: Upload dependencies
+      uses: actions/upload-artifact@v3
+      with:
+        name: dependencies
+        path: LivingBuildingSystem/dependencies.json
+
+  documentation:
+    name: Generate Documentation
+    runs-on: macos-14
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install DocC
+      run: |
+        brew install swift-docc
+
+    - name: Generate Documentation
+      working-directory: LivingBuildingSystem
+      run: |
+        # Generate documentation (if configured)
+        echo "Documentation generation placeholder"
+
+    - name: Deploy Documentation
+      if: success()
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./LivingBuildingSystem/docs

@@ -1,0 +1,834 @@
+[
+  {
+    "isFramework" : false,
+    "moduleName" : "ARKit",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/ARKit.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "AVFAudio",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/AVFAudio.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "AVFoundation",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/AVFoundation.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "Accessibility",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/Accessibility.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "AudioToolbox",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/AudioToolbox.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "Charts",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/Charts.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CloudKit",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/CloudKit.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "Combine",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/Combine.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "CoreAudio",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/CoreAudio.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreData",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/CoreData.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "CoreFoundation",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/CoreFoundation.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreGraphics",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/CoreGraphics.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "CoreImage",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/CoreImage.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "CoreLocation",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/CoreLocation.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "CoreMIDI",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/CoreMIDI.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "CoreMedia",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/CoreMedia.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreMotion",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/CoreMotion.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreText",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/CoreText.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreTransferable",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/CoreTransferable.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreVideo",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/CoreVideo.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CryptoKit",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/CryptoKit.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Darwin",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/Darwin.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "DataDetection",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/DataDetection.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "DeveloperToolsSupport",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/DeveloperToolsSupport.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Dispatch",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/Dispatch.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Distributed",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/Distributed.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "FileProvider",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/FileProvider.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "Foundation",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/Foundation.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "GameController",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/GameController.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "GroupActivities",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/GroupActivities.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "LocalAuthentication",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/LocalAuthentication.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Metal",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/Metal.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "Network",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/Network.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "OSLog",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/OSLog.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "ObjectiveC",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/ObjectiveC.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Observation",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/Observation.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "QuartzCore",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/QuartzCore.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "RealityFoundation",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/RealityFoundation.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "RealityKit",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/RealityKit.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Spatial",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/Spatial.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Swift",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/Swift.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "SwiftData",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/SwiftData.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "SwiftOnoneSupport",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/SwiftOnoneSupport.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "SwiftUI",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/SwiftUI.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "SwiftUICore",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/SwiftUICore.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "Symbols",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/Symbols.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Synchronization",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/Synchronization.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "System",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/System.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "UIKit",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/UIKit.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "UniformTypeIdentifiers",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/UniformTypeIdentifiers.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_Builtin_float",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/_Builtin_float.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_Concurrency",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/_Concurrency.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation1",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/_DarwinFoundation1.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation2",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/_DarwinFoundation2.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation3",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/_DarwinFoundation3.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "_RealityKit_SwiftUI",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/_RealityKit_SwiftUI.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_StringProcessing",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/_StringProcessing.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "_SwiftData_SwiftUI",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/_SwiftData_SwiftUI.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "os",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/os.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "simd",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/xrsimulator\/prebuilt-modules\/26.1\/simd.swiftmodule\/arm64-apple-xros-simulator.swiftmodule"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/ARKit.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/ARKit-93BWS3N5PIE0IXK6CUGMCIH4R.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ARKit"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/AVFAudio.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/AVFAudio-9O44MATLTTXTNDVG1XS6AMJSN.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "AVFAudio"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/AVFoundation.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/AVFoundation-AKM2O3GXG48WLUWCRP2V416R3.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "AVFoundation"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/AVRouting.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/AVRouting-F1QY1BDUDXSF9LXAHAERMX80A.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "AVRouting"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/Accessibility.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/Accessibility-AEUET78C5BB5SH1AWABOK4H2K.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Accessibility"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/AudioToolbox.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/AudioToolbox-ACW2JADIM8ZULHEJ36QAUWX6C.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "AudioToolbox"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/CFNetwork.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/CFNetwork-690F23647TFXW003BFLLK0883.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CFNetwork"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/CloudKit.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/CloudKit-7K47J0PZVCJ78DCHM6ZYS9SLG.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CloudKit"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/CoreAudio.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/CoreAudio-N069XBEF39DTMMWIMA6HPYYC.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreAudio"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/CoreAudioTypes.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/CoreAudioTypes-A1FBVV18CTCHEK8YKV4LCNUA.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreAudioTypes"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/CoreData.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/CoreData-5DT0UDH1GVDWRFOWK6ASAOLN6.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreData"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/CoreFoundation.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/CoreFoundation-4AL659R398OBBOFZIUNWTOBDN.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreFoundation"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/CoreGraphics.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/CoreGraphics-DO30NCHW4H8XR9C7M5PV3JSUM.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreGraphics"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/CoreImage.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/CoreImage-CPVZCXT6WAMYM4KWAIDE9YHZK.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreImage"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/CoreLocation.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/CoreLocation-2BKWSXUBCJBRKRS9RQONMU88R.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreLocation"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/CoreMIDI.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/CoreMIDI-1X22QBDDBAGLWLK4QZQ4QKX27.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreMIDI"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/CoreMedia.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/CoreMedia-9D1UWATTBO0278U4N0FRE4YPB.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreMedia"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/CoreMotion.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/CoreMotion-2G1D19XP7S33MKXGHU4FYBH0R.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreMotion"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/CoreServices.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/CoreServices-9BIQASIUZIQTB2P8ABORPYJY2.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreServices"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/CoreText.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/CoreText-1IIE93YI44NQJPWFPNIX9GIK8.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreText"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/CoreTransferable.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/CoreTransferable-9KZBY4IP32QPYPGYSNT7P3Z6Z.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreTransferable"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/CoreVideo.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/CoreVideo-9ARDEUT3FQJBK16WAJIZQIM7U.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreVideo"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/usr\/include\/Darwin.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/Darwin-8ZYRB3AU7D9HKT7I36A45JZJI.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Darwin"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/DataDetection.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/DataDetection-9SAA8K050LE3EEFR26S6W3AAQ.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "DataDetection"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/DeveloperToolsSupport.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/DeveloperToolsSupport-951ZHL4KCPM3CAOQ5SP9USS9A.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "DeveloperToolsSupport"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/usr\/include\/dispatch.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/Dispatch-AAPPELZU7ZQ47B6E77D2JUNU2.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Dispatch"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/FileProvider.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/FileProvider-3HSX1INDVRKRR21YIYLGIS17H.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "FileProvider"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/Foundation.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/Foundation-6AGHX5GESJMJ0EW03S2OX7PBZ.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Foundation"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/GameController.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/GameController-7O2MHLFSUA4ZZI0FHNZMCE1I0.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "GameController"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/GroupActivities.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/GroupActivities-4UT3M4VQKYASYLZXH67H1LYAL.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "GroupActivities"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/IOSurface.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/IOSurface-OXL6APE12HFL4ZG9Q9JH85J7.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "IOSurface"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/ImageIO.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/ImageIO-BW1K6EL6JYR8O81M15MI53G5G.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ImageIO"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/LocalAuthentication.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/LocalAuthentication-5LJZG83HZ5XHTD0W9NWTJGWH1.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "LocalAuthentication"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/usr\/include\/DarwinBasic.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/MachO-EHFBJ4MVJE7M1RR5B15OO8X4Q.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "MachO"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/MediaToolbox.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/MediaToolbox-595O3LHKANQ2I7T3BLODV67DN.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "MediaToolbox"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/Metal.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/Metal-5NVGR0G1OHYC2SSH2S2N8GGGO.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Metal"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/MultipeerConnectivity.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/MultipeerConnectivity-E61TDHLOA67UQM0F9ZHQVPCQH.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "MultipeerConnectivity"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/Network.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/Network-6E8JKSXAOW1AC2HDAVIB4GU42.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Network"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/OSLog.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/OSLog-75LL9DW3F4GGFLMWRXY3ODJGS.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "OSLog"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/usr\/include\/ObjectiveC.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/ObjectiveC-B64DBDC6TBL50LVTRQVIQHG32.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ObjectiveC"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/OpenGLES.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/OpenGLES-E3BJJ53ZCJOG5LFNCSZLRL9MH.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "OpenGLES"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/QuartzCore.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/QuartzCore-8XC751LBEIK0AYZLDAMJZPZAO.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "QuartzCore"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/Security.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/Security-NKAI1BKNYX3FE884KMS9GH0F.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Security"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/usr\/include\/Spatial\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/Spatial-21207X8YA5ISGFH70XFU6N03A.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Spatial"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/usr\/lib\/swift\/shims\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/SwiftShims-BSNTBCCWD8O55A3MVP553J0E7.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "SwiftShims"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/SwiftUI.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/SwiftUI-96EIYTR86ZSIAKFS14BR2YPPY.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "SwiftUI"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/SwiftUICore.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/SwiftUICore-9CUAVWOER5Y8OUQ78Y8S6LRZZ.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "SwiftUICore"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/Symbols.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/Symbols-6LZMY2HZE2ZHOBAXVJK9THSJR.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Symbols"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/UIKit.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/UIKit-C1QDYL4SVAWSSSPNQB498BL0I.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "UIKit"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/SubFrameworks\/UIUtilities.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/UIUtilities-8C42IU4QFF6R7U6T0VOW47Y0U.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "UIUtilities"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/UniformTypeIdentifiers.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/UniformTypeIdentifiers-EUI03JHXC9PKK0RLAO8Z82B2Z.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "UniformTypeIdentifiers"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/UserNotifications.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/UserNotifications-6TVJDP6T65ZJC8QN0AK0D0QVR.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "UserNotifications"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/usr\/include\/DarwinFoundation1.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/_AvailabilityInternal-DVE1YT2NBG531DOXXI7PTNL6D.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_AvailabilityInternal"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/17\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/_Builtin_float-F40J65KDCJUDITUH4JG0KXW9J.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_float"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/17\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/_Builtin_intrinsics-40YU6KB1YWPU7WVDXZLBXYC77.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_intrinsics"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/17\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/_Builtin_inttypes-8S7VRK3IEFVUPM37A8OHEBZJX.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_inttypes"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/17\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/_Builtin_limits-8YKSZT4LN29HO7R1E2RICN2TG.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_limits"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/17\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/_Builtin_stdarg-3BB6JUADZZ9VBAF6OWQ9R1SK3.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stdarg"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/17\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/_Builtin_stdatomic-78O94HVDENQMD2PLJ3WKPXNT0.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stdatomic"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/17\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/_Builtin_stdbool-47YQXQJADEA7ZDAVPM4KUNUK4.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stdbool"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/17\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/_Builtin_stddef-2YAP5LP74ILOFVFLSK7PLD7QI.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stddef"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/17\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/_Builtin_stdint-80OLY3FGZWEGEC4EFEBNCSESN.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stdint"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/17\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/_Builtin_tgmath-5UEXQ8YSKL471RA7B4G47684I.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_tgmath"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/usr\/include\/DarwinFoundation1.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/_DarwinFoundation1-6SFX5REE4SEY2WBQ2MYR2EKFK.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation1"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/usr\/include\/DarwinFoundation2.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/_DarwinFoundation2-5J2G5JQM6SDSUFD8EFZ2E41KM.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation2"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/usr\/include\/DarwinFoundation3.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/_DarwinFoundation3-8WNK38OF9QR0QZLCCGRNIPGR3.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation3"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/System\/Library\/Frameworks\/_LocationEssentials.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/_LocationEssentials-2T0B8PZ04RM9KBHLWRQXKC3S2.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_LocationEssentials"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/usr\/lib\/swift\/shims\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/_SwiftConcurrencyShims-2RU1V31O0D84ZZT10SWLWIUPK.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_SwiftConcurrencyShims"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/usr\/include\/dnssd.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/dnssd-7X5E8A4A2ZMK8POGKRFSMBCVG.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "dnssd"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/usr\/include\/os.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/os-8CIDZF3DHAT9X24B6OZ8MPOHI.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "os"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/usr\/include\/os.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/os_object-DBHG6SWDQII4GU0IJ948D0PY2.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "os_object"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/usr\/include\/os.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/os_workgroup-3ZV6N8PCZ16DHOZ365VZA4E7M.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "os_workgroup"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/17\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/ptrauth-130JN64BUBEW4XLOZVCVXY6B2.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ptrauth"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/17\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/ptrcheck-20BIGCHOAO1798YO1N8Z0L1XL.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ptrcheck"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/usr\/include\/simd\/module.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/simd-E79J75MT7D69N2FR2GTYWDZZX.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "simd"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/XRSimulator.platform\/Developer\/SDKs\/XRSimulator.sdk\/usr\/include\/DarwinFoundation2.modulemap",
+    "clangModulePath" : "\/Users\/aakashnigam\/Axion\/AxionApps\/visionOS\/visionOS_ai-agent-coordinator\/build\/SwiftExplicitPrecompiledModules\/sys_types-6MJ5U098XATPOGRO8KNK4409I.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "sys_types"
+  }
+]

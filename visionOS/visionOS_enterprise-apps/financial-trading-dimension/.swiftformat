@@ -1,0 +1,105 @@
+# SwiftFormat Configuration for Financial Trading Dimension
+
+# File options
+--exclude Pods,build,.build,DerivedData
+
+# Format options
+--indent 4
+--indentcase false
+--trimwhitespace always
+--nospaceoperators ...,..<
+--ranges spaced
+--empty void
+--commas always
+
+# Wrapping
+--maxwidth 120
+--wraparguments before-first
+--wrapparameters before-first
+--wrapcollections before-first
+--closingparen balanced
+
+# Rules
+--enable isEmpty
+--enable sortedImports
+--enable redundantSelf
+--enable redundantReturn
+--enable blankLinesBetweenScopes
+
+# Redundant
+--redundanttype infer-locals-only
+--self init-only
+--selfrequired
+
+# Spacing
+--ifdef no-indent
+--patternlet inline
+--stripunusedargs closure-only
+
+# Marks
+--marktypes always
+--markextensions always
+
+# Headers
+--header "//\n//  {file}\n//  Financial Trading Dimension\n//\n//  Created by {created.name} on {created.date}.\n//"
+
+# Additional rules
+--enable andOperator
+--enable blankLinesAroundMark
+--enable blankLinesAtEndOfScope
+--enable blankLinesAtStartOfScope
+--enable consecutiveBlankLines
+--enable consecutiveSpaces
+--enable duplicateImports
+--enable elseOnSameLine
+--enable emptyBraces
+--enable enumNamespaces
+--enable fileHeader
+--enable hoistPatternLet
+--enable indent
+--enable linebreakAtEndOfFile
+--enable linebreaks
+--enable numberFormatting
+--enable preferKeyPath
+--enable redundantBackticks
+--enable redundantBreak
+--enable redundantExtensionACL
+--enable redundantFileprivate
+--enable redundantGet
+--enable redundantInit
+--enable redundantLet
+--enable redundantLetError
+--enable redundantNilInit
+--enable redundantObjc
+--enable redundantParens
+--enable redundantPattern
+--enable redundantRawValues
+--enable redundantVoidReturnType
+--enable semicolons
+--enable sortedImports
+--enable spaceAroundBraces
+--enable spaceAroundBrackets
+--enable spaceAroundComments
+--enable spaceAroundGenerics
+--enable spaceAroundOperators
+--enable spaceAroundParens
+--enable spaceInsideBraces
+--enable spaceInsideBrackets
+--enable spaceInsideComments
+--enable spaceInsideGenerics
+--enable spaceInsideParens
+--enable strongifiedSelf
+--enable todos
+--enable trailingClosures
+--enable trailingCommas
+--enable trailingSpace
+--enable typeSugar
+--enable unusedArguments
+--enable void
+--enable wrap
+--enable wrapArguments
+--enable wrapAttributes
+--enable yodaConditions
+
+# Disabled rules
+--disable wrapMultilineStatementBraces

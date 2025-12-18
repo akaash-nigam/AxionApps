@@ -1,0 +1,130 @@
+name: Feature Request
+description: Suggest a new feature or enhancement
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a feature! We appreciate your input.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: Is your feature request related to a problem? Please describe.
+      placeholder: "I'm always frustrated when..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the solution you'd like to see
+      placeholder: "I would like to be able to..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Describe any alternative solutions or features you've considered
+      placeholder: "Alternatively, we could..."
+
+  - type: dropdown
+    id: feature-type
+    attributes:
+      label: Feature Category
+      description: What type of feature is this?
+      options:
+        - Device Control
+        - Energy Monitoring
+        - Spatial Interface
+        - User Interface
+        - Automation
+        - Integration
+        - Performance
+        - Accessibility
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature to you?
+      options:
+        - Critical - Blocks major functionality
+        - High - Significantly improves experience
+        - Medium - Nice to have
+        - Low - Minor enhancement
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use Case
+      description: Describe the specific use case or scenario where this feature would be valuable
+      placeholder: "This feature would help users who..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: mockups
+    attributes:
+      label: Mockups or Examples
+      description: If applicable, add mockups, wireframes, or examples of similar features
+      placeholder: Drag and drop images or provide links...
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: Implementation Ideas
+      description: If you have ideas about how to implement this, share them here
+      placeholder: "This could be implemented by..."
+
+  - type: dropdown
+    id: epic
+    attributes:
+      label: Which Epic does this relate to?
+      description: Select the most relevant epic from our roadmap
+      options:
+        - MVP - Core Functionality
+        - Epic 1 - Spatial Interface
+        - Epic 2 - Energy Monitoring
+        - Epic 3 - Advanced Energy Visualization
+        - Epic 4 - Environmental Monitoring
+        - Epic 5 - Maintenance Tracking
+        - Epic 6 - Scenes & Automation
+        - Epic 7 - Advanced Spatial Features
+        - Epic 8 - Performance & Polish
+        - New Epic
+        - Not applicable
+
+  - type: checkboxes
+    id: willing-to-contribute
+    attributes:
+      label: Contribution
+      options:
+        - label: I am willing to help implement this feature
+        - label: I can provide testing and feedback
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context, screenshots, or information about the feature request
+      placeholder: Any additional information...
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this feature request, you agree to follow our Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

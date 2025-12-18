@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spatial Screenplay Workshop | Write Your Story in 3D</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0071e3;
+            --secondary: #ff375f;
+            --accent: #30d158;
+            --dark: #1d1d1f;
+            --light: #f5f5f7;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background: #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            font-size: 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 20px;
+            background: var(--light);
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 20px;
+            color: #86868b;
+            margin-bottom: 60px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 30px;
+        }
+
+        .feature-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .feature-description {
+            font-size: 16px;
+            color: #6e6e73;
+            line-height: 1.7;
+        }
+
+        /* Showcase Section */
+        .showcase {
+            padding: 100px 20px;
+            background: white;
+        }
+
+        .showcase-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .showcase-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 100px;
+            align-items: center;
+        }
+
+        .showcase-item:nth-child(even) {
+            direction: rtl;
+        }
+
+        .showcase-item:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .showcase-content h3 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .showcase-content p {
+            font-size: 18px;
+            color: #6e6e73;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .showcase-visual {
+            background: var(--gradient);
+            border-radius: 20px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 100px 20px;
+            background: var(--light);
+        }
+
+        .pricing-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 60px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .pricing-title {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .pricing-description {
+            font-size: 18px;
+            color: #6e6e73;
+            margin-bottom: 40px;
+        }
+
+        .pricing-features {
+            text-align: left;
+            margin: 40px 0;
+        }
+
+        .pricing-feature {
+            padding: 15px 0;
+            font-size: 16px;
+            border-bottom: 1px solid #f5f5f7;
+            display: flex;
+            align-items: center;
+        }
+
+        .pricing-feature::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 20px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 20px 30px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #a1a1a6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #424245;
+            color: #a1a1a6;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero-subtitle {
+                font-size: 20px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .showcase-item {
+                grid-template-columns: 1fr;
+            }
+
+            .showcase-item:nth-child(even) {
+                direction: ltr;
+            }
+
+            .pricing-container {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Write Your Story<br>in 3D Space</h1>
+            <p class="hero-subtitle">The future of screenwriting is spatial. Experience your screenplay in three dimensions with Apple Vision Pro.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">Download for visionOS</a>
+                <a href="#features" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="features-container">
+            <h2 class="section-title">Powerful Features</h2>
+            <p class="section-subtitle">Everything you need to write, visualize, and export professional screenplays</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3 class="feature-title">Industry-Standard Formatting</h3>
+                    <p class="feature-description">Automatic element detection and formatting. Supports all standard screenplay elements with proper margins and spacing.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎬</div>
+                    <h3 class="feature-title">3D Scene Timeline</h3>
+                    <p class="feature-description">Visualize your screenplay structure in spatial 3D. See all scenes organized by acts, floating in space around you.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">✋</div>
+                    <h3 class="feature-title">Spatial Interactions</h3>
+                    <p class="feature-description">Tap to select scenes, drag to reorder, and gaze to highlight. Natural gestures make editing effortless.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3 class="feature-title">Auto-Save & Sync</h3>
+                    <p class="feature-description">Never lose your work with automatic saving every 5 minutes. iCloud sync keeps your scripts across all devices.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📄</div>
+                    <h3 class="feature-title">PDF Export</h3>
+                    <p class="feature-description">Export production-ready PDFs with professional formatting, title pages, and page numbers. Ready to share with producers.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Smart Features</h3>
+                    <p class="feature-description">Character auto-complete, undo/redo, scene metadata, and real-time page count. Write faster with intelligent tools.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase Section -->
+    <section class="showcase">
+        <div class="showcase-container">
+            <div class="showcase-item">
+                <div class="showcase-content">
+                    <h3>Write in Your Flow</h3>
+                    <p>Focus on your story with a distraction-free editor designed for visionOS.</p>
+                    <p>Automatic element detection means you never break your creative flow. Just type naturally and the app formats everything correctly.</p>
+                    <p>Real-time page count and statistics keep you on track without interrupting your writing.</p>
+                </div>
+                <div class="showcase-visual">
+                    <div>
+                        <h4 style="font-size: 24px; margin-bottom: 20px;">Script Editor</h4>
+                        <p>Courier 12pt mono-spaced font<br>Industry-standard margins<br>Smart auto-formatting</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="showcase-item">
+                <div class="showcase-content">
+                    <h3>Visualize Your Structure</h3>
+                    <p>See your entire screenplay laid out in 3D space, organized by acts.</p>
+                    <p>Scene cards show slug lines, page counts, and characters at a glance. Color-coded by status so you know what needs work.</p>
+                    <p>Drag scenes to reorder your story. Watch your structure evolve in real-time.</p>
+                </div>
+                <div class="showcase-visual">
+                    <div>
+                        <h4 style="font-size: 24px; margin-bottom: 20px;">3D Timeline</h4>
+                        <p>Act I → Act II → Act III<br>Scene cards in spatial depth<br>Intuitive drag-and-drop</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="showcase-item">
+                <div class="showcase-content">
+                    <h3>Export & Share</h3>
+                    <p>Export production-ready PDFs that meet industry standards.</p>
+                    <p>Professional title pages with project metadata. Proper page and scene numbering throughout.</p>
+                    <p>Export to Fountain format for compatibility with other screenwriting tools.</p>
+                </div>
+                <div class="showcase-visual">
+                    <div>
+                        <h4 style="font-size: 24px; margin-bottom: 20px;">PDF Export</h4>
+                        <p>Industry-standard formatting<br>Professional title pages<br>Ready to share with producers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <div class="pricing-container">
+            <span class="pricing-badge">LIMITED TIME OFFER</span>
+            <h2 class="pricing-title">Early Access</h2>
+            <p class="pricing-description">Be among the first to experience spatial screenwriting</p>
+
+            <div class="pricing-features">
+                <div class="pricing-feature">Unlimited projects and scenes</div>
+                <div class="pricing-feature">3D spatial timeline visualization</div>
+                <div class="pricing-feature">PDF export with professional formatting</div>
+                <div class="pricing-feature">Auto-save and iCloud sync</div>
+                <div class="pricing-feature">Character auto-complete</div>
+                <div class="pricing-feature">Undo/redo with 50-action history</div>
+                <div class="pricing-feature">Scene metadata and notes</div>
+                <div class="pricing-feature">Real-time statistics and page count</div>
+                <div class="pricing-feature">Fountain format support (coming soon)</div>
+                <div class="pricing-feature">Priority support and feature requests</div>
+            </div>
+
+            <a href="#" class="btn btn-primary" style="margin-top: 20px;">Download Now</a>
+            <p style="margin-top: 15px; font-size: 14px; color: #6e6e73;">Requires Apple Vision Pro with visionOS 2.0+</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">What's New</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Tutorial Videos</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press Kit</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">License Agreement</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Spatial Screenplay Workshop. All rights reserved. Apple, Apple Vision Pro, and visionOS are trademarks of Apple Inc.</p>
+        </div>
+    </footer>
+</body>
+</html>

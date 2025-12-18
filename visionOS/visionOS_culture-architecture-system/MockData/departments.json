@@ -1,0 +1,4502 @@
+[
+  {
+    "id": "608513f1-0dde-4227-ab3f-13865381afed",
+    "organizationId": "1a50d0f7-eedc-4f49-9ea1-3807bebd9947",
+    "name": "Engineering",
+    "headcount": 180,
+    "healthScore": 78.6,
+    "createdAt": "2025-11-17T20:33:44.197035",
+    "updatedAt": "2025-11-17T20:33:44.197036"
+  },
+  {
+    "id": "d7d41c03-3c0a-465b-991c-b59c064b53fa",
+    "organizationId": "1a50d0f7-eedc-4f49-9ea1-3807bebd9947",
+    "name": "Product",
+    "headcount": 153,
+    "healthScore": 80.8,
+    "createdAt": "2025-11-17T20:33:44.197046",
+    "updatedAt": "2025-11-17T20:33:44.197047"
+  },
+  {
+    "id": "1f436dfd-fea0-4fed-a6da-3754b2056395",
+    "organizationId": "1a50d0f7-eedc-4f49-9ea1-3807bebd9947",
+    "name": "Design",
+    "headcount": 123,
+    "healthScore": 81.4,
+    "createdAt": "2025-11-17T20:33:44.197060",
+    "updatedAt": "2025-11-17T20:33:44.197061"
+  },
+  {
+    "id": "8c802c61-3bef-4c64-8842-37a093ebd2f5",
+    "organizationId": "1a50d0f7-eedc-4f49-9ea1-3807bebd9947",
+    "name": "Marketing",
+    "headcount": 194,
+    "healthScore": 91.2,
+    "createdAt": "2025-11-17T20:33:44.197068",
+    "updatedAt": "2025-11-17T20:33:44.197069"
+  },
+  {
+    "id": "ed2e361d-08cf-4d89-8eb7-02052e17e7b4",
+    "organizationId": "1a50d0f7-eedc-4f49-9ea1-3807bebd9947",
+    "name": "Sales",
+    "headcount": 119,
+    "healthScore": 89.1,
+    "createdAt": "2025-11-17T20:33:44.197077",
+    "updatedAt": "2025-11-17T20:33:44.197078"
+  },
+  {
+    "id": "cf9519f5-92ec-45a6-90fa-06b83a4f0bed",
+    "organizationId": "1a50d0f7-eedc-4f49-9ea1-3807bebd9947",
+    "name": "Customer Success",
+    "headcount": 150,
+    "healthScore": 75.6,
+    "createdAt": "2025-11-17T20:33:44.197085",
+    "updatedAt": "2025-11-17T20:33:44.197086"
+  },
+  {
+    "id": "60230a8d-1608-434c-b149-8dbca9a7301c",
+    "organizationId": "1a50d0f7-eedc-4f49-9ea1-3807bebd9947",
+    "name": "Operations",
+    "headcount": 50,
+    "healthScore": 86.0,
+    "createdAt": "2025-11-17T20:33:44.197093",
+    "updatedAt": "2025-11-17T20:33:44.197094"
+  },
+  {
+    "id": "f720aefd-80f4-4741-983b-28e1a372a940",
+    "organizationId": "1a50d0f7-eedc-4f49-9ea1-3807bebd9947",
+    "name": "Finance",
+    "headcount": 131,
+    "healthScore": 75.8,
+    "createdAt": "2025-11-17T20:33:44.197106",
+    "updatedAt": "2025-11-17T20:33:44.197107"
+  },
+  {
+    "id": "007addd6-6e3d-4357-8aca-f05fdecdf24e",
+    "organizationId": "1a50d0f7-eedc-4f49-9ea1-3807bebd9947",
+    "name": "HR",
+    "headcount": 73,
+    "healthScore": 89.4,
+    "createdAt": "2025-11-17T20:33:44.197159",
+    "updatedAt": "2025-11-17T20:33:44.197160"
+  },
+  {
+    "id": "5bd79c11-1f6b-45c7-8e71-27911410fe55",
+    "organizationId": "1a50d0f7-eedc-4f49-9ea1-3807bebd9947",
+    "name": "Legal",
+    "headcount": 80,
+    "healthScore": 86.8,
+    "createdAt": "2025-11-17T20:33:44.197167",
+    "updatedAt": "2025-11-17T20:33:44.197168"
+  },
+  {
+    "id": "2b65c732-3462-4957-b7c8-df04ad88170e",
+    "organizationId": "14ce0afd-539f-4aef-b356-cb0d114c156f",
+    "name": "Engineering",
+    "headcount": 66,
+    "healthScore": 72.0,
+    "createdAt": "2025-11-17T20:33:44.222712",
+    "updatedAt": "2025-11-17T20:33:44.222713"
+  },
+  {
+    "id": "d1125ed2-4b6e-475a-b16c-aa78a8b4607d",
+    "organizationId": "14ce0afd-539f-4aef-b356-cb0d114c156f",
+    "name": "Product",
+    "headcount": 165,
+    "healthScore": 87.4,
+    "createdAt": "2025-11-17T20:33:44.222720",
+    "updatedAt": "2025-11-17T20:33:44.222721"
+  },
+  {
+    "id": "6bd3f985-057b-4a72-87a9-4387b805d88e",
+    "organizationId": "14ce0afd-539f-4aef-b356-cb0d114c156f",
+    "name": "Design",
+    "headcount": 104,
+    "healthScore": 63.6,
+    "createdAt": "2025-11-17T20:33:44.222730",
+    "updatedAt": "2025-11-17T20:33:44.222731"
+  },
+  {
+    "id": "4ae3f998-3edf-4620-8db7-f2b7f6c82a84",
+    "organizationId": "14ce0afd-539f-4aef-b356-cb0d114c156f",
+    "name": "Marketing",
+    "headcount": 139,
+    "healthScore": 63.7,
+    "createdAt": "2025-11-17T20:33:44.222748",
+    "updatedAt": "2025-11-17T20:33:44.222748"
+  },
+  {
+    "id": "3d143b47-9db1-43e5-956d-d15a1554f6a4",
+    "organizationId": "14ce0afd-539f-4aef-b356-cb0d114c156f",
+    "name": "Sales",
+    "headcount": 191,
+    "healthScore": 73.7,
+    "createdAt": "2025-11-17T20:33:44.222755",
+    "updatedAt": "2025-11-17T20:33:44.222756"
+  },
+  {
+    "id": "ef092f81-2633-4a9f-a599-3afa14634d69",
+    "organizationId": "14ce0afd-539f-4aef-b356-cb0d114c156f",
+    "name": "Customer Success",
+    "headcount": 103,
+    "healthScore": 60.9,
+    "createdAt": "2025-11-17T20:33:44.222764",
+    "updatedAt": "2025-11-17T20:33:44.222765"
+  },
+  {
+    "id": "39f1aba4-acce-415b-8a76-7c29e56325a3",
+    "organizationId": "14ce0afd-539f-4aef-b356-cb0d114c156f",
+    "name": "Operations",
+    "headcount": 175,
+    "healthScore": 77.1,
+    "createdAt": "2025-11-17T20:33:44.222776",
+    "updatedAt": "2025-11-17T20:33:44.222776"
+  },
+  {
+    "id": "46c72cab-d4e1-43e8-aab5-6bfc41e840d3",
+    "organizationId": "14ce0afd-539f-4aef-b356-cb0d114c156f",
+    "name": "Finance",
+    "headcount": 77,
+    "healthScore": 93.5,
+    "createdAt": "2025-11-17T20:33:44.222786",
+    "updatedAt": "2025-11-17T20:33:44.222787"
+  },
+  {
+    "id": "2687a487-35ad-4d02-ae8c-649735908af3",
+    "organizationId": "14ce0afd-539f-4aef-b356-cb0d114c156f",
+    "name": "HR",
+    "headcount": 153,
+    "healthScore": 71.4,
+    "createdAt": "2025-11-17T20:33:44.222794",
+    "updatedAt": "2025-11-17T20:33:44.222795"
+  },
+  {
+    "id": "3cfcd00a-3157-44b9-9d63-5f03ac0dc1c5",
+    "organizationId": "14ce0afd-539f-4aef-b356-cb0d114c156f",
+    "name": "Legal",
+    "headcount": 166,
+    "healthScore": 71.2,
+    "createdAt": "2025-11-17T20:33:44.222801",
+    "updatedAt": "2025-11-17T20:33:44.222802"
+  },
+  {
+    "id": "bf800f41-294a-4922-ad03-094b7dc69e1c",
+    "organizationId": "73b8f40c-8497-4466-9fa2-3e7d49686bf1",
+    "name": "Engineering",
+    "headcount": 120,
+    "healthScore": 64.4,
+    "createdAt": "2025-11-17T20:33:44.249948",
+    "updatedAt": "2025-11-17T20:33:44.249949"
+  },
+  {
+    "id": "507f3581-80de-4687-8046-0f1a47ceaa3c",
+    "organizationId": "73b8f40c-8497-4466-9fa2-3e7d49686bf1",
+    "name": "Product",
+    "headcount": 84,
+    "healthScore": 70.5,
+    "createdAt": "2025-11-17T20:33:44.249954",
+    "updatedAt": "2025-11-17T20:33:44.249955"
+  },
+  {
+    "id": "2cf41850-8ade-4fb4-a709-a531a42c12ba",
+    "organizationId": "73b8f40c-8497-4466-9fa2-3e7d49686bf1",
+    "name": "Design",
+    "headcount": 137,
+    "healthScore": 62.1,
+    "createdAt": "2025-11-17T20:33:44.249961",
+    "updatedAt": "2025-11-17T20:33:44.249962"
+  },
+  {
+    "id": "d898975b-4b5d-4fbd-82fc-00e3289d928d",
+    "organizationId": "73b8f40c-8497-4466-9fa2-3e7d49686bf1",
+    "name": "Marketing",
+    "headcount": 76,
+    "healthScore": 79.7,
+    "createdAt": "2025-11-17T20:33:44.249971",
+    "updatedAt": "2025-11-17T20:33:44.249972"
+  },
+  {
+    "id": "d83702fe-9329-4504-8bf1-4f507240da2d",
+    "organizationId": "73b8f40c-8497-4466-9fa2-3e7d49686bf1",
+    "name": "Sales",
+    "headcount": 116,
+    "healthScore": 76.5,
+    "createdAt": "2025-11-17T20:33:44.249977",
+    "updatedAt": "2025-11-17T20:33:44.249978"
+  },
+  {
+    "id": "97b67d92-dd65-4c1a-be88-716d3ba73879",
+    "organizationId": "73b8f40c-8497-4466-9fa2-3e7d49686bf1",
+    "name": "Customer Success",
+    "headcount": 39,
+    "healthScore": 88.2,
+    "createdAt": "2025-11-17T20:33:44.249984",
+    "updatedAt": "2025-11-17T20:33:44.249985"
+  },
+  {
+    "id": "4b4d3ab8-3e7a-4463-b6bd-3ba5adcbf9b4",
+    "organizationId": "73b8f40c-8497-4466-9fa2-3e7d49686bf1",
+    "name": "Operations",
+    "headcount": 40,
+    "healthScore": 77.6,
+    "createdAt": "2025-11-17T20:33:44.249995",
+    "updatedAt": "2025-11-17T20:33:44.249996"
+  },
+  {
+    "id": "ed9833a4-9ad8-4500-9b95-f593af1df8b7",
+    "organizationId": "73b8f40c-8497-4466-9fa2-3e7d49686bf1",
+    "name": "Finance",
+    "headcount": 129,
+    "healthScore": 87.3,
+    "createdAt": "2025-11-17T20:33:44.250001",
+    "updatedAt": "2025-11-17T20:33:44.250002"
+  },
+  {
+    "id": "3d097663-7d8f-4523-9524-b64d0954b04a",
+    "organizationId": "73b8f40c-8497-4466-9fa2-3e7d49686bf1",
+    "name": "HR",
+    "headcount": 69,
+    "healthScore": 68.5,
+    "createdAt": "2025-11-17T20:33:44.250010",
+    "updatedAt": "2025-11-17T20:33:44.250011"
+  },
+  {
+    "id": "8ed548ee-64a6-4b8d-8b3e-d0615a663ef7",
+    "organizationId": "73b8f40c-8497-4466-9fa2-3e7d49686bf1",
+    "name": "Legal",
+    "headcount": 93,
+    "healthScore": 76.2,
+    "createdAt": "2025-11-17T20:33:44.250021",
+    "updatedAt": "2025-11-17T20:33:44.250022"
+  },
+  {
+    "id": "dddc067c-99a3-459a-8d83-52ca0a07ecb8",
+    "organizationId": "16515368-eaa7-4613-9890-9e32f0aeb2ba",
+    "name": "Engineering",
+    "headcount": 126,
+    "healthScore": 79.1,
+    "createdAt": "2025-11-17T20:33:44.259500",
+    "updatedAt": "2025-11-17T20:33:44.259501"
+  },
+  {
+    "id": "c2d3babd-057a-4cfb-9f5e-2261710aa924",
+    "organizationId": "16515368-eaa7-4613-9890-9e32f0aeb2ba",
+    "name": "Product",
+    "headcount": 24,
+    "healthScore": 76.6,
+    "createdAt": "2025-11-17T20:33:44.259508",
+    "updatedAt": "2025-11-17T20:33:44.259509"
+  },
+  {
+    "id": "f0a0a493-f3bc-41db-b6a7-72a906f0d01f",
+    "organizationId": "16515368-eaa7-4613-9890-9e32f0aeb2ba",
+    "name": "Design",
+    "headcount": 171,
+    "healthScore": 89.1,
+    "createdAt": "2025-11-17T20:33:44.259515",
+    "updatedAt": "2025-11-17T20:33:44.259516"
+  },
+  {
+    "id": "6bdd00d2-e37b-4b26-b83d-b1e12d767e64",
+    "organizationId": "16515368-eaa7-4613-9890-9e32f0aeb2ba",
+    "name": "Marketing",
+    "headcount": 156,
+    "healthScore": 66.1,
+    "createdAt": "2025-11-17T20:33:44.259523",
+    "updatedAt": "2025-11-17T20:33:44.259524"
+  },
+  {
+    "id": "bf2bbb81-a72f-453d-824a-4b93fe4a3d83",
+    "organizationId": "16515368-eaa7-4613-9890-9e32f0aeb2ba",
+    "name": "Sales",
+    "headcount": 79,
+    "healthScore": 86.4,
+    "createdAt": "2025-11-17T20:33:44.259536",
+    "updatedAt": "2025-11-17T20:33:44.259537"
+  },
+  {
+    "id": "85d1e0e9-ca8b-47a1-b9e9-240c075f3592",
+    "organizationId": "16515368-eaa7-4613-9890-9e32f0aeb2ba",
+    "name": "Customer Success",
+    "headcount": 65,
+    "healthScore": 74.0,
+    "createdAt": "2025-11-17T20:33:44.259544",
+    "updatedAt": "2025-11-17T20:33:44.259545"
+  },
+  {
+    "id": "f753b347-794b-412d-8e77-1e44c858b1d1",
+    "organizationId": "16515368-eaa7-4613-9890-9e32f0aeb2ba",
+    "name": "Operations",
+    "headcount": 163,
+    "healthScore": 89.3,
+    "createdAt": "2025-11-17T20:33:44.259552",
+    "updatedAt": "2025-11-17T20:33:44.259553"
+  },
+  {
+    "id": "aa8c3785-3b01-4ccc-9eff-ec1db18acb74",
+    "organizationId": "16515368-eaa7-4613-9890-9e32f0aeb2ba",
+    "name": "Finance",
+    "headcount": 71,
+    "healthScore": 76.7,
+    "createdAt": "2025-11-17T20:33:44.259562",
+    "updatedAt": "2025-11-17T20:33:44.259563"
+  },
+  {
+    "id": "070793e5-844e-4fd1-b93a-4922cbc197e6",
+    "organizationId": "16515368-eaa7-4613-9890-9e32f0aeb2ba",
+    "name": "HR",
+    "headcount": 99,
+    "healthScore": 72.6,
+    "createdAt": "2025-11-17T20:33:44.259570",
+    "updatedAt": "2025-11-17T20:33:44.259571"
+  },
+  {
+    "id": "fec80701-820d-456d-9ca0-9d316bc267dc",
+    "organizationId": "16515368-eaa7-4613-9890-9e32f0aeb2ba",
+    "name": "Legal",
+    "headcount": 173,
+    "healthScore": 82.7,
+    "createdAt": "2025-11-17T20:33:44.259582",
+    "updatedAt": "2025-11-17T20:33:44.259583"
+  },
+  {
+    "id": "ed221d2d-5da9-40e9-a7b5-45ecd4d22dce",
+    "organizationId": "497bcb7e-9da5-40e5-8031-e847512b8e93",
+    "name": "Engineering",
+    "headcount": 156,
+    "healthScore": 79.5,
+    "createdAt": "2025-11-17T20:33:44.287554",
+    "updatedAt": "2025-11-17T20:33:44.287555"
+  },
+  {
+    "id": "df147218-9f32-4c6d-b172-cd7e09c7ef54",
+    "organizationId": "497bcb7e-9da5-40e5-8031-e847512b8e93",
+    "name": "Product",
+    "headcount": 128,
+    "healthScore": 69.4,
+    "createdAt": "2025-11-17T20:33:44.287567",
+    "updatedAt": "2025-11-17T20:33:44.287567"
+  },
+  {
+    "id": "fe58c055-7717-4c70-83b4-0d5026d34882",
+    "organizationId": "497bcb7e-9da5-40e5-8031-e847512b8e93",
+    "name": "Design",
+    "headcount": 15,
+    "healthScore": 72.3,
+    "createdAt": "2025-11-17T20:33:44.287574",
+    "updatedAt": "2025-11-17T20:33:44.287575"
+  },
+  {
+    "id": "0c26730e-8f0d-4b9a-adb2-ebe17f7f7389",
+    "organizationId": "497bcb7e-9da5-40e5-8031-e847512b8e93",
+    "name": "Marketing",
+    "headcount": 79,
+    "healthScore": 62.7,
+    "createdAt": "2025-11-17T20:33:44.287586",
+    "updatedAt": "2025-11-17T20:33:44.287587"
+  },
+  {
+    "id": "e1bfb7f9-fa28-4463-8a96-9efb2e8ab6d1",
+    "organizationId": "497bcb7e-9da5-40e5-8031-e847512b8e93",
+    "name": "Sales",
+    "headcount": 26,
+    "healthScore": 80.4,
+    "createdAt": "2025-11-17T20:33:44.287602",
+    "updatedAt": "2025-11-17T20:33:44.287603"
+  },
+  {
+    "id": "4bdb1cf2-1d7a-4512-809d-640f11fe8c8f",
+    "organizationId": "497bcb7e-9da5-40e5-8031-e847512b8e93",
+    "name": "Customer Success",
+    "headcount": 159,
+    "healthScore": 80.4,
+    "createdAt": "2025-11-17T20:33:44.287612",
+    "updatedAt": "2025-11-17T20:33:44.287613"
+  },
+  {
+    "id": "026de00c-e13d-498b-90d9-9f1b39409d7d",
+    "organizationId": "497bcb7e-9da5-40e5-8031-e847512b8e93",
+    "name": "Operations",
+    "headcount": 193,
+    "healthScore": 91.1,
+    "createdAt": "2025-11-17T20:33:44.287618",
+    "updatedAt": "2025-11-17T20:33:44.287619"
+  },
+  {
+    "id": "8325c168-f3d2-4c7f-836d-a6e2b07cd207",
+    "organizationId": "497bcb7e-9da5-40e5-8031-e847512b8e93",
+    "name": "Finance",
+    "headcount": 164,
+    "healthScore": 78.7,
+    "createdAt": "2025-11-17T20:33:44.287624",
+    "updatedAt": "2025-11-17T20:33:44.287625"
+  },
+  {
+    "id": "c6b40e35-c194-4edb-aeb1-e5c3dc78b157",
+    "organizationId": "497bcb7e-9da5-40e5-8031-e847512b8e93",
+    "name": "HR",
+    "headcount": 91,
+    "healthScore": 83.0,
+    "createdAt": "2025-11-17T20:33:44.287631",
+    "updatedAt": "2025-11-17T20:33:44.287631"
+  },
+  {
+    "id": "b88cd83e-000e-46c0-b3de-707cd36ee699",
+    "organizationId": "497bcb7e-9da5-40e5-8031-e847512b8e93",
+    "name": "Legal",
+    "headcount": 41,
+    "healthScore": 89.6,
+    "createdAt": "2025-11-17T20:33:44.287637",
+    "updatedAt": "2025-11-17T20:33:44.287638"
+  },
+  {
+    "id": "92b3361e-178f-435a-a450-2b7c88976813",
+    "organizationId": "6031510e-9ab6-4a91-8041-36d78c7abedb",
+    "name": "Engineering",
+    "headcount": 145,
+    "healthScore": 77.4,
+    "createdAt": "2025-11-17T20:33:44.310827",
+    "updatedAt": "2025-11-17T20:33:44.310829"
+  },
+  {
+    "id": "3503d846-39e2-4c80-b1e7-f07854dcd2a3",
+    "organizationId": "6031510e-9ab6-4a91-8041-36d78c7abedb",
+    "name": "Product",
+    "headcount": 148,
+    "healthScore": 63.5,
+    "createdAt": "2025-11-17T20:33:44.310839",
+    "updatedAt": "2025-11-17T20:33:44.310840"
+  },
+  {
+    "id": "eb6ba051-7ed3-4d52-ba81-ac67fe3bb9d6",
+    "organizationId": "6031510e-9ab6-4a91-8041-36d78c7abedb",
+    "name": "Design",
+    "headcount": 131,
+    "healthScore": 68.3,
+    "createdAt": "2025-11-17T20:33:44.310847",
+    "updatedAt": "2025-11-17T20:33:44.310847"
+  },
+  {
+    "id": "b024d5f8-9a90-43c7-aa9c-e27d9e4598b5",
+    "organizationId": "6031510e-9ab6-4a91-8041-36d78c7abedb",
+    "name": "Marketing",
+    "headcount": 38,
+    "healthScore": 77.8,
+    "createdAt": "2025-11-17T20:33:44.310858",
+    "updatedAt": "2025-11-17T20:33:44.310859"
+  },
+  {
+    "id": "cd934c76-c239-4c94-8ec9-945317e0956c",
+    "organizationId": "6031510e-9ab6-4a91-8041-36d78c7abedb",
+    "name": "Sales",
+    "headcount": 144,
+    "healthScore": 71.8,
+    "createdAt": "2025-11-17T20:33:44.310866",
+    "updatedAt": "2025-11-17T20:33:44.310866"
+  },
+  {
+    "id": "ae0d1b7c-2393-4962-8c2b-659c9b5fd75c",
+    "organizationId": "6031510e-9ab6-4a91-8041-36d78c7abedb",
+    "name": "Customer Success",
+    "headcount": 97,
+    "healthScore": 65.2,
+    "createdAt": "2025-11-17T20:33:44.310881",
+    "updatedAt": "2025-11-17T20:33:44.310884"
+  },
+  {
+    "id": "d4f832e0-6c63-405d-8a5b-a79509a624a3",
+    "organizationId": "6031510e-9ab6-4a91-8041-36d78c7abedb",
+    "name": "Operations",
+    "headcount": 103,
+    "healthScore": 65.6,
+    "createdAt": "2025-11-17T20:33:44.310896",
+    "updatedAt": "2025-11-17T20:33:44.310897"
+  },
+  {
+    "id": "525f36dc-9d83-46ab-a364-8a58c7c80f06",
+    "organizationId": "6031510e-9ab6-4a91-8041-36d78c7abedb",
+    "name": "Finance",
+    "headcount": 39,
+    "healthScore": 73.7,
+    "createdAt": "2025-11-17T20:33:44.310906",
+    "updatedAt": "2025-11-17T20:33:44.310907"
+  },
+  {
+    "id": "737f0369-f517-4a69-a2b5-db2ae31b49ff",
+    "organizationId": "6031510e-9ab6-4a91-8041-36d78c7abedb",
+    "name": "HR",
+    "headcount": 52,
+    "healthScore": 82.7,
+    "createdAt": "2025-11-17T20:33:44.310918",
+    "updatedAt": "2025-11-17T20:33:44.310919"
+  },
+  {
+    "id": "bdd9ef21-28df-4712-a401-c4ef847dbf17",
+    "organizationId": "6031510e-9ab6-4a91-8041-36d78c7abedb",
+    "name": "Legal",
+    "headcount": 187,
+    "healthScore": 94.0,
+    "createdAt": "2025-11-17T20:33:44.310930",
+    "updatedAt": "2025-11-17T20:33:44.310931"
+  },
+  {
+    "id": "e59bc61e-74fb-47bc-9a58-9e05dfeebe86",
+    "organizationId": "09713e14-8a54-474e-a48a-64a44426ede0",
+    "name": "Engineering",
+    "headcount": 86,
+    "healthScore": 92.3,
+    "createdAt": "2025-11-17T20:33:44.321318",
+    "updatedAt": "2025-11-17T20:33:44.321319"
+  },
+  {
+    "id": "b6a04cf0-db05-4de3-9d8f-57c3cec377a2",
+    "organizationId": "09713e14-8a54-474e-a48a-64a44426ede0",
+    "name": "Product",
+    "headcount": 81,
+    "healthScore": 67.7,
+    "createdAt": "2025-11-17T20:33:44.321328",
+    "updatedAt": "2025-11-17T20:33:44.321329"
+  },
+  {
+    "id": "4ff09f47-abd4-4e63-be37-28a16b2655d9",
+    "organizationId": "09713e14-8a54-474e-a48a-64a44426ede0",
+    "name": "Design",
+    "headcount": 35,
+    "healthScore": 63.7,
+    "createdAt": "2025-11-17T20:33:44.321339",
+    "updatedAt": "2025-11-17T20:33:44.321340"
+  },
+  {
+    "id": "3f718fe3-56f6-4544-8897-c92f947db386",
+    "organizationId": "09713e14-8a54-474e-a48a-64a44426ede0",
+    "name": "Marketing",
+    "headcount": 27,
+    "healthScore": 81.9,
+    "createdAt": "2025-11-17T20:33:44.321348",
+    "updatedAt": "2025-11-17T20:33:44.321349"
+  },
+  {
+    "id": "18589206-95c7-4d38-8468-83b1503c4301",
+    "organizationId": "09713e14-8a54-474e-a48a-64a44426ede0",
+    "name": "Sales",
+    "headcount": 119,
+    "healthScore": 77.0,
+    "createdAt": "2025-11-17T20:33:44.321358",
+    "updatedAt": "2025-11-17T20:33:44.321359"
+  },
+  {
+    "id": "15d21f76-120e-4577-b629-359d0edce5de",
+    "organizationId": "09713e14-8a54-474e-a48a-64a44426ede0",
+    "name": "Customer Success",
+    "headcount": 98,
+    "healthScore": 91.0,
+    "createdAt": "2025-11-17T20:33:44.321375",
+    "updatedAt": "2025-11-17T20:33:44.321376"
+  },
+  {
+    "id": "ec06eb66-29da-4297-a51a-7f9b608c3080",
+    "organizationId": "09713e14-8a54-474e-a48a-64a44426ede0",
+    "name": "Operations",
+    "headcount": 45,
+    "healthScore": 84.0,
+    "createdAt": "2025-11-17T20:33:44.321387",
+    "updatedAt": "2025-11-17T20:33:44.321387"
+  },
+  {
+    "id": "53b71137-6ccc-4d06-84a9-070c93c51d1d",
+    "organizationId": "09713e14-8a54-474e-a48a-64a44426ede0",
+    "name": "Finance",
+    "headcount": 24,
+    "healthScore": 76.6,
+    "createdAt": "2025-11-17T20:33:44.321394",
+    "updatedAt": "2025-11-17T20:33:44.321395"
+  },
+  {
+    "id": "f7ca9f18-c940-49aa-bcfd-252b75ff82ee",
+    "organizationId": "09713e14-8a54-474e-a48a-64a44426ede0",
+    "name": "HR",
+    "headcount": 72,
+    "healthScore": 93.1,
+    "createdAt": "2025-11-17T20:33:44.321402",
+    "updatedAt": "2025-11-17T20:33:44.321403"
+  },
+  {
+    "id": "8a4c8988-1213-4987-ad0d-641a679f8f8e",
+    "organizationId": "09713e14-8a54-474e-a48a-64a44426ede0",
+    "name": "Legal",
+    "headcount": 60,
+    "healthScore": 72.4,
+    "createdAt": "2025-11-17T20:33:44.321409",
+    "updatedAt": "2025-11-17T20:33:44.321410"
+  },
+  {
+    "id": "a5810941-47c4-483b-aede-ed7261d7d271",
+    "organizationId": "4ed7866c-d31b-42aa-8b74-5094e869c4d3",
+    "name": "Engineering",
+    "headcount": 198,
+    "healthScore": 90.6,
+    "createdAt": "2025-11-17T20:33:44.350242",
+    "updatedAt": "2025-11-17T20:33:44.350243"
+  },
+  {
+    "id": "d0fdd896-8a4c-4e2b-8a6b-de084e11e3f3",
+    "organizationId": "4ed7866c-d31b-42aa-8b74-5094e869c4d3",
+    "name": "Product",
+    "headcount": 30,
+    "healthScore": 74.0,
+    "createdAt": "2025-11-17T20:33:44.350249",
+    "updatedAt": "2025-11-17T20:33:44.350250"
+  },
+  {
+    "id": "53f6232a-8455-4ace-8076-833f8b114f74",
+    "organizationId": "4ed7866c-d31b-42aa-8b74-5094e869c4d3",
+    "name": "Design",
+    "headcount": 88,
+    "healthScore": 87.7,
+    "createdAt": "2025-11-17T20:33:44.350262",
+    "updatedAt": "2025-11-17T20:33:44.350263"
+  },
+  {
+    "id": "17401624-8e11-419a-95ee-066a7c05d2b1",
+    "organizationId": "4ed7866c-d31b-42aa-8b74-5094e869c4d3",
+    "name": "Marketing",
+    "headcount": 159,
+    "healthScore": 61.4,
+    "createdAt": "2025-11-17T20:33:44.350268",
+    "updatedAt": "2025-11-17T20:33:44.350269"
+  },
+  {
+    "id": "9ea6630d-e1a2-4389-9e08-1dc354c08f7e",
+    "organizationId": "4ed7866c-d31b-42aa-8b74-5094e869c4d3",
+    "name": "Sales",
+    "headcount": 153,
+    "healthScore": 82.7,
+    "createdAt": "2025-11-17T20:33:44.350282",
+    "updatedAt": "2025-11-17T20:33:44.350283"
+  },
+  {
+    "id": "e1265efb-7567-4ba4-a90f-99e2e1e695fa",
+    "organizationId": "4ed7866c-d31b-42aa-8b74-5094e869c4d3",
+    "name": "Customer Success",
+    "headcount": 160,
+    "healthScore": 90.9,
+    "createdAt": "2025-11-17T20:33:44.350291",
+    "updatedAt": "2025-11-17T20:33:44.350292"
+  },
+  {
+    "id": "a3770f11-df43-4956-ac87-0d72c30df3b9",
+    "organizationId": "4ed7866c-d31b-42aa-8b74-5094e869c4d3",
+    "name": "Operations",
+    "headcount": 117,
+    "healthScore": 89.6,
+    "createdAt": "2025-11-17T20:33:44.350298",
+    "updatedAt": "2025-11-17T20:33:44.350298"
+  },
+  {
+    "id": "cef534e5-a850-4b45-898f-43fc7e66ca97",
+    "organizationId": "4ed7866c-d31b-42aa-8b74-5094e869c4d3",
+    "name": "Finance",
+    "headcount": 23,
+    "healthScore": 61.3,
+    "createdAt": "2025-11-17T20:33:44.350304",
+    "updatedAt": "2025-11-17T20:33:44.350305"
+  },
+  {
+    "id": "3fe1da2f-9e01-4ed4-a29f-c70c396108be",
+    "organizationId": "4ed7866c-d31b-42aa-8b74-5094e869c4d3",
+    "name": "HR",
+    "headcount": 169,
+    "healthScore": 79.7,
+    "createdAt": "2025-11-17T20:33:44.350310",
+    "updatedAt": "2025-11-17T20:33:44.350311"
+  },
+  {
+    "id": "2101dc40-d44c-49d7-8f50-d3c03234eda3",
+    "organizationId": "4ed7866c-d31b-42aa-8b74-5094e869c4d3",
+    "name": "Legal",
+    "headcount": 26,
+    "healthScore": 72.7,
+    "createdAt": "2025-11-17T20:33:44.350327",
+    "updatedAt": "2025-11-17T20:33:44.350328"
+  },
+  {
+    "id": "bad3da12-62c7-46a2-a63c-856b8cb12ab3",
+    "organizationId": "543ad69e-2c6c-47b8-b2c1-b4a2238a5985",
+    "name": "Engineering",
+    "headcount": 85,
+    "healthScore": 76.5,
+    "createdAt": "2025-11-17T20:33:44.379327",
+    "updatedAt": "2025-11-17T20:33:44.379328"
+  },
+  {
+    "id": "e20c3c23-b28b-41f0-a48e-cbe1bc40cd15",
+    "organizationId": "543ad69e-2c6c-47b8-b2c1-b4a2238a5985",
+    "name": "Product",
+    "headcount": 167,
+    "healthScore": 81.5,
+    "createdAt": "2025-11-17T20:33:44.379335",
+    "updatedAt": "2025-11-17T20:33:44.379336"
+  },
+  {
+    "id": "70ccfe01-7895-465f-b91a-fc5eab665e00",
+    "organizationId": "543ad69e-2c6c-47b8-b2c1-b4a2238a5985",
+    "name": "Design",
+    "headcount": 121,
+    "healthScore": 95.0,
+    "createdAt": "2025-11-17T20:33:44.379350",
+    "updatedAt": "2025-11-17T20:33:44.379351"
+  },
+  {
+    "id": "b34c13eb-af28-4cf3-8777-725ff5acb088",
+    "organizationId": "543ad69e-2c6c-47b8-b2c1-b4a2238a5985",
+    "name": "Marketing",
+    "headcount": 195,
+    "healthScore": 77.1,
+    "createdAt": "2025-11-17T20:33:44.379357",
+    "updatedAt": "2025-11-17T20:33:44.379358"
+  },
+  {
+    "id": "495f2047-11b6-461e-ac74-1dc7e8297ee7",
+    "organizationId": "543ad69e-2c6c-47b8-b2c1-b4a2238a5985",
+    "name": "Sales",
+    "headcount": 192,
+    "healthScore": 60.1,
+    "createdAt": "2025-11-17T20:33:44.379364",
+    "updatedAt": "2025-11-17T20:33:44.379365"
+  },
+  {
+    "id": "66d8ad6a-e858-4947-9f37-17be214adc9c",
+    "organizationId": "543ad69e-2c6c-47b8-b2c1-b4a2238a5985",
+    "name": "Customer Success",
+    "headcount": 192,
+    "healthScore": 66.2,
+    "createdAt": "2025-11-17T20:33:44.379375",
+    "updatedAt": "2025-11-17T20:33:44.379376"
+  },
+  {
+    "id": "5c7dc213-48ad-4242-a1b6-97dbfd291e73",
+    "organizationId": "543ad69e-2c6c-47b8-b2c1-b4a2238a5985",
+    "name": "Operations",
+    "headcount": 155,
+    "healthScore": 67.4,
+    "createdAt": "2025-11-17T20:33:44.379387",
+    "updatedAt": "2025-11-17T20:33:44.379388"
+  },
+  {
+    "id": "5d9d246a-0d04-49b4-9d91-fbf01ce21672",
+    "organizationId": "543ad69e-2c6c-47b8-b2c1-b4a2238a5985",
+    "name": "Finance",
+    "headcount": 178,
+    "healthScore": 64.6,
+    "createdAt": "2025-11-17T20:33:44.379401",
+    "updatedAt": "2025-11-17T20:33:44.379402"
+  },
+  {
+    "id": "07c43579-2490-47a6-adcc-3185271b6fac",
+    "organizationId": "543ad69e-2c6c-47b8-b2c1-b4a2238a5985",
+    "name": "HR",
+    "headcount": 47,
+    "healthScore": 93.6,
+    "createdAt": "2025-11-17T20:33:44.379410",
+    "updatedAt": "2025-11-17T20:33:44.379410"
+  },
+  {
+    "id": "ccbc6a8d-b215-4157-87f6-a0d6221b0fc7",
+    "organizationId": "543ad69e-2c6c-47b8-b2c1-b4a2238a5985",
+    "name": "Legal",
+    "headcount": 169,
+    "healthScore": 81.8,
+    "createdAt": "2025-11-17T20:33:44.379420",
+    "updatedAt": "2025-11-17T20:33:44.379421"
+  },
+  {
+    "id": "f23efe58-f11d-4757-9680-3bc8d16e2fae",
+    "organizationId": "bc233657-babe-4732-b78f-26e216b55361",
+    "name": "Engineering",
+    "headcount": 130,
+    "healthScore": 85.4,
+    "createdAt": "2025-11-17T20:33:44.410300",
+    "updatedAt": "2025-11-17T20:33:44.410302"
+  },
+  {
+    "id": "96f4a579-05af-44ac-82e5-84db3a5c4bb2",
+    "organizationId": "bc233657-babe-4732-b78f-26e216b55361",
+    "name": "Product",
+    "headcount": 115,
+    "healthScore": 71.0,
+    "createdAt": "2025-11-17T20:33:44.410317",
+    "updatedAt": "2025-11-17T20:33:44.410319"
+  },
+  {
+    "id": "aa8382cb-dcbe-475e-aae2-5cd100398ce6",
+    "organizationId": "bc233657-babe-4732-b78f-26e216b55361",
+    "name": "Design",
+    "headcount": 22,
+    "healthScore": 82.2,
+    "createdAt": "2025-11-17T20:33:44.410329",
+    "updatedAt": "2025-11-17T20:33:44.410330"
+  },
+  {
+    "id": "134040c8-e74e-4e49-bbf0-ee5ca1373566",
+    "organizationId": "bc233657-babe-4732-b78f-26e216b55361",
+    "name": "Marketing",
+    "headcount": 67,
+    "healthScore": 90.4,
+    "createdAt": "2025-11-17T20:33:44.410337",
+    "updatedAt": "2025-11-17T20:33:44.410338"
+  },
+  {
+    "id": "23497c6a-d1ee-4c42-a36f-010c40b358db",
+    "organizationId": "bc233657-babe-4732-b78f-26e216b55361",
+    "name": "Sales",
+    "headcount": 139,
+    "healthScore": 78.8,
+    "createdAt": "2025-11-17T20:33:44.410344",
+    "updatedAt": "2025-11-17T20:33:44.410345"
+  },
+  {
+    "id": "ac9dd794-6300-4531-a8f0-74fc8ac4e923",
+    "organizationId": "bc233657-babe-4732-b78f-26e216b55361",
+    "name": "Customer Success",
+    "headcount": 28,
+    "healthScore": 72.7,
+    "createdAt": "2025-11-17T20:33:44.410355",
+    "updatedAt": "2025-11-17T20:33:44.410356"
+  },
+  {
+    "id": "d016c4e4-74f6-422e-9929-d87857c00c5c",
+    "organizationId": "bc233657-babe-4732-b78f-26e216b55361",
+    "name": "Operations",
+    "headcount": 42,
+    "healthScore": 83.2,
+    "createdAt": "2025-11-17T20:33:44.410362",
+    "updatedAt": "2025-11-17T20:33:44.410363"
+  },
+  {
+    "id": "593a3e84-9cd9-47b0-a457-bb79adb70b0f",
+    "organizationId": "bc233657-babe-4732-b78f-26e216b55361",
+    "name": "Finance",
+    "headcount": 61,
+    "healthScore": 93.7,
+    "createdAt": "2025-11-17T20:33:44.410374",
+    "updatedAt": "2025-11-17T20:33:44.410375"
+  },
+  {
+    "id": "56295ca0-b70c-470c-8b41-55d6d4b25465",
+    "organizationId": "bc233657-babe-4732-b78f-26e216b55361",
+    "name": "HR",
+    "headcount": 149,
+    "healthScore": 67.6,
+    "createdAt": "2025-11-17T20:33:44.410386",
+    "updatedAt": "2025-11-17T20:33:44.410387"
+  },
+  {
+    "id": "2633da6c-9456-41c0-9abd-f55f7a66a183",
+    "organizationId": "bc233657-babe-4732-b78f-26e216b55361",
+    "name": "Legal",
+    "headcount": 145,
+    "healthScore": 82.2,
+    "createdAt": "2025-11-17T20:33:44.410401",
+    "updatedAt": "2025-11-17T20:33:44.410402"
+  },
+  {
+    "id": "86b0a7af-7607-453e-9374-119fbd86e346",
+    "organizationId": "567c5c32-9f20-4cb6-9ef2-db2cc27266a5",
+    "name": "Engineering",
+    "headcount": 170,
+    "healthScore": 80.4,
+    "createdAt": "2025-11-17T20:33:44.443960",
+    "updatedAt": "2025-11-17T20:33:44.443961"
+  },
+  {
+    "id": "4152d4e1-bea6-4aa5-b15d-b5f9001a7ac3",
+    "organizationId": "567c5c32-9f20-4cb6-9ef2-db2cc27266a5",
+    "name": "Product",
+    "headcount": 58,
+    "healthScore": 86.9,
+    "createdAt": "2025-11-17T20:33:44.443968",
+    "updatedAt": "2025-11-17T20:33:44.443969"
+  },
+  {
+    "id": "39ffefd7-bdbc-41e1-a90c-bdcb90389958",
+    "organizationId": "567c5c32-9f20-4cb6-9ef2-db2cc27266a5",
+    "name": "Design",
+    "headcount": 120,
+    "healthScore": 82.9,
+    "createdAt": "2025-11-17T20:33:44.443977",
+    "updatedAt": "2025-11-17T20:33:44.443979"
+  },
+  {
+    "id": "a8a27bea-5e83-4802-b020-a211601fe222",
+    "organizationId": "567c5c32-9f20-4cb6-9ef2-db2cc27266a5",
+    "name": "Marketing",
+    "headcount": 135,
+    "healthScore": 69.3,
+    "createdAt": "2025-11-17T20:33:44.443992",
+    "updatedAt": "2025-11-17T20:33:44.443993"
+  },
+  {
+    "id": "3b7df199-194b-4150-ad91-8df7f721969f",
+    "organizationId": "567c5c32-9f20-4cb6-9ef2-db2cc27266a5",
+    "name": "Sales",
+    "headcount": 117,
+    "healthScore": 66.6,
+    "createdAt": "2025-11-17T20:33:44.444005",
+    "updatedAt": "2025-11-17T20:33:44.444006"
+  },
+  {
+    "id": "ebf661b9-23de-4f56-bd6d-4250d9545a53",
+    "organizationId": "567c5c32-9f20-4cb6-9ef2-db2cc27266a5",
+    "name": "Customer Success",
+    "headcount": 14,
+    "healthScore": 63.4,
+    "createdAt": "2025-11-17T20:33:44.444020",
+    "updatedAt": "2025-11-17T20:33:44.444021"
+  },
+  {
+    "id": "013bca28-5fdf-4f6b-8573-ea07021169ea",
+    "organizationId": "567c5c32-9f20-4cb6-9ef2-db2cc27266a5",
+    "name": "Operations",
+    "headcount": 89,
+    "healthScore": 61.1,
+    "createdAt": "2025-11-17T20:33:44.444032",
+    "updatedAt": "2025-11-17T20:33:44.444033"
+  },
+  {
+    "id": "cbbaa843-ef87-4cd0-8ec8-059a304939ff",
+    "organizationId": "567c5c32-9f20-4cb6-9ef2-db2cc27266a5",
+    "name": "Finance",
+    "headcount": 118,
+    "healthScore": 89.0,
+    "createdAt": "2025-11-17T20:33:44.444043",
+    "updatedAt": "2025-11-17T20:33:44.444044"
+  },
+  {
+    "id": "30e25605-7acc-483c-8046-e2336497dba7",
+    "organizationId": "567c5c32-9f20-4cb6-9ef2-db2cc27266a5",
+    "name": "HR",
+    "headcount": 144,
+    "healthScore": 60.3,
+    "createdAt": "2025-11-17T20:33:44.444054",
+    "updatedAt": "2025-11-17T20:33:44.444055"
+  },
+  {
+    "id": "c823ea2f-ed38-4050-9ebc-28f398cb7c6a",
+    "organizationId": "567c5c32-9f20-4cb6-9ef2-db2cc27266a5",
+    "name": "Legal",
+    "headcount": 125,
+    "healthScore": 75.6,
+    "createdAt": "2025-11-17T20:33:44.444063",
+    "updatedAt": "2025-11-17T20:33:44.444064"
+  },
+  {
+    "id": "7ce2b3a2-bc96-4469-ab25-c386af76d44e",
+    "organizationId": "f856ace8-12a1-4915-96b4-b915acb7f177",
+    "name": "Engineering",
+    "headcount": 110,
+    "healthScore": 61.0,
+    "createdAt": "2025-11-17T20:33:44.452977",
+    "updatedAt": "2025-11-17T20:33:44.452978"
+  },
+  {
+    "id": "f06e4393-c664-4536-818b-079281cc2c80",
+    "organizationId": "f856ace8-12a1-4915-96b4-b915acb7f177",
+    "name": "Product",
+    "headcount": 79,
+    "healthScore": 63.2,
+    "createdAt": "2025-11-17T20:33:44.452986",
+    "updatedAt": "2025-11-17T20:33:44.452987"
+  },
+  {
+    "id": "560e9f13-65a6-473f-80f4-b9082ef333d0",
+    "organizationId": "f856ace8-12a1-4915-96b4-b915acb7f177",
+    "name": "Design",
+    "headcount": 113,
+    "healthScore": 81.5,
+    "createdAt": "2025-11-17T20:33:44.452994",
+    "updatedAt": "2025-11-17T20:33:44.452995"
+  },
+  {
+    "id": "cc8aa86a-fd0b-46fd-87d8-370dc3cce48a",
+    "organizationId": "f856ace8-12a1-4915-96b4-b915acb7f177",
+    "name": "Marketing",
+    "headcount": 15,
+    "healthScore": 82.6,
+    "createdAt": "2025-11-17T20:33:44.453005",
+    "updatedAt": "2025-11-17T20:33:44.453006"
+  },
+  {
+    "id": "5b2bc483-d73c-4dbc-94f2-da0404b084ec",
+    "organizationId": "f856ace8-12a1-4915-96b4-b915acb7f177",
+    "name": "Sales",
+    "headcount": 54,
+    "healthScore": 76.0,
+    "createdAt": "2025-11-17T20:33:44.453017",
+    "updatedAt": "2025-11-17T20:33:44.453018"
+  },
+  {
+    "id": "1735214c-be5a-40be-80a2-8f964edbaae9",
+    "organizationId": "f856ace8-12a1-4915-96b4-b915acb7f177",
+    "name": "Customer Success",
+    "headcount": 45,
+    "healthScore": 77.6,
+    "createdAt": "2025-11-17T20:33:44.453039",
+    "updatedAt": "2025-11-17T20:33:44.453040"
+  },
+  {
+    "id": "5eb84767-aacd-4d40-bae2-be3798845fb2",
+    "organizationId": "f856ace8-12a1-4915-96b4-b915acb7f177",
+    "name": "Operations",
+    "headcount": 94,
+    "healthScore": 65.5,
+    "createdAt": "2025-11-17T20:33:44.453063",
+    "updatedAt": "2025-11-17T20:33:44.453066"
+  },
+  {
+    "id": "2b104fd8-b8e9-495e-9fd6-7f1fc5d14f20",
+    "organizationId": "f856ace8-12a1-4915-96b4-b915acb7f177",
+    "name": "Finance",
+    "headcount": 156,
+    "healthScore": 70.9,
+    "createdAt": "2025-11-17T20:33:44.453072",
+    "updatedAt": "2025-11-17T20:33:44.453072"
+  },
+  {
+    "id": "6ee05e30-d0dc-4709-ad18-9b1d26e152d4",
+    "organizationId": "f856ace8-12a1-4915-96b4-b915acb7f177",
+    "name": "HR",
+    "headcount": 199,
+    "healthScore": 77.6,
+    "createdAt": "2025-11-17T20:33:44.453084",
+    "updatedAt": "2025-11-17T20:33:44.453084"
+  },
+  {
+    "id": "2ca6d532-76ce-49fd-8528-11baff8e306d",
+    "organizationId": "f856ace8-12a1-4915-96b4-b915acb7f177",
+    "name": "Legal",
+    "headcount": 53,
+    "healthScore": 94.5,
+    "createdAt": "2025-11-17T20:33:44.453093",
+    "updatedAt": "2025-11-17T20:33:44.453094"
+  },
+  {
+    "id": "5f8b59f7-0677-4265-b492-0355e39aa7fa",
+    "organizationId": "271c5fe7-9739-419b-9031-53df2444ec52",
+    "name": "Engineering",
+    "headcount": 131,
+    "healthScore": 64.1,
+    "createdAt": "2025-11-17T20:33:44.471815",
+    "updatedAt": "2025-11-17T20:33:44.471817"
+  },
+  {
+    "id": "6d07076c-a38f-4e32-8452-f3251a85b2ce",
+    "organizationId": "271c5fe7-9739-419b-9031-53df2444ec52",
+    "name": "Product",
+    "headcount": 96,
+    "healthScore": 94.4,
+    "createdAt": "2025-11-17T20:33:44.471833",
+    "updatedAt": "2025-11-17T20:33:44.471835"
+  },
+  {
+    "id": "fc916d2e-2fdc-4f1b-bd13-262de323896a",
+    "organizationId": "271c5fe7-9739-419b-9031-53df2444ec52",
+    "name": "Design",
+    "headcount": 103,
+    "healthScore": 80.7,
+    "createdAt": "2025-11-17T20:33:44.471843",
+    "updatedAt": "2025-11-17T20:33:44.471845"
+  },
+  {
+    "id": "45e59243-c23e-44e0-9a81-fc8deff95526",
+    "organizationId": "271c5fe7-9739-419b-9031-53df2444ec52",
+    "name": "Marketing",
+    "headcount": 28,
+    "healthScore": 85.9,
+    "createdAt": "2025-11-17T20:33:44.471852",
+    "updatedAt": "2025-11-17T20:33:44.471853"
+  },
+  {
+    "id": "4e5fc066-1606-4839-bdda-bd896bb8f8ac",
+    "organizationId": "271c5fe7-9739-419b-9031-53df2444ec52",
+    "name": "Sales",
+    "headcount": 145,
+    "healthScore": 61.9,
+    "createdAt": "2025-11-17T20:33:44.471865",
+    "updatedAt": "2025-11-17T20:33:44.471866"
+  },
+  {
+    "id": "317eaca6-0839-4f42-b58d-e15e6c9bc7c1",
+    "organizationId": "271c5fe7-9739-419b-9031-53df2444ec52",
+    "name": "Customer Success",
+    "headcount": 114,
+    "healthScore": 63.6,
+    "createdAt": "2025-11-17T20:33:44.471880",
+    "updatedAt": "2025-11-17T20:33:44.471882"
+  },
+  {
+    "id": "2ebcb641-10f6-4ee8-8b70-74b06d6963b1",
+    "organizationId": "271c5fe7-9739-419b-9031-53df2444ec52",
+    "name": "Operations",
+    "headcount": 173,
+    "healthScore": 80.6,
+    "createdAt": "2025-11-17T20:33:44.471899",
+    "updatedAt": "2025-11-17T20:33:44.471901"
+  },
+  {
+    "id": "e0e5bbc8-b8bd-423b-a2d6-e3963e504eb7",
+    "organizationId": "271c5fe7-9739-419b-9031-53df2444ec52",
+    "name": "Finance",
+    "headcount": 19,
+    "healthScore": 71.0,
+    "createdAt": "2025-11-17T20:33:44.471915",
+    "updatedAt": "2025-11-17T20:33:44.471917"
+  },
+  {
+    "id": "f3dcd60b-ebd9-4caa-a88f-6e977f9d10f6",
+    "organizationId": "271c5fe7-9739-419b-9031-53df2444ec52",
+    "name": "HR",
+    "headcount": 74,
+    "healthScore": 68.2,
+    "createdAt": "2025-11-17T20:33:44.471931",
+    "updatedAt": "2025-11-17T20:33:44.471932"
+  },
+  {
+    "id": "3c52a94d-dac2-4547-9f2d-1fa4053ea3ad",
+    "organizationId": "271c5fe7-9739-419b-9031-53df2444ec52",
+    "name": "Legal",
+    "headcount": 54,
+    "healthScore": 67.3,
+    "createdAt": "2025-11-17T20:33:44.471943",
+    "updatedAt": "2025-11-17T20:33:44.471945"
+  },
+  {
+    "id": "08b908c4-661a-490e-97d7-311af9859544",
+    "organizationId": "06f99088-7e28-432c-b060-7420064cdb73",
+    "name": "Engineering",
+    "headcount": 191,
+    "healthScore": 82.5,
+    "createdAt": "2025-11-17T20:33:44.498828",
+    "updatedAt": "2025-11-17T20:33:44.498829"
+  },
+  {
+    "id": "a4e8ccca-5de9-4936-944f-c84ca4b96fa0",
+    "organizationId": "06f99088-7e28-432c-b060-7420064cdb73",
+    "name": "Product",
+    "headcount": 68,
+    "healthScore": 88.2,
+    "createdAt": "2025-11-17T20:33:44.498836",
+    "updatedAt": "2025-11-17T20:33:44.498837"
+  },
+  {
+    "id": "9ffe1d7e-67dc-463a-8121-930b0923db5b",
+    "organizationId": "06f99088-7e28-432c-b060-7420064cdb73",
+    "name": "Design",
+    "headcount": 75,
+    "healthScore": 66.3,
+    "createdAt": "2025-11-17T20:33:44.498844",
+    "updatedAt": "2025-11-17T20:33:44.498845"
+  },
+  {
+    "id": "e83c1c8e-9077-4835-94c9-08efd2ef1b9e",
+    "organizationId": "06f99088-7e28-432c-b060-7420064cdb73",
+    "name": "Marketing",
+    "headcount": 96,
+    "healthScore": 77.8,
+    "createdAt": "2025-11-17T20:33:44.498861",
+    "updatedAt": "2025-11-17T20:33:44.498862"
+  },
+  {
+    "id": "91834b93-da1f-40ec-ad2f-12a8c9f7102b",
+    "organizationId": "06f99088-7e28-432c-b060-7420064cdb73",
+    "name": "Sales",
+    "headcount": 71,
+    "healthScore": 65.7,
+    "createdAt": "2025-11-17T20:33:44.498869",
+    "updatedAt": "2025-11-17T20:33:44.498870"
+  },
+  {
+    "id": "e66f702a-79e0-4eb8-962f-46ba06517b98",
+    "organizationId": "06f99088-7e28-432c-b060-7420064cdb73",
+    "name": "Customer Success",
+    "headcount": 60,
+    "healthScore": 72.2,
+    "createdAt": "2025-11-17T20:33:44.498877",
+    "updatedAt": "2025-11-17T20:33:44.498878"
+  },
+  {
+    "id": "a74cedb8-bee4-4901-adc1-76606b13375f",
+    "organizationId": "06f99088-7e28-432c-b060-7420064cdb73",
+    "name": "Operations",
+    "headcount": 40,
+    "healthScore": 82.6,
+    "createdAt": "2025-11-17T20:33:44.498885",
+    "updatedAt": "2025-11-17T20:33:44.498886"
+  },
+  {
+    "id": "1f6faeba-5e70-47bc-a7ac-f01a21de9346",
+    "organizationId": "06f99088-7e28-432c-b060-7420064cdb73",
+    "name": "Finance",
+    "headcount": 100,
+    "healthScore": 83.1,
+    "createdAt": "2025-11-17T20:33:44.498896",
+    "updatedAt": "2025-11-17T20:33:44.498897"
+  },
+  {
+    "id": "a41b62fb-99ef-4416-8d24-94b73d1ed37d",
+    "organizationId": "06f99088-7e28-432c-b060-7420064cdb73",
+    "name": "HR",
+    "headcount": 102,
+    "healthScore": 87.8,
+    "createdAt": "2025-11-17T20:33:44.498903",
+    "updatedAt": "2025-11-17T20:33:44.498904"
+  },
+  {
+    "id": "17b0359d-1854-40c5-9369-651809a60c02",
+    "organizationId": "06f99088-7e28-432c-b060-7420064cdb73",
+    "name": "Legal",
+    "headcount": 115,
+    "healthScore": 63.0,
+    "createdAt": "2025-11-17T20:33:44.498909",
+    "updatedAt": "2025-11-17T20:33:44.498910"
+  },
+  {
+    "id": "61c2a561-5ac1-40d9-ab98-f595e7367748",
+    "organizationId": "f87be78c-30bd-4c50-b424-6bdf3a6902b1",
+    "name": "Engineering",
+    "headcount": 22,
+    "healthScore": 64.8,
+    "createdAt": "2025-11-17T20:33:44.542268",
+    "updatedAt": "2025-11-17T20:33:44.542270"
+  },
+  {
+    "id": "6b9fda9b-d5dd-4912-a10a-7edaec550b03",
+    "organizationId": "f87be78c-30bd-4c50-b424-6bdf3a6902b1",
+    "name": "Product",
+    "headcount": 85,
+    "healthScore": 87.0,
+    "createdAt": "2025-11-17T20:33:44.542285",
+    "updatedAt": "2025-11-17T20:33:44.542286"
+  },
+  {
+    "id": "08c436a8-34db-48f5-ab8e-3bfb662ed3dd",
+    "organizationId": "f87be78c-30bd-4c50-b424-6bdf3a6902b1",
+    "name": "Design",
+    "headcount": 116,
+    "healthScore": 81.5,
+    "createdAt": "2025-11-17T20:33:44.542295",
+    "updatedAt": "2025-11-17T20:33:44.542297"
+  },
+  {
+    "id": "18fdf206-49e8-4109-989d-a5120f832b24",
+    "organizationId": "f87be78c-30bd-4c50-b424-6bdf3a6902b1",
+    "name": "Marketing",
+    "headcount": 107,
+    "healthScore": 77.3,
+    "createdAt": "2025-11-17T20:33:44.542306",
+    "updatedAt": "2025-11-17T20:33:44.542307"
+  },
+  {
+    "id": "c2cf8e10-6e81-4f78-afc4-9458644a7576",
+    "organizationId": "f87be78c-30bd-4c50-b424-6bdf3a6902b1",
+    "name": "Sales",
+    "headcount": 156,
+    "healthScore": 83.8,
+    "createdAt": "2025-11-17T20:33:44.542316",
+    "updatedAt": "2025-11-17T20:33:44.542318"
+  },
+  {
+    "id": "7d1537ec-6df2-4904-a91a-7df167cb75c2",
+    "organizationId": "f87be78c-30bd-4c50-b424-6bdf3a6902b1",
+    "name": "Customer Success",
+    "headcount": 23,
+    "healthScore": 91.8,
+    "createdAt": "2025-11-17T20:33:44.542339",
+    "updatedAt": "2025-11-17T20:33:44.542341"
+  },
+  {
+    "id": "a08be0ea-015e-445d-95cf-617dd58a9acf",
+    "organizationId": "f87be78c-30bd-4c50-b424-6bdf3a6902b1",
+    "name": "Operations",
+    "headcount": 120,
+    "healthScore": 91.0,
+    "createdAt": "2025-11-17T20:33:44.542352",
+    "updatedAt": "2025-11-17T20:33:44.542354"
+  },
+  {
+    "id": "b38da761-4e9c-46e9-b641-db9a1eea3804",
+    "organizationId": "f87be78c-30bd-4c50-b424-6bdf3a6902b1",
+    "name": "Finance",
+    "headcount": 113,
+    "healthScore": 63.9,
+    "createdAt": "2025-11-17T20:33:44.542374",
+    "updatedAt": "2025-11-17T20:33:44.542376"
+  },
+  {
+    "id": "3a15750a-4765-4aa3-9048-ec2a44094a3f",
+    "organizationId": "f87be78c-30bd-4c50-b424-6bdf3a6902b1",
+    "name": "HR",
+    "headcount": 33,
+    "healthScore": 74.5,
+    "createdAt": "2025-11-17T20:33:44.542387",
+    "updatedAt": "2025-11-17T20:33:44.542389"
+  },
+  {
+    "id": "7e1abd17-ccd5-4641-a0eb-851ac7b2c138",
+    "organizationId": "f87be78c-30bd-4c50-b424-6bdf3a6902b1",
+    "name": "Legal",
+    "headcount": 95,
+    "healthScore": 68.0,
+    "createdAt": "2025-11-17T20:33:44.542407",
+    "updatedAt": "2025-11-17T20:33:44.542409"
+  },
+  {
+    "id": "e482478a-42ea-4aed-96b0-d9357e8cc53c",
+    "organizationId": "c37805f3-0cfa-4cf7-9328-d9b9514cfa0e",
+    "name": "Engineering",
+    "headcount": 104,
+    "healthScore": 92.3,
+    "createdAt": "2025-11-17T20:33:44.556954",
+    "updatedAt": "2025-11-17T20:33:44.556960"
+  },
+  {
+    "id": "ddf32dd2-374d-4d49-b2cd-5fee37695a9a",
+    "organizationId": "c37805f3-0cfa-4cf7-9328-d9b9514cfa0e",
+    "name": "Product",
+    "headcount": 69,
+    "healthScore": 80.8,
+    "createdAt": "2025-11-17T20:33:44.556968",
+    "updatedAt": "2025-11-17T20:33:44.556969"
+  },
+  {
+    "id": "5e8dea07-b729-433a-8d02-8964aaaabcff",
+    "organizationId": "c37805f3-0cfa-4cf7-9328-d9b9514cfa0e",
+    "name": "Design",
+    "headcount": 30,
+    "healthScore": 67.9,
+    "createdAt": "2025-11-17T20:33:44.556975",
+    "updatedAt": "2025-11-17T20:33:44.556976"
+  },
+  {
+    "id": "fc32267d-76a4-44dc-9e40-8f45bfb658bb",
+    "organizationId": "c37805f3-0cfa-4cf7-9328-d9b9514cfa0e",
+    "name": "Marketing",
+    "headcount": 139,
+    "healthScore": 64.4,
+    "createdAt": "2025-11-17T20:33:44.556981",
+    "updatedAt": "2025-11-17T20:33:44.556982"
+  },
+  {
+    "id": "353c27f9-d8ad-48a2-bc09-67074efeb4f5",
+    "organizationId": "c37805f3-0cfa-4cf7-9328-d9b9514cfa0e",
+    "name": "Sales",
+    "headcount": 11,
+    "healthScore": 63.9,
+    "createdAt": "2025-11-17T20:33:44.556988",
+    "updatedAt": "2025-11-17T20:33:44.556988"
+  },
+  {
+    "id": "41d98d0a-db8e-43a6-8ecd-d0230503c93e",
+    "organizationId": "c37805f3-0cfa-4cf7-9328-d9b9514cfa0e",
+    "name": "Customer Success",
+    "headcount": 60,
+    "healthScore": 84.5,
+    "createdAt": "2025-11-17T20:33:44.556997",
+    "updatedAt": "2025-11-17T20:33:44.556998"
+  },
+  {
+    "id": "83028cde-a0a6-46ca-8752-8febaad45d06",
+    "organizationId": "c37805f3-0cfa-4cf7-9328-d9b9514cfa0e",
+    "name": "Operations",
+    "headcount": 152,
+    "healthScore": 63.5,
+    "createdAt": "2025-11-17T20:33:44.557004",
+    "updatedAt": "2025-11-17T20:33:44.557005"
+  },
+  {
+    "id": "746cf26b-0f26-4ea5-a705-b3034a44f5d2",
+    "organizationId": "c37805f3-0cfa-4cf7-9328-d9b9514cfa0e",
+    "name": "Finance",
+    "headcount": 131,
+    "healthScore": 89.0,
+    "createdAt": "2025-11-17T20:33:44.557010",
+    "updatedAt": "2025-11-17T20:33:44.557011"
+  },
+  {
+    "id": "85d13d7d-073f-4220-b765-53e31d4f2e51",
+    "organizationId": "c37805f3-0cfa-4cf7-9328-d9b9514cfa0e",
+    "name": "HR",
+    "headcount": 60,
+    "healthScore": 82.1,
+    "createdAt": "2025-11-17T20:33:44.557019",
+    "updatedAt": "2025-11-17T20:33:44.557020"
+  },
+  {
+    "id": "32264dcd-a1fc-4a7d-9dd3-ad95adb36854",
+    "organizationId": "c37805f3-0cfa-4cf7-9328-d9b9514cfa0e",
+    "name": "Legal",
+    "headcount": 30,
+    "healthScore": 72.7,
+    "createdAt": "2025-11-17T20:33:44.557026",
+    "updatedAt": "2025-11-17T20:33:44.557026"
+  },
+  {
+    "id": "e6c7c003-0cd6-49d2-acbc-4992a030efaf",
+    "organizationId": "bcf20639-4502-44da-9159-c857efba54c0",
+    "name": "Engineering",
+    "headcount": 31,
+    "healthScore": 64.0,
+    "createdAt": "2025-11-17T20:33:44.568254",
+    "updatedAt": "2025-11-17T20:33:44.568255"
+  },
+  {
+    "id": "5cd985c5-ff38-4979-add0-5e41e54a14a9",
+    "organizationId": "bcf20639-4502-44da-9159-c857efba54c0",
+    "name": "Product",
+    "headcount": 99,
+    "healthScore": 72.3,
+    "createdAt": "2025-11-17T20:33:44.568262",
+    "updatedAt": "2025-11-17T20:33:44.568263"
+  },
+  {
+    "id": "dc82aff5-c9b6-4653-83f8-cab4e6774c35",
+    "organizationId": "bcf20639-4502-44da-9159-c857efba54c0",
+    "name": "Design",
+    "headcount": 169,
+    "healthScore": 65.3,
+    "createdAt": "2025-11-17T20:33:44.568274",
+    "updatedAt": "2025-11-17T20:33:44.568275"
+  },
+  {
+    "id": "a6422183-0c96-4715-8f03-adbc97309a79",
+    "organizationId": "bcf20639-4502-44da-9159-c857efba54c0",
+    "name": "Marketing",
+    "headcount": 174,
+    "healthScore": 87.1,
+    "createdAt": "2025-11-17T20:33:44.568281",
+    "updatedAt": "2025-11-17T20:33:44.568282"
+  },
+  {
+    "id": "3a096c58-b6fc-4d5d-9c63-9ee4bd7f5c2a",
+    "organizationId": "bcf20639-4502-44da-9159-c857efba54c0",
+    "name": "Sales",
+    "headcount": 133,
+    "healthScore": 63.0,
+    "createdAt": "2025-11-17T20:33:44.568288",
+    "updatedAt": "2025-11-17T20:33:44.568289"
+  },
+  {
+    "id": "6f3e790d-7560-4367-9b40-a5e8b727568d",
+    "organizationId": "bcf20639-4502-44da-9159-c857efba54c0",
+    "name": "Customer Success",
+    "headcount": 117,
+    "healthScore": 73.0,
+    "createdAt": "2025-11-17T20:33:44.568297",
+    "updatedAt": "2025-11-17T20:33:44.568297"
+  },
+  {
+    "id": "049faa89-6269-4fec-9c07-5b4f16568515",
+    "organizationId": "bcf20639-4502-44da-9159-c857efba54c0",
+    "name": "Operations",
+    "headcount": 126,
+    "healthScore": 87.3,
+    "createdAt": "2025-11-17T20:33:44.568304",
+    "updatedAt": "2025-11-17T20:33:44.568305"
+  },
+  {
+    "id": "d0c5af54-3215-4397-97ce-3f20fcc895ba",
+    "organizationId": "bcf20639-4502-44da-9159-c857efba54c0",
+    "name": "Finance",
+    "headcount": 24,
+    "healthScore": 93.4,
+    "createdAt": "2025-11-17T20:33:44.568320",
+    "updatedAt": "2025-11-17T20:33:44.568321"
+  },
+  {
+    "id": "ee31d932-7a33-4681-8f84-d6388282a6bb",
+    "organizationId": "bcf20639-4502-44da-9159-c857efba54c0",
+    "name": "HR",
+    "headcount": 63,
+    "healthScore": 85.3,
+    "createdAt": "2025-11-17T20:33:44.568326",
+    "updatedAt": "2025-11-17T20:33:44.568327"
+  },
+  {
+    "id": "dd27c295-6369-4b95-af5a-7d32355d3cfb",
+    "organizationId": "bcf20639-4502-44da-9159-c857efba54c0",
+    "name": "Legal",
+    "headcount": 172,
+    "healthScore": 74.9,
+    "createdAt": "2025-11-17T20:33:44.568339",
+    "updatedAt": "2025-11-17T20:33:44.568340"
+  },
+  {
+    "id": "4d945278-f51a-46b2-b46c-4814f9148a79",
+    "organizationId": "921471e5-440b-43b6-b0a8-66de633bd0f2",
+    "name": "Engineering",
+    "headcount": 51,
+    "healthScore": 72.6,
+    "createdAt": "2025-11-17T20:33:44.583668",
+    "updatedAt": "2025-11-17T20:33:44.583669"
+  },
+  {
+    "id": "a591cbaf-f54f-4891-9d16-477fb6fc38f8",
+    "organizationId": "921471e5-440b-43b6-b0a8-66de633bd0f2",
+    "name": "Product",
+    "headcount": 151,
+    "healthScore": 92.1,
+    "createdAt": "2025-11-17T20:33:44.583675",
+    "updatedAt": "2025-11-17T20:33:44.583676"
+  },
+  {
+    "id": "8aa31abf-6a3d-46cf-bd9a-aade62dabd3c",
+    "organizationId": "921471e5-440b-43b6-b0a8-66de633bd0f2",
+    "name": "Design",
+    "headcount": 108,
+    "healthScore": 79.3,
+    "createdAt": "2025-11-17T20:33:44.583683",
+    "updatedAt": "2025-11-17T20:33:44.583683"
+  },
+  {
+    "id": "ca8b8c4a-ac3b-4866-bb56-56dbf87a9fc7",
+    "organizationId": "921471e5-440b-43b6-b0a8-66de633bd0f2",
+    "name": "Marketing",
+    "headcount": 53,
+    "healthScore": 84.7,
+    "createdAt": "2025-11-17T20:33:44.583694",
+    "updatedAt": "2025-11-17T20:33:44.583696"
+  },
+  {
+    "id": "8eb28911-6913-401b-ae45-cef6ad6ec652",
+    "organizationId": "921471e5-440b-43b6-b0a8-66de633bd0f2",
+    "name": "Sales",
+    "headcount": 71,
+    "healthScore": 85.6,
+    "createdAt": "2025-11-17T20:33:44.583708",
+    "updatedAt": "2025-11-17T20:33:44.583709"
+  },
+  {
+    "id": "a164c881-2cb7-4adf-885f-13a4c124cce7",
+    "organizationId": "921471e5-440b-43b6-b0a8-66de633bd0f2",
+    "name": "Customer Success",
+    "headcount": 21,
+    "healthScore": 79.3,
+    "createdAt": "2025-11-17T20:33:44.583720",
+    "updatedAt": "2025-11-17T20:33:44.583721"
+  },
+  {
+    "id": "6d2a0b67-be6a-4bb9-91f9-463714b1f312",
+    "organizationId": "921471e5-440b-43b6-b0a8-66de633bd0f2",
+    "name": "Operations",
+    "headcount": 96,
+    "healthScore": 66.1,
+    "createdAt": "2025-11-17T20:33:44.583727",
+    "updatedAt": "2025-11-17T20:33:44.583728"
+  },
+  {
+    "id": "aa8a02e8-9210-4cbe-bf50-3f5125c0e91b",
+    "organizationId": "921471e5-440b-43b6-b0a8-66de633bd0f2",
+    "name": "Finance",
+    "headcount": 140,
+    "healthScore": 73.4,
+    "createdAt": "2025-11-17T20:33:44.583738",
+    "updatedAt": "2025-11-17T20:33:44.583741"
+  },
+  {
+    "id": "89facda2-e957-40c8-88d0-e48b31b65880",
+    "organizationId": "921471e5-440b-43b6-b0a8-66de633bd0f2",
+    "name": "HR",
+    "headcount": 118,
+    "healthScore": 94.3,
+    "createdAt": "2025-11-17T20:33:44.583747",
+    "updatedAt": "2025-11-17T20:33:44.583748"
+  },
+  {
+    "id": "b08be2ed-df0d-4f6e-9eb6-736a4c78bab1",
+    "organizationId": "921471e5-440b-43b6-b0a8-66de633bd0f2",
+    "name": "Legal",
+    "headcount": 68,
+    "healthScore": 61.3,
+    "createdAt": "2025-11-17T20:33:44.583755",
+    "updatedAt": "2025-11-17T20:33:44.583755"
+  },
+  {
+    "id": "79256b8a-6c79-4f49-95f3-e692554c0f66",
+    "organizationId": "df2b6147-118d-4f62-b719-a077a69bf8bc",
+    "name": "Engineering",
+    "headcount": 66,
+    "healthScore": 89.8,
+    "createdAt": "2025-11-17T20:33:44.623067",
+    "updatedAt": "2025-11-17T20:33:44.623068"
+  },
+  {
+    "id": "92fb04c5-9f9f-4102-8e80-7f454cf1a571",
+    "organizationId": "df2b6147-118d-4f62-b719-a077a69bf8bc",
+    "name": "Product",
+    "headcount": 81,
+    "healthScore": 89.6,
+    "createdAt": "2025-11-17T20:33:44.623080",
+    "updatedAt": "2025-11-17T20:33:44.623081"
+  },
+  {
+    "id": "3a22218b-b587-4cb4-9902-04f5aac1a0d3",
+    "organizationId": "df2b6147-118d-4f62-b719-a077a69bf8bc",
+    "name": "Design",
+    "headcount": 150,
+    "healthScore": 65.2,
+    "createdAt": "2025-11-17T20:33:44.623088",
+    "updatedAt": "2025-11-17T20:33:44.623089"
+  },
+  {
+    "id": "5728be00-447c-4d86-b672-01cd83f1f17c",
+    "organizationId": "df2b6147-118d-4f62-b719-a077a69bf8bc",
+    "name": "Marketing",
+    "headcount": 103,
+    "healthScore": 82.7,
+    "createdAt": "2025-11-17T20:33:44.623103",
+    "updatedAt": "2025-11-17T20:33:44.623104"
+  },
+  {
+    "id": "7e3b5f1c-a557-4d45-8ce5-cc25f2211e48",
+    "organizationId": "df2b6147-118d-4f62-b719-a077a69bf8bc",
+    "name": "Sales",
+    "headcount": 68,
+    "healthScore": 69.0,
+    "createdAt": "2025-11-17T20:33:44.623110",
+    "updatedAt": "2025-11-17T20:33:44.623111"
+  },
+  {
+    "id": "210e1706-78e5-4049-aad7-ee96116774ea",
+    "organizationId": "df2b6147-118d-4f62-b719-a077a69bf8bc",
+    "name": "Customer Success",
+    "headcount": 53,
+    "healthScore": 94.1,
+    "createdAt": "2025-11-17T20:33:44.623130",
+    "updatedAt": "2025-11-17T20:33:44.623131"
+  },
+  {
+    "id": "5edac16c-4d41-41e8-850d-4cd6fda022f0",
+    "organizationId": "df2b6147-118d-4f62-b719-a077a69bf8bc",
+    "name": "Operations",
+    "headcount": 42,
+    "healthScore": 77.5,
+    "createdAt": "2025-11-17T20:33:44.623160",
+    "updatedAt": "2025-11-17T20:33:44.623161"
+  },
+  {
+    "id": "bdeb322a-2aba-4dac-8c9b-07b1895720ef",
+    "organizationId": "df2b6147-118d-4f62-b719-a077a69bf8bc",
+    "name": "Finance",
+    "headcount": 32,
+    "healthScore": 89.5,
+    "createdAt": "2025-11-17T20:33:44.623168",
+    "updatedAt": "2025-11-17T20:33:44.623169"
+  },
+  {
+    "id": "72737eae-17f2-498c-869a-4aa66f2a0e57",
+    "organizationId": "df2b6147-118d-4f62-b719-a077a69bf8bc",
+    "name": "HR",
+    "headcount": 124,
+    "healthScore": 70.1,
+    "createdAt": "2025-11-17T20:33:44.623176",
+    "updatedAt": "2025-11-17T20:33:44.623177"
+  },
+  {
+    "id": "05695249-1ad7-4484-8507-5af72c8c937e",
+    "organizationId": "df2b6147-118d-4f62-b719-a077a69bf8bc",
+    "name": "Legal",
+    "headcount": 27,
+    "healthScore": 85.2,
+    "createdAt": "2025-11-17T20:33:44.623185",
+    "updatedAt": "2025-11-17T20:33:44.623186"
+  },
+  {
+    "id": "7fbfe58b-a899-4a10-970d-a5e4d7e94cfa",
+    "organizationId": "a1fd2ec2-6c83-478c-97a5-d9140fce1b05",
+    "name": "Engineering",
+    "headcount": 112,
+    "healthScore": 90.6,
+    "createdAt": "2025-11-17T20:33:44.658472",
+    "updatedAt": "2025-11-17T20:33:44.658474"
+  },
+  {
+    "id": "422c4858-8d30-4b6a-8ef9-d0fdb7b711f6",
+    "organizationId": "a1fd2ec2-6c83-478c-97a5-d9140fce1b05",
+    "name": "Product",
+    "headcount": 97,
+    "healthScore": 81.6,
+    "createdAt": "2025-11-17T20:33:44.658483",
+    "updatedAt": "2025-11-17T20:33:44.658484"
+  },
+  {
+    "id": "2b37a3c2-25bd-40a3-9593-66a41cd4f993",
+    "organizationId": "a1fd2ec2-6c83-478c-97a5-d9140fce1b05",
+    "name": "Design",
+    "headcount": 107,
+    "healthScore": 83.2,
+    "createdAt": "2025-11-17T20:33:44.658490",
+    "updatedAt": "2025-11-17T20:33:44.658491"
+  },
+  {
+    "id": "a3b4553b-bcd8-46de-a266-75f663259939",
+    "organizationId": "a1fd2ec2-6c83-478c-97a5-d9140fce1b05",
+    "name": "Marketing",
+    "headcount": 42,
+    "healthScore": 73.2,
+    "createdAt": "2025-11-17T20:33:44.658497",
+    "updatedAt": "2025-11-17T20:33:44.658498"
+  },
+  {
+    "id": "8a32925d-c969-4bc3-b127-c3271f8faf47",
+    "organizationId": "a1fd2ec2-6c83-478c-97a5-d9140fce1b05",
+    "name": "Sales",
+    "headcount": 71,
+    "healthScore": 89.6,
+    "createdAt": "2025-11-17T20:33:44.658506",
+    "updatedAt": "2025-11-17T20:33:44.658507"
+  },
+  {
+    "id": "b713eb00-0044-474a-abf5-b2a35dbc012f",
+    "organizationId": "a1fd2ec2-6c83-478c-97a5-d9140fce1b05",
+    "name": "Customer Success",
+    "headcount": 122,
+    "healthScore": 68.8,
+    "createdAt": "2025-11-17T20:33:44.658516",
+    "updatedAt": "2025-11-17T20:33:44.658517"
+  },
+  {
+    "id": "ac71565d-fe42-40d9-a71c-44fe8a045fc7",
+    "organizationId": "a1fd2ec2-6c83-478c-97a5-d9140fce1b05",
+    "name": "Operations",
+    "headcount": 105,
+    "healthScore": 88.1,
+    "createdAt": "2025-11-17T20:33:44.658523",
+    "updatedAt": "2025-11-17T20:33:44.658523"
+  },
+  {
+    "id": "e981ddcd-17b3-43e0-84f3-2a3b1d36dbff",
+    "organizationId": "a1fd2ec2-6c83-478c-97a5-d9140fce1b05",
+    "name": "Finance",
+    "headcount": 60,
+    "healthScore": 94.2,
+    "createdAt": "2025-11-17T20:33:44.658546",
+    "updatedAt": "2025-11-17T20:33:44.658547"
+  },
+  {
+    "id": "3857931a-bdaa-4165-ba3c-32a301337404",
+    "organizationId": "a1fd2ec2-6c83-478c-97a5-d9140fce1b05",
+    "name": "HR",
+    "headcount": 15,
+    "healthScore": 94.5,
+    "createdAt": "2025-11-17T20:33:44.658554",
+    "updatedAt": "2025-11-17T20:33:44.658555"
+  },
+  {
+    "id": "b5b3d11b-476b-4a7d-9db9-67606197ce2c",
+    "organizationId": "a1fd2ec2-6c83-478c-97a5-d9140fce1b05",
+    "name": "Legal",
+    "headcount": 75,
+    "healthScore": 81.4,
+    "createdAt": "2025-11-17T20:33:44.658564",
+    "updatedAt": "2025-11-17T20:33:44.658565"
+  },
+  {
+    "id": "24f390b4-f929-4468-8873-a66d53da0f33",
+    "organizationId": "e0d4c03d-9843-429e-a685-8efbd726dab3",
+    "name": "Engineering",
+    "headcount": 99,
+    "healthScore": 84.1,
+    "createdAt": "2025-11-17T20:33:44.671796",
+    "updatedAt": "2025-11-17T20:33:44.671797"
+  },
+  {
+    "id": "aa5ae811-1b6e-4e4e-9240-744bcb6d846c",
+    "organizationId": "e0d4c03d-9843-429e-a685-8efbd726dab3",
+    "name": "Product",
+    "headcount": 128,
+    "healthScore": 93.1,
+    "createdAt": "2025-11-17T20:33:44.671811",
+    "updatedAt": "2025-11-17T20:33:44.671815"
+  },
+  {
+    "id": "8caddfcb-7e4a-4f70-bb4e-fdb24d1e3122",
+    "organizationId": "e0d4c03d-9843-429e-a685-8efbd726dab3",
+    "name": "Design",
+    "headcount": 89,
+    "healthScore": 64.1,
+    "createdAt": "2025-11-17T20:33:44.671821",
+    "updatedAt": "2025-11-17T20:33:44.671822"
+  },
+  {
+    "id": "a9f3aef0-2ba1-4829-884f-2175f10ad684",
+    "organizationId": "e0d4c03d-9843-429e-a685-8efbd726dab3",
+    "name": "Marketing",
+    "headcount": 135,
+    "healthScore": 90.5,
+    "createdAt": "2025-11-17T20:33:44.671832",
+    "updatedAt": "2025-11-17T20:33:44.671833"
+  },
+  {
+    "id": "29998b56-f1df-4375-a150-6481a87ebce5",
+    "organizationId": "e0d4c03d-9843-429e-a685-8efbd726dab3",
+    "name": "Sales",
+    "headcount": 67,
+    "healthScore": 94.1,
+    "createdAt": "2025-11-17T20:33:44.671840",
+    "updatedAt": "2025-11-17T20:33:44.671840"
+  },
+  {
+    "id": "4d799a0c-4d14-40fc-964b-630500926f8b",
+    "organizationId": "e0d4c03d-9843-429e-a685-8efbd726dab3",
+    "name": "Customer Success",
+    "headcount": 189,
+    "healthScore": 71.3,
+    "createdAt": "2025-11-17T20:33:44.671854",
+    "updatedAt": "2025-11-17T20:33:44.671855"
+  },
+  {
+    "id": "7f369307-3508-490f-99e4-2c9cfb7bfda8",
+    "organizationId": "e0d4c03d-9843-429e-a685-8efbd726dab3",
+    "name": "Operations",
+    "headcount": 155,
+    "healthScore": 79.7,
+    "createdAt": "2025-11-17T20:33:44.671866",
+    "updatedAt": "2025-11-17T20:33:44.671867"
+  },
+  {
+    "id": "7c80715c-d58e-4cce-a242-80e400cf075c",
+    "organizationId": "e0d4c03d-9843-429e-a685-8efbd726dab3",
+    "name": "Finance",
+    "headcount": 166,
+    "healthScore": 73.3,
+    "createdAt": "2025-11-17T20:33:44.671876",
+    "updatedAt": "2025-11-17T20:33:44.671877"
+  },
+  {
+    "id": "1c4b8ffc-765c-471e-bced-7ed08c7be2ef",
+    "organizationId": "e0d4c03d-9843-429e-a685-8efbd726dab3",
+    "name": "HR",
+    "headcount": 171,
+    "healthScore": 84.2,
+    "createdAt": "2025-11-17T20:33:44.671883",
+    "updatedAt": "2025-11-17T20:33:44.671884"
+  },
+  {
+    "id": "bdc3f37f-dd55-4183-9790-fa4637c0f310",
+    "organizationId": "e0d4c03d-9843-429e-a685-8efbd726dab3",
+    "name": "Legal",
+    "headcount": 117,
+    "healthScore": 80.2,
+    "createdAt": "2025-11-17T20:33:44.671892",
+    "updatedAt": "2025-11-17T20:33:44.671893"
+  },
+  {
+    "id": "b957e47c-313b-4fa7-b625-4554f8e0fdb3",
+    "organizationId": "ac722a25-e4f0-4609-b4dd-14a13dfead9f",
+    "name": "Engineering",
+    "headcount": 47,
+    "healthScore": 64.9,
+    "createdAt": "2025-11-17T20:33:44.694424",
+    "updatedAt": "2025-11-17T20:33:44.694425"
+  },
+  {
+    "id": "11bf67a8-eaed-4791-92c6-75c7eeb09bce",
+    "organizationId": "ac722a25-e4f0-4609-b4dd-14a13dfead9f",
+    "name": "Product",
+    "headcount": 158,
+    "healthScore": 92.8,
+    "createdAt": "2025-11-17T20:33:44.694434",
+    "updatedAt": "2025-11-17T20:33:44.694435"
+  },
+  {
+    "id": "f4a3a4c7-1c77-4b15-8097-2d2fe6ffcdc8",
+    "organizationId": "ac722a25-e4f0-4609-b4dd-14a13dfead9f",
+    "name": "Design",
+    "headcount": 178,
+    "healthScore": 71.6,
+    "createdAt": "2025-11-17T20:33:44.694441",
+    "updatedAt": "2025-11-17T20:33:44.694442"
+  },
+  {
+    "id": "7cb371f7-d04f-44c3-ae4a-848c5ac897fa",
+    "organizationId": "ac722a25-e4f0-4609-b4dd-14a13dfead9f",
+    "name": "Marketing",
+    "headcount": 137,
+    "healthScore": 89.5,
+    "createdAt": "2025-11-17T20:33:44.694456",
+    "updatedAt": "2025-11-17T20:33:44.694457"
+  },
+  {
+    "id": "b77acb35-a4ac-43d0-9390-04dad661ebb6",
+    "organizationId": "ac722a25-e4f0-4609-b4dd-14a13dfead9f",
+    "name": "Sales",
+    "headcount": 181,
+    "healthScore": 66.9,
+    "createdAt": "2025-11-17T20:33:44.694463",
+    "updatedAt": "2025-11-17T20:33:44.694463"
+  },
+  {
+    "id": "b8d7c62c-9c20-402a-a147-7eac7c523ca5",
+    "organizationId": "ac722a25-e4f0-4609-b4dd-14a13dfead9f",
+    "name": "Customer Success",
+    "headcount": 40,
+    "healthScore": 84.0,
+    "createdAt": "2025-11-17T20:33:44.694475",
+    "updatedAt": "2025-11-17T20:33:44.694476"
+  },
+  {
+    "id": "e150d38d-ea04-40c6-a567-4ebd45356a42",
+    "organizationId": "ac722a25-e4f0-4609-b4dd-14a13dfead9f",
+    "name": "Operations",
+    "headcount": 51,
+    "healthScore": 79.2,
+    "createdAt": "2025-11-17T20:33:44.694481",
+    "updatedAt": "2025-11-17T20:33:44.694482"
+  },
+  {
+    "id": "89b98183-5e4a-4b5e-a894-0484b14f0fd0",
+    "organizationId": "ac722a25-e4f0-4609-b4dd-14a13dfead9f",
+    "name": "Finance",
+    "headcount": 38,
+    "healthScore": 76.0,
+    "createdAt": "2025-11-17T20:33:44.694489",
+    "updatedAt": "2025-11-17T20:33:44.694490"
+  },
+  {
+    "id": "4d6e8b28-b0fb-43e9-b652-e4103d1bfbd0",
+    "organizationId": "ac722a25-e4f0-4609-b4dd-14a13dfead9f",
+    "name": "HR",
+    "headcount": 192,
+    "healthScore": 87.7,
+    "createdAt": "2025-11-17T20:33:44.694496",
+    "updatedAt": "2025-11-17T20:33:44.694496"
+  },
+  {
+    "id": "e3926614-f3ba-4d5c-bf99-7c3ec87a3931",
+    "organizationId": "ac722a25-e4f0-4609-b4dd-14a13dfead9f",
+    "name": "Legal",
+    "headcount": 129,
+    "healthScore": 77.3,
+    "createdAt": "2025-11-17T20:33:44.694502",
+    "updatedAt": "2025-11-17T20:33:44.694503"
+  },
+  {
+    "id": "6615b9fc-4862-4c3b-a9de-31c506e08072",
+    "organizationId": "34e4bbed-be9a-4e32-a676-9d1883ce1bbe",
+    "name": "Engineering",
+    "headcount": 159,
+    "healthScore": 83.7,
+    "createdAt": "2025-11-17T20:33:44.703275",
+    "updatedAt": "2025-11-17T20:33:44.703276"
+  },
+  {
+    "id": "a9bcf6de-e6a9-42b1-8d10-4a7af21f0352",
+    "organizationId": "34e4bbed-be9a-4e32-a676-9d1883ce1bbe",
+    "name": "Product",
+    "headcount": 44,
+    "healthScore": 75.9,
+    "createdAt": "2025-11-17T20:33:44.703284",
+    "updatedAt": "2025-11-17T20:33:44.703285"
+  },
+  {
+    "id": "09459c58-dd69-49b3-aaf8-9af6538196a8",
+    "organizationId": "34e4bbed-be9a-4e32-a676-9d1883ce1bbe",
+    "name": "Design",
+    "headcount": 152,
+    "healthScore": 72.1,
+    "createdAt": "2025-11-17T20:33:44.703291",
+    "updatedAt": "2025-11-17T20:33:44.703292"
+  },
+  {
+    "id": "67cbd23a-2337-4f1e-a2f0-4294bb788608",
+    "organizationId": "34e4bbed-be9a-4e32-a676-9d1883ce1bbe",
+    "name": "Marketing",
+    "headcount": 62,
+    "healthScore": 68.9,
+    "createdAt": "2025-11-17T20:33:44.703305",
+    "updatedAt": "2025-11-17T20:33:44.703306"
+  },
+  {
+    "id": "85cd3569-6d2a-4ea5-ae00-0b10d0740f41",
+    "organizationId": "34e4bbed-be9a-4e32-a676-9d1883ce1bbe",
+    "name": "Sales",
+    "headcount": 129,
+    "healthScore": 66.6,
+    "createdAt": "2025-11-17T20:33:44.703314",
+    "updatedAt": "2025-11-17T20:33:44.703315"
+  },
+  {
+    "id": "6d7142bc-4347-4458-83da-ca6ecc9bc0ad",
+    "organizationId": "34e4bbed-be9a-4e32-a676-9d1883ce1bbe",
+    "name": "Customer Success",
+    "headcount": 79,
+    "healthScore": 90.1,
+    "createdAt": "2025-11-17T20:33:44.703325",
+    "updatedAt": "2025-11-17T20:33:44.703326"
+  },
+  {
+    "id": "4bf7480a-a758-40e5-9a60-854e49f9a5f9",
+    "organizationId": "34e4bbed-be9a-4e32-a676-9d1883ce1bbe",
+    "name": "Operations",
+    "headcount": 62,
+    "healthScore": 77.9,
+    "createdAt": "2025-11-17T20:33:44.703333",
+    "updatedAt": "2025-11-17T20:33:44.703334"
+  },
+  {
+    "id": "d18f2416-d17a-4348-9833-91f8d87672b6",
+    "organizationId": "34e4bbed-be9a-4e32-a676-9d1883ce1bbe",
+    "name": "Finance",
+    "headcount": 107,
+    "healthScore": 91.2,
+    "createdAt": "2025-11-17T20:33:44.703340",
+    "updatedAt": "2025-11-17T20:33:44.703341"
+  },
+  {
+    "id": "75125a78-6086-447d-9e52-368993977da1",
+    "organizationId": "34e4bbed-be9a-4e32-a676-9d1883ce1bbe",
+    "name": "HR",
+    "headcount": 169,
+    "healthScore": 82.2,
+    "createdAt": "2025-11-17T20:33:44.703351",
+    "updatedAt": "2025-11-17T20:33:44.703352"
+  },
+  {
+    "id": "5629ca70-63e8-41e3-8557-ddb2165120e2",
+    "organizationId": "34e4bbed-be9a-4e32-a676-9d1883ce1bbe",
+    "name": "Legal",
+    "headcount": 51,
+    "healthScore": 70.7,
+    "createdAt": "2025-11-17T20:33:44.703358",
+    "updatedAt": "2025-11-17T20:33:44.703359"
+  },
+  {
+    "id": "0f4c0ce6-b465-4f0a-83bd-031e28172832",
+    "organizationId": "b2507ebb-d326-47be-be1e-9a09a01657fa",
+    "name": "Engineering",
+    "headcount": 142,
+    "healthScore": 76.7,
+    "createdAt": "2025-11-17T20:33:44.734420",
+    "updatedAt": "2025-11-17T20:33:44.734421"
+  },
+  {
+    "id": "8424c75e-4e51-4080-847d-d9cddaf41ea3",
+    "organizationId": "b2507ebb-d326-47be-be1e-9a09a01657fa",
+    "name": "Product",
+    "headcount": 63,
+    "healthScore": 73.2,
+    "createdAt": "2025-11-17T20:33:44.734427",
+    "updatedAt": "2025-11-17T20:33:44.734428"
+  },
+  {
+    "id": "7d115a1b-07da-4611-9535-677f37eb81b8",
+    "organizationId": "b2507ebb-d326-47be-be1e-9a09a01657fa",
+    "name": "Design",
+    "headcount": 196,
+    "healthScore": 63.5,
+    "createdAt": "2025-11-17T20:33:44.734433",
+    "updatedAt": "2025-11-17T20:33:44.734434"
+  },
+  {
+    "id": "880dd71a-b0b3-43e1-a7a6-3a6bcc3f5f00",
+    "organizationId": "b2507ebb-d326-47be-be1e-9a09a01657fa",
+    "name": "Marketing",
+    "headcount": 47,
+    "healthScore": 83.5,
+    "createdAt": "2025-11-17T20:33:44.734439",
+    "updatedAt": "2025-11-17T20:33:44.734440"
+  },
+  {
+    "id": "f64ed6b6-ba2e-4e17-b7db-c9d90ab76dfa",
+    "organizationId": "b2507ebb-d326-47be-be1e-9a09a01657fa",
+    "name": "Sales",
+    "headcount": 18,
+    "healthScore": 82.2,
+    "createdAt": "2025-11-17T20:33:44.734452",
+    "updatedAt": "2025-11-17T20:33:44.734453"
+  },
+  {
+    "id": "9c807673-4bb1-4f07-8eff-14d1db223e57",
+    "organizationId": "b2507ebb-d326-47be-be1e-9a09a01657fa",
+    "name": "Customer Success",
+    "headcount": 60,
+    "healthScore": 70.1,
+    "createdAt": "2025-11-17T20:33:44.734459",
+    "updatedAt": "2025-11-17T20:33:44.734460"
+  },
+  {
+    "id": "9a9733cb-3ba9-4ea0-810c-708bf22d82d3",
+    "organizationId": "b2507ebb-d326-47be-be1e-9a09a01657fa",
+    "name": "Operations",
+    "headcount": 54,
+    "healthScore": 88.2,
+    "createdAt": "2025-11-17T20:33:44.734468",
+    "updatedAt": "2025-11-17T20:33:44.734469"
+  },
+  {
+    "id": "f43cb33c-9333-4a6b-92ef-7a71635b6486",
+    "organizationId": "b2507ebb-d326-47be-be1e-9a09a01657fa",
+    "name": "Finance",
+    "headcount": 17,
+    "healthScore": 63.8,
+    "createdAt": "2025-11-17T20:33:44.734481",
+    "updatedAt": "2025-11-17T20:33:44.734482"
+  },
+  {
+    "id": "0bd87bd1-503f-4c9a-b2ed-33c02772a735",
+    "organizationId": "b2507ebb-d326-47be-be1e-9a09a01657fa",
+    "name": "HR",
+    "headcount": 188,
+    "healthScore": 87.1,
+    "createdAt": "2025-11-17T20:33:44.734487",
+    "updatedAt": "2025-11-17T20:33:44.734488"
+  },
+  {
+    "id": "8b4f2da2-0748-4724-9269-c3651fc4afcd",
+    "organizationId": "b2507ebb-d326-47be-be1e-9a09a01657fa",
+    "name": "Legal",
+    "headcount": 42,
+    "healthScore": 61.0,
+    "createdAt": "2025-11-17T20:33:44.734494",
+    "updatedAt": "2025-11-17T20:33:44.734495"
+  },
+  {
+    "id": "69e1bf41-cb77-4183-8d86-2bddb24c08ed",
+    "organizationId": "7dee464b-5344-4ca6-a355-8ed45977834d",
+    "name": "Engineering",
+    "headcount": 136,
+    "healthScore": 93.6,
+    "createdAt": "2025-11-17T20:33:44.750788",
+    "updatedAt": "2025-11-17T20:33:44.750789"
+  },
+  {
+    "id": "3c6766fa-9834-40bd-a70c-6e196436f8df",
+    "organizationId": "7dee464b-5344-4ca6-a355-8ed45977834d",
+    "name": "Product",
+    "headcount": 97,
+    "healthScore": 91.8,
+    "createdAt": "2025-11-17T20:33:44.750795",
+    "updatedAt": "2025-11-17T20:33:44.750796"
+  },
+  {
+    "id": "08ad2df8-2fce-4438-b3a7-33c9aa6e400f",
+    "organizationId": "7dee464b-5344-4ca6-a355-8ed45977834d",
+    "name": "Design",
+    "headcount": 77,
+    "healthScore": 85.7,
+    "createdAt": "2025-11-17T20:33:44.750803",
+    "updatedAt": "2025-11-17T20:33:44.750804"
+  },
+  {
+    "id": "191703df-eda5-4f7d-92b8-082faa0e452e",
+    "organizationId": "7dee464b-5344-4ca6-a355-8ed45977834d",
+    "name": "Marketing",
+    "headcount": 195,
+    "healthScore": 64.7,
+    "createdAt": "2025-11-17T20:33:44.750810",
+    "updatedAt": "2025-11-17T20:33:44.750811"
+  },
+  {
+    "id": "aa893054-fe47-49d9-bebf-f2f7beb6144f",
+    "organizationId": "7dee464b-5344-4ca6-a355-8ed45977834d",
+    "name": "Sales",
+    "headcount": 44,
+    "healthScore": 62.8,
+    "createdAt": "2025-11-17T20:33:44.750818",
+    "updatedAt": "2025-11-17T20:33:44.750818"
+  },
+  {
+    "id": "5eb3fe0f-a8cb-41a7-af65-15fa12d9208b",
+    "organizationId": "7dee464b-5344-4ca6-a355-8ed45977834d",
+    "name": "Customer Success",
+    "headcount": 58,
+    "healthScore": 75.6,
+    "createdAt": "2025-11-17T20:33:44.750827",
+    "updatedAt": "2025-11-17T20:33:44.750828"
+  },
+  {
+    "id": "c483c782-9b7c-4c64-991a-1370e73cfe64",
+    "organizationId": "7dee464b-5344-4ca6-a355-8ed45977834d",
+    "name": "Operations",
+    "headcount": 162,
+    "healthScore": 88.8,
+    "createdAt": "2025-11-17T20:33:44.750836",
+    "updatedAt": "2025-11-17T20:33:44.750837"
+  },
+  {
+    "id": "f19e1c5c-c1fb-4f2b-bb21-a12e0f2831f2",
+    "organizationId": "7dee464b-5344-4ca6-a355-8ed45977834d",
+    "name": "Finance",
+    "headcount": 16,
+    "healthScore": 94.5,
+    "createdAt": "2025-11-17T20:33:44.750847",
+    "updatedAt": "2025-11-17T20:33:44.750848"
+  },
+  {
+    "id": "f2e3a8ff-68ce-401f-b37f-055e3fd0327e",
+    "organizationId": "7dee464b-5344-4ca6-a355-8ed45977834d",
+    "name": "HR",
+    "headcount": 116,
+    "healthScore": 76.0,
+    "createdAt": "2025-11-17T20:33:44.750859",
+    "updatedAt": "2025-11-17T20:33:44.750860"
+  },
+  {
+    "id": "5227ecd4-3271-4ebe-8592-e98757946cc1",
+    "organizationId": "7dee464b-5344-4ca6-a355-8ed45977834d",
+    "name": "Legal",
+    "headcount": 56,
+    "healthScore": 69.0,
+    "createdAt": "2025-11-17T20:33:44.750867",
+    "updatedAt": "2025-11-17T20:33:44.750868"
+  },
+  {
+    "id": "512e8a4a-3517-4b0e-b4ae-a6cbee12fb1f",
+    "organizationId": "606e1379-5df9-496e-b973-4d51acfa5de8",
+    "name": "Engineering",
+    "headcount": 31,
+    "healthScore": 72.2,
+    "createdAt": "2025-11-17T20:33:44.770958",
+    "updatedAt": "2025-11-17T20:33:44.770960"
+  },
+  {
+    "id": "f520d820-5f33-4dbe-b5f4-f57780b9c006",
+    "organizationId": "606e1379-5df9-496e-b973-4d51acfa5de8",
+    "name": "Product",
+    "headcount": 92,
+    "healthScore": 77.8,
+    "createdAt": "2025-11-17T20:33:44.770967",
+    "updatedAt": "2025-11-17T20:33:44.770968"
+  },
+  {
+    "id": "1a76bbbe-b973-4e4a-ab9d-15f84098bc12",
+    "organizationId": "606e1379-5df9-496e-b973-4d51acfa5de8",
+    "name": "Design",
+    "headcount": 54,
+    "healthScore": 93.2,
+    "createdAt": "2025-11-17T20:33:44.770979",
+    "updatedAt": "2025-11-17T20:33:44.770980"
+  },
+  {
+    "id": "fc1a9bdb-aac9-4e11-99a5-26453e603ab0",
+    "organizationId": "606e1379-5df9-496e-b973-4d51acfa5de8",
+    "name": "Marketing",
+    "headcount": 126,
+    "healthScore": 91.6,
+    "createdAt": "2025-11-17T20:33:44.770986",
+    "updatedAt": "2025-11-17T20:33:44.770987"
+  },
+  {
+    "id": "afea9fdd-6f8f-4abb-a617-08dc8eb335ab",
+    "organizationId": "606e1379-5df9-496e-b973-4d51acfa5de8",
+    "name": "Sales",
+    "headcount": 82,
+    "healthScore": 82.3,
+    "createdAt": "2025-11-17T20:33:44.770993",
+    "updatedAt": "2025-11-17T20:33:44.770995"
+  },
+  {
+    "id": "0b5b6dad-46fb-44c4-a8bf-ea35cb4b6495",
+    "organizationId": "606e1379-5df9-496e-b973-4d51acfa5de8",
+    "name": "Customer Success",
+    "headcount": 185,
+    "healthScore": 80.0,
+    "createdAt": "2025-11-17T20:33:44.771004",
+    "updatedAt": "2025-11-17T20:33:44.771005"
+  },
+  {
+    "id": "f5e34560-e1b0-4da5-985a-9981e4bab6a3",
+    "organizationId": "606e1379-5df9-496e-b973-4d51acfa5de8",
+    "name": "Operations",
+    "headcount": 39,
+    "healthScore": 66.6,
+    "createdAt": "2025-11-17T20:33:44.771011",
+    "updatedAt": "2025-11-17T20:33:44.771012"
+  },
+  {
+    "id": "8233075b-358c-45cb-a666-f2f302e07a3b",
+    "organizationId": "606e1379-5df9-496e-b973-4d51acfa5de8",
+    "name": "Finance",
+    "headcount": 32,
+    "healthScore": 80.1,
+    "createdAt": "2025-11-17T20:33:44.771018",
+    "updatedAt": "2025-11-17T20:33:44.771019"
+  },
+  {
+    "id": "a94f1a30-d804-4d06-a822-d2670c1c8852",
+    "organizationId": "606e1379-5df9-496e-b973-4d51acfa5de8",
+    "name": "HR",
+    "headcount": 166,
+    "healthScore": 76.5,
+    "createdAt": "2025-11-17T20:33:44.771028",
+    "updatedAt": "2025-11-17T20:33:44.771029"
+  },
+  {
+    "id": "71a0cc67-5919-4b2d-911e-48c11c7d7b87",
+    "organizationId": "606e1379-5df9-496e-b973-4d51acfa5de8",
+    "name": "Legal",
+    "headcount": 64,
+    "healthScore": 61.3,
+    "createdAt": "2025-11-17T20:33:44.771036",
+    "updatedAt": "2025-11-17T20:33:44.771037"
+  },
+  {
+    "id": "b07f5079-e5da-436c-a732-6a9cec3ba00b",
+    "organizationId": "6c1f1815-ec02-43eb-91bf-a44446b6aa14",
+    "name": "Engineering",
+    "headcount": 18,
+    "healthScore": 80.7,
+    "createdAt": "2025-11-17T20:33:44.793312",
+    "updatedAt": "2025-11-17T20:33:44.793314"
+  },
+  {
+    "id": "17d7caf7-ae9b-4e43-a57d-83e636142177",
+    "organizationId": "6c1f1815-ec02-43eb-91bf-a44446b6aa14",
+    "name": "Product",
+    "headcount": 100,
+    "healthScore": 69.5,
+    "createdAt": "2025-11-17T20:33:44.793326",
+    "updatedAt": "2025-11-17T20:33:44.793328"
+  },
+  {
+    "id": "9a10a081-4476-4446-b4f8-d657168a7a73",
+    "organizationId": "6c1f1815-ec02-43eb-91bf-a44446b6aa14",
+    "name": "Design",
+    "headcount": 74,
+    "healthScore": 69.3,
+    "createdAt": "2025-11-17T20:33:44.793337",
+    "updatedAt": "2025-11-17T20:33:44.793339"
+  },
+  {
+    "id": "cab47a83-5b39-4825-8eb4-2aa39d185cf6",
+    "organizationId": "6c1f1815-ec02-43eb-91bf-a44446b6aa14",
+    "name": "Marketing",
+    "headcount": 29,
+    "healthScore": 75.7,
+    "createdAt": "2025-11-17T20:33:44.793348",
+    "updatedAt": "2025-11-17T20:33:44.793349"
+  },
+  {
+    "id": "b3c47621-db0b-4dff-8aa7-aafee5d5f3c9",
+    "organizationId": "6c1f1815-ec02-43eb-91bf-a44446b6aa14",
+    "name": "Sales",
+    "headcount": 81,
+    "healthScore": 63.0,
+    "createdAt": "2025-11-17T20:33:44.793359",
+    "updatedAt": "2025-11-17T20:33:44.793361"
+  },
+  {
+    "id": "74e64c4b-e8de-4e35-bec3-0737391d767e",
+    "organizationId": "6c1f1815-ec02-43eb-91bf-a44446b6aa14",
+    "name": "Customer Success",
+    "headcount": 170,
+    "healthScore": 77.7,
+    "createdAt": "2025-11-17T20:33:44.793379",
+    "updatedAt": "2025-11-17T20:33:44.793381"
+  },
+  {
+    "id": "48e36310-2016-415c-8b39-c7498cd93a4c",
+    "organizationId": "6c1f1815-ec02-43eb-91bf-a44446b6aa14",
+    "name": "Operations",
+    "headcount": 112,
+    "healthScore": 83.2,
+    "createdAt": "2025-11-17T20:33:44.793390",
+    "updatedAt": "2025-11-17T20:33:44.793392"
+  },
+  {
+    "id": "9fa0d1a4-e167-4ce2-8101-e878e32116f8",
+    "organizationId": "6c1f1815-ec02-43eb-91bf-a44446b6aa14",
+    "name": "Finance",
+    "headcount": 34,
+    "healthScore": 79.4,
+    "createdAt": "2025-11-17T20:33:44.793406",
+    "updatedAt": "2025-11-17T20:33:44.793408"
+  },
+  {
+    "id": "51e16eee-514f-471e-a2cf-4d6e28b55a6b",
+    "organizationId": "6c1f1815-ec02-43eb-91bf-a44446b6aa14",
+    "name": "HR",
+    "headcount": 27,
+    "healthScore": 84.8,
+    "createdAt": "2025-11-17T20:33:44.793421",
+    "updatedAt": "2025-11-17T20:33:44.793423"
+  },
+  {
+    "id": "127e662d-1f10-4bae-ac88-a0a45cab90e7",
+    "organizationId": "6c1f1815-ec02-43eb-91bf-a44446b6aa14",
+    "name": "Legal",
+    "headcount": 156,
+    "healthScore": 92.0,
+    "createdAt": "2025-11-17T20:33:44.793439",
+    "updatedAt": "2025-11-17T20:33:44.793441"
+  },
+  {
+    "id": "2d4587fa-8fb4-4bcb-8253-b97bd0639ddf",
+    "organizationId": "387b2a28-4445-46d0-85c5-a4fd58635e66",
+    "name": "Engineering",
+    "headcount": 109,
+    "healthScore": 79.2,
+    "createdAt": "2025-11-17T20:33:44.802653",
+    "updatedAt": "2025-11-17T20:33:44.802654"
+  },
+  {
+    "id": "81124057-8f7e-435a-8a9e-816e4f39b40b",
+    "organizationId": "387b2a28-4445-46d0-85c5-a4fd58635e66",
+    "name": "Product",
+    "headcount": 190,
+    "healthScore": 72.4,
+    "createdAt": "2025-11-17T20:33:44.802660",
+    "updatedAt": "2025-11-17T20:33:44.802661"
+  },
+  {
+    "id": "ddc40e6d-de1c-4410-9d19-00969e77ffc6",
+    "organizationId": "387b2a28-4445-46d0-85c5-a4fd58635e66",
+    "name": "Design",
+    "headcount": 116,
+    "healthScore": 63.5,
+    "createdAt": "2025-11-17T20:33:44.802668",
+    "updatedAt": "2025-11-17T20:33:44.802669"
+  },
+  {
+    "id": "569d3149-b137-419f-8428-f2db06a3fdf2",
+    "organizationId": "387b2a28-4445-46d0-85c5-a4fd58635e66",
+    "name": "Marketing",
+    "headcount": 141,
+    "healthScore": 73.9,
+    "createdAt": "2025-11-17T20:33:44.802675",
+    "updatedAt": "2025-11-17T20:33:44.802676"
+  },
+  {
+    "id": "f4a5707d-65bb-454f-9d6f-20800332bb37",
+    "organizationId": "387b2a28-4445-46d0-85c5-a4fd58635e66",
+    "name": "Sales",
+    "headcount": 175,
+    "healthScore": 87.2,
+    "createdAt": "2025-11-17T20:33:44.802682",
+    "updatedAt": "2025-11-17T20:33:44.802683"
+  },
+  {
+    "id": "a94bf370-ac9b-463e-a592-9068e9e5b24e",
+    "organizationId": "387b2a28-4445-46d0-85c5-a4fd58635e66",
+    "name": "Customer Success",
+    "headcount": 94,
+    "healthScore": 93.2,
+    "createdAt": "2025-11-17T20:33:44.802693",
+    "updatedAt": "2025-11-17T20:33:44.802694"
+  },
+  {
+    "id": "1bf08672-7c03-430e-981d-0f5a140a6dda",
+    "organizationId": "387b2a28-4445-46d0-85c5-a4fd58635e66",
+    "name": "Operations",
+    "headcount": 92,
+    "healthScore": 71.6,
+    "createdAt": "2025-11-17T20:33:44.802701",
+    "updatedAt": "2025-11-17T20:33:44.802702"
+  },
+  {
+    "id": "32b5cf51-d3df-4ae4-960d-a932ac396f53",
+    "organizationId": "387b2a28-4445-46d0-85c5-a4fd58635e66",
+    "name": "Finance",
+    "headcount": 149,
+    "healthScore": 84.8,
+    "createdAt": "2025-11-17T20:33:44.802708",
+    "updatedAt": "2025-11-17T20:33:44.802709"
+  },
+  {
+    "id": "65c7364a-7427-4356-a7cd-18d0356542ce",
+    "organizationId": "387b2a28-4445-46d0-85c5-a4fd58635e66",
+    "name": "HR",
+    "headcount": 33,
+    "healthScore": 77.2,
+    "createdAt": "2025-11-17T20:33:44.802722",
+    "updatedAt": "2025-11-17T20:33:44.802723"
+  },
+  {
+    "id": "898700cd-3976-45d9-b8d3-e88daa8d146d",
+    "organizationId": "387b2a28-4445-46d0-85c5-a4fd58635e66",
+    "name": "Legal",
+    "headcount": 82,
+    "healthScore": 82.9,
+    "createdAt": "2025-11-17T20:33:44.802729",
+    "updatedAt": "2025-11-17T20:33:44.802730"
+  },
+  {
+    "id": "a3d6e702-e96f-4d90-b401-60c7f34edbbe",
+    "organizationId": "a6914b19-adbb-465e-ac02-caaa50eedb0f",
+    "name": "Engineering",
+    "headcount": 149,
+    "healthScore": 69.9,
+    "createdAt": "2025-11-17T20:33:44.826942",
+    "updatedAt": "2025-11-17T20:33:44.826944"
+  },
+  {
+    "id": "a7e92f60-b8f4-4ae0-899f-eda6e3e0a907",
+    "organizationId": "a6914b19-adbb-465e-ac02-caaa50eedb0f",
+    "name": "Product",
+    "headcount": 190,
+    "healthScore": 82.4,
+    "createdAt": "2025-11-17T20:33:44.826956",
+    "updatedAt": "2025-11-17T20:33:44.826958"
+  },
+  {
+    "id": "c641e720-ad80-41ea-b64c-5e6d26092032",
+    "organizationId": "a6914b19-adbb-465e-ac02-caaa50eedb0f",
+    "name": "Design",
+    "headcount": 163,
+    "healthScore": 71.9,
+    "createdAt": "2025-11-17T20:33:44.826970",
+    "updatedAt": "2025-11-17T20:33:44.826972"
+  },
+  {
+    "id": "9688d767-5ce1-4952-8ed9-1316eb5985bd",
+    "organizationId": "a6914b19-adbb-465e-ac02-caaa50eedb0f",
+    "name": "Marketing",
+    "headcount": 192,
+    "healthScore": 68.2,
+    "createdAt": "2025-11-17T20:33:44.826987",
+    "updatedAt": "2025-11-17T20:33:44.826989"
+  },
+  {
+    "id": "da7095d9-9b4a-405d-9ee4-92dd00dc6290",
+    "organizationId": "a6914b19-adbb-465e-ac02-caaa50eedb0f",
+    "name": "Sales",
+    "headcount": 63,
+    "healthScore": 85.2,
+    "createdAt": "2025-11-17T20:33:44.827003",
+    "updatedAt": "2025-11-17T20:33:44.827005"
+  },
+  {
+    "id": "985ccfdc-5468-44a0-8832-ef7865e27c39",
+    "organizationId": "a6914b19-adbb-465e-ac02-caaa50eedb0f",
+    "name": "Customer Success",
+    "headcount": 13,
+    "healthScore": 61.6,
+    "createdAt": "2025-11-17T20:33:44.827016",
+    "updatedAt": "2025-11-17T20:33:44.827017"
+  },
+  {
+    "id": "36210047-198a-4b2c-b4e1-7661b24fd5bb",
+    "organizationId": "a6914b19-adbb-465e-ac02-caaa50eedb0f",
+    "name": "Operations",
+    "headcount": 29,
+    "healthScore": 81.3,
+    "createdAt": "2025-11-17T20:33:44.827028",
+    "updatedAt": "2025-11-17T20:33:44.827033"
+  },
+  {
+    "id": "7a5383b2-ea54-4fc8-9347-437d1cf293bc",
+    "organizationId": "a6914b19-adbb-465e-ac02-caaa50eedb0f",
+    "name": "Finance",
+    "headcount": 173,
+    "healthScore": 63.3,
+    "createdAt": "2025-11-17T20:33:44.827042",
+    "updatedAt": "2025-11-17T20:33:44.827044"
+  },
+  {
+    "id": "97a42888-8855-488c-9faa-69d1c58c9827",
+    "organizationId": "a6914b19-adbb-465e-ac02-caaa50eedb0f",
+    "name": "HR",
+    "headcount": 33,
+    "healthScore": 92.2,
+    "createdAt": "2025-11-17T20:33:44.827056",
+    "updatedAt": "2025-11-17T20:33:44.827057"
+  },
+  {
+    "id": "7d26302c-5c9b-4519-a6d6-ca0fdef6a191",
+    "organizationId": "a6914b19-adbb-465e-ac02-caaa50eedb0f",
+    "name": "Legal",
+    "headcount": 167,
+    "healthScore": 63.2,
+    "createdAt": "2025-11-17T20:33:44.827072",
+    "updatedAt": "2025-11-17T20:33:44.827073"
+  },
+  {
+    "id": "3d75faf6-1e42-438e-8823-4baaf10c2da1",
+    "organizationId": "5d5c6f21-13c1-4cbc-9dc1-c67f14247847",
+    "name": "Engineering",
+    "headcount": 29,
+    "healthScore": 89.6,
+    "createdAt": "2025-11-17T20:33:44.849513",
+    "updatedAt": "2025-11-17T20:33:44.849514"
+  },
+  {
+    "id": "3ab4d010-1705-4e36-910e-71c1fc3884a3",
+    "organizationId": "5d5c6f21-13c1-4cbc-9dc1-c67f14247847",
+    "name": "Product",
+    "headcount": 98,
+    "healthScore": 71.5,
+    "createdAt": "2025-11-17T20:33:44.849522",
+    "updatedAt": "2025-11-17T20:33:44.849522"
+  },
+  {
+    "id": "acffcb58-06bb-4ce9-b98c-b7ab63a390f4",
+    "organizationId": "5d5c6f21-13c1-4cbc-9dc1-c67f14247847",
+    "name": "Design",
+    "headcount": 145,
+    "healthScore": 84.9,
+    "createdAt": "2025-11-17T20:33:44.849531",
+    "updatedAt": "2025-11-17T20:33:44.849532"
+  },
+  {
+    "id": "d261dc40-f654-4354-976c-8b5f9b521b35",
+    "organizationId": "5d5c6f21-13c1-4cbc-9dc1-c67f14247847",
+    "name": "Marketing",
+    "headcount": 129,
+    "healthScore": 89.0,
+    "createdAt": "2025-11-17T20:33:44.849540",
+    "updatedAt": "2025-11-17T20:33:44.849541"
+  },
+  {
+    "id": "4a210a65-5524-42d7-a961-965733bffb50",
+    "organizationId": "5d5c6f21-13c1-4cbc-9dc1-c67f14247847",
+    "name": "Sales",
+    "headcount": 188,
+    "healthScore": 86.8,
+    "createdAt": "2025-11-17T20:33:44.849557",
+    "updatedAt": "2025-11-17T20:33:44.849558"
+  },
+  {
+    "id": "c505313e-1b06-4954-a4c7-9dd6dadffe93",
+    "organizationId": "5d5c6f21-13c1-4cbc-9dc1-c67f14247847",
+    "name": "Customer Success",
+    "headcount": 192,
+    "healthScore": 84.2,
+    "createdAt": "2025-11-17T20:33:44.849566",
+    "updatedAt": "2025-11-17T20:33:44.849567"
+  },
+  {
+    "id": "593f480f-7481-4129-9c33-e025814067ae",
+    "organizationId": "5d5c6f21-13c1-4cbc-9dc1-c67f14247847",
+    "name": "Operations",
+    "headcount": 52,
+    "healthScore": 63.8,
+    "createdAt": "2025-11-17T20:33:44.849576",
+    "updatedAt": "2025-11-17T20:33:44.849577"
+  },
+  {
+    "id": "f02e090d-95b1-456b-ac1d-60c49d278e62",
+    "organizationId": "5d5c6f21-13c1-4cbc-9dc1-c67f14247847",
+    "name": "Finance",
+    "headcount": 100,
+    "healthScore": 64.0,
+    "createdAt": "2025-11-17T20:33:44.849584",
+    "updatedAt": "2025-11-17T20:33:44.849585"
+  },
+  {
+    "id": "d06109f7-9d24-45ec-9c6a-cd19a64e1513",
+    "organizationId": "5d5c6f21-13c1-4cbc-9dc1-c67f14247847",
+    "name": "HR",
+    "headcount": 112,
+    "healthScore": 64.9,
+    "createdAt": "2025-11-17T20:33:44.849591",
+    "updatedAt": "2025-11-17T20:33:44.849592"
+  },
+  {
+    "id": "b318191f-2026-4f8e-94c3-a828187d1d8a",
+    "organizationId": "5d5c6f21-13c1-4cbc-9dc1-c67f14247847",
+    "name": "Legal",
+    "headcount": 119,
+    "healthScore": 76.0,
+    "createdAt": "2025-11-17T20:33:44.849599",
+    "updatedAt": "2025-11-17T20:33:44.849600"
+  },
+  {
+    "id": "ab9ae217-1a1b-43b2-8b7b-546dca3c039c",
+    "organizationId": "10f04d13-83f8-4976-8f5b-9f5ab4be5862",
+    "name": "Engineering",
+    "headcount": 15,
+    "healthScore": 77.2,
+    "createdAt": "2025-11-17T20:33:44.888514",
+    "updatedAt": "2025-11-17T20:33:44.888516"
+  },
+  {
+    "id": "cddcab31-700f-4fd3-9baa-01f9e3606b9c",
+    "organizationId": "10f04d13-83f8-4976-8f5b-9f5ab4be5862",
+    "name": "Product",
+    "headcount": 66,
+    "healthScore": 71.0,
+    "createdAt": "2025-11-17T20:33:44.888523",
+    "updatedAt": "2025-11-17T20:33:44.888524"
+  },
+  {
+    "id": "8761b656-51a6-40be-b90c-eb00984446f8",
+    "organizationId": "10f04d13-83f8-4976-8f5b-9f5ab4be5862",
+    "name": "Design",
+    "headcount": 40,
+    "healthScore": 75.5,
+    "createdAt": "2025-11-17T20:33:44.888529",
+    "updatedAt": "2025-11-17T20:33:44.888530"
+  },
+  {
+    "id": "1fa54b12-aa1d-4295-a5a0-0f94b7fc35cc",
+    "organizationId": "10f04d13-83f8-4976-8f5b-9f5ab4be5862",
+    "name": "Marketing",
+    "headcount": 143,
+    "healthScore": 72.7,
+    "createdAt": "2025-11-17T20:33:44.888535",
+    "updatedAt": "2025-11-17T20:33:44.888536"
+  },
+  {
+    "id": "0080da0f-887c-4704-8ffb-a0f0fe24fedb",
+    "organizationId": "10f04d13-83f8-4976-8f5b-9f5ab4be5862",
+    "name": "Sales",
+    "headcount": 159,
+    "healthScore": 77.7,
+    "createdAt": "2025-11-17T20:33:44.888548",
+    "updatedAt": "2025-11-17T20:33:44.888548"
+  },
+  {
+    "id": "092980fa-4dbf-4c8f-b46b-d2aa14ec2224",
+    "organizationId": "10f04d13-83f8-4976-8f5b-9f5ab4be5862",
+    "name": "Customer Success",
+    "headcount": 14,
+    "healthScore": 63.3,
+    "createdAt": "2025-11-17T20:33:44.888557",
+    "updatedAt": "2025-11-17T20:33:44.888558"
+  },
+  {
+    "id": "77eb691a-b6da-4d37-9f6c-0a69827b5361",
+    "organizationId": "10f04d13-83f8-4976-8f5b-9f5ab4be5862",
+    "name": "Operations",
+    "headcount": 199,
+    "healthScore": 83.9,
+    "createdAt": "2025-11-17T20:33:44.888563",
+    "updatedAt": "2025-11-17T20:33:44.888564"
+  },
+  {
+    "id": "e85addf8-d01d-40ac-aebc-e42f5ee6dccc",
+    "organizationId": "10f04d13-83f8-4976-8f5b-9f5ab4be5862",
+    "name": "Finance",
+    "headcount": 178,
+    "healthScore": 66.8,
+    "createdAt": "2025-11-17T20:33:44.888573",
+    "updatedAt": "2025-11-17T20:33:44.888574"
+  },
+  {
+    "id": "54c8a2f2-15d6-4798-bfa9-e4512c88ccc0",
+    "organizationId": "10f04d13-83f8-4976-8f5b-9f5ab4be5862",
+    "name": "HR",
+    "headcount": 110,
+    "healthScore": 77.8,
+    "createdAt": "2025-11-17T20:33:44.888581",
+    "updatedAt": "2025-11-17T20:33:44.888582"
+  },
+  {
+    "id": "09f405f7-d97c-4853-aa6b-28174ef77ce0",
+    "organizationId": "10f04d13-83f8-4976-8f5b-9f5ab4be5862",
+    "name": "Legal",
+    "headcount": 93,
+    "healthScore": 77.7,
+    "createdAt": "2025-11-17T20:33:44.888590",
+    "updatedAt": "2025-11-17T20:33:44.888591"
+  },
+  {
+    "id": "f43764da-8ac2-43ec-82bb-ec74792d61a4",
+    "organizationId": "d69f95b5-d0f9-49ad-9d45-42f7007be44f",
+    "name": "Engineering",
+    "headcount": 42,
+    "healthScore": 60.9,
+    "createdAt": "2025-11-17T20:33:44.900381",
+    "updatedAt": "2025-11-17T20:33:44.900382"
+  },
+  {
+    "id": "b53abbe5-aedc-4f49-b7b7-e4f928f36a20",
+    "organizationId": "d69f95b5-d0f9-49ad-9d45-42f7007be44f",
+    "name": "Product",
+    "headcount": 169,
+    "healthScore": 74.6,
+    "createdAt": "2025-11-17T20:33:44.900387",
+    "updatedAt": "2025-11-17T20:33:44.900388"
+  },
+  {
+    "id": "8fb82a97-a927-49b5-82c9-1071a09988f8",
+    "organizationId": "d69f95b5-d0f9-49ad-9d45-42f7007be44f",
+    "name": "Design",
+    "headcount": 85,
+    "healthScore": 64.5,
+    "createdAt": "2025-11-17T20:33:44.900394",
+    "updatedAt": "2025-11-17T20:33:44.900395"
+  },
+  {
+    "id": "16cbbcdd-316a-4e96-8431-ec588a0a4372",
+    "organizationId": "d69f95b5-d0f9-49ad-9d45-42f7007be44f",
+    "name": "Marketing",
+    "headcount": 13,
+    "healthScore": 88.5,
+    "createdAt": "2025-11-17T20:33:44.900407",
+    "updatedAt": "2025-11-17T20:33:44.900407"
+  },
+  {
+    "id": "7ee4c5b4-0bd9-4907-ad5b-75886349f591",
+    "organizationId": "d69f95b5-d0f9-49ad-9d45-42f7007be44f",
+    "name": "Sales",
+    "headcount": 92,
+    "healthScore": 76.8,
+    "createdAt": "2025-11-17T20:33:44.900423",
+    "updatedAt": "2025-11-17T20:33:44.900423"
+  },
+  {
+    "id": "cd375cd3-49b3-4bdd-a852-e8ed8e0cebe5",
+    "organizationId": "d69f95b5-d0f9-49ad-9d45-42f7007be44f",
+    "name": "Customer Success",
+    "headcount": 102,
+    "healthScore": 77.9,
+    "createdAt": "2025-11-17T20:33:44.900431",
+    "updatedAt": "2025-11-17T20:33:44.900432"
+  },
+  {
+    "id": "25d21c14-ee99-466c-a8cb-883ab393d537",
+    "organizationId": "d69f95b5-d0f9-49ad-9d45-42f7007be44f",
+    "name": "Operations",
+    "headcount": 20,
+    "healthScore": 77.1,
+    "createdAt": "2025-11-17T20:33:44.900440",
+    "updatedAt": "2025-11-17T20:33:44.900441"
+  },
+  {
+    "id": "6e9643ec-472e-4ce4-bdb2-7a393531f4b1",
+    "organizationId": "d69f95b5-d0f9-49ad-9d45-42f7007be44f",
+    "name": "Finance",
+    "headcount": 15,
+    "healthScore": 76.9,
+    "createdAt": "2025-11-17T20:33:44.900449",
+    "updatedAt": "2025-11-17T20:33:44.900450"
+  },
+  {
+    "id": "e7ebd3b3-6145-4774-8292-739b4bae9071",
+    "organizationId": "d69f95b5-d0f9-49ad-9d45-42f7007be44f",
+    "name": "HR",
+    "headcount": 16,
+    "healthScore": 84.8,
+    "createdAt": "2025-11-17T20:33:44.900464",
+    "updatedAt": "2025-11-17T20:33:44.900466"
+  },
+  {
+    "id": "86e387a9-ca7c-4538-88fc-73deef0c32b4",
+    "organizationId": "d69f95b5-d0f9-49ad-9d45-42f7007be44f",
+    "name": "Legal",
+    "headcount": 27,
+    "healthScore": 72.9,
+    "createdAt": "2025-11-17T20:33:44.900476",
+    "updatedAt": "2025-11-17T20:33:44.900477"
+  },
+  {
+    "id": "4797ccde-04ad-4cb7-b275-a924a4ae8f50",
+    "organizationId": "403d4034-bfa2-4963-98e9-e7c9f9799498",
+    "name": "Engineering",
+    "headcount": 156,
+    "healthScore": 80.8,
+    "createdAt": "2025-11-17T20:33:44.918181",
+    "updatedAt": "2025-11-17T20:33:44.918183"
+  },
+  {
+    "id": "1d5ffe79-fc70-4d91-a8f4-b956ad5ddf2d",
+    "organizationId": "403d4034-bfa2-4963-98e9-e7c9f9799498",
+    "name": "Product",
+    "headcount": 171,
+    "healthScore": 86.2,
+    "createdAt": "2025-11-17T20:33:44.918196",
+    "updatedAt": "2025-11-17T20:33:44.918197"
+  },
+  {
+    "id": "c41a2526-4561-420d-8725-77e6bb2042db",
+    "organizationId": "403d4034-bfa2-4963-98e9-e7c9f9799498",
+    "name": "Design",
+    "headcount": 52,
+    "healthScore": 68.3,
+    "createdAt": "2025-11-17T20:33:44.918203",
+    "updatedAt": "2025-11-17T20:33:44.918204"
+  },
+  {
+    "id": "592403b0-9728-46ca-8977-7b694c4da579",
+    "organizationId": "403d4034-bfa2-4963-98e9-e7c9f9799498",
+    "name": "Marketing",
+    "headcount": 193,
+    "healthScore": 93.9,
+    "createdAt": "2025-11-17T20:33:44.918209",
+    "updatedAt": "2025-11-17T20:33:44.918210"
+  },
+  {
+    "id": "4da04b45-b0ee-4cc6-92b4-1e6de1e1ca9b",
+    "organizationId": "403d4034-bfa2-4963-98e9-e7c9f9799498",
+    "name": "Sales",
+    "headcount": 92,
+    "healthScore": 64.3,
+    "createdAt": "2025-11-17T20:33:44.918215",
+    "updatedAt": "2025-11-17T20:33:44.918216"
+  },
+  {
+    "id": "94887791-d447-42b0-87ca-d38757bb7f98",
+    "organizationId": "403d4034-bfa2-4963-98e9-e7c9f9799498",
+    "name": "Customer Success",
+    "headcount": 177,
+    "healthScore": 80.7,
+    "createdAt": "2025-11-17T20:33:44.918224",
+    "updatedAt": "2025-11-17T20:33:44.918225"
+  },
+  {
+    "id": "f41e0071-ecb8-4e2e-aa16-89395fbfc092",
+    "organizationId": "403d4034-bfa2-4963-98e9-e7c9f9799498",
+    "name": "Operations",
+    "headcount": 87,
+    "healthScore": 63.4,
+    "createdAt": "2025-11-17T20:33:44.918230",
+    "updatedAt": "2025-11-17T20:33:44.918231"
+  },
+  {
+    "id": "ce8b68d1-6a7f-4429-a5cc-3106a88e1c6c",
+    "organizationId": "403d4034-bfa2-4963-98e9-e7c9f9799498",
+    "name": "Finance",
+    "headcount": 130,
+    "healthScore": 64.6,
+    "createdAt": "2025-11-17T20:33:44.918236",
+    "updatedAt": "2025-11-17T20:33:44.918237"
+  },
+  {
+    "id": "51aa1994-f8ad-4e43-92ed-0536f87bc700",
+    "organizationId": "403d4034-bfa2-4963-98e9-e7c9f9799498",
+    "name": "HR",
+    "headcount": 32,
+    "healthScore": 87.2,
+    "createdAt": "2025-11-17T20:33:44.918242",
+    "updatedAt": "2025-11-17T20:33:44.918243"
+  },
+  {
+    "id": "80c84bf6-e749-4343-91f0-14b84679b45e",
+    "organizationId": "403d4034-bfa2-4963-98e9-e7c9f9799498",
+    "name": "Legal",
+    "headcount": 25,
+    "healthScore": 70.9,
+    "createdAt": "2025-11-17T20:33:44.918249",
+    "updatedAt": "2025-11-17T20:33:44.918250"
+  },
+  {
+    "id": "4e0972b6-90dc-4050-a66a-bcd940dab3c3",
+    "organizationId": "2bf694d5-e059-40ae-bce2-c4a09cabf37f",
+    "name": "Engineering",
+    "headcount": 159,
+    "healthScore": 67.2,
+    "createdAt": "2025-11-17T20:33:44.935142",
+    "updatedAt": "2025-11-17T20:33:44.935144"
+  },
+  {
+    "id": "e5c61048-5d66-4094-9105-fef1567edb7a",
+    "organizationId": "2bf694d5-e059-40ae-bce2-c4a09cabf37f",
+    "name": "Product",
+    "headcount": 131,
+    "healthScore": 83.2,
+    "createdAt": "2025-11-17T20:33:44.935156",
+    "updatedAt": "2025-11-17T20:33:44.935157"
+  },
+  {
+    "id": "695b4916-f09b-4e1b-af16-fd856e79679f",
+    "organizationId": "2bf694d5-e059-40ae-bce2-c4a09cabf37f",
+    "name": "Design",
+    "headcount": 56,
+    "healthScore": 80.0,
+    "createdAt": "2025-11-17T20:33:44.935171",
+    "updatedAt": "2025-11-17T20:33:44.935172"
+  },
+  {
+    "id": "1e73fb10-9eda-449a-8fcc-e5fb505a9f87",
+    "organizationId": "2bf694d5-e059-40ae-bce2-c4a09cabf37f",
+    "name": "Marketing",
+    "headcount": 131,
+    "healthScore": 75.6,
+    "createdAt": "2025-11-17T20:33:44.935178",
+    "updatedAt": "2025-11-17T20:33:44.935179"
+  },
+  {
+    "id": "19e7d22b-f799-48ed-aa6a-1f030d1dcb58",
+    "organizationId": "2bf694d5-e059-40ae-bce2-c4a09cabf37f",
+    "name": "Sales",
+    "headcount": 159,
+    "healthScore": 83.0,
+    "createdAt": "2025-11-17T20:33:44.935186",
+    "updatedAt": "2025-11-17T20:33:44.935187"
+  },
+  {
+    "id": "b8656cd6-fb67-493b-8017-e6cb95194ec0",
+    "organizationId": "2bf694d5-e059-40ae-bce2-c4a09cabf37f",
+    "name": "Customer Success",
+    "headcount": 164,
+    "healthScore": 69.3,
+    "createdAt": "2025-11-17T20:33:44.935196",
+    "updatedAt": "2025-11-17T20:33:44.935197"
+  },
+  {
+    "id": "3a6013d9-7302-416c-91a7-329e23233a18",
+    "organizationId": "2bf694d5-e059-40ae-bce2-c4a09cabf37f",
+    "name": "Operations",
+    "headcount": 122,
+    "healthScore": 90.1,
+    "createdAt": "2025-11-17T20:33:44.935215",
+    "updatedAt": "2025-11-17T20:33:44.935216"
+  },
+  {
+    "id": "bb1079a9-ff5e-4164-9068-c8964ebfd5bf",
+    "organizationId": "2bf694d5-e059-40ae-bce2-c4a09cabf37f",
+    "name": "Finance",
+    "headcount": 136,
+    "healthScore": 91.9,
+    "createdAt": "2025-11-17T20:33:44.935230",
+    "updatedAt": "2025-11-17T20:33:44.935232"
+  },
+  {
+    "id": "d0dd7724-6ef4-4724-8725-5aeb439a05a0",
+    "organizationId": "2bf694d5-e059-40ae-bce2-c4a09cabf37f",
+    "name": "HR",
+    "headcount": 122,
+    "healthScore": 74.2,
+    "createdAt": "2025-11-17T20:33:44.935243",
+    "updatedAt": "2025-11-17T20:33:44.935245"
+  },
+  {
+    "id": "fa4f0268-66d1-4700-8081-d91d66a0ae4b",
+    "organizationId": "2bf694d5-e059-40ae-bce2-c4a09cabf37f",
+    "name": "Legal",
+    "headcount": 42,
+    "healthScore": 73.5,
+    "createdAt": "2025-11-17T20:33:44.935255",
+    "updatedAt": "2025-11-17T20:33:44.935256"
+  },
+  {
+    "id": "4a7762b9-fbb1-47bc-a6fe-b8998f3bb8c2",
+    "organizationId": "f929e9e8-cadb-42c6-97da-cbfb83e04b1c",
+    "name": "Engineering",
+    "headcount": 21,
+    "healthScore": 83.2,
+    "createdAt": "2025-11-17T20:33:44.949809",
+    "updatedAt": "2025-11-17T20:33:44.949812"
+  },
+  {
+    "id": "d5344e5a-8762-42dc-b66e-c7af6d706000",
+    "organizationId": "f929e9e8-cadb-42c6-97da-cbfb83e04b1c",
+    "name": "Product",
+    "headcount": 99,
+    "healthScore": 84.8,
+    "createdAt": "2025-11-17T20:33:44.949824",
+    "updatedAt": "2025-11-17T20:33:44.949826"
+  },
+  {
+    "id": "309a32e5-a748-452a-b43a-1614421f3852",
+    "organizationId": "f929e9e8-cadb-42c6-97da-cbfb83e04b1c",
+    "name": "Design",
+    "headcount": 111,
+    "healthScore": 89.6,
+    "createdAt": "2025-11-17T20:33:44.949855",
+    "updatedAt": "2025-11-17T20:33:44.949857"
+  },
+  {
+    "id": "a7b9426a-12cb-41c1-b0ab-c25172b79360",
+    "organizationId": "f929e9e8-cadb-42c6-97da-cbfb83e04b1c",
+    "name": "Marketing",
+    "headcount": 66,
+    "healthScore": 65.9,
+    "createdAt": "2025-11-17T20:33:44.949868",
+    "updatedAt": "2025-11-17T20:33:44.949869"
+  },
+  {
+    "id": "0175bd84-332f-407c-bf9b-01c046b0cb36",
+    "organizationId": "f929e9e8-cadb-42c6-97da-cbfb83e04b1c",
+    "name": "Sales",
+    "headcount": 143,
+    "healthScore": 90.8,
+    "createdAt": "2025-11-17T20:33:44.949879",
+    "updatedAt": "2025-11-17T20:33:44.949880"
+  },
+  {
+    "id": "1e214ff3-323a-466a-b336-ceab669d349d",
+    "organizationId": "f929e9e8-cadb-42c6-97da-cbfb83e04b1c",
+    "name": "Customer Success",
+    "headcount": 94,
+    "healthScore": 70.7,
+    "createdAt": "2025-11-17T20:33:44.949894",
+    "updatedAt": "2025-11-17T20:33:44.949895"
+  },
+  {
+    "id": "b9afb582-602c-401f-8c60-e3c544bfada5",
+    "organizationId": "f929e9e8-cadb-42c6-97da-cbfb83e04b1c",
+    "name": "Operations",
+    "headcount": 20,
+    "healthScore": 82.4,
+    "createdAt": "2025-11-17T20:33:44.949904",
+    "updatedAt": "2025-11-17T20:33:44.949905"
+  },
+  {
+    "id": "c49ed313-b100-4ca2-8c13-bce73276c680",
+    "organizationId": "f929e9e8-cadb-42c6-97da-cbfb83e04b1c",
+    "name": "Finance",
+    "headcount": 97,
+    "healthScore": 79.0,
+    "createdAt": "2025-11-17T20:33:44.949914",
+    "updatedAt": "2025-11-17T20:33:44.949915"
+  },
+  {
+    "id": "9a5af25c-9058-4d41-a16b-4f12adcb3cb3",
+    "organizationId": "f929e9e8-cadb-42c6-97da-cbfb83e04b1c",
+    "name": "HR",
+    "headcount": 69,
+    "healthScore": 82.8,
+    "createdAt": "2025-11-17T20:33:44.949924",
+    "updatedAt": "2025-11-17T20:33:44.949926"
+  },
+  {
+    "id": "4cbaabd1-af32-428c-8fe9-934dfcea2d5a",
+    "organizationId": "f929e9e8-cadb-42c6-97da-cbfb83e04b1c",
+    "name": "Legal",
+    "headcount": 176,
+    "healthScore": 69.6,
+    "createdAt": "2025-11-17T20:33:44.949937",
+    "updatedAt": "2025-11-17T20:33:44.949939"
+  },
+  {
+    "id": "49d5a6cf-e2a0-428c-9b7a-ffb7e3a3735d",
+    "organizationId": "a72d731d-4bfb-4eff-b763-654017270de8",
+    "name": "Engineering",
+    "headcount": 96,
+    "healthScore": 78.6,
+    "createdAt": "2025-11-17T20:33:44.981353",
+    "updatedAt": "2025-11-17T20:33:44.981355"
+  },
+  {
+    "id": "7eb5a4d3-0089-47a1-bcc3-50140cd3e0d0",
+    "organizationId": "a72d731d-4bfb-4eff-b763-654017270de8",
+    "name": "Product",
+    "headcount": 82,
+    "healthScore": 94.0,
+    "createdAt": "2025-11-17T20:33:44.981377",
+    "updatedAt": "2025-11-17T20:33:44.981377"
+  },
+  {
+    "id": "4ad9cc7a-ecea-4c85-8663-902ad1f0d4f6",
+    "organizationId": "a72d731d-4bfb-4eff-b763-654017270de8",
+    "name": "Design",
+    "headcount": 51,
+    "healthScore": 64.4,
+    "createdAt": "2025-11-17T20:33:44.981384",
+    "updatedAt": "2025-11-17T20:33:44.981385"
+  },
+  {
+    "id": "06f7763f-1ca0-4351-bbb2-ec21d195a0a1",
+    "organizationId": "a72d731d-4bfb-4eff-b763-654017270de8",
+    "name": "Marketing",
+    "headcount": 142,
+    "healthScore": 76.6,
+    "createdAt": "2025-11-17T20:33:44.981395",
+    "updatedAt": "2025-11-17T20:33:44.981397"
+  },
+  {
+    "id": "75838616-73d9-4cbb-b93b-9e3992b255be",
+    "organizationId": "a72d731d-4bfb-4eff-b763-654017270de8",
+    "name": "Sales",
+    "headcount": 69,
+    "healthScore": 71.6,
+    "createdAt": "2025-11-17T20:33:44.981407",
+    "updatedAt": "2025-11-17T20:33:44.981408"
+  },
+  {
+    "id": "ff090777-fedc-4170-ad8c-3e612c5a4ce8",
+    "organizationId": "a72d731d-4bfb-4eff-b763-654017270de8",
+    "name": "Customer Success",
+    "headcount": 156,
+    "healthScore": 93.1,
+    "createdAt": "2025-11-17T20:33:44.981430",
+    "updatedAt": "2025-11-17T20:33:44.981431"
+  },
+  {
+    "id": "2efe42d1-a42c-43ce-9469-a0c94d2b064f",
+    "organizationId": "a72d731d-4bfb-4eff-b763-654017270de8",
+    "name": "Operations",
+    "headcount": 183,
+    "healthScore": 66.7,
+    "createdAt": "2025-11-17T20:33:44.981441",
+    "updatedAt": "2025-11-17T20:33:44.981442"
+  },
+  {
+    "id": "854e0656-1e10-46a3-a603-80b6e29646f4",
+    "organizationId": "a72d731d-4bfb-4eff-b763-654017270de8",
+    "name": "Finance",
+    "headcount": 178,
+    "healthScore": 69.7,
+    "createdAt": "2025-11-17T20:33:44.981461",
+    "updatedAt": "2025-11-17T20:33:44.981461"
+  },
+  {
+    "id": "e1e9d945-2722-4914-a5d5-65c88e102416",
+    "organizationId": "a72d731d-4bfb-4eff-b763-654017270de8",
+    "name": "HR",
+    "headcount": 31,
+    "healthScore": 72.3,
+    "createdAt": "2025-11-17T20:33:44.981477",
+    "updatedAt": "2025-11-17T20:33:44.981477"
+  },
+  {
+    "id": "0cacda8a-8c6a-4b93-b124-48d2dcc5944e",
+    "organizationId": "a72d731d-4bfb-4eff-b763-654017270de8",
+    "name": "Legal",
+    "headcount": 134,
+    "healthScore": 82.1,
+    "createdAt": "2025-11-17T20:33:44.981483",
+    "updatedAt": "2025-11-17T20:33:44.981484"
+  },
+  {
+    "id": "1280f7af-466a-4514-bcda-1f3cc319698d",
+    "organizationId": "08c331d1-f2ae-4899-9820-a4c51c555c0e",
+    "name": "Engineering",
+    "headcount": 72,
+    "healthScore": 71.5,
+    "createdAt": "2025-11-17T20:33:45.011645",
+    "updatedAt": "2025-11-17T20:33:45.011647"
+  },
+  {
+    "id": "eddaade9-00fc-43e2-99bf-2b3d9d3d5384",
+    "organizationId": "08c331d1-f2ae-4899-9820-a4c51c555c0e",
+    "name": "Product",
+    "headcount": 110,
+    "healthScore": 74.3,
+    "createdAt": "2025-11-17T20:33:45.011656",
+    "updatedAt": "2025-11-17T20:33:45.011657"
+  },
+  {
+    "id": "633f708b-ecec-4462-a19a-297428cca023",
+    "organizationId": "08c331d1-f2ae-4899-9820-a4c51c555c0e",
+    "name": "Design",
+    "headcount": 124,
+    "healthScore": 84.0,
+    "createdAt": "2025-11-17T20:33:45.011664",
+    "updatedAt": "2025-11-17T20:33:45.011664"
+  },
+  {
+    "id": "f30fa94a-2913-4873-bb79-e3370f3372c0",
+    "organizationId": "08c331d1-f2ae-4899-9820-a4c51c555c0e",
+    "name": "Marketing",
+    "headcount": 175,
+    "healthScore": 83.3,
+    "createdAt": "2025-11-17T20:33:45.011675",
+    "updatedAt": "2025-11-17T20:33:45.011677"
+  },
+  {
+    "id": "b6f0064c-ba48-442e-a029-d6c9a25f96d6",
+    "organizationId": "08c331d1-f2ae-4899-9820-a4c51c555c0e",
+    "name": "Sales",
+    "headcount": 196,
+    "healthScore": 73.6,
+    "createdAt": "2025-11-17T20:33:45.011689",
+    "updatedAt": "2025-11-17T20:33:45.011690"
+  },
+  {
+    "id": "ba204461-52f9-4cb1-a4b5-8e887db14d7c",
+    "organizationId": "08c331d1-f2ae-4899-9820-a4c51c555c0e",
+    "name": "Customer Success",
+    "headcount": 15,
+    "healthScore": 79.5,
+    "createdAt": "2025-11-17T20:33:45.011698",
+    "updatedAt": "2025-11-17T20:33:45.011699"
+  },
+  {
+    "id": "d5090bc6-8532-437c-8ee6-5c7f4e245ecb",
+    "organizationId": "08c331d1-f2ae-4899-9820-a4c51c555c0e",
+    "name": "Operations",
+    "headcount": 141,
+    "healthScore": 76.3,
+    "createdAt": "2025-11-17T20:33:45.011705",
+    "updatedAt": "2025-11-17T20:33:45.011706"
+  },
+  {
+    "id": "59d2ea84-215c-4f3a-99e9-c952efb6b271",
+    "organizationId": "08c331d1-f2ae-4899-9820-a4c51c555c0e",
+    "name": "Finance",
+    "headcount": 111,
+    "healthScore": 73.4,
+    "createdAt": "2025-11-17T20:33:45.011712",
+    "updatedAt": "2025-11-17T20:33:45.011713"
+  },
+  {
+    "id": "6caae4c7-11e2-4b3a-9531-c17ba8cdf34e",
+    "organizationId": "08c331d1-f2ae-4899-9820-a4c51c555c0e",
+    "name": "HR",
+    "headcount": 61,
+    "healthScore": 68.6,
+    "createdAt": "2025-11-17T20:33:45.011718",
+    "updatedAt": "2025-11-17T20:33:45.011719"
+  },
+  {
+    "id": "0a000dd8-50bd-474b-b38d-9b7383174baf",
+    "organizationId": "08c331d1-f2ae-4899-9820-a4c51c555c0e",
+    "name": "Legal",
+    "headcount": 11,
+    "healthScore": 61.7,
+    "createdAt": "2025-11-17T20:33:45.011726",
+    "updatedAt": "2025-11-17T20:33:45.011727"
+  },
+  {
+    "id": "3b90b6e5-afac-4fd8-a38f-9021bb5e6148",
+    "organizationId": "cc7e759f-bd14-4a0e-af00-97f69c312cf6",
+    "name": "Engineering",
+    "headcount": 60,
+    "healthScore": 94.0,
+    "createdAt": "2025-11-17T20:33:45.056771",
+    "updatedAt": "2025-11-17T20:33:45.056772"
+  },
+  {
+    "id": "26aa08dc-faaa-40c1-8b1c-3e821b2b9b96",
+    "organizationId": "cc7e759f-bd14-4a0e-af00-97f69c312cf6",
+    "name": "Product",
+    "headcount": 161,
+    "healthScore": 73.6,
+    "createdAt": "2025-11-17T20:33:45.056779",
+    "updatedAt": "2025-11-17T20:33:45.056780"
+  },
+  {
+    "id": "82559298-e42f-42e1-97ee-47de03a10408",
+    "organizationId": "cc7e759f-bd14-4a0e-af00-97f69c312cf6",
+    "name": "Design",
+    "headcount": 87,
+    "healthScore": 87.3,
+    "createdAt": "2025-11-17T20:33:45.056785",
+    "updatedAt": "2025-11-17T20:33:45.056786"
+  },
+  {
+    "id": "47a38fa6-5d2f-4cbf-bfaa-84561d1b424e",
+    "organizationId": "cc7e759f-bd14-4a0e-af00-97f69c312cf6",
+    "name": "Marketing",
+    "headcount": 130,
+    "healthScore": 64.9,
+    "createdAt": "2025-11-17T20:33:45.056796",
+    "updatedAt": "2025-11-17T20:33:45.056797"
+  },
+  {
+    "id": "8f71d72e-bc69-40f4-9492-d0dcbb85f2f0",
+    "organizationId": "cc7e759f-bd14-4a0e-af00-97f69c312cf6",
+    "name": "Sales",
+    "headcount": 93,
+    "healthScore": 71.5,
+    "createdAt": "2025-11-17T20:33:45.056814",
+    "updatedAt": "2025-11-17T20:33:45.056815"
+  },
+  {
+    "id": "054d8ebe-edca-4093-a64f-3da6be7008a8",
+    "organizationId": "cc7e759f-bd14-4a0e-af00-97f69c312cf6",
+    "name": "Customer Success",
+    "headcount": 106,
+    "healthScore": 61.8,
+    "createdAt": "2025-11-17T20:33:45.056823",
+    "updatedAt": "2025-11-17T20:33:45.056824"
+  },
+  {
+    "id": "03a6c30b-ba42-408d-844e-17fb0170f04f",
+    "organizationId": "cc7e759f-bd14-4a0e-af00-97f69c312cf6",
+    "name": "Operations",
+    "headcount": 49,
+    "healthScore": 75.3,
+    "createdAt": "2025-11-17T20:33:45.056830",
+    "updatedAt": "2025-11-17T20:33:45.056831"
+  },
+  {
+    "id": "aefd7059-4948-4103-91fa-9b5616b39dc4",
+    "organizationId": "cc7e759f-bd14-4a0e-af00-97f69c312cf6",
+    "name": "Finance",
+    "headcount": 123,
+    "healthScore": 93.9,
+    "createdAt": "2025-11-17T20:33:45.056845",
+    "updatedAt": "2025-11-17T20:33:45.056846"
+  },
+  {
+    "id": "aac0bf99-01d6-44e2-893c-343551a36109",
+    "organizationId": "cc7e759f-bd14-4a0e-af00-97f69c312cf6",
+    "name": "HR",
+    "headcount": 189,
+    "healthScore": 79.5,
+    "createdAt": "2025-11-17T20:33:45.056854",
+    "updatedAt": "2025-11-17T20:33:45.056856"
+  },
+  {
+    "id": "8268f6d0-fc44-48d0-8f2b-093bacc744eb",
+    "organizationId": "cc7e759f-bd14-4a0e-af00-97f69c312cf6",
+    "name": "Legal",
+    "headcount": 190,
+    "healthScore": 81.6,
+    "createdAt": "2025-11-17T20:33:45.056865",
+    "updatedAt": "2025-11-17T20:33:45.056866"
+  },
+  {
+    "id": "356dd0f9-1091-4541-897b-f59262a65c51",
+    "organizationId": "f8497bdf-63ea-4838-a2c7-d5ee50fa698f",
+    "name": "Engineering",
+    "headcount": 23,
+    "healthScore": 63.2,
+    "createdAt": "2025-11-17T20:33:45.078948",
+    "updatedAt": "2025-11-17T20:33:45.078949"
+  },
+  {
+    "id": "5244545d-112e-484f-9c91-f9d0f9d983fb",
+    "organizationId": "f8497bdf-63ea-4838-a2c7-d5ee50fa698f",
+    "name": "Product",
+    "headcount": 192,
+    "healthScore": 73.5,
+    "createdAt": "2025-11-17T20:33:45.078956",
+    "updatedAt": "2025-11-17T20:33:45.078957"
+  },
+  {
+    "id": "9128511c-05fd-4a2c-a29c-965fc1a3094a",
+    "organizationId": "f8497bdf-63ea-4838-a2c7-d5ee50fa698f",
+    "name": "Design",
+    "headcount": 157,
+    "healthScore": 90.4,
+    "createdAt": "2025-11-17T20:33:45.078964",
+    "updatedAt": "2025-11-17T20:33:45.078965"
+  },
+  {
+    "id": "add3d9b5-626c-45cf-bd1b-c416cdcc5780",
+    "organizationId": "f8497bdf-63ea-4838-a2c7-d5ee50fa698f",
+    "name": "Marketing",
+    "headcount": 98,
+    "healthScore": 93.5,
+    "createdAt": "2025-11-17T20:33:45.078976",
+    "updatedAt": "2025-11-17T20:33:45.078977"
+  },
+  {
+    "id": "98100f1e-23e8-4819-850c-91f55f12e5eb",
+    "organizationId": "f8497bdf-63ea-4838-a2c7-d5ee50fa698f",
+    "name": "Sales",
+    "headcount": 42,
+    "healthScore": 88.2,
+    "createdAt": "2025-11-17T20:33:45.078985",
+    "updatedAt": "2025-11-17T20:33:45.078986"
+  },
+  {
+    "id": "8cf6ff19-bfeb-4041-b864-a1469a6aaf9a",
+    "organizationId": "f8497bdf-63ea-4838-a2c7-d5ee50fa698f",
+    "name": "Customer Success",
+    "headcount": 35,
+    "healthScore": 69.3,
+    "createdAt": "2025-11-17T20:33:45.078997",
+    "updatedAt": "2025-11-17T20:33:45.078998"
+  },
+  {
+    "id": "9e856268-41da-42c1-8ec1-752c02239722",
+    "organizationId": "f8497bdf-63ea-4838-a2c7-d5ee50fa698f",
+    "name": "Operations",
+    "headcount": 87,
+    "healthScore": 78.9,
+    "createdAt": "2025-11-17T20:33:45.079006",
+    "updatedAt": "2025-11-17T20:33:45.079007"
+  },
+  {
+    "id": "dc88c741-94d0-4380-b186-1aebf69132df",
+    "organizationId": "f8497bdf-63ea-4838-a2c7-d5ee50fa698f",
+    "name": "Finance",
+    "headcount": 116,
+    "healthScore": 62.2,
+    "createdAt": "2025-11-17T20:33:45.079016",
+    "updatedAt": "2025-11-17T20:33:45.079017"
+  },
+  {
+    "id": "0e540d22-221d-439c-b12f-d52ea04fe7e1",
+    "organizationId": "f8497bdf-63ea-4838-a2c7-d5ee50fa698f",
+    "name": "HR",
+    "headcount": 34,
+    "healthScore": 80.3,
+    "createdAt": "2025-11-17T20:33:45.079023",
+    "updatedAt": "2025-11-17T20:33:45.079024"
+  },
+  {
+    "id": "f9493f98-86c7-4a8d-aa09-d01f7e6490a8",
+    "organizationId": "f8497bdf-63ea-4838-a2c7-d5ee50fa698f",
+    "name": "Legal",
+    "headcount": 144,
+    "healthScore": 62.5,
+    "createdAt": "2025-11-17T20:33:45.079029",
+    "updatedAt": "2025-11-17T20:33:45.079030"
+  },
+  {
+    "id": "5b0a2fd3-4e34-42d8-ab2b-734c366e44de",
+    "organizationId": "027af966-b16a-430f-b0a8-b4f7de265c2b",
+    "name": "Engineering",
+    "headcount": 148,
+    "healthScore": 85.4,
+    "createdAt": "2025-11-17T20:33:45.089241",
+    "updatedAt": "2025-11-17T20:33:45.089242"
+  },
+  {
+    "id": "c5926aa8-bcc2-4f8b-8c40-ec1e4b1b98fc",
+    "organizationId": "027af966-b16a-430f-b0a8-b4f7de265c2b",
+    "name": "Product",
+    "headcount": 182,
+    "healthScore": 78.1,
+    "createdAt": "2025-11-17T20:33:45.089260",
+    "updatedAt": "2025-11-17T20:33:45.089261"
+  },
+  {
+    "id": "f8c61a42-731a-4245-8597-876d632b26a2",
+    "organizationId": "027af966-b16a-430f-b0a8-b4f7de265c2b",
+    "name": "Design",
+    "headcount": 149,
+    "healthScore": 82.8,
+    "createdAt": "2025-11-17T20:33:45.089268",
+    "updatedAt": "2025-11-17T20:33:45.089269"
+  },
+  {
+    "id": "4283327c-6882-454c-84db-fd58a7bd20be",
+    "organizationId": "027af966-b16a-430f-b0a8-b4f7de265c2b",
+    "name": "Marketing",
+    "headcount": 92,
+    "healthScore": 88.3,
+    "createdAt": "2025-11-17T20:33:45.089279",
+    "updatedAt": "2025-11-17T20:33:45.089280"
+  },
+  {
+    "id": "65764c69-ee37-4856-b518-1356ce24bbe1",
+    "organizationId": "027af966-b16a-430f-b0a8-b4f7de265c2b",
+    "name": "Sales",
+    "headcount": 63,
+    "healthScore": 62.6,
+    "createdAt": "2025-11-17T20:33:45.089285",
+    "updatedAt": "2025-11-17T20:33:45.089286"
+  },
+  {
+    "id": "21af80bd-a3b9-498d-be8e-b7243e215bb0",
+    "organizationId": "027af966-b16a-430f-b0a8-b4f7de265c2b",
+    "name": "Customer Success",
+    "headcount": 192,
+    "healthScore": 68.8,
+    "createdAt": "2025-11-17T20:33:45.089296",
+    "updatedAt": "2025-11-17T20:33:45.089297"
+  },
+  {
+    "id": "6e651af4-c1fd-40b9-91df-6a1494f242de",
+    "organizationId": "027af966-b16a-430f-b0a8-b4f7de265c2b",
+    "name": "Operations",
+    "headcount": 135,
+    "healthScore": 63.4,
+    "createdAt": "2025-11-17T20:33:45.089302",
+    "updatedAt": "2025-11-17T20:33:45.089303"
+  },
+  {
+    "id": "8d92de69-7d38-488c-bf22-5c93ef03a021",
+    "organizationId": "027af966-b16a-430f-b0a8-b4f7de265c2b",
+    "name": "Finance",
+    "headcount": 168,
+    "healthScore": 74.0,
+    "createdAt": "2025-11-17T20:33:45.089313",
+    "updatedAt": "2025-11-17T20:33:45.089314"
+  },
+  {
+    "id": "b91cf18e-fd79-420a-8cbf-7b44d64b9f2e",
+    "organizationId": "027af966-b16a-430f-b0a8-b4f7de265c2b",
+    "name": "HR",
+    "headcount": 52,
+    "healthScore": 70.9,
+    "createdAt": "2025-11-17T20:33:45.089320",
+    "updatedAt": "2025-11-17T20:33:45.089321"
+  },
+  {
+    "id": "8a213475-5cbf-4939-be2b-8f23434ad796",
+    "organizationId": "027af966-b16a-430f-b0a8-b4f7de265c2b",
+    "name": "Legal",
+    "headcount": 25,
+    "healthScore": 91.3,
+    "createdAt": "2025-11-17T20:33:45.089326",
+    "updatedAt": "2025-11-17T20:33:45.089327"
+  },
+  {
+    "id": "e0afe773-4bea-47a2-bada-e21544ecd0f7",
+    "organizationId": "55f6554c-55d0-4fbf-8743-1e0539f0f818",
+    "name": "Engineering",
+    "headcount": 184,
+    "healthScore": 77.6,
+    "createdAt": "2025-11-17T20:33:45.116541",
+    "updatedAt": "2025-11-17T20:33:45.116542"
+  },
+  {
+    "id": "ec115beb-1dc6-4e53-9a74-9b7495b0ad13",
+    "organizationId": "55f6554c-55d0-4fbf-8743-1e0539f0f818",
+    "name": "Product",
+    "headcount": 154,
+    "healthScore": 77.5,
+    "createdAt": "2025-11-17T20:33:45.116554",
+    "updatedAt": "2025-11-17T20:33:45.116555"
+  },
+  {
+    "id": "0895f9da-b047-42f3-8bca-5983f09184b1",
+    "organizationId": "55f6554c-55d0-4fbf-8743-1e0539f0f818",
+    "name": "Design",
+    "headcount": 159,
+    "healthScore": 81.6,
+    "createdAt": "2025-11-17T20:33:45.116571",
+    "updatedAt": "2025-11-17T20:33:45.116572"
+  },
+  {
+    "id": "a9eb7b0d-28a7-442b-9290-71ccc99124c0",
+    "organizationId": "55f6554c-55d0-4fbf-8743-1e0539f0f818",
+    "name": "Marketing",
+    "headcount": 142,
+    "healthScore": 92.9,
+    "createdAt": "2025-11-17T20:33:45.116584",
+    "updatedAt": "2025-11-17T20:33:45.116585"
+  },
+  {
+    "id": "40d66370-21f3-46dc-89fe-54683c9c4826",
+    "organizationId": "55f6554c-55d0-4fbf-8743-1e0539f0f818",
+    "name": "Sales",
+    "headcount": 92,
+    "healthScore": 73.8,
+    "createdAt": "2025-11-17T20:33:45.116591",
+    "updatedAt": "2025-11-17T20:33:45.116592"
+  },
+  {
+    "id": "d4ea14e1-5980-4c5c-ab8c-27fed116dec5",
+    "organizationId": "55f6554c-55d0-4fbf-8743-1e0539f0f818",
+    "name": "Customer Success",
+    "headcount": 154,
+    "healthScore": 61.0,
+    "createdAt": "2025-11-17T20:33:45.116600",
+    "updatedAt": "2025-11-17T20:33:45.116601"
+  },
+  {
+    "id": "a2bbef19-6060-4c76-a077-5a0dc1b6d9a4",
+    "organizationId": "55f6554c-55d0-4fbf-8743-1e0539f0f818",
+    "name": "Operations",
+    "headcount": 104,
+    "healthScore": 85.3,
+    "createdAt": "2025-11-17T20:33:45.116607",
+    "updatedAt": "2025-11-17T20:33:45.116607"
+  },
+  {
+    "id": "f19cabea-ae14-486e-b67a-7852b06b904e",
+    "organizationId": "55f6554c-55d0-4fbf-8743-1e0539f0f818",
+    "name": "Finance",
+    "headcount": 167,
+    "healthScore": 93.7,
+    "createdAt": "2025-11-17T20:33:45.116618",
+    "updatedAt": "2025-11-17T20:33:45.116619"
+  },
+  {
+    "id": "bf17691e-ae65-4a01-9fd2-1b8e0114c3d9",
+    "organizationId": "55f6554c-55d0-4fbf-8743-1e0539f0f818",
+    "name": "HR",
+    "headcount": 84,
+    "healthScore": 63.6,
+    "createdAt": "2025-11-17T20:33:45.116625",
+    "updatedAt": "2025-11-17T20:33:45.116626"
+  },
+  {
+    "id": "8143c8e3-9d35-4a02-9c16-ce289fca2428",
+    "organizationId": "55f6554c-55d0-4fbf-8743-1e0539f0f818",
+    "name": "Legal",
+    "headcount": 66,
+    "healthScore": 72.0,
+    "createdAt": "2025-11-17T20:33:45.116631",
+    "updatedAt": "2025-11-17T20:33:45.116632"
+  },
+  {
+    "id": "3e8ec265-4ff9-475b-9978-eb639c40e7d8",
+    "organizationId": "ff7b8e4e-92e3-43db-96e7-988a8e07effe",
+    "name": "Engineering",
+    "headcount": 84,
+    "healthScore": 90.8,
+    "createdAt": "2025-11-17T20:33:45.150232",
+    "updatedAt": "2025-11-17T20:33:45.150233"
+  },
+  {
+    "id": "160e091d-e4d0-49fa-9ec2-e57f001df57b",
+    "organizationId": "ff7b8e4e-92e3-43db-96e7-988a8e07effe",
+    "name": "Product",
+    "headcount": 105,
+    "healthScore": 78.9,
+    "createdAt": "2025-11-17T20:33:45.150240",
+    "updatedAt": "2025-11-17T20:33:45.150241"
+  },
+  {
+    "id": "a4aa50cf-f4a7-4cda-bfb9-9c70c965a455",
+    "organizationId": "ff7b8e4e-92e3-43db-96e7-988a8e07effe",
+    "name": "Design",
+    "headcount": 179,
+    "healthScore": 80.6,
+    "createdAt": "2025-11-17T20:33:45.150246",
+    "updatedAt": "2025-11-17T20:33:45.150247"
+  },
+  {
+    "id": "8fdd5f24-23fc-4ff6-b4a4-90bb9b0843f9",
+    "organizationId": "ff7b8e4e-92e3-43db-96e7-988a8e07effe",
+    "name": "Marketing",
+    "headcount": 192,
+    "healthScore": 68.2,
+    "createdAt": "2025-11-17T20:33:45.150259",
+    "updatedAt": "2025-11-17T20:33:45.150260"
+  },
+  {
+    "id": "19fb78f4-b2a4-4df4-8b64-0799847f3037",
+    "organizationId": "ff7b8e4e-92e3-43db-96e7-988a8e07effe",
+    "name": "Sales",
+    "headcount": 20,
+    "healthScore": 79.3,
+    "createdAt": "2025-11-17T20:33:45.150268",
+    "updatedAt": "2025-11-17T20:33:45.150269"
+  },
+  {
+    "id": "db576974-3cd3-4c2e-9352-3bd3772d02e2",
+    "organizationId": "ff7b8e4e-92e3-43db-96e7-988a8e07effe",
+    "name": "Customer Success",
+    "headcount": 86,
+    "healthScore": 78.2,
+    "createdAt": "2025-11-17T20:33:45.150279",
+    "updatedAt": "2025-11-17T20:33:45.150279"
+  },
+  {
+    "id": "779602c3-c55b-4698-b53b-b6e0620eaae4",
+    "organizationId": "ff7b8e4e-92e3-43db-96e7-988a8e07effe",
+    "name": "Operations",
+    "headcount": 149,
+    "healthScore": 76.0,
+    "createdAt": "2025-11-17T20:33:45.150285",
+    "updatedAt": "2025-11-17T20:33:45.150286"
+  },
+  {
+    "id": "78488e50-1c95-477f-8cd6-44a06bf371ce",
+    "organizationId": "ff7b8e4e-92e3-43db-96e7-988a8e07effe",
+    "name": "Finance",
+    "headcount": 44,
+    "healthScore": 87.9,
+    "createdAt": "2025-11-17T20:33:45.150293",
+    "updatedAt": "2025-11-17T20:33:45.150294"
+  },
+  {
+    "id": "3523afee-d7d6-4257-88b5-ceebc22d3cf2",
+    "organizationId": "ff7b8e4e-92e3-43db-96e7-988a8e07effe",
+    "name": "HR",
+    "headcount": 183,
+    "healthScore": 91.4,
+    "createdAt": "2025-11-17T20:33:45.150306",
+    "updatedAt": "2025-11-17T20:33:45.150307"
+  },
+  {
+    "id": "d0135b6c-cf2b-4fa8-ab70-f4da6a686dd7",
+    "organizationId": "ff7b8e4e-92e3-43db-96e7-988a8e07effe",
+    "name": "Legal",
+    "headcount": 178,
+    "healthScore": 66.0,
+    "createdAt": "2025-11-17T20:33:45.150313",
+    "updatedAt": "2025-11-17T20:33:45.150314"
+  },
+  {
+    "id": "b7206fcb-49de-4ea0-99d8-564ef41af840",
+    "organizationId": "33eba272-53ed-420f-9c57-0b4cc7e20db6",
+    "name": "Engineering",
+    "headcount": 93,
+    "healthScore": 93.8,
+    "createdAt": "2025-11-17T20:33:45.172590",
+    "updatedAt": "2025-11-17T20:33:45.172591"
+  },
+  {
+    "id": "5f646661-ae30-4832-b83d-2e2ba95b4f9a",
+    "organizationId": "33eba272-53ed-420f-9c57-0b4cc7e20db6",
+    "name": "Product",
+    "headcount": 139,
+    "healthScore": 71.5,
+    "createdAt": "2025-11-17T20:33:45.172598",
+    "updatedAt": "2025-11-17T20:33:45.172599"
+  },
+  {
+    "id": "a3844488-e111-4cb1-994d-c6c90a0dda50",
+    "organizationId": "33eba272-53ed-420f-9c57-0b4cc7e20db6",
+    "name": "Design",
+    "headcount": 12,
+    "healthScore": 90.4,
+    "createdAt": "2025-11-17T20:33:45.172614",
+    "updatedAt": "2025-11-17T20:33:45.172615"
+  },
+  {
+    "id": "6d034370-262a-4c9c-9f6f-02c3fa9f8ff2",
+    "organizationId": "33eba272-53ed-420f-9c57-0b4cc7e20db6",
+    "name": "Marketing",
+    "headcount": 42,
+    "healthScore": 91.2,
+    "createdAt": "2025-11-17T20:33:45.172624",
+    "updatedAt": "2025-11-17T20:33:45.172625"
+  },
+  {
+    "id": "395f582a-2cb9-4b11-8fdc-ffa780941ed2",
+    "organizationId": "33eba272-53ed-420f-9c57-0b4cc7e20db6",
+    "name": "Sales",
+    "headcount": 70,
+    "healthScore": 94.2,
+    "createdAt": "2025-11-17T20:33:45.172631",
+    "updatedAt": "2025-11-17T20:33:45.172631"
+  },
+  {
+    "id": "4a543e9a-6617-4726-be50-09dbe7da6de6",
+    "organizationId": "33eba272-53ed-420f-9c57-0b4cc7e20db6",
+    "name": "Customer Success",
+    "headcount": 185,
+    "healthScore": 75.7,
+    "createdAt": "2025-11-17T20:33:45.172646",
+    "updatedAt": "2025-11-17T20:33:45.172647"
+  },
+  {
+    "id": "bfe039d5-ea80-4224-9562-504235184576",
+    "organizationId": "33eba272-53ed-420f-9c57-0b4cc7e20db6",
+    "name": "Operations",
+    "headcount": 90,
+    "healthScore": 91.1,
+    "createdAt": "2025-11-17T20:33:45.172657",
+    "updatedAt": "2025-11-17T20:33:45.172658"
+  },
+  {
+    "id": "d9987e8d-a057-4e13-9a05-0bb720018d87",
+    "organizationId": "33eba272-53ed-420f-9c57-0b4cc7e20db6",
+    "name": "Finance",
+    "headcount": 13,
+    "healthScore": 87.2,
+    "createdAt": "2025-11-17T20:33:45.172664",
+    "updatedAt": "2025-11-17T20:33:45.172665"
+  },
+  {
+    "id": "7a65dc6b-99b1-43cd-928d-4aa9d3c98084",
+    "organizationId": "33eba272-53ed-420f-9c57-0b4cc7e20db6",
+    "name": "HR",
+    "headcount": 67,
+    "healthScore": 74.7,
+    "createdAt": "2025-11-17T20:33:45.172670",
+    "updatedAt": "2025-11-17T20:33:45.172671"
+  },
+  {
+    "id": "dde3291b-5ae6-483c-b06e-6f99b28e606a",
+    "organizationId": "33eba272-53ed-420f-9c57-0b4cc7e20db6",
+    "name": "Legal",
+    "headcount": 139,
+    "healthScore": 94.2,
+    "createdAt": "2025-11-17T20:33:45.172676",
+    "updatedAt": "2025-11-17T20:33:45.172677"
+  },
+  {
+    "id": "9c04d369-5de3-44f7-9263-09599413bdc2",
+    "organizationId": "f34c2c97-575b-493e-b555-137383e5a6ee",
+    "name": "Engineering",
+    "headcount": 141,
+    "healthScore": 61.6,
+    "createdAt": "2025-11-17T20:33:45.193852",
+    "updatedAt": "2025-11-17T20:33:45.193853"
+  },
+  {
+    "id": "6b0d2e85-bf5f-4224-9bb0-1194259d10b4",
+    "organizationId": "f34c2c97-575b-493e-b555-137383e5a6ee",
+    "name": "Product",
+    "headcount": 172,
+    "healthScore": 72.8,
+    "createdAt": "2025-11-17T20:33:45.193863",
+    "updatedAt": "2025-11-17T20:33:45.193864"
+  },
+  {
+    "id": "bb5e86a4-deab-4ca5-9564-92282fed72c6",
+    "organizationId": "f34c2c97-575b-493e-b555-137383e5a6ee",
+    "name": "Design",
+    "headcount": 180,
+    "healthScore": 92.8,
+    "createdAt": "2025-11-17T20:33:45.193873",
+    "updatedAt": "2025-11-17T20:33:45.193874"
+  },
+  {
+    "id": "b035a935-9dac-499b-8c29-cdf950f9213d",
+    "organizationId": "f34c2c97-575b-493e-b555-137383e5a6ee",
+    "name": "Marketing",
+    "headcount": 146,
+    "healthScore": 61.7,
+    "createdAt": "2025-11-17T20:33:45.193886",
+    "updatedAt": "2025-11-17T20:33:45.193887"
+  },
+  {
+    "id": "f544756d-a432-4897-8abc-71a730f7f164",
+    "organizationId": "f34c2c97-575b-493e-b555-137383e5a6ee",
+    "name": "Sales",
+    "headcount": 141,
+    "healthScore": 69.9,
+    "createdAt": "2025-11-17T20:33:45.193893",
+    "updatedAt": "2025-11-17T20:33:45.193894"
+  },
+  {
+    "id": "c2cf845a-bf44-4514-bc07-156b26d524d6",
+    "organizationId": "f34c2c97-575b-493e-b555-137383e5a6ee",
+    "name": "Customer Success",
+    "headcount": 127,
+    "healthScore": 61.5,
+    "createdAt": "2025-11-17T20:33:45.193901",
+    "updatedAt": "2025-11-17T20:33:45.193902"
+  },
+  {
+    "id": "5b39b32d-b5d0-4dd5-bfae-573209077dd9",
+    "organizationId": "f34c2c97-575b-493e-b555-137383e5a6ee",
+    "name": "Operations",
+    "headcount": 116,
+    "healthScore": 93.0,
+    "createdAt": "2025-11-17T20:33:45.193914",
+    "updatedAt": "2025-11-17T20:33:45.193915"
+  },
+  {
+    "id": "7a2e3610-e591-41d0-a71c-0293f85ced58",
+    "organizationId": "f34c2c97-575b-493e-b555-137383e5a6ee",
+    "name": "Finance",
+    "headcount": 65,
+    "healthScore": 83.4,
+    "createdAt": "2025-11-17T20:33:45.193921",
+    "updatedAt": "2025-11-17T20:33:45.193922"
+  },
+  {
+    "id": "bd103e83-ae26-49dd-86da-878f5a0aa584",
+    "organizationId": "f34c2c97-575b-493e-b555-137383e5a6ee",
+    "name": "HR",
+    "headcount": 169,
+    "healthScore": 73.5,
+    "createdAt": "2025-11-17T20:33:45.193928",
+    "updatedAt": "2025-11-17T20:33:45.193928"
+  },
+  {
+    "id": "3d251303-cfaa-466d-9f7d-ea2025b416ff",
+    "organizationId": "f34c2c97-575b-493e-b555-137383e5a6ee",
+    "name": "Legal",
+    "headcount": 28,
+    "healthScore": 89.5,
+    "createdAt": "2025-11-17T20:33:45.193934",
+    "updatedAt": "2025-11-17T20:33:45.193935"
+  },
+  {
+    "id": "2565015f-aef5-4be5-8f04-81e36718bfb5",
+    "organizationId": "052e496c-138d-4d9f-8c6d-bb749aca23ea",
+    "name": "Engineering",
+    "headcount": 135,
+    "healthScore": 68.3,
+    "createdAt": "2025-11-17T20:33:45.230207",
+    "updatedAt": "2025-11-17T20:33:45.230209"
+  },
+  {
+    "id": "3af52831-0922-415a-ae18-7bc06871cd95",
+    "organizationId": "052e496c-138d-4d9f-8c6d-bb749aca23ea",
+    "name": "Product",
+    "headcount": 190,
+    "healthScore": 69.8,
+    "createdAt": "2025-11-17T20:33:45.230216",
+    "updatedAt": "2025-11-17T20:33:45.230217"
+  },
+  {
+    "id": "423565b9-451a-4c3a-812f-7a74b399ee06",
+    "organizationId": "052e496c-138d-4d9f-8c6d-bb749aca23ea",
+    "name": "Design",
+    "headcount": 194,
+    "healthScore": 88.6,
+    "createdAt": "2025-11-17T20:33:45.230231",
+    "updatedAt": "2025-11-17T20:33:45.230232"
+  },
+  {
+    "id": "b1bd4cec-908d-437a-afb0-79c61d309163",
+    "organizationId": "052e496c-138d-4d9f-8c6d-bb749aca23ea",
+    "name": "Marketing",
+    "headcount": 115,
+    "healthScore": 67.8,
+    "createdAt": "2025-11-17T20:33:45.230238",
+    "updatedAt": "2025-11-17T20:33:45.230239"
+  },
+  {
+    "id": "2e59d1dd-c374-4d55-a682-7fd61b4aad24",
+    "organizationId": "052e496c-138d-4d9f-8c6d-bb749aca23ea",
+    "name": "Sales",
+    "headcount": 133,
+    "healthScore": 65.7,
+    "createdAt": "2025-11-17T20:33:45.230245",
+    "updatedAt": "2025-11-17T20:33:45.230246"
+  },
+  {
+    "id": "beb51e84-593b-465f-acdd-5cb0a1697b5b",
+    "organizationId": "052e496c-138d-4d9f-8c6d-bb749aca23ea",
+    "name": "Customer Success",
+    "headcount": 123,
+    "healthScore": 86.7,
+    "createdAt": "2025-11-17T20:33:45.230261",
+    "updatedAt": "2025-11-17T20:33:45.230262"
+  },
+  {
+    "id": "6c304d75-2077-4809-8d7b-e6d9084f8d98",
+    "organizationId": "052e496c-138d-4d9f-8c6d-bb749aca23ea",
+    "name": "Operations",
+    "headcount": 179,
+    "healthScore": 78.2,
+    "createdAt": "2025-11-17T20:33:45.230273",
+    "updatedAt": "2025-11-17T20:33:45.230274"
+  },
+  {
+    "id": "c5516a2d-1528-4fab-aa07-edd042186163",
+    "organizationId": "052e496c-138d-4d9f-8c6d-bb749aca23ea",
+    "name": "Finance",
+    "headcount": 35,
+    "healthScore": 88.2,
+    "createdAt": "2025-11-17T20:33:45.230283",
+    "updatedAt": "2025-11-17T20:33:45.230284"
+  },
+  {
+    "id": "8bcfed76-3f39-49ce-84db-fff4c09ed55e",
+    "organizationId": "052e496c-138d-4d9f-8c6d-bb749aca23ea",
+    "name": "HR",
+    "headcount": 30,
+    "healthScore": 60.9,
+    "createdAt": "2025-11-17T20:33:45.230291",
+    "updatedAt": "2025-11-17T20:33:45.230292"
+  },
+  {
+    "id": "d0f8460b-4209-451d-a8a0-1b1cbe7ac60f",
+    "organizationId": "052e496c-138d-4d9f-8c6d-bb749aca23ea",
+    "name": "Legal",
+    "headcount": 141,
+    "healthScore": 78.1,
+    "createdAt": "2025-11-17T20:33:45.230299",
+    "updatedAt": "2025-11-17T20:33:45.230300"
+  },
+  {
+    "id": "efeeecda-df7f-47cb-ab49-4cace4dd17f0",
+    "organizationId": "0a759a54-93ca-4a16-ad26-fe19f4ef92b8",
+    "name": "Engineering",
+    "headcount": 137,
+    "healthScore": 65.1,
+    "createdAt": "2025-11-17T20:33:45.260784",
+    "updatedAt": "2025-11-17T20:33:45.260786"
+  },
+  {
+    "id": "14705a89-d6f5-4203-b4b5-75cae06ee2ee",
+    "organizationId": "0a759a54-93ca-4a16-ad26-fe19f4ef92b8",
+    "name": "Product",
+    "headcount": 133,
+    "healthScore": 64.5,
+    "createdAt": "2025-11-17T20:33:45.260794",
+    "updatedAt": "2025-11-17T20:33:45.260794"
+  },
+  {
+    "id": "7439342a-2090-40e4-8ab0-cfede77ce3c1",
+    "organizationId": "0a759a54-93ca-4a16-ad26-fe19f4ef92b8",
+    "name": "Design",
+    "headcount": 18,
+    "healthScore": 71.1,
+    "createdAt": "2025-11-17T20:33:45.260812",
+    "updatedAt": "2025-11-17T20:33:45.260812"
+  },
+  {
+    "id": "4b5b1cb8-4291-47d6-b278-cc2b7a0e160b",
+    "organizationId": "0a759a54-93ca-4a16-ad26-fe19f4ef92b8",
+    "name": "Marketing",
+    "headcount": 140,
+    "healthScore": 64.8,
+    "createdAt": "2025-11-17T20:33:45.260829",
+    "updatedAt": "2025-11-17T20:33:45.260831"
+  },
+  {
+    "id": "e49df13c-22a6-4b0c-8bab-0869811081a6",
+    "organizationId": "0a759a54-93ca-4a16-ad26-fe19f4ef92b8",
+    "name": "Sales",
+    "headcount": 142,
+    "healthScore": 77.0,
+    "createdAt": "2025-11-17T20:33:45.260854",
+    "updatedAt": "2025-11-17T20:33:45.260856"
+  },
+  {
+    "id": "3f8149bf-63e9-4d03-b89d-8e33d24ef2f3",
+    "organizationId": "0a759a54-93ca-4a16-ad26-fe19f4ef92b8",
+    "name": "Customer Success",
+    "headcount": 60,
+    "healthScore": 73.4,
+    "createdAt": "2025-11-17T20:33:45.260869",
+    "updatedAt": "2025-11-17T20:33:45.260870"
+  },
+  {
+    "id": "7e9ba829-de9e-4dee-adda-81bf0b9a27ac",
+    "organizationId": "0a759a54-93ca-4a16-ad26-fe19f4ef92b8",
+    "name": "Operations",
+    "headcount": 24,
+    "healthScore": 79.9,
+    "createdAt": "2025-11-17T20:33:45.260877",
+    "updatedAt": "2025-11-17T20:33:45.260878"
+  },
+  {
+    "id": "62dbb617-42c2-4942-b06b-0fd78d92fc3d",
+    "organizationId": "0a759a54-93ca-4a16-ad26-fe19f4ef92b8",
+    "name": "Finance",
+    "headcount": 81,
+    "healthScore": 61.8,
+    "createdAt": "2025-11-17T20:33:45.260884",
+    "updatedAt": "2025-11-17T20:33:45.260885"
+  },
+  {
+    "id": "37c5cd4f-1b72-4795-9342-9577385065e9",
+    "organizationId": "0a759a54-93ca-4a16-ad26-fe19f4ef92b8",
+    "name": "HR",
+    "headcount": 118,
+    "healthScore": 65.7,
+    "createdAt": "2025-11-17T20:33:45.260892",
+    "updatedAt": "2025-11-17T20:33:45.260893"
+  },
+  {
+    "id": "341e9187-3252-4ceb-bf0b-4771b18d63b6",
+    "organizationId": "0a759a54-93ca-4a16-ad26-fe19f4ef92b8",
+    "name": "Legal",
+    "headcount": 74,
+    "healthScore": 65.9,
+    "createdAt": "2025-11-17T20:33:45.260900",
+    "updatedAt": "2025-11-17T20:33:45.260900"
+  },
+  {
+    "id": "a2fd073f-1ba3-493b-bbde-5480c06a6c0b",
+    "organizationId": "59967385-3216-4557-ac57-be74c8e88c10",
+    "name": "Engineering",
+    "headcount": 78,
+    "healthScore": 73.5,
+    "createdAt": "2025-11-17T20:33:45.290494",
+    "updatedAt": "2025-11-17T20:33:45.290495"
+  },
+  {
+    "id": "3fb8a036-5d4b-4ea9-ab20-c114f8e8d322",
+    "organizationId": "59967385-3216-4557-ac57-be74c8e88c10",
+    "name": "Product",
+    "headcount": 21,
+    "healthScore": 89.8,
+    "createdAt": "2025-11-17T20:33:45.290505",
+    "updatedAt": "2025-11-17T20:33:45.290506"
+  },
+  {
+    "id": "d465b2da-ed6c-4a8d-91d8-44f15686dbcc",
+    "organizationId": "59967385-3216-4557-ac57-be74c8e88c10",
+    "name": "Design",
+    "headcount": 189,
+    "healthScore": 88.5,
+    "createdAt": "2025-11-17T20:33:45.290522",
+    "updatedAt": "2025-11-17T20:33:45.290523"
+  },
+  {
+    "id": "db8673f1-ea35-4569-b321-8a4715d35413",
+    "organizationId": "59967385-3216-4557-ac57-be74c8e88c10",
+    "name": "Marketing",
+    "headcount": 135,
+    "healthScore": 88.8,
+    "createdAt": "2025-11-17T20:33:45.290535",
+    "updatedAt": "2025-11-17T20:33:45.290536"
+  },
+  {
+    "id": "31a6e1f9-e20f-41ab-a04f-2c5a65ec0b7d",
+    "organizationId": "59967385-3216-4557-ac57-be74c8e88c10",
+    "name": "Sales",
+    "headcount": 69,
+    "healthScore": 64.1,
+    "createdAt": "2025-11-17T20:33:45.290553",
+    "updatedAt": "2025-11-17T20:33:45.290554"
+  },
+  {
+    "id": "506f874e-d58b-44d1-b4b5-e2f47acfa5f4",
+    "organizationId": "59967385-3216-4557-ac57-be74c8e88c10",
+    "name": "Customer Success",
+    "headcount": 24,
+    "healthScore": 80.4,
+    "createdAt": "2025-11-17T20:33:45.290565",
+    "updatedAt": "2025-11-17T20:33:45.290566"
+  },
+  {
+    "id": "ffc6cd94-5b60-4352-8e18-7ad14ae4f1de",
+    "organizationId": "59967385-3216-4557-ac57-be74c8e88c10",
+    "name": "Operations",
+    "headcount": 187,
+    "healthScore": 64.0,
+    "createdAt": "2025-11-17T20:33:45.290572",
+    "updatedAt": "2025-11-17T20:33:45.290573"
+  },
+  {
+    "id": "5ae7b74e-2c78-4316-9986-7e7dd161a588",
+    "organizationId": "59967385-3216-4557-ac57-be74c8e88c10",
+    "name": "Finance",
+    "headcount": 188,
+    "healthScore": 75.5,
+    "createdAt": "2025-11-17T20:33:45.290578",
+    "updatedAt": "2025-11-17T20:33:45.290579"
+  },
+  {
+    "id": "c4499c93-0e0e-4d40-85f0-ab03e41a1c22",
+    "organizationId": "59967385-3216-4557-ac57-be74c8e88c10",
+    "name": "HR",
+    "headcount": 81,
+    "healthScore": 69.8,
+    "createdAt": "2025-11-17T20:33:45.290585",
+    "updatedAt": "2025-11-17T20:33:45.290586"
+  },
+  {
+    "id": "ee6286e6-1347-46d5-9437-c5896f841710",
+    "organizationId": "59967385-3216-4557-ac57-be74c8e88c10",
+    "name": "Legal",
+    "headcount": 81,
+    "healthScore": 79.1,
+    "createdAt": "2025-11-17T20:33:45.290594",
+    "updatedAt": "2025-11-17T20:33:45.290595"
+  },
+  {
+    "id": "e2fec8b7-f653-4bce-8fcd-b54c263d591d",
+    "organizationId": "dc1aa6c7-7ecf-4639-b748-71fd2c96f958",
+    "name": "Engineering",
+    "headcount": 119,
+    "healthScore": 78.5,
+    "createdAt": "2025-11-17T20:33:45.303909",
+    "updatedAt": "2025-11-17T20:33:45.303912"
+  },
+  {
+    "id": "816f4f7c-1113-47cb-b9aa-f110ec40397b",
+    "organizationId": "dc1aa6c7-7ecf-4639-b748-71fd2c96f958",
+    "name": "Product",
+    "headcount": 66,
+    "healthScore": 92.8,
+    "createdAt": "2025-11-17T20:33:45.303922",
+    "updatedAt": "2025-11-17T20:33:45.303924"
+  },
+  {
+    "id": "259f7ea1-fa1d-41da-bfef-d72d471bde22",
+    "organizationId": "dc1aa6c7-7ecf-4639-b748-71fd2c96f958",
+    "name": "Design",
+    "headcount": 91,
+    "healthScore": 88.1,
+    "createdAt": "2025-11-17T20:33:45.303934",
+    "updatedAt": "2025-11-17T20:33:45.303935"
+  },
+  {
+    "id": "8681f67a-85bd-4893-b55a-550a1ccef66b",
+    "organizationId": "dc1aa6c7-7ecf-4639-b748-71fd2c96f958",
+    "name": "Marketing",
+    "headcount": 60,
+    "healthScore": 80.1,
+    "createdAt": "2025-11-17T20:33:45.303942",
+    "updatedAt": "2025-11-17T20:33:45.303943"
+  },
+  {
+    "id": "a17f6f80-b757-4b27-bfc3-9aaaad462063",
+    "organizationId": "dc1aa6c7-7ecf-4639-b748-71fd2c96f958",
+    "name": "Sales",
+    "headcount": 102,
+    "healthScore": 81.1,
+    "createdAt": "2025-11-17T20:33:45.303950",
+    "updatedAt": "2025-11-17T20:33:45.303951"
+  },
+  {
+    "id": "686ba5e7-5b6f-43f1-9985-179f8c3abf4e",
+    "organizationId": "dc1aa6c7-7ecf-4639-b748-71fd2c96f958",
+    "name": "Customer Success",
+    "headcount": 147,
+    "healthScore": 77.6,
+    "createdAt": "2025-11-17T20:33:45.303959",
+    "updatedAt": "2025-11-17T20:33:45.303960"
+  },
+  {
+    "id": "55ae15ef-4728-471a-af08-085092270252",
+    "organizationId": "dc1aa6c7-7ecf-4639-b748-71fd2c96f958",
+    "name": "Operations",
+    "headcount": 148,
+    "healthScore": 86.8,
+    "createdAt": "2025-11-17T20:33:45.303970",
+    "updatedAt": "2025-11-17T20:33:45.303971"
+  },
+  {
+    "id": "c2e8a740-f8c7-4acb-87ad-568b566e3a3f",
+    "organizationId": "dc1aa6c7-7ecf-4639-b748-71fd2c96f958",
+    "name": "Finance",
+    "headcount": 99,
+    "healthScore": 79.3,
+    "createdAt": "2025-11-17T20:33:45.303976",
+    "updatedAt": "2025-11-17T20:33:45.303977"
+  },
+  {
+    "id": "13852b82-59bf-41f2-b752-aae03c870681",
+    "organizationId": "dc1aa6c7-7ecf-4639-b748-71fd2c96f958",
+    "name": "HR",
+    "headcount": 167,
+    "healthScore": 75.9,
+    "createdAt": "2025-11-17T20:33:45.303989",
+    "updatedAt": "2025-11-17T20:33:45.303990"
+  },
+  {
+    "id": "9f7efa70-f565-4518-a546-5878ec346713",
+    "organizationId": "dc1aa6c7-7ecf-4639-b748-71fd2c96f958",
+    "name": "Legal",
+    "headcount": 27,
+    "healthScore": 88.1,
+    "createdAt": "2025-11-17T20:33:45.303997",
+    "updatedAt": "2025-11-17T20:33:45.303997"
+  },
+  {
+    "id": "0ec7c5ec-05d0-449f-9235-f79832c1fccd",
+    "organizationId": "ff093b7a-4474-4066-a7fc-27323a46e2a1",
+    "name": "Engineering",
+    "headcount": 24,
+    "healthScore": 91.7,
+    "createdAt": "2025-11-17T20:33:45.321593",
+    "updatedAt": "2025-11-17T20:33:45.321594"
+  },
+  {
+    "id": "d45b69c5-b9e3-4427-81d5-8318141faf81",
+    "organizationId": "ff093b7a-4474-4066-a7fc-27323a46e2a1",
+    "name": "Product",
+    "headcount": 162,
+    "healthScore": 89.5,
+    "createdAt": "2025-11-17T20:33:45.321603",
+    "updatedAt": "2025-11-17T20:33:45.321604"
+  },
+  {
+    "id": "b262ee0d-22e3-469c-8022-7a973df54690",
+    "organizationId": "ff093b7a-4474-4066-a7fc-27323a46e2a1",
+    "name": "Design",
+    "headcount": 109,
+    "healthScore": 89.9,
+    "createdAt": "2025-11-17T20:33:45.321611",
+    "updatedAt": "2025-11-17T20:33:45.321612"
+  },
+  {
+    "id": "13711dab-d94f-44ff-8755-7f14fad11541",
+    "organizationId": "ff093b7a-4474-4066-a7fc-27323a46e2a1",
+    "name": "Marketing",
+    "headcount": 115,
+    "healthScore": 77.5,
+    "createdAt": "2025-11-17T20:33:45.321623",
+    "updatedAt": "2025-11-17T20:33:45.321626"
+  },
+  {
+    "id": "777df548-ddef-4b6e-9acd-be8ff64caf1b",
+    "organizationId": "ff093b7a-4474-4066-a7fc-27323a46e2a1",
+    "name": "Sales",
+    "headcount": 87,
+    "healthScore": 84.6,
+    "createdAt": "2025-11-17T20:33:45.321642",
+    "updatedAt": "2025-11-17T20:33:45.321643"
+  },
+  {
+    "id": "2a9dc8f3-3d95-4349-8726-3f39b6cf128f",
+    "organizationId": "ff093b7a-4474-4066-a7fc-27323a46e2a1",
+    "name": "Customer Success",
+    "headcount": 88,
+    "healthScore": 93.1,
+    "createdAt": "2025-11-17T20:33:45.321649",
+    "updatedAt": "2025-11-17T20:33:45.321650"
+  },
+  {
+    "id": "1ec7660a-14d6-4af6-abb1-d58222fb66ba",
+    "organizationId": "ff093b7a-4474-4066-a7fc-27323a46e2a1",
+    "name": "Operations",
+    "headcount": 64,
+    "healthScore": 94.0,
+    "createdAt": "2025-11-17T20:33:45.321656",
+    "updatedAt": "2025-11-17T20:33:45.321657"
+  },
+  {
+    "id": "f4070543-bd46-44c9-a2e2-33872d6182e6",
+    "organizationId": "ff093b7a-4474-4066-a7fc-27323a46e2a1",
+    "name": "Finance",
+    "headcount": 60,
+    "healthScore": 89.5,
+    "createdAt": "2025-11-17T20:33:45.321667",
+    "updatedAt": "2025-11-17T20:33:45.321668"
+  },
+  {
+    "id": "5bf1f791-6b09-49ad-ad00-f2042822710f",
+    "organizationId": "ff093b7a-4474-4066-a7fc-27323a46e2a1",
+    "name": "HR",
+    "headcount": 79,
+    "healthScore": 71.2,
+    "createdAt": "2025-11-17T20:33:45.321673",
+    "updatedAt": "2025-11-17T20:33:45.321674"
+  },
+  {
+    "id": "5a911c51-6bdc-448b-a91f-426f87e17dd8",
+    "organizationId": "ff093b7a-4474-4066-a7fc-27323a46e2a1",
+    "name": "Legal",
+    "headcount": 39,
+    "healthScore": 91.5,
+    "createdAt": "2025-11-17T20:33:45.321680",
+    "updatedAt": "2025-11-17T20:33:45.321681"
+  },
+  {
+    "id": "84dea519-4981-4c08-ba32-c7268e323259",
+    "organizationId": "4fef0c1f-6638-4952-a4a0-ecb0ba379ff3",
+    "name": "Engineering",
+    "headcount": 99,
+    "healthScore": 66.8,
+    "createdAt": "2025-11-17T20:33:45.356363",
+    "updatedAt": "2025-11-17T20:33:45.356365"
+  },
+  {
+    "id": "ae0b8251-c9ac-4080-a26e-e4f6d69cb24f",
+    "organizationId": "4fef0c1f-6638-4952-a4a0-ecb0ba379ff3",
+    "name": "Product",
+    "headcount": 128,
+    "healthScore": 84.9,
+    "createdAt": "2025-11-17T20:33:45.356375",
+    "updatedAt": "2025-11-17T20:33:45.356375"
+  },
+  {
+    "id": "7ab445ff-83ed-47f4-bbcc-d780868268c9",
+    "organizationId": "4fef0c1f-6638-4952-a4a0-ecb0ba379ff3",
+    "name": "Design",
+    "headcount": 56,
+    "healthScore": 76.9,
+    "createdAt": "2025-11-17T20:33:45.356406",
+    "updatedAt": "2025-11-17T20:33:45.356407"
+  },
+  {
+    "id": "8dc0a389-7d66-4352-b46f-c82773997414",
+    "organizationId": "4fef0c1f-6638-4952-a4a0-ecb0ba379ff3",
+    "name": "Marketing",
+    "headcount": 127,
+    "healthScore": 85.0,
+    "createdAt": "2025-11-17T20:33:45.356423",
+    "updatedAt": "2025-11-17T20:33:45.356424"
+  },
+  {
+    "id": "0ca401fc-3dc8-4d5c-864b-1b0f8de031dc",
+    "organizationId": "4fef0c1f-6638-4952-a4a0-ecb0ba379ff3",
+    "name": "Sales",
+    "headcount": 111,
+    "healthScore": 75.4,
+    "createdAt": "2025-11-17T20:33:45.356431",
+    "updatedAt": "2025-11-17T20:33:45.356432"
+  },
+  {
+    "id": "531d9e77-cbbe-4441-a345-8acf6b2b3d3a",
+    "organizationId": "4fef0c1f-6638-4952-a4a0-ecb0ba379ff3",
+    "name": "Customer Success",
+    "headcount": 200,
+    "healthScore": 80.8,
+    "createdAt": "2025-11-17T20:33:45.356443",
+    "updatedAt": "2025-11-17T20:33:45.356444"
+  },
+  {
+    "id": "69220fae-6485-4e33-a709-11290ee80514",
+    "organizationId": "4fef0c1f-6638-4952-a4a0-ecb0ba379ff3",
+    "name": "Operations",
+    "headcount": 116,
+    "healthScore": 82.1,
+    "createdAt": "2025-11-17T20:33:45.356450",
+    "updatedAt": "2025-11-17T20:33:45.356450"
+  },
+  {
+    "id": "0316e3fd-1418-42ef-8322-fa4da59096e7",
+    "organizationId": "4fef0c1f-6638-4952-a4a0-ecb0ba379ff3",
+    "name": "Finance",
+    "headcount": 114,
+    "healthScore": 63.1,
+    "createdAt": "2025-11-17T20:33:45.356460",
+    "updatedAt": "2025-11-17T20:33:45.356461"
+  },
+  {
+    "id": "d2bfda0b-c6b8-4f91-9e5f-9a0ba056effb",
+    "organizationId": "4fef0c1f-6638-4952-a4a0-ecb0ba379ff3",
+    "name": "HR",
+    "headcount": 35,
+    "healthScore": 77.0,
+    "createdAt": "2025-11-17T20:33:45.356469",
+    "updatedAt": "2025-11-17T20:33:45.356470"
+  },
+  {
+    "id": "d957e6fd-fc68-4de3-b6f8-9365b8806f09",
+    "organizationId": "4fef0c1f-6638-4952-a4a0-ecb0ba379ff3",
+    "name": "Legal",
+    "headcount": 91,
+    "healthScore": 89.0,
+    "createdAt": "2025-11-17T20:33:45.356483",
+    "updatedAt": "2025-11-17T20:33:45.356484"
+  }
+]

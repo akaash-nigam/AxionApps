@@ -1,0 +1,24 @@
+{
+  "source": "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/App/AIAgentCoordinatorApp.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "The requested agent could not be found.",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 361
+        }
+      },
+      {
+        "comment": "",
+        "key": "Agent Not Found",
+        "location": {
+          "startingColumn": 17,
+          "startingLine": 359
+        }
+      }
+    ]
+  },
+  "version": 1
+}

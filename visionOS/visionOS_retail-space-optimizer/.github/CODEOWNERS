@@ -1,0 +1,32 @@
+# Code Owners for Retail Space Optimizer
+
+# Default owners for everything in the repo
+*       @akaash-nigam
+
+# Documentation
+*.md    @akaash-nigam
+docs/   @akaash-nigam
+
+# Core application code
+RetailSpaceOptimizer/RetailSpaceOptimizer/App/           @akaash-nigam
+RetailSpaceOptimizer/RetailSpaceOptimizer/Models/        @akaash-nigam
+RetailSpaceOptimizer/RetailSpaceOptimizer/Views/         @akaash-nigam
+RetailSpaceOptimizer/RetailSpaceOptimizer/Services/      @akaash-nigam
+
+# Tests
+RetailSpaceOptimizer/RetailSpaceOptimizerTests/          @akaash-nigam
+
+# Configuration files
+*.yml           @akaash-nigam
+*.yaml          @akaash-nigam
+*.plist         @akaash-nigam
+.gitignore      @akaash-nigam
+
+# GitHub workflows and templates
+.github/        @akaash-nigam
+
+# Scripts
+scripts/        @akaash-nigam
+
+# Landing page
+landing-page.html   @akaash-nigam

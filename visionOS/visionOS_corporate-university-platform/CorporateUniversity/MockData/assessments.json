@@ -1,0 +1,581 @@
+{
+  "assessments": [
+    {
+      "id": "ASSESS-001",
+      "courseId": "A1B2C3D4-E5F6-4A7B-8C9D-0E1F2A3B4C5D",
+      "title": "Swift Concurrency Quiz",
+      "type": "multiple_choice",
+      "passingScore": 80.0,
+      "timeLimit": 1800,
+      "shuffleQuestions": true,
+      "shuffleAnswers": true,
+      "questions": [
+        {
+          "id": "Q001",
+          "text": "Which keyword is used to mark a function as asynchronous in Swift?",
+          "type": "multiple_choice",
+          "points": 10,
+          "options": [
+            {"id": "A", "text": "async", "isCorrect": true},
+            {"id": "B", "text": "await", "isCorrect": false},
+            {"id": "C", "text": "concurrent", "isCorrect": false},
+            {"id": "D", "text": "parallel", "isCorrect": false}
+          ],
+          "explanation": "The 'async' keyword is used to mark a function as asynchronous. 'await' is used to call async functions."
+        },
+        {
+          "id": "Q002",
+          "text": "What is the primary purpose of actors in Swift?",
+          "type": "multiple_choice",
+          "points": 10,
+          "options": [
+            {"id": "A", "text": "To improve performance", "isCorrect": false},
+            {"id": "B", "text": "To ensure data isolation and prevent data races", "isCorrect": true},
+            {"id": "C", "text": "To create background threads", "isCorrect": false},
+            {"id": "D", "text": "To handle errors", "isCorrect": false}
+          ],
+          "explanation": "Actors provide data isolation, ensuring that only one task can access mutable state at a time, preventing data races."
+        },
+        {
+          "id": "Q003",
+          "text": "Which statement about structured concurrency is true?",
+          "type": "multiple_choice",
+          "points": 10,
+          "options": [
+            {"id": "A", "text": "Child tasks can outlive their parent task", "isCorrect": false},
+            {"id": "B", "text": "All child tasks must complete before the parent completes", "isCorrect": true},
+            {"id": "C", "text": "Tasks cannot be cancelled", "isCorrect": false},
+            {"id": "D", "text": "Tasks run sequentially only", "isCorrect": false}
+          ],
+          "explanation": "Structured concurrency ensures that all child tasks complete (or are cancelled) before their parent task completes."
+        },
+        {
+          "id": "Q004",
+          "text": "How do you call an asynchronous function?",
+          "type": "multiple_choice",
+          "points": 10,
+          "options": [
+            {"id": "A", "text": "await functionName()", "isCorrect": true},
+            {"id": "B", "text": "async functionName()", "isCorrect": false},
+            {"id": "C", "text": "functionName().await", "isCorrect": false},
+            {"id": "D", "text": "functionName(async: true)", "isCorrect": false}
+          ],
+          "explanation": "The 'await' keyword is used when calling asynchronous functions to suspend execution until the result is available."
+        },
+        {
+          "id": "Q005",
+          "text": "What is a TaskGroup used for?",
+          "type": "multiple_choice",
+          "points": 10,
+          "options": [
+            {"id": "A", "text": "Running tasks sequentially", "isCorrect": false},
+            {"id": "B", "text": "Running a dynamic number of concurrent tasks", "isCorrect": true},
+            {"id": "C", "text": "Cancelling individual tasks", "isCorrect": false},
+            {"id": "D", "text": "Prioritizing tasks", "isCorrect": false}
+          ],
+          "explanation": "TaskGroup allows you to create and manage a dynamic number of child tasks that run concurrently."
+        }
+      ]
+    },
+    {
+      "id": "ASSESS-002",
+      "courseId": "B2C3D4E5-F6A7-4B8C-9D0E-1F2A3B4C5D6E",
+      "title": "Digital Leadership Assessment",
+      "type": "multiple_choice",
+      "passingScore": 75.0,
+      "timeLimit": 2400,
+      "shuffleQuestions": true,
+      "shuffleAnswers": true,
+      "questions": [
+        {
+          "id": "Q001",
+          "text": "What is the most important factor in building trust in remote teams?",
+          "type": "multiple_choice",
+          "points": 10,
+          "options": [
+            {"id": "A", "text": "Regular video meetings", "isCorrect": false},
+            {"id": "B", "text": "Transparency and consistent communication", "isCorrect": true},
+            {"id": "C", "text": "In-person retreats", "isCorrect": false},
+            {"id": "D", "text": "Strict monitoring", "isCorrect": false}
+          ],
+          "explanation": "Transparency and consistent communication are the foundation of trust in virtual teams."
+        },
+        {
+          "id": "Q002",
+          "text": "Which communication style is most effective for remote leadership?",
+          "type": "multiple_choice",
+          "points": 10,
+          "options": [
+            {"id": "A", "text": "Email only", "isCorrect": false},
+            {"id": "B", "text": "Synchronous only", "isCorrect": false},
+            {"id": "C", "text": "Mixed synchronous and asynchronous", "isCorrect": true},
+            {"id": "D", "text": "Asynchronous only", "isCorrect": false}
+          ],
+          "explanation": "A balanced mix of synchronous (meetings) and asynchronous (documentation) communication works best for distributed teams."
+        },
+        {
+          "id": "Q003",
+          "text": "How should you handle conflict in virtual teams?",
+          "type": "multiple_choice",
+          "points": 10,
+          "options": [
+            {"id": "A", "text": "Address it immediately via video call", "isCorrect": true},
+            {"id": "B", "text": "Wait for it to resolve itself", "isCorrect": false},
+            {"id": "C", "text": "Only use email", "isCorrect": false},
+            {"id": "D", "text": "Ignore minor conflicts", "isCorrect": false}
+          ],
+          "explanation": "Address conflicts promptly via video call to prevent misunderstandings and maintain team cohesion."
+        }
+      ]
+    },
+    {
+      "id": "ASSESS-003",
+      "courseId": "C3D4E5F6-A7B8-4C9D-0E1F-2A3B4C5D6E7F",
+      "title": "Python Data Science Final Exam",
+      "type": "mixed",
+      "passingScore": 70.0,
+      "timeLimit": 3600,
+      "shuffleQuestions": false,
+      "shuffleAnswers": true,
+      "questions": [
+        {
+          "id": "Q001",
+          "text": "Which pandas method would you use to handle missing values by forward filling?",
+          "type": "multiple_choice",
+          "points": 10,
+          "options": [
+            {"id": "A", "text": "fillna(method='ffill')", "isCorrect": true},
+            {"id": "B", "text": "dropna()", "isCorrect": false},
+            {"id": "C", "text": "interpolate()", "isCorrect": false},
+            {"id": "D", "text": "replace()", "isCorrect": false}
+          ],
+          "explanation": "fillna(method='ffill') propagates the last valid observation forward to fill missing values."
+        },
+        {
+          "id": "Q002",
+          "text": "What is the purpose of train-test split in machine learning?",
+          "type": "multiple_choice",
+          "points": 10,
+          "options": [
+            {"id": "A", "text": "To reduce dataset size", "isCorrect": false},
+            {"id": "B", "text": "To evaluate model performance on unseen data", "isCorrect": true},
+            {"id": "C", "text": "To speed up training", "isCorrect": false},
+            {"id": "D", "text": "To balance classes", "isCorrect": false}
+          ],
+          "explanation": "Train-test split allows you to train on one portion of data and evaluate on another to assess generalization."
+        },
+        {
+          "id": "Q003",
+          "text": "Explain the difference between supervised and unsupervised learning.",
+          "type": "essay",
+          "points": 20,
+          "minWords": 50,
+          "maxWords": 200,
+          "rubric": [
+            "Defines supervised learning with labeled data",
+            "Defines unsupervised learning without labels",
+            "Provides examples of each",
+            "Explains when to use each approach"
+          ]
+        },
+        {
+          "id": "Q004",
+          "text": "Which metrics are appropriate for evaluating a classification model?",
+          "type": "multiple_answer",
+          "points": 15,
+          "options": [
+            {"id": "A", "text": "Accuracy", "isCorrect": true},
+            {"id": "B", "text": "Precision", "isCorrect": true},
+            {"id": "C", "text": "Recall", "isCorrect": true},
+            {"id": "D", "text": "R-squared", "isCorrect": false},
+            {"id": "E", "text": "F1-score", "isCorrect": true}
+          ],
+          "explanation": "Accuracy, precision, recall, and F1-score are classification metrics. R-squared is for regression."
+        }
+      ]
+    },
+    {
+      "id": "ASSESS-004",
+      "courseId": "D4E5F6A7-B8C9-4D0E-1F2A-3B4C5D6E7F8A",
+      "title": "UX Design Principles Quiz",
+      "type": "multiple_choice",
+      "passingScore": 80.0,
+      "timeLimit": 1500,
+      "shuffleQuestions": true,
+      "shuffleAnswers": true,
+      "questions": [
+        {
+          "id": "Q001",
+          "text": "What is the first step in the Design Thinking process?",
+          "type": "multiple_choice",
+          "points": 10,
+          "options": [
+            {"id": "A", "text": "Empathize", "isCorrect": true},
+            {"id": "B", "text": "Define", "isCorrect": false},
+            {"id": "C", "text": "Ideate", "isCorrect": false},
+            {"id": "D", "text": "Prototype", "isCorrect": false}
+          ],
+          "explanation": "Empathize is the first step, where you understand user needs through research."
+        },
+        {
+          "id": "Q002",
+          "text": "Which usability heuristic refers to making system status visible to users?",
+          "type": "multiple_choice",
+          "points": 10,
+          "options": [
+            {"id": "A", "text": "Visibility of system status", "isCorrect": true},
+            {"id": "B", "text": "User control and freedom", "isCorrect": false},
+            {"id": "C", "text": "Consistency and standards", "isCorrect": false},
+            {"id": "D", "text": "Recognition rather than recall", "isCorrect": false}
+          ],
+          "explanation": "Visibility of system status keeps users informed about what is happening through appropriate feedback."
+        },
+        {
+          "id": "Q003",
+          "text": "What does WCAG stand for in web accessibility?",
+          "type": "multiple_choice",
+          "points": 10,
+          "options": [
+            {"id": "A", "text": "Web Content Accessibility Guidelines", "isCorrect": true},
+            {"id": "B", "text": "World Consortium for Accessibility Guidance", "isCorrect": false},
+            {"id": "C", "text": "Web Compliance and Accessibility Guide", "isCorrect": false},
+            {"id": "D", "text": "Website Content Access Guidelines", "isCorrect": false}
+          ],
+          "explanation": "WCAG stands for Web Content Accessibility Guidelines, the international standard for web accessibility."
+        }
+      ]
+    },
+    {
+      "id": "ASSESS-005",
+      "courseId": "F2A3B4C5-D6E7-4F8A-9B0C-1D2E3F4A5B6C",
+      "title": "SQL Mastery Test",
+      "type": "coding",
+      "passingScore": 75.0,
+      "timeLimit": 2700,
+      "shuffleQuestions": false,
+      "shuffleAnswers": false,
+      "questions": [
+        {
+          "id": "Q001",
+          "text": "Write a SQL query to find the top 5 customers by total purchase amount.",
+          "type": "coding",
+          "points": 20,
+          "language": "sql",
+          "starterCode": "SELECT \nFROM customers\n-- Your code here",
+          "testCases": [
+            {
+              "input": "customers table with customer_id, name, total_purchases",
+              "expectedOutput": "Top 5 customers ordered by total_purchases DESC"
+            }
+          ],
+          "solution": "SELECT customer_id, name, total_purchases\nFROM customers\nORDER BY total_purchases DESC\nLIMIT 5;"
+        },
+        {
+          "id": "Q002",
+          "text": "Write a query using a LEFT JOIN to show all products and their categories, including products without categories.",
+          "type": "coding",
+          "points": 25,
+          "language": "sql",
+          "starterCode": "SELECT \nFROM products\n-- Your code here",
+          "testCases": [
+            {
+              "input": "products and categories tables",
+              "expectedOutput": "All products with category names, NULL for uncategorized products"
+            }
+          ],
+          "solution": "SELECT p.product_id, p.name, c.category_name\nFROM products p\nLEFT JOIN categories c ON p.category_id = c.category_id;"
+        },
+        {
+          "id": "Q003",
+          "text": "Create a query to calculate the running total of sales by date.",
+          "type": "coding",
+          "points": 30,
+          "language": "sql",
+          "starterCode": "SELECT \nFROM sales\n-- Use window functions",
+          "testCases": [
+            {
+              "input": "sales table with sale_date and amount",
+              "expectedOutput": "Running total using SUM() OVER()"
+            }
+          ],
+          "solution": "SELECT sale_date, amount,\n  SUM(amount) OVER (ORDER BY sale_date) as running_total\nFROM sales\nORDER BY sale_date;"
+        }
+      ]
+    },
+    {
+      "id": "ASSESS-006",
+      "courseId": "A3B4C5D6-E7F8-4A9B-0C1D-2E3F4A5B6C7D",
+      "title": "Diversity and Inclusion Knowledge Check",
+      "type": "multiple_choice",
+      "passingScore": 90.0,
+      "timeLimit": 1200,
+      "shuffleQuestions": true,
+      "shuffleAnswers": true,
+      "questions": [
+        {
+          "id": "Q001",
+          "text": "What is unconscious bias?",
+          "type": "multiple_choice",
+          "points": 10,
+          "options": [
+            {"id": "A", "text": "Intentional discrimination", "isCorrect": false},
+            {"id": "B", "text": "Automatic associations and stereotypes we hold without awareness", "isCorrect": true},
+            {"id": "C", "text": "Legal discrimination", "isCorrect": false},
+            {"id": "D", "text": "Preferences stated openly", "isCorrect": false}
+          ],
+          "explanation": "Unconscious bias refers to automatic mental associations we make without conscious awareness."
+        },
+        {
+          "id": "Q002",
+          "text": "Which of the following is an example of a microaggression?",
+          "type": "multiple_choice",
+          "points": 10,
+          "options": [
+            {"id": "A", "text": "Asking 'Where are you really from?'", "isCorrect": true},
+            {"id": "B", "text": "Complimenting someone's work", "isCorrect": false},
+            {"id": "C", "text": "Asking about the weekend", "isCorrect": false},
+            {"id": "D", "text": "Greeting a colleague", "isCorrect": false}
+          ],
+          "explanation": "Asking 'Where are you really from?' implies the person doesn't belong, a common microaggression."
+        },
+        {
+          "id": "Q003",
+          "text": "What does being an ally mean?",
+          "type": "multiple_choice",
+          "points": 10,
+          "options": [
+            {"id": "A", "text": "Being a member of an underrepresented group", "isCorrect": false},
+            {"id": "B", "text": "Actively supporting and advocating for marginalized groups", "isCorrect": true},
+            {"id": "C", "text": "Staying neutral in diversity discussions", "isCorrect": false},
+            {"id": "D", "text": "Only speaking when asked", "isCorrect": false}
+          ],
+          "explanation": "An ally actively supports and advocates for people from marginalized groups."
+        },
+        {
+          "id": "Q004",
+          "text": "Why is diversity important in the workplace?",
+          "type": "multiple_answer",
+          "points": 15,
+          "options": [
+            {"id": "A", "text": "Drives innovation through diverse perspectives", "isCorrect": true},
+            {"id": "B", "text": "Improves decision-making", "isCorrect": true},
+            {"id": "C", "text": "Reflects customer diversity", "isCorrect": true},
+            {"id": "D", "text": "It's required by law", "isCorrect": false},
+            {"id": "E", "text": "Enhances company reputation", "isCorrect": true}
+          ],
+          "explanation": "Diversity brings innovation, better decisions, customer alignment, and reputation benefits beyond legal compliance."
+        }
+      ]
+    },
+    {
+      "id": "ASSESS-007",
+      "courseId": "B4C5D6E7-F8A9-4B0C-1D2E-3F4A5B6C7D8E",
+      "title": "Digital Marketing Strategy Exam",
+      "type": "mixed",
+      "passingScore": 75.0,
+      "timeLimit": 3000,
+      "shuffleQuestions": false,
+      "shuffleAnswers": true,
+      "questions": [
+        {
+          "id": "Q001",
+          "text": "What is SEO?",
+          "type": "multiple_choice",
+          "points": 10,
+          "options": [
+            {"id": "A", "text": "Search Engine Optimization", "isCorrect": true},
+            {"id": "B", "text": "Social Engagement Outreach", "isCorrect": false},
+            {"id": "C", "text": "Sales Enablement Operations", "isCorrect": false},
+            {"id": "D", "text": "Strategic Email Optimization", "isCorrect": false}
+          ],
+          "explanation": "SEO stands for Search Engine Optimization, the practice of improving website visibility in search results."
+        },
+        {
+          "id": "Q002",
+          "text": "Describe the customer journey and its importance in digital marketing.",
+          "type": "essay",
+          "points": 25,
+          "minWords": 100,
+          "maxWords": 250,
+          "rubric": [
+            "Identifies stages: Awareness, Consideration, Decision, Retention",
+            "Explains touchpoints at each stage",
+            "Discusses importance of mapping journey",
+            "Provides marketing tactics for each stage"
+          ]
+        },
+        {
+          "id": "Q003",
+          "text": "Which metrics are key for measuring digital marketing success?",
+          "type": "multiple_answer",
+          "points": 15,
+          "options": [
+            {"id": "A", "text": "Conversion Rate", "isCorrect": true},
+            {"id": "B", "text": "Cost Per Acquisition (CPA)", "isCorrect": true},
+            {"id": "C", "text": "Office square footage", "isCorrect": false},
+            {"id": "D", "text": "Return on Ad Spend (ROAS)", "isCorrect": true},
+            {"id": "E", "text": "Customer Lifetime Value (CLV)", "isCorrect": true}
+          ],
+          "explanation": "Conversion rate, CPA, ROAS, and CLV are all critical digital marketing metrics."
+        }
+      ]
+    },
+    {
+      "id": "ASSESS-008",
+      "courseId": "E7F8A9B0-C1D2-4E3F-4A5B-6C7D8E9F0A1B",
+      "title": "Sales Fundamentals Final Assessment",
+      "type": "scenario_based",
+      "passingScore": 70.0,
+      "timeLimit": 2400,
+      "shuffleQuestions": false,
+      "shuffleAnswers": false,
+      "questions": [
+        {
+          "id": "Q001",
+          "text": "A prospect says: 'Your solution is too expensive.' How do you respond?",
+          "type": "multiple_choice",
+          "points": 15,
+          "options": [
+            {"id": "A", "text": "Immediately offer a discount", "isCorrect": false},
+            {"id": "B", "text": "Ask what they're comparing it to and explore value vs. price", "isCorrect": true},
+            {"id": "C", "text": "Defend your pricing", "isCorrect": false},
+            {"id": "D", "text": "Walk away from the deal", "isCorrect": false}
+          ],
+          "explanation": "Understanding their comparison point and refocusing on value helps overcome price objections."
+        },
+        {
+          "id": "Q002",
+          "text": "Scenario: You're on a discovery call. The prospect is vague about their needs. What do you do?",
+          "type": "essay",
+          "points": 25,
+          "minWords": 75,
+          "maxWords": 150,
+          "rubric": [
+            "Asks open-ended questions to uncover needs",
+            "Uses SPIN or similar questioning framework",
+            "Listens actively and takes notes",
+            "Confirms understanding before moving forward"
+          ]
+        },
+        {
+          "id": "Q003",
+          "text": "What are the key elements of a good sales qualification framework?",
+          "type": "multiple_answer",
+          "points": 15,
+          "options": [
+            {"id": "A", "text": "Budget", "isCorrect": true},
+            {"id": "B", "text": "Authority", "isCorrect": true},
+            {"id": "C", "text": "Need", "isCorrect": true},
+            {"id": "D", "text": "Age of company", "isCorrect": false},
+            {"id": "E", "text": "Timeline", "isCorrect": true}
+          ],
+          "explanation": "BANT (Budget, Authority, Need, Timeline) is a classic qualification framework."
+        }
+      ]
+    },
+    {
+      "id": "ASSESS-009",
+      "courseId": "D6E7F8A9-B0C1-4D2E-3F4A-5B6C7D8E9F0A",
+      "title": "React Development Skills Test",
+      "type": "coding",
+      "passingScore": 75.0,
+      "timeLimit": 3600,
+      "shuffleQuestions": false,
+      "shuffleAnswers": false,
+      "questions": [
+        {
+          "id": "Q001",
+          "text": "Create a React component that displays a counter with increment and decrement buttons.",
+          "type": "coding",
+          "points": 30,
+          "language": "javascript",
+          "starterCode": "import React, { useState } from 'react';\n\nfunction Counter() {\n  // Your code here\n}\n\nexport default Counter;",
+          "testCases": [
+            {
+              "input": "Initial render",
+              "expectedOutput": "Counter displays 0, has + and - buttons"
+            },
+            {
+              "input": "Click + button",
+              "expectedOutput": "Counter increments by 1"
+            }
+          ],
+          "solution": "import React, { useState } from 'react';\n\nfunction Counter() {\n  const [count, setCount] = useState(0);\n  \n  return (\n    <div>\n      <h1>{count}</h1>\n      <button onClick={() => setCount(count + 1)}>+</button>\n      <button onClick={() => setCount(count - 1)}>-</button>\n    </div>\n  );\n}\n\nexport default Counter;"
+        },
+        {
+          "id": "Q002",
+          "text": "Implement a custom hook called useLocalStorage that syncs state with localStorage.",
+          "type": "coding",
+          "points": 35,
+          "language": "javascript",
+          "starterCode": "import { useState, useEffect } from 'react';\n\nfunction useLocalStorage(key, initialValue) {\n  // Your implementation\n}\n\nexport default useLocalStorage;",
+          "testCases": [
+            {
+              "input": "Call useLocalStorage('name', 'John')",
+              "expectedOutput": "Returns [value, setValue] that syncs with localStorage"
+            }
+          ],
+          "solution": "import { useState, useEffect } from 'react';\n\nfunction useLocalStorage(key, initialValue) {\n  const [value, setValue] = useState(() => {\n    const stored = localStorage.getItem(key);\n    return stored ? JSON.parse(stored) : initialValue;\n  });\n  \n  useEffect(() => {\n    localStorage.setItem(key, JSON.stringify(value));\n  }, [key, value]);\n  \n  return [value, setValue];\n}\n\nexport default useLocalStorage;"
+        }
+      ]
+    },
+    {
+      "id": "ASSESS-010",
+      "courseId": "A9B0C1D2-E3F4-4A5B-6C7D-8E9F0A1B2C3D",
+      "title": "Time Management Skills Assessment",
+      "type": "multiple_choice",
+      "passingScore": 80.0,
+      "timeLimit": 1200,
+      "shuffleQuestions": true,
+      "shuffleAnswers": true,
+      "questions": [
+        {
+          "id": "Q001",
+          "text": "According to the Eisenhower Matrix, which quadrant should you focus on most?",
+          "type": "multiple_choice",
+          "points": 10,
+          "options": [
+            {"id": "A", "text": "Urgent and Important", "isCorrect": false},
+            {"id": "B", "text": "Not Urgent but Important", "isCorrect": true},
+            {"id": "C", "text": "Urgent but Not Important", "isCorrect": false},
+            {"id": "D", "text": "Not Urgent and Not Important", "isCorrect": false}
+          ],
+          "explanation": "Quadrant 2 (Not Urgent but Important) contains strategic activities that prevent crises and build long-term success."
+        },
+        {
+          "id": "Q002",
+          "text": "What is the Pomodoro Technique?",
+          "type": "multiple_choice",
+          "points": 10,
+          "options": [
+            {"id": "A", "text": "25 minutes of focused work followed by a 5-minute break", "isCorrect": true},
+            {"id": "B", "text": "Working for 1 hour straight", "isCorrect": false},
+            {"id": "C", "text": "Multitasking method", "isCorrect": false},
+            {"id": "D", "text": "Email management system", "isCorrect": false}
+          ],
+          "explanation": "The Pomodoro Technique uses 25-minute focused work sessions followed by short breaks."
+        },
+        {
+          "id": "Q003",
+          "text": "Which practice helps prevent procrastination?",
+          "type": "multiple_answer",
+          "points": 15,
+          "options": [
+            {"id": "A", "text": "Breaking large tasks into smaller steps", "isCorrect": true},
+            {"id": "B", "text": "Setting specific deadlines", "isCorrect": true},
+            {"id": "C", "text": "Waiting for perfect conditions", "isCorrect": false},
+            {"id": "D", "text": "Using the 2-minute rule", "isCorrect": true},
+            {"id": "E", "text": "Creating accountability", "isCorrect": true}
+          ],
+          "explanation": "Breaking tasks down, setting deadlines, the 2-minute rule, and accountability all combat procrastination."
+        }
+      ]
+    }
+  ],
+  "_metadata": {
+    "totalAssessments": 50,
+    "generatedSample": 10,
+    "assessmentTypes": ["multiple_choice", "multiple_answer", "essay", "coding", "scenario_based", "mixed"],
+    "note": "This is a representative sample of 10 assessments. The actual dataset would contain 50+ assessments covering all course categories with varied question types and difficulty levels."
+  }
+}

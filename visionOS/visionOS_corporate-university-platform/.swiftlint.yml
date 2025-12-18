@@ -1,0 +1,49 @@
+# SwiftLint Configuration
+disabled_rules:
+  - trailing_whitespace
+  - line_length
+
+opt_in_rules:
+  - force_unwrapping
+  - explicit_init
+  - closure_spacing
+  - empty_count
+
+included:
+  - CorporateUniversity
+
+excluded:
+  - Pods
+  - .build
+  - landing-page
+
+line_length:
+  warning: 120
+  error: 200
+  ignores_comments: true
+
+identifier_name:
+  min_length: 2
+  max_length: 50
+
+type_name:
+  min_length: 3
+  max_length: 50
+
+function_parameter_count:
+  warning: 6
+  error: 8
+
+file_length:
+  warning: 500
+  error: 1000
+
+type_body_length:
+  warning: 400
+  error: 600
+
+cyclomatic_complexity:
+  warning: 10
+  error: 20
+
+reporter: "xcode"

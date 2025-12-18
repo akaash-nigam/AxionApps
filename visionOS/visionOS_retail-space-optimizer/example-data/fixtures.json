@@ -1,0 +1,69 @@
+{
+  "fixtureTemplates": [
+    {
+      "id": "template-rack-01",
+      "name": "Clothing Rack Standard",
+      "fixtureType": "rack",
+      "category": "apparel",
+      "dimensions": {
+        "x": 2.0,
+        "y": 1.8,
+        "z": 0.6
+      },
+      "capacity": 50,
+      "modelAsset": "Rack_Standard"
+    },
+    {
+      "id": "template-shelf-01",
+      "name": "Wall Shelf Unit",
+      "fixtureType": "shelf",
+      "category": "footwear",
+      "dimensions": {
+        "x": 3.0,
+        "y": 2.0,
+        "z": 0.4
+      },
+      "capacity": 40,
+      "modelAsset": "Shelf_Wall"
+    },
+    {
+      "id": "template-table-01",
+      "name": "Display Table Round",
+      "fixtureType": "table",
+      "category": "accessories",
+      "dimensions": {
+        "x": 1.2,
+        "y": 0.9,
+        "z": 1.2
+      },
+      "capacity": 20,
+      "modelAsset": "Table_Round"
+    },
+    {
+      "id": "template-mannequin-01",
+      "name": "Fashion Mannequin",
+      "fixtureType": "mannequin",
+      "category": "apparel",
+      "dimensions": {
+        "x": 0.6,
+        "y": 1.8,
+        "z": 0.6
+      },
+      "capacity": 5,
+      "modelAsset": "Mannequin_Full"
+    },
+    {
+      "id": "template-checkout-01",
+      "name": "Checkout Counter",
+      "fixtureType": "checkout",
+      "category": "checkout",
+      "dimensions": {
+        "x": 1.5,
+        "y": 1.0,
+        "z": 0.8
+      },
+      "capacity": 0,
+      "modelAsset": "Checkout_Standard"
+    }
+  ]
+}

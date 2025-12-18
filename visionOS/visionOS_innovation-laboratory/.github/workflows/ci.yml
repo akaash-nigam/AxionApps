@@ -1,0 +1,176 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop, claude/* ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  lint:
+    name: SwiftLint
+    runs-on: macos-15
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install SwiftLint
+      run: brew install swiftlint
+
+    - name: Run SwiftLint
+      run: |
+        cd InnovationLaboratory
+        swiftlint --strict --reporter github-actions-logging
+
+  build:
+    name: Build
+    runs-on: macos-15
+    needs: lint
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Select Xcode
+      run: sudo xcode-select -s /Applications/Xcode_16.0.app
+
+    - name: Show Environment
+      run: |
+        xcodebuild -version
+        swift --version
+        xcrun --show-sdk-path
+
+    - name: Build for visionOS Simulator
+      run: |
+        cd InnovationLaboratory
+        xcodebuild build \
+          -scheme InnovationLaboratory \
+          -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+          -configuration Debug \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO
+
+    - name: Build for visionOS Device
+      run: |
+        cd InnovationLaboratory
+        xcodebuild build \
+          -scheme InnovationLaboratory \
+          -destination 'generic/platform=visionOS' \
+          -configuration Release \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO
+
+  unit-tests:
+    name: Unit Tests
+    runs-on: macos-15
+    needs: build
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Select Xcode
+      run: sudo xcode-select -s /Applications/Xcode_16.0.app
+
+    - name: Run Unit Tests
+      run: |
+        cd InnovationLaboratory
+        xcodebuild test \
+          -scheme InnovationLaboratory \
+          -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+          -only-testing:InnovationLaboratoryTests/DataModelsTests \
+          -only-testing:InnovationLaboratoryTests/ServicesTests \
+          -enableCodeCoverage YES \
+          -resultBundlePath TestResults.xcresult
+
+    - name: Upload Test Results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results
+        path: InnovationLaboratory/TestResults.xcresult
+
+  security-tests:
+    name: Security Tests
+    runs-on: macos-15
+    needs: build
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Select Xcode
+      run: sudo xcode-select -s /Applications/Xcode_16.0.app
+
+    - name: Run Security Tests
+      run: |
+        cd InnovationLaboratory
+        xcodebuild test \
+          -scheme InnovationLaboratory \
+          -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+          -only-testing:InnovationLaboratoryTests/SecurityTests \
+          -enableCodeCoverage YES
+
+  coverage:
+    name: Code Coverage
+    runs-on: macos-15
+    needs: [unit-tests, security-tests]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Select Xcode
+      run: sudo xcode-select -s /Applications/Xcode_16.0.app
+
+    - name: Generate Coverage Report
+      run: |
+        cd InnovationLaboratory
+        xcodebuild test \
+          -scheme InnovationLaboratory \
+          -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+          -only-testing:InnovationLaboratoryTests/DataModelsTests \
+          -only-testing:InnovationLaboratoryTests/ServicesTests \
+          -enableCodeCoverage YES \
+          -resultBundlePath Coverage.xcresult
+
+        xcrun xccov view --report Coverage.xcresult > coverage.txt
+        cat coverage.txt
+
+    - name: Upload Coverage Report
+      uses: actions/upload-artifact@v3
+      with:
+        name: coverage-report
+        path: InnovationLaboratory/coverage.txt
+
+    - name: Check Coverage Threshold
+      run: |
+        cd InnovationLaboratory
+        coverage=$(xcrun xccov view --report Coverage.xcresult --json | jq '.lineCoverage')
+        echo "Coverage: $coverage"
+        threshold=0.80
+        if (( $(echo "$coverage < $threshold" | bc -l) )); then
+          echo "Coverage $coverage is below threshold $threshold"
+          exit 1
+        fi
+
+  notify:
+    name: Notify
+    runs-on: ubuntu-latest
+    needs: [lint, build, unit-tests, security-tests, coverage]
+    if: always()
+
+    steps:
+    - name: Check Job Statuses
+      run: |
+        if [[ "${{ needs.lint.result }}" != "success" ]] || \
+           [[ "${{ needs.build.result }}" != "success" ]] || \
+           [[ "${{ needs.unit-tests.result }}" != "success" ]] || \
+           [[ "${{ needs.security-tests.result }}" != "success" ]] || \
+           [[ "${{ needs.coverage.result }}" != "success" ]]; then
+          echo "CI Failed"
+          exit 1
+        else
+          echo "CI Passed ✅"
+        fi

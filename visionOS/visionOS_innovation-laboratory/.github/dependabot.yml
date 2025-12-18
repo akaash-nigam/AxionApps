@@ -1,0 +1,33 @@
+version: 2
+updates:
+  # Monitor GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+
+  # Monitor Swift Package Manager dependencies
+  # Note: Currently no external dependencies, all Apple frameworks
+  # Uncomment if adding Swift Package dependencies
+  # - package-ecosystem: "swift"
+  #   directory: "/"
+  #   schedule:
+  #     interval: "weekly"
+  #     day: "monday"
+  #     time: "09:00"
+  #   open-pull-requests-limit: 10
+  #   labels:
+  #     - "dependencies"
+  #     - "swift"
+  #   commit-message:
+  #     prefix: "chore"
+  #     include: "scope"

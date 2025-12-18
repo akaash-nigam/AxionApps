@@ -1,0 +1,71 @@
+[
+  {
+    "id": "org-1",
+    "name": "Acme Corporation",
+    "structure": "hierarchical",
+    "industry": "technology",
+    "size": "enterprise",
+    "total_employees": 5000,
+    "department_count": 15,
+    "founded": "1995-03-15",
+    "headquarters": "San Francisco, CA",
+    "timezone": "America/Los_Angeles",
+    "currency": "USD",
+    "settings": {
+      "fiscal_year_start": "01-01",
+      "working_hours": {
+        "start": "09:00",
+        "end": "17:00"
+      },
+      "working_days": ["monday", "tuesday", "wednesday", "thursday", "friday"]
+    },
+    "created_at": "2024-01-15T10:00:00Z",
+    "updated_at": "2025-11-15T14:30:00Z"
+  },
+  {
+    "id": "org-2",
+    "name": "Global Finance Inc",
+    "structure": "matrix",
+    "industry": "finance",
+    "size": "enterprise",
+    "total_employees": 12000,
+    "department_count": 25,
+    "founded": "1980-06-20",
+    "headquarters": "New York, NY",
+    "timezone": "America/New_York",
+    "currency": "USD",
+    "settings": {
+      "fiscal_year_start": "07-01",
+      "working_hours": {
+        "start": "08:00",
+        "end": "18:00"
+      },
+      "working_days": ["monday", "tuesday", "wednesday", "thursday", "friday"]
+    },
+    "created_at": "2024-02-01T09:00:00Z",
+    "updated_at": "2025-11-14T16:20:00Z"
+  },
+  {
+    "id": "org-3",
+    "name": "HealthTech Solutions",
+    "structure": "hierarchical",
+    "industry": "healthcare",
+    "size": "mid-market",
+    "total_employees": 1500,
+    "department_count": 8,
+    "founded": "2010-11-05",
+    "headquarters": "Boston, MA",
+    "timezone": "America/New_York",
+    "currency": "USD",
+    "settings": {
+      "fiscal_year_start": "01-01",
+      "working_hours": {
+        "start": "08:30",
+        "end": "17:30"
+      },
+      "working_days": ["monday", "tuesday", "wednesday", "thursday", "friday"]
+    },
+    "created_at": "2024-03-10T11:00:00Z",
+    "updated_at": "2025-11-13T10:15:00Z"
+  }
+]

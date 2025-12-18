@@ -1,0 +1,143 @@
+name: Swift Lint
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'RealityAnnotation/**/*.swift'
+      - 'RealityAnnotationTests/**/*.swift'
+      - 'RealityAnnotationUITests/**/*.swift'
+  pull_request:
+    paths:
+      - 'RealityAnnotation/**/*.swift'
+      - 'RealityAnnotationTests/**/*.swift'
+      - 'RealityAnnotationUITests/**/*.swift'
+
+jobs:
+  swiftlint:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install SwiftLint
+        run: |
+          brew install swiftlint
+
+      - name: Create SwiftLint config
+        run: |
+          cat > .swiftlint.yml << 'EOF'
+          # SwiftLint Configuration for Reality Annotations
+
+          # Paths to include
+          included:
+            - RealityAnnotation
+            - RealityAnnotationTests
+            - RealityAnnotationUITests
+
+          # Paths to exclude
+          excluded:
+            - Pods
+            - Carthage
+            - .build
+
+          # Disabled rules
+          disabled_rules:
+            - trailing_whitespace
+            - todo
+            - line_length  # Temporarily disabled until we fix all violations
+
+          # Opt-in rules
+          opt_in_rules:
+            - empty_count
+            - empty_string
+            - force_unwrapping
+            - explicit_init
+            - redundant_nil_coalescing
+
+          # Rule configuration
+          type_body_length:
+            warning: 300
+            error: 400
+
+          file_length:
+            warning: 500
+            error: 800
+
+          function_body_length:
+            warning: 50
+            error: 100
+
+          cyclomatic_complexity:
+            warning: 10
+            error: 20
+
+          identifier_name:
+            min_length:
+              warning: 2
+            max_length:
+              warning: 40
+              error: 50
+
+          # Treat warnings as errors in CI
+          strict: true
+          EOF
+
+      - name: Run SwiftLint
+        run: |
+          # Run SwiftLint
+          swiftlint lint --reporter github-actions-logging
+
+      - name: SwiftLint summary
+        if: always()
+        run: |
+          echo "## SwiftLint Results" >> $GITHUB_STEP_SUMMARY
+          swiftlint lint --reporter markdown >> $GITHUB_STEP_SUMMARY || true
+
+  code-quality:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Count Swift files
+        run: |
+          SWIFT_FILES=$(find RealityAnnotation -name "*.swift" | wc -l)
+          TEST_FILES=$(find RealityAnnotationTests RealityAnnotationUITests -name "*.swift" 2>/dev/null | wc -l || echo "0")
+
+          echo "📊 Code Statistics:" >> $GITHUB_STEP_SUMMARY
+          echo "- Swift files: $SWIFT_FILES" >> $GITHUB_STEP_SUMMARY
+          echo "- Test files: $TEST_FILES" >> $GITHUB_STEP_SUMMARY
+
+      - name: Count lines of code
+        run: |
+          TOTAL_LINES=$(find RealityAnnotation -name "*.swift" -exec wc -l {} + | tail -1 | awk '{print $1}')
+          echo "- Total lines: $TOTAL_LINES" >> $GITHUB_STEP_SUMMARY
+
+      - name: Check for common issues
+        run: |
+          echo "## Code Quality Checks" >> $GITHUB_STEP_SUMMARY
+
+          # Check for force unwraps
+          FORCE_UNWRAPS=$(grep -r "!" RealityAnnotation --include="*.swift" | grep -v "//" | wc -l || echo "0")
+          echo "- Force unwraps (!): $FORCE_UNWRAPS" >> $GITHUB_STEP_SUMMARY
+
+          # Check for print statements
+          PRINTS=$(grep -r "print(" RealityAnnotation --include="*.swift" | grep -v "//" | wc -l || echo "0")
+          echo "- Print statements: $PRINTS" >> $GITHUB_STEP_SUMMARY
+
+          # Check for TODO comments
+          TODOS=$(grep -r "TODO" RealityAnnotation --include="*.swift" | wc -l || echo "0")
+          echo "- TODO comments: $TODOS" >> $GITHUB_STEP_SUMMARY
+
+          # Check for FIXME comments
+          FIXMES=$(grep -r "FIXME" RealityAnnotation --include="*.swift" | wc -l || echo "0")
+          echo "- FIXME comments: $FIXMES" >> $GITHUB_STEP_SUMMARY
+
+          if [ $FIXMES -gt 0 ]; then
+            echo "⚠️ Warning: Found $FIXMES FIXME comments that should be addressed"
+          fi

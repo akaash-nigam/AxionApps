@@ -1,0 +1,58 @@
+{
+  "stores": [
+    {
+      "id": "store-001",
+      "name": "Downtown Flagship",
+      "location": {
+        "address": "123 Main St",
+        "city": "San Francisco",
+        "state": "CA",
+        "country": "USA",
+        "postalCode": "94102",
+        "latitude": 37.7749,
+        "longitude": -122.4194
+      },
+      "dimensions": {
+        "width": 20.0,
+        "length": 30.0,
+        "height": 4.0
+      }
+    },
+    {
+      "id": "store-002",
+      "name": "Suburban Mall",
+      "location": {
+        "address": "456 Oak Ave",
+        "city": "Los Angeles",
+        "state": "CA",
+        "country": "USA",
+        "postalCode": "90001",
+        "latitude": 34.0522,
+        "longitude": -118.2437
+      },
+      "dimensions": {
+        "width": 15.0,
+        "length": 25.0,
+        "height": 3.5
+      }
+    },
+    {
+      "id": "store-003",
+      "name": "Airport Terminal",
+      "location": {
+        "address": "789 Airport Blvd",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "USA",
+        "postalCode": "98101",
+        "latitude": 47.6062,
+        "longitude": -122.3321
+      },
+      "dimensions": {
+        "width": 12.0,
+        "length": 18.0,
+        "height": 3.0
+      }
+    }
+  ]
+}

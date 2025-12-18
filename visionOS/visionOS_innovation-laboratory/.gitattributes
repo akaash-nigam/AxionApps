@@ -1,0 +1,149 @@
+# Git Attributes for Innovation Laboratory
+
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Source code
+*.swift text diff=swift
+*.m text diff=objc
+*.h text diff=objc
+*.mm text diff=objc
+*.c text
+*.cpp text
+*.hpp text
+
+# Xcode project files
+*.pbxproj text merge=union
+*.xcconfig text
+*.plist text
+*.strings text
+*.storyboard text
+*.xib text
+
+# Documentation
+*.md text
+*.txt text
+LICENSE text
+README text
+CHANGELOG text
+
+# Scripts
+*.sh text eol=lf
+*.bash text eol=lf
+*.zsh text eol=lf
+
+# Configuration files
+*.yml text
+*.yaml text
+*.toml text
+*.json text
+*.xml text
+
+# Web files (for landing page)
+*.html text diff=html
+*.css text diff=css
+*.js text
+*.ts text
+
+# Images
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg text
+*.webp binary
+*.heic binary
+
+# 3D Models
+*.usdz binary
+*.usda text
+*.usdc binary
+*.obj text
+*.fbx binary
+*.dae text
+*.gltf text
+*.glb binary
+
+# Reality Composer
+*.rcproject binary
+*.reality binary
+
+# Audio
+*.mp3 binary
+*.wav binary
+*.aac binary
+*.m4a binary
+*.caf binary
+
+# Video
+*.mp4 binary
+*.mov binary
+*.m4v binary
+
+# Archives
+*.zip binary
+*.tar.gz binary
+*.tgz binary
+*.rar binary
+*.7z binary
+
+# Fonts
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+
+# Documents
+*.pdf binary
+*.doc binary
+*.docx binary
+*.xls binary
+*.xlsx binary
+*.ppt binary
+*.pptx binary
+
+# Xcode artifacts
+*.ipa binary
+*.dSYM binary
+*.xcarchive binary
+*.framework binary
+*.xcframework binary
+
+# Compiled files
+*.o binary
+*.so binary
+*.dylib binary
+*.a binary
+
+# Swift Package Manager
+Package.swift text
+Package.resolved text merge=union
+
+# Linguist settings for language detection
+*.md linguist-documentation
+*.html linguist-language=HTML
+*.css linguist-language=CSS
+*.js linguist-language=JavaScript
+landing-page/* linguist-vendored=false
+
+# Mark test files
+*Tests.swift linguist-generated=false
+*Mock*.swift linguist-generated=false
+*Stub*.swift linguist-generated=false
+
+# Diff settings
+*.swift diff=swift
+*.md diff=markdown
+
+# Merge strategies
+*.xcodeproj/project.pbxproj merge=union
+Package.resolved merge=union
+.swiftpm/xcode/xcshareddata/xcschemes/*.xcscheme merge=union
+
+# Export ignore (not included in git archive)
+.gitignore export-ignore
+.gitattributes export-ignore
+.github/ export-ignore
+.swiftlint.yml export-ignore
+todo_ccweb.md export-ignore

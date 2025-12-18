@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/build/Release-xrsimulator/AIAgentCoordinator.app/AIAgentCoordinator'
+relocations:     []
+...

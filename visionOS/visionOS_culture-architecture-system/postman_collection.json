@@ -1,0 +1,290 @@
+{
+  "info": {
+    "name": "Culture Architecture System API",
+    "description": "Complete API collection for Culture Architecture System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "1234567"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{accessToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@company.com\",\n  \"password\": \"password123\",\n  \"codeVerifier\": \"dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "me"]
+            }
+          }
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/refresh",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "refresh"]
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/logout",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "logout"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Organizations",
+      "item": [
+        {
+          "name": "List Organizations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/organizations?page=1&limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["organizations"],
+              "query": [
+                {"key": "page", "value": "1"},
+                {"key": "limit", "value": "20"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Organization",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/organizations/{{organizationId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["organizations", "{{organizationId}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Organization Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/organizations/{{organizationId}}/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["organizations", "{{organizationId}}", "health"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Analytics",
+      "item": [
+        {
+          "name": "Get Dashboard Data",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/analytics/dashboard?organizationId={{organizationId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["analytics", "dashboard"],
+              "query": [{"key": "organizationId", "value": "{{organizationId}}"}]
+            }
+          }
+        },
+        {
+          "name": "Get Engagement Metrics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/analytics/engagement?organizationId={{organizationId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["analytics", "engagement"],
+              "query": [{"key": "organizationId", "value": "{{organizationId}}"}]
+            }
+          }
+        },
+        {
+          "name": "Get Trends",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/analytics/trends?organizationId={{organizationId}}&metric=engagement&period=week&duration=12",
+              "host": ["{{baseUrl}}"],
+              "path": ["analytics", "trends"],
+              "query": [
+                {"key": "organizationId", "value": "{{organizationId}}"},
+                {"key": "metric", "value": "engagement"},
+                {"key": "period", "value": "week"},
+                {"key": "duration", "value": "12"}
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Recognition",
+      "item": [
+        {
+          "name": "Get Recognition Feed",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/recognitions?organizationId={{organizationId}}&filter=all&page=1&limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["recognitions"],
+              "query": [
+                {"key": "organizationId", "value": "{{organizationId}}"},
+                {"key": "filter", "value": "all"},
+                {"key": "page", "value": "1"},
+                {"key": "limit", "value": "20"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Give Recognition",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"organizationId\": \"{{organizationId}}\",\n  \"receiverId\": \"anon-emp-002\",\n  \"valueId\": \"val-001\",\n  \"type\": \"Peer Recognition\",\n  \"message\": \"Great work on the project!\",\n  \"visibility\": \"Public\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/recognitions",
+              "host": ["{{baseUrl}}"],
+              "path": ["recognitions"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Cultural Values",
+      "item": [
+        {
+          "name": "List Values",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/values?organizationId={{organizationId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["values"],
+              "query": [{"key": "organizationId", "value": "{{organizationId}}"}]
+            }
+          }
+        },
+        {
+          "name": "Create Value",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"organizationId\": \"{{organizationId}}\",\n  \"name\": \"Innovation\",\n  \"description\": \"Drive innovation across the organization\",\n  \"dimension\": \"Organizational\",\n  \"priority\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/values",
+              "host": ["{{baseUrl}}"],
+              "path": ["values"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.culturearchitecture.com/v1",
+      "type": "string"
+    },
+    {
+      "key": "accessToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "refreshToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "organizationId",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

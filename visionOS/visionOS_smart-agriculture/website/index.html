@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Transform your farm with Smart Agriculture - AI-powered crop management for Apple Vision Pro. Increase yields by 40%, reduce costs by 35%.">
+    <meta name="keywords" content="smart farming, precision agriculture, visionOS, Apple Vision Pro, crop management, farm tech">
+    <title>Smart Agriculture - Transform Farming with Spatial Intelligence | Apple Vision Pro</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <span class="logo-icon">🌾</span>
+                <span class="logo-text">Smart Agriculture</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#technology">Technology</a></li>
+                <li><a href="#testimonials">Success Stories</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+            </ul>
+            <button class="cta-button" onclick="scrollToDemo()">Request Demo</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+        </div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    See Your Farm Like
+                    <span class="gradient-text">Never Before</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Transform farming from guesswork into precision with AI-powered spatial intelligence.
+                    Increase yields by 40%, reduce water by 35%, and minimize inputs by 50% — all in immersive 3D.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">+40%</div>
+                        <div class="stat-label">Yield Increase</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">-35%</div>
+                        <div class="stat-label">Water Usage</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">-50%</div>
+                        <div class="stat-label">Chemical Inputs</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">1100%</div>
+                        <div class="stat-label">ROI</div>
+                    </div>
+                </div>
+                <div class="hero-cta">
+                    <button class="primary-button large" onclick="scrollToDemo()">
+                        <span>Get Early Access</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <button class="secondary-button large" onclick="playVideo()">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M6 4L15 10L6 16V4Z" fill="currentColor"/>
+                        </svg>
+                        <span>Watch Demo (2 min)</span>
+                    </button>
+                </div>
+                <div class="hero-badge">
+                    <span class="badge">🍎 Built for Apple Vision Pro</span>
+                    <span class="badge">✨ Enterprise Ready</span>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="device-mockup">
+                    <div class="mockup-screen">
+                        <div class="dashboard-preview">
+                            <div class="preview-header">
+                                <div class="preview-title">Riverside Farm</div>
+                                <div class="preview-health">92% Health</div>
+                            </div>
+                            <div class="preview-grid">
+                                <div class="preview-card green"></div>
+                                <div class="preview-card green"></div>
+                                <div class="preview-card yellow"></div>
+                                <div class="preview-card green"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">The Challenge Farmers Face Today</h2>
+                <p class="section-subtitle">Traditional farming methods can't meet tomorrow's demands</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">📉</div>
+                    <h3>30% Crop Loss</h3>
+                    <p>Pests, disease, and weather destroy billions in crops annually</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">💧</div>
+                    <h3>Water Scarcity</h3>
+                    <p>40% of farmland affected by water shortages and inefficient irrigation</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🎯</div>
+                    <h3>Guesswork Farming</h3>
+                    <p>Decisions based on intuition instead of real-time data</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🌍</div>
+                    <h3>Feed 10B by 2050</h3>
+                    <p>Need to double food production with same land area</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Everything You Need in <span class="gradient-text">3D Space</span></h2>
+                <p class="section-subtitle">Comprehensive farm management designed for spatial computing</p>
+            </div>
+
+            <div class="features-showcase">
+                <!-- Feature 1 -->
+                <div class="feature-card featured">
+                    <div class="feature-visual">
+                        <div class="feature-3d-preview">
+                            <div class="field-3d">
+                                <div class="field-layer health-layer"></div>
+                                <div class="field-points"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-content">
+                        <div class="feature-badge">AI-Powered</div>
+                        <h3 class="feature-title">Immersive 3D Field Visualization</h3>
+                        <p class="feature-description">
+                            Walk through your entire farm in stunning 3D. See health, moisture, and yield potential
+                            across thousands of acres with color-coded overlays that update in real-time.
+                        </p>
+                        <ul class="feature-list">
+                            <li>✓ Live satellite imagery integration</li>
+                            <li>✓ Multi-layer data visualization</li>
+                            <li>✓ Elevation and water flow mapping</li>
+                            <li>✓ Touch to inspect individual plants</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card">
+                    <div class="feature-content">
+                        <div class="feature-badge">Predictive</div>
+                        <h3 class="feature-title">AI Crop Health Analysis</h3>
+                        <p class="feature-description">
+                            Our AI analyzes multispectral satellite imagery, IoT sensors, and weather data to detect
+                            issues before you see them. Get instant alerts for disease, pests, and stress.
+                        </p>
+                        <ul class="feature-list">
+                            <li>✓ 95% accuracy disease detection</li>
+                            <li>✓ NDVI and stress index analysis</li>
+                            <li>✓ Early warning system (7-14 days ahead)</li>
+                            <li>✓ Nutrient deficiency identification</li>
+                        </ul>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="health-dashboard">
+                            <div class="health-score">
+                                <div class="score-ring"></div>
+                                <div class="score-text">85%</div>
+                            </div>
+                            <div class="health-alerts">
+                                <div class="alert warning">⚠️ Low Nitrogen</div>
+                                <div class="alert info">💧 Irrigation Due</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card">
+                    <div class="feature-visual">
+                        <div class="yield-chart">
+                            <div class="chart-bars">
+                                <div class="bar" style="height: 60%"></div>
+                                <div class="bar" style="height: 85%"></div>
+                                <div class="bar predicted" style="height: 95%"></div>
+                            </div>
+                            <div class="chart-label">+18% Yield</div>
+                        </div>
+                    </div>
+                    <div class="feature-content">
+                        <div class="feature-badge">Smart</div>
+                        <h3 class="feature-title">Yield Prediction & Planning</h3>
+                        <p class="feature-description">
+                            Know your yield months before harvest. AI combines weather forecasts, soil data,
+                            and historical performance to predict outcomes with 90%+ confidence.
+                        </p>
+                        <ul class="feature-list">
+                            <li>✓ Bushels-per-acre predictions</li>
+                            <li>✓ Market price integration</li>
+                            <li>✓ Harvest timing optimization</li>
+                            <li>✓ Revenue forecasting</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card">
+                    <div class="feature-content">
+                        <div class="feature-badge">Actionable</div>
+                        <h3 class="feature-title">Smart Recommendations</h3>
+                        <p class="feature-description">
+                            Get personalized, ROI-optimized recommendations. Every suggestion shows expected costs,
+                            benefits, and return on investment before you act.
+                        </p>
+                        <ul class="feature-list">
+                            <li>✓ Variable-rate application maps</li>
+                            <li>✓ Irrigation scheduling</li>
+                            <li>✓ Treatment prioritization by ROI</li>
+                            <li>✓ Equipment routing optimization</li>
+                        </ul>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="recommendation-card">
+                            <div class="rec-header">
+                                <span class="rec-icon">🌾</span>
+                                <span class="rec-priority">High Priority</span>
+                            </div>
+                            <div class="rec-title">Apply Nitrogen</div>
+                            <div class="rec-roi">ROI: 215%</div>
+                            <div class="rec-details">
+                                <div>Cost: $1,764</div>
+                                <div>Gain: $3,810</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Transform Your Operation</h2>
+                <p class="section-subtitle">Real results from farms just like yours</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">📈</div>
+                    <h3>Increase Yields</h3>
+                    <div class="benefit-stat">+40%</div>
+                    <p>Average yield improvement in first season through precision management</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h3>Reduce Costs</h3>
+                    <div class="benefit-stat">-35%</div>
+                    <p>Save on water, fertilizer, and chemicals with targeted applications</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⏱️</div>
+                    <h3>Save Time</h3>
+                    <div class="benefit-stat">50 hrs/week</div>
+                    <p>Automated scouting and analysis replaces manual field checks</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🌱</div>
+                    <h3>Farm Sustainably</h3>
+                    <div class="benefit-stat">-50%</div>
+                    <p>Reduce chemical usage while maintaining or improving yields</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📊</div>
+                    <h3>Data-Driven</h3>
+                    <div class="benefit-stat">95%</div>
+                    <p>Prediction accuracy for yield, disease, and pest outbreaks</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔄</div>
+                    <h3>Fast ROI</h3>
+                    <div class="benefit-stat">&lt;1 Season</div>
+                    <p>Payback period with 1100% five-year ROI</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology" class="technology-section">
+        <div class="container">
+            <div class="tech-content">
+                <div class="tech-text">
+                    <div class="section-header left">
+                        <h2 class="section-title">Powered by<br/>Cutting-Edge Technology</h2>
+                        <p class="section-subtitle">Enterprise-grade spatial computing for agriculture</p>
+                    </div>
+                    <div class="tech-features">
+                        <div class="tech-feature">
+                            <div class="tech-icon">🍎</div>
+                            <div>
+                                <h4>Apple Vision Pro</h4>
+                                <p>Built exclusively for the world's most advanced spatial computer</p>
+                            </div>
+                        </div>
+                        <div class="tech-feature">
+                            <div class="tech-icon">🤖</div>
+                            <div>
+                                <h4>AI & Machine Learning</h4>
+                                <p>Deep learning models trained on millions of acres of farm data</p>
+                            </div>
+                        </div>
+                        <div class="tech-feature">
+                            <div class="tech-icon">🛰️</div>
+                            <div>
+                                <h4>Satellite Integration</h4>
+                                <p>Daily multispectral imagery from Planet Labs and Sentinel satellites</p>
+                            </div>
+                        </div>
+                        <div class="tech-feature">
+                            <div class="tech-icon">📡</div>
+                            <div>
+                                <h4>IoT Sensors</h4>
+                                <p>Real-time data from soil moisture, weather, and equipment sensors</p>
+                            </div>
+                        </div>
+                        <div class="tech-feature">
+                            <div class="tech-icon">☁️</div>
+                            <div>
+                                <h4>Cloud + Edge Computing</h4>
+                                <p>Process data locally or in the cloud for maximum flexibility</p>
+                            </div>
+                        </div>
+                        <div class="tech-feature">
+                            <div class="tech-icon">🔒</div>
+                            <div>
+                                <h4>Enterprise Security</h4>
+                                <p>Bank-level encryption and complete data privacy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-visual">
+                    <div class="tech-stack">
+                        <div class="tech-layer">
+                            <div class="layer-title">Spatial Computing</div>
+                            <div class="layer-tech">visionOS • RealityKit • ARKit</div>
+                        </div>
+                        <div class="tech-layer">
+                            <div class="layer-title">AI & Analytics</div>
+                            <div class="layer-tech">Core ML • TensorFlow • PyTorch</div>
+                        </div>
+                        <div class="tech-layer">
+                            <div class="layer-title">Data Sources</div>
+                            <div class="layer-tech">Satellites • IoT • Weather APIs</div>
+                        </div>
+                        <div class="tech-layer">
+                            <div class="layer-title">Cloud Infrastructure</div>
+                            <div class="layer-tech">AWS • Real-time Sync</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Trusted by Progressive Farmers</h2>
+                <p class="section-subtitle">See what early adopters are saying</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">
+                        "In 30 years of farming, I've never seen anything like this. We caught a nitrogen deficiency
+                        two weeks before it was visible to the eye. Saved us $15,000 and added 12 bushels per acre."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JD</div>
+                        <div>
+                            <div class="author-name">James Davidson</div>
+                            <div class="author-title">5,200 acres • Iowa</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-results">
+                        <span class="result">+18% yield</span>
+                        <span class="result">$127/acre gain</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">
+                        "The 3D visualization changed everything. I can see my entire 3,800-acre operation at once
+                        and spot problems instantly. It's like having X-ray vision for your crops."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SM</div>
+                        <div>
+                            <div class="author-name">Sarah Mitchell</div>
+                            <div class="author-title">3,800 acres • Nebraska</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-results">
+                        <span class="result">-40% water use</span>
+                        <span class="result">ROI in 8 months</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">
+                        "The ROI calculator alone is worth it. Every recommendation shows exact costs and expected
+                        returns. We've improved our profit margin by 45% while using 50% less chemicals."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MC</div>
+                        <div>
+                            <div class="author-name">Miguel Cortez</div>
+                            <div class="author-title">2,100 acres • California</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-results">
+                        <span class="result">+45% profit</span>
+                        <span class="result">-50% chemicals</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Simple, Transparent Pricing</h2>
+                <p class="section-subtitle">Start with a free trial. Scale as you grow.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-tier">Starter</div>
+                    <div class="pricing-price">
+                        <span class="price-amount">$2</span>
+                        <span class="price-period">/acre/year</span>
+                    </div>
+                    <p class="pricing-description">Perfect for small to medium farms</p>
+                    <ul class="pricing-features">
+                        <li>✓ Up to 2,000 acres</li>
+                        <li>✓ Weekly satellite updates</li>
+                        <li>✓ AI health analysis</li>
+                        <li>✓ Yield predictions</li>
+                        <li>✓ Mobile + Vision Pro access</li>
+                        <li>✓ Email support</li>
+                    </ul>
+                    <button class="pricing-button secondary">Start Free Trial</button>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-tier">Professional</div>
+                    <div class="pricing-price">
+                        <span class="price-amount">$1.50</span>
+                        <span class="price-period">/acre/year</span>
+                    </div>
+                    <p class="pricing-description">For growing operations</p>
+                    <ul class="pricing-features">
+                        <li>✓ Up to 10,000 acres</li>
+                        <li>✓ Daily satellite updates</li>
+                        <li>✓ Advanced AI analytics</li>
+                        <li>✓ IoT sensor integration</li>
+                        <li>✓ Equipment integration</li>
+                        <li>✓ Priority support</li>
+                        <li>✓ Agronomist consultation</li>
+                    </ul>
+                    <button class="pricing-button primary">Start Free Trial</button>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-tier">Enterprise</div>
+                    <div class="pricing-price">
+                        <span class="price-amount">Custom</span>
+                    </div>
+                    <p class="pricing-description">For large operations and co-ops</p>
+                    <ul class="pricing-features">
+                        <li>✓ Unlimited acres</li>
+                        <li>✓ Real-time satellite data</li>
+                        <li>✓ Custom AI models</li>
+                        <li>✓ Multi-farm management</li>
+                        <li>✓ API access</li>
+                        <li>✓ Dedicated support team</li>
+                        <li>✓ On-premise deployment</li>
+                        <li>✓ SLA guarantee</li>
+                    </ul>
+                    <button class="pricing-button secondary">Contact Sales</button>
+                </div>
+            </div>
+            <div class="pricing-guarantee">
+                <div class="guarantee-icon">✓</div>
+                <div class="guarantee-text">
+                    <strong>100% Money-Back Guarantee</strong> — If you don't see ROI in your first season, we'll refund every penny.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="demo" class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Transform Your Farm?</h2>
+                <p class="cta-subtitle">Join thousands of progressive farmers already using Smart Agriculture</p>
+                <form class="demo-form" id="demoForm">
+                    <div class="form-row">
+                        <input type="text" placeholder="Full Name" required>
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="tel" placeholder="Phone Number" required>
+                        <input type="number" placeholder="Farm Size (acres)" required>
+                    </div>
+                    <div class="form-row">
+                        <select required>
+                            <option value="">Primary Crop</option>
+                            <option value="corn">Corn</option>
+                            <option value="soybeans">Soybeans</option>
+                            <option value="wheat">Wheat</option>
+                            <option value="cotton">Cotton</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <select required>
+                            <option value="">State</option>
+                            <option value="IA">Iowa</option>
+                            <option value="IL">Illinois</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="MN">Minnesota</option>
+                            <option value="IN">Indiana</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="primary-button large">
+                        <span>Schedule Your Demo</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <p class="form-privacy">
+                        We respect your privacy. Your information will never be shared.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🌾</span>
+                        <span class="logo-text">Smart Agriculture</span>
+                    </div>
+                    <p class="footer-tagline">Transforming farming through spatial intelligence</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#testimonials">Success Stories</a></li>
+                        <li><a href="#demo">Request Demo</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Smart Agriculture. All rights reserved.</p>
+                <p>Built with ❤️ for farmers and the future of sustainable agriculture</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ main, develop, claude/** ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '18.x'
+
+jobs:
+  test-suite:
+    name: Run Test Suite
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up test environment
+      run: |
+        chmod +x run-tests.sh
+
+    - name: Run comprehensive test suite
+      run: |
+        bash run-tests.sh
+      continue-on-error: false
+
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results
+        path: test-results/
+        retention-days: 30
+
+    - name: Generate test summary
+      if: always()
+      run: |
+        echo "## Test Results Summary" >> $GITHUB_STEP_SUMMARY
+        if [ -f test-results/summary.txt ]; then
+          cat test-results/summary.txt >> $GITHUB_STEP_SUMMARY
+        fi
+
+  swift-validation:
+    name: Swift Code Validation
+    runs-on: macos-14
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Select Xcode version
+      run: sudo xcode-select -s /Applications/Xcode_16.0.app/Contents/Developer
+
+    - name: Check Swift version
+      run: swift --version
+
+    - name: Validate Swift syntax
+      run: |
+        find HealthcareOrchestrator -name "*.swift" -type f | while read file; do
+          echo "Checking $file..."
+          xcrun swiftc -typecheck "$file" -sdk $(xcrun --show-sdk-path --sdk macosx) || exit 1
+        done
+
+    - name: Swift Lint (if available)
+      run: |
+        if command -v swiftlint &> /dev/null; then
+          swiftlint --strict --reporter github-actions-logging
+        else
+          echo "SwiftLint not installed, skipping..."
+        fi
+      continue-on-error: true
+
+  web-validation:
+    name: Web Assets Validation
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+
+    - name: Install validation tools
+      run: |
+        npm install -g html-validator-cli
+        npm install -g eslint
+        npm install -g stylelint stylelint-config-standard
+
+    - name: Validate HTML
+      run: |
+        html-validator --file=landing-page/index.html --verbose || true
+
+    - name: Validate JavaScript
+      run: |
+        npx eslint landing-page/js/script.js --no-eslintrc --env browser,es6 || true
+
+    - name: Check CSS
+      run: |
+        echo '{"extends": "stylelint-config-standard"}' > .stylelintrc.json
+        npx stylelint "landing-page/css/*.css" || true
+
+  security-scan:
+    name: Security Scanning
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+
+    - name: Upload Trivy results to GitHub Security
+      uses: github/codeql-action/upload-sarif@v3
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'
+
+    - name: Check for secrets
+      uses: trufflesecurity/trufflehog@main
+      with:
+        path: ./
+        base: ${{ github.event.repository.default_branch }}
+        head: HEAD
+
+  documentation-check:
+    name: Documentation Validation
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Check required documentation
+      run: |
+        REQUIRED_DOCS=(
+          "README.md"
+          "ARCHITECTURE.md"
+          "TECHNICAL_SPEC.md"
+          "DESIGN.md"
+          "IMPLEMENTATION_PLAN.md"
+          "TESTING.md"
+          "USER_GUIDE.md"
+        )
+
+        echo "Checking for required documentation..."
+        for doc in "${REQUIRED_DOCS[@]}"; do
+          if [ -f "$doc" ]; then
+            echo "✓ $doc exists"
+          else
+            echo "✗ $doc missing"
+            exit 1
+          fi
+        done
+
+    - name: Check documentation freshness
+      run: |
+        # Check if docs have been updated recently
+        for doc in *.md; do
+          if [ -f "$doc" ]; then
+            DAYS_OLD=$(( ($(date +%s) - $(stat -c %Y "$doc")) / 86400 ))
+            echo "$doc is $DAYS_OLD days old"
+          fi
+        done
+
+    - name: Validate markdown links
+      uses: gaurav-nelson/github-action-markdown-link-check@v1
+      with:
+        use-quiet-mode: 'yes'
+        config-file: '.markdown-link-check.json'
+      continue-on-error: true
+
+  performance-check:
+    name: Performance Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Analyze landing page size
+      run: |
+        echo "## Landing Page Performance" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+
+        HTML_SIZE=$(stat -f%z landing-page/index.html 2>/dev/null || stat -c%s landing-page/index.html)
+        CSS_SIZE=$(stat -f%z landing-page/css/styles.css 2>/dev/null || stat -c%s landing-page/css/styles.css)
+        JS_SIZE=$(stat -f%z landing-page/js/script.js 2>/dev/null || stat -c%s landing-page/js/script.js)
+
+        TOTAL_SIZE=$((HTML_SIZE + CSS_SIZE + JS_SIZE))
+
+        echo "| File | Size |" >> $GITHUB_STEP_SUMMARY
+        echo "|------|------|" >> $GITHUB_STEP_SUMMARY
+        echo "| HTML | $(numfmt --to=iec-i --suffix=B $HTML_SIZE) |" >> $GITHUB_STEP_SUMMARY
+        echo "| CSS  | $(numfmt --to=iec-i --suffix=B $CSS_SIZE) |" >> $GITHUB_STEP_SUMMARY
+        echo "| JS   | $(numfmt --to=iec-i --suffix=B $JS_SIZE) |" >> $GITHUB_STEP_SUMMARY
+        echo "| **Total** | **$(numfmt --to=iec-i --suffix=B $TOTAL_SIZE)** |" >> $GITHUB_STEP_SUMMARY
+
+        if [ $TOTAL_SIZE -gt 100000 ]; then
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "⚠️ Warning: Total size exceeds 100KB" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Total size is acceptable" >> $GITHUB_STEP_SUMMARY
+        fi
+
+  code-quality:
+    name: Code Quality Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Count lines of code
+      run: |
+        echo "## Code Statistics" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+
+        SWIFT_LINES=$(find HealthcareOrchestrator -name "*.swift" -type f -exec cat {} \; | wc -l)
+        HTML_LINES=$(find landing-page -name "*.html" -type f -exec cat {} \; | wc -l)
+        CSS_LINES=$(find landing-page -name "*.css" -type f -exec cat {} \; | wc -l)
+        JS_LINES=$(find landing-page -name "*.js" -type f -exec cat {} \; | wc -l)
+
+        echo "| Language | Lines of Code |" >> $GITHUB_STEP_SUMMARY
+        echo "|----------|---------------|" >> $GITHUB_STEP_SUMMARY
+        echo "| Swift    | $SWIFT_LINES |" >> $GITHUB_STEP_SUMMARY
+        echo "| HTML     | $HTML_LINES |" >> $GITHUB_STEP_SUMMARY
+        echo "| CSS      | $CSS_LINES |" >> $GITHUB_STEP_SUMMARY
+        echo "| JavaScript | $JS_LINES |" >> $GITHUB_STEP_SUMMARY
+
+    - name: Check code complexity
+      run: |
+        # Simple complexity check for Swift files
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Code Complexity" >> $GITHUB_STEP_SUMMARY
+
+        find HealthcareOrchestrator -name "*.swift" -type f | while read file; do
+          FUNCS=$(grep -c "func " "$file" || echo "0")
+          LINES=$(wc -l < "$file")
+          if [ "$LINES" -gt 0 ]; then
+            RATIO=$((LINES / (FUNCS + 1)))
+            echo "- $file: $LINES lines, $FUNCS functions (avg $RATIO lines/function)" >> $GITHUB_STEP_SUMMARY
+          fi
+        done
+
+  notification:
+    name: Build Status Notification
+    runs-on: ubuntu-latest
+    needs: [test-suite, swift-validation, web-validation, security-scan, documentation-check, performance-check, code-quality]
+    if: always()
+
+    steps:
+    - name: Check build status
+      run: |
+        echo "## CI Pipeline Status" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "✅ All checks completed!" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "Commit: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+        echo "Branch: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+        echo "Author: ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- App Sandbox (for visionOS) -->
+    <key>com.apple.security.app-sandbox</key>
+    <true/>
+
+    <!-- Spatial Computing -->
+    <key>com.apple.developer.spatial-tracking</key>
+    <true/>
+
+    <!-- Hand Tracking (Optional) -->
+    <key>com.apple.developer.hand-tracking</key>
+    <true/>
+
+    <!-- Data Protection -->
+    <key>com.apple.developer.default-data-protection</key>
+    <string>NSFileProtectionComplete</string>
+
+    <!-- Network (Future use) -->
+    <key>com.apple.security.network.client</key>
+    <false/>
+
+    <!-- No outgoing network connections in MVP -->
+    <key>com.apple.security.network.server</key>
+    <false/>
+
+    <!-- No camera or microphone access -->
+    <key>com.apple.security.device.camera</key>
+    <false/>
+
+    <key>com.apple.security.device.audio-input</key>
+    <false/>
+</dict>
+</plist>

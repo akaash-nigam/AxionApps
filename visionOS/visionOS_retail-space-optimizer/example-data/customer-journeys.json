@@ -1,0 +1,81 @@
+{
+  "journeys": [
+    {
+      "id": "journey-001",
+      "storeId": "store-001",
+      "customerPersona": {
+        "demographicProfile": "Young Professional",
+        "shoppingMission": "browse",
+        "timeConstraint": "flexible",
+        "priceSensitivity": 0.5,
+        "brandPreferences": ["Nike", "Adidas"]
+      },
+      "entryPoint": {"x": 0.0, "y": 0.0, "z": 15.0},
+      "exitPoint": {"x": 20.0, "y": 0.0, "z": 15.0},
+      "totalTime": 1200,
+      "conversionValue": 125.50,
+      "pathPoints": [
+        {"x": 0.0, "y": 0.0, "z": 15.0, "timestamp": 0},
+        {"x": 5.0, "y": 0.0, "z": 12.0, "timestamp": 60},
+        {"x": 10.0, "y": 0.0, "z": 10.0, "timestamp": 180},
+        {"x": 15.0, "y": 0.0, "z": 15.0, "timestamp": 420},
+        {"x": 18.0, "y": 0.0, "z": 28.0, "timestamp": 1080},
+        {"x": 20.0, "y": 0.0, "z": 15.0, "timestamp": 1200}
+      ],
+      "dwellZones": [
+        {
+          "location": {"x": 10.0, "y": 0.0, "z": 10.0},
+          "duration": 240,
+          "zoneName": "Apparel Section"
+        },
+        {
+          "location": {"x": 15.0, "y": 0.0, "z": 15.0},
+          "duration": 480,
+          "zoneName": "Featured Display"
+        }
+      ],
+      "purchasePoints": [
+        {
+          "location": {"x": 18.0, "y": 0.0, "z": 28.0},
+          "amount": 125.50,
+          "productCategory": "apparel"
+        }
+      ]
+    },
+    {
+      "id": "journey-002",
+      "storeId": "store-001",
+      "customerPersona": {
+        "demographicProfile": "Family Shopper",
+        "shoppingMission": "quick-trip",
+        "timeConstraint": "rushed",
+        "priceSensitivity": 0.7,
+        "brandPreferences": []
+      },
+      "entryPoint": {"x": 0.0, "y": 0.0, "z": 15.0},
+      "exitPoint": {"x": 20.0, "y": 0.0, "z": 15.0},
+      "totalTime": 360,
+      "conversionValue": 45.00,
+      "pathPoints": [
+        {"x": 0.0, "y": 0.0, "z": 15.0, "timestamp": 0},
+        {"x": 5.0, "y": 0.0, "z": 10.0, "timestamp": 45},
+        {"x": 18.0, "y": 0.0, "z": 28.0, "timestamp": 300},
+        {"x": 20.0, "y": 0.0, "z": 15.0, "timestamp": 360}
+      ],
+      "dwellZones": [
+        {
+          "location": {"x": 5.0, "y": 0.0, "z": 10.0},
+          "duration": 120,
+          "zoneName": "Apparel Section"
+        }
+      ],
+      "purchasePoints": [
+        {
+          "location": {"x": 18.0, "y": 0.0, "z": 28.0},
+          "amount": 45.00,
+          "productCategory": "accessories"
+        }
+      ]
+    }
+  ]
+}

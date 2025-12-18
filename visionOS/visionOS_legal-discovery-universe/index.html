@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Discovery Universe - Revolutionary 3D Legal Research Platform for visionOS</title>
+    <meta name="description" content="Transform legal discovery with immersive 3D visualization. Reduce review time by 55%, save $2.8M per case, and revolutionize legal workflows on Apple Vision Pro.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a1f3a;
+            --secondary-color: #2d3561;
+            --accent-color: #4f7cff;
+            --accent-gold: #d4af37;
+            --text-light: #ffffff;
+            --text-dark: #1a1f3a;
+            --bg-light: #f8f9fa;
+            --bg-gradient-start: #0a0e27;
+            --bg-gradient-end: #1a1f3a;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+            color: var(--text-light);
+            padding: 120px 20px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(79, 124, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            animation: pulse 10s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #ffffff 0%, #a8c5ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #b8c5d6;
+            font-weight: 300;
+        }
+
+        .hero .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: var(--accent-gold);
+            font-weight: 500;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-color) 0%, #6b8fff 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(79, 124, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(79, 124, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid var(--accent-gold);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-gold);
+            transform: translateY(-3px);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: white;
+            padding: 40px 20px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* Problem Solution Section */
+        .problem-solution {
+            padding: 100px 20px;
+            background: var(--bg-light);
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 50px;
+            align-items: center;
+        }
+
+        .problem-box, .solution-box {
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .problem-box {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe9e9 100%);
+            border-left: 5px solid #ff4444;
+        }
+
+        .solution-box {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .problem-box h3, .solution-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .problem-box ul, .solution-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .problem-box li, .solution-box li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .problem-box li::before {
+            content: '✗';
+            position: absolute;
+            left: 0;
+            color: #ff4444;
+            font-weight: bold;
+        }
+
+        .solution-box li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 20px;
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(79, 124, 255, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(79, 124, 255, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* ROI Section */
+        .roi-section {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+        }
+
+        .roi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .roi-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+
+        .roi-card h3 {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .roi-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .roi-card p {
+            color: #b8c5d6;
+            font-size: 0.95rem;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 100px 20px;
+            background: var(--bg-light);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-color) 0%, #6b8fff 100%);
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(79, 124, 255, 0.2);
+        }
+
+        .pricing-card.featured::before {
+            height: 8px;
+            background: linear-gradient(90deg, var(--accent-gold) 0%, #ffd700 100%);
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            background: var(--accent-gold);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .pricing-card .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .pricing-card .price-period {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .pricing-card li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #555;
+        }
+
+        .pricing-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Social Proof */
+        .social-proof {
+            padding: 100px 20px;
+            background: white;
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--accent-gold);
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-color) 0%, #6b8fff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .author-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, var(--accent-color) 0%, #6b8fff 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            color: #b8c5d6;
+        }
+
+        footer a {
+            color: var(--accent-gold);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Logo */
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="logo">⚖️ Legal Discovery Universe</div>
+            <h1>Transform Legal Discovery<br>Into a Spatial Experience</h1>
+            <p class="subtitle">Immersive 3D legal research and case management for Apple Vision Pro</p>
+            <p class="tagline">Navigate evidence galaxies. Uncover hidden connections. Win more cases.</p>
+            <div class="cta-buttons">
+                <a href="#demo" class="btn btn-primary">Schedule a Demo</a>
+                <a href="#pricing" class="btn btn-secondary">View Pricing</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <h3>55%</h3>
+                <p>Reduction in Review Time</p>
+            </div>
+            <div class="stat-item">
+                <h3>$2.8M</h3>
+                <p>Annual Savings Per Matter</p>
+            </div>
+            <div class="stat-item">
+                <h3>42%</h3>
+                <p>Faster Case Preparation</p>
+            </div>
+            <div class="stat-item">
+                <h3>38%</h3>
+                <p>Better Case Outcomes</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem/Solution Section -->
+    <section class="problem-solution">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>The Discovery Dilemma</h2>
+                <p>Legal professionals are drowning in documents. Traditional tools can't keep up with modern case complexity.</p>
+            </div>
+            <div class="two-column">
+                <div class="problem-box">
+                    <h3>🚨 The Old Way</h3>
+                    <ul>
+                        <li>Endless scrolling through thousands of documents</li>
+                        <li>Missing critical evidence in massive data sets</li>
+                        <li>Spending $50B annually on discovery (70% of litigation costs)</li>
+                        <li>6-12 months reviewing 6.5M+ documents per case</li>
+                        <li>99% of reviewed documents are not relevant</li>
+                        <li>Relationships and patterns hidden in 2D interfaces</li>
+                    </ul>
+                </div>
+                <div class="solution-box">
+                    <h3>✨ The Spatial Revolution</h3>
+                    <ul>
+                        <li>Navigate 3D evidence landscapes intuitively</li>
+                        <li>AI-powered pattern recognition finds hidden connections</li>
+                        <li>Reduce discovery costs by 80% with automation</li>
+                        <li>Complete review in 3 weeks instead of months</li>
+                        <li>95% relevance accuracy with predictive AI</li>
+                        <li>Visualize relationships in immersive 3D space</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Revolutionary Features Built for Legal Excellence</h2>
+                <p>Experience the future of legal research with spatial computing on Apple Vision Pro</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>3D Document Visualization</h3>
+                    <p>Transform document review into spatial navigation. Organize evidence into interactive 3D landscapes where relationships are visible and timelines unfold naturally in space.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚖️</div>
+                    <h3>Case Strategy Visualization</h3>
+                    <p>Build winning arguments in immersive 3D environments. Visualize evidence strength, map argumentation flows, and explore precedents spatially.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>AI-Powered Discovery</h3>
+                    <p>Leverage advanced AI for automated document review, privilege detection, pattern recognition, and predictive coding. Find the smoking gun in seconds, not months.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Collaborative Workspaces</h3>
+                    <p>Work together in shared 3D legal war rooms. Multi-attorney case review, client consultations, and expert witness collaboration in immersive environments.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Litigation Dashboard</h3>
+                    <p>Real-time case progress tracking with visual milestones. Predictive analytics for budgets, timelines, and outcome scenarios.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Enterprise Security</h3>
+                    <p>Bank-level encryption, attorney-client privilege protection, and compliance with legal ethics standards. Your confidential data stays confidential.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Section -->
+    <section class="roi-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 style="color: white;">Proven Return on Investment</h2>
+                <p style="color: #b8c5d6;">Transform your legal practice with quantifiable business impact</p>
+            </div>
+            <div class="roi-grid">
+                <div class="roi-card">
+                    <h3>$2.8M</h3>
+                    <h4>Annual Savings</h4>
+                    <p>Per large litigation matter through efficiency gains and automation</p>
+                </div>
+                <div class="roi-card">
+                    <h3>100x</h3>
+                    <h4>Faster Review</h4>
+                    <p>Find critical evidence in hours instead of weeks with AI-powered search</p>
+                </div>
+                <div class="roi-card">
+                    <h3>60%</h3>
+                    <h4>Cost Reduction</h4>
+                    <p>Lower external review costs with intelligent document analysis</p>
+                </div>
+                <div class="roi-card">
+                    <h3>38%</h3>
+                    <h4>Better Outcomes</h4>
+                    <p>Increase successful case results through enhanced strategy development</p>
+                </div>
+                <div class="roi-card">
+                    <h3>5x</h3>
+                    <h4>Productivity Gain</h4>
+                    <p>Attorneys handle more cases with superior preparation quality</p>
+                </div>
+                <div class="roi-card">
+                    <h3>700%</h3>
+                    <h4>Total ROI</h4>
+                    <p>With just 9-month payback period for enterprise deployment</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Choose Your Plan</h2>
+                <p>Flexible pricing designed for law firms of all sizes</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Legal Professional</h3>
+                    <div class="price">$799</div>
+                    <div class="price-period">per attorney/month</div>
+                    <ul>
+                        <li>Core document visualization</li>
+                        <li>Basic AI discovery tools</li>
+                        <li>Standard collaboration features</li>
+                        <li>Up to 25 attorneys</li>
+                        <li>Email support</li>
+                        <li>Standard security</li>
+                    </ul>
+                    <a href="#demo" class="btn btn-primary">Get Started</a>
+                </div>
+                <div class="pricing-card featured">
+                    <span class="pricing-badge">MOST POPULAR</span>
+                    <h3>Litigation Suite</h3>
+                    <div class="price">$1,499</div>
+                    <div class="price-period">per attorney/month</div>
+                    <ul>
+                        <li>Advanced case strategy visualization</li>
+                        <li>Full AI discovery & analytics</li>
+                        <li>Multi-party collaboration</li>
+                        <li>Up to 100 attorneys</li>
+                        <li>Priority support</li>
+                        <li>Advanced security & compliance</li>
+                        <li>Custom integrations</li>
+                    </ul>
+                    <a href="#demo" class="btn btn-primary">Get Started</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Enterprise Legal</h3>
+                    <div class="price">$2,499</div>
+                    <div class="price-period">per attorney/month</div>
+                    <ul>
+                        <li>Unlimited attorneys</li>
+                        <li>Custom AI model development</li>
+                        <li>Global deployment</li>
+                        <li>White-glove onboarding</li>
+                        <li>24/7 dedicated support</li>
+                        <li>Enterprise SLA</li>
+                        <li>Custom feature development</li>
+                    </ul>
+                    <a href="#demo" class="btn btn-primary">Contact Sales</a>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 50px; color: #666;">
+                <p><strong>Matter-Based Pricing Also Available:</strong> Small Matters ($10K/mo) • Medium Matters ($25K/mo) • Large Matters (Custom)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="social-proof">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Trusted by Leading Legal Professionals</h2>
+                <p>See what top law firms are saying about Legal Discovery Universe</p>
+            </div>
+            <div class="testimonials">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Legal Discovery Universe transformed how we handle complex litigation. We found critical evidence in days that would have taken months with traditional methods. The 3D visualization is game-changing."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JM</div>
+                        <div class="author-info">
+                            <h4>Jennifer Martinez</h4>
+                            <p>Managing Partner, Global Law Firm</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The AI-powered discovery saved us over $2M on our last major case. The ability to visualize relationships between documents spatially helped us build a stronger narrative for the jury."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RK</div>
+                        <div class="author-info">
+                            <h4>Robert Kim</h4>
+                            <p>Lead Litigation Counsel, Fortune 500</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"This is the future of legal technology. Our team's efficiency increased by 300% in the first quarter. Clients are impressed with our enhanced case presentations."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SC</div>
+                        <div class="author-info">
+                            <h4>Sarah Chen</h4>
+                            <p>Director of eDiscovery, International Firm</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section id="demo" class="cta-section">
+        <div class="section-container">
+            <h2>Ready to Transform Your Legal Practice?</h2>
+            <p>Schedule a confidential demonstration and see how spatial computing can revolutionize your discovery process</p>
+            <div class="cta-buttons">
+                <a href="mailto:demo@legaldiscoveryuniverse.com" class="btn btn-primary">Schedule a Demo</a>
+                <a href="mailto:sales@legaldiscoveryuniverse.com" class="btn btn-secondary">Contact Sales</a>
+            </div>
+            <p style="margin-top: 40px; font-size: 0.95rem; opacity: 0.9;">
+                Join leading law firms already using Legal Discovery Universe to win more cases<br>
+                Confidential consultations • Free pilot programs available • No credit card required
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="section-container">
+            <div class="logo" style="-webkit-text-fill-color: unset; color: white;">⚖️ Legal Discovery Universe</div>
+            <p style="margin-top: 20px;">Revolutionary 3D legal research platform for Apple Vision Pro</p>
+            <p style="margin-top: 20px;">
+                <a href="mailto:info@legaldiscoveryuniverse.com">info@legaldiscoveryuniverse.com</a> •
+                <a href="tel:+1-800-LEGAL-3D">1-800-LEGAL-3D</a>
+            </p>
+            <p style="margin-top: 30px; font-size: 0.9rem; opacity: 0.7;">
+                &copy; 2025 Legal Discovery Universe. All rights reserved. <br>
+                Built with cutting-edge visionOS technology for the future of legal practice.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add simple fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe feature cards and pricing cards
+        document.querySelectorAll('.feature-card, .pricing-card, .testimonial-card, .roi-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

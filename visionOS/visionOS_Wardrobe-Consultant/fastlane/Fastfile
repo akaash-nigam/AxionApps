@@ -1,0 +1,340 @@
+# Fastfile for Wardrobe Consultant
+# https://docs.fastlane.tools
+
+default_platform(:ios)
+
+platform :ios do
+
+  #############
+  # VARIABLES #
+  #############
+
+  # App identifier
+  app_identifier = "com.yourcompany.wardrobeconsultant"
+
+  # Scheme names
+  scheme_name = "WardrobeConsultant"
+
+  # Team ID (set in environment or here)
+  team_id = ENV["FASTLANE_TEAM_ID"] || "YOUR_TEAM_ID"
+
+  # Apple ID
+  apple_id = ENV["FASTLANE_APPLE_ID"] || "your@email.com"
+
+  ###########
+  # PRIVATE #
+  ###########
+
+  before_all do
+    ensure_git_status_clean unless ENV["SKIP_GIT_CHECK"]
+  end
+
+  #########
+  # LANES #
+  #########
+
+  # Test lanes
+  desc "Run all unit tests"
+  lane :test_unit do
+    run_tests(
+      scheme: scheme_name,
+      only_testing: ["WardrobeConsultantTests"],
+      result_bundle: true,
+      output_directory: "./fastlane/test_output",
+      code_coverage: true
+    )
+  end
+
+  desc "Run integration tests"
+  lane :test_integration do
+    run_tests(
+      scheme: scheme_name,
+      only_testing: ["WardrobeConsultantIntegrationTests"],
+      result_bundle: true,
+      output_directory: "./fastlane/test_output"
+    )
+  end
+
+  desc "Run UI tests"
+  lane :test_ui do
+    run_tests(
+      scheme: scheme_name,
+      only_testing: ["WardrobeConsultantUITests"],
+      result_bundle: true,
+      output_directory: "./fastlane/test_output"
+    )
+  end
+
+  desc "Run all tests"
+  lane :test do
+    test_unit
+    test_integration
+    # UI tests can be slow, run separately if needed
+    # test_ui
+  end
+
+  # Build lanes
+  desc "Build for development"
+  lane :build_dev do
+    build_app(
+      scheme: scheme_name,
+      configuration: "Debug",
+      export_method: "development",
+      output_directory: "./build",
+      output_name: "WardrobeConsultant-dev.ipa"
+    )
+  end
+
+  desc "Build for TestFlight"
+  lane :build_testflight do
+    build_app(
+      scheme: scheme_name,
+      configuration: "Release",
+      export_method: "app-store",
+      output_directory: "./build",
+      output_name: "WardrobeConsultant.ipa",
+      include_bitcode: false,
+      include_symbols: true
+    )
+  end
+
+  # Beta lanes
+  desc "Upload a new Beta Build to TestFlight"
+  lane :beta do
+    # Ensure we're on the right branch
+    ensure_git_branch(
+      branch: ENV["RELEASE_BRANCH"] || "main"
+    )
+
+    # Increment build number
+    increment_build_number(
+      build_number: latest_testflight_build_number + 1
+    )
+
+    # Run tests
+    test
+
+    # Build
+    build_testflight
+
+    # Upload to TestFlight
+    upload_to_testflight(
+      apple_id: apple_id,
+      skip_waiting_for_build_processing: true,
+      changelog: File.read("../CHANGELOG.md")
+    )
+
+    # Commit version bump
+    commit_version_bump(
+      message: "Bump build for TestFlight",
+      xcodeproj: "./WardrobeConsultant.xcodeproj"
+    )
+
+    # Push to git
+    push_to_git_remote
+
+    # Notify team
+    slack(
+      message: "New beta build #{lane_context[SharedValues::BUILD_NUMBER]} uploaded to TestFlight! 🚀",
+      success: true
+    ) if ENV["SLACK_URL"]
+  end
+
+  # Release lanes
+  desc "Deploy a new version to the App Store"
+  lane :release do
+    # Ensure we're on main branch
+    ensure_git_branch(branch: "main")
+
+    # Run all tests including UI
+    test
+    test_ui
+
+    # Capture screenshots
+    capture_screenshots
+
+    # Build for release
+    build_testflight
+
+    # Upload to App Store Connect
+    upload_to_app_store(
+      apple_id: apple_id,
+      app_identifier: app_identifier,
+      skip_metadata: false,
+      skip_screenshots: false,
+      submit_for_review: true,
+      automatic_release: false,
+      force: true,
+      submission_information: {
+        add_id_info_uses_idfa: false
+      }
+    )
+
+    # Tag the release
+    add_git_tag(
+      tag: "v#{get_version_number}"
+    )
+
+    # Push tags
+    push_to_git_remote
+
+    # Create GitHub release
+    github_release = set_github_release(
+      repository_name: "yourcompany/visionOS_Wardrobe-Consultant",
+      api_token: ENV["GITHUB_TOKEN"],
+      name: "v#{get_version_number}",
+      tag_name: "v#{get_version_number}",
+      description: File.read("../CHANGELOG.md"),
+      commitish: "main"
+    )
+
+    # Notify team
+    slack(
+      message: "New version #{get_version_number} submitted to App Store! 🎉",
+      success: true
+    ) if ENV["SLACK_URL"]
+  end
+
+  # Screenshot lanes
+  desc "Capture screenshots for App Store"
+  lane :screenshots do
+    capture_screenshots(
+      scheme: scheme_name,
+      output_directory: "./fastlane/screenshots",
+      clear_previous_screenshots: true,
+      override_status_bar: true,
+      localize_simulator_status_bar: true
+    )
+
+    # Frame screenshots (requires imagemagick)
+    frame_screenshots(
+      white: false,
+      path: "./fastlane/screenshots"
+    )
+  end
+
+  # Version management
+  desc "Bump major version (1.0.0 -> 2.0.0)"
+  lane :bump_major do
+    increment_version_number(
+      bump_type: "major"
+    )
+    commit_version_bump
+  end
+
+  desc "Bump minor version (1.0.0 -> 1.1.0)"
+  lane :bump_minor do
+    increment_version_number(
+      bump_type: "minor"
+    )
+    commit_version_bump
+  end
+
+  desc "Bump patch version (1.0.0 -> 1.0.1)"
+  lane :bump_patch do
+    increment_version_number(
+      bump_type: "patch"
+    )
+    commit_version_bump
+  end
+
+  # Maintenance lanes
+  desc "Clean build artifacts"
+  lane :clean do
+    clear_derived_data
+    sh("rm -rf ../build")
+    sh("rm -rf ./test_output")
+  end
+
+  desc "Setup development environment"
+  lane :setup do
+    # Install dependencies if needed
+    # cocoapods if using CocoaPods
+    # carthage if using Carthage
+
+    UI.success "Development environment setup complete! ✅"
+  end
+
+  desc "Run linter"
+  lane :lint do
+    swiftlint(
+      mode: :lint,
+      config_file: "../.swiftlint.yml",
+      raise_if_swiftlint_error: true,
+      reporter: "emoji"
+    )
+  end
+
+  desc "Fix linting issues"
+  lane :lint_fix do
+    swiftlint(
+      mode: :autocorrect,
+      config_file: "../.swiftlint.yml"
+    )
+  end
+
+  # Code signing
+  desc "Sync code signing"
+  lane :sync_signing do
+    match(
+      type: "development",
+      app_identifier: app_identifier,
+      readonly: true
+    )
+
+    match(
+      type: "appstore",
+      app_identifier: app_identifier,
+      readonly: true
+    )
+  end
+
+  ###############
+  # ERROR HANDLING #
+  ###############
+
+  error do |lane, exception|
+    slack(
+      message: "❌ Lane '#{lane}' failed with error: #{exception}",
+      success: false
+    ) if ENV["SLACK_URL"]
+  end
+
+  after_all do |lane|
+    # This block is called, only if the executed lane was successful
+    UI.success "Successfully executed lane: #{lane} ✅"
+  end
+
+end
+
+# Platform: visionOS
+platform :visionos do
+  desc "Run tests for visionOS"
+  lane :test do
+    run_tests(
+      scheme: scheme_name,
+      destination: "platform=visionOS Simulator,name=Apple Vision Pro"
+    )
+  end
+
+  desc "Build for visionOS"
+  lane :build do
+    build_app(
+      scheme: scheme_name,
+      destination: "platform=visionOS Simulator,name=Apple Vision Pro"
+    )
+  end
+end
+
+# You can define as many lanes as you want
+
+# Usage:
+# fastlane test                  # Run unit and integration tests
+# fastlane test_ui               # Run UI tests
+# fastlane build_dev             # Build development version
+# fastlane beta                  # Upload to TestFlight
+# fastlane release               # Submit to App Store
+# fastlane screenshots           # Capture screenshots
+# fastlane bump_patch            # Bump patch version
+# fastlane lint                  # Run SwiftLint
+# fastlane clean                 # Clean build artifacts

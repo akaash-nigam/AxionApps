@@ -1,0 +1,666 @@
+{
+  "achievements": [
+    {
+      "id": "quick-learner",
+      "title": "Quick Learner",
+      "description": "Complete your first course in under 2 weeks",
+      "icon": "bolt.fill",
+      "color": "yellow",
+      "category": "speed",
+      "rarity": "common",
+      "points": 100,
+      "criteria": {
+        "type": "course_completion_speed",
+        "threshold": 1209600,
+        "unit": "seconds"
+      }
+    },
+    {
+      "id": "7-day-streak",
+      "title": "Week Warrior",
+      "description": "Maintain a 7-day learning streak",
+      "icon": "flame.fill",
+      "color": "orange",
+      "category": "streak",
+      "rarity": "common",
+      "points": 150,
+      "criteria": {
+        "type": "streak",
+        "threshold": 7,
+        "unit": "days"
+      }
+    },
+    {
+      "id": "14-day-streak",
+      "title": "Fortnight Champion",
+      "description": "Maintain a 14-day learning streak",
+      "icon": "flame.fill",
+      "color": "red",
+      "category": "streak",
+      "rarity": "uncommon",
+      "points": 300,
+      "criteria": {
+        "type": "streak",
+        "threshold": 14,
+        "unit": "days"
+      }
+    },
+    {
+      "id": "30-day-streak",
+      "title": "Month Master",
+      "description": "Maintain a 30-day learning streak",
+      "icon": "flame.fill",
+      "color": "purple",
+      "category": "streak",
+      "rarity": "rare",
+      "points": 500,
+      "criteria": {
+        "type": "streak",
+        "threshold": 30,
+        "unit": "days"
+      }
+    },
+    {
+      "id": "100-day-streak",
+      "title": "Century Scholar",
+      "description": "Maintain a 100-day learning streak",
+      "icon": "crown.fill",
+      "color": "gold",
+      "category": "streak",
+      "rarity": "legendary",
+      "points": 2000,
+      "criteria": {
+        "type": "streak",
+        "threshold": 100,
+        "unit": "days"
+      }
+    },
+    {
+      "id": "course-completion-1",
+      "title": "First Steps",
+      "description": "Complete your first course",
+      "icon": "checkmark.circle.fill",
+      "color": "green",
+      "category": "completion",
+      "rarity": "common",
+      "points": 100,
+      "criteria": {
+        "type": "courses_completed",
+        "threshold": 1,
+        "unit": "courses"
+      }
+    },
+    {
+      "id": "course-completion-5",
+      "title": "Knowledge Seeker",
+      "description": "Complete 5 courses",
+      "icon": "graduationcap.fill",
+      "color": "blue",
+      "category": "completion",
+      "rarity": "common",
+      "points": 250,
+      "criteria": {
+        "type": "courses_completed",
+        "threshold": 5,
+        "unit": "courses"
+      }
+    },
+    {
+      "id": "course-completion-10",
+      "title": "Dedicated Learner",
+      "description": "Complete 10 courses",
+      "icon": "book.fill",
+      "color": "purple",
+      "category": "completion",
+      "rarity": "uncommon",
+      "points": 500,
+      "criteria": {
+        "type": "courses_completed",
+        "threshold": 10,
+        "unit": "courses"
+      }
+    },
+    {
+      "id": "course-completion-25",
+      "title": "Knowledge Collector",
+      "description": "Complete 25 courses",
+      "icon": "books.vertical.fill",
+      "color": "orange",
+      "category": "completion",
+      "rarity": "rare",
+      "points": 1000,
+      "criteria": {
+        "type": "courses_completed",
+        "threshold": 25,
+        "unit": "courses"
+      }
+    },
+    {
+      "id": "course-completion-50",
+      "title": "Master Scholar",
+      "description": "Complete 50 courses",
+      "icon": "sparkles",
+      "color": "gold",
+      "category": "completion",
+      "rarity": "epic",
+      "points": 2500,
+      "criteria": {
+        "type": "courses_completed",
+        "threshold": 50,
+        "unit": "courses"
+      }
+    },
+    {
+      "id": "course-completion-100",
+      "title": "Grandmaster",
+      "description": "Complete 100 courses",
+      "icon": "star.fill",
+      "color": "platinum",
+      "category": "completion",
+      "rarity": "legendary",
+      "points": 5000,
+      "criteria": {
+        "type": "courses_completed",
+        "threshold": 100,
+        "unit": "courses"
+      }
+    },
+    {
+      "id": "perfect-score",
+      "title": "Perfect Score",
+      "description": "Achieve 100% on any assessment",
+      "icon": "target",
+      "color": "red",
+      "category": "performance",
+      "rarity": "uncommon",
+      "points": 200,
+      "criteria": {
+        "type": "assessment_score",
+        "threshold": 100,
+        "unit": "percentage"
+      }
+    },
+    {
+      "id": "ace-student",
+      "title": "Ace Student",
+      "description": "Maintain an average score above 90% across 10 courses",
+      "icon": "star.circle.fill",
+      "color": "gold",
+      "category": "performance",
+      "rarity": "rare",
+      "points": 750,
+      "criteria": {
+        "type": "average_score_across_courses",
+        "threshold": 90,
+        "minimumCourses": 10,
+        "unit": "percentage"
+      }
+    },
+    {
+      "id": "leadership-master",
+      "title": "Leadership Master",
+      "description": "Complete all leadership courses",
+      "icon": "person.3.fill",
+      "color": "blue",
+      "category": "category_mastery",
+      "rarity": "rare",
+      "points": 800,
+      "criteria": {
+        "type": "category_completion",
+        "category": "leadership",
+        "threshold": 100,
+        "unit": "percentage"
+      }
+    },
+    {
+      "id": "data-science-pro",
+      "title": "Data Science Pro",
+      "description": "Complete all data science courses",
+      "icon": "chart.bar.fill",
+      "color": "purple",
+      "category": "category_mastery",
+      "rarity": "rare",
+      "points": 800,
+      "criteria": {
+        "type": "category_completion",
+        "category": "data_science",
+        "threshold": 100,
+        "unit": "percentage"
+      }
+    },
+    {
+      "id": "design-expert",
+      "title": "Design Expert",
+      "description": "Complete all design courses",
+      "icon": "paintbrush.fill",
+      "color": "pink",
+      "category": "category_mastery",
+      "rarity": "rare",
+      "points": 800,
+      "criteria": {
+        "type": "category_completion",
+        "category": "design",
+        "threshold": 100,
+        "unit": "percentage"
+      }
+    },
+    {
+      "id": "tech-wizard",
+      "title": "Tech Wizard",
+      "description": "Complete all technology courses",
+      "icon": "cpu.fill",
+      "color": "blue",
+      "category": "category_mastery",
+      "rarity": "epic",
+      "points": 1500,
+      "criteria": {
+        "type": "category_completion",
+        "category": "technology",
+        "threshold": 100,
+        "unit": "percentage"
+      }
+    },
+    {
+      "id": "agile-champion",
+      "title": "Agile Champion",
+      "description": "Complete Agile Project Management with 95% or higher",
+      "icon": "arrow.triangle.2.circlepath",
+      "color": "green",
+      "category": "course_specific",
+      "rarity": "uncommon",
+      "points": 300,
+      "criteria": {
+        "type": "specific_course_score",
+        "courseId": "F6A7B8C9-D0E1-4F2A-3B4C-5D6E7F8A9B0C",
+        "threshold": 95,
+        "unit": "percentage"
+      }
+    },
+    {
+      "id": "security-specialist",
+      "title": "Security Specialist",
+      "description": "Complete both Cybersecurity and Ethical Hacking courses",
+      "icon": "shield.fill",
+      "color": "red",
+      "category": "course_combo",
+      "rarity": "rare",
+      "points": 1000,
+      "criteria": {
+        "type": "course_combination",
+        "courseIds": [
+          "A7B8C9D0-E1F2-4A3B-4C5D-6E7F8A9B0C1D",
+          "E9F0A1B2-C3D4-4E5F-6A7B-8C9D0E1F2A3B"
+        ]
+      }
+    },
+    {
+      "id": "sales-ace",
+      "title": "Sales Ace",
+      "description": "Complete Sales Fundamentals and Negotiation Skills",
+      "icon": "dollarsign.circle.fill",
+      "color": "green",
+      "category": "course_combo",
+      "rarity": "uncommon",
+      "points": 400,
+      "criteria": {
+        "type": "course_combination",
+        "courseIds": [
+          "E7F8A9B0-C1D2-4E3F-4A5B-6C7D8E9F0A1B",
+          "C1D2E3F4-A5B6-4C7D-8E9F-0A1B2C3D4E5F"
+        ]
+      }
+    },
+    {
+      "id": "marketing-maven",
+      "title": "Marketing Maven",
+      "description": "Complete Digital Marketing and Google Analytics courses",
+      "icon": "megaphone.fill",
+      "color": "orange",
+      "category": "course_combo",
+      "rarity": "uncommon",
+      "points": 400,
+      "criteria": {
+        "type": "course_combination",
+        "courseIds": [
+          "B4C5D6E7-F8A9-4B0C-1D2E-3F4A5B6C7D8E",
+          "D8E9F0A1-B2C3-4D4E-5F6A-7B8C9D0E1F2A"
+        ]
+      }
+    },
+    {
+      "id": "data-wizard",
+      "title": "Data Wizard",
+      "description": "Complete Python Data Science, SQL, and Tableau courses",
+      "icon": "wand.and.stars",
+      "color": "purple",
+      "category": "course_combo",
+      "rarity": "rare",
+      "points": 1200,
+      "criteria": {
+        "type": "course_combination",
+        "courseIds": [
+          "C3D4E5F6-A7B8-4C9D-0E1F-2A3B4C5D6E7F",
+          "F2A3B4C5-D6E7-4F8A-9B0C-1D2E3F4A5B6C",
+          "B2C3D4E5-F6A7-4B8C-9D0E-1F2A3B4C5D6F"
+        ]
+      }
+    },
+    {
+      "id": "people-champion",
+      "title": "People Champion",
+      "description": "Complete Diversity & Inclusion and Emotional Intelligence courses",
+      "icon": "heart.fill",
+      "color": "pink",
+      "category": "course_combo",
+      "rarity": "uncommon",
+      "points": 400,
+      "criteria": {
+        "type": "course_combination",
+        "courseIds": [
+          "A3B4C5D6-E7F8-4A9B-0C1D-2E3F4A5B6C7D",
+          "C5D6E7F8-A9B0-4C1D-2E3F-4A5B6C7D8E9F"
+        ]
+      }
+    },
+    {
+      "id": "early-bird",
+      "title": "Early Bird",
+      "description": "Complete a lesson before 8 AM",
+      "icon": "sunrise.fill",
+      "color": "yellow",
+      "category": "time",
+      "rarity": "common",
+      "points": 50,
+      "criteria": {
+        "type": "lesson_completion_time",
+        "threshold": 8,
+        "unit": "hour_before"
+      }
+    },
+    {
+      "id": "night-owl",
+      "title": "Night Owl",
+      "description": "Complete a lesson after 10 PM",
+      "icon": "moon.stars.fill",
+      "color": "indigo",
+      "category": "time",
+      "rarity": "common",
+      "points": 50,
+      "criteria": {
+        "type": "lesson_completion_time",
+        "threshold": 22,
+        "unit": "hour_after"
+      }
+    },
+    {
+      "id": "weekend-warrior",
+      "title": "Weekend Warrior",
+      "description": "Complete 5 lessons on weekends",
+      "icon": "calendar",
+      "color": "blue",
+      "category": "time",
+      "rarity": "uncommon",
+      "points": 200,
+      "criteria": {
+        "type": "weekend_lessons",
+        "threshold": 5,
+        "unit": "lessons"
+      }
+    },
+    {
+      "id": "speed-reader",
+      "title": "Speed Reader",
+      "description": "Complete a 4-hour course in one day",
+      "icon": "hare.fill",
+      "color": "orange",
+      "category": "speed",
+      "rarity": "uncommon",
+      "points": 300,
+      "criteria": {
+        "type": "course_completion_single_day",
+        "minimumDuration": 14400,
+        "unit": "seconds"
+      }
+    },
+    {
+      "id": "marathon-learner",
+      "title": "Marathon Learner",
+      "description": "Learn for 8+ hours in a single week",
+      "icon": "figure.run",
+      "color": "red",
+      "category": "duration",
+      "rarity": "rare",
+      "points": 600,
+      "criteria": {
+        "type": "weekly_learning_hours",
+        "threshold": 8,
+        "unit": "hours"
+      }
+    },
+    {
+      "id": "century-hours",
+      "title": "Century Hours",
+      "description": "Accumulate 100 hours of learning time",
+      "icon": "clock.fill",
+      "color": "gold",
+      "category": "duration",
+      "rarity": "epic",
+      "points": 1500,
+      "criteria": {
+        "type": "total_learning_hours",
+        "threshold": 100,
+        "unit": "hours"
+      }
+    },
+    {
+      "id": "helping-hand",
+      "title": "Helping Hand",
+      "description": "Help 10 colleagues by sharing course recommendations",
+      "icon": "hand.raised.fill",
+      "color": "blue",
+      "category": "social",
+      "rarity": "uncommon",
+      "points": 300,
+      "criteria": {
+        "type": "course_shares",
+        "threshold": 10,
+        "unit": "shares"
+      }
+    },
+    {
+      "id": "review-writer",
+      "title": "Review Writer",
+      "description": "Write 5 detailed course reviews",
+      "icon": "pencil.circle.fill",
+      "color": "purple",
+      "category": "social",
+      "rarity": "uncommon",
+      "points": 250,
+      "criteria": {
+        "type": "reviews_written",
+        "threshold": 5,
+        "minimumWords": 50,
+        "unit": "reviews"
+      }
+    },
+    {
+      "id": "discussion-leader",
+      "title": "Discussion Leader",
+      "description": "Start 10 discussion threads in courses",
+      "icon": "bubble.left.and.bubble.right.fill",
+      "color": "green",
+      "category": "social",
+      "rarity": "rare",
+      "points": 500,
+      "criteria": {
+        "type": "discussions_started",
+        "threshold": 10,
+        "unit": "discussions"
+      }
+    },
+    {
+      "id": "innovator",
+      "title": "Innovator",
+      "description": "Complete Innovation and Creativity with a project submission",
+      "icon": "lightbulb.fill",
+      "color": "yellow",
+      "category": "project",
+      "rarity": "rare",
+      "points": 700,
+      "criteria": {
+        "type": "course_with_project",
+        "courseId": "B8C9D0E1-F2A3-4B4C-5D6E-7F8A9B0C1D2F",
+        "requiresProject": true
+      }
+    },
+    {
+      "id": "renaissance-person",
+      "title": "Renaissance Person",
+      "description": "Complete at least one course in each category",
+      "icon": "star.circle.fill",
+      "color": "rainbow",
+      "category": "diversity",
+      "rarity": "epic",
+      "points": 2000,
+      "criteria": {
+        "type": "category_diversity",
+        "categories": ["technology", "leadership", "business", "design", "data_science", "soft_skills", "compliance", "sales", "marketing"],
+        "threshold": 1,
+        "unit": "courses_per_category"
+      }
+    },
+    {
+      "id": "polymath",
+      "title": "Polymath",
+      "description": "Complete 5+ courses in at least 5 different categories",
+      "icon": "brain.head.profile",
+      "color": "platinum",
+      "category": "diversity",
+      "rarity": "legendary",
+      "points": 3000,
+      "criteria": {
+        "type": "category_diversity",
+        "categories": ["technology", "leadership", "business", "design", "data_science", "soft_skills", "compliance", "sales", "marketing"],
+        "threshold": 5,
+        "unit": "courses_per_category"
+      }
+    },
+    {
+      "id": "comeback-kid",
+      "title": "Comeback Kid",
+      "description": "Resume learning after a 30-day break",
+      "icon": "arrow.uturn.forward.circle.fill",
+      "color": "green",
+      "category": "persistence",
+      "rarity": "uncommon",
+      "points": 250,
+      "criteria": {
+        "type": "learning_resume",
+        "breakDuration": 30,
+        "unit": "days"
+      }
+    },
+    {
+      "id": "first-place",
+      "title": "First Place",
+      "description": "Rank #1 on the department leaderboard",
+      "icon": "trophy.fill",
+      "color": "gold",
+      "category": "competition",
+      "rarity": "epic",
+      "points": 1000,
+      "criteria": {
+        "type": "leaderboard_rank",
+        "scope": "department",
+        "threshold": 1,
+        "unit": "rank"
+      }
+    },
+    {
+      "id": "top-ten",
+      "title": "Top Ten",
+      "description": "Rank in top 10 on the company leaderboard",
+      "icon": "chart.bar.fill",
+      "color": "silver",
+      "category": "competition",
+      "rarity": "rare",
+      "points": 750,
+      "criteria": {
+        "type": "leaderboard_rank",
+        "scope": "company",
+        "threshold": 10,
+        "unit": "rank"
+      }
+    },
+    {
+      "id": "certification-collector",
+      "title": "Certification Collector",
+      "description": "Earn 10 course completion certificates",
+      "icon": "seal.fill",
+      "color": "blue",
+      "category": "certification",
+      "rarity": "rare",
+      "points": 800,
+      "criteria": {
+        "type": "certificates_earned",
+        "threshold": 10,
+        "unit": "certificates"
+      }
+    },
+    {
+      "id": "skills-master",
+      "title": "Skills Master",
+      "description": "Achieve proficiency level in 20 different skills",
+      "icon": "star.square.fill",
+      "color": "purple",
+      "category": "skills",
+      "rarity": "epic",
+      "points": 1500,
+      "criteria": {
+        "type": "skills_proficiency",
+        "threshold": 20,
+        "proficiencyLevel": "proficient",
+        "unit": "skills"
+      }
+    },
+    {
+      "id": "subject-matter-expert",
+      "title": "Subject Matter Expert",
+      "description": "Achieve expert level in 5 skills",
+      "icon": "person.badge.shield.checkmark.fill",
+      "color": "platinum",
+      "category": "skills",
+      "rarity": "legendary",
+      "points": 2500,
+      "criteria": {
+        "type": "skills_proficiency",
+        "threshold": 5,
+        "proficiencyLevel": "expert",
+        "unit": "skills"
+      }
+    }
+  ],
+  "_metadata": {
+    "totalAchievements": 45,
+    "categories": [
+      "speed",
+      "streak",
+      "completion",
+      "performance",
+      "category_mastery",
+      "course_specific",
+      "course_combo",
+      "time",
+      "duration",
+      "social",
+      "project",
+      "diversity",
+      "persistence",
+      "competition",
+      "certification",
+      "skills"
+    ],
+    "rarityLevels": ["common", "uncommon", "rare", "epic", "legendary"],
+    "note": "Achievements are awarded automatically based on user activity and progress tracking."
+  }
+}

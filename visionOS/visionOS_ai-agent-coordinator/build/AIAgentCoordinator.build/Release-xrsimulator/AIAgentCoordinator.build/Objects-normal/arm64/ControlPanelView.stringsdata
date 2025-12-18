@@ -1,0 +1,136 @@
+{
+  "source": "/Users/aakashnigam/Axion/AxionApps/visionOS/visionOS_ai-agent-coordinator/AIAgentCoordinator/Views/Windows/ControlPanelView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "AI Agent Coordinator",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 48
+        }
+      },
+      {
+        "comment": "",
+        "key": "Settings",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 103
+        }
+      },
+      {
+        "comment": "",
+        "key": "Search agents",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 185
+        }
+      },
+      {
+        "comment": "",
+        "key": "Search agents...",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 114
+        }
+      },
+      {
+        "comment": "",
+        "key": "Recent Activity",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 162
+        }
+      },
+      {
+        "comment": "",
+        "key": "Quick Actions",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 216
+        }
+      },
+      {
+        "comment": "",
+        "key": "Refresh",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 260
+        }
+      },
+      {
+        "comment": "",
+        "key": "Filter",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 266
+        }
+      },
+      {
+        "comment": "",
+        "key": "Export",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 272
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ agents",
+        "location": {
+          "startingColumn": 29,
+          "startingLine": 315
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 29,
+          "startingLine": 316
+        }
+      },
+      {
+        "comment": "",
+        "key": "Shows count of agents with %@ status",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 317
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 302
+        }
+      },
+      {
+        "comment": "",
+        "key": "•",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 343
+        }
+      },
+      {
+        "comment": "",
+        "key": "CPU: %@",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 345
+        }
+      },
+      {
+        "comment": "",
+        "key": "Double tap to open %@ view",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 405
+        }
+      }
+    ]
+  },
+  "version": 1
+}

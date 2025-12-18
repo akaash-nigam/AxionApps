@@ -1,0 +1,298 @@
+import Foundation
+
+/// Integration adapter for Procore construction management platform
+/// Handles authentication, project synchronization, and data exchange
+actor ProcoreAdapter {
+    // MARK: - Properties
+
+    private let baseURL = "https://api.procore.com/rest/v1.0"
+    private let authURL = "https://login.procore.com/oauth/token"
+
+    private var accessToken: String?
+    private var refreshToken: String?
+    private var tokenExpiration: Date?
+
+    private let clientId: String
+    private let clientSecret: String
+    private let redirectURI: String
+
+    private let apiClient: APIClient
+
+    // MARK: - Initialization
+
+    init(clientId: String, clientSecret: String, redirectURI: String) {
+        self.clientId = clientId
+        self.clientSecret = clientSecret
+        self.redirectURI = redirectURI
+        self.apiClient = APIClient(baseURL: baseURL)
+    }
+
+    // MARK: - Authentication
+
+    /// Begin OAuth flow
+    func getAuthorizationURL() -> URL? {
+        var components = URLComponents(string: "https://login.procore.com/oauth/authorize")
+        components?.queryItems = [
+            URLQueryItem(name: "response_type", value: "code"),
+            URLQueryItem(name: "client_id", value: clientId),
+            URLQueryItem(name: "redirect_uri", value: redirectURI)
+        ]
+        return components?.url
+    }
+
+    /// Exchange authorization code for access token
+    func authenticate(authorizationCode: String) async throws {
+        let parameters = TokenRequest(
+            grant_type: "authorization_code",
+            client_id: clientId,
+            client_secret: clientSecret,
+            code: authorizationCode,
+            redirect_uri: redirectURI,
+            refresh_token: nil
+        )
+
+        let response: TokenResponse = try await apiClient.post(
+            authURL,
+            body: parameters
+        )
+
+        accessToken = response.access_token
+        refreshToken = response.refresh_token
+        tokenExpiration = Date().addingTimeInterval(TimeInterval(response.expires_in))
+    }
+
+    /// Refresh access token
+    func refreshAccessToken() async throws {
+        guard let refreshToken = refreshToken else {
+            throw ProcoreError.notAuthenticated
+        }
+
+        let parameters = TokenRequest(
+            grant_type: "refresh_token",
+            client_id: clientId,
+            client_secret: clientSecret,
+            code: nil,
+            redirect_uri: nil,
+            refresh_token: refreshToken
+        )
+
+        let response: TokenResponse = try await apiClient.post(
+            authURL,
+            body: parameters
+        )
+
+        accessToken = response.access_token
+        self.refreshToken = response.refresh_token
+        tokenExpiration = Date().addingTimeInterval(TimeInterval(response.expires_in))
+    }
+
+    // MARK: - Projects
+
+    /// Fetch all projects
+    func fetchProjects(companyId: Int) async throws -> [ProcoreProject] {
+        try await ensureAuthenticated()
+        // TODO: Implement with query parameters
+        return []
+    }
+
+    /// Fetch single project details
+    func fetchProject(id: Int, companyId: Int) async throws -> ProcoreProject? {
+        try await ensureAuthenticated()
+        // TODO: Implement
+        return nil
+    }
+
+    // MARK: - Helper Methods
+
+    private func ensureAuthenticated() async throws {
+        guard let token = accessToken, let expiration = tokenExpiration else {
+            throw ProcoreError.notAuthenticated
+        }
+
+        // Refresh if token will expire in next 5 minutes
+        if expiration.timeIntervalSinceNow < 300 {
+            try await refreshAccessToken()
+        }
+    }
+
+    private func authHeaders() -> [String: String] {
+        guard let token = accessToken else { return [:] }
+        return ["Authorization": "Bearer \(token)"]
+    }
+}
+
+// MARK: - Data Models
+
+struct TokenRequest: Codable {
+    let grant_type: String
+    let client_id: String
+    let client_secret: String
+    let code: String?
+    let redirect_uri: String?
+    let refresh_token: String?
+}
+
+struct TokenResponse: Codable {
+    let access_token: String
+    let refresh_token: String
+    let expires_in: Int
+    let token_type: String
+}
+
+struct ProcoreProject: Codable, Identifiable {
+    let id: Int
+    let name: String
+    let display_name: String?
+    let project_number: String?
+    let address: String?
+    let city: String?
+    let state_code: String?
+    let zip: String?
+    let country_code: String?
+    let latitude: Double?
+    let longitude: Double?
+    let active: Bool
+    let stage: String?
+    let project_type: String?
+}
+
+struct ProcoreRFI: Codable, Identifiable {
+    let id: Int
+    let number: Int
+    let subject: String
+    let question: String?
+    let status: String
+    let due_date: String?
+    let assignee: ProcoreUser?
+    let created_at: String
+    let updated_at: String
+}
+
+struct ProcoreSubmittal: Codable, Identifiable {
+    let id: Int
+    let number: String
+    let title: String
+    let status: String
+    let due_date: String?
+    let received_date: String?
+    let created_at: String
+}
+
+struct ProcoreDrawing: Codable, Identifiable {
+    let id: Int
+    let number: String
+    let title: String
+    let discipline: String?
+    let current_revision_id: Int?
+}
+
+struct ProcoreDailyLog: Codable, Identifiable {
+    let id: Int
+    let date: String
+    let weather: String?
+    let temperature_high: Double?
+    let temperature_low: Double?
+    let created_by: ProcoreUser?
+}
+
+struct ProcoreObservation: Codable, Identifiable {
+    let id: Int
+    let number: Int
+    let title: String
+    let description: String?
+    let status: String
+    let priority: String?
+    let assignee: ProcoreUser?
+    let location: String?
+    let due_date: String?
+    let created_at: String
+}
+
+struct ProcoreDocument: Codable, Identifiable {
+    let id: Int
+    let name: String
+    let file_size: Int
+    let content_type: String
+    let url: String
+    let created_at: String
+}
+
+struct ProcoreWebhook: Codable, Identifiable {
+    let id: String
+    let api_version: String
+    let destination_url: String
+    let hook_events: [HookEvent]
+}
+
+struct ProcoreUser: Codable, Identifiable {
+    let id: Int
+    let name: String
+    let email: String?
+}
+
+struct HookEvent: Codable {
+    let resource: String
+}
+
+// MARK: - Request Models
+
+struct CreateRFIRequest: Codable {
+    let subject: String
+    let question: String
+    let assignee_id: Int?
+    let due_date: String?
+}
+
+struct CreateDailyLogRequest: Codable {
+    let date: String
+    let weather: String?
+    let temperature_high: Double?
+    let temperature_low: Double?
+    let notes: String?
+}
+
+struct CreateObservationRequest: Codable {
+    let title: String
+    let description: String?
+    let assignee_id: Int?
+    let location_id: Int?
+    let due_date: String?
+    let priority: String?
+}
+
+struct UpdateObservationRequest: Codable {
+    let status: String?
+    let assignee_id: Int?
+    let due_date: String?
+}
+
+struct CreateWebhookRequest: Codable {
+    let api_version: String
+    let destination_url: String
+    let hook_events: [HookEvent]
+}
+
+// MARK: - Errors
+
+enum ProcoreError: LocalizedError {
+    case notAuthenticated
+    case invalidCredentials
+    case rateLimitExceeded
+    case invalidRequest
+    case serverError
+
+    var errorDescription: String? {
+        switch self {
+        case .notAuthenticated:
+            return "Not authenticated with Procore"
+        case .invalidCredentials:
+            return "Invalid Procore credentials"
+        case .rateLimitExceeded:
+            return "Procore API rate limit exceeded"
+        case .invalidRequest:
+            return "Invalid request to Procore API"
+        case .serverError:
+            return "Procore server error"
+        }
+    }
+}

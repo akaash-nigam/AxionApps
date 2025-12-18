@@ -1,0 +1,38 @@
+name: Build
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build visionOS App
+    runs-on: macos-14
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_16.0.app
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      - name: Build for visionOS Simulator
+        run: |
+          xcodebuild build \
+            -scheme CorporateUniversity \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -configuration Debug \
+            | xcpretty
+
+      - name: Archive build logs
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-logs
+          path: |
+            ~/Library/Developer/Xcode/DerivedData/**/Logs

@@ -1,0 +1,115 @@
+name: CI - Build
+
+on:
+  push:
+    branches: [ main, develop, claude/* ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build-debug:
+    name: Build (Debug)
+    runs-on: macos-14
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_16.0.app/Contents/Developer
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      - name: Cache Swift packages
+        uses: actions/cache@v3
+        with:
+          path: |
+            .build
+            ~/Library/Developer/Xcode/DerivedData
+          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-spm-
+
+      - name: Build Debug configuration
+        run: |
+          set -o pipefail
+          xcodebuild build \
+            -scheme LanguageImmersionRooms \
+            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
+            -configuration Debug \
+            | xcpretty --color
+
+      - name: Verify build artifacts
+        run: |
+          if [ -d ~/Library/Developer/Xcode/DerivedData ]; then
+            echo "✅ Build artifacts created successfully"
+            du -sh ~/Library/Developer/Xcode/DerivedData
+          else
+            echo "❌ Build artifacts not found"
+            exit 1
+          fi
+
+  build-release:
+    name: Build (Release)
+    runs-on: macos-14
+    timeout-minutes: 30
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_16.0.app/Contents/Developer
+
+      - name: Cache Swift packages
+        uses: actions/cache@v3
+        with:
+          path: |
+            .build
+            ~/Library/Developer/Xcode/DerivedData
+          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-spm-
+
+      - name: Build Release configuration
+        run: |
+          set -o pipefail
+          xcodebuild build \
+            -scheme LanguageImmersionRooms \
+            -destination 'generic/platform=visionOS' \
+            -configuration Release \
+            CODE_SIGNING_ALLOWED=NO \
+            | xcpretty --color
+
+      - name: Check build size
+        run: |
+          echo "## Build Size Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Release build completed successfully" >> $GITHUB_STEP_SUMMARY
+
+  build-summary:
+    name: Build Summary
+    runs-on: ubuntu-latest
+    needs: [build-debug, build-release]
+    if: always()
+
+    steps:
+      - name: Check build results
+        run: |
+          echo "## Build Results Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Debug Build: ${{ needs.build-debug.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Release Build: ${{ needs.build-release.result }}" >> $GITHUB_STEP_SUMMARY
+
+          if [[ "${{ needs.build-debug.result }}" == "success" ]]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "🎉 All builds passed!" >> $GITHUB_STEP_SUMMARY
+            exit 0
+          else
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "❌ Some builds failed" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
