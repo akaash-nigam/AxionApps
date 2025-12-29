@@ -1,0 +1,121 @@
+# msSaaS Portfolio .gitignore
+
+# Dependencies
+node_modules/
+.pnp/
+.pnp.js
+
+# Testing
+coverage/
+.nyc_output/
+*.test.cache
+
+# Production builds
+dist/
+build/
+out/
+.next/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+db/data/
+postgres-data/
+mongodb-data/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+# Docker
+docker-compose.override.yml
+.dockerignore
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Backup files from reorganization
+backup_*/
+../backup_*/
+
+# Generated files
+generated-icon.png
+*.gen.*
+
+# Certificates & Keys (IMPORTANT - NEVER COMMIT)
+*.pem
+*.key
+*.crt
+*.cert
+*.p12
+*.pfx
+serviceAccountKey.json
+credentials.json
+gcp-key.json
+
+# Secrets (IMPORTANT - NEVER COMMIT)
+secrets/
+.secrets/
+*.secret
+.env.secret
+
+# Build caches
+.cache/
+.parcel-cache/
+.vite/
+.turbo/
+
+# Package manager locks (optional - team preference)
+# Uncomment if you want to ignore lock files
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Misc
+.replit
+replit.nix
