@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  mcp-content-generator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mcp-content-generator:latest
+    container_name: mcp-content-generator
+    environment:
+      # API Keys - Set these in .env file
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - STABILITY_API_KEY=${STABILITY_API_KEY}
+      - BFL_API_KEY=${BFL_API_KEY}
+      - RUNWAY_API_KEY=${RUNWAY_API_KEY}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - OUTPUT_DIR=/app/generated
+      - NODE_ENV=production
+    volumes:
+      # Mount generated files directory to host
+      - ./generated:/app/generated
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    # For stdio communication with Claude Code
+    command: ["node", "dist/index.js"]
