@@ -1,0 +1,38 @@
+{
+  "name": "mcp-content-generator",
+  "version": "1.0.0",
+  "description": "MCP server for AI image and video generation with DALL-E, Flux, Stable Diffusion, and Runway",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "mcp-content-generator": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "ai",
+    "image-generation",
+    "video-generation",
+    "dall-e",
+    "stable-diffusion",
+    "flux",
+    "runway"
+  ],
+  "author": "Aakash Nigam",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "@google/generative-ai": "^0.21.0",
+    "openai": "^4.77.0",
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}
