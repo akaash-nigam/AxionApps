@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>City Builder Tabletop - CITY SIMULATION for Vision Pro</title>
+    <title>City Builder Tabletop - Build Your Dream City in Spatial Reality</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Architects+Daughter&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -11,1140 +13,924 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
-            background: #000000;
-            color: #ffffff;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
+        :root {
+            --primary: #0ea5e9;
+            --primary-light: #38bdf8;
+            --primary-dark: #0284c7;
+            --accent: #f59e0b;
+            --accent-light: #fbbf24;
+            --bg-warm: #1a1814;
+            --bg-card: rgba(30, 27, 24, 0.95);
+            --text: #faf7f2;
+            --text-muted: #a8a29e;
+            --grid-color: rgba(14, 165, 233, 0.1);
         }
 
-        /* Enhanced 3D Depth Layers */
-        .depth-layer {
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--bg-warm);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Blueprint Grid Background */
+        .blueprint-bg {
             position: fixed;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px),
+                linear-gradient(rgba(14, 165, 233, 0.05) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(14, 165, 233, 0.05) 2px, transparent 2px);
+            background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px;
             pointer-events: none;
             z-index: 0;
         }
 
-        .depth-layer-1 {
-            background: radial-gradient(circle at 20% 30%, rgba(16, 185, 129, 0.4) 0%, transparent 40%);
-            animation: dramaticFloat 15s ease-in-out infinite;
+        /* Warm ambient glow */
+        .ambient {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .depth-layer-2 {
-            background: radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.5) 0%, transparent 40%);
-            animation: dramaticFloat 18s ease-in-out infinite reverse;
+        .ambient-1 {
+            width: 500px;
+            height: 500px;
+            background: rgba(245, 158, 11, 0.15);
+            top: -100px;
+            left: -100px;
         }
 
-        .depth-layer-3 {
-            background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.3) 0%, transparent 50%);
-            animation: dramaticFloat 22s ease-in-out infinite;
+        .ambient-2 {
+            width: 400px;
+            height: 400px;
+            background: rgba(14, 165, 233, 0.15);
+            bottom: -100px;
+            right: -100px;
         }
 
-        @keyframes dramaticFloat {
-            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            33% { transform: translate(40px, -40px) rotate(8deg) scale(1.05); }
-            66% { transform: translate(-20px, 30px) rotate(-8deg) scale(0.95); }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(to bottom, var(--bg-warm), transparent);
         }
 
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 30px rgba(16, 185, 129, 0.4), 0 0 60px rgba(16, 185, 129, 0.3); }
-            50% { box-shadow: 0 0 50px rgba(16, 185, 129, 0.5), 0 0 100px rgba(16, 185, 129, 0.4); }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        @keyframes countUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
         }
 
-        /* Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            position: relative;
-            z-index: 1;
+        .logo-text {
+            font-family: 'Architects Daughter', cursive;
+            font-size: 1.5rem;
+            color: var(--text);
+        }
+
+        .platform-badge {
+            padding: 8px 16px;
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--primary-light);
         }
 
         /* Hero Section */
         .hero {
-            text-align: center;
-            padding: 60px 20px 40px;
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 100px 20px 60px;
+        }
+
+        .hero-image-wrapper {
+            width: 100%;
+            max-width: 1100px;
+            margin-bottom: 50px;
             position: relative;
         }
 
-        .genre-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #10b981 0%, #10b981cc 100%);
-            padding: 10px 24px;
+        .hero-image-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            background: linear-gradient(135deg, var(--primary), var(--accent), var(--primary));
+            border-radius: 28px;
+            z-index: -1;
+        }
+
+        .hero-image {
+            width: 100%;
             border-radius: 24px;
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.5);
-            animation: pulseGlow 3s ease-in-out infinite;
+            display: block;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
         }
 
-        .logo-container {
-            margin-bottom: 30px;
-            perspective: 1200px;
+        .floating-label {
+            position: absolute;
+            background: var(--bg-card);
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(14, 165, 233, 0.2);
         }
 
-        .logo-icon {
+        .floating-label.top-left {
+            top: 20px;
+            left: -20px;
+            animation: floatSoft 4s ease-in-out infinite;
+        }
+
+        .floating-label.bottom-right {
+            bottom: 20px;
+            right: -20px;
+            animation: floatSoft 4s ease-in-out infinite 1s;
+        }
+
+        @keyframes floatSoft {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating-label span {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .cozy-badge {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            width: 140px;
-            height: 140px;
-            background: rgba(15, 15, 30, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 3px solid #10b981;
-            border-radius: 32px;
-            font-size: 72px;
-            box-shadow:
-                0 25px 70px rgba(0, 0, 0, 0.5),
-                0 0 40px rgba(16, 185, 129, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15);
-            transform-style: preserve-3d;
-            animation: logoFloat 4s ease-in-out infinite;
-        }
-
-        @keyframes logoFloat {
-            0%, 100% { transform: rotateY(0deg) rotateX(0deg) translateY(0); }
-            50% { transform: rotateY(15deg) rotateX(8deg) translateY(-10px); }
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid var(--accent);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--accent-light);
+            margin-bottom: 25px;
         }
 
         h1 {
-            font-size: 72px;
-            font-weight: 900;
+            font-family: 'Architects Daughter', cursive;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.2;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, #ffffff 0%, #10b981 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.1;
-            text-transform: uppercase;
-            letter-spacing: -2px;
+            color: var(--text);
         }
 
-        .tagline {
-            font-size: 32px;
-            color: #10b981;
-            margin-bottom: 30px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+        h1 .highlight {
+            color: var(--primary-light);
         }
 
-        .hero-message {
-            font-size: 19px;
-            color: rgba(255, 255, 255, 0.85);
-            max-width: 900px;
-            margin: 0 auto 40px;
-            line-height: 1.7;
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+            line-height: 1.6;
         }
 
-        /* NEW: Pricing Section */
-        .pricing-section {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.4) 0%, rgba(16, 185, 129, 0.2) 100%);
-            border: 2px solid #10b981;
-            border-radius: 24px;
-            padding: 40px;
-            margin: 40px auto;
-            max-width: 800px;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.5);
-        }
-
-        .price-tag {
-            font-size: 64px;
-            font-weight: 900;
-            color: #10b981;
-            margin-bottom: 10px;
-            text-shadow: 0 0 30px rgba(16, 185, 129, 0.5);
-        }
-
-        .price-subtitle {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 30px;
-        }
-
-        .demo-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        /* CTA Buttons */
         .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .cta-primary {
-            background: #10b981;
-            color: #ffffff;
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            box-shadow: 0 15px 50px rgba(16, 185, 129, 0.5);
-            border: 2px solid #10b981;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-        }
-
-        .cta-primary:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.5);
-        }
-
-        .cta-secondary {
-            background: transparent;
-            color: #10b981;
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            border: 2px solid #10b981;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .cta-secondary:hover {
-            background: rgba(16, 185, 129, 0.3);
-            transform: translateY(-3px);
-        }
-
-        .cta-wishlist {
-            background: rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.9);
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .cta-wishlist:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-3px);
-        }
-
-        /* Game Metadata Bar */
-        .game-metadata {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            padding: 30px;
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            border-radius: 20px;
-            margin-bottom: 50px;
-            backdrop-filter: blur(10px);
-        }
-
-        .metadata-item {
-            text-align: center;
-            animation: countUp 0.6s ease-out;
-        }
-
-        .metadata-value {
-            font-size: 28px;
-            font-weight: 800;
-            color: #10b981;
-            display: block;
-        }
-
-        .metadata-label {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* NEW: Video Section */
-        .video-section {
-            margin: 60px 0;
-            text-align: center;
-        }
-
-        .video-container {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-            aspect-ratio: 16 / 9;
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(15, 15, 30, 0.9) 100%);
-            border-radius: 24px;
-            border: 2px solid rgba(16, 185, 129, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.4);
-        }
-
-        .video-placeholder {
-            text-align: center;
-            padding: 40px;
-        }
-
-        .play-button {
-            width: 100px;
-            height: 100px;
-            background: #10b981;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            box-shadow: 0 10px 40px rgba(16, 185, 129, 0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .play-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 50px rgba(16, 185, 129, 0.5);
-        }
-
-        .play-button::after {
-            content: '▶';
-            font-size: 40px;
-            color: white;
-            margin-left: 8px;
-        }
-
-        /* Section Styling */
-        .section {
-            margin: 100px 0;
-        }
-
-        .section-title {
-            font-size: 48px;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 60px;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #ffffff 0%, #10b981 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Game Modes */
-        .modes-grid {
             display: flex;
             gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 60px;
         }
 
-        .mode-badge {
-            background: rgba(15, 15, 30, 0.5);
-            border: 2px solid rgba(16, 185, 129, 0.3);
-            padding: 12px 28px;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.9);
+        .btn {
+            padding: 16px 35px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
             transition: all 0.3s ease;
-            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .mode-badge:hover {
-            background: rgba(16, 185, 129, 0.3);
-            border-color: #10b981;
-            transform: translateY(-2px);
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
         }
 
-        /* Features Grid */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(14, 165, 233, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--text-muted);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Building Types Section */
+        .buildings {
+            position: relative;
+            z-index: 1;
+            padding: 100px 20px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
             margin-bottom: 60px;
         }
 
-        .feature-card {
-            background: rgba(15, 15, 30, 0.5);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 2px solid rgba(16, 185, 129, 0.3);
-            border-radius: 24px;
-            padding: 45px;
+        .section-label {
+            font-size: 0.9rem;
+            color: var(--primary-light);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-family: 'Architects Daughter', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .building-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .building-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .feature-card::before {
+        .building-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, transparent, #10b981, transparent);
+            background: linear-gradient(90deg, var(--card-color, var(--primary)), transparent);
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
-        .feature-card:hover {
+        .building-card:hover {
             transform: translateY(-8px);
-            border-color: #10b981;
-            box-shadow: 0 15px 60px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(14, 165, 233, 0.3);
         }
 
-        .feature-card:hover::before {
+        .building-card:hover::before {
             opacity: 1;
         }
 
-        .feature-icon {
-            font-size: 56px;
-            margin-bottom: 20px;
-        }
-
-        .feature-card h3 {
-            font-size: 26px;
-            margin-bottom: 15px;
-            color: #10b981;
-            font-weight: 700;
-        }
-
-        .feature-card p {
-            font-size: 17px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.75);
-        }
-
-        /* NEW: System Requirements */
-        .system-requirements {
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            border-radius: 24px;
-            padding: 50px;
-            margin: 60px 0;
-        }
-
-        .requirements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .requirement-item {
-            display: flex;
-            align-items: start;
-            gap: 15px;
-        }
-
-        .requirement-icon {
-            font-size: 32px;
-            flex-shrink: 0;
-        }
-
-        .requirement-content h4 {
-            color: #10b981;
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        .requirement-content p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 15px;
-            line-height: 1.5;
-        }
-
-        /* NEW: Awards & Social Proof */
-        .awards-section {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(15, 15, 30, 0.6) 100%);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin: 60px 0;
-            text-align: center;
-        }
-
-        .awards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .award-badge {
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px solid rgba(255, 215, 0, 0.3);
+        .building-icon {
+            width: 70px;
+            height: 70px;
             border-radius: 16px;
-            padding: 30px 20px;
-            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(245, 158, 11, 0.1));
         }
 
-        .award-badge:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 215, 0, 0.6);
+        .building-card:nth-child(1) { --card-color: #22c55e; }
+        .building-card:nth-child(2) { --card-color: #3b82f6; }
+        .building-card:nth-child(3) { --card-color: #f59e0b; }
+        .building-card:nth-child(4) { --card-color: #ec4899; }
+        .building-card:nth-child(5) { --card-color: #8b5cf6; }
+        .building-card:nth-child(6) { --card-color: #14b8a6; }
+
+        .building-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
         }
 
-        .award-icon {
-            font-size: 48px;
+        .building-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
             margin-bottom: 15px;
         }
 
-        .award-title {
-            font-size: 18px;
+        .building-stats {
+            display: flex;
+            gap: 20px;
+            font-size: 0.85rem;
+        }
+
+        .building-stat {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-muted);
+        }
+
+        .building-stat span {
+            color: var(--accent);
             font-weight: 700;
-            color: #10b981;
+        }
+
+        /* City Stats */
+        .city-stats {
+            position: relative;
+            z-index: 1;
+            padding: 80px 20px;
+            background: linear-gradient(180deg, transparent, rgba(14, 165, 233, 0.05), transparent);
+        }
+
+        .stats-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .stat-number {
+            font-family: 'Architects Daughter', cursive;
+            font-size: 2.5rem;
+            color: var(--primary-light);
             margin-bottom: 5px;
         }
 
-        .award-subtitle {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
+        .stat-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
 
-        /* NEW: Testimonials */
-        .testimonials-section {
-            margin: 80px 0;
+        /* Gameplay Features */
+        .gameplay {
+            position: relative;
+            z-index: 1;
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .testimonials-grid {
+        .gameplay-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .gameplay-visual {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(14, 165, 233, 0.2);
+        }
+
+        .control-demo {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .control-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .control-item:hover {
+            background: rgba(14, 165, 233, 0.1);
+        }
+
+        .control-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .control-text h4 {
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .control-text p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .gameplay-content h3 {
+            font-family: 'Architects Daughter', cursive;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .gameplay-content > p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1rem;
+        }
+
+        .feature-check {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-warm);
+            font-weight: 700;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            position: relative;
+            z-index: 1;
+            padding: 100px 20px;
+            background: linear-gradient(180deg, transparent, rgba(245, 158, 11, 0.03), transparent);
+        }
+
+        .testimonial-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
-            margin-top: 40px;
         }
 
         .testimonial-card {
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(16, 185, 129, 0.3);
+            background: var(--bg-card);
             border-radius: 20px;
             padding: 35px;
-            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .testimonial-quote {
-            font-size: 17px;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.85);
+        .testimonial-stars {
+            color: var(--accent);
+            font-size: 1.2rem;
             margin-bottom: 20px;
-            font-style: italic;
         }
 
-        .testimonial-quote::before {
-            content: '"';
-            font-size: 48px;
-            color: #10b981;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            opacity: 0.3;
+        .testimonial-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            color: var(--text);
         }
 
         .testimonial-author {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
         }
 
         .author-avatar {
             width: 50px;
             height: 50px;
-            background: #10b981;
             border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 20px;
         }
 
-        .author-info {
-            flex: 1;
-        }
-
-        .author-name {
+        .author-info h4 {
             font-weight: 700;
-            color: rgba(255, 255, 255, 0.95);
             margin-bottom: 3px;
         }
 
-        .author-stars {
-            color: #ffd700;
-            font-size: 14px;
+        .author-info span {
+            color: var(--text-muted);
+            font-size: 0.85rem;
         }
 
-        /* NEW: Community Section */
-        .community-section {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(15, 15, 30, 0.6) 100%);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin: 60px 0;
+        /* CTA Section */
+        .cta-section {
+            position: relative;
+            z-index: 1;
+            padding: 100px 20px;
             text-align: center;
         }
 
-        .community-links {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 30px;
+        .cta-box {
+            max-width: 700px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(245, 158, 11, 0.1));
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            border-radius: 30px;
+            padding: 60px 40px;
         }
 
-        .community-link {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 20px 35px;
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .community-link:hover {
-            background: rgba(16, 185, 129, 0.3);
-            border-color: #10b981;
-            transform: translateY(-3px);
-        }
-
-        .community-icon {
-            font-size: 24px;
-        }
-
-        /* NEW: Age Rating */
-        .age-rating {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(15, 15, 30, 0.6);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 15px 30px;
-            margin-top: 20px;
-        }
-
-        .rating-badge {
-            background: #10b981;
-            color: white;
-            font-weight: 900;
-            font-size: 24px;
-            padding: 10px 15px;
-            border-radius: 8px;
-        }
-
-        .rating-text {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.8);
-            text-align: left;
-        }
-
-        /* Screenshots */
-        .screenshots-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .screenshot-card {
-            background: rgba(15, 15, 30, 0.4);
-            border: 2px solid rgba(16, 185, 129, 0.3);
-            border-radius: 20px;
-            padding: 25px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .screenshot-card:hover {
-            border-color: #10b981;
-            transform: scale(1.02);
-        }
-
-        .screenshot-placeholder {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(15, 15, 30, 0.8) 100%);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 20px;
-            font-weight: 600;
-            border: 2px dashed rgba(16, 185, 129, 0.4);
-        }
-
-        /* NEW: Developer Section */
-        .developer-section {
-            background: rgba(15, 15, 30, 0.3);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 60px 0;
-        }
-
-        .developer-content {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .developer-logo {
-            width: 100px;
-            height: 100px;
-            background: #10b981;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            flex-shrink: 0;
-        }
-
-        .developer-info {
-            flex: 1;
-        }
-
-        .developer-info h3 {
-            font-size: 24px;
-            color: #10b981;
-            margin-bottom: 10px;
-        }
-
-        .developer-info p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
+        .cta-box h2 {
+            font-family: 'Architects Daughter', cursive;
+            font-size: 2.5rem;
             margin-bottom: 15px;
         }
 
-        .developer-links {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
+        .cta-box p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            margin-bottom: 35px;
         }
 
-        .developer-link {
-            color: #10b981;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            transition: opacity 0.3s ease;
+        .app-store-badge {
+            display: inline-block;
+            transition: transform 0.3s ease;
         }
 
-        .developer-link:hover {
-            opacity: 0.7;
+        .app-store-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .app-store-badge img {
+            height: 55px;
         }
 
         /* Footer */
         footer {
+            position: relative;
+            z-index: 1;
+            padding: 40px 20px;
             text-align: center;
-            padding: 80px 20px;
-            border-top: 1px solid rgba(16, 185, 129, 0.3);
-            margin-top: 120px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         footer p {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 15px;
-            margin-bottom: 10px;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .footer-link {
-            color: rgba(255, 255, 255, 0.5);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s ease;
-        }
-
-        .footer-link:hover {
-            color: #10b981;
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 48px;
-            }
-
-            .tagline {
-                font-size: 24px;
-            }
-
-            .section-title {
-                font-size: 36px;
-            }
-
-            .price-tag {
-                font-size: 48px;
-            }
-
-            .features-grid,
-            .screenshots-grid,
-            .testimonials-grid {
+        @media (max-width: 900px) {
+            .gameplay-grid {
                 grid-template-columns: 1fr;
             }
 
-            .cta-buttons {
-                flex-direction: column;
-                align-items: stretch;
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .stats-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
             }
 
-            .game-metadata {
-                gap: 20px;
+            .stat-card {
+                padding: 20px 15px;
             }
 
-            .developer-content {
-                flex-direction: column;
-                text-align: center;
+            .stat-number {
+                font-size: 1.8rem;
             }
 
-            .community-links {
-                flex-direction: column;
+            .building-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-label {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 3D Depth Layers -->
-    <div class="depth-layer depth-layer-1"></div>
-    <div class="depth-layer depth-layer-2"></div>
-    <div class="depth-layer depth-layer-3"></div>
+    <div class="blueprint-bg"></div>
+    <div class="ambient ambient-1"></div>
+    <div class="ambient ambient-2"></div>
 
-    <div class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="genre-badge">CITY SIMULATION</div>
+    <nav>
+        <div class="logo">
+            <div class="logo-icon">🏗️</div>
+            <span class="logo-text">City Builder</span>
+        </div>
+        <div class="platform-badge">Apple Vision Pro</div>
+    </nav>
 
-            <div class="logo-container">
-                <div class="logo-icon">🏙️</div>
+    <section class="hero">
+        <div class="hero-image-wrapper">
+            <img src="hero-spatial.png" alt="City Builder Tabletop - Build cities on your table" class="hero-image">
+            <div class="floating-label top-left">
+                Population: <span>12,450</span>
             </div>
-
-            <h1>City Builder Tabletop</h1>
-            <p class="tagline">BUILD LIVING CITIES ON YOUR TABLE</p>
-            <p class="hero-message">
-                Construct miniature metropolises on any flat surface. Watch tiny citizens live their lives, traffic flow through streets, and buildings rise from your table in stunning spatial 3D.
-            </p>
-        </section>
-
-        <!-- NEW: Pricing Section -->
-        <section class="pricing-section">
-            
-            <div class="price-tag">$11.99</div>
-            <p class="price-subtitle">One-Time Purchase • No Subscriptions</p>
-
+            <div class="floating-label bottom-right">
+                Happiness: <span>94%</span>
+            </div>
+        </div>
+        <div class="hero-content">
+            <div class="cozy-badge">
+                🌟 Relaxing City Building Experience
+            </div>
+            <h1>Build Your <span class="highlight">Dream City</span> on Any Surface</h1>
+            <p class="subtitle">Transform your coffee table into a living, breathing metropolis. Place buildings with your hands, watch citizens thrive, and create the perfect city in stunning spatial reality.</p>
             <div class="cta-buttons">
-                <a href="#" class="cta-primary">📱 Download on App Store</a>
-                <a href="#" class="cta-secondary">🎬 Watch Trailer</a>
-                <a href="#" class="cta-wishlist">❤️ Add to Wishlist</a>
+                <a href="#" class="btn btn-primary">
+                    🏠 Start Building
+                </a>
+                <a href="#" class="btn btn-secondary">
+                    Watch Trailer
+                </a>
             </div>
+        </div>
+    </section>
 
-            <div class="age-rating">
-                <div class="rating-badge">E10+</div>
-                <div class="rating-text">
-                    <strong>Everyone 10+</strong><br>
-                    Accessibility: Subtitles, Colorblind Mode, Seated Play
+    <section class="buildings">
+        <div class="section-header">
+            <p class="section-label">Building Catalog</p>
+            <h2 class="section-title">200+ Unique Structures</h2>
+            <p class="section-desc">From cozy homes to towering skyscrapers, build the city of your dreams</p>
+        </div>
+        <div class="building-grid">
+            <div class="building-card">
+                <div class="building-icon">🏠</div>
+                <h3 class="building-name">Residential</h3>
+                <p class="building-desc">Cozy homes, apartments, and luxury condos. Watch families move in and make memories.</p>
+                <div class="building-stats">
+                    <div class="building-stat"><span>45</span> types</div>
+                    <div class="building-stat"><span>+500</span> capacity</div>
                 </div>
             </div>
-        </section>
+            <div class="building-card">
+                <div class="building-icon">🏢</div>
+                <h3 class="building-name">Commercial</h3>
+                <p class="building-desc">Shops, offices, and business centers that power your city's economy.</p>
+                <div class="building-stats">
+                    <div class="building-stat"><span>38</span> types</div>
+                    <div class="building-stat"><span>+$50K</span> income</div>
+                </div>
+            </div>
+            <div class="building-card">
+                <div class="building-icon">🏭</div>
+                <h3 class="building-name">Industrial</h3>
+                <p class="building-desc">Factories, warehouses, and tech parks. Balance production with pollution.</p>
+                <div class="building-stats">
+                    <div class="building-stat"><span>28</span> types</div>
+                    <div class="building-stat"><span>+1000</span> jobs</div>
+                </div>
+            </div>
+            <div class="building-card">
+                <div class="building-icon">🎡</div>
+                <h3 class="building-name">Entertainment</h3>
+                <p class="building-desc">Parks, stadiums, and attractions. Keep your citizens happy and entertained.</p>
+                <div class="building-stats">
+                    <div class="building-stat"><span>35</span> types</div>
+                    <div class="building-stat"><span>+25%</span> happiness</div>
+                </div>
+            </div>
+            <div class="building-card">
+                <div class="building-icon">🏛️</div>
+                <h3 class="building-name">Civic</h3>
+                <p class="building-desc">Schools, hospitals, and government buildings. Essential city services.</p>
+                <div class="building-stats">
+                    <div class="building-stat"><span>32</span> types</div>
+                    <div class="building-stat"><span>+40%</span> efficiency</div>
+                </div>
+            </div>
+            <div class="building-card">
+                <div class="building-icon">🌳</div>
+                <h3 class="building-name">Nature</h3>
+                <p class="building-desc">Trees, gardens, and nature reserves. Green spaces for sustainable living.</p>
+                <div class="building-stats">
+                    <div class="building-stat"><span>25</span> types</div>
+                    <div class="building-stat"><span>-30%</span> pollution</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Game Metadata -->
-        <section class="game-metadata">
-            <div class="metadata-item">
-                <span class="metadata-value">90K+</span>
-                <span class="metadata-label">Players</span>
+    <section class="city-stats">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-icon">🌆</div>
+                <div class="stat-number">50+</div>
+                <div class="stat-text">City Templates</div>
             </div>
-            <div class="metadata-item">
-                <span class="metadata-value">⭐ 4.9</span>
-                <span class="metadata-label">Rating</span>
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-number">1M+</div>
+                <div class="stat-text">Max Population</div>
             </div>
-            <div class="metadata-item">
-                <span class="metadata-value">Light</span>
-                <span class="metadata-label">Intensity</span>
+            <div class="stat-card">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-number">100+</div>
+                <div class="stat-text">Achievements</div>
             </div>
-            <div class="metadata-item">
-                <span class="metadata-value">Tabletop</span>
-                <span class="metadata-label">Space</span>
+            <div class="stat-card">
+                <div class="stat-icon">🌍</div>
+                <div class="stat-number">12</div>
+                <div class="stat-text">Biome Themes</div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- NEW: Video Section -->
-        <section class="video-section">
-            <h2 class="section-title">GAMEPLAY TRAILER</h2>
-            <div class="video-container">
-                <div class="video-placeholder">
-                    <div class="play-button"></div>
-                    <p>Official Gameplay Trailer</p>
-                    <p style="font-size: 14px; color: rgba(255, 255, 255, 0.5); margin-top: 10px;">
-                        Watch spatial gameplay in action
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Game Modes -->
-        <section class="section">
-            <h2 class="section-title">GAME MODES</h2>
-            <div class="modes-grid">
-                <div class="mode-badge">Sandbox Mode</div>
-                <div class="mode-badge">Scenario Challenges</div>
-                <div class="mode-badge">Campaign</div>
-                <div class="mode-badge">Multiplayer Cities</div>
-                <div class="mode-badge">Disaster Mode</div>
-            </div>
-        </section>
-
-        <!-- Gameplay Features -->
-        <section class="section">
-            <h2 class="section-title">EPIC GAMEPLAY FEATURES</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🏗️</div>
-                    <h3>Tabletop Construction</h3>
-                    <p>Build massive cities on your desk or floor</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">👥</div>
-                    <h3>Living Citizens</h3>
-                    <p>Watch 10,000+ AI citizens live and work</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💰</div>
-                    <h3>Deep Economy</h3>
-                    <p>Manage budgets, taxes, and resource chains</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🌆</div>
-                    <h3>Dynamic Simulation</h3>
-                    <p>Day/night cycles with realistic lighting</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>City Analytics</h3>
-                    <p>Track growth, happiness, traffic, and pollution</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Awards & Social Proof -->
-        <section class="awards-section">
-            <h2 class="section-title">AWARDS & RECOGNITION</h2>
-            <div class="awards-grid">
-                <div class="award-badge">
-                    <div class="award-icon">🏆</div>
-                    <div class="award-title">Best VR Game 2024</div>
-                    <div class="award-subtitle">Vision Pro Awards</div>
-                </div>
-                <div class="award-badge">
-                    <div class="award-icon">⭐</div>
-                    <div class="award-title">Editor's Choice</div>
-                    <div class="award-subtitle">App Store Featured</div>
-                </div>
-                <div class="award-badge">
-                    <div class="award-icon">🎮</div>
-                    <div class="award-title">Game of the Month</div>
-                    <div class="award-subtitle">Spatial Gaming Weekly</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Testimonials -->
-        <section class="testimonials-section">
-            <h2 class="section-title">PLAYER REVIEWS</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">Most immersive experience I've ever had. My room truly becomes the game world!</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">A</div>
-                        <div class="author-info">
-                            <div class="author-name">Alex M.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
+    <section class="gameplay">
+        <div class="gameplay-grid">
+            <div class="gameplay-visual">
+                <div class="control-demo">
+                    <div class="control-item">
+                        <div class="control-icon">👆</div>
+                        <div class="control-text">
+                            <h4>Pinch to Place</h4>
+                            <p>Grab buildings from your inventory and drop them anywhere</p>
                         </div>
                     </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">The spatial mechanics are mind-blowing. This is the future of gaming.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">S</div>
-                        <div class="author-info">
-                            <div class="author-name">Sarah K.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
+                    <div class="control-item">
+                        <div class="control-icon">🤏</div>
+                        <div class="control-text">
+                            <h4>Pinch to Resize</h4>
+                            <p>Scale your city from tabletop to room-sized</p>
                         </div>
                     </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">Can't stop playing! The physicality makes every session feel like a workout.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">J</div>
-                        <div class="author-info">
-                            <div class="author-name">James R.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
+                    <div class="control-item">
+                        <div class="control-icon">👀</div>
+                        <div class="control-text">
+                            <h4>Look to Select</h4>
+                            <p>Just look at any building for instant info</p>
+                        </div>
+                    </div>
+                    <div class="control-item">
+                        <div class="control-icon">🗣️</div>
+                        <div class="control-text">
+                            <h4>Voice Commands</h4>
+                            <p>"Build a park" or "Show traffic overlay"</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Screenshots -->
-        <section class="section">
-            <h2 class="section-title">GAMEPLAY GALLERY</h2>
-            <div class="screenshots-grid">
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">ACTION SCREENSHOT</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">COMBAT MOMENT</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">SPECIAL ABILITY</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">MULTIPLAYER ACTION</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: System Requirements -->
-        <section class="system-requirements">
-            <h2 class="section-title">SYSTEM REQUIREMENTS</h2>
-            <div class="requirements-grid">
-                <div class="requirement-item">
-                    <div class="requirement-icon">📱</div>
-                    <div class="requirement-content">
-                        <h4>Device</h4>
-                        <p>Apple Vision Pro with visionOS 1.0 or later</p>
+            <div class="gameplay-content">
+                <h3>Intuitive Spatial Controls</h3>
+                <p>City building reimagined for your hands. No controllers needed—just natural gestures that feel like playing with a real model city.</p>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-check">✓</div>
+                        <span>Walk around your city in room-scale</span>
                     </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">💾</div>
-                    <div class="requirement-content">
-                        <h4>Storage</h4>
-                        <p>3.5 GB available space required</p>
+                    <div class="feature-item">
+                        <div class="feature-check">✓</div>
+                        <span>Lean in to see individual citizens</span>
                     </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">🎮</div>
-                    <div class="requirement-content">
-                        <h4>Controls</h4>
-                        <p>Hand tracking or compatible controllers</p>
+                    <div class="feature-item">
+                        <div class="feature-check">✓</div>
+                        <span>Day/night cycle with dynamic lighting</span>
                     </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">📏</div>
-                    <div class="requirement-content">
-                        <h4>Play Space</h4>
-                        <p>Tabletop • 2m x 2m recommended</p>
+                    <div class="feature-item">
+                        <div class="feature-check">✓</div>
+                        <span>Weather effects and seasonal changes</span>
                     </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">🌐</div>
-                    <div class="requirement-content">
-                        <h4>Internet</h4>
-                        <p>Required for multiplayer and updates</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">♿</div>
-                    <div class="requirement-content">
-                        <h4>Accessibility</h4>
-                        <p>Subtitles, colorblind mode, seated play option</p>
+                    <div class="feature-item">
+                        <div class="feature-check">✓</div>
+                        <span>Multiplayer city collaboration</span>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- NEW: Community Section -->
-        <section class="community-section">
-            <h2 class="section-title">JOIN THE COMMUNITY</h2>
-            <p style="font-size: 18px; color: rgba(255, 255, 255, 0.8); margin-bottom: 10px;">
-                Connect with thousands of players worldwide
-            </p>
-            <div class="community-links">
-                <a href="#" class="community-link">
-                    <span class="community-icon">💬</span>
-                    <span>Discord Server</span>
-                </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">🐦</span>
-                    <span>Twitter/X</span>
-                </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">📺</span>
-                    <span>YouTube</span>
-                </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">👾</span>
-                    <span>Reddit</span>
-                </a>
-            </div>
-        </section>
-
-        <!-- NEW: Developer Section -->
-        <section class="developer-section">
-            <div class="developer-content">
-                <div class="developer-logo">🎮</div>
-                <div class="developer-info">
-                    <h3>Spatial Games Studio</h3>
-                    <p>Pioneers of immersive spatial gaming experiences for Apple Vision Pro. Creating the future of interactive entertainment.</p>
-                    <div class="developer-links">
-                        <a href="#" class="developer-link">More Games →</a>
-                        <a href="#" class="developer-link">Press Kit →</a>
-                        <a href="#" class="developer-link">Contact Support →</a>
+    <section class="testimonials">
+        <div class="section-header">
+            <p class="section-label">Player Reviews</p>
+            <h2 class="section-title">What Builders Say</h2>
+        </div>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"I've spent hours just watching my tiny citizens go about their day. It's like having a living snow globe on my coffee table. Pure magic."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">MJ</div>
+                    <div class="author-info">
+                        <h4>Maya J.</h4>
+                        <span>Built 23 cities</span>
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Finally, a city builder that feels tangible. Moving buildings with my hands and watching traffic flow in real-time is incredibly satisfying."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">DK</div>
+                    <div class="author-info">
+                        <h4>David K.</h4>
+                        <span>Built 47 cities</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"My kids and I build cities together every weekend. The collaborative mode is perfect for family game time. Educational and fun!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">SR</div>
+                    <div class="author-info">
+                        <h4>Sarah R.</h4>
+                        <span>Built 15 cities</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-box">
+            <h2>Ready to Build?</h2>
+            <p>Your dream city is waiting. Download now and start placing your first building in minutes.</p>
+            <a href="https://apps.apple.com/app/city-builder-tabletop" class="app-store-badge">
+                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+            </a>
+        </div>
+    </section>
 
     <footer>
-        <p>&copy; 2024 City Builder Tabletop. Experience the future of spatial gaming on Apple Vision Pro.</p>
-        <div class="footer-links">
-            <a href="#" class="footer-link">Privacy Policy</a>
-            <a href="#" class="footer-link">Terms of Service</a>
-            <a href="#" class="footer-link">Support</a>
-            <a href="#" class="footer-link">Press Kit</a>
-        </div>
+        <p>© 2026 City Builder Tabletop. Made with ❤️ for Apple Vision Pro.</p>
     </footer>
 </body>
 </html>

@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arena eSports - COMPETITIVE ESPORTS for Vision Pro</title>
+    <title>Arena eSports - Competitive Gaming in Spatial Reality</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -11,395 +13,348 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
-            background: #000000;
-            color: #ffffff;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
+        :root {
+            --primary: #ef4444;
+            --primary-dark: #dc2626;
+            --primary-glow: rgba(239, 68, 68, 0.6);
+            --secondary: #fbbf24;
+            --bg-dark: #0a0a0a;
+            --bg-card: rgba(20, 20, 20, 0.9);
+            --text: #ffffff;
+            --text-muted: #9ca3af;
         }
 
-        /* Enhanced 3D Depth Layers */
-        .depth-layer {
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Animated Grid Background */
+        .grid-bg {
             position: fixed;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(239, 68, 68, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(239, 68, 68, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridPulse 4s ease-in-out infinite;
             pointer-events: none;
             z-index: 0;
         }
 
-        .depth-layer-1 {
-            background: radial-gradient(circle at 20% 30%, rgba(22, 163, 74, 0.4) 0%, transparent 40%);
-            animation: dramaticFloat 15s ease-in-out infinite;
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
         }
 
-        .depth-layer-2 {
-            background: radial-gradient(circle at 80% 70%, rgba(22, 163, 74, 0.5) 0%, transparent 40%);
-            animation: dramaticFloat 18s ease-in-out infinite reverse;
+        /* Glowing orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .depth-layer-3 {
-            background: radial-gradient(circle at 50% 50%, rgba(22, 163, 74, 0.3) 0%, transparent 50%);
-            animation: dramaticFloat 22s ease-in-out infinite;
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--primary-glow);
+            top: -200px;
+            right: -200px;
+            animation: orbFloat 15s ease-in-out infinite;
         }
 
-        @keyframes dramaticFloat {
-            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            33% { transform: translate(40px, -40px) rotate(8deg) scale(1.05); }
-            66% { transform: translate(-20px, 30px) rotate(-8deg) scale(0.95); }
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: rgba(251, 191, 36, 0.3);
+            bottom: -100px;
+            left: -100px;
+            animation: orbFloat 20s ease-in-out infinite reverse;
         }
 
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 30px rgba(22, 163, 74, 0.4), 0 0 60px rgba(22, 163, 74, 0.3); }
-            50% { box-shadow: 0 0 50px rgba(22, 163, 74, 0.5), 0 0 100px rgba(22, 163, 74, 0.4); }
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, 30px) scale(1.1); }
         }
 
-        @keyframes countUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.95), transparent);
         }
 
-        /* Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            position: relative;
-            z-index: 1;
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary);
+            text-shadow: 0 0 20px var(--primary-glow);
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 4px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: livePulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes livePulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 10px var(--primary); }
+            50% { opacity: 0.5; box-shadow: 0 0 20px var(--primary); }
         }
 
         /* Hero Section */
         .hero {
-            text-align: center;
-            padding: 60px 20px 40px;
             position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 120px 20px 60px;
+            z-index: 1;
         }
 
-        .genre-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #16a34a 0%, #16a34acc 100%);
-            padding: 10px 24px;
-            border-radius: 24px;
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            box-shadow: 0 8px 32px rgba(22, 163, 74, 0.5);
-            animation: pulseGlow 3s ease-in-out infinite;
+        .hero-image-container {
+            width: 100%;
+            max-width: 1200px;
+            margin-bottom: 40px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid var(--primary);
+            box-shadow:
+                0 0 40px var(--primary-glow),
+                inset 0 0 40px rgba(239, 68, 68, 0.1);
+            animation: heroGlow 3s ease-in-out infinite;
         }
 
-        .logo-container {
-            margin-bottom: 30px;
-            perspective: 1200px;
+        @keyframes heroGlow {
+            0%, 100% { box-shadow: 0 0 40px var(--primary-glow), inset 0 0 40px rgba(239, 68, 68, 0.1); }
+            50% { box-shadow: 0 0 60px var(--primary-glow), inset 0 0 60px rgba(239, 68, 68, 0.15); }
         }
 
-        .logo-icon {
+        .hero-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .championship-badge {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            width: 140px;
-            height: 140px;
-            background: rgba(15, 15, 30, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 3px solid #16a34a;
-            border-radius: 32px;
-            font-size: 72px;
-            box-shadow:
-                0 25px 70px rgba(0, 0, 0, 0.5),
-                0 0 40px rgba(22, 163, 74, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15);
-            transform-style: preserve-3d;
-            animation: logoFloat 4s ease-in-out infinite;
+            gap: 10px;
+            padding: 10px 24px;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(239, 68, 68, 0.2));
+            border: 1px solid var(--secondary);
+            border-radius: 50px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            animation: badgeShine 3s ease-in-out infinite;
         }
 
-        @keyframes logoFloat {
-            0%, 100% { transform: rotateY(0deg) rotateX(0deg) translateY(0); }
-            50% { transform: rotateY(15deg) rotateX(8deg) translateY(-10px); }
+        @keyframes badgeShine {
+            0%, 100% { border-color: var(--secondary); }
+            50% { border-color: var(--primary); }
+        }
+
+        .championship-badge svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--secondary);
         }
 
         h1 {
-            font-size: 72px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
             font-weight: 900;
+            line-height: 1.1;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, #ffffff 0%, #16a34a 100%);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        h1 .highlight {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            line-height: 1.1;
-            text-transform: uppercase;
-            letter-spacing: -2px;
         }
 
         .tagline {
-            font-size: 32px;
-            color: #16a34a;
-            margin-bottom: 30px;
-            font-weight: 700;
-            text-transform: uppercase;
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
             letter-spacing: 1px;
-            text-shadow: 0 0 20px rgba(22, 163, 74, 0.4);
         }
 
-        .hero-message {
-            font-size: 19px;
-            color: rgba(255, 255, 255, 0.85);
-            max-width: 900px;
-            margin: 0 auto 40px;
-            line-height: 1.7;
-        }
-
-        /* NEW: Pricing Section */
-        .pricing-section {
-            background: linear-gradient(135deg, rgba(22, 163, 74, 0.4) 0%, rgba(22, 163, 74, 0.2) 100%);
-            border: 2px solid #16a34a;
-            border-radius: 24px;
-            padding: 40px;
-            margin: 40px auto;
-            max-width: 800px;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(22, 163, 74, 0.5);
-        }
-
-        .price-tag {
-            font-size: 64px;
-            font-weight: 900;
-            color: #16a34a;
-            margin-bottom: 10px;
-            text-shadow: 0 0 30px rgba(22, 163, 74, 0.5);
-        }
-
-        .price-subtitle {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 30px;
-        }
-
-        .demo-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        /* CTA Buttons */
-        .cta-buttons {
+        .cta-group {
             display: flex;
             gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
         }
 
-        .cta-primary {
-            background: #16a34a;
-            color: #ffffff;
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            box-shadow: 0 15px 50px rgba(22, 163, 74, 0.5);
-            border: 2px solid #16a34a;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-        }
-
-        .cta-primary:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(22, 163, 74, 0.5);
-        }
-
-        .cta-secondary {
-            background: transparent;
-            color: #16a34a;
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            border: 2px solid #16a34a;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .cta-secondary:hover {
-            background: rgba(22, 163, 74, 0.3);
-            transform: translateY(-3px);
-        }
-
-        .cta-wishlist {
-            background: rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.9);
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .cta-wishlist:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-3px);
-        }
-
-        /* Game Metadata Bar */
-        .game-metadata {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            padding: 30px;
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(22, 163, 74, 0.3);
-            border-radius: 20px;
-            margin-bottom: 50px;
-            backdrop-filter: blur(10px);
-        }
-
-        .metadata-item {
-            text-align: center;
-            animation: countUp 0.6s ease-out;
-        }
-
-        .metadata-value {
-            font-size: 28px;
-            font-weight: 800;
-            color: #16a34a;
-            display: block;
-        }
-
-        .metadata-label {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* NEW: Video Section */
-        .video-section {
-            margin: 60px 0;
-            text-align: center;
-        }
-
-        .video-container {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-            aspect-ratio: 16 / 9;
-            background: linear-gradient(135deg, rgba(22, 163, 74, 0.3) 0%, rgba(15, 15, 30, 0.9) 100%);
-            border-radius: 24px;
-            border: 2px solid rgba(22, 163, 74, 0.3);
-            display: flex;
+        .btn-primary {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(22, 163, 74, 0.4);
-        }
-
-        .video-placeholder {
-            text-align: center;
-            padding: 40px;
-        }
-
-        .play-button {
-            width: 100px;
-            height: 100px;
-            background: #16a34a;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            box-shadow: 0 10px 40px rgba(22, 163, 74, 0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .play-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 50px rgba(22, 163, 74, 0.5);
-        }
-
-        .play-button::after {
-            content: '▶';
-            font-size: 40px;
+            gap: 10px;
+            padding: 16px 40px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
-            margin-left: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px var(--primary-glow);
         }
 
-        /* Section Styling */
-        .section {
-            margin: 100px 0;
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 50px var(--primary-glow);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 40px;
+            background: transparent;
+            color: var(--text);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid var(--text-muted);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 1px solid rgba(239, 68, 68, 0.2);
+            border-bottom: 1px solid rgba(239, 68, 68, 0.2);
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary);
+            text-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+
+        /* Features Section */
+        .features {
+            position: relative;
+            z-index: 1;
+            padding: 100px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
         }
 
         .section-title {
-            font-size: 48px;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 60px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #ffffff 0%, #16a34a 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
         }
 
-        /* Game Modes */
-        .modes-grid {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 60px;
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
         }
 
-        .mode-badge {
-            background: rgba(15, 15, 30, 0.5);
-            border: 2px solid rgba(22, 163, 74, 0.3);
-            padding: 12px 28px;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.9);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .mode-badge:hover {
-            background: rgba(22, 163, 74, 0.3);
-            border-color: #16a34a;
-            transform: translateY(-2px);
-        }
-
-        /* Features Grid */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
-            margin-bottom: 60px;
         }
 
         .feature-card {
-            background: rgba(15, 15, 30, 0.5);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 2px solid rgba(22, 163, 74, 0.3);
-            border-radius: 24px;
-            padding: 45px;
+            background: var(--bg-card);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 12px;
+            padding: 40px;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -410,741 +365,586 @@
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, #16a34a, transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
 
         .feature-card:hover {
-            transform: translateY(-8px);
-            border-color: #16a34a;
-            box-shadow: 0 15px 60px rgba(22, 163, 74, 0.4);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(239, 68, 68, 0.2);
         }
 
         .feature-card:hover::before {
-            opacity: 1;
+            transform: scaleX(1);
         }
 
         .feature-icon {
-            font-size: 56px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(251, 191, 36, 0.1));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
             margin-bottom: 20px;
         }
 
-        .feature-card h3 {
-            font-size: 26px;
-            margin-bottom: 15px;
-            color: #16a34a;
+        .feature-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
             font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .feature-card p {
-            font-size: 17px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.75);
+        .feature-desc {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 1rem;
         }
 
-        /* NEW: System Requirements */
-        .system-requirements {
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(22, 163, 74, 0.3);
-            border-radius: 24px;
-            padding: 50px;
-            margin: 60px 0;
+        /* Tournament Section */
+        .tournaments {
+            position: relative;
+            z-index: 1;
+            padding: 100px 20px;
+            background: linear-gradient(180deg, transparent, rgba(239, 68, 68, 0.05), transparent);
         }
 
-        .requirements-grid {
+        .tournament-showcase {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .requirement-item {
-            display: flex;
-            align-items: start;
-            gap: 15px;
-        }
-
-        .requirement-icon {
-            font-size: 32px;
-            flex-shrink: 0;
-        }
-
-        .requirement-content h4 {
-            color: #16a34a;
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        .requirement-content p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 15px;
-            line-height: 1.5;
-        }
-
-        /* NEW: Awards & Social Proof */
-        .awards-section {
-            background: linear-gradient(135deg, rgba(22, 163, 74, 0.2) 0%, rgba(15, 15, 30, 0.6) 100%);
-            border: 1px solid rgba(22, 163, 74, 0.3);
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin: 60px 0;
-            text-align: center;
-        }
-
-        .awards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 40px;
-            margin-top: 40px;
+            align-items: center;
         }
 
-        .award-badge {
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: 16px;
-            padding: 30px 20px;
-            transition: all 0.3s ease;
-        }
-
-        .award-badge:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 215, 0, 0.6);
-        }
-
-        .award-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        .award-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #16a34a;
-            margin-bottom: 5px;
-        }
-
-        .award-subtitle {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* NEW: Testimonials */
-        .testimonials-section {
-            margin: 80px 0;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .testimonial-card {
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(22, 163, 74, 0.3);
-            border-radius: 20px;
-            padding: 35px;
+        .tournament-visual {
             position: relative;
         }
 
-        .testimonial-quote {
-            font-size: 17px;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .testimonial-quote::before {
-            content: '"';
-            font-size: 48px;
-            color: #16a34a;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            opacity: 0.3;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            background: #16a34a;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 20px;
-        }
-
-        .author-info {
-            flex: 1;
-        }
-
-        .author-name {
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 3px;
-        }
-
-        .author-stars {
-            color: #ffd700;
-            font-size: 14px;
-        }
-
-        /* NEW: Community Section */
-        .community-section {
-            background: linear-gradient(135deg, rgba(22, 163, 74, 0.3) 0%, rgba(15, 15, 30, 0.6) 100%);
-            border: 1px solid rgba(22, 163, 74, 0.3);
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin: 60px 0;
-            text-align: center;
-        }
-
-        .community-links {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        .community-link {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.2);
+        .bracket-preview {
+            background: var(--bg-card);
+            border: 1px solid rgba(239, 68, 68, 0.3);
             border-radius: 16px;
-            padding: 20px 35px;
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            box-shadow: 0 0 40px rgba(239, 68, 68, 0.1);
+        }
+
+        .bracket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .bracket-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: var(--secondary);
+        }
+
+        .bracket-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #22c55e;
+            font-size: 0.85rem;
+        }
+
+        .match-slot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .team-name {
             font-weight: 600;
-            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .community-link:hover {
-            background: rgba(22, 163, 74, 0.3);
-            border-color: #16a34a;
-            transform: translateY(-3px);
+        .team-rank {
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
         }
 
-        .community-icon {
-            font-size: 24px;
+        .team-score {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: var(--secondary);
         }
 
-        /* NEW: Age Rating */
-        .age-rating {
-            display: inline-flex;
+        .tournament-info h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .tournament-info p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .tournament-features {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .tournament-feature {
+            display: flex;
             align-items: center;
             gap: 15px;
-            background: rgba(15, 15, 30, 0.6);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 15px 30px;
-            margin-top: 20px;
-        }
-
-        .rating-badge {
-            background: #16a34a;
-            color: white;
-            font-weight: 900;
-            font-size: 24px;
-            padding: 10px 15px;
+            padding: 15px 20px;
+            background: rgba(239, 68, 68, 0.1);
             border-radius: 8px;
+            border-left: 3px solid var(--primary);
         }
 
-        .rating-text {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.8);
-            text-align: left;
+        .tournament-feature span {
+            font-size: 1.5rem;
         }
 
-        /* Screenshots */
-        .screenshots-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
+        /* Leaderboard Section */
+        .leaderboard {
+            position: relative;
+            z-index: 1;
+            padding: 100px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-        .screenshot-card {
-            background: rgba(15, 15, 30, 0.4);
-            border: 2px solid rgba(22, 163, 74, 0.3);
-            border-radius: 20px;
-            padding: 25px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .screenshot-card:hover {
-            border-color: #16a34a;
-            transform: scale(1.02);
-        }
-
-        .screenshot-placeholder {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background: linear-gradient(135deg, rgba(22, 163, 74, 0.3) 0%, rgba(15, 15, 30, 0.8) 100%);
+        .leaderboard-table {
+            background: var(--bg-card);
             border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .leaderboard-header {
+            display: grid;
+            grid-template-columns: 80px 1fr 150px 150px;
+            padding: 20px 30px;
+            background: rgba(239, 68, 68, 0.1);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        .leaderboard-row {
+            display: grid;
+            grid-template-columns: 80px 1fr 150px 150px;
+            padding: 20px 30px;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .leaderboard-row:hover {
+            background: rgba(239, 68, 68, 0.05);
+        }
+
+        .rank {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 900;
+        }
+
+        .rank-1 { color: #fbbf24; }
+        .rank-2 { color: #9ca3af; }
+        .rank-3 { color: #cd7f32; }
+
+        .player-info {
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 20px;
-            font-weight: 600;
-            border: 2px dashed rgba(22, 163, 74, 0.4);
-        }
-
-        /* NEW: Developer Section */
-        .developer-section {
-            background: rgba(15, 15, 30, 0.3);
-            border: 1px solid rgba(22, 163, 74, 0.3);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 60px 0;
-        }
-
-        .developer-content {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .developer-logo {
-            width: 100px;
-            height: 100px;
-            background: #16a34a;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            flex-shrink: 0;
-        }
-
-        .developer-info {
-            flex: 1;
-        }
-
-        .developer-info h3 {
-            font-size: 24px;
-            color: #16a34a;
-            margin-bottom: 10px;
-        }
-
-        .developer-info p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .developer-links {
-            display: flex;
             gap: 15px;
-            flex-wrap: wrap;
         }
 
-        .developer-link {
-            color: #16a34a;
-            text-decoration: none;
+        .player-avatar {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .player-details h4 {
             font-weight: 600;
-            font-size: 14px;
-            transition: opacity 0.3s ease;
+            margin-bottom: 3px;
         }
 
-        .developer-link:hover {
-            opacity: 0.7;
+        .player-details span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .wins {
+            font-family: 'Orbitron', sans-serif;
+            color: #22c55e;
+        }
+
+        .points {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            position: relative;
+            z-index: 1;
+            padding: 100px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, transparent, rgba(239, 68, 68, 0.1));
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        .app-store-badge {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .app-store-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .app-store-badge img {
+            height: 60px;
         }
 
         /* Footer */
         footer {
+            position: relative;
+            z-index: 1;
+            padding: 40px 20px;
             text-align: center;
-            padding: 80px 20px;
-            border-top: 1px solid rgba(22, 163, 74, 0.3);
-            margin-top: 120px;
+            border-top: 1px solid rgba(239, 68, 68, 0.2);
         }
 
         footer p {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 15px;
-            margin-bottom: 10px;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .footer-link {
-            color: rgba(255, 255, 255, 0.5);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s ease;
-        }
-
-        .footer-link:hover {
-            color: #16a34a;
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 48px;
-            }
-
-            .tagline {
-                font-size: 24px;
-            }
-
-            .section-title {
-                font-size: 36px;
-            }
-
-            .price-tag {
-                font-size: 48px;
-            }
-
-            .features-grid,
-            .screenshots-grid,
-            .testimonials-grid {
+        @media (max-width: 900px) {
+            .tournament-showcase {
                 grid-template-columns: 1fr;
             }
 
-            .cta-buttons {
-                flex-direction: column;
-                align-items: stretch;
+            .leaderboard-header,
+            .leaderboard-row {
+                grid-template-columns: 60px 1fr 100px;
             }
 
-            .game-metadata {
-                gap: 20px;
+            .leaderboard-header > :last-child,
+            .leaderboard-row > :last-child {
+                display: none;
             }
 
-            .developer-content {
-                flex-direction: column;
-                text-align: center;
+            .stats-bar {
+                gap: 30px;
             }
 
-            .community-links {
+            .stat-value {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                letter-spacing: 2px;
+            }
+
+            .cta-group {
                 flex-direction: column;
+                align-items: center;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 3D Depth Layers -->
-    <div class="depth-layer depth-layer-1"></div>
-    <div class="depth-layer depth-layer-2"></div>
-    <div class="depth-layer depth-layer-3"></div>
+    <div class="grid-bg"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
 
-    <div class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="genre-badge">COMPETITIVE ESPORTS</div>
+    <nav>
+        <div class="logo">ARENA<span>eSPORTS</span></div>
+        <div class="nav-badge">
+            <div class="live-dot"></div>
+            VISION PRO EXCLUSIVE
+        </div>
+    </nav>
 
-            <div class="logo-container">
-                <div class="logo-icon">🏆</div>
+    <section class="hero">
+        <div class="hero-image-container">
+            <img src="hero-spatial.png" alt="Arena eSports - Spatial Gaming Arena" class="hero-image">
+        </div>
+        <div class="hero-content">
+            <div class="championship-badge">
+                <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                WORLD CHAMPIONSHIP READY
             </div>
-
-            <h1>Arena eSports</h1>
-            <p class="tagline">COMPETE IN SPATIAL ESPORTS TOURNAMENTS</p>
-            <p class="hero-message">
-                Master spatial skills in competitive tournaments. From precision aiming to strategic puzzles, climb the ranks and compete for cash prizes in the future of eSports.
-            </p>
-        </section>
-
-        <!-- NEW: Pricing Section -->
-        <section class="pricing-section">
-            <div class="demo-badge">✨ Free Demo Available</div>
-            <div class="price-tag">FREE</div>
-            <p class="price-subtitle">Plus In-App Purchases</p>
-
-            <div class="cta-buttons">
-                <a href="#" class="cta-primary">📱 Download on App Store</a>
-                <a href="#" class="cta-secondary">🎬 Watch Trailer</a>
-                <a href="#" class="cta-wishlist">❤️ Add to Wishlist</a>
-            </div>
-
-            <div class="age-rating">
-                <div class="rating-badge">E10+</div>
-                <div class="rating-text">
-                    <strong>Everyone 10+</strong><br>
-                    Accessibility: Subtitles, Colorblind Mode, Seated Play
-                </div>
-            </div>
-        </section>
-
-        <!-- Game Metadata -->
-        <section class="game-metadata">
-            <div class="metadata-item">
-                <span class="metadata-value">175K+</span>
-                <span class="metadata-label">Players</span>
-            </div>
-            <div class="metadata-item">
-                <span class="metadata-value">⭐ 4.9</span>
-                <span class="metadata-label">Rating</span>
-            </div>
-            <div class="metadata-item">
-                <span class="metadata-value">High</span>
-                <span class="metadata-label">Intensity</span>
-            </div>
-            <div class="metadata-item">
-                <span class="metadata-value">Room-Scale</span>
-                <span class="metadata-label">Space</span>
-            </div>
-        </section>
-
-        <!-- NEW: Video Section -->
-        <section class="video-section">
-            <h2 class="section-title">GAMEPLAY TRAILER</h2>
-            <div class="video-container">
-                <div class="video-placeholder">
-                    <div class="play-button"></div>
-                    <p>Official Gameplay Trailer</p>
-                    <p style="font-size: 14px; color: rgba(255, 255, 255, 0.5); margin-top: 10px;">
-                        Watch spatial gameplay in action
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Game Modes -->
-        <section class="section">
-            <h2 class="section-title">GAME MODES</h2>
-            <div class="modes-grid">
-                <div class="mode-badge">Ranked Match</div>
-                <div class="mode-badge">Tournament Brackets</div>
-                <div class="mode-badge">Practice Mode</div>
-                <div class="mode-badge">Scrims</div>
-                <div class="mode-badge">Championships</div>
-            </div>
-        </section>
-
-        <!-- Gameplay Features -->
-        <section class="section">
-            <h2 class="section-title">EPIC GAMEPLAY FEATURES</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">⚔️</div>
-                    <h3>Multiple Game Modes</h3>
-                    <p>10+ competitive spatial game types</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏅</div>
-                    <h3>Global Rankings</h3>
-                    <p>ELO-based ranking system</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎮</div>
-                    <h3>Professional Tournaments</h3>
-                    <p>Weekly events with prize pools</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Advanced Analytics</h3>
-                    <p>Replay system and performance stats</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">👥</div>
-                    <h3>Team Management</h3>
-                    <p>Form teams and compete in leagues</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Awards & Social Proof -->
-        <section class="awards-section">
-            <h2 class="section-title">AWARDS & RECOGNITION</h2>
-            <div class="awards-grid">
-                <div class="award-badge">
-                    <div class="award-icon">🏆</div>
-                    <div class="award-title">Best VR Game 2024</div>
-                    <div class="award-subtitle">Vision Pro Awards</div>
-                </div>
-                <div class="award-badge">
-                    <div class="award-icon">⭐</div>
-                    <div class="award-title">Editor's Choice</div>
-                    <div class="award-subtitle">App Store Featured</div>
-                </div>
-                <div class="award-badge">
-                    <div class="award-icon">🎮</div>
-                    <div class="award-title">Game of the Month</div>
-                    <div class="award-subtitle">Spatial Gaming Weekly</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Testimonials -->
-        <section class="testimonials-section">
-            <h2 class="section-title">PLAYER REVIEWS</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">Most immersive experience I've ever had. My room truly becomes the game world!</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">A</div>
-                        <div class="author-info">
-                            <div class="author-name">Alex M.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">The spatial mechanics are mind-blowing. This is the future of gaming.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">S</div>
-                        <div class="author-info">
-                            <div class="author-name">Sarah K.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">Can't stop playing! The physicality makes every session feel like a workout.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">J</div>
-                        <div class="author-info">
-                            <div class="author-name">James R.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Screenshots -->
-        <section class="section">
-            <h2 class="section-title">GAMEPLAY GALLERY</h2>
-            <div class="screenshots-grid">
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">ACTION SCREENSHOT</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">COMBAT MOMENT</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">SPECIAL ABILITY</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">MULTIPLAYER ACTION</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: System Requirements -->
-        <section class="system-requirements">
-            <h2 class="section-title">SYSTEM REQUIREMENTS</h2>
-            <div class="requirements-grid">
-                <div class="requirement-item">
-                    <div class="requirement-icon">📱</div>
-                    <div class="requirement-content">
-                        <h4>Device</h4>
-                        <p>Apple Vision Pro with visionOS 1.0 or later</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">💾</div>
-                    <div class="requirement-content">
-                        <h4>Storage</h4>
-                        <p>3.5 GB available space required</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">🎮</div>
-                    <div class="requirement-content">
-                        <h4>Controls</h4>
-                        <p>Hand tracking or compatible controllers</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">📏</div>
-                    <div class="requirement-content">
-                        <h4>Play Space</h4>
-                        <p>Room-Scale • 2m x 2m recommended</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">🌐</div>
-                    <div class="requirement-content">
-                        <h4>Internet</h4>
-                        <p>Required for multiplayer and updates</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">♿</div>
-                    <div class="requirement-content">
-                        <h4>Accessibility</h4>
-                        <p>Subtitles, colorblind mode, seated play option</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Community Section -->
-        <section class="community-section">
-            <h2 class="section-title">JOIN THE COMMUNITY</h2>
-            <p style="font-size: 18px; color: rgba(255, 255, 255, 0.8); margin-bottom: 10px;">
-                Connect with thousands of players worldwide
-            </p>
-            <div class="community-links">
-                <a href="#" class="community-link">
-                    <span class="community-icon">💬</span>
-                    <span>Discord Server</span>
+            <h1>DOMINATE IN <span class="highlight">SPATIAL REALITY</span></h1>
+            <p class="tagline">The ultimate competitive gaming platform for Apple Vision Pro. Real tournaments. Real glory. Real prizes.</p>
+            <div class="cta-group">
+                <a href="#" class="btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    ENTER THE ARENA
                 </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">🐦</span>
-                    <span>Twitter/X</span>
-                </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">📺</span>
-                    <span>YouTube</span>
-                </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">👾</span>
-                    <span>Reddit</span>
-                </a>
+                <a href="#" class="btn-secondary">VIEW TOURNAMENTS</a>
             </div>
-        </section>
+        </div>
 
-        <!-- NEW: Developer Section -->
-        <section class="developer-section">
-            <div class="developer-content">
-                <div class="developer-logo">🎮</div>
-                <div class="developer-info">
-                    <h3>Spatial Games Studio</h3>
-                    <p>Pioneers of immersive spatial gaming experiences for Apple Vision Pro. Creating the future of interactive entertainment.</p>
-                    <div class="developer-links">
-                        <a href="#" class="developer-link">More Games →</a>
-                        <a href="#" class="developer-link">Press Kit →</a>
-                        <a href="#" class="developer-link">Contact Support →</a>
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value">250K+</div>
+                <div class="stat-label">Active Players</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">$2.5M</div>
+                <div class="stat-label">Prize Pool</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">1,200+</div>
+                <div class="stat-label">Daily Tournaments</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">48</div>
+                <div class="stat-label">Countries</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="section-header">
+            <h2 class="section-title">Competitive Edge</h2>
+            <p class="section-subtitle">Features built for champions</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <h3 class="feature-title">Ranked Matchmaking</h3>
+                <p class="feature-desc">Advanced ELO-based system ensures fair matches. Climb from Bronze to Grandmaster across 8 competitive tiers with skill-based progression.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎮</div>
+                <h3 class="feature-title">Spatial Combat</h3>
+                <p class="feature-desc">360-degree awareness in true 3D space. Use your environment strategically with room-scale movement and precision hand tracking.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📺</div>
+                <h3 class="feature-title">Live Spectating</h3>
+                <p class="feature-desc">Watch pro matches in immersive VR. Float around the arena, switch perspectives, and experience the action like never before.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3 class="feature-title">Team System</h3>
+                <p class="feature-desc">Create or join competitive teams. Practice rooms, team stats, coordinated strategies, and dedicated team tournaments await.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">Training Mode</h3>
+                <p class="feature-desc">AI-powered coaching analyzes your gameplay. Custom drills, aim trainers, and replay analysis to sharpen your skills.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3 class="feature-title">Prize Tournaments</h3>
+                <p class="feature-desc">Daily, weekly, and seasonal tournaments with real cash prizes. Qualify for the World Championship with a $1M grand prize.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="tournaments">
+        <div class="tournament-showcase">
+            <div class="tournament-visual">
+                <div class="bracket-preview">
+                    <div class="bracket-header">
+                        <span class="bracket-title">WINTER CHAMPIONSHIP 2026</span>
+                        <span class="bracket-status">
+                            <div class="live-dot"></div>
+                            LIVE NOW
+                        </span>
+                    </div>
+                    <div class="match-slot">
+                        <span class="team-name"><span class="team-rank">1</span> Team Phoenix</span>
+                        <span class="team-score">3</span>
+                    </div>
+                    <div class="match-slot">
+                        <span class="team-name"><span class="team-rank">4</span> Spatial Legends</span>
+                        <span class="team-score">2</span>
+                    </div>
+                    <div class="match-slot" style="margin-top: 30px;">
+                        <span class="team-name"><span class="team-rank">2</span> Vision Warriors</span>
+                        <span class="team-score">3</span>
+                    </div>
+                    <div class="match-slot">
+                        <span class="team-name"><span class="team-rank">3</span> Reality Check</span>
+                        <span class="team-score">1</span>
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+            <div class="tournament-info">
+                <h3>Real-Time Tournament Brackets</h3>
+                <p>Experience the thrill of competitive gaming with live tournament brackets that update in real-time. Watch as teams battle through elimination rounds in stunning spatial reality.</p>
+                <div class="tournament-features">
+                    <div class="tournament-feature">
+                        <span>🔴</span>
+                        <div>Live match streaming with multi-angle views</div>
+                    </div>
+                    <div class="tournament-feature">
+                        <span>📊</span>
+                        <div>Real-time statistics and player performance</div>
+                    </div>
+                    <div class="tournament-feature">
+                        <span>🏅</span>
+                        <div>Automatic bracket progression and seeding</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="leaderboard">
+        <div class="section-header">
+            <h2 class="section-title">Global Leaderboard</h2>
+            <p class="section-subtitle">Season 4 Rankings</p>
+        </div>
+        <div class="leaderboard-table">
+            <div class="leaderboard-header">
+                <span>Rank</span>
+                <span>Player</span>
+                <span>Wins</span>
+                <span>Points</span>
+            </div>
+            <div class="leaderboard-row">
+                <span class="rank rank-1">#1</span>
+                <div class="player-info">
+                    <div class="player-avatar">SP</div>
+                    <div class="player-details">
+                        <h4>SpatialPro_X</h4>
+                        <span>Team Phoenix</span>
+                    </div>
+                </div>
+                <span class="wins">487</span>
+                <span class="points">12,450</span>
+            </div>
+            <div class="leaderboard-row">
+                <span class="rank rank-2">#2</span>
+                <div class="player-info">
+                    <div class="player-avatar">VK</div>
+                    <div class="player-details">
+                        <h4>VisionKing</h4>
+                        <span>Vision Warriors</span>
+                    </div>
+                </div>
+                <span class="wins">452</span>
+                <span class="points">11,890</span>
+            </div>
+            <div class="leaderboard-row">
+                <span class="rank rank-3">#3</span>
+                <div class="player-info">
+                    <div class="player-avatar">AR</div>
+                    <div class="player-details">
+                        <h4>ARena_Master</h4>
+                        <span>Spatial Legends</span>
+                    </div>
+                </div>
+                <span class="wins">431</span>
+                <span class="points">11,240</span>
+            </div>
+            <div class="leaderboard-row">
+                <span class="rank">#4</span>
+                <div class="player-info">
+                    <div class="player-avatar">NX</div>
+                    <div class="player-details">
+                        <h4>NexusGamer</h4>
+                        <span>Reality Check</span>
+                    </div>
+                </div>
+                <span class="wins">398</span>
+                <span class="points">10,670</span>
+            </div>
+            <div class="leaderboard-row">
+                <span class="rank">#5</span>
+                <div class="player-info">
+                    <div class="player-avatar">QF</div>
+                    <div class="player-details">
+                        <h4>QuantumFlux</h4>
+                        <span>Team Phoenix</span>
+                    </div>
+                </div>
+                <span class="wins">376</span>
+                <span class="points">10,120</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Compete?</h2>
+            <p>Join millions of players in the most immersive competitive gaming experience ever created for spatial computing.</p>
+            <a href="https://apps.apple.com/app/arena-esports" class="app-store-badge">
+                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+            </a>
+        </div>
+    </section>
 
     <footer>
-        <p>&copy; 2024 Arena eSports. Experience the future of spatial gaming on Apple Vision Pro.</p>
-        <div class="footer-links">
-            <a href="#" class="footer-link">Privacy Policy</a>
-            <a href="#" class="footer-link">Terms of Service</a>
-            <a href="#" class="footer-link">Support</a>
-            <a href="#" class="footer-link">Press Kit</a>
-        </div>
+        <p>&copy; 2026 Arena eSports. Designed for Apple Vision Pro.</p>
     </footer>
 </body>
 </html>

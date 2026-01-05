@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Holographic Board Games - BOARD GAMES for Vision Pro</title>
+    <title>Holographic Board Games - Classic Games, Magical Experience</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -11,185 +13,190 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
-            background: #000000;
-            color: #ffffff;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
+        :root {
+            --gold: #d97706;
+            --gold-light: #f59e0b;
+            --amber: #b45309;
+            --cream: #fef3c7;
+            --wood: #78350f;
+            --wood-light: #92400e;
+            --bg: #1c1917;
+            --bg-card: rgba(41, 37, 36, 0.95);
+            --text: #fafaf9;
+            --text-warm: #fef3c7;
+            --text-muted: #a8a29e;
         }
 
-        /* Enhanced 3D Depth Layers */
-        .depth-layer {
+        body {
+            font-family: 'Lora', Georgia, serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Warm wood grain texture */
+        .wood-texture {
             position: fixed;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(120, 53, 15, 0.03) 2px,
+                    rgba(120, 53, 15, 0.03) 4px
+                );
             pointer-events: none;
             z-index: 0;
         }
 
-        .depth-layer-1 {
-            background: radial-gradient(circle at 20% 30%, rgba(34, 197, 94, 0.4) 0%, transparent 40%);
-            animation: dramaticFloat 15s ease-in-out infinite;
+        /* Warm glow */
+        .warm-glow {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .depth-layer-2 {
-            background: radial-gradient(circle at 80% 70%, rgba(34, 197, 94, 0.5) 0%, transparent 40%);
-            animation: dramaticFloat 18s ease-in-out infinite reverse;
+        .glow-1 {
+            width: 500px;
+            height: 500px;
+            background: rgba(217, 119, 6, 0.15);
+            top: -150px;
+            right: -150px;
         }
 
-        .depth-layer-3 {
-            background: radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.3) 0%, transparent 50%);
-            animation: dramaticFloat 22s ease-in-out infinite;
+        .glow-2 {
+            width: 400px;
+            height: 400px;
+            background: rgba(180, 83, 9, 0.1);
+            bottom: -100px;
+            left: -100px;
         }
 
-        @keyframes dramaticFloat {
-            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            33% { transform: translate(40px, -40px) rotate(8deg) scale(1.05); }
-            66% { transform: translate(-20px, 30px) rotate(-8deg) scale(0.95); }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(to bottom, var(--bg), transparent);
         }
 
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 30px rgba(34, 197, 94, 0.4), 0 0 60px rgba(34, 197, 94, 0.3); }
-            50% { box-shadow: 0 0 50px rgba(34, 197, 94, 0.5), 0 0 100px rgba(34, 197, 94, 0.4); }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
-        @keyframes countUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gold), var(--amber));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.3);
         }
 
-        /* Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            position: relative;
-            z-index: 1;
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-warm);
+        }
+
+        .family-badge {
+            padding: 10px 20px;
+            background: rgba(217, 119, 6, 0.1);
+            border: 1px solid var(--gold);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--gold-light);
         }
 
         /* Hero Section */
         .hero {
-            text-align: center;
-            padding: 60px 20px 40px;
             position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 100px 20px 60px;
         }
 
-        .genre-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #22c55e 0%, #22c55ecc 100%);
-            padding: 10px 24px;
-            border-radius: 24px;
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            box-shadow: 0 8px 32px rgba(34, 197, 94, 0.5);
-            animation: pulseGlow 3s ease-in-out infinite;
+        .hero-frame {
+            width: 100%;
+            max-width: 1100px;
+            margin-bottom: 50px;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--wood), var(--wood-light));
+            border-radius: 20px;
+            box-shadow:
+                0 0 0 2px var(--gold),
+                0 25px 50px rgba(0, 0, 0, 0.5),
+                inset 0 2px 0 rgba(255, 255, 255, 0.1);
         }
 
-        .logo-container {
-            margin-bottom: 30px;
-            perspective: 1200px;
+        .hero-image {
+            width: 100%;
+            border-radius: 12px;
+            display: block;
         }
 
-        .logo-icon {
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .classic-badge {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            width: 140px;
-            height: 140px;
-            background: rgba(15, 15, 30, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 3px solid #22c55e;
-            border-radius: 32px;
-            font-size: 72px;
-            box-shadow:
-                0 25px 70px rgba(0, 0, 0, 0.5),
-                0 0 40px rgba(34, 197, 94, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15);
-            transform-style: preserve-3d;
-            animation: logoFloat 4s ease-in-out infinite;
-        }
-
-        @keyframes logoFloat {
-            0%, 100% { transform: rotateY(0deg) rotateX(0deg) translateY(0); }
-            50% { transform: rotateY(15deg) rotateX(8deg) translateY(-10px); }
+            gap: 10px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, rgba(217, 119, 6, 0.2), rgba(180, 83, 9, 0.2));
+            border: 1px solid var(--gold);
+            border-radius: 8px;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--text-warm);
+            margin-bottom: 30px;
         }
 
         h1 {
-            font-size: 72px;
-            font-weight: 900;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #ffffff 0%, #22c55e 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.1;
-            text-transform: uppercase;
-            letter-spacing: -2px;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 25px;
+        }
+
+        h1 .highlight {
+            color: var(--gold-light);
+            font-style: italic;
         }
 
         .tagline {
-            font-size: 32px;
-            color: #22c55e;
-            margin-bottom: 30px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
-        }
-
-        .hero-message {
-            font-size: 19px;
-            color: rgba(255, 255, 255, 0.85);
-            max-width: 900px;
-            margin: 0 auto 40px;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 40px;
             line-height: 1.7;
         }
 
-        /* NEW: Pricing Section */
-        .pricing-section {
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.4) 0%, rgba(34, 197, 94, 0.2) 100%);
-            border: 2px solid #22c55e;
-            border-radius: 24px;
-            padding: 40px;
-            margin: 40px auto;
-            max-width: 800px;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(34, 197, 94, 0.5);
-        }
-
-        .price-tag {
-            font-size: 64px;
-            font-weight: 900;
-            color: #22c55e;
-            margin-bottom: 10px;
-            text-shadow: 0 0 30px rgba(34, 197, 94, 0.5);
-        }
-
-        .price-subtitle {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 30px;
-        }
-
-        .demo-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        /* CTA Buttons */
         .cta-buttons {
             display: flex;
             gap: 20px;
@@ -197,954 +204,642 @@
             flex-wrap: wrap;
         }
 
-        .cta-primary {
-            background: #22c55e;
-            color: #ffffff;
-            padding: 20px 60px;
-            border-radius: 14px;
+        .btn {
+            padding: 18px 40px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 600;
             text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
+            border-radius: 8px;
             transition: all 0.3s ease;
-            box-shadow: 0 15px 50px rgba(34, 197, 94, 0.5);
-            border: 2px solid #22c55e;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .cta-primary:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(34, 197, 94, 0.5);
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold), var(--amber));
+            color: var(--bg);
+            box-shadow: 0 10px 30px rgba(217, 119, 6, 0.3);
         }
 
-        .cta-secondary {
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(217, 119, 6, 0.4);
+        }
+
+        .btn-secondary {
             background: transparent;
-            color: #22c55e;
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            border: 2px solid #22c55e;
-            transition: all 0.3s ease;
-            cursor: pointer;
+            color: var(--text);
+            border: 1px solid var(--text-muted);
         }
 
-        .cta-secondary:hover {
-            background: rgba(34, 197, 94, 0.3);
-            transform: translateY(-3px);
+        .btn-secondary:hover {
+            border-color: var(--gold);
+            color: var(--gold-light);
         }
 
-        .cta-wishlist {
-            background: rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.9);
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .cta-wishlist:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-3px);
-        }
-
-        /* Game Metadata Bar */
-        .game-metadata {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            padding: 30px;
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            border-radius: 20px;
-            margin-bottom: 50px;
-            backdrop-filter: blur(10px);
-        }
-
-        .metadata-item {
-            text-align: center;
-            animation: countUp 0.6s ease-out;
-        }
-
-        .metadata-value {
-            font-size: 28px;
-            font-weight: 800;
-            color: #22c55e;
-            display: block;
-        }
-
-        .metadata-label {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* NEW: Video Section */
-        .video-section {
-            margin: 60px 0;
-            text-align: center;
-        }
-
-        .video-container {
+        /* Games Library */
+        .games {
             position: relative;
-            max-width: 1000px;
+            z-index: 1;
+            padding: 100px 20px;
+            max-width: 1200px;
             margin: 0 auto;
-            aspect-ratio: 16 / 9;
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.3) 0%, rgba(15, 15, 30, 0.9) 100%);
-            border-radius: 24px;
-            border: 2px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-ornament {
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .ornament-line {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .ornament-icon {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .game-card {
+            background: var(--bg-card);
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(34, 197, 94, 0.4);
+            border: 1px solid rgba(217, 119, 6, 0.2);
+            transition: all 0.4s ease;
         }
 
-        .video-placeholder {
+        .game-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 40px rgba(217, 119, 6, 0.15);
+        }
+
+        .game-header {
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(217, 119, 6, 0.1), rgba(120, 53, 15, 0.1));
             text-align: center;
-            padding: 40px;
+            border-bottom: 1px solid rgba(217, 119, 6, 0.1);
         }
 
-        .play-button {
-            width: 100px;
-            height: 100px;
-            background: #22c55e;
+        .game-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .game-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-warm);
+        }
+
+        .game-body {
+            padding: 25px 30px;
+        }
+
+        .game-desc {
+            color: var(--text-muted);
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .game-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .game-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .game-meta .value {
+            color: var(--gold-light);
+        }
+
+        /* Features */
+        .features {
+            position: relative;
+            z-index: 1;
+            padding: 100px 20px;
+            background: linear-gradient(180deg, transparent, rgba(217, 119, 6, 0.03), transparent);
+        }
+
+        .features-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--gold);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, rgba(217, 119, 6, 0.2), rgba(120, 53, 15, 0.1));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
-            box-shadow: 0 10px 40px rgba(34, 197, 94, 0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
+            font-size: 2rem;
         }
 
-        .play-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 50px rgba(34, 197, 94, 0.5);
-        }
-
-        .play-button::after {
-            content: '▶';
-            font-size: 40px;
-            color: white;
-            margin-left: 8px;
-        }
-
-        /* Section Styling */
-        .section {
-            margin: 100px 0;
-        }
-
-        .section-title {
-            font-size: 48px;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 60px;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #ffffff 0%, #22c55e 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Game Modes */
-        .modes-grid {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 60px;
-        }
-
-        .mode-badge {
-            background: rgba(15, 15, 30, 0.5);
-            border: 2px solid rgba(34, 197, 94, 0.3);
-            padding: 12px 28px;
-            border-radius: 30px;
-            font-size: 16px;
+        .feature-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
             font-weight: 600;
-            color: rgba(255, 255, 255, 0.9);
-            transition: all 0.3s ease;
-            cursor: pointer;
+            margin-bottom: 10px;
+            color: var(--text-warm);
         }
 
-        .mode-badge:hover {
-            background: rgba(34, 197, 94, 0.3);
-            border-color: #22c55e;
-            transform: translateY(-2px);
-        }
-
-        /* Features Grid */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .feature-card {
-            background: rgba(15, 15, 30, 0.5);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 2px solid rgba(34, 197, 94, 0.3);
-            border-radius: 24px;
-            padding: 45px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, #22c55e, transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            border-color: #22c55e;
-            box-shadow: 0 15px 60px rgba(34, 197, 94, 0.4);
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-
-        .feature-icon {
-            font-size: 56px;
-            margin-bottom: 20px;
-        }
-
-        .feature-card h3 {
-            font-size: 26px;
-            margin-bottom: 15px;
-            color: #22c55e;
-            font-weight: 700;
-        }
-
-        .feature-card p {
-            font-size: 17px;
+        .feature-desc {
+            color: var(--text-muted);
+            font-style: italic;
             line-height: 1.6;
-            color: rgba(255, 255, 255, 0.75);
         }
 
-        /* NEW: System Requirements */
-        .system-requirements {
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            border-radius: 24px;
-            padding: 50px;
-            margin: 60px 0;
+        /* Stats */
+        .stats {
+            position: relative;
+            z-index: 1;
+            padding: 80px 20px;
         }
 
-        .requirements-grid {
+        .stats-grid {
+            max-width: 1000px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 30px;
-            margin-top: 30px;
         }
 
-        .requirement-item {
-            display: flex;
-            align-items: start;
-            gap: 15px;
+        .stat-card {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid rgba(217, 119, 6, 0.2);
         }
 
-        .requirement-icon {
-            font-size: 32px;
-            flex-shrink: 0;
-        }
-
-        .requirement-content h4 {
-            color: #22c55e;
-            font-size: 18px;
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold-light);
             margin-bottom: 8px;
         }
 
-        .requirement-content p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 15px;
-            line-height: 1.5;
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-style: italic;
         }
 
-        /* NEW: Awards & Social Proof */
-        .awards-section {
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(15, 15, 30, 0.6) 100%);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin: 60px 0;
-            text-align: center;
+        /* Testimonials */
+        .testimonials {
+            position: relative;
+            z-index: 1;
+            padding: 100px 20px;
         }
 
-        .awards-grid {
+        .testimonial-grid {
+            max-width: 1100px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .award-badge {
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: 16px;
-            padding: 30px 20px;
-            transition: all 0.3s ease;
-        }
-
-        .award-badge:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 215, 0, 0.6);
-        }
-
-        .award-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        .award-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #22c55e;
-            margin-bottom: 5px;
-        }
-
-        .award-subtitle {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* NEW: Testimonials */
-        .testimonials-section {
-            margin: 80px 0;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
-            margin-top: 40px;
         }
 
         .testimonial-card {
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            border-radius: 20px;
+            background: var(--bg-card);
+            border-radius: 16px;
             padding: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             position: relative;
         }
 
         .testimonial-quote {
-            font-size: 17px;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .testimonial-quote::before {
-            content: '"';
-            font-size: 48px;
-            color: #22c55e;
+            font-size: 3rem;
+            color: var(--gold);
+            opacity: 0.3;
             position: absolute;
             top: 20px;
-            left: 20px;
-            opacity: 0.3;
+            left: 25px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            padding-top: 20px;
         }
 
         .testimonial-author {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
         }
 
         .author-avatar {
             width: 50px;
             height: 50px;
-            background: #22c55e;
             border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--amber));
             display: flex;
             align-items: center;
             justify-content: center;
+            font-family: 'Playfair Display', serif;
             font-weight: 700;
-            font-size: 20px;
         }
 
-        .author-info {
-            flex: 1;
-        }
-
-        .author-name {
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.95);
+        .author-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
             margin-bottom: 3px;
         }
 
-        .author-stars {
-            color: #ffd700;
-            font-size: 14px;
+        .author-info span {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-style: italic;
         }
 
-        /* NEW: Community Section */
-        .community-section {
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.3) 0%, rgba(15, 15, 30, 0.6) 100%);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin: 60px 0;
+        /* CTA Section */
+        .cta-section {
+            position: relative;
+            z-index: 1;
+            padding: 100px 20px;
             text-align: center;
         }
 
-        .community-links {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        .community-link {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 20px 35px;
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .community-link:hover {
-            background: rgba(34, 197, 94, 0.3);
-            border-color: #22c55e;
-            transform: translateY(-3px);
-        }
-
-        .community-icon {
-            font-size: 24px;
-        }
-
-        /* NEW: Age Rating */
-        .age-rating {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(15, 15, 30, 0.6);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 15px 30px;
-            margin-top: 20px;
-        }
-
-        .rating-badge {
-            background: #22c55e;
-            color: white;
-            font-weight: 900;
-            font-size: 24px;
-            padding: 10px 15px;
-            border-radius: 8px;
-        }
-
-        .rating-text {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.8);
-            text-align: left;
-        }
-
-        /* Screenshots */
-        .screenshots-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .screenshot-card {
-            background: rgba(15, 15, 30, 0.4);
-            border: 2px solid rgba(34, 197, 94, 0.3);
+        .cta-box {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 60px 50px;
+            background: linear-gradient(135deg, rgba(217, 119, 6, 0.1), rgba(120, 53, 15, 0.1));
+            border: 2px solid var(--gold);
             border-radius: 20px;
-            padding: 25px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            cursor: pointer;
+            position: relative;
         }
 
-        .screenshot-card:hover {
-            border-color: #22c55e;
-            transform: scale(1.02);
-        }
-
-        .screenshot-placeholder {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.3) 0%, rgba(15, 15, 30, 0.8) 100%);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 20px;
-            font-weight: 600;
-            border: 2px dashed rgba(34, 197, 94, 0.4);
-        }
-
-        /* NEW: Developer Section */
-        .developer-section {
-            background: rgba(15, 15, 30, 0.3);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 60px 0;
-        }
-
-        .developer-content {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .developer-logo {
-            width: 100px;
-            height: 100px;
-            background: #22c55e;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            flex-shrink: 0;
-        }
-
-        .developer-info {
-            flex: 1;
-        }
-
-        .developer-info h3 {
-            font-size: 24px;
-            color: #22c55e;
-            margin-bottom: 10px;
-        }
-
-        .developer-info p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
+        .cta-box h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
             margin-bottom: 15px;
         }
 
-        .developer-links {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
+        .cta-box p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 35px;
         }
 
-        .developer-link {
-            color: #22c55e;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            transition: opacity 0.3s ease;
+        .app-store-badge {
+            display: inline-block;
+            transition: transform 0.3s ease;
         }
 
-        .developer-link:hover {
-            opacity: 0.7;
+        .app-store-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .app-store-badge img {
+            height: 55px;
         }
 
         /* Footer */
         footer {
+            position: relative;
+            z-index: 1;
+            padding: 40px 20px;
             text-align: center;
-            padding: 80px 20px;
-            border-top: 1px solid rgba(34, 197, 94, 0.3);
-            margin-top: 120px;
+            border-top: 1px solid rgba(217, 119, 6, 0.2);
         }
 
         footer p {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 15px;
-            margin-bottom: 10px;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .footer-link {
-            color: rgba(255, 255, 255, 0.5);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s ease;
-        }
-
-        .footer-link:hover {
-            color: #22c55e;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-style: italic;
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 48px;
+        @media (max-width: 900px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
+        }
 
-            .tagline {
-                font-size: 24px;
-            }
-
-            .section-title {
-                font-size: 36px;
-            }
-
-            .price-tag {
-                font-size: 48px;
-            }
-
-            .features-grid,
-            .screenshots-grid,
-            .testimonials-grid {
+        @media (max-width: 600px) {
+            .games-grid {
                 grid-template-columns: 1fr;
             }
 
-            .cta-buttons {
-                flex-direction: column;
-                align-items: stretch;
+            .stats-grid {
+                gap: 15px;
             }
 
-            .game-metadata {
-                gap: 20px;
-            }
-
-            .developer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .community-links {
-                flex-direction: column;
+            .stat-number {
+                font-size: 1.8rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 3D Depth Layers -->
-    <div class="depth-layer depth-layer-1"></div>
-    <div class="depth-layer depth-layer-2"></div>
-    <div class="depth-layer depth-layer-3"></div>
+    <div class="wood-texture"></div>
+    <div class="warm-glow glow-1"></div>
+    <div class="warm-glow glow-2"></div>
 
-    <div class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="genre-badge">BOARD GAMES</div>
+    <nav>
+        <div class="logo">
+            <div class="logo-icon">🎲</div>
+            <span class="logo-text">Board Games</span>
+        </div>
+        <div class="family-badge">Family Friendly</div>
+    </nav>
 
-            <div class="logo-container">
-                <div class="logo-icon">🎲</div>
+    <section class="hero">
+        <div class="hero-frame">
+            <img src="hero-spatial.png" alt="Holographic Board Games - Classic games come alive" class="hero-image">
+        </div>
+        <div class="hero-content">
+            <div class="classic-badge">
+                <span>Est. Since the Beginning of Time</span>
             </div>
-
-            <h1>Holographic Board Games</h1>
-            <p class="tagline">CLASSIC BOARD GAMES COME TO LIFE</p>
-            <p class="hero-message">
-                Play on any surface with 3D animated pieces. Chess knights battle in slow-motion, Monopoly buildings rise from the board, and cards float in mid-air in spectacular 3D.
-            </p>
-        </section>
-
-        <!-- NEW: Pricing Section -->
-        <section class="pricing-section">
-            
-            <div class="price-tag">$6.99</div>
-            <p class="price-subtitle">One-Time Purchase • No Subscriptions</p>
-
+            <h1>Classic Games, <span class="highlight">Magical Experience</span></h1>
+            <p class="tagline">Gather around the table once more. Your favorite board games spring to life with holographic pieces, animated moves, and the joy of playing together in spatial reality.</p>
             <div class="cta-buttons">
-                <a href="#" class="cta-primary">📱 Download on App Store</a>
-                <a href="#" class="cta-secondary">🎬 Watch Trailer</a>
-                <a href="#" class="cta-wishlist">❤️ Add to Wishlist</a>
+                <a href="#" class="btn btn-primary">
+                    🎯 Start Playing
+                </a>
+                <a href="#" class="btn btn-secondary">
+                    Browse Games
+                </a>
             </div>
+        </div>
+    </section>
 
-            <div class="age-rating">
-                <div class="rating-badge">E10+</div>
-                <div class="rating-text">
-                    <strong>Everyone 10+</strong><br>
-                    Accessibility: Subtitles, Colorblind Mode, Seated Play
+    <section class="games">
+        <div class="section-header">
+            <div class="section-ornament">
+                <span class="ornament-line"></span>
+                <span class="ornament-icon">♠</span>
+                <span class="ornament-line"></span>
+            </div>
+            <h2 class="section-title">Game Library</h2>
+            <p class="section-desc">Timeless classics, beautifully reimagined</p>
+        </div>
+        <div class="games-grid">
+            <div class="game-card">
+                <div class="game-header">
+                    <span class="game-icon">♟️</span>
+                    <h3 class="game-name">Chess</h3>
+                </div>
+                <div class="game-body">
+                    <p class="game-desc">Watch knights charge and bishops glide across the board. Every capture becomes an epic battle animation.</p>
+                    <div class="game-meta">
+                        <span>👥 <span class="value">2 players</span></span>
+                        <span>⏱️ <span class="value">~30 min</span></span>
+                    </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Game Metadata -->
-        <section class="game-metadata">
-            <div class="metadata-item">
-                <span class="metadata-value">95K+</span>
-                <span class="metadata-label">Players</span>
-            </div>
-            <div class="metadata-item">
-                <span class="metadata-value">⭐ 4.7</span>
-                <span class="metadata-label">Rating</span>
-            </div>
-            <div class="metadata-item">
-                <span class="metadata-value">Light</span>
-                <span class="metadata-label">Intensity</span>
-            </div>
-            <div class="metadata-item">
-                <span class="metadata-value">Tabletop</span>
-                <span class="metadata-label">Space</span>
-            </div>
-        </section>
-
-        <!-- NEW: Video Section -->
-        <section class="video-section">
-            <h2 class="section-title">GAMEPLAY TRAILER</h2>
-            <div class="video-container">
-                <div class="video-placeholder">
-                    <div class="play-button"></div>
-                    <p>Official Gameplay Trailer</p>
-                    <p style="font-size: 14px; color: rgba(255, 255, 255, 0.5); margin-top: 10px;">
-                        Watch spatial gameplay in action
-                    </p>
+            <div class="game-card">
+                <div class="game-header">
+                    <span class="game-icon">🏠</span>
+                    <h3 class="game-name">Monopoly</h3>
+                </div>
+                <div class="game-body">
+                    <p class="game-desc">Build 3D holographic hotels and watch your empire grow. Properties come to life on the board.</p>
+                    <div class="game-meta">
+                        <span>👥 <span class="value">2-6 players</span></span>
+                        <span>⏱️ <span class="value">~90 min</span></span>
+                    </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Game Modes -->
-        <section class="section">
-            <h2 class="section-title">GAME MODES</h2>
-            <div class="modes-grid">
-                <div class="mode-badge">Local Play</div>
-                <div class="mode-badge">Online Match</div>
-                <div class="mode-badge">AI Opponents</div>
-                <div class="mode-badge">Tournaments</div>
-                <div class="mode-badge">Custom Rules</div>
+            <div class="game-card">
+                <div class="game-header">
+                    <span class="game-icon">🔤</span>
+                    <h3 class="game-name">Scrabble</h3>
+                </div>
+                <div class="game-body">
+                    <p class="game-desc">Letters float into place and words sparkle when scored. Built-in dictionary and score tracking.</p>
+                    <div class="game-meta">
+                        <span>👥 <span class="value">2-4 players</span></span>
+                        <span>⏱️ <span class="value">~45 min</span></span>
+                    </div>
+                </div>
             </div>
-        </section>
+            <div class="game-card">
+                <div class="game-header">
+                    <span class="game-icon">🎯</span>
+                    <h3 class="game-name">Checkers</h3>
+                </div>
+                <div class="game-body">
+                    <p class="game-desc">Simple to learn, satisfying to master. Pieces crown themselves with golden animations.</p>
+                    <div class="game-meta">
+                        <span>👥 <span class="value">2 players</span></span>
+                        <span>⏱️ <span class="value">~15 min</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-header">
+                    <span class="game-icon">🀄</span>
+                    <h3 class="game-name">Mahjong</h3>
+                </div>
+                <div class="game-body">
+                    <p class="game-desc">Beautiful tile-matching with 3D stacked layouts. Tiles dissolve in cascades of light.</p>
+                    <div class="game-meta">
+                        <span>👥 <span class="value">1-4 players</span></span>
+                        <span>⏱️ <span class="value">~20 min</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-header">
+                    <span class="game-icon">🎲</span>
+                    <h3 class="game-name">Backgammon</h3>
+                </div>
+                <div class="game-body">
+                    <p class="game-desc">Ancient strategy with modern flair. Dice roll in slow motion with anticipation.</p>
+                    <div class="game-meta">
+                        <span>👥 <span class="value">2 players</span></span>
+                        <span>⏱️ <span class="value">~25 min</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Gameplay Features -->
-        <section class="section">
-            <h2 class="section-title">EPIC GAMEPLAY FEATURES</h2>
+    <section class="features">
+        <div class="features-container">
+            <div class="section-header">
+                <div class="section-ornament">
+                    <span class="ornament-line"></span>
+                    <span class="ornament-icon">✦</span>
+                    <span class="ornament-line"></span>
+                </div>
+                <h2 class="section-title">Why It's Magical</h2>
+            </div>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">♟️</div>
-                    <h3>Animated Game Pieces</h3>
-                    <p>3D animated pieces with spectacular effects</p>
+                    <div class="feature-icon">👨‍👩‍👧‍👦</div>
+                    <h3 class="feature-title">Play Together</h3>
+                    <p class="feature-desc">Local or remote—friends and family appear around your table as if they're really there.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🎮</div>
-                    <h3>50+ Classic Games</h3>
-                    <p>Chess, Monopoly, Scrabble, and more</p>
+                    <div class="feature-icon">✨</div>
+                    <h3 class="feature-title">Living Pieces</h3>
+                    <p class="feature-desc">Every game piece is animated. Chess knights gallop, dice tumble, and cards flutter.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">👥</div>
-                    <h3>Cross-Platform Play</h3>
-                    <p>Local or worldwide opponents</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <h3>Premium Themes</h3>
-                    <p>Unlock beautiful visual themes for each game</p>
+                    <div class="feature-icon">🎓</div>
+                    <h3 class="feature-title">Learn to Play</h3>
+                    <p class="feature-desc">Built-in tutorials and hints for every game. Perfect for teaching kids the classics.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🏆</div>
-                    <h3>Competitive Ladder</h3>
-                    <p>Ranked matches and tournaments</p>
+                    <h3 class="feature-title">Track Progress</h3>
+                    <p class="feature-desc">Statistics, win streaks, and achievements. See your improvement over time.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- NEW: Awards & Social Proof -->
-        <section class="awards-section">
-            <h2 class="section-title">AWARDS & RECOGNITION</h2>
-            <div class="awards-grid">
-                <div class="award-badge">
-                    <div class="award-icon">🏆</div>
-                    <div class="award-title">Best VR Game 2024</div>
-                    <div class="award-subtitle">Vision Pro Awards</div>
-                </div>
-                <div class="award-badge">
-                    <div class="award-icon">⭐</div>
-                    <div class="award-title">Editor's Choice</div>
-                    <div class="award-subtitle">App Store Featured</div>
-                </div>
-                <div class="award-badge">
-                    <div class="award-icon">🎮</div>
-                    <div class="award-title">Game of the Month</div>
-                    <div class="award-subtitle">Spatial Gaming Weekly</div>
-                </div>
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">25+</div>
+                <div class="stat-label">Classic Games</div>
             </div>
-        </section>
+            <div class="stat-card">
+                <div class="stat-number">2M+</div>
+                <div class="stat-label">Games Played</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4.8</div>
+                <div class="stat-label">Star Rating</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">45min</div>
+                <div class="stat-label">Avg Session</div>
+            </div>
+        </div>
+    </section>
 
-        <!-- NEW: Testimonials -->
-        <section class="testimonials-section">
-            <h2 class="section-title">PLAYER REVIEWS</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">Most immersive experience I've ever had. My room truly becomes the game world!</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">A</div>
-                        <div class="author-info">
-                            <div class="author-name">Alex M.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">The spatial mechanics are mind-blowing. This is the future of gaming.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">S</div>
-                        <div class="author-info">
-                            <div class="author-name">Sarah K.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">Can't stop playing! The physicality makes every session feel like a workout.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">J</div>
-                        <div class="author-info">
-                            <div class="author-name">James R.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
-                        </div>
+    <section class="testimonials">
+        <div class="section-header">
+            <div class="section-ornament">
+                <span class="ornament-line"></span>
+                <span class="ornament-icon">♥</span>
+                <span class="ornament-line"></span>
+            </div>
+            <h2 class="section-title">Family Stories</h2>
+        </div>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <span class="testimonial-quote">"</span>
+                <p class="testimonial-text">Sunday game nights are back! My parents live across the country but we play chess together every week. It feels like they're sitting right here.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">EM</div>
+                    <div class="author-info">
+                        <h4>Emily M.</h4>
+                        <span>147 games played</span>
                     </div>
                 </div>
             </div>
-        </section>
+            <div class="testimonial-card">
+                <span class="testimonial-quote">"</span>
+                <p class="testimonial-text">Teaching my kids to play Monopoly was always a dream. Now the 3D buildings and animated tokens make it so engaging they actually want to learn!</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">RJ</div>
+                    <div class="author-info">
+                        <h4>Robert J.</h4>
+                        <span>89 games played</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <span class="testimonial-quote">"</span>
+                <p class="testimonial-text">The attention to detail is incredible. When I captured a queen in chess, the animation was so dramatic my opponent actually gasped!</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">LT</div>
+                    <div class="author-info">
+                        <h4>Linda T.</h4>
+                        <span>203 games played</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Screenshots -->
-        <section class="section">
-            <h2 class="section-title">GAMEPLAY GALLERY</h2>
-            <div class="screenshots-grid">
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">ACTION SCREENSHOT</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">COMBAT MOMENT</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">SPECIAL ABILITY</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">MULTIPLAYER ACTION</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: System Requirements -->
-        <section class="system-requirements">
-            <h2 class="section-title">SYSTEM REQUIREMENTS</h2>
-            <div class="requirements-grid">
-                <div class="requirement-item">
-                    <div class="requirement-icon">📱</div>
-                    <div class="requirement-content">
-                        <h4>Device</h4>
-                        <p>Apple Vision Pro with visionOS 1.0 or later</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">💾</div>
-                    <div class="requirement-content">
-                        <h4>Storage</h4>
-                        <p>3.5 GB available space required</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">🎮</div>
-                    <div class="requirement-content">
-                        <h4>Controls</h4>
-                        <p>Hand tracking or compatible controllers</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">📏</div>
-                    <div class="requirement-content">
-                        <h4>Play Space</h4>
-                        <p>Tabletop • 2m x 2m recommended</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">🌐</div>
-                    <div class="requirement-content">
-                        <h4>Internet</h4>
-                        <p>Required for multiplayer and updates</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">♿</div>
-                    <div class="requirement-content">
-                        <h4>Accessibility</h4>
-                        <p>Subtitles, colorblind mode, seated play option</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Community Section -->
-        <section class="community-section">
-            <h2 class="section-title">JOIN THE COMMUNITY</h2>
-            <p style="font-size: 18px; color: rgba(255, 255, 255, 0.8); margin-bottom: 10px;">
-                Connect with thousands of players worldwide
-            </p>
-            <div class="community-links">
-                <a href="#" class="community-link">
-                    <span class="community-icon">💬</span>
-                    <span>Discord Server</span>
-                </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">🐦</span>
-                    <span>Twitter/X</span>
-                </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">📺</span>
-                    <span>YouTube</span>
-                </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">👾</span>
-                    <span>Reddit</span>
-                </a>
-            </div>
-        </section>
-
-        <!-- NEW: Developer Section -->
-        <section class="developer-section">
-            <div class="developer-content">
-                <div class="developer-logo">🎮</div>
-                <div class="developer-info">
-                    <h3>Spatial Games Studio</h3>
-                    <p>Pioneers of immersive spatial gaming experiences for Apple Vision Pro. Creating the future of interactive entertainment.</p>
-                    <div class="developer-links">
-                        <a href="#" class="developer-link">More Games →</a>
-                        <a href="#" class="developer-link">Press Kit →</a>
-                        <a href="#" class="developer-link">Contact Support →</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
+    <section class="cta-section">
+        <div class="cta-box">
+            <h2>Gather Around the Table</h2>
+            <p>Classic games have never looked this beautiful. Start playing with family and friends today.</p>
+            <a href="https://apps.apple.com/app/holographic-board-games" class="app-store-badge">
+                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+            </a>
+        </div>
+    </section>
 
     <footer>
-        <p>&copy; 2024 Holographic Board Games. Experience the future of spatial gaming on Apple Vision Pro.</p>
-        <div class="footer-links">
-            <a href="#" class="footer-link">Privacy Policy</a>
-            <a href="#" class="footer-link">Terms of Service</a>
-            <a href="#" class="footer-link">Support</a>
-            <a href="#" class="footer-link">Press Kit</a>
-        </div>
+        <p>© 2026 Holographic Board Games. Bringing families together on Apple Vision Pro.</p>
     </footer>
 </body>
 </html>

@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escape Room Network - PUZZLE ESCAPE for Vision Pro</title>
+    <title>Escape Room Network - Multiplayer Puzzle Adventures in Spatial Reality</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -11,1140 +13,953 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
-            background: #000000;
-            color: #ffffff;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
+        :root {
+            --primary: #d97706;
+            --primary-light: #f59e0b;
+            --secondary: #7c3aed;
+            --secondary-light: #a78bfa;
+            --bg-dark: #0c0a09;
+            --bg-card: rgba(28, 25, 23, 0.95);
+            --text: #fafaf9;
+            --text-muted: #a8a29e;
+            --danger: #ef4444;
         }
 
-        /* Enhanced 3D Depth Layers */
-        .depth-layer {
+        body {
+            font-family: 'Crimson Text', Georgia, serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Mysterious fog effect */
+        .fog {
             position: fixed;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
             pointer-events: none;
             z-index: 0;
+            background:
+                radial-gradient(ellipse at 20% 80%, rgba(124, 58, 237, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(217, 119, 6, 0.08) 0%, transparent 50%);
         }
 
-        .depth-layer-1 {
-            background: radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.4) 0%, transparent 40%);
-            animation: dramaticFloat 15s ease-in-out infinite;
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
         }
 
-        .depth-layer-2 {
-            background: radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.5) 0%, transparent 40%);
-            animation: dramaticFloat 18s ease-in-out infinite reverse;
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: drift 20s infinite linear;
         }
 
-        .depth-layer-3 {
-            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 50%);
-            animation: dramaticFloat 22s ease-in-out infinite;
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 25s; }
+        .particle:nth-child(2) { left: 30%; animation-delay: 3s; animation-duration: 20s; }
+        .particle:nth-child(3) { left: 50%; animation-delay: 7s; animation-duration: 30s; }
+        .particle:nth-child(4) { left: 70%; animation-delay: 2s; animation-duration: 22s; }
+        .particle:nth-child(5) { left: 90%; animation-delay: 5s; animation-duration: 28s; }
+
+        @keyframes drift {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
         }
 
-        @keyframes dramaticFloat {
-            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            33% { transform: translate(40px, -40px) rotate(8deg) scale(1.05); }
-            66% { transform: translate(-20px, 30px) rotate(-8deg) scale(0.95); }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(to bottom, var(--bg-dark), transparent);
         }
 
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.4), 0 0 60px rgba(59, 130, 246, 0.3); }
-            50% { box-shadow: 0 0 50px rgba(59, 130, 246, 0.5), 0 0 100px rgba(59, 130, 246, 0.4); }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
-        @keyframes countUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 40px 20px;
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
             position: relative;
-            z-index: 1;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border: 1px solid var(--secondary);
+            border-radius: 10px;
+            opacity: 0.5;
+        }
+
+        .logo-text {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--primary-light);
+        }
+
+        .timer-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--danger);
+            border-radius: 8px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--danger);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
 
         /* Hero Section */
         .hero {
-            text-align: center;
-            padding: 60px 20px 40px;
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 100px 20px 60px;
+        }
+
+        .hero-image-container {
+            width: 100%;
+            max-width: 1150px;
+            margin-bottom: 50px;
             position: relative;
         }
 
-        .genre-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #3b82f6 0%, #3b82f6cc 100%);
-            padding: 10px 24px;
-            border-radius: 24px;
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            box-shadow: 0 8px 32px rgba(59, 130, 246, 0.5);
-            animation: pulseGlow 3s ease-in-out infinite;
+        .hero-image {
+            width: 100%;
+            border-radius: 16px;
+            display: block;
+            box-shadow:
+                0 0 0 1px rgba(217, 119, 6, 0.3),
+                0 0 60px rgba(217, 119, 6, 0.2),
+                0 30px 60px rgba(0, 0, 0, 0.5);
         }
 
-        .logo-container {
-            margin-bottom: 30px;
-            perspective: 1200px;
+        .clue-overlay {
+            position: absolute;
+            padding: 15px 25px;
+            background: var(--bg-card);
+            border: 1px solid var(--secondary);
+            border-radius: 8px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: var(--secondary-light);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
-        .logo-icon {
+        .clue-overlay.top-right {
+            top: 20px;
+            right: 20px;
+            animation: flicker 3s ease-in-out infinite;
+        }
+
+        .clue-overlay.bottom-left {
+            bottom: 20px;
+            left: 20px;
+            border-color: var(--primary);
+            color: var(--primary-light);
+            animation: flicker 3s ease-in-out infinite 1s;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+            52% { opacity: 1; }
+            54% { opacity: 0.9; }
+        }
+
+        .clue-overlay span {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 5px;
+            color: var(--text);
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 850px;
+        }
+
+        .mystery-badge {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            width: 140px;
-            height: 140px;
-            background: rgba(15, 15, 30, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 3px solid #3b82f6;
-            border-radius: 32px;
-            font-size: 72px;
-            box-shadow:
-                0 25px 70px rgba(0, 0, 0, 0.5),
-                0 0 40px rgba(59, 130, 246, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15);
-            transform-style: preserve-3d;
-            animation: logoFloat 4s ease-in-out infinite;
-        }
-
-        @keyframes logoFloat {
-            0%, 100% { transform: rotateY(0deg) rotateX(0deg) translateY(0); }
-            50% { transform: rotateY(15deg) rotateX(8deg) translateY(-10px); }
+            gap: 12px;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(217, 119, 6, 0.15));
+            border: 1px solid var(--secondary);
+            border-radius: 4px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
         }
 
         h1 {
-            font-size: 72px;
-            font-weight: 900;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #ffffff 0%, #3b82f6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.1;
-            text-transform: uppercase;
-            letter-spacing: -2px;
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+        }
+
+        h1 .highlight {
+            color: var(--primary-light);
+            text-shadow: 0 0 30px rgba(217, 119, 6, 0.5);
         }
 
         .tagline {
-            font-size: 32px;
-            color: #3b82f6;
-            margin-bottom: 30px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
-        }
-
-        .hero-message {
-            font-size: 19px;
-            color: rgba(255, 255, 255, 0.85);
-            max-width: 900px;
-            margin: 0 auto 40px;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 40px;
             line-height: 1.7;
         }
 
-        /* NEW: Pricing Section */
-        .pricing-section {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.4) 0%, rgba(59, 130, 246, 0.2) 100%);
-            border: 2px solid #3b82f6;
-            border-radius: 24px;
-            padding: 40px;
-            margin: 40px auto;
-            max-width: 800px;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.5);
-        }
-
-        .price-tag {
-            font-size: 64px;
-            font-weight: 900;
-            color: #3b82f6;
-            margin-bottom: 10px;
-            text-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
-        }
-
-        .price-subtitle {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 30px;
-        }
-
-        .demo-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        /* CTA Buttons */
-        .cta-buttons {
+        .cta-group {
             display: flex;
             gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
         }
 
-        .cta-primary {
-            background: #3b82f6;
-            color: #ffffff;
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            box-shadow: 0 15px 50px rgba(59, 130, 246, 0.5);
-            border: 2px solid #3b82f6;
+        .btn {
+            padding: 18px 40px;
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .cta-primary:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.5);
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--bg-dark);
+            box-shadow: 0 0 30px rgba(217, 119, 6, 0.3);
         }
 
-        .cta-secondary {
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 50px rgba(217, 119, 6, 0.5);
+        }
+
+        .btn-secondary {
             background: transparent;
-            color: #3b82f6;
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            border: 2px solid #3b82f6;
-            transition: all 0.3s ease;
-            cursor: pointer;
+            color: var(--text);
+            border: 1px solid var(--text-muted);
         }
 
-        .cta-secondary:hover {
-            background: rgba(59, 130, 246, 0.3);
-            transform: translateY(-3px);
+        .btn-secondary:hover {
+            border-color: var(--secondary);
+            color: var(--secondary-light);
         }
 
-        .cta-wishlist {
-            background: rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.9);
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .cta-wishlist:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-3px);
-        }
-
-        /* Game Metadata Bar */
-        .game-metadata {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            padding: 30px;
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 20px;
-            margin-bottom: 50px;
-            backdrop-filter: blur(10px);
-        }
-
-        .metadata-item {
-            text-align: center;
-            animation: countUp 0.6s ease-out;
-        }
-
-        .metadata-value {
-            font-size: 28px;
-            font-weight: 800;
-            color: #3b82f6;
-            display: block;
-        }
-
-        .metadata-label {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* NEW: Video Section */
-        .video-section {
-            margin: 60px 0;
-            text-align: center;
-        }
-
-        .video-container {
+        /* Rooms Section */
+        .rooms {
             position: relative;
-            max-width: 1000px;
+            z-index: 1;
+            padding: 100px 20px;
+            max-width: 1300px;
             margin: 0 auto;
-            aspect-ratio: 16 / 9;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(15, 15, 30, 0.9) 100%);
-            border-radius: 24px;
-            border: 2px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--secondary-light);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .room-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .room-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px rgba(217, 119, 6, 0.15);
+        }
+
+        .room-header {
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(217, 119, 6, 0.1));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .room-icon {
+            font-size: 2.5rem;
+        }
+
+        .room-difficulty {
+            display: flex;
+            gap: 4px;
+        }
+
+        .difficulty-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .difficulty-dot.active {
+            background: var(--primary-light);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .room-body {
+            padding: 25px;
+        }
+
+        .room-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .room-desc {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .room-meta {
+            display: flex;
+            gap: 25px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .room-meta span {
             display: flex;
             align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.4);
+            gap: 8px;
         }
 
-        .video-placeholder {
+        .room-meta .value {
+            color: var(--primary-light);
+            font-weight: 600;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            position: relative;
+            z-index: 1;
+            padding: 80px 20px;
+            background: linear-gradient(180deg, transparent, rgba(124, 58, 237, 0.05), transparent);
+        }
+
+        .stats-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .stat-box {
             text-align: center;
-            padding: 40px;
+            padding: 35px 20px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
         }
 
-        .play-button {
-            width: 100px;
-            height: 100px;
-            background: #3b82f6;
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+        }
+
+        .stat-number {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-light);
+            text-shadow: 0 0 20px rgba(217, 119, 6, 0.3);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            position: relative;
+            z-index: 1;
+            padding: 100px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .step {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            padding: 30px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            border-color: var(--secondary);
+            transform: translateX(10px);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
-            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--bg-dark);
         }
 
-        .play-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 50px rgba(59, 130, 246, 0.5);
+        .step-content h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
         }
 
-        .play-button::after {
-            content: '▶';
-            font-size: 40px;
-            color: white;
-            margin-left: 8px;
+        .step-content p {
+            color: var(--text-muted);
+            line-height: 1.7;
         }
 
-        /* Section Styling */
-        .section {
-            margin: 100px 0;
-        }
-
-        .section-title {
-            font-size: 48px;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 60px;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #ffffff 0%, #3b82f6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Game Modes */
-        .modes-grid {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 60px;
-        }
-
-        .mode-badge {
-            background: rgba(15, 15, 30, 0.5);
-            border: 2px solid rgba(59, 130, 246, 0.3);
-            padding: 12px 28px;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.9);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .mode-badge:hover {
-            background: rgba(59, 130, 246, 0.3);
-            border-color: #3b82f6;
-            transform: translateY(-2px);
-        }
-
-        /* Features Grid */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .feature-card {
-            background: rgba(15, 15, 30, 0.5);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 2px solid rgba(59, 130, 246, 0.3);
-            border-radius: 24px;
-            padding: 45px;
-            transition: all 0.3s ease;
+        /* Testimonials */
+        .testimonials {
             position: relative;
-            overflow: hidden;
+            z-index: 1;
+            padding: 100px 20px;
+            background: linear-gradient(180deg, transparent, rgba(217, 119, 6, 0.03), transparent);
         }
 
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            border-color: #3b82f6;
-            box-shadow: 0 15px 60px rgba(59, 130, 246, 0.4);
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-
-        .feature-icon {
-            font-size: 56px;
-            margin-bottom: 20px;
-        }
-
-        .feature-card h3 {
-            font-size: 26px;
-            margin-bottom: 15px;
-            color: #3b82f6;
-            font-weight: 700;
-        }
-
-        .feature-card p {
-            font-size: 17px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.75);
-        }
-
-        /* NEW: System Requirements */
-        .system-requirements {
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 24px;
-            padding: 50px;
-            margin: 60px 0;
-        }
-
-        .requirements-grid {
+        .testimonial-grid {
+            max-width: 1100px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
-            margin-top: 30px;
-        }
-
-        .requirement-item {
-            display: flex;
-            align-items: start;
-            gap: 15px;
-        }
-
-        .requirement-icon {
-            font-size: 32px;
-            flex-shrink: 0;
-        }
-
-        .requirement-content h4 {
-            color: #3b82f6;
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        .requirement-content p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 15px;
-            line-height: 1.5;
-        }
-
-        /* NEW: Awards & Social Proof */
-        .awards-section {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(15, 15, 30, 0.6) 100%);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin: 60px 0;
-            text-align: center;
-        }
-
-        .awards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .award-badge {
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: 16px;
-            padding: 30px 20px;
-            transition: all 0.3s ease;
-        }
-
-        .award-badge:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 215, 0, 0.6);
-        }
-
-        .award-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        .award-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #3b82f6;
-            margin-bottom: 5px;
-        }
-
-        .award-subtitle {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* NEW: Testimonials */
-        .testimonials-section {
-            margin: 80px 0;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
         }
 
         .testimonial-card {
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 20px;
+            background: var(--bg-card);
+            border-radius: 12px;
             padding: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             position: relative;
         }
 
-        .testimonial-quote {
-            font-size: 17px;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 20px;
-            font-style: italic;
+        .testimonial-card::before {
+            content: '"';
+            font-family: 'Cinzel', serif;
+            font-size: 5rem;
+            color: var(--secondary);
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            line-height: 1;
         }
 
-        .testimonial-quote::before {
-            content: '"';
-            font-size: 48px;
-            color: #3b82f6;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            opacity: 0.3;
+        .testimonial-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
         }
 
         .testimonial-author {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
         }
 
         .author-avatar {
             width: 50px;
             height: 50px;
-            background: #3b82f6;
             border-radius: 50%;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
             display: flex;
             align-items: center;
             justify-content: center;
+            font-family: 'Cinzel', serif;
             font-weight: 700;
-            font-size: 20px;
         }
 
-        .author-info {
-            flex: 1;
-        }
-
-        .author-name {
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.95);
+        .author-info h4 {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
             margin-bottom: 3px;
         }
 
-        .author-stars {
-            color: #ffd700;
-            font-size: 14px;
+        .author-info span {
+            color: var(--text-muted);
+            font-size: 0.85rem;
         }
 
-        /* NEW: Community Section */
-        .community-section {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(15, 15, 30, 0.6) 100%);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin: 60px 0;
+        /* CTA Section */
+        .cta-section {
+            position: relative;
+            z-index: 1;
+            padding: 100px 20px;
             text-align: center;
         }
 
-        .community-links {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 30px;
+        .cta-box {
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 70px 50px;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(217, 119, 6, 0.1));
+            border: 1px solid var(--secondary);
+            border-radius: 12px;
+            position: relative;
         }
 
-        .community-link {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 20px 35px;
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .community-link:hover {
-            background: rgba(59, 130, 246, 0.3);
-            border-color: #3b82f6;
-            transform: translateY(-3px);
-        }
-
-        .community-icon {
-            font-size: 24px;
-        }
-
-        /* NEW: Age Rating */
-        .age-rating {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(15, 15, 30, 0.6);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 15px 30px;
-            margin-top: 20px;
-        }
-
-        .rating-badge {
-            background: #3b82f6;
-            color: white;
-            font-weight: 900;
-            font-size: 24px;
-            padding: 10px 15px;
-            border-radius: 8px;
-        }
-
-        .rating-text {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.8);
-            text-align: left;
-        }
-
-        /* Screenshots */
-        .screenshots-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .screenshot-card {
-            background: rgba(15, 15, 30, 0.4);
-            border: 2px solid rgba(59, 130, 246, 0.3);
-            border-radius: 20px;
-            padding: 25px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .screenshot-card:hover {
-            border-color: #3b82f6;
-            transform: scale(1.02);
-        }
-
-        .screenshot-placeholder {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(15, 15, 30, 0.8) 100%);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 20px;
-            font-weight: 600;
-            border: 2px dashed rgba(59, 130, 246, 0.4);
-        }
-
-        /* NEW: Developer Section */
-        .developer-section {
-            background: rgba(15, 15, 30, 0.3);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 60px 0;
-        }
-
-        .developer-content {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .developer-logo {
+        .cta-box::before,
+        .cta-box::after {
+            content: '';
+            position: absolute;
             width: 100px;
             height: 100px;
-            background: #3b82f6;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            flex-shrink: 0;
+            border: 1px solid var(--primary);
+            opacity: 0.3;
         }
 
-        .developer-info {
-            flex: 1;
+        .cta-box::before {
+            top: -20px;
+            left: -20px;
+            border-right: none;
+            border-bottom: none;
         }
 
-        .developer-info h3 {
-            font-size: 24px;
-            color: #3b82f6;
-            margin-bottom: 10px;
+        .cta-box::after {
+            bottom: -20px;
+            right: -20px;
+            border-left: none;
+            border-top: none;
         }
 
-        .developer-info p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
+        .cta-box h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
             margin-bottom: 15px;
+            letter-spacing: 2px;
         }
 
-        .developer-links {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
+        .cta-box p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 35px;
         }
 
-        .developer-link {
-            color: #3b82f6;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            transition: opacity 0.3s ease;
+        .app-store-badge {
+            display: inline-block;
+            transition: transform 0.3s ease;
         }
 
-        .developer-link:hover {
-            opacity: 0.7;
+        .app-store-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .app-store-badge img {
+            height: 55px;
         }
 
         /* Footer */
         footer {
+            position: relative;
+            z-index: 1;
+            padding: 40px 20px;
             text-align: center;
-            padding: 80px 20px;
-            border-top: 1px solid rgba(59, 130, 246, 0.3);
-            margin-top: 120px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         footer p {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 15px;
-            margin-bottom: 10px;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .footer-link {
-            color: rgba(255, 255, 255, 0.5);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s ease;
-        }
-
-        .footer-link:hover {
-            color: #3b82f6;
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 48px;
+        @media (max-width: 900px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .tagline {
-                font-size: 24px;
+            .step {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
             }
+        }
 
-            .section-title {
-                font-size: 36px;
-            }
-
-            .price-tag {
-                font-size: 48px;
-            }
-
-            .features-grid,
-            .screenshots-grid,
-            .testimonials-grid {
+        @media (max-width: 600px) {
+            .rooms-grid {
                 grid-template-columns: 1fr;
             }
 
-            .cta-buttons {
-                flex-direction: column;
-                align-items: stretch;
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
             }
 
-            .game-metadata {
-                gap: 20px;
+            .stat-number {
+                font-size: 2rem;
             }
 
-            .developer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .community-links {
-                flex-direction: column;
+            .clue-overlay {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 3D Depth Layers -->
-    <div class="depth-layer depth-layer-1"></div>
-    <div class="depth-layer depth-layer-2"></div>
-    <div class="depth-layer depth-layer-3"></div>
-
-    <div class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="genre-badge">PUZZLE ESCAPE</div>
-
-            <div class="logo-container">
-                <div class="logo-icon">🔐</div>
-            </div>
-
-            <h1>Escape Room Network</h1>
-            <p class="tagline">TRANSFORM ANY ROOM INTO AN ESCAPE CHALLENGE</p>
-            <p class="hero-message">
-                Convert your physical space into intricate escape rooms. Solve spatial puzzles using your real environment, collaborate with friends, and race the clock to freedom.
-            </p>
-        </section>
-
-        <!-- NEW: Pricing Section -->
-        <section class="pricing-section">
-            
-            <div class="price-tag">$7.99</div>
-            <p class="price-subtitle">One-Time Purchase • No Subscriptions</p>
-
-            <div class="cta-buttons">
-                <a href="#" class="cta-primary">📱 Download on App Store</a>
-                <a href="#" class="cta-secondary">🎬 Watch Trailer</a>
-                <a href="#" class="cta-wishlist">❤️ Add to Wishlist</a>
-            </div>
-
-            <div class="age-rating">
-                <div class="rating-badge">E10+</div>
-                <div class="rating-text">
-                    <strong>Everyone 10+</strong><br>
-                    Accessibility: Subtitles, Colorblind Mode, Seated Play
-                </div>
-            </div>
-        </section>
-
-        <!-- Game Metadata -->
-        <section class="game-metadata">
-            <div class="metadata-item">
-                <span class="metadata-value">120K+</span>
-                <span class="metadata-label">Players</span>
-            </div>
-            <div class="metadata-item">
-                <span class="metadata-value">⭐ 4.8</span>
-                <span class="metadata-label">Rating</span>
-            </div>
-            <div class="metadata-item">
-                <span class="metadata-value">Light</span>
-                <span class="metadata-label">Intensity</span>
-            </div>
-            <div class="metadata-item">
-                <span class="metadata-value">Room-Scale</span>
-                <span class="metadata-label">Space</span>
-            </div>
-        </section>
-
-        <!-- NEW: Video Section -->
-        <section class="video-section">
-            <h2 class="section-title">GAMEPLAY TRAILER</h2>
-            <div class="video-container">
-                <div class="video-placeholder">
-                    <div class="play-button"></div>
-                    <p>Official Gameplay Trailer</p>
-                    <p style="font-size: 14px; color: rgba(255, 255, 255, 0.5); margin-top: 10px;">
-                        Watch spatial gameplay in action
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Game Modes -->
-        <section class="section">
-            <h2 class="section-title">GAME MODES</h2>
-            <div class="modes-grid">
-                <div class="mode-badge">Solo Escape</div>
-                <div class="mode-badge">Co-op 2-4 Players</div>
-                <div class="mode-badge">Competitive Race</div>
-                <div class="mode-badge">Daily Challenge</div>
-                <div class="mode-badge">Custom Rooms</div>
-            </div>
-        </section>
-
-        <!-- Gameplay Features -->
-        <section class="section">
-            <h2 class="section-title">EPIC GAMEPLAY FEATURES</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🗝️</div>
-                    <h3>Room Transformation</h3>
-                    <p>100+ themed escape rooms overlay your space</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🧩</div>
-                    <h3>Spatial Puzzle Mechanics</h3>
-                    <p>Interact with virtual objects on real surfaces</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">👥</div>
-                    <h3>Multiplayer Co-op</h3>
-                    <p>Solve complex rooms with friends in shared space</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⏱️</div>
-                    <h3>Timed Challenges</h3>
-                    <p>Beat the clock with varying difficulty levels</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <h3>Room Creator</h3>
-                    <p>Design and share your own escape room challenges</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Awards & Social Proof -->
-        <section class="awards-section">
-            <h2 class="section-title">AWARDS & RECOGNITION</h2>
-            <div class="awards-grid">
-                <div class="award-badge">
-                    <div class="award-icon">🏆</div>
-                    <div class="award-title">Best VR Game 2024</div>
-                    <div class="award-subtitle">Vision Pro Awards</div>
-                </div>
-                <div class="award-badge">
-                    <div class="award-icon">⭐</div>
-                    <div class="award-title">Editor's Choice</div>
-                    <div class="award-subtitle">App Store Featured</div>
-                </div>
-                <div class="award-badge">
-                    <div class="award-icon">🎮</div>
-                    <div class="award-title">Game of the Month</div>
-                    <div class="award-subtitle">Spatial Gaming Weekly</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Testimonials -->
-        <section class="testimonials-section">
-            <h2 class="section-title">PLAYER REVIEWS</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">Most immersive experience I've ever had. My room truly becomes the game world!</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">A</div>
-                        <div class="author-info">
-                            <div class="author-name">Alex M.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">The spatial mechanics are mind-blowing. This is the future of gaming.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">S</div>
-                        <div class="author-info">
-                            <div class="author-name">Sarah K.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">Can't stop playing! The physicality makes every session feel like a workout.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">J</div>
-                        <div class="author-info">
-                            <div class="author-name">James R.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Screenshots -->
-        <section class="section">
-            <h2 class="section-title">GAMEPLAY GALLERY</h2>
-            <div class="screenshots-grid">
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">ACTION SCREENSHOT</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">COMBAT MOMENT</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">SPECIAL ABILITY</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">MULTIPLAYER ACTION</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: System Requirements -->
-        <section class="system-requirements">
-            <h2 class="section-title">SYSTEM REQUIREMENTS</h2>
-            <div class="requirements-grid">
-                <div class="requirement-item">
-                    <div class="requirement-icon">📱</div>
-                    <div class="requirement-content">
-                        <h4>Device</h4>
-                        <p>Apple Vision Pro with visionOS 1.0 or later</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">💾</div>
-                    <div class="requirement-content">
-                        <h4>Storage</h4>
-                        <p>3.5 GB available space required</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">🎮</div>
-                    <div class="requirement-content">
-                        <h4>Controls</h4>
-                        <p>Hand tracking or compatible controllers</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">📏</div>
-                    <div class="requirement-content">
-                        <h4>Play Space</h4>
-                        <p>Room-Scale • 2m x 2m recommended</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">🌐</div>
-                    <div class="requirement-content">
-                        <h4>Internet</h4>
-                        <p>Required for multiplayer and updates</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">♿</div>
-                    <div class="requirement-content">
-                        <h4>Accessibility</h4>
-                        <p>Subtitles, colorblind mode, seated play option</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Community Section -->
-        <section class="community-section">
-            <h2 class="section-title">JOIN THE COMMUNITY</h2>
-            <p style="font-size: 18px; color: rgba(255, 255, 255, 0.8); margin-bottom: 10px;">
-                Connect with thousands of players worldwide
-            </p>
-            <div class="community-links">
-                <a href="#" class="community-link">
-                    <span class="community-icon">💬</span>
-                    <span>Discord Server</span>
-                </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">🐦</span>
-                    <span>Twitter/X</span>
-                </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">📺</span>
-                    <span>YouTube</span>
-                </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">👾</span>
-                    <span>Reddit</span>
-                </a>
-            </div>
-        </section>
-
-        <!-- NEW: Developer Section -->
-        <section class="developer-section">
-            <div class="developer-content">
-                <div class="developer-logo">🎮</div>
-                <div class="developer-info">
-                    <h3>Spatial Games Studio</h3>
-                    <p>Pioneers of immersive spatial gaming experiences for Apple Vision Pro. Creating the future of interactive entertainment.</p>
-                    <div class="developer-links">
-                        <a href="#" class="developer-link">More Games →</a>
-                        <a href="#" class="developer-link">Press Kit →</a>
-                        <a href="#" class="developer-link">Contact Support →</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div class="fog"></div>
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
     </div>
 
-    <footer>
-        <p>&copy; 2024 Escape Room Network. Experience the future of spatial gaming on Apple Vision Pro.</p>
-        <div class="footer-links">
-            <a href="#" class="footer-link">Privacy Policy</a>
-            <a href="#" class="footer-link">Terms of Service</a>
-            <a href="#" class="footer-link">Support</a>
-            <a href="#" class="footer-link">Press Kit</a>
+    <nav>
+        <div class="logo">
+            <div class="logo-icon">🔐</div>
+            <span class="logo-text">Escape Room Network</span>
         </div>
+        <div class="timer-badge">
+            ⏱️ TIME IS RUNNING OUT
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-image-container">
+            <img src="hero-spatial.png" alt="Escape Room Network - Solve puzzles in spatial reality" class="hero-image">
+            <div class="clue-overlay top-right">
+                Clue Found
+                <span>3 of 7 Collected</span>
+            </div>
+            <div class="clue-overlay bottom-left">
+                Team Members
+                <span>4 Players Online</span>
+            </div>
+        </div>
+        <div class="hero-content">
+            <div class="mystery-badge">
+                🗝️ The Mystery Awaits
+            </div>
+            <h1>Escape Together in <span class="highlight">Spatial Reality</span></h1>
+            <p class="tagline">Join friends from anywhere in the world. Solve intricate puzzles, uncover hidden clues, and escape before time runs out—all in stunning mixed reality.</p>
+            <div class="cta-group">
+                <a href="#" class="btn btn-primary">
+                    🚪 Enter The Room
+                </a>
+                <a href="#" class="btn btn-secondary">
+                    View All Rooms
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="rooms">
+        <div class="section-header">
+            <p class="section-label">Choose Your Challenge</p>
+            <h2 class="section-title">Escape Rooms</h2>
+        </div>
+        <div class="rooms-grid">
+            <div class="room-card">
+                <div class="room-header">
+                    <span class="room-icon">🏛️</span>
+                    <div class="room-difficulty">
+                        <span class="difficulty-dot active"></span>
+                        <span class="difficulty-dot active"></span>
+                        <span class="difficulty-dot"></span>
+                        <span class="difficulty-dot"></span>
+                        <span class="difficulty-dot"></span>
+                    </div>
+                </div>
+                <div class="room-body">
+                    <h3 class="room-name">The Ancient Library</h3>
+                    <p class="room-desc">Locked inside a forbidden archive, decipher ancient texts and unlock the secrets hidden for centuries.</p>
+                    <div class="room-meta">
+                        <span>⏱️ <span class="value">45 min</span></span>
+                        <span>👥 <span class="value">2-6 players</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="room-card">
+                <div class="room-header">
+                    <span class="room-icon">🔬</span>
+                    <div class="room-difficulty">
+                        <span class="difficulty-dot active"></span>
+                        <span class="difficulty-dot active"></span>
+                        <span class="difficulty-dot active"></span>
+                        <span class="difficulty-dot"></span>
+                        <span class="difficulty-dot"></span>
+                    </div>
+                </div>
+                <div class="room-body">
+                    <h3 class="room-name">Laboratory Lockdown</h3>
+                    <p class="room-desc">A experiment gone wrong has triggered lockdown. Find the antidote before containment fails.</p>
+                    <div class="room-meta">
+                        <span>⏱️ <span class="value">60 min</span></span>
+                        <span>👥 <span class="value">3-8 players</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="room-card">
+                <div class="room-header">
+                    <span class="room-icon">🏴‍☠️</span>
+                    <div class="room-difficulty">
+                        <span class="difficulty-dot active"></span>
+                        <span class="difficulty-dot active"></span>
+                        <span class="difficulty-dot active"></span>
+                        <span class="difficulty-dot active"></span>
+                        <span class="difficulty-dot"></span>
+                    </div>
+                </div>
+                <div class="room-body">
+                    <h3 class="room-name">Pirate's Treasure</h3>
+                    <p class="room-desc">Aboard a ghost ship, follow the captain's cryptic map to find the legendary treasure.</p>
+                    <div class="room-meta">
+                        <span>⏱️ <span class="value">75 min</span></span>
+                        <span>👥 <span class="value">4-8 players</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="room-card">
+                <div class="room-header">
+                    <span class="room-icon">🎭</span>
+                    <div class="room-difficulty">
+                        <span class="difficulty-dot active"></span>
+                        <span class="difficulty-dot active"></span>
+                        <span class="difficulty-dot active"></span>
+                        <span class="difficulty-dot active"></span>
+                        <span class="difficulty-dot active"></span>
+                    </div>
+                </div>
+                <div class="room-body">
+                    <h3 class="room-name">The Phantom's Opera</h3>
+                    <p class="room-desc">Trapped backstage in a haunted theater. Unmask the phantom before the final curtain falls.</p>
+                    <div class="room-meta">
+                        <span>⏱️ <span class="value">90 min</span></span>
+                        <span>👥 <span class="value">4-10 players</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-box">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Unique Rooms</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">2M+</div>
+                <div class="stat-label">Escapes Made</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">42%</div>
+                <div class="stat-label">Success Rate</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">12min</div>
+                <div class="stat-label">Record Time</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="section-header">
+            <p class="section-label">How It Works</p>
+            <h2 class="section-title">Your Escape Begins</h2>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Gather Your Team</h3>
+                    <p>Invite friends from anywhere in the world. They appear as spatial avatars in your shared room—no matter where they really are.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Choose Your Room</h3>
+                    <p>Select from 50+ themed escape rooms. Each offers unique puzzles, immersive environments, and varying difficulty levels.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Solve & Escape</h3>
+                    <p>Examine objects with your hands, share discoveries with teammates, and piece together clues before the timer hits zero.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="section-header">
+            <p class="section-label">Escapee Stories</p>
+            <h2 class="section-title">What Players Say</h2>
+        </div>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">Playing with my friends across three countries felt like we were actually in the same room. The puzzles are deviously clever!</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JM</div>
+                    <div class="author-info">
+                        <h4>James M.</h4>
+                        <span>23 rooms escaped</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">I've done real escape rooms, but this is on another level. The spatial puzzles—moving objects, finding hidden compartments—feel so real.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">SK</div>
+                    <div class="author-info">
+                        <h4>Sarah K.</h4>
+                        <span>31 rooms escaped</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">Our team night tradition! Every week we tackle a new room. The Phantom's Opera took us 3 attempts. Worth every second.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">TC</div>
+                    <div class="author-info">
+                        <h4>Team Cipher</h4>
+                        <span>47 rooms escaped</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-box">
+            <h2>Can You Escape?</h2>
+            <p>The clock is ticking. Your team is waiting. The mystery begins now.</p>
+            <a href="https://apps.apple.com/app/escape-room-network" class="app-store-badge">
+                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Escape Room Network. Mysteries await on Apple Vision Pro.</p>
     </footer>
 </body>
 </html>
