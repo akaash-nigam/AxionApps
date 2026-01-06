@@ -3,266 +3,725 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reality Annotation Platform - Annotate Reality in 3D | Apple Vision Pro</title>
-    <meta name="description" content="Add persistent annotations to physical spaces in spatial 3D. Mark up reality for training, documentation, and collaboration.">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Reality Annotation Platform - Annotate Reality in 3D">
-    <meta property="og:description" content="Add persistent annotations to physical spaces in spatial 3D. Mark up reality for training, documentation, and collaboration.">
-    <meta property="og:image" content="hero-spatial.png">
-    <meta name="twitter:card" content="summary_large_image">
+    <meta name="hero-ref" content="1">
+    <title>Reality Annotation Platform - Mark Up the Real World</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --accent: #a855f7;
-            --accent-rgb: 168, 85, 247;
-            --accent-glow: rgba(168, 85, 247, 0.3);
-            --accent-border: rgba(168, 85, 247, 0.2);
-            --accent-hover: rgba(168, 85, 247, 0.5);
-            --bg-dark: #0a0a0f;
-            --bg-card: rgba(30, 27, 75, 0.4);
-            --text-primary: rgba(255, 255, 255, 0.95);
-            --text-secondary: rgba(255, 255, 255, 0.7);
-            --text-muted: rgba(255, 255, 255, 0.5);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif; background: var(--bg-dark); color: var(--text-primary); overflow-x: hidden; line-height: 1.6; }
-        .depth-layer { position: fixed; width: 200%; height: 200%; top: -50%; left: -50%; pointer-events: none; z-index: 0; }
-        .depth-layer-1 { background: radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.15) 0%, transparent 50%); animation: float 20s ease-in-out infinite; }
-        .depth-layer-2 { background: radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.12) 0%, transparent 50%); animation: float 25s ease-in-out infinite reverse; }
-        .depth-layer-3 { background: radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.08) 0%, transparent 60%); animation: float 30s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 33% { transform: translate(30px, -30px) rotate(3deg); } 66% { transform: translate(-20px, 20px) rotate(-3deg); } }
-        .vision-strip { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; }
-        .vision-strip .badge { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
-        .vision-strip .badge.highlight { background: var(--accent-glow); padding: 4px 12px; border-radius: 12px; color: white; border: 1px solid var(--accent-border); }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
-        nav { position: fixed; top: 44px; left: 0; right: 0; z-index: 999; background: rgba(10, 10, 15, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 15px 20px; }
-        nav .nav-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.3rem; font-weight: 700; color: white; display: flex; align-items: center; gap: 10px; }
-        .logo-icon { width: 36px; height: 36px; background: var(--accent-glow); border: 1px solid var(--accent-border); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
-        nav ul { display: flex; list-style: none; gap: 30px; }
-        nav a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; }
-        nav a:hover { color: white; }
-        .hero { padding: 180px 20px 100px; }
-        .hero-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center; max-width: 1400px; margin: 0 auto; }
-        .hero-content { text-align: left; }
-        .hero-badge { display: inline-block; background: var(--accent-glow); backdrop-filter: blur(20px); border: 1px solid var(--accent-hover); padding: 8px 20px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 24px; color: white; }
-        h1 { font-size: 52px; font-weight: 700; margin-bottom: 20px; background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; }
-        .tagline { font-size: 24px; color: var(--text-primary); margin-bottom: 20px; font-weight: 500; }
-        .description { font-size: 17px; color: var(--text-secondary); margin-bottom: 32px; line-height: 1.7; }
-        .cta-group { display: flex; gap: 16px; flex-wrap: wrap; }
-        .cta-button { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-size: 16px; font-weight: 600; transition: all 0.3s; box-shadow: 0 10px 40px var(--accent-glow); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 15px 50px var(--accent-hover); }
-        .cta-secondary { background: transparent; border: 1px solid var(--accent-border); box-shadow: none; }
-        .cta-secondary:hover { background: var(--accent-glow); box-shadow: none; }
-        .hero-image { position: relative; }
-        .hero-image img { width: 100%; border-radius: 20px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--accent-border); }
-        .hero-image::before { content: ''; position: absolute; inset: -2px; background: linear-gradient(135deg, var(--accent-hover), transparent 50%); border-radius: 22px; z-index: -1; }
-        .hero-placeholder { width: 100%; aspect-ratio: 16/10; background: linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(30, 27, 75, 0.6) 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 18px; border: 1px dashed var(--accent-border); }
-        .section { padding: 100px 20px; }
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-title { font-size: 42px; font-weight: 700; margin-bottom: 16px; }
-        .section-subtitle { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
-        .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-        .pillar-card { background: var(--bg-card); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--accent-border); border-radius: 20px; padding: 32px; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
-        .pillar-card:hover { transform: translateY(-5px); border-color: var(--accent-hover); box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--accent-border); }
-        .pillar-icon { font-size: 40px; margin-bottom: 16px; }
-        .pillar-card h3 { font-size: 20px; margin-bottom: 12px; color: var(--accent); }
-        .pillar-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
-        .benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-        .benefit-card { text-align: center; padding: 32px 20px; background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: 16px; }
-        .benefit-stat { font-size: 48px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
-        .benefit-label { font-size: 14px; color: var(--text-secondary); }
-        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .testimonial-card { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: 16px; padding: 32px; }
-        .testimonial-quote { font-size: 16px; font-style: italic; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.7; }
-        .testimonial-author { display: flex; align-items: center; gap: 12px; }
-        .author-avatar { width: 48px; height: 48px; background: var(--accent-glow); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--accent); }
-        .author-info h4 { font-size: 15px; margin-bottom: 2px; }
-        .author-info span { font-size: 13px; color: var(--text-muted); }
-        .cta-section { text-align: center; padding: 120px 20px; background: linear-gradient(180deg, transparent 0%, rgba(168, 85, 247, 0.1) 100%); border-top: 1px solid var(--accent-border); }
-        .cta-section h2 { font-size: 48px; margin-bottom: 16px; }
-        .cta-section p { font-size: 18px; color: var(--text-secondary); margin-bottom: 32px; }
-        .store-badges { display: flex; justify-content: center; gap: 16px; margin-top: 24px; }
-        .store-badges img { height: 50px; }
-        footer { border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 60px 20px; text-align: center; }
-        footer p { color: var(--text-muted); font-size: 14px; }
-        footer a { color: var(--accent); text-decoration: none; margin: 0 15px; }
-        footer a:hover { color: white; }
-        @media (max-width: 1024px) { .hero-grid { grid-template-columns: 1fr; text-align: center; } .hero-content { text-align: center; } .cta-group { justify-content: center; } .benefits-grid { grid-template-columns: repeat(2, 1fr); } .testimonials-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) { h1 { font-size: 36px; } .section-title { font-size: 32px; } .benefits-grid { grid-template-columns: 1fr; } .vision-strip { padding: 8px 10px; gap: 10px; } .vision-strip .badge { font-size: 10px; } nav ul { gap: 15px; } }
+
+        :root {
+            --marker-yellow: #fbbf24;
+            --marker-pink: #f472b6;
+            --marker-blue: #60a5fa;
+            --marker-green: #4ade80;
+            --pin-red: #ef4444;
+            --note-cream: #fef3c7;
+            --canvas-dark: #0f0f14;
+            --layer-dark: #1a1a24;
+            --grid-line: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background: var(--canvas-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Canvas Background */
+        .canvas-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        /* Grid Pattern */
+        .grid-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Floating Annotation Pins */
+        .pin {
+            position: absolute;
+            width: 24px;
+            height: 32px;
+            animation: pinBounce 3s ease-in-out infinite;
+        }
+
+        .pin::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--pin-red);
+            border-radius: 50% 50% 50% 0;
+            transform: translateX(-50%) rotate(-45deg);
+            box-shadow: 0 0 15px var(--pin-red);
+        }
+
+        .pin::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 12px;
+            background: var(--pin-red);
+            border-radius: 0 0 2px 2px;
+        }
+
+        .pin:nth-child(2) { top: 20%; left: 15%; animation-delay: 0s; }
+        .pin:nth-child(3) { top: 35%; right: 20%; animation-delay: 0.5s; }
+        .pin:nth-child(3)::before, .pin:nth-child(3)::after { background: var(--marker-blue); box-shadow: 0 0 15px var(--marker-blue); }
+        .pin:nth-child(4) { top: 65%; left: 10%; animation-delay: 1s; }
+        .pin:nth-child(4)::before, .pin:nth-child(4)::after { background: var(--marker-green); box-shadow: 0 0 15px var(--marker-green); }
+        .pin:nth-child(5) { top: 75%; right: 15%; animation-delay: 1.5s; }
+        .pin:nth-child(5)::before, .pin:nth-child(5)::after { background: var(--marker-yellow); box-shadow: 0 0 15px var(--marker-yellow); }
+
+        @keyframes pinBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Callout Boxes */
+        .callout {
+            position: absolute;
+            padding: 10px 16px;
+            background: rgba(26, 26, 36, 0.9);
+            border: 1px solid var(--marker-yellow);
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--marker-yellow);
+            opacity: 0;
+            animation: calloutAppear 5s ease-in-out infinite;
+        }
+
+        .callout::before {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 1px;
+            background: var(--marker-yellow);
+        }
+
+        .callout:nth-child(6) {
+            top: 25%; left: 25%;
+            animation-delay: 0s;
+        }
+        .callout:nth-child(6)::before { left: -30px; top: 50%; }
+
+        .callout:nth-child(7) {
+            top: 50%; right: 25%;
+            border-color: var(--marker-pink);
+            color: var(--marker-pink);
+            animation-delay: 1.5s;
+        }
+        .callout:nth-child(7)::before { right: -30px; top: 50%; background: var(--marker-pink); }
+
+        .callout:nth-child(8) {
+            top: 70%; left: 30%;
+            border-color: var(--marker-blue);
+            color: var(--marker-blue);
+            animation-delay: 3s;
+        }
+        .callout:nth-child(8)::before { left: -30px; top: 50%; background: var(--marker-blue); }
+
+        @keyframes calloutAppear {
+            0%, 15%, 85%, 100% { opacity: 0; transform: scale(0.9); }
+            25%, 75% { opacity: 0.8; transform: scale(1); }
+        }
+
+        /* Connection Lines */
+        .connection-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--marker-blue), transparent);
+            opacity: 0.3;
+            animation: lineGrow 4s ease-in-out infinite;
+        }
+
+        .connection-line:nth-child(9) { top: 30%; left: 20%; width: 200px; transform: rotate(15deg); }
+        .connection-line:nth-child(10) { top: 55%; right: 25%; width: 150px; transform: rotate(-20deg); animation-delay: 2s; background: linear-gradient(90deg, transparent, var(--marker-pink), transparent); }
+
+        @keyframes lineGrow {
+            0%, 100% { transform: scaleX(0); opacity: 0; }
+            50% { transform: scaleX(1); opacity: 0.4; }
+        }
+
+        /* Measurement Line */
+        .measure-line {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 250px;
+            height: 2px;
+            background: var(--marker-green);
+            opacity: 0.2;
+        }
+
+        .measure-line::before,
+        .measure-line::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            width: 2px;
+            height: 18px;
+            background: var(--marker-green);
+        }
+
+        .measure-line::before { left: 0; }
+        .measure-line::after { right: 0; }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(15, 15, 20, 0.95), transparent);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--marker-yellow), var(--marker-pink));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .platform-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .platform-badge svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 120px 20px 60px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(251, 191, 36, 0.15);
+            border: 1px solid rgba(251, 191, 36, 0.4);
+            border-radius: 50px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--marker-yellow);
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: clamp(2.8rem, 7vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        h1 .reality { color: var(--text-primary); }
+        h1 .annotation {
+            background: linear-gradient(135deg, var(--marker-yellow), var(--marker-pink), var(--marker-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .hero-image {
+            margin-top: 50px;
+            width: 100%;
+            max-width: 900px;
+            border-radius: 20px;
+            box-shadow: 0 30px 80px rgba(251, 191, 36, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, var(--marker-yellow), var(--marker-pink));
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--canvas-dark);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(251, 191, 36, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(251, 191, 36, 0.4);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--marker-yellow);
+            color: var(--marker-yellow);
+        }
+
+        /* Annotation Types */
+        .annotation-types {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .annotation-type {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 24px;
+            background: rgba(26, 26, 36, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .type-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .type-dot.yellow { background: var(--marker-yellow); box-shadow: 0 0 10px var(--marker-yellow); }
+        .type-dot.pink { background: var(--marker-pink); box-shadow: 0 0 10px var(--marker-pink); }
+        .type-dot.blue { background: var(--marker-blue); box-shadow: 0 0 10px var(--marker-blue); }
+        .type-dot.green { background: var(--marker-green); box-shadow: 0 0 10px var(--marker-green); }
+
+        .type-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Features */
+        .features {
+            position: relative;
+            z-index: 1;
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: rgba(26, 26, 36, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--marker-yellow);
+            box-shadow: 0 20px 50px rgba(251, 191, 36, 0.1);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(251, 191, 36, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .feature-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Use Cases */
+        .use-cases {
+            position: relative;
+            z-index: 1;
+            padding: 100px 20px;
+            background: linear-gradient(180deg, transparent, rgba(251, 191, 36, 0.03), transparent);
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .case-card {
+            text-align: center;
+            padding: 30px;
+            background: rgba(26, 26, 36, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+        }
+
+        .case-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .case-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .case-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            position: relative;
+            z-index: 1;
+            padding: 100px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, transparent, rgba(26, 26, 36, 0.8));
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .app-store-link {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .app-store-link:hover {
+            transform: scale(1.05);
+        }
+
+        .app-store-link img {
+            height: 55px;
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            z-index: 1;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .annotation-types {
+                gap: 15px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="depth-layer depth-layer-1"></div>
-    <div class="depth-layer depth-layer-2"></div>
-    <div class="depth-layer depth-layer-3"></div>
-    <div class="vision-strip">
-        <span class="badge highlight">Apple Vision Pro</span>
-        <span class="badge">Spatial Computing</span>
-        <span class="badge">visionOS 2.0+</span>
-        <span class="badge">Enterprise Ready</span>
-        <span class="badge">AI & Technology</span>
+    <div class="canvas-bg">
+        <div class="grid-pattern"></div>
+        <div class="pin"></div>
+        <div class="pin"></div>
+        <div class="pin"></div>
+        <div class="pin"></div>
+        <div class="callout">Label: Entry Point</div>
+        <div class="callout">Note: Check valve</div>
+        <div class="callout">ID: #A-2847</div>
+        <div class="connection-line"></div>
+        <div class="connection-line"></div>
+        <div class="measure-line"></div>
     </div>
+
     <nav>
-        <div class="nav-content">
-            <div class="logo">
-                <div class="logo-icon">RA</div>
-                Reality Annotation Platform
+        <div class="logo">
+            <div class="logo-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
             </div>
-            <ul>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#benefits">Benefits</a></li>
-                <li><a href="support.html">Support</a></li>
-            </ul>
+            <span class="logo-text">Reality Annotation</span>
+        </div>
+        <div class="platform-badge">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            <span>Built for Apple Vision Pro</span>
         </div>
     </nav>
+
     <section class="hero">
-        <div class="hero-grid">
-            <div class="hero-content">
-                <div class="hero-badge">AI & Technology</div>
-                <h1>Reality Annotation Platform</h1>
-                <p class="tagline">Annotate Reality in 3D</p>
-                <p class="description">Add persistent annotations to physical spaces in spatial 3D. Mark up reality for training, documentation, and collaboration.</p>
-                <div class="cta-group">
-                    <a href="#download" class="cta-button">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
-                        Experience in Vision Pro
-                    </a>
-                    <a href="#demo" class="cta-button cta-secondary">Request Demo</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="hero-placeholder">Spatial Experience Preview</div>
-            </div>
+        <div class="hero-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+            Spatial Markup Tools
         </div>
-    </section>
-    <section class="section" id="features">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Spatial Capabilities</h2>
-                <p class="section-subtitle">Enterprise ai & technology reimagined for immersive spatial computing</p>
-            </div>
-            <div class="pillars-grid">
-                <div class="pillar-card">
-                    <div class="pillar-icon">✏️</div>
-                    <h3>Spatial Annotations</h3>
-                    <p>Mark up 3D space</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">📸</div>
-                    <h3>Scene Capture</h3>
-                    <p>Record environments</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">👥</div>
-                    <h3>Shared Notes</h3>
-                    <p>Team collaboration</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">🔗</div>
-                    <h3>Object Linking</h3>
-                    <p>Connect to data</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">📊</div>
-                    <h3>Analytics</h3>
-                    <p>Usage tracking</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">🔐</div>
-                    <h3>Access Control</h3>
-                    <p>Permission management</p>
-                </div>
 
-            </div>
-        </div>
-    </section>
-    <section class="section" id="benefits" style="background: rgba(168, 85, 247, 0.03);">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Enterprise Impact</h2>
-                <p class="section-subtitle">Measurable results for forward-thinking organizations</p>
-            </div>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-stat">Persistent</div>
-                    <div class="benefit-label">Annotations</div>
-                </div>
-<div class="benefit-card">
-                    <div class="benefit-stat">3D</div>
-                    <div class="benefit-label">Scanning</div>
-                </div>
-<div class="benefit-card">
-                    <div class="benefit-stat">Team</div>
-                    <div class="benefit-label">Sharing</div>
-                </div>
-<div class="benefit-card">
-                    <div class="benefit-stat">API</div>
-                    <div class="benefit-label">Access</div>
-                </div>
+        <h1>
+            <span class="reality">Reality</span><br>
+            <span class="annotation">Annotation Platform</span>
+        </h1>
 
-            </div>
-        </div>
-    </section>
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Trusted by Leaders</h2>
-                <p class="section-subtitle">See why enterprises choose Reality Annotation Platform for spatial computing</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">"The spatial visualization completely changed how we manage our AI operations. Patterns we never noticed are now obvious."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">DM</div>
-                        <div class="author-info">
-                            <h4>David M.</h4>
-                            <span>CTO, Tech Enterprise</span>
-                        </div>
-                    </div>
-                </div>
-<div class="testimonial-card">
-                    <p class="testimonial-quote">"Gesture controls make complex workflows intuitive. Our team adapted in hours, not weeks."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">SK</div>
-                        <div class="author-info">
-                            <h4>Sarah K.</h4>
-                            <span>VP Engineering</span>
-                        </div>
-                    </div>
-                </div>
-<div class="testimonial-card">
-                    <p class="testimonial-quote">"SharePlay collaboration is a game-changer for distributed teams. We feel like we're in the same room."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">MR</div>
-                        <div class="author-info">
-                            <h4>Michael R.</h4>
-                            <span>AI Director</span>
-                        </div>
-                    </div>
-                </div>
+        <p class="tagline">Mark Up the Real World</p>
+        <p class="description">Pin notes to walls. Draw arrows in mid-air. Label every component in a room. Create persistent spatial annotations that stay exactly where you put them.</p>
 
+        <div class="cta-group">
+            <a href="#" class="btn-primary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Start Annotating
+            </a>
+            <a href="#" class="btn-secondary">See Examples</a>
+        </div>
+
+        <img src="hero-image.png" alt="Reality Annotation Platform - Spatial Markup" class="hero-image">
+
+        <div class="annotation-types">
+            <div class="annotation-type">
+                <div class="type-dot yellow"></div>
+                <span class="type-label">Labels</span>
+            </div>
+            <div class="annotation-type">
+                <div class="type-dot pink"></div>
+                <span class="type-label">Notes</span>
+            </div>
+            <div class="annotation-type">
+                <div class="type-dot blue"></div>
+                <span class="type-label">Measurements</span>
+            </div>
+            <div class="annotation-type">
+                <div class="type-dot green"></div>
+                <span class="type-label">Connections</span>
             </div>
         </div>
     </section>
-    <section class="cta-section" id="download">
-        <div class="container">
-            <h2>Ready to Transform Your Workflow?</h2>
-            <p>Experience the future of ai & technology with Apple Vision Pro</p>
-            <a href="#" class="cta-button">Get Started Today</a>
-            <div class="store-badges">
-                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on App Store">
+
+    <section class="features">
+        <div class="section-header">
+            <h2 class="section-title">Your Spatial Toolkit</h2>
+            <p class="section-subtitle">Everything you need to annotate reality</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="var(--marker-yellow)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg></div>
+                <h3 class="feature-title">Persistent Pins</h3>
+                <p class="feature-desc">Drop pins that stay anchored in real space. Return days later and find your annotations exactly where you left them.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="var(--marker-pink)"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div>
+                <h3 class="feature-title">Freehand Drawing</h3>
+                <p class="feature-desc">Draw lines, arrows, and shapes in mid-air. Highlight paths, mark boundaries, and sketch ideas in 3D space.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="var(--marker-blue)"><path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></div>
+                <h3 class="feature-title">Spatial Measurements</h3>
+                <p class="feature-desc">Measure distances, areas, and volumes. Annotations show real dimensions that update as you refine.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="var(--marker-green)"><path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/></svg></div>
+                <h3 class="feature-title">Smart Labels</h3>
+                <p class="feature-desc">Attach rich labels to any surface. Include text, images, links, and even video explanations.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="var(--marker-yellow)"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></div>
+                <h3 class="feature-title">Connection Lines</h3>
+                <p class="feature-desc">Draw relationships between objects. Show wiring paths, pipe routes, or logical connections.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="var(--marker-pink)"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
+                <h3 class="feature-title">Team Collaboration</h3>
+                <p class="feature-desc">Share annotation layers with your team. Everyone sees the same spatial notes in real-time.</p>
             </div>
         </div>
     </section>
+
+    <section class="use-cases">
+        <div class="section-header">
+            <h2 class="section-title">Built For</h2>
+            <p class="section-subtitle">Professionals who need to mark up reality</p>
+        </div>
+
+        <div class="cases-grid">
+            <div class="case-card">
+                <div class="case-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="var(--marker-yellow)"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm-5-9h10V5H7v3z"/></svg></div>
+                <h3 class="case-title">Industrial Training</h3>
+                <p class="case-desc">Label equipment, mark safety zones, create interactive training guides.</p>
+            </div>
+            <div class="case-card">
+                <div class="case-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="var(--marker-blue)"><path d="M13 4v2.67l-1 1-1-1V4h2m7 5v2h-2.67l-1-1 1-1H20M4 9v2h2.67l1-1-1-1H4m7 11v-2.67l1-1 1 1V20h-2M9 9L4.65 4.65 6.07 3.24 9 6.17V9H6.17L3.24 6.07 4.65 4.65 9 9m6 0l4.35-4.35-1.41-1.41L15 6.17V9h2.83l2.93-2.93-1.41-1.42L15 9m-6 6l-4.35 4.35 1.42 1.41L9 17.83V15H6.17l-2.93 2.93 1.41 1.42L9 15m6 0l4.35 4.35-1.42 1.41L15 17.83V15h2.83l2.93 2.93-1.41 1.42L15 15"/></svg></div>
+                <h3 class="case-title">Construction</h3>
+                <p class="case-desc">Mark installation points, annotate plans, track progress in spatial 3D.</p>
+            </div>
+            <div class="case-card">
+                <div class="case-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="var(--marker-green)"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg></div>
+                <h3 class="case-title">Healthcare</h3>
+                <p class="case-desc">Document procedures, label equipment locations, create spatial protocols.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Start Marking Up Reality</h2>
+        <p>Transform any space into an annotated, documented, intelligent environment.</p>
+        <a href="https://apps.apple.com/app/reality-annotation-platform" class="app-store-link">
+            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on App Store">
+        </a>
+    </section>
+
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Reality Annotation Platform. Designed for Apple Vision Pro spatial computing.</p>
-            <div style="margin-top: 16px;">
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-                <a href="support.html">Support</a>
-            </div>
-        </div>
+        <p>&copy; 2026 Reality Annotation Platform. Designed for Apple Vision Pro.</p>
     </footer>
 </body>
 </html>

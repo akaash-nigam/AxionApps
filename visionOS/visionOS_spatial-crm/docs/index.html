@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="hero-ref" content="1">
     <title>Spatial CRM - Customer Relations in Spatial Reality | Apple Vision Pro</title>
     <meta name="description" content="Reimagine customer relationship management in 3D space. Visualize sales pipelines, customer journeys, and team performance.">
     <meta property="og:type" content="website">
@@ -10,118 +11,767 @@
     <meta property="og:description" content="Reimagine customer relationship management in 3D space. Visualize sales pipelines, customer journeys, and team performance.">
     <meta property="og:image" content="hero-spatial.png">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --accent: #6366f1;
-            --accent-rgb: 99, 102, 241;
-            --accent-glow: rgba(99, 102, 241, 0.3);
-            --accent-border: rgba(99, 102, 241, 0.2);
-            --accent-hover: rgba(99, 102, 241, 0.5);
-            --bg-dark: #0a0a0f;
-            --bg-card: rgba(30, 27, 75, 0.4);
-            --text-primary: rgba(255, 255, 255, 0.95);
-            --text-secondary: rgba(255, 255, 255, 0.7);
-            --text-muted: rgba(255, 255, 255, 0.5);
+            --pipeline-blue: #3b82f6;
+            --deal-green: #22c55e;
+            --lead-amber: #f59e0b;
+            --hot-coral: #f43f5e;
+            --prospect-purple: #8b5cf6;
+            --customer-teal: #14b8a6;
+            --trust-navy: #1e3a8a;
+            --dashboard-dark: #0c1222;
+            --panel-dark: #111827;
+            --metric-glow: rgba(59, 130, 246, 0.3);
+            --success-glow: rgba(34, 197, 94, 0.3);
+            --accent-border: rgba(59, 130, 246, 0.25);
         }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif; background: var(--bg-dark); color: var(--text-primary); overflow-x: hidden; line-height: 1.6; }
-        .depth-layer { position: fixed; width: 200%; height: 200%; top: -50%; left: -50%; pointer-events: none; z-index: 0; }
-        .depth-layer-1 { background: radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 50%); animation: float 20s ease-in-out infinite; }
-        .depth-layer-2 { background: radial-gradient(circle at 80% 70%, rgba(99, 102, 241, 0.12) 0%, transparent 50%); animation: float 25s ease-in-out infinite reverse; }
-        .depth-layer-3 { background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 60%); animation: float 30s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 33% { transform: translate(30px, -30px) rotate(3deg); } 66% { transform: translate(-20px, 20px) rotate(-3deg); } }
-        .vision-strip { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; }
-        .vision-strip .badge { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
-        .vision-strip .badge.highlight { background: var(--accent-glow); padding: 4px 12px; border-radius: 12px; color: white; border: 1px solid var(--accent-border); }
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            background: var(--dashboard-dark);
+            color: #f1f5f9;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Sales Pipeline Animation Background */
+        .pipeline-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        /* Pipeline stages visualization */
+        .pipeline-stage {
+            position: absolute;
+            height: 100%;
+            border-right: 1px solid rgba(59, 130, 246, 0.08);
+        }
+        .pipeline-stage:nth-child(1) { left: 20%; }
+        .pipeline-stage:nth-child(2) { left: 40%; }
+        .pipeline-stage:nth-child(3) { left: 60%; }
+        .pipeline-stage:nth-child(4) { left: 80%; }
+
+        /* Flowing deals/leads */
+        .deal-dot {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: flowDeal 12s linear infinite;
+        }
+        .deal-dot:nth-child(5) { top: 20%; left: -20px; background: var(--lead-amber); animation-delay: 0s; }
+        .deal-dot:nth-child(6) { top: 35%; left: -20px; background: var(--pipeline-blue); animation-delay: 2s; }
+        .deal-dot:nth-child(7) { top: 50%; left: -20px; background: var(--prospect-purple); animation-delay: 4s; }
+        .deal-dot:nth-child(8) { top: 65%; left: -20px; background: var(--hot-coral); animation-delay: 6s; }
+        .deal-dot:nth-child(9) { top: 80%; left: -20px; background: var(--deal-green); animation-delay: 8s; }
+
+        @keyframes flowDeal {
+            0% { left: -20px; opacity: 0; }
+            5% { opacity: 0.5; }
+            95% { opacity: 0.5; }
+            100% { left: 110%; opacity: 0; }
+        }
+
+        /* Customer Nodes */
+        .customer-nodes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .customer-node {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: var(--panel-dark);
+            border: 2px solid var(--accent-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            opacity: 0.15;
+            animation: nodeFloat 8s ease-in-out infinite;
+        }
+        .customer-node:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+        .customer-node:nth-child(2) { top: 25%; left: 85%; animation-delay: 1s; }
+        .customer-node:nth-child(3) { top: 55%; left: 8%; animation-delay: 2s; }
+        .customer-node:nth-child(4) { top: 70%; left: 88%; animation-delay: 3s; }
+        .customer-node:nth-child(5) { top: 40%; left: 92%; animation-delay: 4s; }
+
+        @keyframes nodeFloat {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-10px) scale(1.1); }
+        }
+
+        /* Connection Lines */
+        .connection-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--pipeline-blue), transparent);
+            opacity: 0.1;
+            animation: linePulse 4s ease-in-out infinite;
+        }
+        .connection-line:nth-child(6) { top: 20%; left: 12%; width: 200px; transform: rotate(15deg); }
+        .connection-line:nth-child(7) { top: 45%; left: 75%; width: 180px; transform: rotate(-20deg); animation-delay: 2s; }
+        .connection-line:nth-child(8) { top: 65%; left: 15%; width: 250px; transform: rotate(8deg); animation-delay: 1s; }
+
+        @keyframes linePulse {
+            0%, 100% { opacity: 0.05; }
+            50% { opacity: 0.2; }
+        }
+
+        /* Gradient overlay */
+        .depth-layer {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse at 25% 25%, rgba(59, 130, 246, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 75% 75%, rgba(34, 197, 94, 0.08) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 50%, rgba(139, 92, 246, 0.06) 0%, transparent 60%);
+        }
+
+        .vision-strip {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(12, 18, 34, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--accent-border);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .vision-strip .badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(241, 245, 249, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .vision-strip .badge.highlight {
+            background: linear-gradient(135deg, var(--pipeline-blue), var(--trust-navy));
+            padding: 6px 14px;
+            border-radius: 8px;
+            color: white;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 2px 12px var(--metric-glow);
+        }
+        .vision-strip .badge.highlight::before {
+            content: '';
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z'/%3E%3C/svg%3E") no-repeat center;
+            margin-right: 4px;
+        }
+
         .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
-        nav { position: fixed; top: 44px; left: 0; right: 0; z-index: 999; background: rgba(10, 10, 15, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 15px 20px; }
+
+        nav {
+            position: fixed;
+            top: 44px;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: rgba(12, 18, 34, 0.88);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+            padding: 15px 20px;
+        }
         nav .nav-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.3rem; font-weight: 700; color: white; display: flex; align-items: center; gap: 10px; }
-        .logo-icon { width: 36px; height: 36px; background: var(--accent-glow); border: 1px solid var(--accent-border); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
-        nav ul { display: flex; list-style: none; gap: 30px; }
-        nav a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; }
-        nav a:hover { color: white; }
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--pipeline-blue) 0%, var(--prospect-purple) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+            font-weight: 800;
+            box-shadow: 0 4px 16px var(--metric-glow);
+        }
+        nav ul { display: flex; list-style: none; gap: 32px; }
+        nav a {
+            color: rgba(241, 245, 249, 0.7);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        nav a:hover { color: var(--pipeline-blue); }
+
         .hero { padding: 180px 20px 100px; }
-        .hero-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center; max-width: 1400px; margin: 0 auto; }
+
+        .hero-image {
+            margin-top: 50px;
+            width: 100%;
+            max-width: 900px;
+            border-radius: 20px;
+            box-shadow: 0 30px 80px var(--metric-glow);
+            border: 1px solid var(--accent-border);
+        }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: center; max-width: 1400px; margin: 0 auto; }
         .hero-content { text-align: left; }
-        .hero-badge { display: inline-block; background: var(--accent-glow); backdrop-filter: blur(20px); border: 1px solid var(--accent-hover); padding: 8px 20px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 24px; color: white; }
-        h1 { font-size: 52px; font-weight: 700; margin-bottom: 20px; background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; }
-        .tagline { font-size: 24px; color: var(--text-primary); margin-bottom: 20px; font-weight: 500; }
-        .description { font-size: 17px; color: var(--text-secondary); margin-bottom: 32px; line-height: 1.7; }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--accent-border);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 28px;
+            color: var(--pipeline-blue);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .hero-badge::before {
+            content: '';
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233b82f6'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z'/%3E%3C/svg%3E") no-repeat center;
+        }
+        h1 {
+            font-size: 54px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: white;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+        h1 .highlight {
+            background: linear-gradient(135deg, var(--pipeline-blue) 0%, var(--customer-teal) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .tagline {
+            font-size: 24px;
+            color: var(--deal-green);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .description {
+            font-size: 18px;
+            color: rgba(241, 245, 249, 0.75);
+            margin-bottom: 36px;
+            line-height: 1.8;
+        }
         .cta-group { display: flex; gap: 16px; flex-wrap: wrap; }
-        .cta-button { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-size: 16px; font-weight: 600; transition: all 0.3s; box-shadow: 0 10px 40px var(--accent-glow); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 15px 50px var(--accent-hover); }
-        .cta-secondary { background: transparent; border: 1px solid var(--accent-border); box-shadow: none; }
-        .cta-secondary:hover { background: var(--accent-glow); box-shadow: none; }
-        .hero-image { position: relative; }
-        .hero-image img { width: 100%; border-radius: 20px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--accent-border); }
-        .hero-image::before { content: ''; position: absolute; inset: -2px; background: linear-gradient(135deg, var(--accent-hover), transparent 50%); border-radius: 22px; z-index: -1; }
-        .hero-placeholder { width: 100%; aspect-ratio: 16/10; background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(30, 27, 75, 0.6) 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 18px; border: 1px dashed var(--accent-border); }
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--pipeline-blue) 0%, var(--trust-navy) 100%);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 8px 32px var(--metric-glow);
+            letter-spacing: 0.3px;
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.4);
+        }
+        .cta-secondary {
+            background: transparent;
+            border: 2px solid var(--accent-border);
+            color: var(--pipeline-blue);
+            box-shadow: none;
+        }
+        .cta-secondary:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: var(--pipeline-blue);
+            box-shadow: none;
+        }
+
+        /* Hero Visual - CRM Dashboard */
+        .hero-visual {
+            position: relative;
+            height: 480px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .crm-dashboard {
+            position: relative;
+            width: 420px;
+            height: 420px;
+        }
+        /* Central Hub */
+        .crm-hub {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--pipeline-blue), var(--prospect-purple));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            box-shadow:
+                0 0 50px var(--metric-glow),
+                0 0 100px rgba(59, 130, 246, 0.15);
+            animation: hubGlow 3s ease-in-out infinite;
+        }
+        @keyframes hubGlow {
+            0%, 100% { box-shadow: 0 0 50px var(--metric-glow), 0 0 100px rgba(59, 130, 246, 0.15); }
+            50% { box-shadow: 0 0 70px var(--metric-glow), 0 0 140px rgba(59, 130, 246, 0.25); }
+        }
+
+        /* Pipeline Funnel */
+        .funnel {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .funnel-stage {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px dashed;
+            opacity: 0.3;
+        }
+        .funnel-stage:nth-child(1) {
+            width: 350px;
+            height: 350px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-color: var(--lead-amber);
+            animation: stagePulse 4s ease-in-out infinite;
+        }
+        .funnel-stage:nth-child(2) {
+            width: 280px;
+            height: 280px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-color: var(--pipeline-blue);
+            animation: stagePulse 4s ease-in-out infinite 1s;
+        }
+        .funnel-stage:nth-child(3) {
+            width: 210px;
+            height: 210px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-color: var(--prospect-purple);
+            animation: stagePulse 4s ease-in-out infinite 2s;
+        }
+        .funnel-stage:nth-child(4) {
+            width: 140px;
+            height: 140px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-color: var(--deal-green);
+            animation: stagePulse 4s ease-in-out infinite 3s;
+        }
+
+        @keyframes stagePulse {
+            0%, 100% { opacity: 0.2; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.02); }
+        }
+
+        /* Metric Cards */
+        .metric-card {
+            position: absolute;
+            background: var(--panel-dark);
+            border: 1px solid var(--accent-border);
+            border-radius: 12px;
+            padding: 12px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            animation: cardFloat 5s ease-in-out infinite;
+        }
+        .metric-card .value {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--pipeline-blue);
+        }
+        .metric-card .label {
+            font-size: 10px;
+            color: rgba(241, 245, 249, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .metric-card:nth-child(5) { top: 5%; left: 10%; animation-delay: 0s; }
+        .metric-card:nth-child(5) .value { color: var(--lead-amber); }
+        .metric-card:nth-child(6) { top: 5%; right: 10%; animation-delay: 1s; }
+        .metric-card:nth-child(6) .value { color: var(--deal-green); }
+        .metric-card:nth-child(7) { bottom: 5%; left: 10%; animation-delay: 2s; }
+        .metric-card:nth-child(7) .value { color: var(--prospect-purple); }
+        .metric-card:nth-child(8) { bottom: 5%; right: 10%; animation-delay: 3s; }
+        .metric-card:nth-child(8) .value { color: var(--hot-coral); }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* Deal Flow Animation */
+        .deal-flow {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: dealMove 6s linear infinite;
+        }
+        .deal-flow:nth-child(9) { background: var(--lead-amber); animation-delay: 0s; }
+        .deal-flow:nth-child(10) { background: var(--pipeline-blue); animation-delay: 2s; }
+        .deal-flow:nth-child(11) { background: var(--deal-green); animation-delay: 4s; }
+
+        @keyframes dealMove {
+            0% { top: 0%; left: 50%; transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+            10% { opacity: 1; }
+            25% { top: 18%; left: 50%; transform: translate(-50%, -50%) scale(1); }
+            50% { top: 35%; left: 50%; transform: translate(-50%, -50%) scale(1.1); }
+            75% { top: 45%; left: 50%; transform: translate(-50%, -50%) scale(1); }
+            90% { opacity: 1; }
+            100% { top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+        }
+
         .section { padding: 100px 20px; }
         .section-header { text-align: center; margin-bottom: 60px; }
-        .section-title { font-size: 42px; font-weight: 700; margin-bottom: 16px; }
-        .section-subtitle { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
-        .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-        .pillar-card { background: var(--bg-card); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--accent-border); border-radius: 20px; padding: 32px; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
-        .pillar-card:hover { transform: translateY(-5px); border-color: var(--accent-hover); box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--accent-border); }
-        .pillar-icon { font-size: 40px; margin-bottom: 16px; }
-        .pillar-card h3 { font-size: 20px; margin-bottom: 12px; color: var(--accent); }
-        .pillar-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+        .section-title {
+            font-size: 44px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+        .section-subtitle {
+            font-size: 18px;
+            color: rgba(241, 245, 249, 0.65);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .pillar-card {
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.9), rgba(12, 18, 34, 0.95));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--accent-border);
+            border-radius: 16px;
+            padding: 36px 28px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .pillar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--pipeline-blue), var(--deal-green));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .pillar-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+        .pillar-card:hover::before {
+            opacity: 1;
+        }
+        .pillar-icon {
+            font-size: 44px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        .pillar-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--pipeline-blue);
+            font-weight: 700;
+        }
+        .pillar-card p {
+            font-size: 15px;
+            color: rgba(241, 245, 249, 0.7);
+            line-height: 1.7;
+        }
+
+        /* Integration Badges */
+        .integrations {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        .integration-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: rgba(17, 24, 39, 0.7);
+            border: 1px solid var(--accent-border);
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(241, 245, 249, 0.8);
+            transition: all 0.3s;
+        }
+        .integration-badge:hover {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: var(--pipeline-blue);
+            color: var(--pipeline-blue);
+        }
+
+        .benefits-section {
+            background: linear-gradient(180deg, rgba(59, 130, 246, 0.05) 0%, transparent 100%);
+            border-top: 1px solid var(--accent-border);
+            border-bottom: 1px solid var(--accent-border);
+        }
         .benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-        .benefit-card { text-align: center; padding: 32px 20px; background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: 16px; }
-        .benefit-stat { font-size: 48px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
-        .benefit-label { font-size: 14px; color: var(--text-secondary); }
+        .benefit-card {
+            text-align: center;
+            padding: 40px 24px;
+            background: rgba(17, 24, 39, 0.6);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            border-radius: 16px;
+            transition: all 0.3s;
+        }
+        .benefit-card:hover {
+            background: rgba(17, 24, 39, 0.9);
+            border-color: var(--accent-border);
+            transform: translateY(-4px);
+        }
+        .benefit-icon {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+        .benefit-stat {
+            font-size: 38px;
+            font-weight: 800;
+            color: var(--pipeline-blue);
+            margin-bottom: 8px;
+        }
+        .benefit-label {
+            font-size: 13px;
+            color: rgba(241, 245, 249, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
         .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .testimonial-card { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: 16px; padding: 32px; }
-        .testimonial-quote { font-size: 16px; font-style: italic; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.7; }
-        .testimonial-author { display: flex; align-items: center; gap: 12px; }
-        .author-avatar { width: 48px; height: 48px; background: var(--accent-glow); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--accent); }
-        .author-info h4 { font-size: 15px; margin-bottom: 2px; }
-        .author-info span { font-size: 13px; color: var(--text-muted); }
-        .cta-section { text-align: center; padding: 120px 20px; background: linear-gradient(180deg, transparent 0%, rgba(99, 102, 241, 0.1) 100%); border-top: 1px solid var(--accent-border); }
-        .cta-section h2 { font-size: 48px; margin-bottom: 16px; }
-        .cta-section p { font-size: 18px; color: var(--text-secondary); margin-bottom: 32px; }
-        .store-badges { display: flex; justify-content: center; gap: 16px; margin-top: 24px; }
-        .store-badges img { height: 50px; }
-        footer { border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 60px 20px; text-align: center; }
-        footer p { color: var(--text-muted); font-size: 14px; }
-        footer a { color: var(--accent); text-decoration: none; margin: 0 15px; }
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.8), rgba(12, 18, 34, 0.9));
+            border: 1px solid var(--accent-border);
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
+        }
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20px;
+            right: 20px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--pipeline-blue), var(--deal-green));
+            border-radius: 0 0 4px 4px;
+        }
+        .testimonial-quote {
+            font-size: 16px;
+            font-style: italic;
+            color: rgba(241, 245, 249, 0.85);
+            margin-bottom: 24px;
+            line-height: 1.8;
+            padding-top: 12px;
+        }
+        .testimonial-author { display: flex; align-items: center; gap: 14px; }
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--pipeline-blue), var(--prospect-purple));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: white;
+            font-size: 16px;
+        }
+        .author-info h4 {
+            font-size: 15px;
+            margin-bottom: 4px;
+            color: white;
+            font-weight: 600;
+        }
+        .author-info span {
+            font-size: 13px;
+            color: var(--deal-green);
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 120px 20px;
+            background: linear-gradient(180deg, transparent 0%, rgba(59, 130, 246, 0.08) 50%, rgba(34, 197, 94, 0.05) 100%);
+            border-top: 1px solid var(--accent-border);
+            position: relative;
+        }
+        .cta-section h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: white;
+        }
+        .cta-section p {
+            font-size: 18px;
+            color: rgba(241, 245, 249, 0.7);
+            margin-bottom: 36px;
+        }
+        .store-badges { display: flex; justify-content: center; gap: 16px; margin-top: 28px; }
+        .store-badges img { height: 50px; border-radius: 8px; }
+
+        footer {
+            border-top: 1px solid rgba(59, 130, 246, 0.1);
+            padding: 60px 20px;
+            text-align: center;
+            background: rgba(12, 18, 34, 0.5);
+        }
+        footer p { color: rgba(241, 245, 249, 0.5); font-size: 14px; }
+        footer a { color: var(--pipeline-blue); text-decoration: none; margin: 0 15px; transition: color 0.3s; }
         footer a:hover { color: white; }
-        @media (max-width: 1024px) { .hero-grid { grid-template-columns: 1fr; text-align: center; } .hero-content { text-align: center; } .cta-group { justify-content: center; } .benefits-grid { grid-template-columns: repeat(2, 1fr); } .testimonials-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) { h1 { font-size: 36px; } .section-title { font-size: 32px; } .benefits-grid { grid-template-columns: 1fr; } .vision-strip { padding: 8px 10px; gap: 10px; } .vision-strip .badge { font-size: 10px; } nav ul { gap: 15px; } }
+
+        @media (max-width: 1024px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 60px; }
+            .hero-content { text-align: center; }
+            .cta-group { justify-content: center; }
+            .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+            .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .crm-dashboard { transform: scale(0.85); }
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 38px; }
+            .section-title { font-size: 32px; }
+            .benefits-grid { grid-template-columns: 1fr; }
+            .pillars-grid { grid-template-columns: 1fr; }
+            .vision-strip { padding: 8px 10px; gap: 10px; }
+            .vision-strip .badge { font-size: 9px; }
+            nav ul { gap: 15px; }
+            .crm-dashboard { transform: scale(0.65); }
+            .hero-visual { height: 350px; }
+        }
     </style>
 </head>
 <body>
-    <div class="depth-layer depth-layer-1"></div>
-    <div class="depth-layer depth-layer-2"></div>
-    <div class="depth-layer depth-layer-3"></div>
-    <div class="vision-strip">
-        <span class="badge highlight">Apple Vision Pro</span>
-        <span class="badge">Spatial Computing</span>
-        <span class="badge">visionOS 2.0+</span>
-        <span class="badge">Enterprise Ready</span>
-        <span class="badge">Enterprise</span>
+    <!-- Pipeline Background -->
+    <div class="pipeline-bg">
+        <div class="pipeline-stage"></div>
+        <div class="pipeline-stage"></div>
+        <div class="pipeline-stage"></div>
+        <div class="pipeline-stage"></div>
+        <div class="deal-dot"></div>
+        <div class="deal-dot"></div>
+        <div class="deal-dot"></div>
+        <div class="deal-dot"></div>
+        <div class="deal-dot"></div>
     </div>
+
+    <!-- Customer Nodes -->
+    <div class="customer-nodes">
+        <div class="customer-node"><svg width="16" height="16" viewBox="0 0 24 24" fill="var(--pipeline-blue)"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+        <div class="customer-node"><svg width="16" height="16" viewBox="0 0 24 24" fill="var(--prospect-purple)"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
+        <div class="customer-node"><svg width="16" height="16" viewBox="0 0 24 24" fill="var(--customer-teal)"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg></div>
+        <div class="customer-node"><svg width="16" height="16" viewBox="0 0 24 24" fill="var(--lead-amber)"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg></div>
+        <div class="customer-node"><svg width="16" height="16" viewBox="0 0 24 24" fill="var(--hot-coral)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg></div>
+        <div class="connection-line"></div>
+        <div class="connection-line"></div>
+        <div class="connection-line"></div>
+    </div>
+
+    <div class="depth-layer"></div>
+
+    <div class="vision-strip">
+        <span class="badge highlight">Built for Apple Vision Pro</span>
+        <span class="badge">Sales Pipeline</span>
+        <span class="badge">visionOS 2.0+</span>
+        <span class="badge">Enterprise</span>
+        <span class="badge">Salesforce</span>
+    </div>
+
     <nav>
         <div class="nav-content">
             <div class="logo">
-                <div class="logo-icon">SC</div>
+                <div class="logo-icon">CRM</div>
                 Spatial CRM
             </div>
             <ul>
                 <li><a href="#features">Features</a></li>
-                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#benefits">Impact</a></li>
                 <li><a href="support.html">Support</a></li>
             </ul>
         </div>
     </nav>
+
     <section class="hero">
         <div class="hero-grid">
             <div class="hero-content">
-                <div class="hero-badge">Enterprise</div>
-                <h1>Spatial CRM</h1>
-                <p class="tagline">Customer Relations in Spatial Reality</p>
-                <p class="description">Reimagine customer relationship management in 3D space. Visualize sales pipelines, customer journeys, and team performance.</p>
+                <div class="hero-badge">Enterprise Sales</div>
+                <h1>Spatial <span class="highlight">CRM</span></h1>
+                <p class="tagline">Customer Relations in 3D Space</p>
+                <p class="description">Reimagine customer relationship management in immersive spatial reality. Visualize your entire pipeline, track customer journeys, and close deals faster with 360° visibility.</p>
                 <div class="cta-group">
                     <a href="#download" class="cta-button">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
@@ -129,134 +779,181 @@
                     </a>
                     <a href="#demo" class="cta-button cta-secondary">Request Demo</a>
                 </div>
+                <img src="hero-image.png" alt="Spatial CRM Dashboard" class="hero-image">
             </div>
-            <div class="hero-image">
-                <div class="hero-placeholder">Spatial Experience Preview</div>
+            <div class="hero-visual">
+                <div class="crm-dashboard">
+                    <!-- Funnel Stages -->
+                    <div class="funnel">
+                        <div class="funnel-stage"></div>
+                        <div class="funnel-stage"></div>
+                        <div class="funnel-stage"></div>
+                        <div class="funnel-stage"></div>
+                    </div>
+                    <!-- Metric Cards -->
+                    <div class="metric-card">
+                        <span class="value">247</span>
+                        <span class="label">Leads</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="value">$2.4M</span>
+                        <span class="label">Pipeline</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="value">89%</span>
+                        <span class="label">Win Rate</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="value">12</span>
+                        <span class="label">Hot Deals</span>
+                    </div>
+                    <!-- Deal Flow -->
+                    <div class="deal-flow"></div>
+                    <div class="deal-flow"></div>
+                    <div class="deal-flow"></div>
+                    <!-- Central Hub -->
+                    <div class="crm-hub"><svg width="42" height="42" viewBox="0 0 24 24" fill="white"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg></div>
+                </div>
             </div>
         </div>
     </section>
+
     <section class="section" id="features">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Spatial Capabilities</h2>
-                <p class="section-subtitle">Enterprise enterprise reimagined for immersive spatial computing</p>
+                <h2 class="section-title">Spatial Sales Capabilities</h2>
+                <p class="section-subtitle">Transform how your team manages customer relationships</p>
             </div>
             <div class="pillars-grid">
                 <div class="pillar-card">
-                    <div class="pillar-icon">📊</div>
-                    <h3>3D Pipeline</h3>
-                    <p>Spatial sales funnel visualization</p>
+                    <span class="pillar-icon"><svg width="44" height="44" viewBox="0 0 24 24" fill="var(--pipeline-blue)"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg></span>
+                    <h3>3D Pipeline View</h3>
+                    <p>Visualize your entire sales funnel in immersive 3D. Drag deals between stages, see bottlenecks, and forecast with spatial clarity.</p>
                 </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">👥</div>
-                    <h3>Customer 360</h3>
-                    <p>Complete customer view in 3D</p>
+                <div class="pillar-card">
+                    <span class="pillar-icon"><svg width="44" height="44" viewBox="0 0 24 24" fill="var(--prospect-purple)"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></span>
+                    <h3>Customer 360°</h3>
+                    <p>See complete customer profiles floating in space. Every interaction, deal, and touchpoint visible at a glance.</p>
                 </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">📈</div>
-                    <h3>Sales Analytics</h3>
-                    <p>Performance metrics dashboard</p>
+                <div class="pillar-card">
+                    <span class="pillar-icon"><svg width="44" height="44" viewBox="0 0 24 24" fill="var(--deal-green)"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg></span>
+                    <h3>Live Analytics</h3>
+                    <p>Real-time performance dashboards surround you. Track quotas, conversion rates, and team metrics spatially.</p>
                 </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">📧</div>
+                <div class="pillar-card">
+                    <span class="pillar-icon"><svg width="44" height="44" viewBox="0 0 24 24" fill="var(--customer-teal)"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></span>
                     <h3>Communication Hub</h3>
-                    <p>Integrated outreach tools</p>
+                    <p>Email, calls, and meetings unified in one spatial view. Never miss a follow-up with 3D activity timelines.</p>
                 </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">🎯</div>
-                    <h3>Lead Scoring</h3>
-                    <p>AI-powered prioritization</p>
+                <div class="pillar-card">
+                    <span class="pillar-icon"><svg width="44" height="44" viewBox="0 0 24 24" fill="var(--hot-coral)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg></span>
+                    <h3>AI Lead Scoring</h3>
+                    <p>Machine learning prioritizes your hottest leads. See scoring factors visualized in intuitive spatial layers.</p>
                 </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">🔄</div>
+                <div class="pillar-card">
+                    <span class="pillar-icon"><svg width="44" height="44" viewBox="0 0 24 24" fill="var(--lead-amber)"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg></span>
                     <h3>Workflow Automation</h3>
-                    <p>Spatial process automation</p>
+                    <p>Build and visualize automation flows in 3D. See triggers, actions, and outcomes as connected spatial nodes.</p>
                 </div>
+            </div>
 
+            <div class="integrations">
+                <div class="integration-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="var(--pipeline-blue)"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg> Salesforce</div>
+                <div class="integration-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="var(--prospect-purple)"><path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3z"/></svg> HubSpot</div>
+                <div class="integration-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="var(--deal-green)"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg> Pipedrive</div>
+                <div class="integration-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="var(--customer-teal)"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> Gmail</div>
+                <div class="integration-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="var(--lead-amber)"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zM9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/></svg> Calendar</div>
+                <div class="integration-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="var(--hot-coral)"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg> Slack</div>
             </div>
         </div>
     </section>
-    <section class="section" id="benefits" style="background: rgba(99, 102, 241, 0.03);">
+
+    <section class="section benefits-section" id="benefits">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Enterprise Impact</h2>
-                <p class="section-subtitle">Measurable results for forward-thinking organizations</p>
+                <h2 class="section-title">Sales Impact</h2>
+                <p class="section-subtitle">Measurable results for high-performing sales teams</p>
             </div>
             <div class="benefits-grid">
                 <div class="benefit-card">
-                    <div class="benefit-stat">Salesforce</div>
-                    <div class="benefit-label">Sync</div>
+                    <div class="benefit-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="var(--pipeline-blue)"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg></div>
+                    <div class="benefit-stat">Sync</div>
+                    <div class="benefit-label">Salesforce</div>
                 </div>
-<div class="benefit-card">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="var(--prospect-purple)"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg></div>
                     <div class="benefit-stat">AI</div>
-                    <div class="benefit-label">Scoring</div>
+                    <div class="benefit-label">Lead Scoring</div>
                 </div>
-<div class="benefit-card">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="var(--customer-teal)"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg></div>
                     <div class="benefit-stat">360°</div>
-                    <div class="benefit-label">View</div>
+                    <div class="benefit-label">Customer View</div>
                 </div>
-<div class="benefit-card">
-                    <div class="benefit-stat">Real-time</div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="var(--lead-amber)"><path d="M11 21h-1l1-7H7.5c-.58 0-.57-.32-.38-.66.19-.34.05-.08.07-.12C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.96 17.55 11 21 11 21z"/></svg></div>
+                    <div class="benefit-stat">Live</div>
                     <div class="benefit-label">Updates</div>
                 </div>
-
             </div>
         </div>
     </section>
+
     <section class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Trusted by Leaders</h2>
-                <p class="section-subtitle">See why enterprises choose Spatial CRM for spatial computing</p>
+                <h2 class="section-title">Trusted by Sales Leaders</h2>
+                <p class="section-subtitle">See how top teams accelerate their pipeline</p>
             </div>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
-                    <p class="testimonial-quote">"Our enterprise operations are finally visible in one unified view. Decision-making is faster."</p>
+                    <p class="testimonial-quote">"Seeing our entire $50M pipeline in 3D space changed how we prioritize. We closed 30% more deals last quarter."</p>
                     <div class="testimonial-author">
-                        <div class="author-avatar">AB</div>
+                        <div class="author-avatar">MK</div>
                         <div class="author-info">
-                            <h4>Amanda B.</h4>
-                            <span>COO</span>
+                            <h4>Marcus K.</h4>
+                            <span>VP of Sales</span>
                         </div>
                     </div>
                 </div>
-<div class="testimonial-card">
-                    <p class="testimonial-quote">"The spatial ERP interface reduced training time by 60%. Users love it."</p>
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"The spatial customer 360 view means my reps know everything before every call. Deal velocity doubled."</p>
                     <div class="testimonial-author">
-                        <div class="author-avatar">KT</div>
+                        <div class="author-avatar">SL</div>
                         <div class="author-info">
-                            <h4>Kevin T.</h4>
-                            <span>IT Director</span>
+                            <h4>Sarah L.</h4>
+                            <span>Sales Director</span>
                         </div>
                     </div>
                 </div>
-<div class="testimonial-card">
-                    <p class="testimonial-quote">"Board meetings in Vision Pro have transformed stakeholder engagement."</p>
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"Pipeline reviews in Vision Pro are incredible. The whole team sees exactly where we stand—no more spreadsheet confusion."</p>
                     <div class="testimonial-author">
-                        <div class="author-avatar">PM</div>
+                        <div class="author-avatar">JR</div>
                         <div class="author-info">
-                            <h4>Patricia M.</h4>
-                            <span>CEO</span>
+                            <h4>James R.</h4>
+                            <span>CRO</span>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
+
     <section class="cta-section" id="download">
         <div class="container">
-            <h2>Ready to Transform Your Workflow?</h2>
-            <p>Experience the future of enterprise with Apple Vision Pro</p>
-            <a href="#" class="cta-button">Get Started Today</a>
+            <h2>Close More Deals in Spatial Reality</h2>
+            <p>Transform your sales team with immersive CRM on Apple Vision Pro</p>
+            <a href="#" class="cta-button">Start Selling Smarter</a>
             <div class="store-badges">
                 <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on App Store">
             </div>
         </div>
     </section>
+
     <footer>
         <div class="container">
-            <p>&copy; 2025 Spatial CRM. Designed for Apple Vision Pro spatial computing.</p>
+            <p>&copy; 2025 Spatial CRM. Designed for enterprise sales on Apple Vision Pro.</p>
             <div style="margin-top: 16px;">
                 <a href="privacy.html">Privacy Policy</a>
                 <a href="terms.html">Terms of Service</a>
