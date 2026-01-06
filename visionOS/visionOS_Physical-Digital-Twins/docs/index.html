@@ -3,260 +3,1006 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="hero-ref" content="1">
     <title>Physical Digital Twins - Digital Twins in Spatial Reality | Apple Vision Pro</title>
-    <meta name="description" content="Create and manage digital twins of physical assets in immersive 3D. Real-time synchronization and predictive analytics.">
+    <meta name="description" content="Create and manage digital twins of physical assets in immersive 3D. Real-time IoT synchronization and AI-powered predictive analytics.">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Physical Digital Twins - Digital Twins in Spatial Reality">
     <meta property="og:description" content="Create and manage digital twins of physical assets in immersive 3D. Real-time synchronization and predictive analytics.">
     <meta property="og:image" content="hero-spatial.png">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         :root {
-            --accent: #a855f7;
-            --accent-rgb: 168, 85, 247;
-            --accent-glow: rgba(168, 85, 247, 0.3);
-            --accent-border: rgba(168, 85, 247, 0.2);
-            --accent-hover: rgba(168, 85, 247, 0.5);
-            --bg-dark: #0a0a0f;
-            --bg-card: rgba(30, 27, 75, 0.4);
+            --twin-blue: #3b82f6;
+            --mirror-cyan: #06b6d4;
+            --sync-purple: #8b5cf6;
+            --data-green: #22c55e;
+            --grid-dark: #0a0a12;
+            --bg-dark: #050508;
+            --bg-card: rgba(15, 23, 42, 0.8);
             --text-primary: rgba(255, 255, 255, 0.95);
             --text-secondary: rgba(255, 255, 255, 0.7);
             --text-muted: rgba(255, 255, 255, 0.5);
         }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif; background: var(--bg-dark); color: var(--text-primary); overflow-x: hidden; line-height: 1.6; }
-        .depth-layer { position: fixed; width: 200%; height: 200%; top: -50%; left: -50%; pointer-events: none; z-index: 0; }
-        .depth-layer-1 { background: radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.15) 0%, transparent 50%); animation: float 20s ease-in-out infinite; }
-        .depth-layer-2 { background: radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.12) 0%, transparent 50%); animation: float 25s ease-in-out infinite reverse; }
-        .depth-layer-3 { background: radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.08) 0%, transparent 60%); animation: float 30s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 33% { transform: translate(30px, -30px) rotate(3deg); } 66% { transform: translate(-20px, 20px) rotate(-3deg); } }
-        .vision-strip { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; }
-        .vision-strip .badge { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
-        .vision-strip .badge.highlight { background: var(--accent-glow); padding: 4px 12px; border-radius: 12px; color: white; border: 1px solid var(--accent-border); }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
-        nav { position: fixed; top: 44px; left: 0; right: 0; z-index: 999; background: rgba(10, 10, 15, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 15px 20px; }
-        nav .nav-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.3rem; font-weight: 700; color: white; display: flex; align-items: center; gap: 10px; }
-        .logo-icon { width: 36px; height: 36px; background: var(--accent-glow); border: 1px solid var(--accent-border); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .section-title, .hero-badge, .benefit-stat, .logo {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+        }
+
+        /* Digital Grid Background */
+        .digital-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background:
+                linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+                linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Mirroring Sync Lines */
+        .sync-line {
+            position: fixed;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--mirror-cyan), var(--twin-blue), transparent);
+            animation: syncFlow 3s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .sync-line:nth-child(1) { top: 20%; left: 0; width: 100%; animation-delay: 0s; }
+        .sync-line:nth-child(2) { top: 50%; left: 0; width: 100%; animation-delay: 1s; }
+        .sync-line:nth-child(3) { top: 80%; left: 0; width: 100%; animation-delay: 2s; }
+
+        @keyframes syncFlow {
+            0% { opacity: 0; transform: translateX(-100%); }
+            20% { opacity: 0.6; }
+            80% { opacity: 0.6; }
+            100% { opacity: 0; transform: translateX(100%); }
+        }
+
+        /* Twin Mirror Effect */
+        .twin-orb {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .twin-orb.physical {
+            top: 30%;
+            left: 15%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+            animation: orbFloat 6s ease-in-out infinite;
+        }
+
+        .twin-orb.digital {
+            top: 30%;
+            right: 15%;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.3) 0%, transparent 70%);
+            animation: orbFloat 6s ease-in-out infinite reverse;
+        }
+
+        @keyframes orbFloat {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
+            50% { transform: translateY(-30px) scale(1.1); opacity: 0.5; }
+        }
+
+        /* Connection Line Between Twins */
+        .twin-connection {
+            position: fixed;
+            top: calc(30% + 100px);
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 2px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .twin-connection::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--twin-blue), var(--sync-purple), var(--mirror-cyan));
+            animation: connectionPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes connectionPulse {
+            0%, 100% { opacity: 0.2; box-shadow: 0 0 10px var(--sync-purple); }
+            50% { opacity: 0.6; box-shadow: 0 0 30px var(--sync-purple); }
+        }
+
+        /* Data Points Animation */
+        .data-point {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--data-green);
+            border-radius: 50%;
+            animation: dataFlow 4s linear infinite;
+            pointer-events: none;
+            z-index: 2;
+            box-shadow: 0 0 10px var(--data-green);
+        }
+
+        .data-point:nth-child(1) { animation-delay: 0s; }
+        .data-point:nth-child(2) { animation-delay: 1s; }
+        .data-point:nth-child(3) { animation-delay: 2s; }
+        .data-point:nth-child(4) { animation-delay: 3s; }
+
+        @keyframes dataFlow {
+            0% { top: calc(30% + 100px); left: calc(15% + 100px); opacity: 1; }
+            100% { top: calc(30% + 100px); left: calc(85% - 100px); opacity: 0; }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 120px 20px 80px;
+            background:
+                linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, transparent 40%),
+                linear-gradient(225deg, rgba(6, 182, 212, 0.08) 0%, transparent 40%),
+                url('hero-spatial.png') center/cover no-repeat;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                rgba(5, 5, 8, 0.5) 0%,
+                rgba(5, 5, 8, 0.7) 50%,
+                rgba(5, 5, 8, 0.95) 100%
+            );
+        }
+
+        .vision-strip {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(5, 5, 8, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .vision-strip .badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .vision-strip .badge.platform {
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            padding: 6px 14px;
+            border-radius: 6px;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .vision-strip .badge.highlight {
+            background: linear-gradient(135deg, var(--twin-blue), var(--mirror-cyan));
+            padding: 6px 14px;
+            border-radius: 6px;
+            color: white;
+        }
+
+        nav {
+            position: fixed;
+            top: 44px;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: rgba(5, 5, 8, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.15);
+            padding: 15px 20px;
+        }
+
+        nav .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--twin-blue), var(--mirror-cyan));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            right: 0;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
         nav ul { display: flex; list-style: none; gap: 30px; }
-        nav a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; }
-        nav a:hover { color: white; }
-        .hero { padding: 180px 20px 100px; }
-        .hero-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center; max-width: 1400px; margin: 0 auto; }
+        nav a {
+            font-family: 'Rajdhani', sans-serif;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+        nav a:hover { color: var(--mirror-cyan); }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
         .hero-content { text-align: left; }
-        .hero-badge { display: inline-block; background: var(--accent-glow); backdrop-filter: blur(20px); border: 1px solid var(--accent-hover); padding: 8px 20px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 24px; color: white; }
-        h1 { font-size: 52px; font-weight: 700; margin-bottom: 20px; background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; }
-        .tagline { font-size: 24px; color: var(--text-primary); margin-bottom: 20px; font-weight: 500; }
-        .description { font-size: 17px; color: var(--text-secondary); margin-bottom: 32px; line-height: 1.7; }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(6, 182, 212, 0.2));
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--mirror-cyan);
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--data-green);
+            border-radius: 50%;
+            animation: statusBlink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes statusBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        h1 {
+            font-size: 58px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff 0%, var(--twin-blue) 50%, var(--mirror-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 24px;
+            color: var(--mirror-cyan);
+            margin-bottom: 20px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .description {
+            font-size: 17px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.8;
+        }
+
         .cta-group { display: flex; gap: 16px; flex-wrap: wrap; }
-        .cta-button { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-size: 16px; font-weight: 600; transition: all 0.3s; box-shadow: 0 10px 40px var(--accent-glow); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 15px 50px var(--accent-hover); }
-        .cta-secondary { background: transparent; border: 1px solid var(--accent-border); box-shadow: none; }
-        .cta-secondary:hover { background: var(--accent-glow); box-shadow: none; }
-        .hero-image { position: relative; }
-        .hero-image img { width: 100%; border-radius: 20px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--accent-border); }
-        .hero-image::before { content: ''; position: absolute; inset: -2px; background: linear-gradient(135deg, var(--accent-hover), transparent 50%); border-radius: 22px; z-index: -1; }
-        .hero-placeholder { width: 100%; aspect-ratio: 16/10; background: linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(30, 27, 75, 0.6) 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 18px; border: 1px dashed var(--accent-border); }
-        .section { padding: 100px 20px; }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--twin-blue), var(--sync-purple));
+            color: white;
+            padding: 16px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3);
+            border: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.4);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            border: 2px solid var(--twin-blue);
+            color: var(--twin-blue);
+            box-shadow: none;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(59, 130, 246, 0.1);
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        /* Twin Visualization Panel */
+        .twin-panel {
+            background: var(--bg-card);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            padding: 32px;
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .twin-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--twin-blue), var(--mirror-cyan));
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .panel-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 14px;
+            color: var(--mirror-cyan);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .sync-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--data-green);
+        }
+
+        .sync-status::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--data-green);
+            border-radius: 50%;
+            animation: statusBlink 1s ease-in-out infinite;
+        }
+
+        .twin-comparison {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .twin-side {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .twin-side.physical { border-color: rgba(59, 130, 246, 0.4); }
+        .twin-side.digital { border-color: rgba(6, 182, 212, 0.4); }
+
+        .twin-label {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .twin-side.physical .twin-label { color: var(--twin-blue); }
+        .twin-side.digital .twin-label { color: var(--mirror-cyan); }
+
+        .twin-icon {
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        .twin-value {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .sync-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: var(--sync-purple);
+        }
+
+        .sync-arrow span {
+            font-size: 20px;
+            animation: syncArrow 1s ease-in-out infinite;
+        }
+
+        @keyframes syncArrow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+
+        .section { padding: 100px 20px; position: relative; }
+
         .section-header { text-align: center; margin-bottom: 60px; }
-        .section-title { font-size: 42px; font-weight: 700; margin-bottom: 16px; }
-        .section-subtitle { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
-        .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-        .pillar-card { background: var(--bg-card); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--accent-border); border-radius: 20px; padding: 32px; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
-        .pillar-card:hover { transform: translateY(-5px); border-color: var(--accent-hover); box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--accent-border); }
-        .pillar-icon { font-size: 40px; margin-bottom: 16px; }
-        .pillar-card h3 { font-size: 20px; margin-bottom: 12px; color: var(--accent); }
-        .pillar-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
-        .benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-        .benefit-card { text-align: center; padding: 32px 20px; background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: 16px; }
-        .benefit-stat { font-size: 48px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
-        .benefit-label { font-size: 14px; color: var(--text-secondary); }
-        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .testimonial-card { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: 16px; padding: 32px; }
-        .testimonial-quote { font-size: 16px; font-style: italic; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.7; }
-        .testimonial-author { display: flex; align-items: center; gap: 12px; }
-        .author-avatar { width: 48px; height: 48px; background: var(--accent-glow); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--accent); }
-        .author-info h4 { font-size: 15px; margin-bottom: 2px; }
-        .author-info span { font-size: 13px; color: var(--text-muted); }
-        .cta-section { text-align: center; padding: 120px 20px; background: linear-gradient(180deg, transparent 0%, rgba(168, 85, 247, 0.1) 100%); border-top: 1px solid var(--accent-border); }
-        .cta-section h2 { font-size: 48px; margin-bottom: 16px; }
-        .cta-section p { font-size: 18px; color: var(--text-secondary); margin-bottom: 32px; }
-        .store-badges { display: flex; justify-content: center; gap: 16px; margin-top: 24px; }
+
+        .section-title {
+            font-size: 46px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        .section-subtitle {
+            font-size: 17px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Feature Cards */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .pillar-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pillar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--twin-blue), var(--mirror-cyan));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--twin-blue);
+            box-shadow: 0 20px 50px rgba(59, 130, 246, 0.15);
+        }
+
+        .pillar-card:hover::before { transform: scaleX(1); }
+
+        .pillar-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(6, 182, 212, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .pillar-card h3 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--mirror-cyan);
+        }
+
+        .pillar-card p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            background: linear-gradient(180deg,
+                transparent 0%,
+                rgba(59, 130, 246, 0.03) 50%,
+                transparent 100%
+            );
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 40px 24px;
+            background: var(--bg-card);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--twin-blue), var(--mirror-cyan));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .benefit-card:hover::before { transform: scaleX(1); }
+
+        .benefit-stat {
+            font-size: 44px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--twin-blue), var(--mirror-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+
+        .benefit-label {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .testimonial-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .testimonial-quote {
+            font-size: 16px;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.8;
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid var(--twin-blue);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--twin-blue), var(--mirror-cyan));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: white;
+        }
+
+        .author-info h4 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .author-info span {
+            font-size: 13px;
+            color: var(--mirror-cyan);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 120px 20px;
+            background: linear-gradient(180deg,
+                transparent 0%,
+                rgba(59, 130, 246, 0.08) 50%,
+                rgba(6, 182, 212, 0.04) 100%
+            );
+            position: relative;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--twin-blue), transparent);
+        }
+
+        .cta-section h2 {
+            font-size: 48px;
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .store-badges {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
         .store-badges img { height: 50px; }
-        footer { border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 60px 20px; text-align: center; }
-        footer p { color: var(--text-muted); font-size: 14px; }
-        footer a { color: var(--accent); text-decoration: none; margin: 0 15px; }
-        footer a:hover { color: white; }
-        @media (max-width: 1024px) { .hero-grid { grid-template-columns: 1fr; text-align: center; } .hero-content { text-align: center; } .cta-group { justify-content: center; } .benefits-grid { grid-template-columns: repeat(2, 1fr); } .testimonials-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) { h1 { font-size: 36px; } .section-title { font-size: 32px; } .benefits-grid { grid-template-columns: 1fr; } .vision-strip { padding: 8px 10px; gap: 10px; } .vision-strip .badge { font-size: 10px; } nav ul { gap: 15px; } }
+
+        footer {
+            border-top: 1px solid rgba(59, 130, 246, 0.15);
+            padding: 60px 20px;
+            text-align: center;
+            background: var(--bg-dark);
+        }
+
+        footer p {
+            font-family: 'Rajdhani', sans-serif;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        footer a {
+            color: var(--mirror-cyan);
+            text-decoration: none;
+            margin: 0 15px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        footer a:hover { color: var(--twin-blue); }
+
+        @media (max-width: 1024px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-content { text-align: center; }
+            .cta-group { justify-content: center; }
+            .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .twin-panel { margin-top: 40px; }
+            h1 { font-size: 46px; }
+            .twin-comparison { grid-template-columns: 1fr; gap: 12px; }
+            .sync-arrow { transform: rotate(90deg); }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 36px; }
+            .section-title { font-size: 32px; }
+            .benefits-grid { grid-template-columns: 1fr; }
+            .vision-strip { padding: 8px 10px; gap: 10px; }
+            .vision-strip .badge { font-size: 9px; }
+            nav ul { gap: 15px; }
+            .sync-line { display: none; }
+            .twin-orb { display: none; }
+            .twin-connection { display: none; }
+            .data-point { display: none; }
+        }
     </style>
 </head>
 <body>
-    <div class="depth-layer depth-layer-1"></div>
-    <div class="depth-layer depth-layer-2"></div>
-    <div class="depth-layer depth-layer-3"></div>
+    <div class="digital-grid"></div>
+    <div class="sync-line"></div>
+    <div class="sync-line"></div>
+    <div class="sync-line"></div>
+    <div class="twin-orb physical"></div>
+    <div class="twin-orb digital"></div>
+    <div class="twin-connection"></div>
+    <div class="data-point"></div>
+    <div class="data-point"></div>
+    <div class="data-point"></div>
+    <div class="data-point"></div>
+
     <div class="vision-strip">
-        <span class="badge highlight">Apple Vision Pro</span>
-        <span class="badge">Spatial Computing</span>
+        <span class="badge platform">Built for Apple Vision Pro</span>
         <span class="badge">visionOS 2.0+</span>
-        <span class="badge">Enterprise Ready</span>
-        <span class="badge">AI & Technology</span>
+        <span class="badge highlight">Real-Time Sync</span>
+        <span class="badge">IoT Connected</span>
     </div>
+
     <nav>
         <div class="nav-content">
             <div class="logo">
-                <div class="logo-icon">PD</div>
-                Physical Digital Twins
+                <div class="logo-icon">DT</div>
+                Digital Twins
             </div>
             <ul>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#features">Capabilities</a></li>
+                <li><a href="#benefits">Analytics</a></li>
                 <li><a href="support.html">Support</a></li>
             </ul>
         </div>
     </nav>
+
     <section class="hero">
         <div class="hero-grid">
             <div class="hero-content">
-                <div class="hero-badge">AI & Technology</div>
+                <div class="hero-badge">Live Synchronization Active</div>
                 <h1>Physical Digital Twins</h1>
-                <p class="tagline">Digital Twins in Spatial Reality</p>
-                <p class="description">Create and manage digital twins of physical assets in immersive 3D. Real-time synchronization and predictive analytics.</p>
+                <p class="tagline">Mirror Reality in 3D Space</p>
+                <p class="description">Create perfect digital replicas of physical assets. Synchronize real-time IoT sensor data with immersive 3D visualizations for predictive maintenance, performance optimization, and spatial analytics.</p>
                 <div class="cta-group">
                     <a href="#download" class="cta-button">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
-                        Experience in Vision Pro
+                        Create Your Digital Twin
                     </a>
-                    <a href="#demo" class="cta-button cta-secondary">Request Demo</a>
+                    <a href="#demo" class="cta-button cta-secondary">Watch Demo</a>
                 </div>
             </div>
-            <div class="hero-image">
-                <div class="hero-placeholder">Spatial Experience Preview</div>
+            <div class="twin-panel">
+                <div class="panel-header">
+                    <span class="panel-title">Twin Synchronization</span>
+                    <span class="sync-status">Synced</span>
+                </div>
+                <div class="twin-comparison">
+                    <div class="twin-side physical">
+                        <div class="twin-label">Physical Asset</div>
+                        <div class="twin-icon">🏭</div>
+                        <div class="twin-value">Turbine A-7</div>
+                    </div>
+                    <div class="sync-arrow">
+                        <span>⟷</span>
+                    </div>
+                    <div class="twin-side digital">
+                        <div class="twin-label">Digital Twin</div>
+                        <div class="twin-icon">🌐</div>
+                        <div class="twin-value">DT-A7-001</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
     <section class="section" id="features">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Spatial Capabilities</h2>
-                <p class="section-subtitle">Enterprise ai & technology reimagined for immersive spatial computing</p>
+                <h2 class="section-title">Twin Capabilities</h2>
+                <p class="section-subtitle">Complete digital replication with real-time IoT synchronization and AI-powered insights</p>
             </div>
             <div class="pillars-grid">
                 <div class="pillar-card">
                     <div class="pillar-icon">🏭</div>
                     <h3>Asset Modeling</h3>
-                    <p>3D digital twin creation</p>
+                    <p>Create precise 3D digital replicas from CAD files, point clouds, or photogrammetry. Maintain geometric accuracy within 0.1mm tolerance.</p>
                 </div>
-<div class="pillar-card">
+                <div class="pillar-card">
                     <div class="pillar-icon">📡</div>
-                    <h3>Sensor Integration</h3>
-                    <p>Real-time IoT data</p>
+                    <h3>IoT Integration</h3>
+                    <p>Connect thousands of sensors per asset. Support for MQTT, OPC-UA, Modbus, and REST APIs with sub-second latency.</p>
                 </div>
-<div class="pillar-card">
+                <div class="pillar-card">
                     <div class="pillar-icon">🔮</div>
                     <h3>Predictive Analytics</h3>
-                    <p>AI-powered insights</p>
+                    <p>AI-powered failure prediction with 94% accuracy. Forecast maintenance needs weeks before issues occur.</p>
                 </div>
-<div class="pillar-card">
+                <div class="pillar-card">
                     <div class="pillar-icon">🔄</div>
-                    <h3>Sync Engine</h3>
-                    <p>Live synchronization</p>
+                    <h3>Live Sync Engine</h3>
+                    <p>Bi-directional synchronization at 100Hz. Physical changes reflect in digital twin within 50ms.</p>
                 </div>
-<div class="pillar-card">
+                <div class="pillar-card">
                     <div class="pillar-icon">📊</div>
                     <h3>Performance Dashboard</h3>
-                    <p>Asset health metrics</p>
+                    <p>Real-time KPIs, historical trends, and comparative analysis across your entire asset fleet in spatial 3D.</p>
                 </div>
-<div class="pillar-card">
+                <div class="pillar-card">
                     <div class="pillar-icon">🔧</div>
                     <h3>Maintenance Planning</h3>
-                    <p>Predictive scheduling</p>
+                    <p>AI-optimized maintenance schedules that reduce downtime by 40% and extend asset lifecycle by 25%.</p>
                 </div>
-
             </div>
         </div>
     </section>
-    <section class="section" id="benefits" style="background: rgba(168, 85, 247, 0.03);">
+
+    <section class="section benefits-section" id="benefits">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Enterprise Impact</h2>
-                <p class="section-subtitle">Measurable results for forward-thinking organizations</p>
+                <h2 class="section-title">Operational Impact</h2>
+                <p class="section-subtitle">Measurable improvements through digital twin intelligence</p>
             </div>
             <div class="benefits-grid">
                 <div class="benefit-card">
-                    <div class="benefit-stat">IoT</div>
-                    <div class="benefit-label">Connected</div>
+                    <div class="benefit-stat">40%</div>
+                    <div class="benefit-label">Less Downtime</div>
                 </div>
-<div class="benefit-card">
-                    <div class="benefit-stat">AI</div>
-                    <div class="benefit-label">Analytics</div>
+                <div class="benefit-card">
+                    <div class="benefit-stat">94%</div>
+                    <div class="benefit-label">Prediction Accuracy</div>
                 </div>
-<div class="benefit-card">
-                    <div class="benefit-stat">Real-time</div>
-                    <div class="benefit-label">Sync</div>
+                <div class="benefit-card">
+                    <div class="benefit-stat">50ms</div>
+                    <div class="benefit-label">Sync Latency</div>
                 </div>
-<div class="benefit-card">
-                    <div class="benefit-stat">Predictive</div>
-                    <div class="benefit-label">Maintenance</div>
+                <div class="benefit-card">
+                    <div class="benefit-stat">10K+</div>
+                    <div class="benefit-label">Sensors Supported</div>
                 </div>
-
             </div>
         </div>
     </section>
+
     <section class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Trusted by Leaders</h2>
-                <p class="section-subtitle">See why enterprises choose Physical Digital Twins for spatial computing</p>
+                <h2 class="section-title">Industry Leaders Trust Us</h2>
+                <p class="section-subtitle">Organizations transforming operations with digital twin technology</p>
             </div>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
-                    <p class="testimonial-quote">"The spatial visualization completely changed how we manage our AI operations. Patterns we never noticed are now obvious."</p>
+                    <p class="testimonial-quote">"We predicted a turbine failure 3 weeks before it would have happened. The ROI on that single save paid for the entire platform."</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">DM</div>
                         <div class="author-info">
                             <h4>David M.</h4>
-                            <span>CTO, Tech Enterprise</span>
+                            <span>VP Operations, Energy</span>
                         </div>
                     </div>
                 </div>
-<div class="testimonial-card">
-                    <p class="testimonial-quote">"Gesture controls make complex workflows intuitive. Our team adapted in hours, not weeks."</p>
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"Visualizing our entire factory floor in 3D with live sensor data changed how we make decisions. Issues are obvious now."</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">SK</div>
                         <div class="author-info">
                             <h4>Sarah K.</h4>
-                            <span>VP Engineering</span>
+                            <span>Plant Manager, Manufacturing</span>
                         </div>
                     </div>
                 </div>
-<div class="testimonial-card">
-                    <p class="testimonial-quote">"SharePlay collaboration is a game-changer for distributed teams. We feel like we're in the same room."</p>
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"The sync latency is incredible. Our control room team can respond to changes in real-time across 50+ assets."</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">MR</div>
                         <div class="author-info">
                             <h4>Michael R.</h4>
-                            <span>AI Director</span>
+                            <span>CTO, Utilities</span>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
+
     <section class="cta-section" id="download">
         <div class="container">
-            <h2>Ready to Transform Your Workflow?</h2>
-            <p>Experience the future of ai & technology with Apple Vision Pro</p>
-            <a href="#" class="cta-button">Get Started Today</a>
+            <h2>Mirror Your Assets in 3D</h2>
+            <p>Create digital twins that predict, protect, and optimize your physical operations</p>
+            <a href="#" class="cta-button">Start Your Digital Twin</a>
             <div class="store-badges">
                 <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on App Store">
             </div>
         </div>
     </section>
+
     <footer>
         <div class="container">
-            <p>&copy; 2025 Physical Digital Twins. Designed for Apple Vision Pro spatial computing.</p>
+            <p>&copy; 2025 Physical Digital Twins. Enterprise IoT Platform for Apple Vision Pro.</p>
             <div style="margin-top: 16px;">
                 <a href="privacy.html">Privacy Policy</a>
                 <a href="terms.html">Terms of Service</a>

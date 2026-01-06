@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arena eSports - Competitive Gaming in Spatial Reality</title>
+    <meta name="hero-ref" content="1">
+    <title>Arena eSports - Competitive Spatial Gaming</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Teko:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,77 +15,203 @@
         }
 
         :root {
-            --primary: #ef4444;
-            --primary-dark: #dc2626;
-            --primary-glow: rgba(239, 68, 68, 0.6);
-            --secondary: #fbbf24;
-            --bg-dark: #0a0a0a;
-            --bg-card: rgba(20, 20, 20, 0.9);
-            --text: #ffffff;
-            --text-muted: #9ca3af;
+            --neon-red: #ff0a3c;
+            --neon-cyan: #00f5ff;
+            --victory-gold: #ffd700;
+            --electric-purple: #9d00ff;
+            --battle-orange: #ff6b00;
+            --arena-black: #050508;
+            --arena-dark: #0a0a10;
+            --hud-gray: #1a1a25;
+            --text-primary: #ffffff;
+            --text-secondary: #8888aa;
         }
 
         body {
-            font-family: 'Rajdhani', sans-serif;
-            background: var(--bg-dark);
-            color: var(--text);
+            font-family: 'Barlow', sans-serif;
+            background: var(--arena-black);
+            color: var(--text-primary);
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        /* Animated Grid Background */
-        .grid-bg {
+        /* Animated Arena Background */
+        .arena-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        /* Victory Flames */
+        .flame {
+            position: absolute;
+            bottom: 0;
+            width: 80px;
+            height: 150px;
+            background: linear-gradient(to top, var(--neon-red), var(--battle-orange), transparent);
+            opacity: 0.3;
+            filter: blur(20px);
+            animation: flameRise 2s ease-in-out infinite;
+        }
+
+        .flame:nth-child(1) { left: 5%; animation-delay: 0s; }
+        .flame:nth-child(2) { left: 15%; animation-delay: 0.3s; height: 120px; }
+        .flame:nth-child(3) { right: 5%; animation-delay: 0.6s; }
+        .flame:nth-child(4) { right: 15%; animation-delay: 0.2s; height: 180px; }
+
+        @keyframes flameRise {
+            0%, 100% {
+                transform: scaleY(1) translateY(0);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scaleY(1.3) translateY(-20px);
+                opacity: 0.5;
+            }
+        }
+
+        /* Action Speed Lines */
+        .speed-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+            opacity: 0;
+            animation: speedDash 3s linear infinite;
+        }
+
+        .speed-line:nth-child(5) { top: 20%; left: 0; width: 200px; animation-delay: 0s; }
+        .speed-line:nth-child(6) { top: 35%; right: 0; width: 150px; animation-delay: 0.5s; }
+        .speed-line:nth-child(7) { top: 50%; left: 0; width: 250px; animation-delay: 1s; }
+        .speed-line:nth-child(8) { top: 65%; right: 0; width: 180px; animation-delay: 1.5s; }
+        .speed-line:nth-child(9) { top: 80%; left: 0; width: 220px; animation-delay: 2s; }
+
+        @keyframes speedDash {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% {
+                transform: translateX(100vw);
+                opacity: 0;
+            }
+        }
+
+        /* Arena HUD Grid */
+        .hud-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-image:
-                linear-gradient(rgba(239, 68, 68, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(239, 68, 68, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: gridPulse 4s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 0;
+                linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: hudPulse 4s ease-in-out infinite;
         }
 
-        @keyframes gridPulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.6; }
+        @keyframes hudPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
 
-        /* Glowing orbs */
-        .orb {
-            position: fixed;
+        /* Floating Player Icons */
+        .player-icon {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--neon-cyan);
+            border-radius: 8px;
+            background: rgba(0, 245, 255, 0.1);
+            animation: playerFloat 6s ease-in-out infinite;
+        }
+
+        .player-icon::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            background: var(--neon-cyan);
             border-radius: 50%;
-            filter: blur(80px);
-            pointer-events: none;
-            z-index: 0;
+            transform: translate(-50%, -50%);
         }
 
-        .orb-1 {
-            width: 600px;
-            height: 600px;
-            background: var(--primary-glow);
-            top: -200px;
-            right: -200px;
-            animation: orbFloat 15s ease-in-out infinite;
+        .player-icon:nth-child(10) { top: 15%; left: 10%; animation-delay: 0s; }
+        .player-icon:nth-child(11) { top: 25%; right: 8%; animation-delay: 1s; border-color: var(--neon-red); background: rgba(255, 10, 60, 0.1); }
+        .player-icon:nth-child(12) { top: 70%; left: 5%; animation-delay: 2s; }
+        .player-icon:nth-child(13) { top: 60%; right: 12%; animation-delay: 0.5s; border-color: var(--neon-red); background: rgba(255, 10, 60, 0.1); }
+        .player-icon:nth-child(11)::after, .player-icon:nth-child(13)::after { background: var(--neon-red); }
+
+        @keyframes playerFloat {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(10px, -15px); }
+            50% { transform: translate(-5px, 5px); }
+            75% { transform: translate(15px, 10px); }
         }
 
-        .orb-2 {
-            width: 400px;
-            height: 400px;
-            background: rgba(251, 191, 36, 0.3);
-            bottom: -100px;
-            left: -100px;
-            animation: orbFloat 20s ease-in-out infinite reverse;
+        /* Score Counter Animation */
+        .score-display {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 120px;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 215, 0, 0.15);
+            opacity: 0.3;
+            animation: scoreCount 10s steps(100) infinite;
         }
 
-        @keyframes orbFloat {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(50px, 30px) scale(1.1); }
+        .score-display::before {
+            content: '00';
+            animation: scoreDigits 10s steps(10) infinite;
         }
 
-        /* Navigation */
+        @keyframes scoreDigits {
+            0% { content: '00'; }
+            10% { content: '12'; }
+            20% { content: '27'; }
+            30% { content: '38'; }
+            40% { content: '45'; }
+            50% { content: '59'; }
+            60% { content: '64'; }
+            70% { content: '78'; }
+            80% { content: '85'; }
+            90% { content: '93'; }
+            100% { content: '99'; }
+        }
+
+        /* Victory Crown Glow */
+        .crown-glow {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 60px;
+            background: var(--victory-gold);
+            clip-path: polygon(10% 100%, 0% 40%, 25% 60%, 50% 0%, 75% 60%, 100% 40%, 90% 100%);
+            opacity: 0.1;
+            filter: blur(10px);
+            animation: crownShine 3s ease-in-out infinite;
+        }
+
+        @keyframes crownShine {
+            0%, 100% { opacity: 0.1; transform: translateX(-50%) scale(1); }
+            50% { opacity: 0.25; transform: translateX(-50%) scale(1.1); }
+        }
+
+        /* Nav */
         nav {
             position: fixed;
             top: 0;
@@ -95,228 +222,207 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.95), transparent);
+            background: linear-gradient(to bottom, rgba(5, 5, 8, 0.95), transparent);
         }
 
         .logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--primary);
-            text-shadow: 0 0 20px var(--primary-glow);
-            letter-spacing: 2px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.2rem;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, var(--neon-red), var(--battle-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 40px rgba(255, 10, 60, 0.5);
         }
 
-        .logo span {
-            color: var(--secondary);
-        }
-
-        .nav-badge {
+        .platform-badge {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid var(--primary);
-            border-radius: 4px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.75rem;
+            gap: 10px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .platform-badge svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--text-primary);
+        }
+
+        .platform-badge span {
+            font-size: 0.8rem;
+            font-weight: 600;
             letter-spacing: 1px;
         }
 
-        .live-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--primary);
-            border-radius: 50%;
-            animation: livePulse 1.5s ease-in-out infinite;
-        }
-
-        @keyframes livePulse {
-            0%, 100% { opacity: 1; box-shadow: 0 0 10px var(--primary); }
-            50% { opacity: 0.5; box-shadow: 0 0 20px var(--primary); }
-        }
-
-        /* Hero Section */
+        /* Hero */
         .hero {
             position: relative;
+            z-index: 1;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 120px 20px 60px;
-            z-index: 1;
-        }
-
-        .hero-image-container {
-            width: 100%;
-            max-width: 1200px;
-            margin-bottom: 40px;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 2px solid var(--primary);
-            box-shadow:
-                0 0 40px var(--primary-glow),
-                inset 0 0 40px rgba(239, 68, 68, 0.1);
-            animation: heroGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes heroGlow {
-            0%, 100% { box-shadow: 0 0 40px var(--primary-glow), inset 0 0 40px rgba(239, 68, 68, 0.1); }
-            50% { box-shadow: 0 0 60px var(--primary-glow), inset 0 0 60px rgba(239, 68, 68, 0.15); }
-        }
-
-        .hero-image {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .hero-content {
             text-align: center;
-            max-width: 900px;
         }
 
-        .championship-badge {
+        .rank-badge {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 10px 24px;
-            background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(239, 68, 68, 0.2));
-            border: 1px solid var(--secondary);
+            padding: 12px 24px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 107, 0, 0.2));
+            border: 1px solid var(--victory-gold);
             border-radius: 50px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
+            font-family: 'Teko', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: var(--victory-gold);
             margin-bottom: 30px;
-            animation: badgeShine 3s ease-in-out infinite;
+            text-transform: uppercase;
         }
 
-        @keyframes badgeShine {
-            0%, 100% { border-color: var(--secondary); }
-            50% { border-color: var(--primary); }
-        }
-
-        .championship-badge svg {
-            width: 20px;
-            height: 20px;
-            fill: var(--secondary);
+        .rank-badge svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--victory-gold);
         }
 
         h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 900;
-            line-height: 1.1;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(4rem, 12vw, 9rem);
+            line-height: 0.9;
+            letter-spacing: 6px;
             margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 4px;
         }
 
-        h1 .highlight {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        h1 .arena {
+            display: block;
+            color: var(--text-primary);
+        }
+
+        h1 .esports {
+            display: block;
+            background: linear-gradient(135deg, var(--neon-red), var(--battle-orange), var(--victory-gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
+            animation: textShift 5s ease-in-out infinite;
+        }
+
+        @keyframes textShift {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(20deg); }
         }
 
         .tagline {
-            font-size: 1.4rem;
-            color: var(--text-muted);
+            font-family: 'Teko', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            letter-spacing: 4px;
+            text-transform: uppercase;
             margin-bottom: 40px;
-            letter-spacing: 1px;
         }
 
         .cta-group {
             display: flex;
             gap: 20px;
-            justify-content: center;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
-        .btn-primary {
+        .btn-compete {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 16px 40px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, var(--neon-red), var(--battle-orange));
             border: none;
             border-radius: 4px;
+            font-family: 'Teko', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 3px;
+            text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 0 30px var(--primary-glow);
+            box-shadow: 0 0 30px rgba(255, 10, 60, 0.4);
         }
 
-        .btn-primary:hover {
+        .btn-compete:hover {
             transform: translateY(-3px);
-            box-shadow: 0 0 50px var(--primary-glow);
+            box-shadow: 0 0 50px rgba(255, 10, 60, 0.6);
         }
 
-        .btn-secondary {
+        .btn-spectate {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 16px 40px;
+            padding: 18px 40px;
             background: transparent;
-            color: var(--text);
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border: 2px solid var(--text-muted);
+            border: 2px solid var(--neon-cyan);
             border-radius: 4px;
+            font-family: 'Teko', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--neon-cyan);
+            text-decoration: none;
+            letter-spacing: 3px;
+            text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .btn-secondary:hover {
-            border-color: var(--primary);
-            color: var(--primary);
+        .btn-spectate:hover {
+            background: rgba(0, 245, 255, 0.1);
+            box-shadow: 0 0 30px rgba(0, 245, 255, 0.3);
         }
 
-        /* Stats Bar */
-        .stats-bar {
+        /* Live Stats Bar */
+        .live-stats {
             display: flex;
             justify-content: center;
             gap: 60px;
-            padding: 40px 20px;
             margin-top: 60px;
-            border-top: 1px solid rgba(239, 68, 68, 0.2);
-            border-bottom: 1px solid rgba(239, 68, 68, 0.2);
+            padding: 30px 40px;
+            background: rgba(26, 26, 37, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
             flex-wrap: wrap;
         }
 
-        .stat-item {
+        .stat {
             text-align: center;
         }
 
         .stat-value {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
-            font-weight: 900;
-            color: var(--primary);
-            text-shadow: 0 0 20px var(--primary-glow);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.8rem;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
         }
+
+        .stat-value.gold { color: var(--victory-gold); text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+        .stat-value.red { color: var(--neon-red); text-shadow: 0 0 20px rgba(255, 10, 60, 0.5); }
 
         .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
+            font-family: 'Teko', sans-serif;
+            font-size: 1rem;
+            color: var(--text-secondary);
             letter-spacing: 2px;
-            margin-top: 5px;
+            text-transform: uppercase;
         }
 
-        /* Features Section */
+        /* Features */
         .features {
             position: relative;
             z-index: 1;
@@ -331,30 +437,31 @@
         }
 
         .section-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 15px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.5rem;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
         }
 
         .section-subtitle {
-            color: var(--text-muted);
-            font-size: 1.1rem;
+            font-family: 'Teko', sans-serif;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            letter-spacing: 3px;
+            text-transform: uppercase;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
         }
 
         .feature-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(239, 68, 68, 0.2);
+            background: linear-gradient(135deg, rgba(26, 26, 37, 0.8), rgba(10, 10, 16, 0.9));
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 12px;
-            padding: 40px;
+            padding: 35px;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -367,15 +474,15 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: linear-gradient(90deg, var(--neon-red), var(--battle-orange));
             transform: scaleX(0);
             transition: transform 0.3s ease;
         }
 
         .feature-card:hover {
-            border-color: var(--primary);
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(239, 68, 68, 0.2);
+            border-color: rgba(255, 10, 60, 0.3);
+            box-shadow: 0 20px 50px rgba(255, 10, 60, 0.15);
         }
 
         .feature-card:hover::before {
@@ -385,153 +492,152 @@
         .feature-icon {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(251, 191, 36, 0.1));
-            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(255, 10, 60, 0.2), rgba(255, 107, 0, 0.1));
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin-bottom: 20px;
         }
 
         .feature-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 15px;
+            font-family: 'Teko', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-bottom: 12px;
         }
 
         .feature-desc {
-            color: var(--text-muted);
+            color: var(--text-secondary);
             line-height: 1.7;
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
-        /* Tournament Section */
-        .tournaments {
+        /* Tournament Bracket */
+        .tournament {
             position: relative;
             z-index: 1;
             padding: 100px 20px;
-            background: linear-gradient(180deg, transparent, rgba(239, 68, 68, 0.05), transparent);
+            background: linear-gradient(180deg, transparent, rgba(255, 10, 60, 0.03), transparent);
         }
 
-        .tournament-showcase {
-            max-width: 1200px;
+        .bracket-container {
+            max-width: 900px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .tournament-visual {
-            position: relative;
-        }
-
-        .bracket-preview {
-            background: var(--bg-card);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 0 40px rgba(239, 68, 68, 0.1);
         }
 
         .bracket-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px 30px;
+            background: rgba(26, 26, 37, 0.8);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px 12px 0 0;
         }
 
         .bracket-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            color: var(--secondary);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 3px;
+            color: var(--victory-gold);
         }
 
-        .bracket-status {
+        .live-indicator {
             display: flex;
             align-items: center;
             gap: 8px;
-            color: #22c55e;
-            font-size: 0.85rem;
+            color: var(--neon-red);
+            font-family: 'Teko', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
         }
 
-        .match-slot {
+        .live-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--neon-red);
+            border-radius: 50%;
+            animation: livePulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes livePulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 10px var(--neon-red); }
+            50% { opacity: 0.5; box-shadow: 0 0 20px var(--neon-red); }
+        }
+
+        .bracket-body {
+            background: rgba(10, 10, 16, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: none;
+            border-radius: 0 0 12px 12px;
+            padding: 30px;
+        }
+
+        .match-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
-            background: rgba(255, 255, 255, 0.03);
+            padding: 20px;
+            background: rgba(26, 26, 37, 0.5);
+            border-left: 4px solid var(--neon-cyan);
             border-radius: 8px;
-            margin-bottom: 10px;
-            border-left: 3px solid var(--primary);
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
         }
 
-        .team-name {
-            font-weight: 600;
+        .match-row:hover {
+            background: rgba(0, 245, 255, 0.05);
+        }
+
+        .match-row.red-team {
+            border-left-color: var(--neon-red);
+        }
+
+        .match-row.red-team:hover {
+            background: rgba(255, 10, 60, 0.05);
+        }
+
+        .team-info {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
 
         .team-rank {
-            width: 24px;
-            height: 24px;
-            background: var(--primary);
-            border-radius: 4px;
+            width: 32px;
+            height: 32px;
+            background: var(--neon-cyan);
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.75rem;
-            font-weight: 700;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            color: var(--arena-black);
+        }
+
+        .red-team .team-rank {
+            background: var(--neon-red);
+        }
+
+        .team-name {
+            font-family: 'Teko', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: 1px;
         }
 
         .team-score {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            color: var(--secondary);
-        }
-
-        .tournament-info h3 {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Bebas Neue', sans-serif;
             font-size: 2rem;
-            margin-bottom: 20px;
-            text-transform: uppercase;
+            color: var(--victory-gold);
         }
 
-        .tournament-info p {
-            color: var(--text-muted);
-            line-height: 1.8;
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-        }
-
-        .tournament-features {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .tournament-feature {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px 20px;
-            background: rgba(239, 68, 68, 0.1);
-            border-radius: 8px;
-            border-left: 3px solid var(--primary);
-        }
-
-        .tournament-feature span {
-            font-size: 1.5rem;
-        }
-
-        /* Leaderboard Section */
+        /* Leaderboard */
         .leaderboard {
             position: relative;
             z-index: 1;
@@ -541,48 +647,47 @@
         }
 
         .leaderboard-table {
-            background: var(--bg-card);
-            border-radius: 16px;
+            background: rgba(26, 26, 37, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
             overflow: hidden;
-            border: 1px solid rgba(239, 68, 68, 0.2);
         }
 
-        .leaderboard-header {
+        .table-header {
             display: grid;
-            grid-template-columns: 80px 1fr 150px 150px;
+            grid-template-columns: 80px 1fr 120px 120px;
             padding: 20px 30px;
-            background: rgba(239, 68, 68, 0.1);
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.85rem;
+            background: rgba(0, 0, 0, 0.3);
+            font-family: 'Teko', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-muted);
         }
 
-        .leaderboard-row {
+        .table-row {
             display: grid;
-            grid-template-columns: 80px 1fr 150px 150px;
+            grid-template-columns: 80px 1fr 120px 120px;
             padding: 20px 30px;
             align-items: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
         }
 
-        .leaderboard-row:hover {
-            background: rgba(239, 68, 68, 0.05);
+        .table-row:hover {
+            background: rgba(255, 10, 60, 0.05);
         }
 
-        .rank {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 900;
+        .rank-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.6rem;
         }
 
-        .rank-1 { color: #fbbf24; }
-        .rank-2 { color: #9ca3af; }
+        .rank-1 { color: var(--victory-gold); text-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
+        .rank-2 { color: #c0c0c0; }
         .rank-3 { color: #cd7f32; }
 
-        .player-info {
+        .player-cell {
             display: flex;
             align-items: center;
             gap: 15px;
@@ -591,74 +696,74 @@
         .player-avatar {
             width: 45px;
             height: 45px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 10px;
+            background: linear-gradient(135deg, var(--neon-red), var(--battle-orange));
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
         }
 
         .player-details h4 {
-            font-weight: 600;
-            margin-bottom: 3px;
+            font-family: 'Teko', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
         }
 
         .player-details span {
             font-size: 0.85rem;
-            color: var(--text-muted);
+            color: var(--text-secondary);
         }
 
-        .wins {
-            font-family: 'Orbitron', sans-serif;
+        .wins-cell {
+            font-family: 'Teko', sans-serif;
+            font-size: 1.3rem;
             color: #22c55e;
         }
 
-        .points {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--secondary);
-            font-weight: 700;
+        .points-cell {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            color: var(--neon-cyan);
         }
 
         /* CTA Section */
         .cta-section {
             position: relative;
             z-index: 1;
-            padding: 100px 20px;
+            padding: 120px 20px;
             text-align: center;
-            background: linear-gradient(180deg, transparent, rgba(239, 68, 68, 0.1));
+            background: linear-gradient(180deg, transparent, rgba(255, 10, 60, 0.08));
         }
 
-        .cta-content {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .cta-content h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
-            font-weight: 900;
-            text-transform: uppercase;
+        .cta-section h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            letter-spacing: 4px;
             margin-bottom: 20px;
         }
 
-        .cta-content p {
-            color: var(--text-muted);
+        .cta-section p {
+            color: var(--text-secondary);
             font-size: 1.2rem;
-            margin-bottom: 40px;
+            max-width: 600px;
+            margin: 0 auto 40px;
         }
 
-        .app-store-badge {
+        .app-store-link {
             display: inline-block;
             transition: transform 0.3s ease;
         }
 
-        .app-store-badge:hover {
+        .app-store-link:hover {
             transform: scale(1.05);
         }
 
-        .app-store-badge img {
-            height: 60px;
+        .app-store-link img {
+            height: 55px;
         }
 
         /* Footer */
@@ -667,102 +772,104 @@
             z-index: 1;
             padding: 40px 20px;
             text-align: center;
-            border-top: 1px solid rgba(239, 68, 68, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         footer p {
-            color: var(--text-muted);
+            color: var(--text-secondary);
             font-size: 0.9rem;
         }
 
         /* Responsive */
-        @media (max-width: 900px) {
-            .tournament-showcase {
-                grid-template-columns: 1fr;
-            }
-
-            .leaderboard-header,
-            .leaderboard-row {
-                grid-template-columns: 60px 1fr 100px;
-            }
-
-            .leaderboard-header > :last-child,
-            .leaderboard-row > :last-child {
-                display: none;
-            }
-
-            .stats-bar {
+        @media (max-width: 768px) {
+            .live-stats {
                 gap: 30px;
             }
 
-            .stat-value {
-                font-size: 2rem;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .features-grid {
-                grid-template-columns: 1fr;
+            .table-header,
+            .table-row {
+                grid-template-columns: 60px 1fr 100px;
             }
 
-            h1 {
-                letter-spacing: 2px;
+            .table-header > *:last-child,
+            .table-row > *:last-child {
+                display: none;
             }
 
-            .cta-group {
-                flex-direction: column;
-                align-items: center;
+            .flame {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
-    <div class="grid-bg"></div>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
+    <div class="arena-bg">
+        <!-- Victory Flames -->
+        <div class="flame"></div>
+        <div class="flame"></div>
+        <div class="flame"></div>
+        <div class="flame"></div>
+
+        <!-- Speed Lines -->
+        <div class="speed-line"></div>
+        <div class="speed-line"></div>
+        <div class="speed-line"></div>
+        <div class="speed-line"></div>
+        <div class="speed-line"></div>
+
+        <!-- Player Icons -->
+        <div class="player-icon"></div>
+        <div class="player-icon"></div>
+        <div class="player-icon"></div>
+        <div class="player-icon"></div>
+
+        <!-- HUD Grid -->
+        <div class="hud-grid"></div>
+
+        <!-- Crown Glow -->
+        <div class="crown-glow"></div>
+    </div>
 
     <nav>
-        <div class="logo">ARENA<span>eSPORTS</span></div>
-        <div class="nav-badge">
-            <div class="live-dot"></div>
-            VISION PRO EXCLUSIVE
+        <div class="logo">ARENA eSPORTS</div>
+        <div class="platform-badge">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            <span>Built for Apple Vision Pro</span>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="hero-image-container">
-            <img src="hero-spatial.png" alt="Arena eSports - Spatial Gaming Arena" class="hero-image">
-        </div>
-        <div class="hero-content">
-            <div class="championship-badge">
-                <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
-                WORLD CHAMPIONSHIP READY
-            </div>
-            <h1>DOMINATE IN <span class="highlight">SPATIAL REALITY</span></h1>
-            <p class="tagline">The ultimate competitive gaming platform for Apple Vision Pro. Real tournaments. Real glory. Real prizes.</p>
-            <div class="cta-group">
-                <a href="#" class="btn-primary">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                    ENTER THE ARENA
-                </a>
-                <a href="#" class="btn-secondary">VIEW TOURNAMENTS</a>
-            </div>
+        <div class="rank-badge">
+            <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+            World Championship Ready
         </div>
 
-        <div class="stats-bar">
-            <div class="stat-item">
-                <div class="stat-value">250K+</div>
+        <h1>
+            <span class="arena">ARENA</span>
+            <span class="esports">eSPORTS</span>
+        </h1>
+
+        <p class="tagline">Competitive Gaming in Spatial Reality</p>
+
+        <div class="cta-group">
+            <a href="#" class="btn-compete">Enter the Arena</a>
+            <a href="#" class="btn-spectate">Watch Live</a>
+        </div>
+
+        <div class="live-stats">
+            <div class="stat">
+                <div class="stat-value">247K</div>
                 <div class="stat-label">Active Players</div>
             </div>
-            <div class="stat-item">
-                <div class="stat-value">$2.5M</div>
+            <div class="stat">
+                <div class="stat-value gold">$2.5M</div>
                 <div class="stat-label">Prize Pool</div>
             </div>
-            <div class="stat-item">
-                <div class="stat-value">1,200+</div>
-                <div class="stat-label">Daily Tournaments</div>
+            <div class="stat">
+                <div class="stat-value red">1,284</div>
+                <div class="stat-label">Daily Matches</div>
             </div>
-            <div class="stat-item">
+            <div class="stat">
                 <div class="stat-value">48</div>
                 <div class="stat-label">Countries</div>
             </div>
@@ -772,87 +879,85 @@
     <section class="features">
         <div class="section-header">
             <h2 class="section-title">Competitive Edge</h2>
-            <p class="section-subtitle">Features built for champions</p>
+            <p class="section-subtitle">Features Built for Champions</p>
         </div>
+
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">🏆</div>
                 <h3 class="feature-title">Ranked Matchmaking</h3>
-                <p class="feature-desc">Advanced ELO-based system ensures fair matches. Climb from Bronze to Grandmaster across 8 competitive tiers with skill-based progression.</p>
+                <p class="feature-desc">Advanced ELO system with 8 competitive tiers. Fair matches, skill-based progression from Bronze to Grandmaster.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🎮</div>
-                <h3 class="feature-title">Spatial Combat</h3>
-                <p class="feature-desc">360-degree awareness in true 3D space. Use your environment strategically with room-scale movement and precision hand tracking.</p>
+                <h3 class="feature-title">360° Spatial Combat</h3>
+                <p class="feature-desc">True 3D awareness with room-scale movement. Use your environment strategically with precision hand tracking.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">📺</div>
                 <h3 class="feature-title">Live Spectating</h3>
-                <p class="feature-desc">Watch pro matches in immersive VR. Float around the arena, switch perspectives, and experience the action like never before.</p>
+                <p class="feature-desc">Watch pro matches in immersive spatial view. Float around the arena, switch perspectives, experience the action.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">👥</div>
                 <h3 class="feature-title">Team System</h3>
-                <p class="feature-desc">Create or join competitive teams. Practice rooms, team stats, coordinated strategies, and dedicated team tournaments await.</p>
+                <p class="feature-desc">Create or join competitive teams. Practice rooms, team analytics, coordinated strategies and tournaments.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🎯</div>
-                <h3 class="feature-title">Training Mode</h3>
-                <p class="feature-desc">AI-powered coaching analyzes your gameplay. Custom drills, aim trainers, and replay analysis to sharpen your skills.</p>
+                <h3 class="feature-title">AI Training Mode</h3>
+                <p class="feature-desc">AI-powered coaching analyzes your gameplay. Custom drills, aim trainers, and replay analysis.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">💰</div>
                 <h3 class="feature-title">Prize Tournaments</h3>
-                <p class="feature-desc">Daily, weekly, and seasonal tournaments with real cash prizes. Qualify for the World Championship with a $1M grand prize.</p>
+                <p class="feature-desc">Daily, weekly, and seasonal tournaments with cash prizes. Qualify for the $1M World Championship.</p>
             </div>
         </div>
     </section>
 
-    <section class="tournaments">
-        <div class="tournament-showcase">
-            <div class="tournament-visual">
-                <div class="bracket-preview">
-                    <div class="bracket-header">
-                        <span class="bracket-title">WINTER CHAMPIONSHIP 2026</span>
-                        <span class="bracket-status">
-                            <div class="live-dot"></div>
-                            LIVE NOW
-                        </span>
-                    </div>
-                    <div class="match-slot">
-                        <span class="team-name"><span class="team-rank">1</span> Team Phoenix</span>
-                        <span class="team-score">3</span>
-                    </div>
-                    <div class="match-slot">
-                        <span class="team-name"><span class="team-rank">4</span> Spatial Legends</span>
-                        <span class="team-score">2</span>
-                    </div>
-                    <div class="match-slot" style="margin-top: 30px;">
-                        <span class="team-name"><span class="team-rank">2</span> Vision Warriors</span>
-                        <span class="team-score">3</span>
-                    </div>
-                    <div class="match-slot">
-                        <span class="team-name"><span class="team-rank">3</span> Reality Check</span>
-                        <span class="team-score">1</span>
-                    </div>
+    <section class="tournament">
+        <div class="section-header">
+            <h2 class="section-title">Live Tournament</h2>
+            <p class="section-subtitle">Winter Championship 2026</p>
+        </div>
+
+        <div class="bracket-container">
+            <div class="bracket-header">
+                <div class="bracket-title">SEMI-FINALS</div>
+                <div class="live-indicator">
+                    <div class="live-dot"></div>
+                    LIVE NOW
                 </div>
             </div>
-            <div class="tournament-info">
-                <h3>Real-Time Tournament Brackets</h3>
-                <p>Experience the thrill of competitive gaming with live tournament brackets that update in real-time. Watch as teams battle through elimination rounds in stunning spatial reality.</p>
-                <div class="tournament-features">
-                    <div class="tournament-feature">
-                        <span>🔴</span>
-                        <div>Live match streaming with multi-angle views</div>
+            <div class="bracket-body">
+                <div class="match-row">
+                    <div class="team-info">
+                        <div class="team-rank">1</div>
+                        <span class="team-name">Team Phoenix</span>
                     </div>
-                    <div class="tournament-feature">
-                        <span>📊</span>
-                        <div>Real-time statistics and player performance</div>
+                    <span class="team-score">3</span>
+                </div>
+                <div class="match-row red-team">
+                    <div class="team-info">
+                        <div class="team-rank">4</div>
+                        <span class="team-name">Spatial Legends</span>
                     </div>
-                    <div class="tournament-feature">
-                        <span>🏅</span>
-                        <div>Automatic bracket progression and seeding</div>
+                    <span class="team-score">2</span>
+                </div>
+                <div class="match-row" style="margin-top: 30px;">
+                    <div class="team-info">
+                        <div class="team-rank">2</div>
+                        <span class="team-name">Vision Warriors</span>
                     </div>
+                    <span class="team-score">3</span>
+                </div>
+                <div class="match-row red-team">
+                    <div class="team-info">
+                        <div class="team-rank">3</div>
+                        <span class="team-name">Reality Check</span>
+                    </div>
+                    <span class="team-score">1</span>
                 </div>
             </div>
         </div>
@@ -863,84 +968,83 @@
             <h2 class="section-title">Global Leaderboard</h2>
             <p class="section-subtitle">Season 4 Rankings</p>
         </div>
+
         <div class="leaderboard-table">
-            <div class="leaderboard-header">
+            <div class="table-header">
                 <span>Rank</span>
                 <span>Player</span>
                 <span>Wins</span>
                 <span>Points</span>
             </div>
-            <div class="leaderboard-row">
-                <span class="rank rank-1">#1</span>
-                <div class="player-info">
+            <div class="table-row">
+                <span class="rank-num rank-1">#1</span>
+                <div class="player-cell">
                     <div class="player-avatar">SP</div>
                     <div class="player-details">
                         <h4>SpatialPro_X</h4>
                         <span>Team Phoenix</span>
                     </div>
                 </div>
-                <span class="wins">487</span>
-                <span class="points">12,450</span>
+                <span class="wins-cell">487</span>
+                <span class="points-cell">12,450</span>
             </div>
-            <div class="leaderboard-row">
-                <span class="rank rank-2">#2</span>
-                <div class="player-info">
+            <div class="table-row">
+                <span class="rank-num rank-2">#2</span>
+                <div class="player-cell">
                     <div class="player-avatar">VK</div>
                     <div class="player-details">
                         <h4>VisionKing</h4>
                         <span>Vision Warriors</span>
                     </div>
                 </div>
-                <span class="wins">452</span>
-                <span class="points">11,890</span>
+                <span class="wins-cell">452</span>
+                <span class="points-cell">11,890</span>
             </div>
-            <div class="leaderboard-row">
-                <span class="rank rank-3">#3</span>
-                <div class="player-info">
+            <div class="table-row">
+                <span class="rank-num rank-3">#3</span>
+                <div class="player-cell">
                     <div class="player-avatar">AR</div>
                     <div class="player-details">
                         <h4>ARena_Master</h4>
                         <span>Spatial Legends</span>
                     </div>
                 </div>
-                <span class="wins">431</span>
-                <span class="points">11,240</span>
+                <span class="wins-cell">431</span>
+                <span class="points-cell">11,240</span>
             </div>
-            <div class="leaderboard-row">
-                <span class="rank">#4</span>
-                <div class="player-info">
+            <div class="table-row">
+                <span class="rank-num">#4</span>
+                <div class="player-cell">
                     <div class="player-avatar">NX</div>
                     <div class="player-details">
                         <h4>NexusGamer</h4>
                         <span>Reality Check</span>
                     </div>
                 </div>
-                <span class="wins">398</span>
-                <span class="points">10,670</span>
+                <span class="wins-cell">398</span>
+                <span class="points-cell">10,670</span>
             </div>
-            <div class="leaderboard-row">
-                <span class="rank">#5</span>
-                <div class="player-info">
+            <div class="table-row">
+                <span class="rank-num">#5</span>
+                <div class="player-cell">
                     <div class="player-avatar">QF</div>
                     <div class="player-details">
                         <h4>QuantumFlux</h4>
                         <span>Team Phoenix</span>
                     </div>
                 </div>
-                <span class="wins">376</span>
-                <span class="points">10,120</span>
+                <span class="wins-cell">376</span>
+                <span class="points-cell">10,120</span>
             </div>
         </div>
     </section>
 
     <section class="cta-section">
-        <div class="cta-content">
-            <h2>Ready to Compete?</h2>
-            <p>Join millions of players in the most immersive competitive gaming experience ever created for spatial computing.</p>
-            <a href="https://apps.apple.com/app/arena-esports" class="app-store-badge">
-                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
-            </a>
-        </div>
+        <h2>Ready to Compete?</h2>
+        <p>Join 247,000+ players in the most immersive competitive gaming experience for spatial computing.</p>
+        <a href="https://apps.apple.com/app/arena-esports" class="app-store-link">
+            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on App Store">
+        </a>
     </section>
 
     <footer>

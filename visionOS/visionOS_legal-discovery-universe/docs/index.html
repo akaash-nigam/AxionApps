@@ -3,266 +3,557 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legal Discovery Universe - eDiscovery in Spatial 3D | Apple Vision Pro</title>
+    <meta name="hero-ref" content="1">
+    <title>Legal Discovery Universe - eDiscovery in Spatial 3D | visionOS</title>
     <meta name="description" content="Transform legal discovery with spatial visualization. Document review, case analysis, and evidence mapping in immersive 3D.">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Legal Discovery Universe - eDiscovery in Spatial 3D">
-    <meta property="og:description" content="Transform legal discovery with spatial visualization. Document review, case analysis, and evidence mapping in immersive 3D.">
-    <meta property="og:image" content="hero-spatial.png">
-    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --accent: #64748b;
-            --accent-rgb: 100, 116, 139;
-            --accent-glow: rgba(100, 116, 139, 0.3);
-            --accent-border: rgba(100, 116, 139, 0.2);
-            --accent-hover: rgba(100, 116, 139, 0.5);
-            --bg-dark: #0a0a0f;
-            --bg-card: rgba(30, 27, 75, 0.4);
-            --text-primary: rgba(255, 255, 255, 0.95);
-            --text-secondary: rgba(255, 255, 255, 0.7);
-            --text-muted: rgba(255, 255, 255, 0.5);
+            --justice-navy: #1e3a5f;
+            --courtroom-walnut: #5c4033;
+            --evidence-amber: #d97706;
+            --verdict-green: #059669;
+            --testimony-blue: #3b82f6;
+            --privilege-red: #dc2626;
+            --legal-dark: #0f1419;
+            --chamber-slate: #1c2431;
         }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif; background: var(--bg-dark); color: var(--text-primary); overflow-x: hidden; line-height: 1.6; }
-        .depth-layer { position: fixed; width: 200%; height: 200%; top: -50%; left: -50%; pointer-events: none; z-index: 0; }
-        .depth-layer-1 { background: radial-gradient(circle at 20% 30%, rgba(100, 116, 139, 0.15) 0%, transparent 50%); animation: float 20s ease-in-out infinite; }
-        .depth-layer-2 { background: radial-gradient(circle at 80% 70%, rgba(100, 116, 139, 0.12) 0%, transparent 50%); animation: float 25s ease-in-out infinite reverse; }
-        .depth-layer-3 { background: radial-gradient(circle at 50% 50%, rgba(100, 116, 139, 0.08) 0%, transparent 60%); animation: float 30s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 33% { transform: translate(30px, -30px) rotate(3deg); } 66% { transform: translate(-20px, 20px) rotate(-3deg); } }
-        .vision-strip { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; }
-        .vision-strip .badge { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
-        .vision-strip .badge.highlight { background: var(--accent-glow); padding: 4px 12px; border-radius: 12px; color: white; border: 1px solid var(--accent-border); }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
-        nav { position: fixed; top: 44px; left: 0; right: 0; z-index: 999; background: rgba(10, 10, 15, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 15px 20px; }
-        nav .nav-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.3rem; font-weight: 700; color: white; display: flex; align-items: center; gap: 10px; }
-        .logo-icon { width: 36px; height: 36px; background: var(--accent-glow); border: 1px solid var(--accent-border); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
-        nav ul { display: flex; list-style: none; gap: 30px; }
-        nav a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; }
-        nav a:hover { color: white; }
-        .hero { padding: 180px 20px 100px; }
-        .hero-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center; max-width: 1400px; margin: 0 auto; }
-        .hero-content { text-align: left; }
-        .hero-badge { display: inline-block; background: var(--accent-glow); backdrop-filter: blur(20px); border: 1px solid var(--accent-hover); padding: 8px 20px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 24px; color: white; }
-        h1 { font-size: 52px; font-weight: 700; margin-bottom: 20px; background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; }
-        .tagline { font-size: 24px; color: var(--text-primary); margin-bottom: 20px; font-weight: 500; }
-        .description { font-size: 17px; color: var(--text-secondary); margin-bottom: 32px; line-height: 1.7; }
-        .cta-group { display: flex; gap: 16px; flex-wrap: wrap; }
-        .cta-button { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-size: 16px; font-weight: 600; transition: all 0.3s; box-shadow: 0 10px 40px var(--accent-glow); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 15px 50px var(--accent-hover); }
-        .cta-secondary { background: transparent; border: 1px solid var(--accent-border); box-shadow: none; }
-        .cta-secondary:hover { background: var(--accent-glow); box-shadow: none; }
-        .hero-image { position: relative; }
-        .hero-image img { width: 100%; border-radius: 20px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--accent-border); }
-        .hero-image::before { content: ''; position: absolute; inset: -2px; background: linear-gradient(135deg, var(--accent-hover), transparent 50%); border-radius: 22px; z-index: -1; }
-        .hero-placeholder { width: 100%; aspect-ratio: 16/10; background: linear-gradient(135deg, rgba(100, 116, 139, 0.2) 0%, rgba(30, 27, 75, 0.6) 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 18px; border: 1px dashed var(--accent-border); }
-        .section { padding: 100px 20px; }
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-title { font-size: 42px; font-weight: 700; margin-bottom: 16px; }
-        .section-subtitle { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
-        .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-        .pillar-card { background: var(--bg-card); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--accent-border); border-radius: 20px; padding: 32px; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
-        .pillar-card:hover { transform: translateY(-5px); border-color: var(--accent-hover); box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--accent-border); }
-        .pillar-icon { font-size: 40px; margin-bottom: 16px; }
-        .pillar-card h3 { font-size: 20px; margin-bottom: 12px; color: var(--accent); }
-        .pillar-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
-        .benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-        .benefit-card { text-align: center; padding: 32px 20px; background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: 16px; }
-        .benefit-stat { font-size: 48px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
-        .benefit-label { font-size: 14px; color: var(--text-secondary); }
-        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .testimonial-card { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: 16px; padding: 32px; }
-        .testimonial-quote { font-size: 16px; font-style: italic; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.7; }
-        .testimonial-author { display: flex; align-items: center; gap: 12px; }
-        .author-avatar { width: 48px; height: 48px; background: var(--accent-glow); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--accent); }
-        .author-info h4 { font-size: 15px; margin-bottom: 2px; }
-        .author-info span { font-size: 13px; color: var(--text-muted); }
-        .cta-section { text-align: center; padding: 120px 20px; background: linear-gradient(180deg, transparent 0%, rgba(100, 116, 139, 0.1) 100%); border-top: 1px solid var(--accent-border); }
-        .cta-section h2 { font-size: 48px; margin-bottom: 16px; }
-        .cta-section p { font-size: 18px; color: var(--text-secondary); margin-bottom: 32px; }
-        .store-badges { display: flex; justify-content: center; gap: 16px; margin-top: 24px; }
-        .store-badges img { height: 50px; }
-        footer { border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 60px 20px; text-align: center; }
-        footer p { color: var(--text-muted); font-size: 14px; }
-        footer a { color: var(--accent); text-decoration: none; margin: 0 15px; }
-        footer a:hover { color: white; }
-        @media (max-width: 1024px) { .hero-grid { grid-template-columns: 1fr; text-align: center; } .hero-content { text-align: center; } .cta-group { justify-content: center; } .benefits-grid { grid-template-columns: repeat(2, 1fr); } .testimonials-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) { h1 { font-size: 36px; } .section-title { font-size: 32px; } .benefits-grid { grid-template-columns: 1fr; } .vision-strip { padding: 8px 10px; gap: 10px; } .vision-strip .badge { font-size: 10px; } nav ul { gap: 15px; } }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--legal-dark);
+            color: #e2e8f0;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* Legal Case Board Background */
+        .legal-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        /* Floating Evidence Documents */
+        .evidence-doc {
+            position: absolute;
+            width: 35px;
+            height: 45px;
+            background: linear-gradient(135deg, rgba(217, 119, 6, 0.15), rgba(217, 119, 6, 0.05));
+            border: 1px solid rgba(217, 119, 6, 0.3);
+            border-radius: 2px;
+            animation: evidenceFloat 10s ease-in-out infinite;
+        }
+
+        .evidence-doc::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 5px;
+            right: 5px;
+            height: 2px;
+            background: rgba(217, 119, 6, 0.4);
+            box-shadow: 0 6px 0 rgba(217, 119, 6, 0.3), 0 12px 0 rgba(217, 119, 6, 0.2);
+        }
+
+        .doc-1 { top: 15%; left: 8%; animation-delay: 0s; transform: rotate(-8deg); }
+        .doc-2 { top: 30%; right: 12%; animation-delay: 2s; transform: rotate(5deg); }
+        .doc-3 { top: 55%; left: 15%; animation-delay: 4s; transform: rotate(-3deg); }
+        .doc-4 { top: 70%; right: 18%; animation-delay: 6s; transform: rotate(7deg); }
+        .doc-5 { top: 40%; left: 75%; animation-delay: 8s; transform: rotate(-5deg); }
+
+        @keyframes evidenceFloat {
+            0%, 100% { transform: translateY(0) rotate(var(--rotation, 0deg)); opacity: 0.5; }
+            50% { transform: translateY(-25px) rotate(var(--rotation, 0deg)); opacity: 0.8; }
+        }
+
+        /* Connection Threads (Case Board Style) */
+        .thread-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.4), transparent);
+            animation: threadPulse 3s ease-in-out infinite;
+        }
+
+        .thread-1 { top: 25%; left: 15%; width: 200px; transform: rotate(25deg); animation-delay: 0s; }
+        .thread-2 { top: 45%; left: 30%; width: 150px; transform: rotate(-15deg); animation-delay: 1s; }
+        .thread-3 { top: 60%; left: 50%; width: 180px; transform: rotate(10deg); animation-delay: 2s; }
+
+        @keyframes threadPulse {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Evidence Marker Pins */
+        .evidence-pin {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--evidence-amber);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(217, 119, 6, 0.5);
+            animation: pinGlow 2s ease-in-out infinite;
+        }
+
+        .pin-1 { top: 20%; left: 25%; animation-delay: 0s; }
+        .pin-2 { top: 35%; right: 35%; animation-delay: 0.5s; }
+        .pin-3 { top: 55%; left: 45%; animation-delay: 1s; }
+        .pin-4 { top: 75%; right: 40%; animation-delay: 1.5s; }
+
+        @keyframes pinGlow {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.3); opacity: 1; }
+        }
+
+        /* Scales of Justice */
+        .scales-container {
+            position: absolute;
+            bottom: 10%;
+            left: 5%;
+            width: 80px;
+            height: 80px;
+            opacity: 0.15;
+        }
+
+        .scales-beam {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            width: 60px;
+            height: 3px;
+            background: var(--evidence-amber);
+            transform: translateX(-50%);
+            transform-origin: center;
+            animation: scalesBalance 4s ease-in-out infinite;
+        }
+
+        .scales-pivot {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            width: 30px;
+            height: 20%;
+            background: linear-gradient(180deg, var(--evidence-amber), transparent);
+            transform: translateX(-50%);
+        }
+
+        @keyframes scalesBalance {
+            0%, 100% { transform: translateX(-50%) rotate(-5deg); }
+            50% { transform: translateX(-50%) rotate(5deg); }
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('hero-spatial.png') center/cover no-repeat;
+            opacity: 0.15;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, var(--legal-dark) 0%, transparent 30%, var(--legal-dark) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 900px;
+            padding: 2rem;
+        }
+
+        .legal-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(217, 119, 6, 0.1);
+            border: 1px solid rgba(217, 119, 6, 0.3);
+            padding: 0.6rem 1.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--evidence-amber);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--evidence-amber), var(--testimony-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: #94a3b8;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, var(--justice-navy), var(--testimony-blue));
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(217, 119, 6, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Capabilities */
+        .capabilities {
+            position: relative;
+            padding: 6rem 2rem;
+            background: var(--chamber-slate);
+            z-index: 2;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .section-header p { font-size: 1.1rem; color: #94a3b8; }
+
+        .cap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .cap-card {
+            background: rgba(217, 119, 6, 0.03);
+            border: 1px solid rgba(217, 119, 6, 0.15);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cap-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--evidence-amber), var(--testimony-blue));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .cap-card:hover::before { opacity: 1; }
+
+        .cap-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(217, 119, 6, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .cap-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cap-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--evidence-amber);
+        }
+
+        .cap-card p { font-size: 0.95rem; color: #94a3b8; }
+
+        /* Stats */
+        .stats {
+            position: relative;
+            padding: 4rem 2rem;
+            background: var(--legal-dark);
+            border-top: 1px solid rgba(217, 119, 6, 0.1);
+            border-bottom: 1px solid rgba(217, 119, 6, 0.1);
+            z-index: 2;
+        }
+
+        .stats-grid {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item { text-align: center; }
+
+        .stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--evidence-amber);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Compliance Badges */
+        .compliance {
+            position: relative;
+            padding: 5rem 2rem;
+            background: var(--chamber-slate);
+            z-index: 2;
+            text-align: center;
+        }
+
+        .compliance-badges {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .compliance-badge {
+            background: rgba(217, 119, 6, 0.1);
+            border: 1px solid rgba(217, 119, 6, 0.2);
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--evidence-amber);
+        }
+
+        /* Footer CTA */
+        .footer-cta {
+            position: relative;
+            padding: 6rem 2rem;
+            background: var(--legal-dark);
+            text-align: center;
+            z-index: 2;
+        }
+
+        .footer-cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .footer-cta p {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .platform-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(217, 119, 6, 0.1);
+            border: 1px solid rgba(217, 119, 6, 0.2);
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .platform-badge svg { width: 24px; height: 24px; fill: currentColor; }
+
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            background: var(--legal-dark);
+            border-top: 1px solid rgba(217, 119, 6, 0.1);
+            color: #475569;
+            font-size: 0.9rem;
+            z-index: 2;
+        }
     </style>
 </head>
 <body>
-    <div class="depth-layer depth-layer-1"></div>
-    <div class="depth-layer depth-layer-2"></div>
-    <div class="depth-layer depth-layer-3"></div>
-    <div class="vision-strip">
-        <span class="badge highlight">Apple Vision Pro</span>
-        <span class="badge">Spatial Computing</span>
-        <span class="badge">visionOS 2.0+</span>
-        <span class="badge">Enterprise Ready</span>
-        <span class="badge">Legal</span>
+    <div class="legal-bg">
+        <div class="evidence-doc doc-1"></div>
+        <div class="evidence-doc doc-2"></div>
+        <div class="evidence-doc doc-3"></div>
+        <div class="evidence-doc doc-4"></div>
+        <div class="evidence-doc doc-5"></div>
+        <div class="thread-line thread-1"></div>
+        <div class="thread-line thread-2"></div>
+        <div class="thread-line thread-3"></div>
+        <div class="evidence-pin pin-1"></div>
+        <div class="evidence-pin pin-2"></div>
+        <div class="evidence-pin pin-3"></div>
+        <div class="evidence-pin pin-4"></div>
+        <div class="scales-container">
+            <div class="scales-pivot"></div>
+            <div class="scales-beam"></div>
+        </div>
     </div>
-    <nav>
-        <div class="nav-content">
-            <div class="logo">
-                <div class="logo-icon">LD</div>
-                Legal Discovery Universe
-            </div>
-            <ul>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#benefits">Benefits</a></li>
-                <li><a href="support.html">Support</a></li>
-            </ul>
-        </div>
-    </nav>
+
     <section class="hero">
-        <div class="hero-grid">
-            <div class="hero-content">
-                <div class="hero-badge">Legal</div>
-                <h1>Legal Discovery Universe</h1>
-                <p class="tagline">eDiscovery in Spatial 3D</p>
-                <p class="description">Transform legal discovery with spatial visualization. Document review, case analysis, and evidence mapping in immersive 3D.</p>
-                <div class="cta-group">
-                    <a href="#download" class="cta-button">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
-                        Experience in Vision Pro
-                    </a>
-                    <a href="#demo" class="cta-button cta-secondary">Request Demo</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="hero-placeholder">Spatial Experience Preview</div>
-            </div>
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="legal-badge">⚖️ Legal Technology</div>
+            <h1>Legal Discovery <span>Universe</span></h1>
+            <p>Transform eDiscovery with spatial visualization. Navigate millions of documents, map evidence relationships, and build your case in immersive 3D space.</p>
+            <a href="#" class="cta-button">
+                <span>Enter the Universe</span>
+                <span>→</span>
+            </a>
         </div>
     </section>
-    <section class="section" id="features">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Spatial Capabilities</h2>
-                <p class="section-subtitle">Enterprise legal reimagined for immersive spatial computing</p>
-            </div>
-            <div class="pillars-grid">
-                <div class="pillar-card">
-                    <div class="pillar-icon">📄</div>
-                    <h3>Document Review</h3>
-                    <p>Spatial document analysis</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">🔍</div>
-                    <h3>Smart Search</h3>
-                    <p>AI-powered discovery</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">🗺️</div>
-                    <h3>Evidence Mapping</h3>
-                    <p>3D case visualization</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">👥</div>
-                    <h3>Team Review</h3>
-                    <p>Collaborative analysis</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">📊</div>
-                    <h3>Case Analytics</h3>
-                    <p>Pattern detection</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">🔐</div>
-                    <h3>Privilege Protection</h3>
-                    <p>Secure handling</p>
-                </div>
 
+    <section class="capabilities">
+        <div class="section-header">
+            <h2>Spatial Discovery Capabilities</h2>
+            <p>Next-generation legal technology for modern litigation and compliance.</p>
+        </div>
+        <div class="cap-grid">
+            <div class="cap-card">
+                <div class="cap-icon">📄</div>
+                <h3>Immersive Document Review</h3>
+                <p>Navigate document universes in 3D space. Organize, tag, and review with spatial intuition that accelerates comprehension.</p>
+            </div>
+            <div class="cap-card">
+                <div class="cap-icon">🔍</div>
+                <h3>AI-Powered Discovery</h3>
+                <p>Technology Assisted Review (TAR) 2.0 with contextual understanding that surfaces relevant evidence automatically.</p>
+            </div>
+            <div class="cap-card">
+                <div class="cap-icon">🗺️</div>
+                <h3>Evidence Mapping</h3>
+                <p>Visualize connections between documents, communications, and key players on an interactive case board.</p>
+            </div>
+            <div class="cap-card">
+                <div class="cap-icon">⏱️</div>
+                <h3>Timeline Construction</h3>
+                <p>Build and navigate chronological evidence timelines that reveal patterns and gaps in the record.</p>
+            </div>
+            <div class="cap-card">
+                <div class="cap-icon">👥</div>
+                <h3>Collaborative Review</h3>
+                <p>Multiple reviewers working simultaneously in shared spatial environments with real-time annotations.</p>
+            </div>
+            <div class="cap-card">
+                <div class="cap-icon">🔐</div>
+                <h3>Privilege Protection</h3>
+                <p>Secure privilege logging and review with visual workflows that prevent inadvertent disclosure.</p>
             </div>
         </div>
     </section>
-    <section class="section" id="benefits" style="background: rgba(100, 116, 139, 0.03);">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Enterprise Impact</h2>
-                <p class="section-subtitle">Measurable results for forward-thinking organizations</p>
-            </div>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-stat">AI</div>
-                    <div class="benefit-label">Review</div>
-                </div>
-<div class="benefit-card">
-                    <div class="benefit-stat">TAR</div>
-                    <div class="benefit-label">2.0</div>
-                </div>
-<div class="benefit-card">
-                    <div class="benefit-stat">Privilege</div>
-                    <div class="benefit-label">Log</div>
-                </div>
-<div class="benefit-card">
-                    <div class="benefit-stat">SOC2</div>
-                    <div class="benefit-label">Certified</div>
-                </div>
 
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-value">10M+</div>
+                <div class="stat-label">Documents Reviewed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">TAR 2.0</div>
+                <div class="stat-label">AI Engine</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">60%</div>
+                <div class="stat-label">Faster Review</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">99.9%</div>
+                <div class="stat-label">Recall Rate</div>
             </div>
         </div>
     </section>
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Trusted by Leaders</h2>
-                <p class="section-subtitle">See why enterprises choose Legal Discovery Universe for spatial computing</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">"Document review in 3D helped us find the key evidence in half the time."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">RS</div>
-                        <div class="author-info">
-                            <h4>Rachel S.</h4>
-                            <span>Litigation Partner</span>
-                        </div>
-                    </div>
-                </div>
-<div class="testimonial-card">
-                    <p class="testimonial-quote">"Regulatory compliance visualization made audits almost enjoyable."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">SC</div>
-                        <div class="author-info">
-                            <h4>Steven C.</h4>
-                            <span>Compliance Director</span>
-                        </div>
-                    </div>
-                </div>
-<div class="testimonial-card">
-                    <p class="testimonial-quote">"Our institutional knowledge is finally accessible and visual."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">NW</div>
-                        <div class="author-info">
-                            <h4>Nancy W.</h4>
-                            <span>Knowledge Manager</span>
-                        </div>
-                    </div>
-                </div>
 
-            </div>
+    <section class="compliance">
+        <h2 style="color: #fff; margin-bottom: 0.5rem; font-family: 'Playfair Display', serif;">Legal & Security Certifications</h2>
+        <p style="color: #94a3b8;">Enterprise-grade security for the most sensitive matters.</p>
+        <div class="compliance-badges">
+            <div class="compliance-badge">SOC 2 Type II</div>
+            <div class="compliance-badge">ISO 27001</div>
+            <div class="compliance-badge">FedRAMP</div>
+            <div class="compliance-badge">GDPR Ready</div>
+            <div class="compliance-badge">EDRM Certified</div>
         </div>
     </section>
-    <section class="cta-section" id="download">
-        <div class="container">
-            <h2>Ready to Transform Your Workflow?</h2>
-            <p>Experience the future of legal with Apple Vision Pro</p>
-            <a href="#" class="cta-button">Get Started Today</a>
-            <div class="store-badges">
-                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on App Store">
-            </div>
+
+    <section class="footer-cta">
+        <h2>Transform Your Discovery Process</h2>
+        <p>See the evidence others miss. Build stronger cases with spatial intelligence.</p>
+        <div class="platform-badge">
+            <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            <span>Built for Apple Vision Pro</span>
         </div>
     </section>
+
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Legal Discovery Universe. Designed for Apple Vision Pro spatial computing.</p>
-            <div style="margin-top: 16px;">
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-                <a href="support.html">Support</a>
-            </div>
-        </div>
+        <p>&copy; 2025 Legal Discovery Universe. Spatial Intelligence for Modern Litigation.</p>
     </footer>
 </body>
 </html>

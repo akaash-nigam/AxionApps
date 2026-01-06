@@ -3,266 +3,994 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Trading Cockpit - Trade in Immersive 3D Markets | Apple Vision Pro</title>
-    <meta name="description" content="Experience financial markets in spatial 3D. Real-time data visualization, multi-asset trading, and portfolio management in an immersive trading environment.">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Financial Trading Cockpit - Trade in Immersive 3D Markets">
-    <meta property="og:description" content="Experience financial markets in spatial 3D. Real-time data visualization, multi-asset trading, and portfolio management in an immersive trading environment.">
-    <meta property="og:image" content="hero-spatial.png">
-    <meta name="twitter:card" content="summary_large_image">
+    <meta name="hero-ref" content="1">
+    <title>Financial Trading Cockpit - Spatial Market Intelligence | Vision Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --accent: #3b82f6;
-            --accent-rgb: 59, 130, 246;
-            --accent-glow: rgba(59, 130, 246, 0.3);
-            --accent-border: rgba(59, 130, 246, 0.2);
-            --accent-hover: rgba(59, 130, 246, 0.5);
-            --bg-dark: #0a0a0f;
-            --bg-card: rgba(30, 27, 75, 0.4);
-            --text-primary: rgba(255, 255, 255, 0.95);
-            --text-secondary: rgba(255, 255, 255, 0.7);
-            --text-muted: rgba(255, 255, 255, 0.5);
+            --bull-green: #22c55e;
+            --bear-red: #ef4444;
+            --terminal-blue: #0ea5e9;
+            --gold: #f59e0b;
+            --terminal-dark: #0a0f14;
+            --grid-color: rgba(14, 165, 233, 0.1);
         }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif; background: var(--bg-dark); color: var(--text-primary); overflow-x: hidden; line-height: 1.6; }
-        .depth-layer { position: fixed; width: 200%; height: 200%; top: -50%; left: -50%; pointer-events: none; z-index: 0; }
-        .depth-layer-1 { background: radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 50%); animation: float 20s ease-in-out infinite; }
-        .depth-layer-2 { background: radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.12) 0%, transparent 50%); animation: float 25s ease-in-out infinite reverse; }
-        .depth-layer-3 { background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 60%); animation: float 30s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 33% { transform: translate(30px, -30px) rotate(3deg); } 66% { transform: translate(-20px, 20px) rotate(-3deg); } }
-        .vision-strip { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; }
-        .vision-strip .badge { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
-        .vision-strip .badge.highlight { background: var(--accent-glow); padding: 4px 12px; border-radius: 12px; color: white; border: 1px solid var(--accent-border); }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
-        nav { position: fixed; top: 44px; left: 0; right: 0; z-index: 999; background: rgba(10, 10, 15, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 15px 20px; }
-        nav .nav-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.3rem; font-weight: 700; color: white; display: flex; align-items: center; gap: 10px; }
-        .logo-icon { width: 36px; height: 36px; background: var(--accent-glow); border: 1px solid var(--accent-border); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
-        nav ul { display: flex; list-style: none; gap: 30px; }
-        nav a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; }
-        nav a:hover { color: white; }
-        .hero { padding: 180px 20px 100px; }
-        .hero-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center; max-width: 1400px; margin: 0 auto; }
-        .hero-content { text-align: left; }
-        .hero-badge { display: inline-block; background: var(--accent-glow); backdrop-filter: blur(20px); border: 1px solid var(--accent-hover); padding: 8px 20px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 24px; color: white; }
-        h1 { font-size: 52px; font-weight: 700; margin-bottom: 20px; background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; }
-        .tagline { font-size: 24px; color: var(--text-primary); margin-bottom: 20px; font-weight: 500; }
-        .description { font-size: 17px; color: var(--text-secondary); margin-bottom: 32px; line-height: 1.7; }
-        .cta-group { display: flex; gap: 16px; flex-wrap: wrap; }
-        .cta-button { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-size: 16px; font-weight: 600; transition: all 0.3s; box-shadow: 0 10px 40px var(--accent-glow); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 15px 50px var(--accent-hover); }
-        .cta-secondary { background: transparent; border: 1px solid var(--accent-border); box-shadow: none; }
-        .cta-secondary:hover { background: var(--accent-glow); box-shadow: none; }
-        .hero-image { position: relative; }
-        .hero-image img { width: 100%; border-radius: 20px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--accent-border); }
-        .hero-image::before { content: ''; position: absolute; inset: -2px; background: linear-gradient(135deg, var(--accent-hover), transparent 50%); border-radius: 22px; z-index: -1; }
-        .hero-placeholder { width: 100%; aspect-ratio: 16/10; background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(30, 27, 75, 0.6) 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 18px; border: 1px dashed var(--accent-border); }
-        .section { padding: 100px 20px; }
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-title { font-size: 42px; font-weight: 700; margin-bottom: 16px; }
-        .section-subtitle { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
-        .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-        .pillar-card { background: var(--bg-card); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--accent-border); border-radius: 20px; padding: 32px; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
-        .pillar-card:hover { transform: translateY(-5px); border-color: var(--accent-hover); box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--accent-border); }
-        .pillar-icon { font-size: 40px; margin-bottom: 16px; }
-        .pillar-card h3 { font-size: 20px; margin-bottom: 12px; color: var(--accent); }
-        .pillar-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
-        .benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-        .benefit-card { text-align: center; padding: 32px 20px; background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: 16px; }
-        .benefit-stat { font-size: 48px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
-        .benefit-label { font-size: 14px; color: var(--text-secondary); }
-        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .testimonial-card { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: 16px; padding: 32px; }
-        .testimonial-quote { font-size: 16px; font-style: italic; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.7; }
-        .testimonial-author { display: flex; align-items: center; gap: 12px; }
-        .author-avatar { width: 48px; height: 48px; background: var(--accent-glow); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--accent); }
-        .author-info h4 { font-size: 15px; margin-bottom: 2px; }
-        .author-info span { font-size: 13px; color: var(--text-muted); }
-        .cta-section { text-align: center; padding: 120px 20px; background: linear-gradient(180deg, transparent 0%, rgba(59, 130, 246, 0.1) 100%); border-top: 1px solid var(--accent-border); }
-        .cta-section h2 { font-size: 48px; margin-bottom: 16px; }
-        .cta-section p { font-size: 18px; color: var(--text-secondary); margin-bottom: 32px; }
-        .store-badges { display: flex; justify-content: center; gap: 16px; margin-top: 24px; }
-        .store-badges img { height: 50px; }
-        footer { border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 60px 20px; text-align: center; }
-        footer p { color: var(--text-muted); font-size: 14px; }
-        footer a { color: var(--accent); text-decoration: none; margin: 0 15px; }
-        footer a:hover { color: white; }
-        @media (max-width: 1024px) { .hero-grid { grid-template-columns: 1fr; text-align: center; } .hero-content { text-align: center; } .cta-group { justify-content: center; } .benefits-grid { grid-template-columns: repeat(2, 1fr); } .testimonials-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) { h1 { font-size: 36px; } .section-title { font-size: 32px; } .benefits-grid { grid-template-columns: 1fr; } .vision-strip { padding: 8px 10px; gap: 10px; } .vision-strip .badge { font-size: 10px; } nav ul { gap: 15px; } }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--terminal-dark);
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        /* Terminal Grid Background */
+        .terminal-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Ticker Tape Animation */
+        .ticker-tape {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 40px;
+            background: rgba(10, 15, 20, 0.95);
+            border-bottom: 1px solid rgba(14, 165, 233, 0.3);
+            display: flex;
+            align-items: center;
+            z-index: 100;
+            animation: tickerScroll 30s linear infinite;
+        }
+
+        @keyframes tickerScroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 30px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .ticker-symbol {
+            color: white;
+            font-weight: 600;
+        }
+
+        .ticker-price {
+            color: var(--terminal-blue);
+        }
+
+        .ticker-change.up {
+            color: var(--bull-green);
+        }
+
+        .ticker-change.down {
+            color: var(--bear-red);
+        }
+
+        /* Live Indicator */
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--bull-green);
+            border-radius: 50%;
+            animation: livePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes livePulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 10px var(--bull-green); }
+            50% { opacity: 0.5; box-shadow: 0 0 5px var(--bull-green); }
+        }
+
+        /* Candlestick Pulse Animation */
+        @keyframes candlePulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(180deg, rgba(10, 15, 20, 0.8) 0%, var(--terminal-dark) 100%),
+                        url('hero-spatial.png') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .market-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid var(--bull-green);
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--bull-green);
+            margin-bottom: 30px;
+        }
+
+        .logo-container {
+            margin-bottom: 30px;
+        }
+
+        .logo-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(239, 68, 68, 0.2) 100%);
+            border: 2px solid var(--terminal-blue);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+
+        h1 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 64px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ffffff 0%, var(--terminal-blue) 50%, var(--bull-green) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .tagline {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 22px;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            max-width: 700px;
+            line-height: 1.8;
+            color: rgba(226, 232, 240, 0.85);
+            margin-bottom: 40px;
+        }
+
+        /* CTA Buttons */
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+
+        .cta-primary {
+            background: var(--bull-green);
+            color: white;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .cta-primary:hover {
+            background: #16a34a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: var(--terminal-blue);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 18px 40px;
+            border: 2px solid var(--terminal-blue);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(14, 165, 233, 0.2);
+        }
+
+        /* Market Stats Bar */
+        .market-stats {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 30px 40px;
+            background: rgba(10, 15, 20, 0.9);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            border-radius: 8px;
+        }
+
+        .stat-item {
+            text-align: center;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-value.green { color: var(--bull-green); }
+        .stat-value.blue { color: var(--terminal-blue); }
+        .stat-value.gold { color: var(--gold); }
+
+        .stat-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(226, 232, 240, 0.6);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 42px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: white;
+        }
+
+        /* Asset Classes Grid */
+        .assets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .asset-card {
+            background: rgba(10, 15, 20, 0.8);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 8px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .asset-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--bull-green), var(--terminal-blue));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .asset-card:hover {
+            border-color: var(--terminal-blue);
+            transform: translateY(-5px);
+        }
+
+        .asset-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .asset-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .asset-icon {
+            font-size: 36px;
+        }
+
+        .asset-badge {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            background: rgba(34, 197, 94, 0.2);
+            color: var(--bull-green);
+        }
+
+        .asset-name {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 20px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .asset-desc {
+            font-size: 14px;
+            color: rgba(226, 232, 240, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Trading Tools */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .tool-card {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(10, 15, 20, 0.9) 100%);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            border-radius: 8px;
+            padding: 35px;
+            display: flex;
+            gap: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover {
+            border-color: var(--terminal-blue);
+            box-shadow: 0 10px 40px rgba(14, 165, 233, 0.2);
+        }
+
+        .tool-icon {
+            font-size: 40px;
+            flex-shrink: 0;
+        }
+
+        .tool-content h3 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--terminal-blue);
+            margin-bottom: 10px;
+        }
+
+        .tool-content p {
+            font-size: 15px;
+            color: rgba(226, 232, 240, 0.7);
+            line-height: 1.6;
+        }
+
+        /* AI Signals Section */
+        .ai-section {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(10, 15, 20, 0.95) 100%);
+            border-top: 1px solid rgba(34, 197, 94, 0.3);
+            border-bottom: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .signals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .signal-card {
+            background: rgba(10, 15, 20, 0.8);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .signal-icon {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .signal-name {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .signal-desc {
+            font-size: 13px;
+            color: rgba(226, 232, 240, 0.6);
+        }
+
+        /* Performance Metrics */
+        .metrics-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .metric-card {
+            background: rgba(10, 15, 20, 0.8);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--bull-green);
+            margin-bottom: 10px;
+        }
+
+        .metric-label {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(226, 232, 240, 0.6);
+        }
+
+        /* Requirements */
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            background: rgba(10, 15, 20, 0.8);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 8px;
+            padding: 40px;
+        }
+
+        .req-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .req-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .req-content h4 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--terminal-blue);
+            margin-bottom: 4px;
+        }
+
+        .req-content p {
+            font-size: 13px;
+            color: rgba(226, 232, 240, 0.7);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 15, 20, 0.95);
+            border-top: 1px solid rgba(14, 165, 233, 0.2);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--terminal-blue);
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .footer-link {
+            color: rgba(226, 232, 240, 0.6);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--terminal-blue);
+        }
+
+        .footer-copy {
+            font-size: 13px;
+            color: rgba(226, 232, 240, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 40px;
+            }
+
+            .tagline {
+                font-size: 16px;
+                letter-spacing: 2px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .metrics-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .market-stats {
+                gap: 20px;
+            }
+
+            .ticker-tape {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="depth-layer depth-layer-1"></div>
-    <div class="depth-layer depth-layer-2"></div>
-    <div class="depth-layer depth-layer-3"></div>
-    <div class="vision-strip">
-        <span class="badge highlight">Apple Vision Pro</span>
-        <span class="badge">Spatial Computing</span>
-        <span class="badge">visionOS 2.0+</span>
-        <span class="badge">Enterprise Ready</span>
-        <span class="badge">Finance</span>
+    <!-- Ticker Tape -->
+    <div class="ticker-tape">
+        <div class="ticker-item">
+            <span class="ticker-symbol">AAPL</span>
+            <span class="ticker-price">$198.45</span>
+            <span class="ticker-change up">+2.34%</span>
+        </div>
+        <div class="ticker-item">
+            <span class="ticker-symbol">GOOGL</span>
+            <span class="ticker-price">$142.67</span>
+            <span class="ticker-change up">+1.12%</span>
+        </div>
+        <div class="ticker-item">
+            <span class="ticker-symbol">MSFT</span>
+            <span class="ticker-price">$378.91</span>
+            <span class="ticker-change down">-0.45%</span>
+        </div>
+        <div class="ticker-item">
+            <span class="ticker-symbol">TSLA</span>
+            <span class="ticker-price">$245.23</span>
+            <span class="ticker-change up">+3.78%</span>
+        </div>
+        <div class="ticker-item">
+            <span class="ticker-symbol">BTC</span>
+            <span class="ticker-price">$67,234</span>
+            <span class="ticker-change up">+5.21%</span>
+        </div>
+        <div class="ticker-item">
+            <span class="ticker-symbol">ETH</span>
+            <span class="ticker-price">$3,456</span>
+            <span class="ticker-change down">-1.23%</span>
+        </div>
+        <div class="ticker-item">
+            <span class="ticker-symbol">SPY</span>
+            <span class="ticker-price">$512.45</span>
+            <span class="ticker-change up">+0.89%</span>
+        </div>
+        <div class="ticker-item">
+            <span class="ticker-symbol">NVDA</span>
+            <span class="ticker-price">$892.34</span>
+            <span class="ticker-change up">+4.56%</span>
+        </div>
+        <div class="ticker-item">
+            <span class="ticker-symbol">AAPL</span>
+            <span class="ticker-price">$198.45</span>
+            <span class="ticker-change up">+2.34%</span>
+        </div>
+        <div class="ticker-item">
+            <span class="ticker-symbol">GOOGL</span>
+            <span class="ticker-price">$142.67</span>
+            <span class="ticker-change up">+1.12%</span>
+        </div>
+        <div class="ticker-item">
+            <span class="ticker-symbol">MSFT</span>
+            <span class="ticker-price">$378.91</span>
+            <span class="ticker-change down">-0.45%</span>
+        </div>
+        <div class="ticker-item">
+            <span class="ticker-symbol">TSLA</span>
+            <span class="ticker-price">$245.23</span>
+            <span class="ticker-change up">+3.78%</span>
+        </div>
     </div>
-    <nav>
-        <div class="nav-content">
-            <div class="logo">
-                <div class="logo-icon">FT</div>
-                Financial Trading Cockpit
-            </div>
-            <ul>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#benefits">Benefits</a></li>
-                <li><a href="support.html">Support</a></li>
-            </ul>
-        </div>
-    </nav>
+
+    <!-- Background -->
+    <div class="terminal-grid"></div>
+
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-grid">
-            <div class="hero-content">
-                <div class="hero-badge">Finance</div>
-                <h1>Financial Trading Cockpit</h1>
-                <p class="tagline">Trade in Immersive 3D Markets</p>
-                <p class="description">Experience financial markets in spatial 3D. Real-time data visualization, multi-asset trading, and portfolio management in an immersive trading environment.</p>
-                <div class="cta-group">
-                    <a href="#download" class="cta-button">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
-                        Experience in Vision Pro
-                    </a>
-                    <a href="#demo" class="cta-button cta-secondary">Request Demo</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="hero-spatial.png" alt="Financial Trading Cockpit spatial interface">
-            </div>
+        <div class="market-status">
+            <span class="live-dot"></span>
+            Markets Open • Live Data
         </div>
-    </section>
-    <section class="section" id="features">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Spatial Capabilities</h2>
-                <p class="section-subtitle">Enterprise finance reimagined for immersive spatial computing</p>
-            </div>
-            <div class="pillars-grid">
-                <div class="pillar-card">
-                    <div class="pillar-icon">📈</div>
-                    <h3>3D Market View</h3>
-                    <p>Visualize market data in spatial layers</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">⚡</div>
-                    <h3>Real-Time Data</h3>
-                    <p>Sub-millisecond market feeds</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">📊</div>
-                    <h3>Portfolio Analytics</h3>
-                    <p>Comprehensive risk analysis</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">🤖</div>
-                    <h3>AI Signals</h3>
-                    <p>Machine learning trade signals</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">🔔</div>
-                    <h3>Smart Alerts</h3>
-                    <p>Spatial notification system</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">👥</div>
-                    <h3>Team Trading</h3>
-                    <p>Collaborative trading rooms</p>
-                </div>
 
-            </div>
+        <div class="logo-container">
+            <div class="logo-icon">📈</div>
         </div>
-    </section>
-    <section class="section" id="benefits" style="background: rgba(59, 130, 246, 0.03);">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Enterprise Impact</h2>
-                <p class="section-subtitle">Measurable results for forward-thinking organizations</p>
-            </div>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-stat">1ms</div>
-                    <div class="benefit-label">Latency</div>
-                </div>
-<div class="benefit-card">
-                    <div class="benefit-stat">100+</div>
-                    <div class="benefit-label">Markets</div>
-                </div>
-<div class="benefit-card">
-                    <div class="benefit-stat">AI</div>
-                    <div class="benefit-label">Signals</div>
-                </div>
-<div class="benefit-card">
-                    <div class="benefit-stat">24/7</div>
-                    <div class="benefit-label">Trading</div>
-                </div>
 
+        <h1>Financial Trading<br>Cockpit</h1>
+        <p class="tagline">Spatial Market Intelligence</p>
+        <p class="hero-description">
+            Immerse yourself in 3D market data visualization. Trade across global markets with real-time analytics, AI-powered signals, and institutional-grade tools—all in spatial reality on Apple Vision Pro.
+        </p>
+
+        <div class="cta-group">
+            <a href="#" class="cta-primary">Start Trading - $29.99/mo</a>
+            <a href="#" class="cta-secondary">Request Demo</a>
+        </div>
+
+        <div class="market-stats">
+            <div class="stat-item">
+                <span class="stat-value green">&lt;1ms</span>
+                <span class="stat-label">Latency</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value blue">100+</span>
+                <span class="stat-label">Markets</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value gold">50K+</span>
+                <span class="stat-label">Assets</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value green">24/7</span>
+                <span class="stat-label">Trading</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value blue">AI</span>
+                <span class="stat-label">Signals</span>
             </div>
         </div>
     </section>
+
+    <!-- Asset Classes -->
     <section class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Trusted by Leaders</h2>
-                <p class="section-subtitle">See why enterprises choose Financial Trading Cockpit for spatial computing</p>
+                <span class="section-tag">// Asset Classes</span>
+                <h2 class="section-title">Trade Everything</h2>
             </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">"Seeing market data in 3D reveals patterns invisible in flat charts. Our returns improved immediately."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">RK</div>
-                        <div class="author-info">
-                            <h4>Robert K.</h4>
-                            <span>Portfolio Manager</span>
-                        </div>
+
+            <div class="assets-grid">
+                <div class="asset-card">
+                    <div class="asset-header">
+                        <span class="asset-icon">📊</span>
+                        <span class="asset-badge">Live</span>
                     </div>
+                    <h3 class="asset-name">Equities</h3>
+                    <p class="asset-desc">Trade stocks from NYSE, NASDAQ, LSE, TSE, and 50+ global exchanges with real-time Level 2 data.</p>
                 </div>
-<div class="testimonial-card">
-                    <p class="testimonial-quote">"The trading cockpit gives me an edge I never had before. Information density is incredible."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">JL</div>
-                        <div class="author-info">
-                            <h4>Jennifer L.</h4>
-                            <span>Quantitative Trader</span>
-                        </div>
+
+                <div class="asset-card">
+                    <div class="asset-header">
+                        <span class="asset-icon">💱</span>
+                        <span class="asset-badge">24/7</span>
                     </div>
+                    <h3 class="asset-name">Forex</h3>
+                    <p class="asset-desc">Access 180+ currency pairs with institutional spreads and multi-timeframe analysis.</p>
                 </div>
-<div class="testimonial-card">
-                    <p class="testimonial-quote">"Financial reporting in spatial reality makes board presentations actually engaging."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">TH</div>
-                        <div class="author-info">
-                            <h4>Thomas H.</h4>
-                            <span>CFO</span>
-                        </div>
+
+                <div class="asset-card">
+                    <div class="asset-header">
+                        <span class="asset-icon">₿</span>
+                        <span class="asset-badge">Live</span>
+                    </div>
+                    <h3 class="asset-name">Crypto</h3>
+                    <p class="asset-desc">Trade Bitcoin, Ethereum, and 500+ cryptocurrencies across major exchanges.</p>
+                </div>
+
+                <div class="asset-card">
+                    <div class="asset-header">
+                        <span class="asset-icon">🛢️</span>
+                        <span class="asset-badge">Futures</span>
+                    </div>
+                    <h3 class="asset-name">Commodities</h3>
+                    <p class="asset-desc">Oil, gold, silver, agricultural products, and more with futures and spot trading.</p>
+                </div>
+
+                <div class="asset-card">
+                    <div class="asset-header">
+                        <span class="asset-icon">📈</span>
+                        <span class="asset-badge">Options</span>
+                    </div>
+                    <h3 class="asset-name">Derivatives</h3>
+                    <p class="asset-desc">Options chains, futures contracts, and structured products with Greeks visualization.</p>
+                </div>
+
+                <div class="asset-card">
+                    <div class="asset-header">
+                        <span class="asset-icon">🏛️</span>
+                        <span class="asset-badge">Bonds</span>
+                    </div>
+                    <h3 class="asset-name">Fixed Income</h3>
+                    <p class="asset-desc">Government bonds, corporate debt, and yield curve analysis in 3D space.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trading Tools -->
+    <section class="section" style="background: rgba(14, 165, 233, 0.03);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">// Trading Tools</span>
+                <h2 class="section-title">Professional Grade</h2>
+            </div>
+
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">🎯</div>
+                    <div class="tool-content">
+                        <h3>3D Order Flow</h3>
+                        <p>Visualize market depth, order book imbalances, and institutional activity in spatial layers.</p>
                     </div>
                 </div>
 
+                <div class="tool-card">
+                    <div class="tool-icon">📉</div>
+                    <div class="tool-content">
+                        <h3>Technical Analysis</h3>
+                        <p>100+ indicators, custom scripts, and pattern recognition with 3D candlestick charts.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">⚡</div>
+                    <div class="tool-content">
+                        <h3>One-Click Trading</h3>
+                        <p>Execute trades instantly with gesture controls. Set stops and targets in 3D space.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">📊</div>
+                    <div class="tool-content">
+                        <h3>Portfolio Analytics</h3>
+                        <p>Real-time P&L, risk metrics, sector exposure, and correlation analysis visualized spatially.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🔔</div>
+                    <div class="tool-content">
+                        <h3>Smart Alerts</h3>
+                        <p>Price alerts, technical signals, and news events delivered as spatial notifications.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">📰</div>
+                    <div class="tool-content">
+                        <h3>Market News</h3>
+                        <p>Real-time news feeds, earnings calendars, and economic events with sentiment analysis.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    <section class="cta-section" id="download">
+
+    <!-- AI Signals -->
+    <section class="section ai-section">
         <div class="container">
-            <h2>Ready to Transform Your Workflow?</h2>
-            <p>Experience the future of finance with Apple Vision Pro</p>
-            <a href="#" class="cta-button">Get Started Today</a>
-            <div class="store-badges">
-                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on App Store">
+            <div class="section-header">
+                <span class="section-tag">// AI-Powered</span>
+                <h2 class="section-title">Intelligent Signals</h2>
+            </div>
+
+            <div class="signals-grid">
+                <div class="signal-card">
+                    <div class="signal-icon">🤖</div>
+                    <h3 class="signal-name">Pattern Recognition</h3>
+                    <p class="signal-desc">ML models identify chart patterns in real-time</p>
+                </div>
+
+                <div class="signal-card">
+                    <div class="signal-icon">📊</div>
+                    <h3 class="signal-name">Trend Analysis</h3>
+                    <p class="signal-desc">Multi-timeframe trend strength scoring</p>
+                </div>
+
+                <div class="signal-card">
+                    <div class="signal-icon">💡</div>
+                    <h3 class="signal-name">Entry/Exit Signals</h3>
+                    <p class="signal-desc">AI-generated trade recommendations</p>
+                </div>
+
+                <div class="signal-card">
+                    <div class="signal-icon">📈</div>
+                    <h3 class="signal-name">Momentum Scoring</h3>
+                    <p class="signal-desc">Relative strength across sectors</p>
+                </div>
+
+                <div class="signal-card">
+                    <div class="signal-icon">🎯</div>
+                    <h3 class="signal-name">Price Targets</h3>
+                    <p class="signal-desc">ML-predicted support and resistance</p>
+                </div>
+
+                <div class="signal-card">
+                    <div class="signal-icon">⚠️</div>
+                    <h3 class="signal-name">Risk Alerts</h3>
+                    <p class="signal-desc">Anomaly detection and risk warnings</p>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- Performance Metrics -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">// Performance</span>
+                <h2 class="section-title">Platform Metrics</h2>
+            </div>
+
+            <div class="metrics-container">
+                <div class="metric-card">
+                    <div class="metric-value">&lt;1ms</div>
+                    <div class="metric-label">Order Latency</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-value">99.99%</div>
+                    <div class="metric-label">Uptime</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-value">$2T+</div>
+                    <div class="metric-label">Daily Volume</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-value">120fps</div>
+                    <div class="metric-label">Refresh Rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Requirements -->
+    <section class="section" style="background: rgba(14, 165, 233, 0.03);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">// Requirements</span>
+                <h2 class="section-title">System Specs</h2>
+            </div>
+
+            <div class="requirements-grid">
+                <div class="req-item">
+                    <div class="req-icon">📱</div>
+                    <div class="req-content">
+                        <h4>Device</h4>
+                        <p>Apple Vision Pro</p>
+                    </div>
+                </div>
+                <div class="req-item">
+                    <div class="req-icon">💾</div>
+                    <div class="req-content">
+                        <h4>Storage</h4>
+                        <p>2.5 GB available</p>
+                    </div>
+                </div>
+                <div class="req-item">
+                    <div class="req-icon">🌐</div>
+                    <div class="req-content">
+                        <h4>Connection</h4>
+                        <p>High-speed internet required</p>
+                    </div>
+                </div>
+                <div class="req-item">
+                    <div class="req-icon">🔐</div>
+                    <div class="req-content">
+                        <h4>Security</h4>
+                        <p>Bank-grade encryption</p>
+                    </div>
+                </div>
+                <div class="req-item">
+                    <div class="req-icon">📊</div>
+                    <div class="req-content">
+                        <h4>Data</h4>
+                        <p>Real-time market feeds included</p>
+                    </div>
+                </div>
+                <div class="req-item">
+                    <div class="req-icon">🏦</div>
+                    <div class="req-content">
+                        <h4>Brokerage</h4>
+                        <p>Connect your existing broker</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Financial Trading Cockpit. Designed for Apple Vision Pro spatial computing.</p>
-            <div style="margin-top: 16px;">
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-                <a href="support.html">Support</a>
-            </div>
+        <div class="footer-logo">Financial Trading Cockpit</div>
+        <div class="footer-links">
+            <a href="#" class="footer-link">Privacy Policy</a>
+            <a href="#" class="footer-link">Terms of Service</a>
+            <a href="#" class="footer-link">Risk Disclosure</a>
+            <a href="#" class="footer-link">Support</a>
         </div>
+        <p class="footer-copy">&copy; 2025 Financial Trading Cockpit. Trading involves risk. Spatial trading for Apple Vision Pro.</p>
     </footer>
 </body>
 </html>

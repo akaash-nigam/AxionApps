@@ -3,266 +3,609 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sustainability Command - ESG Management in Spatial 3D | Apple Vision Pro</title>
-    <meta name="description" content="Track and manage sustainability goals in immersive 3D. Carbon footprint, ESG reporting, and environmental impact visualization.">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Sustainability Command - ESG Management in Spatial 3D">
-    <meta property="og:description" content="Track and manage sustainability goals in immersive 3D. Carbon footprint, ESG reporting, and environmental impact visualization.">
-    <meta property="og:image" content="hero-spatial.png">
-    <meta name="twitter:card" content="summary_large_image">
+    <meta name="hero-ref" content="1">
+    <title>Sustainability Command - ESG Management in Spatial 3D | visionOS</title>
+    <meta name="description" content="Track carbon footprint, ESG metrics, and environmental impact in immersive 3D. Net-zero planning and regulatory compliance on Apple Vision Pro.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --accent: #10b981;
-            --accent-rgb: 16, 185, 129;
-            --accent-glow: rgba(16, 185, 129, 0.3);
-            --accent-border: rgba(16, 185, 129, 0.2);
-            --accent-hover: rgba(16, 185, 129, 0.5);
-            --bg-dark: #0a0a0f;
-            --bg-card: rgba(30, 27, 75, 0.4);
-            --text-primary: rgba(255, 255, 255, 0.95);
-            --text-secondary: rgba(255, 255, 255, 0.7);
-            --text-muted: rgba(255, 255, 255, 0.5);
+            --forest-green: #22c55e;
+            --ocean-blue: #0ea5e9;
+            --sky-cyan: #06b6d4;
+            --earth-brown: #a16207;
+            --leaf-lime: #84cc16;
+            --eco-dark: #022c22;
+            --nature-slate: #064e3b;
         }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif; background: var(--bg-dark); color: var(--text-primary); overflow-x: hidden; line-height: 1.6; }
-        .depth-layer { position: fixed; width: 200%; height: 200%; top: -50%; left: -50%; pointer-events: none; z-index: 0; }
-        .depth-layer-1 { background: radial-gradient(circle at 20% 30%, rgba(16, 185, 129, 0.15) 0%, transparent 50%); animation: float 20s ease-in-out infinite; }
-        .depth-layer-2 { background: radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.12) 0%, transparent 50%); animation: float 25s ease-in-out infinite reverse; }
-        .depth-layer-3 { background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.08) 0%, transparent 60%); animation: float 30s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 33% { transform: translate(30px, -30px) rotate(3deg); } 66% { transform: translate(-20px, 20px) rotate(-3deg); } }
-        .vision-strip { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; }
-        .vision-strip .badge { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
-        .vision-strip .badge.highlight { background: var(--accent-glow); padding: 4px 12px; border-radius: 12px; color: white; border: 1px solid var(--accent-border); }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
-        nav { position: fixed; top: 44px; left: 0; right: 0; z-index: 999; background: rgba(10, 10, 15, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 15px 20px; }
-        nav .nav-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.3rem; font-weight: 700; color: white; display: flex; align-items: center; gap: 10px; }
-        .logo-icon { width: 36px; height: 36px; background: var(--accent-glow); border: 1px solid var(--accent-border); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
-        nav ul { display: flex; list-style: none; gap: 30px; }
-        nav a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; }
-        nav a:hover { color: white; }
-        .hero { padding: 180px 20px 100px; }
-        .hero-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center; max-width: 1400px; margin: 0 auto; }
-        .hero-content { text-align: left; }
-        .hero-badge { display: inline-block; background: var(--accent-glow); backdrop-filter: blur(20px); border: 1px solid var(--accent-hover); padding: 8px 20px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 24px; color: white; }
-        h1 { font-size: 52px; font-weight: 700; margin-bottom: 20px; background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; }
-        .tagline { font-size: 24px; color: var(--text-primary); margin-bottom: 20px; font-weight: 500; }
-        .description { font-size: 17px; color: var(--text-secondary); margin-bottom: 32px; line-height: 1.7; }
-        .cta-group { display: flex; gap: 16px; flex-wrap: wrap; }
-        .cta-button { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-size: 16px; font-weight: 600; transition: all 0.3s; box-shadow: 0 10px 40px var(--accent-glow); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 15px 50px var(--accent-hover); }
-        .cta-secondary { background: transparent; border: 1px solid var(--accent-border); box-shadow: none; }
-        .cta-secondary:hover { background: var(--accent-glow); box-shadow: none; }
-        .hero-image { position: relative; }
-        .hero-image img { width: 100%; border-radius: 20px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--accent-border); }
-        .hero-image::before { content: ''; position: absolute; inset: -2px; background: linear-gradient(135deg, var(--accent-hover), transparent 50%); border-radius: 22px; z-index: -1; }
-        .hero-placeholder { width: 100%; aspect-ratio: 16/10; background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(30, 27, 75, 0.6) 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 18px; border: 1px dashed var(--accent-border); }
-        .section { padding: 100px 20px; }
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-title { font-size: 42px; font-weight: 700; margin-bottom: 16px; }
-        .section-subtitle { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
-        .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-        .pillar-card { background: var(--bg-card); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--accent-border); border-radius: 20px; padding: 32px; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
-        .pillar-card:hover { transform: translateY(-5px); border-color: var(--accent-hover); box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--accent-border); }
-        .pillar-icon { font-size: 40px; margin-bottom: 16px; }
-        .pillar-card h3 { font-size: 20px; margin-bottom: 12px; color: var(--accent); }
-        .pillar-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
-        .benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-        .benefit-card { text-align: center; padding: 32px 20px; background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: 16px; }
-        .benefit-stat { font-size: 48px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
-        .benefit-label { font-size: 14px; color: var(--text-secondary); }
-        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .testimonial-card { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: 16px; padding: 32px; }
-        .testimonial-quote { font-size: 16px; font-style: italic; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.7; }
-        .testimonial-author { display: flex; align-items: center; gap: 12px; }
-        .author-avatar { width: 48px; height: 48px; background: var(--accent-glow); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--accent); }
-        .author-info h4 { font-size: 15px; margin-bottom: 2px; }
-        .author-info span { font-size: 13px; color: var(--text-muted); }
-        .cta-section { text-align: center; padding: 120px 20px; background: linear-gradient(180deg, transparent 0%, rgba(16, 185, 129, 0.1) 100%); border-top: 1px solid var(--accent-border); }
-        .cta-section h2 { font-size: 48px; margin-bottom: 16px; }
-        .cta-section p { font-size: 18px; color: var(--text-secondary); margin-bottom: 32px; }
-        .store-badges { display: flex; justify-content: center; gap: 16px; margin-top: 24px; }
-        .store-badges img { height: 50px; }
-        footer { border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 60px 20px; text-align: center; }
-        footer p { color: var(--text-muted); font-size: 14px; }
-        footer a { color: var(--accent); text-decoration: none; margin: 0 15px; }
-        footer a:hover { color: white; }
-        @media (max-width: 1024px) { .hero-grid { grid-template-columns: 1fr; text-align: center; } .hero-content { text-align: center; } .cta-group { justify-content: center; } .benefits-grid { grid-template-columns: repeat(2, 1fr); } .testimonials-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) { h1 { font-size: 36px; } .section-title { font-size: 32px; } .benefits-grid { grid-template-columns: 1fr; } .vision-strip { padding: 8px 10px; gap: 10px; } .vision-strip .badge { font-size: 10px; } nav ul { gap: 15px; } }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--eco-dark);
+            color: #d1fae5;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* Nature Background */
+        .nature-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        /* Floating Leaves */
+        .leaf {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.3;
+            animation: leafFloat 12s ease-in-out infinite;
+        }
+
+        @keyframes leafFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(30px, -40px) rotate(45deg); }
+            50% { transform: translate(-20px, -80px) rotate(90deg); }
+            75% { transform: translate(40px, -40px) rotate(135deg); }
+        }
+
+        .leaf-1 { top: 20%; left: 10%; animation-delay: 0s; }
+        .leaf-2 { top: 40%; left: 25%; animation-delay: 2s; }
+        .leaf-3 { top: 60%; left: 15%; animation-delay: 4s; }
+        .leaf-4 { top: 30%; right: 20%; animation-delay: 1s; }
+        .leaf-5 { top: 55%; right: 15%; animation-delay: 3s; }
+        .leaf-6 { top: 75%; right: 25%; animation-delay: 5s; }
+
+        /* Recycling Arrows */
+        .recycle-arrow {
+            position: absolute;
+            font-size: 4rem;
+            color: var(--forest-green);
+            opacity: 0.1;
+            animation: recycleSpin 20s linear infinite;
+        }
+
+        @keyframes recycleSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .arrow-1 { top: 15%; left: 5%; }
+        .arrow-2 { bottom: 20%; right: 10%; animation-direction: reverse; }
+
+        /* Water Drops */
+        .water-drop {
+            position: absolute;
+            width: 6px;
+            height: 10px;
+            background: linear-gradient(180deg, var(--ocean-blue), transparent);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: dropFall 4s ease-in infinite;
+            opacity: 0.4;
+        }
+
+        @keyframes dropFall {
+            0% { transform: translateY(-20px); opacity: 0; }
+            20% { opacity: 0.4; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        .drop-1 { left: 30%; animation-delay: 0s; }
+        .drop-2 { left: 50%; animation-delay: 1s; }
+        .drop-3 { left: 70%; animation-delay: 2s; }
+        .drop-4 { left: 85%; animation-delay: 3s; }
+
+        /* Carbon Bubbles */
+        .carbon-bubble {
+            position: absolute;
+            border: 2px solid rgba(34, 197, 94, 0.2);
+            border-radius: 50%;
+            animation: bubbleRise 8s ease-in-out infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes bubbleRise {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
+            50% { transform: translateY(-100px) scale(1.1); opacity: 0.5; }
+        }
+
+        .bubble-1 { width: 40px; height: 40px; bottom: 20%; left: 20%; animation-delay: 0s; }
+        .bubble-2 { width: 60px; height: 60px; bottom: 30%; left: 40%; animation-delay: 2s; }
+        .bubble-3 { width: 30px; height: 30px; bottom: 25%; right: 30%; animation-delay: 4s; }
+
+        /* Globe Element */
+        .eco-globe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            border: 1px solid rgba(34, 197, 94, 0.1);
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('hero-spatial.png') center/cover no-repeat;
+            opacity: 0.15;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, var(--eco-dark) 0%, transparent 40%, var(--eco-dark) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 900px;
+            padding: 2rem;
+        }
+
+        .eco-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--forest-green);
+            margin-bottom: 2rem;
+        }
+
+        .eco-badge::before {
+            content: '🌍';
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--forest-green), var(--sky-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 1.15rem;
+            color: #a7f3d0;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, var(--forest-green), var(--ocean-blue));
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(34, 197, 94, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(34, 197, 94, 0.4);
+        }
+
+        /* ESG Metrics Panel */
+        .esg-panel {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .esg-metric {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(34, 197, 94, 0.05);
+            border: 1px solid rgba(34, 197, 94, 0.15);
+            border-radius: 20px;
+        }
+
+        .esg-letter {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .esg-e { color: var(--forest-green); }
+        .esg-s { color: var(--ocean-blue); }
+        .esg-g { color: var(--sky-cyan); }
+
+        .esg-label {
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #6ee7b7;
+            letter-spacing: 1px;
+        }
+
+        /* Features Section */
+        .features {
+            position: relative;
+            padding: 6rem 2rem;
+            background: var(--nature-slate);
+            z-index: 2;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .section-header p {
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 1.1rem;
+            color: #a7f3d0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(34, 197, 94, 0.05);
+            border: 1px solid rgba(34, 197, 94, 0.1);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--forest-green), var(--sky-cyan));
+            border-radius: 24px 24px 0 0;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .feature-card:hover::before { opacity: 1; }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--forest-green);
+        }
+
+        .feature-card p {
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 0.95rem;
+            color: #a7f3d0;
+        }
+
+        /* Compliance Badges */
+        .compliance {
+            position: relative;
+            padding: 4rem 2rem;
+            background: var(--eco-dark);
+            border-top: 1px solid rgba(34, 197, 94, 0.1);
+            border-bottom: 1px solid rgba(34, 197, 94, 0.1);
+            z-index: 2;
+            text-align: center;
+        }
+
+        .compliance h3 {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #6ee7b7;
+        }
+
+        .badge-grid {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .compliance-badge {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            color: var(--forest-green);
+        }
+
+        /* Impact Stats */
+        .impact {
+            position: relative;
+            padding: 4rem 2rem;
+            background: var(--nature-slate);
+            z-index: 2;
+        }
+
+        .impact-grid {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .impact-item { text-align: center; }
+
+        .impact-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--forest-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-label {
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 0.8rem;
+            color: #6ee7b7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Footer CTA */
+        .footer-cta {
+            position: relative;
+            padding: 6rem 2rem;
+            background: var(--eco-dark);
+            text-align: center;
+            z-index: 2;
+        }
+
+        .footer-cta h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .footer-cta p {
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 1.1rem;
+            color: #a7f3d0;
+            margin-bottom: 2rem;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .platform-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            color: #6ee7b7;
+            font-size: 0.95rem;
+        }
+
+        .platform-badge svg { width: 24px; height: 24px; fill: currentColor; }
+
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            background: var(--eco-dark);
+            border-top: 1px solid rgba(34, 197, 94, 0.1);
+            color: #047857;
+            font-size: 0.9rem;
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .esg-panel { grid-template-columns: 1fr; max-width: 250px; }
+        }
     </style>
 </head>
 <body>
-    <div class="depth-layer depth-layer-1"></div>
-    <div class="depth-layer depth-layer-2"></div>
-    <div class="depth-layer depth-layer-3"></div>
-    <div class="vision-strip">
-        <span class="badge highlight">Apple Vision Pro</span>
-        <span class="badge">Spatial Computing</span>
-        <span class="badge">visionOS 2.0+</span>
-        <span class="badge">Enterprise Ready</span>
-        <span class="badge">Smart Infrastructure</span>
+    <div class="nature-bg">
+        <div class="eco-globe"></div>
+
+        <div class="leaf leaf-1">🍃</div>
+        <div class="leaf leaf-2">🌿</div>
+        <div class="leaf leaf-3">🍃</div>
+        <div class="leaf leaf-4">🌿</div>
+        <div class="leaf leaf-5">🍃</div>
+        <div class="leaf leaf-6">🌿</div>
+
+        <div class="recycle-arrow arrow-1">♻️</div>
+        <div class="recycle-arrow arrow-2">♻️</div>
+
+        <div class="water-drop drop-1"></div>
+        <div class="water-drop drop-2"></div>
+        <div class="water-drop drop-3"></div>
+        <div class="water-drop drop-4"></div>
+
+        <div class="carbon-bubble bubble-1"></div>
+        <div class="carbon-bubble bubble-2"></div>
+        <div class="carbon-bubble bubble-3"></div>
     </div>
-    <nav>
-        <div class="nav-content">
-            <div class="logo">
-                <div class="logo-icon">SU</div>
-                Sustainability Command
-            </div>
-            <ul>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#benefits">Benefits</a></li>
-                <li><a href="support.html">Support</a></li>
-            </ul>
-        </div>
-    </nav>
+
     <section class="hero">
-        <div class="hero-grid">
-            <div class="hero-content">
-                <div class="hero-badge">Smart Infrastructure</div>
-                <h1>Sustainability Command</h1>
-                <p class="tagline">ESG Management in Spatial 3D</p>
-                <p class="description">Track and manage sustainability goals in immersive 3D. Carbon footprint, ESG reporting, and environmental impact visualization.</p>
-                <div class="cta-group">
-                    <a href="#download" class="cta-button">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
-                        Experience in Vision Pro
-                    </a>
-                    <a href="#demo" class="cta-button cta-secondary">Request Demo</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="hero-placeholder">Spatial Experience Preview</div>
-            </div>
-        </div>
-    </section>
-    <section class="section" id="features">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Spatial Capabilities</h2>
-                <p class="section-subtitle">Enterprise smart infrastructure reimagined for immersive spatial computing</p>
-            </div>
-            <div class="pillars-grid">
-                <div class="pillar-card">
-                    <div class="pillar-icon">🌍</div>
-                    <h3>Carbon Dashboard</h3>
-                    <p>Emissions visualization</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">📊</div>
-                    <h3>ESG Reporting</h3>
-                    <p>Compliance dashboards</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">🌱</div>
-                    <h3>Impact Tracking</h3>
-                    <p>Environmental KPIs</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">🎯</div>
-                    <h3>Goal Management</h3>
-                    <p>Net-zero planning</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">📋</div>
-                    <h3>Audit Ready</h3>
-                    <p>Regulatory reporting</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">🔄</div>
-                    <h3>Supply Chain</h3>
-                    <p>Scope 3 tracking</p>
-                </div>
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="eco-badge">Net Zero by Design</div>
+            <h1>Sustainability <span>Command</span></h1>
+            <p>Visualize your environmental impact in spatial reality. Track carbon emissions, manage ESG reporting, and chart your path to net-zero with immersive 3D dashboards.</p>
+            <a href="#" class="cta-button">
+                <span>Start Your Journey</span>
+                <span>&rarr;</span>
+            </a>
 
+            <div class="esg-panel">
+                <div class="esg-metric">
+                    <div class="esg-letter esg-e">E</div>
+                    <div class="esg-label">Environmental</div>
+                </div>
+                <div class="esg-metric">
+                    <div class="esg-letter esg-s">S</div>
+                    <div class="esg-label">Social</div>
+                </div>
+                <div class="esg-metric">
+                    <div class="esg-letter esg-g">G</div>
+                    <div class="esg-label">Governance</div>
+                </div>
             </div>
         </div>
     </section>
-    <section class="section" id="benefits" style="background: rgba(16, 185, 129, 0.03);">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Enterprise Impact</h2>
-                <p class="section-subtitle">Measurable results for forward-thinking organizations</p>
-            </div>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-stat">GRI</div>
-                    <div class="benefit-label">Compliant</div>
-                </div>
-<div class="benefit-card">
-                    <div class="benefit-stat">TCFD</div>
-                    <div class="benefit-label">Aligned</div>
-                </div>
-<div class="benefit-card">
-                    <div class="benefit-stat">CDP</div>
-                    <div class="benefit-label">Ready</div>
-                </div>
-<div class="benefit-card">
-                    <div class="benefit-stat">Real-time</div>
-                    <div class="benefit-label">Tracking</div>
-                </div>
 
+    <section class="features">
+        <div class="section-header">
+            <h2>Sustainability Intelligence</h2>
+            <p>Every emission, every initiative, every impact—measured and visualized.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>Carbon Dashboard</h3>
+                <p>Scope 1, 2, and 3 emissions rendered as flowing data. See your carbon footprint in spatial 3D.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>ESG Reporting</h3>
+                <p>GRI, SASB, and TCFD metrics visualized. Generate compliant reports with spatial analytics.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌱</div>
+                <h3>Impact Tracking</h3>
+                <p>Environmental KPIs floating around you. Water usage, waste reduction, and biodiversity metrics.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Net-Zero Planning</h3>
+                <p>Science-based targets mapped as pathways. See your decarbonization journey unfold in space.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <h3>Audit Ready</h3>
+                <p>Documentation and evidence organized spatially. Walk auditors through your sustainability story.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3>Supply Chain ESG</h3>
+                <p>Supplier sustainability scores on a 3D globe. Scope 3 emissions traced through your value chain.</p>
             </div>
         </div>
     </section>
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Trusted by Leaders</h2>
-                <p class="section-subtitle">See why enterprises choose Sustainability Command for spatial computing</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">"Managing city infrastructure spatially gives us situational awareness we never had."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">JN</div>
-                        <div class="author-info">
-                            <h4>James N.</h4>
-                            <span>City Operations Director</span>
-                        </div>
-                    </div>
-                </div>
-<div class="testimonial-card">
-                    <p class="testimonial-quote">"The energy grid visualization helped us prevent three potential outages last month."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">SM</div>
-                        <div class="author-info">
-                            <h4>Susan M.</h4>
-                            <span>Grid Operations</span>
-                        </div>
-                    </div>
-                </div>
-<div class="testimonial-card">
-                    <p class="testimonial-quote">"Smart building management in 3D reduced our energy costs by 30%."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">RP</div>
-                        <div class="author-info">
-                            <h4>Richard P.</h4>
-                            <span>Facilities Manager</span>
-                        </div>
-                    </div>
-                </div>
 
+    <section class="compliance">
+        <h3>Framework Compliant</h3>
+        <div class="badge-grid">
+            <div class="compliance-badge">GRI Standards</div>
+            <div class="compliance-badge">TCFD Aligned</div>
+            <div class="compliance-badge">CDP Ready</div>
+            <div class="compliance-badge">SBTi Verified</div>
+            <div class="compliance-badge">UN SDGs</div>
+        </div>
+    </section>
+
+    <section class="impact">
+        <div class="impact-grid">
+            <div class="impact-item">
+                <div class="impact-value">-45%</div>
+                <div class="impact-label">Emissions Reduction</div>
+            </div>
+            <div class="impact-item">
+                <div class="impact-value">Real-time</div>
+                <div class="impact-label">Tracking</div>
+            </div>
+            <div class="impact-item">
+                <div class="impact-value">AI</div>
+                <div class="impact-label">Forecasting</div>
+            </div>
+            <div class="impact-item">
+                <div class="impact-value">2050</div>
+                <div class="impact-label">Net Zero Target</div>
             </div>
         </div>
     </section>
-    <section class="cta-section" id="download">
-        <div class="container">
-            <h2>Ready to Transform Your Workflow?</h2>
-            <p>Experience the future of smart infrastructure with Apple Vision Pro</p>
-            <a href="#" class="cta-button">Get Started Today</a>
-            <div class="store-badges">
-                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on App Store">
-            </div>
+
+    <section class="footer-cta">
+        <h2>Lead the Transition</h2>
+        <p>Transform sustainability management with spatial computing. See your impact, chart your future.</p>
+        <div class="platform-badge">
+            <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            <span>Built for Apple Vision Pro</span>
         </div>
     </section>
+
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Sustainability Command. Designed for Apple Vision Pro spatial computing.</p>
-            <div style="margin-top: 16px;">
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-                <a href="support.html">Support</a>
-            </div>
-        </div>
+        <p>&copy; 2025 Sustainability Command. ESG Intelligence, Spatial Reality.</p>
     </footer>
 </body>
 </html>

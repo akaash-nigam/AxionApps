@@ -3,266 +3,658 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart City Command Platform - City Operations in Spatial 3D | Apple Vision Pro</title>
-    <meta name="description" content="Manage smart city infrastructure in immersive 3D. Traffic, utilities, public safety, and services in one command center.">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Smart City Command Platform - City Operations in Spatial 3D">
-    <meta property="og:description" content="Manage smart city infrastructure in immersive 3D. Traffic, utilities, public safety, and services in one command center.">
-    <meta property="og:image" content="hero-spatial.png">
-    <meta name="twitter:card" content="summary_large_image">
+    <meta name="hero-ref" content="1">
+    <title>Smart City Command Platform - Urban Control in Spatial 3D | visionOS</title>
+    <meta name="description" content="Command your city's infrastructure in immersive 3D. Traffic, utilities, public safety, and environmental systems unified in spatial reality.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --accent: #10b981;
-            --accent-rgb: 16, 185, 129;
-            --accent-glow: rgba(16, 185, 129, 0.3);
-            --accent-border: rgba(16, 185, 129, 0.2);
-            --accent-hover: rgba(16, 185, 129, 0.5);
-            --bg-dark: #0a0a0f;
-            --bg-card: rgba(30, 27, 75, 0.4);
-            --text-primary: rgba(255, 255, 255, 0.95);
-            --text-secondary: rgba(255, 255, 255, 0.7);
-            --text-muted: rgba(255, 255, 255, 0.5);
+            --neon-cyan: #06b6d4;
+            --neon-magenta: #d946ef;
+            --city-purple: #7c3aed;
+            --traffic-green: #22c55e;
+            --alert-yellow: #eab308;
+            --city-dark: #030712;
+            --building-slate: #0f172a;
         }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif; background: var(--bg-dark); color: var(--text-primary); overflow-x: hidden; line-height: 1.6; }
-        .depth-layer { position: fixed; width: 200%; height: 200%; top: -50%; left: -50%; pointer-events: none; z-index: 0; }
-        .depth-layer-1 { background: radial-gradient(circle at 20% 30%, rgba(16, 185, 129, 0.15) 0%, transparent 50%); animation: float 20s ease-in-out infinite; }
-        .depth-layer-2 { background: radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.12) 0%, transparent 50%); animation: float 25s ease-in-out infinite reverse; }
-        .depth-layer-3 { background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.08) 0%, transparent 60%); animation: float 30s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 33% { transform: translate(30px, -30px) rotate(3deg); } 66% { transform: translate(-20px, 20px) rotate(-3deg); } }
-        .vision-strip { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; }
-        .vision-strip .badge { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
-        .vision-strip .badge.highlight { background: var(--accent-glow); padding: 4px 12px; border-radius: 12px; color: white; border: 1px solid var(--accent-border); }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
-        nav { position: fixed; top: 44px; left: 0; right: 0; z-index: 999; background: rgba(10, 10, 15, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 15px 20px; }
-        nav .nav-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.3rem; font-weight: 700; color: white; display: flex; align-items: center; gap: 10px; }
-        .logo-icon { width: 36px; height: 36px; background: var(--accent-glow); border: 1px solid var(--accent-border); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
-        nav ul { display: flex; list-style: none; gap: 30px; }
-        nav a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; }
-        nav a:hover { color: white; }
-        .hero { padding: 180px 20px 100px; }
-        .hero-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center; max-width: 1400px; margin: 0 auto; }
-        .hero-content { text-align: left; }
-        .hero-badge { display: inline-block; background: var(--accent-glow); backdrop-filter: blur(20px); border: 1px solid var(--accent-hover); padding: 8px 20px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 24px; color: white; }
-        h1 { font-size: 52px; font-weight: 700; margin-bottom: 20px; background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; }
-        .tagline { font-size: 24px; color: var(--text-primary); margin-bottom: 20px; font-weight: 500; }
-        .description { font-size: 17px; color: var(--text-secondary); margin-bottom: 32px; line-height: 1.7; }
-        .cta-group { display: flex; gap: 16px; flex-wrap: wrap; }
-        .cta-button { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-size: 16px; font-weight: 600; transition: all 0.3s; box-shadow: 0 10px 40px var(--accent-glow); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 15px 50px var(--accent-hover); }
-        .cta-secondary { background: transparent; border: 1px solid var(--accent-border); box-shadow: none; }
-        .cta-secondary:hover { background: var(--accent-glow); box-shadow: none; }
-        .hero-image { position: relative; }
-        .hero-image img { width: 100%; border-radius: 20px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--accent-border); }
-        .hero-image::before { content: ''; position: absolute; inset: -2px; background: linear-gradient(135deg, var(--accent-hover), transparent 50%); border-radius: 22px; z-index: -1; }
-        .hero-placeholder { width: 100%; aspect-ratio: 16/10; background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(30, 27, 75, 0.6) 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 18px; border: 1px dashed var(--accent-border); }
-        .section { padding: 100px 20px; }
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-title { font-size: 42px; font-weight: 700; margin-bottom: 16px; }
-        .section-subtitle { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
-        .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-        .pillar-card { background: var(--bg-card); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--accent-border); border-radius: 20px; padding: 32px; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
-        .pillar-card:hover { transform: translateY(-5px); border-color: var(--accent-hover); box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--accent-border); }
-        .pillar-icon { font-size: 40px; margin-bottom: 16px; }
-        .pillar-card h3 { font-size: 20px; margin-bottom: 12px; color: var(--accent); }
-        .pillar-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
-        .benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-        .benefit-card { text-align: center; padding: 32px 20px; background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: 16px; }
-        .benefit-stat { font-size: 48px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
-        .benefit-label { font-size: 14px; color: var(--text-secondary); }
-        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .testimonial-card { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: 16px; padding: 32px; }
-        .testimonial-quote { font-size: 16px; font-style: italic; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.7; }
-        .testimonial-author { display: flex; align-items: center; gap: 12px; }
-        .author-avatar { width: 48px; height: 48px; background: var(--accent-glow); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--accent); }
-        .author-info h4 { font-size: 15px; margin-bottom: 2px; }
-        .author-info span { font-size: 13px; color: var(--text-muted); }
-        .cta-section { text-align: center; padding: 120px 20px; background: linear-gradient(180deg, transparent 0%, rgba(16, 185, 129, 0.1) 100%); border-top: 1px solid var(--accent-border); }
-        .cta-section h2 { font-size: 48px; margin-bottom: 16px; }
-        .cta-section p { font-size: 18px; color: var(--text-secondary); margin-bottom: 32px; }
-        .store-badges { display: flex; justify-content: center; gap: 16px; margin-top: 24px; }
-        .store-badges img { height: 50px; }
-        footer { border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 60px 20px; text-align: center; }
-        footer p { color: var(--text-muted); font-size: 14px; }
-        footer a { color: var(--accent); text-decoration: none; margin: 0 15px; }
-        footer a:hover { color: white; }
-        @media (max-width: 1024px) { .hero-grid { grid-template-columns: 1fr; text-align: center; } .hero-content { text-align: center; } .cta-group { justify-content: center; } .benefits-grid { grid-template-columns: repeat(2, 1fr); } .testimonials-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) { h1 { font-size: 36px; } .section-title { font-size: 32px; } .benefits-grid { grid-template-columns: 1fr; } .vision-strip { padding: 8px 10px; gap: 10px; } .vision-strip .badge { font-size: 10px; } nav ul { gap: 15px; } }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--city-dark);
+            color: #e2e8f0;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* City Grid Background */
+        .city-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        /* Animated Grid Lines */
+        .grid-line-h, .grid-line-v {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+            opacity: 0.15;
+        }
+
+        .grid-line-h {
+            height: 1px;
+            width: 100%;
+            animation: scanHorizontal 8s linear infinite;
+        }
+
+        .grid-line-v {
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, var(--neon-magenta), transparent);
+            animation: scanVertical 10s linear infinite;
+        }
+
+        .line-h1 { top: 20%; animation-delay: 0s; }
+        .line-h2 { top: 50%; animation-delay: 2s; }
+        .line-h3 { top: 80%; animation-delay: 4s; }
+        .line-v1 { left: 15%; animation-delay: 1s; }
+        .line-v2 { left: 50%; animation-delay: 3s; }
+        .line-v3 { left: 85%; animation-delay: 5s; }
+
+        @keyframes scanHorizontal {
+            0%, 100% { opacity: 0.1; transform: scaleX(0.5); }
+            50% { opacity: 0.3; transform: scaleX(1); }
+        }
+
+        @keyframes scanVertical {
+            0%, 100% { opacity: 0.1; transform: scaleY(0.5); }
+            50% { opacity: 0.3; transform: scaleY(1); }
+        }
+
+        /* Building Silhouettes */
+        .buildings {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(180deg, transparent 0%, rgba(6, 182, 212, 0.03) 100%);
+        }
+
+        .building {
+            position: absolute;
+            bottom: 0;
+            background: linear-gradient(180deg, var(--building-slate), var(--city-dark));
+            border: 1px solid rgba(6, 182, 212, 0.1);
+            border-bottom: none;
+        }
+
+        .building-1 { left: 5%; width: 60px; height: 180px; }
+        .building-2 { left: 12%; width: 80px; height: 250px; }
+        .building-3 { left: 22%; width: 50px; height: 150px; }
+        .building-4 { right: 20%; width: 70px; height: 220px; }
+        .building-5 { right: 8%; width: 90px; height: 280px; }
+        .building-6 { right: 30%; width: 40px; height: 130px; }
+
+        /* Building Windows (blinking lights) */
+        .window {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--alert-yellow);
+            opacity: 0.3;
+            animation: windowBlink 3s ease-in-out infinite;
+        }
+
+        @keyframes windowBlink {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Traffic Lights */
+        .traffic-light {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: trafficCycle 4s linear infinite;
+        }
+
+        @keyframes trafficCycle {
+            0%, 30% { background: var(--traffic-green); box-shadow: 0 0 15px var(--traffic-green); }
+            35%, 40% { background: var(--alert-yellow); box-shadow: 0 0 15px var(--alert-yellow); }
+            45%, 100% { background: #ef4444; box-shadow: 0 0 15px #ef4444; }
+        }
+
+        .traffic-1 { bottom: 10%; left: 25%; animation-delay: 0s; }
+        .traffic-2 { bottom: 15%; left: 45%; animation-delay: 1.5s; }
+        .traffic-3 { bottom: 8%; right: 35%; animation-delay: 2.5s; }
+
+        /* Data Streams */
+        .data-stream {
+            position: absolute;
+            width: 2px;
+            height: 30px;
+            background: linear-gradient(180deg, var(--neon-cyan), transparent);
+            animation: streamDown 2s linear infinite;
+        }
+
+        @keyframes streamDown {
+            0% { transform: translateY(-50px); opacity: 0; }
+            30% { opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        .stream-1 { left: 10%; animation-delay: 0s; }
+        .stream-2 { left: 30%; animation-delay: 0.4s; }
+        .stream-3 { left: 50%; animation-delay: 0.8s; }
+        .stream-4 { left: 70%; animation-delay: 1.2s; }
+        .stream-5 { left: 90%; animation-delay: 1.6s; }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('hero-spatial.png') center/cover no-repeat;
+            opacity: 0.2;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, var(--city-dark) 0%, transparent 40%, var(--city-dark) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 950px;
+            padding: 2rem;
+        }
+
+        .command-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            padding: 0.6rem 1.5rem;
+            border-radius: 4px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+        }
+
+        .command-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--traffic-green);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: #94a3b8;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--city-purple));
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(6, 182, 212, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(6, 182, 212, 0.4);
+        }
+
+        /* City Stats Panel */
+        .city-panel {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+            padding: 1.5rem;
+            background: rgba(6, 182, 212, 0.05);
+            border: 1px solid rgba(6, 182, 212, 0.15);
+            border-radius: 12px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .city-stat {
+            text-align: center;
+        }
+
+        .stat-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--neon-cyan);
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #64748b;
+            letter-spacing: 1px;
+        }
+
+        /* Systems Section */
+        .systems {
+            position: relative;
+            padding: 6rem 2rem;
+            background: var(--building-slate);
+            z-index: 2;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .section-header p { font-size: 1.1rem; color: #94a3b8; }
+
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .system-card {
+            background: rgba(6, 182, 212, 0.03);
+            border: 1px solid rgba(6, 182, 212, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .system-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .system-card:hover::before { opacity: 1; }
+
+        .system-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(6, 182, 212, 0.3);
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.1);
+        }
+
+        .system-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .system-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--neon-cyan);
+        }
+
+        .system-card p { font-size: 0.95rem; color: #94a3b8; }
+
+        .system-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            font-size: 0.75rem;
+            color: var(--traffic-green);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .system-status::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--traffic-green);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Operations Stats */
+        .operations {
+            position: relative;
+            padding: 4rem 2rem;
+            background: var(--city-dark);
+            border-top: 1px solid rgba(6, 182, 212, 0.1);
+            border-bottom: 1px solid rgba(6, 182, 212, 0.1);
+            z-index: 2;
+        }
+
+        .ops-grid {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .ops-item { text-align: center; }
+
+        .ops-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--neon-cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .ops-label {
+            font-size: 0.8rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Footer CTA */
+        .footer-cta {
+            position: relative;
+            padding: 6rem 2rem;
+            background: var(--building-slate);
+            text-align: center;
+            z-index: 2;
+        }
+
+        .footer-cta h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .footer-cta p {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .platform-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .platform-badge svg { width: 24px; height: 24px; fill: currentColor; }
+
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            background: var(--city-dark);
+            border-top: 1px solid rgba(6, 182, 212, 0.1);
+            color: #475569;
+            font-size: 0.9rem;
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .city-panel { flex-direction: column; gap: 1rem; }
+            .building { display: none; }
+        }
     </style>
 </head>
 <body>
-    <div class="depth-layer depth-layer-1"></div>
-    <div class="depth-layer depth-layer-2"></div>
-    <div class="depth-layer depth-layer-3"></div>
-    <div class="vision-strip">
-        <span class="badge highlight">Apple Vision Pro</span>
-        <span class="badge">Spatial Computing</span>
-        <span class="badge">visionOS 2.0+</span>
-        <span class="badge">Enterprise Ready</span>
-        <span class="badge">Smart Infrastructure</span>
+    <div class="city-grid">
+        <div class="grid-line-h line-h1"></div>
+        <div class="grid-line-h line-h2"></div>
+        <div class="grid-line-h line-h3"></div>
+        <div class="grid-line-v line-v1"></div>
+        <div class="grid-line-v line-v2"></div>
+        <div class="grid-line-v line-v3"></div>
+
+        <div class="data-stream stream-1"></div>
+        <div class="data-stream stream-2"></div>
+        <div class="data-stream stream-3"></div>
+        <div class="data-stream stream-4"></div>
+        <div class="data-stream stream-5"></div>
+
+        <div class="buildings">
+            <div class="building building-1">
+                <div class="window" style="top: 20%; left: 15%;"></div>
+                <div class="window" style="top: 40%; left: 60%; animation-delay: 1s;"></div>
+            </div>
+            <div class="building building-2">
+                <div class="window" style="top: 15%; left: 20%; animation-delay: 0.5s;"></div>
+                <div class="window" style="top: 35%; left: 60%; animation-delay: 1.5s;"></div>
+                <div class="window" style="top: 60%; left: 30%; animation-delay: 2s;"></div>
+            </div>
+            <div class="building building-3"></div>
+            <div class="building building-4">
+                <div class="window" style="top: 25%; left: 40%; animation-delay: 0.8s;"></div>
+            </div>
+            <div class="building building-5">
+                <div class="window" style="top: 10%; left: 25%; animation-delay: 1.2s;"></div>
+                <div class="window" style="top: 30%; left: 55%; animation-delay: 2.2s;"></div>
+                <div class="window" style="top: 55%; left: 35%; animation-delay: 0.3s;"></div>
+            </div>
+            <div class="building building-6"></div>
+        </div>
+
+        <div class="traffic-light traffic-1"></div>
+        <div class="traffic-light traffic-2"></div>
+        <div class="traffic-light traffic-3"></div>
     </div>
-    <nav>
-        <div class="nav-content">
-            <div class="logo">
-                <div class="logo-icon">CC</div>
-                Smart City Command Platform
-            </div>
-            <ul>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#benefits">Benefits</a></li>
-                <li><a href="support.html">Support</a></li>
-            </ul>
-        </div>
-    </nav>
+
     <section class="hero">
-        <div class="hero-grid">
-            <div class="hero-content">
-                <div class="hero-badge">Smart Infrastructure</div>
-                <h1>Smart City Command Platform</h1>
-                <p class="tagline">City Operations in Spatial 3D</p>
-                <p class="description">Manage smart city infrastructure in immersive 3D. Traffic, utilities, public safety, and services in one command center.</p>
-                <div class="cta-group">
-                    <a href="#download" class="cta-button">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
-                        Experience in Vision Pro
-                    </a>
-                    <a href="#demo" class="cta-button cta-secondary">Request Demo</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="hero-spatial.png" alt="Smart City Command Platform spatial interface">
-            </div>
-        </div>
-    </section>
-    <section class="section" id="features">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Spatial Capabilities</h2>
-                <p class="section-subtitle">Enterprise smart infrastructure reimagined for immersive spatial computing</p>
-            </div>
-            <div class="pillars-grid">
-                <div class="pillar-card">
-                    <div class="pillar-icon">🚦</div>
-                    <h3>Traffic Control</h3>
-                    <p>Real-time flow management</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">💡</div>
-                    <h3>Utility Monitoring</h3>
-                    <p>Power, water, gas visualization</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">🚔</div>
-                    <h3>Public Safety</h3>
-                    <p>Emergency response coordination</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">🌳</div>
-                    <h3>Environmental</h3>
-                    <p>Air quality and sensors</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">🚌</div>
-                    <h3>Transit Management</h3>
-                    <p>Public transport optimization</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">📊</div>
-                    <h3>City Analytics</h3>
-                    <p>Urban intelligence dashboard</p>
-                </div>
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="command-badge">City Operations Online</div>
+            <h1>Smart City <span>Command Platform</span></h1>
+            <p>Unified control center for urban infrastructure. Visualize traffic flow, utility networks, emergency response, and environmental systems in immersive 3D spatial reality.</p>
+            <a href="#" class="cta-button">
+                <span>Enter Command</span>
+                <span>&rarr;</span>
+            </a>
 
+            <div class="city-panel">
+                <div class="city-stat">
+                    <div class="stat-icon">🚦</div>
+                    <div class="stat-value">2,847</div>
+                    <div class="stat-label">Intersections</div>
+                </div>
+                <div class="city-stat">
+                    <div class="stat-icon">💡</div>
+                    <div class="stat-value">156K</div>
+                    <div class="stat-label">Street Lights</div>
+                </div>
+                <div class="city-stat">
+                    <div class="stat-icon">📡</div>
+                    <div class="stat-value">8.2M</div>
+                    <div class="stat-label">IoT Sensors</div>
+                </div>
+                <div class="city-stat">
+                    <div class="stat-icon">🚨</div>
+                    <div class="stat-value">24/7</div>
+                    <div class="stat-label">Monitoring</div>
+                </div>
             </div>
         </div>
     </section>
-    <section class="section" id="benefits" style="background: rgba(16, 185, 129, 0.03);">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Enterprise Impact</h2>
-                <p class="section-subtitle">Measurable results for forward-thinking organizations</p>
-            </div>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-stat">1M+</div>
-                    <div class="benefit-label">Sensors</div>
-                </div>
-<div class="benefit-card">
-                    <div class="benefit-stat">Real-time</div>
-                    <div class="benefit-label">Data</div>
-                </div>
-<div class="benefit-card">
-                    <div class="benefit-stat">AI</div>
-                    <div class="benefit-label">Optimization</div>
-                </div>
-<div class="benefit-card">
-                    <div class="benefit-stat">24/7</div>
-                    <div class="benefit-label">Operations</div>
-                </div>
 
+    <section class="systems">
+        <div class="section-header">
+            <h2>Urban Systems</h2>
+            <p>Every city system visualized and controlled from one spatial interface.</p>
+        </div>
+        <div class="systems-grid">
+            <div class="system-card">
+                <div class="system-icon">🚦</div>
+                <h3>Traffic Control</h3>
+                <p>Real-time signal optimization. Visualize congestion patterns and dynamically adjust timing.</p>
+                <div class="system-status">Optimizing</div>
+            </div>
+            <div class="system-card">
+                <div class="system-icon">⚡</div>
+                <h3>Power Grid</h3>
+                <p>Monitor energy distribution across the city. Load balancing and outage prediction.</p>
+                <div class="system-status">Stable</div>
+            </div>
+            <div class="system-card">
+                <div class="system-icon">💧</div>
+                <h3>Water Network</h3>
+                <p>Pressure monitoring, leak detection, and quality analysis across pipe networks.</p>
+                <div class="system-status">Nominal</div>
+            </div>
+            <div class="system-card">
+                <div class="system-icon">🚔</div>
+                <h3>Public Safety</h3>
+                <p>Emergency dispatch coordination. Patrol optimization and incident response.</p>
+                <div class="system-status">Active</div>
+            </div>
+            <div class="system-card">
+                <div class="system-icon">🌳</div>
+                <h3>Environment</h3>
+                <p>Air quality sensors, noise monitoring, and urban heat mapping in 3D.</p>
+                <div class="system-status">Monitoring</div>
+            </div>
+            <div class="system-card">
+                <div class="system-icon">🚌</div>
+                <h3>Transit</h3>
+                <p>Public transportation tracking. Route optimization and passenger flow analysis.</p>
+                <div class="system-status">On Schedule</div>
             </div>
         </div>
     </section>
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Trusted by Leaders</h2>
-                <p class="section-subtitle">See why enterprises choose Smart City Command Platform for spatial computing</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">"Managing city infrastructure spatially gives us situational awareness we never had."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">JN</div>
-                        <div class="author-info">
-                            <h4>James N.</h4>
-                            <span>City Operations Director</span>
-                        </div>
-                    </div>
-                </div>
-<div class="testimonial-card">
-                    <p class="testimonial-quote">"The energy grid visualization helped us prevent three potential outages last month."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">SM</div>
-                        <div class="author-info">
-                            <h4>Susan M.</h4>
-                            <span>Grid Operations</span>
-                        </div>
-                    </div>
-                </div>
-<div class="testimonial-card">
-                    <p class="testimonial-quote">"Smart building management in 3D reduced our energy costs by 30%."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">RP</div>
-                        <div class="author-info">
-                            <h4>Richard P.</h4>
-                            <span>Facilities Manager</span>
-                        </div>
-                    </div>
-                </div>
 
+    <section class="operations">
+        <div class="ops-grid">
+            <div class="ops-item">
+                <div class="ops-value">1M+</div>
+                <div class="ops-label">Sensors</div>
+            </div>
+            <div class="ops-item">
+                <div class="ops-value">Real-time</div>
+                <div class="ops-label">Analytics</div>
+            </div>
+            <div class="ops-item">
+                <div class="ops-value">AI</div>
+                <div class="ops-label">Optimization</div>
+            </div>
+            <div class="ops-item">
+                <div class="ops-value">24/7</div>
+                <div class="ops-label">Operations</div>
             </div>
         </div>
     </section>
-    <section class="cta-section" id="download">
-        <div class="container">
-            <h2>Ready to Transform Your Workflow?</h2>
-            <p>Experience the future of smart infrastructure with Apple Vision Pro</p>
-            <a href="#" class="cta-button">Get Started Today</a>
-            <div class="store-badges">
-                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on App Store">
-            </div>
+
+    <section class="footer-cta">
+        <h2>Command Your City</h2>
+        <p>Transform urban management with spatial computing. See your city like never before.</p>
+        <div class="platform-badge">
+            <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            <span>Built for Apple Vision Pro</span>
         </div>
     </section>
+
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Smart City Command Platform. Designed for Apple Vision Pro spatial computing.</p>
-            <div style="margin-top: 16px;">
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-                <a href="support.html">Support</a>
-            </div>
-        </div>
+        <p>&copy; 2025 Smart City Command Platform. Urban Intelligence, Spatial Reality.</p>
     </footer>
 </body>
 </html>

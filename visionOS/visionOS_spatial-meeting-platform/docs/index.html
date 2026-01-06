@@ -3,266 +3,481 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spatial Meeting Platform - Meetings in Spatial Reality | Apple Vision Pro</title>
-    <meta name="description" content="Transform meetings with spatial computing. Immersive meeting rooms, collaborative whiteboards, and presence like never before.">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Spatial Meeting Platform - Meetings in Spatial Reality">
-    <meta property="og:description" content="Transform meetings with spatial computing. Immersive meeting rooms, collaborative whiteboards, and presence like never before.">
-    <meta property="og:image" content="hero-spatial.png">
-    <meta name="twitter:card" content="summary_large_image">
+    <meta name="hero-ref" content="1">
+    <title>Spatial Meeting Platform - Presence Beyond Video | visionOS</title>
+    <meta name="description" content="Transform meetings with spatial computing. Immersive meeting rooms, collaborative whiteboards, and true presence in 3D space.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --accent: #06b6d4;
-            --accent-rgb: 6, 182, 212;
-            --accent-glow: rgba(6, 182, 212, 0.3);
-            --accent-border: rgba(6, 182, 212, 0.2);
-            --accent-hover: rgba(6, 182, 212, 0.5);
-            --bg-dark: #0a0a0f;
-            --bg-card: rgba(30, 27, 75, 0.4);
-            --text-primary: rgba(255, 255, 255, 0.95);
-            --text-secondary: rgba(255, 255, 255, 0.7);
-            --text-muted: rgba(255, 255, 255, 0.5);
+            --meet-blue: #3b82f6;
+            --presence-green: #22c55e;
+            --call-purple: #8b5cf6;
+            --share-cyan: #06b6d4;
+            --live-red: #ef4444;
+            --meeting-dark: #030712;
+            --room-slate: #111827;
         }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif; background: var(--bg-dark); color: var(--text-primary); overflow-x: hidden; line-height: 1.6; }
-        .depth-layer { position: fixed; width: 200%; height: 200%; top: -50%; left: -50%; pointer-events: none; z-index: 0; }
-        .depth-layer-1 { background: radial-gradient(circle at 20% 30%, rgba(6, 182, 212, 0.15) 0%, transparent 50%); animation: float 20s ease-in-out infinite; }
-        .depth-layer-2 { background: radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.12) 0%, transparent 50%); animation: float 25s ease-in-out infinite reverse; }
-        .depth-layer-3 { background: radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.08) 0%, transparent 60%); animation: float 30s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 33% { transform: translate(30px, -30px) rotate(3deg); } 66% { transform: translate(-20px, 20px) rotate(-3deg); } }
-        .vision-strip { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; }
-        .vision-strip .badge { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
-        .vision-strip .badge.highlight { background: var(--accent-glow); padding: 4px 12px; border-radius: 12px; color: white; border: 1px solid var(--accent-border); }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
-        nav { position: fixed; top: 44px; left: 0; right: 0; z-index: 999; background: rgba(10, 10, 15, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 15px 20px; }
-        nav .nav-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.3rem; font-weight: 700; color: white; display: flex; align-items: center; gap: 10px; }
-        .logo-icon { width: 36px; height: 36px; background: var(--accent-glow); border: 1px solid var(--accent-border); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
-        nav ul { display: flex; list-style: none; gap: 30px; }
-        nav a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; }
-        nav a:hover { color: white; }
-        .hero { padding: 180px 20px 100px; }
-        .hero-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center; max-width: 1400px; margin: 0 auto; }
-        .hero-content { text-align: left; }
-        .hero-badge { display: inline-block; background: var(--accent-glow); backdrop-filter: blur(20px); border: 1px solid var(--accent-hover); padding: 8px 20px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 24px; color: white; }
-        h1 { font-size: 52px; font-weight: 700; margin-bottom: 20px; background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; }
-        .tagline { font-size: 24px; color: var(--text-primary); margin-bottom: 20px; font-weight: 500; }
-        .description { font-size: 17px; color: var(--text-secondary); margin-bottom: 32px; line-height: 1.7; }
-        .cta-group { display: flex; gap: 16px; flex-wrap: wrap; }
-        .cta-button { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-size: 16px; font-weight: 600; transition: all 0.3s; box-shadow: 0 10px 40px var(--accent-glow); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 15px 50px var(--accent-hover); }
-        .cta-secondary { background: transparent; border: 1px solid var(--accent-border); box-shadow: none; }
-        .cta-secondary:hover { background: var(--accent-glow); box-shadow: none; }
-        .hero-image { position: relative; }
-        .hero-image img { width: 100%; border-radius: 20px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--accent-border); }
-        .hero-image::before { content: ''; position: absolute; inset: -2px; background: linear-gradient(135deg, var(--accent-hover), transparent 50%); border-radius: 22px; z-index: -1; }
-        .hero-placeholder { width: 100%; aspect-ratio: 16/10; background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(30, 27, 75, 0.6) 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 18px; border: 1px dashed var(--accent-border); }
-        .section { padding: 100px 20px; }
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-title { font-size: 42px; font-weight: 700; margin-bottom: 16px; }
-        .section-subtitle { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
-        .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-        .pillar-card { background: var(--bg-card); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--accent-border); border-radius: 20px; padding: 32px; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
-        .pillar-card:hover { transform: translateY(-5px); border-color: var(--accent-hover); box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--accent-border); }
-        .pillar-icon { font-size: 40px; margin-bottom: 16px; }
-        .pillar-card h3 { font-size: 20px; margin-bottom: 12px; color: var(--accent); }
-        .pillar-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
-        .benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-        .benefit-card { text-align: center; padding: 32px 20px; background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: 16px; }
-        .benefit-stat { font-size: 48px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
-        .benefit-label { font-size: 14px; color: var(--text-secondary); }
-        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .testimonial-card { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: 16px; padding: 32px; }
-        .testimonial-quote { font-size: 16px; font-style: italic; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.7; }
-        .testimonial-author { display: flex; align-items: center; gap: 12px; }
-        .author-avatar { width: 48px; height: 48px; background: var(--accent-glow); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--accent); }
-        .author-info h4 { font-size: 15px; margin-bottom: 2px; }
-        .author-info span { font-size: 13px; color: var(--text-muted); }
-        .cta-section { text-align: center; padding: 120px 20px; background: linear-gradient(180deg, transparent 0%, rgba(6, 182, 212, 0.1) 100%); border-top: 1px solid var(--accent-border); }
-        .cta-section h2 { font-size: 48px; margin-bottom: 16px; }
-        .cta-section p { font-size: 18px; color: var(--text-secondary); margin-bottom: 32px; }
-        .store-badges { display: flex; justify-content: center; gap: 16px; margin-top: 24px; }
-        .store-badges img { height: 50px; }
-        footer { border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 60px 20px; text-align: center; }
-        footer p { color: var(--text-muted); font-size: 14px; }
-        footer a { color: var(--accent); text-decoration: none; margin: 0 15px; }
-        footer a:hover { color: white; }
-        @media (max-width: 1024px) { .hero-grid { grid-template-columns: 1fr; text-align: center; } .hero-content { text-align: center; } .cta-group { justify-content: center; } .benefits-grid { grid-template-columns: repeat(2, 1fr); } .testimonials-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) { h1 { font-size: 36px; } .section-title { font-size: 32px; } .benefits-grid { grid-template-columns: 1fr; } .vision-strip { padding: 8px 10px; gap: 10px; } .vision-strip .badge { font-size: 10px; } nav ul { gap: 15px; } }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--meeting-dark);
+            color: #e5e7eb;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* Sound Wave Animation */
+        .sound-waves {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .wave {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 200px;
+            height: 200px;
+            border: 2px solid var(--meet-blue);
+            border-radius: 50%;
+            opacity: 0;
+            transform: translate(-50%, -50%);
+            animation: waveExpand 4s ease-out infinite;
+        }
+
+        .wave-1 { animation-delay: 0s; }
+        .wave-2 { animation-delay: 1s; }
+        .wave-3 { animation-delay: 2s; }
+        .wave-4 { animation-delay: 3s; }
+
+        @keyframes waveExpand {
+            0% { width: 100px; height: 100px; opacity: 0.4; }
+            100% { width: 800px; height: 800px; opacity: 0; }
+        }
+
+        /* Live Indicator */
+        .live-dot {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--live-red);
+            z-index: 100;
+        }
+
+        .live-dot::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--live-red);
+            border-radius: 50%;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('hero-spatial.png') center/cover no-repeat;
+            opacity: 0.3;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, var(--meeting-dark) 0%, transparent 30%, var(--meeting-dark) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 900px;
+            padding: 2rem;
+        }
+
+        .meeting-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--meet-blue);
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--meet-blue), var(--presence-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: #9ca3af;
+            margin-bottom: 2.5rem;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, var(--meet-blue), var(--call-purple));
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(59, 130, 246, 0.4);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            box-shadow: none;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(59, 130, 246, 0.1);
+            box-shadow: none;
+        }
+
+        /* Features */
+        .features {
+            position: relative;
+            padding: 6rem 2rem;
+            background: var(--room-slate);
+            z-index: 2;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .section-header p { font-size: 1.1rem; color: #9ca3af; }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(17, 24, 39, 0.5));
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--meet-blue), var(--call-purple));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: #fff;
+        }
+
+        .feature-card p { font-size: 0.95rem; color: #9ca3af; }
+
+        /* Stats */
+        .stats {
+            position: relative;
+            padding: 4rem 2rem;
+            background: var(--meeting-dark);
+            z-index: 2;
+        }
+
+        .stats-grid {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item { text-align: center; }
+
+        .stat-value {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--meet-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label { font-size: 0.9rem; color: #6b7280; }
+
+        /* Compatibility */
+        .compat {
+            position: relative;
+            padding: 5rem 2rem;
+            background: var(--room-slate);
+            z-index: 2;
+            text-align: center;
+        }
+
+        .compat-badges {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .compat-badge {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--meet-blue);
+        }
+
+        /* Footer */
+        .footer-cta {
+            position: relative;
+            padding: 6rem 2rem;
+            background: var(--meeting-dark);
+            text-align: center;
+            z-index: 2;
+        }
+
+        .footer-cta h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: 1rem; color: #fff; }
+        .footer-cta p { font-size: 1.1rem; color: #9ca3af; margin-bottom: 2rem; max-width: 550px; margin-left: auto; margin-right: auto; }
+
+        .platform-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        .platform-badge svg { width: 24px; height: 24px; fill: currentColor; }
+
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            background: var(--meeting-dark);
+            border-top: 1px solid rgba(59, 130, 246, 0.1);
+            color: #4b5563;
+            font-size: 0.9rem;
+            z-index: 2;
+        }
     </style>
 </head>
 <body>
-    <div class="depth-layer depth-layer-1"></div>
-    <div class="depth-layer depth-layer-2"></div>
-    <div class="depth-layer depth-layer-3"></div>
-    <div class="vision-strip">
-        <span class="badge highlight">Apple Vision Pro</span>
-        <span class="badge">Spatial Computing</span>
-        <span class="badge">visionOS 2.0+</span>
-        <span class="badge">Enterprise Ready</span>
-        <span class="badge">Collaboration</span>
+    <div class="live-dot">SPATIAL READY</div>
+    <div class="sound-waves">
+        <div class="wave wave-1"></div>
+        <div class="wave wave-2"></div>
+        <div class="wave wave-3"></div>
+        <div class="wave wave-4"></div>
     </div>
-    <nav>
-        <div class="nav-content">
-            <div class="logo">
-                <div class="logo-icon">SM</div>
-                Spatial Meeting Platform
-            </div>
-            <ul>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#benefits">Benefits</a></li>
-                <li><a href="support.html">Support</a></li>
-            </ul>
-        </div>
-    </nav>
+
     <section class="hero">
-        <div class="hero-grid">
-            <div class="hero-content">
-                <div class="hero-badge">Collaboration</div>
-                <h1>Spatial Meeting Platform</h1>
-                <p class="tagline">Meetings in Spatial Reality</p>
-                <p class="description">Transform meetings with spatial computing. Immersive meeting rooms, collaborative whiteboards, and presence like never before.</p>
-                <div class="cta-group">
-                    <a href="#download" class="cta-button">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
-                        Experience in Vision Pro
-                    </a>
-                    <a href="#demo" class="cta-button cta-secondary">Request Demo</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="hero-placeholder">Spatial Experience Preview</div>
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="meeting-badge">&#127908; Spatial Collaboration</div>
+            <h1>Spatial <span>Meeting</span> Platform</h1>
+            <p>Feel truly present with your team. Immersive meeting rooms, 3D whiteboards, and spatial audio that makes remote work feel like being there.</p>
+            <div class="cta-group">
+                <a href="#" class="cta-button">
+                    <span>Start a Meeting</span>
+                    <span>&rarr;</span>
+                </a>
+                <a href="#" class="cta-button cta-secondary">
+                    <span>Join with Code</span>
+                </a>
             </div>
         </div>
     </section>
-    <section class="section" id="features">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Spatial Capabilities</h2>
-                <p class="section-subtitle">Enterprise collaboration reimagined for immersive spatial computing</p>
-            </div>
-            <div class="pillars-grid">
-                <div class="pillar-card">
-                    <div class="pillar-icon">🏢</div>
-                    <h3>Virtual Rooms</h3>
-                    <p>Premium meeting environments</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">📝</div>
-                    <h3>Spatial Whiteboard</h3>
-                    <p>3D collaborative canvas</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">📊</div>
-                    <h3>Presentation Mode</h3>
-                    <p>Immersive slide viewing</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">👥</div>
-                    <h3>Avatar Presence</h3>
-                    <p>Feel truly present</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">🔗</div>
-                    <h3>Screen Sharing</h3>
-                    <p>Multi-display support</p>
-                </div>
-<div class="pillar-card">
-                    <div class="pillar-icon">📹</div>
-                    <h3>Recording</h3>
-                    <p>Spatial meeting capture</p>
-                </div>
 
+    <section class="features">
+        <div class="section-header">
+            <h2>Beyond Video Calls</h2>
+            <p>Meetings reimagined for spatial computing.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">&#127970;</div>
+                <h3>Virtual Meeting Rooms</h3>
+                <p>Premium environments designed for focus. Boardrooms, studios, and custom spaces for every occasion.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128221;</div>
+                <h3>3D Whiteboard</h3>
+                <p>Collaborate on ideas that float in space. Draw, annotate, and build together in three dimensions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128100;</div>
+                <h3>Avatar Presence</h3>
+                <p>High-fidelity avatars that capture expressions and gestures. Feel truly present with your team.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128266;</div>
+                <h3>Spatial Audio</h3>
+                <p>Hear conversations from where they happen. Turn to the speaker, hear them clearly.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#127902;</div>
+                <h3>Screen Sharing</h3>
+                <p>Share multiple displays around the room. Present decks, demos, and documents in space.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128249;</div>
+                <h3>Meeting Recording</h3>
+                <p>Capture spatial meetings for replay. Review sessions from any angle.</p>
             </div>
         </div>
     </section>
-    <section class="section" id="benefits" style="background: rgba(6, 182, 212, 0.03);">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Enterprise Impact</h2>
-                <p class="section-subtitle">Measurable results for forward-thinking organizations</p>
-            </div>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-stat">100+</div>
-                    <div class="benefit-label">Participants</div>
-                </div>
-<div class="benefit-card">
-                    <div class="benefit-stat">4K</div>
-                    <div class="benefit-label">Quality</div>
-                </div>
-<div class="benefit-card">
-                    <div class="benefit-stat">Spatial</div>
-                    <div class="benefit-label">Audio</div>
-                </div>
-<div class="benefit-card">
-                    <div class="benefit-stat">E2E</div>
-                    <div class="benefit-label">Encrypted</div>
-                </div>
 
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-value">100+</div>
+                <div class="stat-label">Participants</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">4K</div>
+                <div class="stat-label">Quality</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">Spatial</div>
+                <div class="stat-label">Audio</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">E2E</div>
+                <div class="stat-label">Encrypted</div>
             </div>
         </div>
     </section>
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Trusted by Leaders</h2>
-                <p class="section-subtitle">See why enterprises choose Spatial Meeting Platform for spatial computing</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">"Spatial meetings feel like everyone's in the same room. Remote work finally works."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">AR</div>
-                        <div class="author-info">
-                            <h4>Angela R.</h4>
-                            <span>Remote Team Lead</span>
-                        </div>
-                    </div>
-                </div>
-<div class="testimonial-card">
-                    <p class="testimonial-quote">"Innovation sessions in VR generate more ideas in less time."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">DP</div>
-                        <div class="author-info">
-                            <h4>Daniel P.</h4>
-                            <span>Innovation Director</span>
-                        </div>
-                    </div>
-                </div>
-<div class="testimonial-card">
-                    <p class="testimonial-quote">"Research collaboration across continents feels natural now."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">PKL</div>
-                        <div class="author-info">
-                            <h4>Prof. Kim L.</h4>
-                            <span>Research Director</span>
-                        </div>
-                    </div>
-                </div>
 
-            </div>
+    <section class="compat">
+        <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; color: #fff; margin-bottom: 0.5rem;">Works With</h2>
+        <p style="color: #9ca3af;">Connect with participants on any platform.</p>
+        <div class="compat-badges">
+            <div class="compat-badge">Vision Pro</div>
+            <div class="compat-badge">Mac</div>
+            <div class="compat-badge">iPhone</div>
+            <div class="compat-badge">iPad</div>
+            <div class="compat-badge">Web Browser</div>
         </div>
     </section>
-    <section class="cta-section" id="download">
-        <div class="container">
-            <h2>Ready to Transform Your Workflow?</h2>
-            <p>Experience the future of collaboration with Apple Vision Pro</p>
-            <a href="#" class="cta-button">Get Started Today</a>
-            <div class="store-badges">
-                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on App Store">
-            </div>
+
+    <section class="footer-cta">
+        <h2>Presence, Redefined</h2>
+        <p>Transform how your team connects with spatial meetings that feel like being there.</p>
+        <div class="platform-badge">
+            <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            <span>Built for Apple Vision Pro</span>
         </div>
     </section>
+
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Spatial Meeting Platform. Designed for Apple Vision Pro spatial computing.</p>
-            <div style="margin-top: 16px;">
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-                <a href="support.html">Support</a>
-            </div>
-        </div>
+        <p>&copy; 2025 Spatial Meeting Platform. Presence Without Distance.</p>
     </footer>
 </body>
 </html>
