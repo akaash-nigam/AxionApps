@@ -3,8 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spatial Music Studio - MUSIC CREATION for Vision Pro</title>
+    <title>Spatial Music Studio - Professional Music Production for Vision Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --electric-purple: #a855f7;
+            --neon-blue: #3b82f6;
+            --hot-pink: #ec4899;
+            --deep-black: #0a0a0f;
+            --dark-surface: #121218;
+            --silver: #a1a1aa;
+            --white: #ffffff;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,1139 +25,900 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
-            background: #000000;
-            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            background: var(--deep-black);
+            color: var(--white);
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
-        /* Enhanced 3D Depth Layers */
-        .depth-layer {
+        /* Animated Equalizer Background */
+        .equalizer-bg {
             position: fixed;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 4px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.15;
+        }
+
+        .eq-bar {
+            width: 6px;
+            background: linear-gradient(180deg, var(--electric-purple), var(--neon-blue));
+            border-radius: 3px 3px 0 0;
+            animation: eqPulse 1s ease-in-out infinite;
+        }
+
+        .eq-bar:nth-child(1) { height: 40px; animation-delay: 0s; }
+        .eq-bar:nth-child(2) { height: 80px; animation-delay: 0.1s; }
+        .eq-bar:nth-child(3) { height: 60px; animation-delay: 0.2s; }
+        .eq-bar:nth-child(4) { height: 100px; animation-delay: 0.3s; }
+        .eq-bar:nth-child(5) { height: 50px; animation-delay: 0.4s; }
+        .eq-bar:nth-child(6) { height: 90px; animation-delay: 0.5s; }
+        .eq-bar:nth-child(7) { height: 70px; animation-delay: 0.6s; }
+        .eq-bar:nth-child(8) { height: 110px; animation-delay: 0.7s; }
+        .eq-bar:nth-child(9) { height: 45px; animation-delay: 0.8s; }
+        .eq-bar:nth-child(10) { height: 85px; animation-delay: 0.9s; }
+        .eq-bar:nth-child(11) { height: 65px; animation-delay: 0.15s; }
+        .eq-bar:nth-child(12) { height: 95px; animation-delay: 0.25s; }
+        .eq-bar:nth-child(13) { height: 55px; animation-delay: 0.35s; }
+        .eq-bar:nth-child(14) { height: 75px; animation-delay: 0.45s; }
+        .eq-bar:nth-child(15) { height: 105px; animation-delay: 0.55s; }
+
+        @keyframes eqPulse {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(0.5); }
+        }
+
+        /* Glow Orbs */
+        .glow-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
             pointer-events: none;
             z-index: 0;
         }
 
-        .depth-layer-1 {
-            background: radial-gradient(circle at 20% 30%, rgba(219, 39, 119, 0.4) 0%, transparent 40%);
-            animation: dramaticFloat 15s ease-in-out infinite;
+        .glow-orb-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--electric-purple);
+            top: -200px;
+            right: -200px;
+            opacity: 0.15;
+            animation: orbFloat 20s ease-in-out infinite;
         }
 
-        .depth-layer-2 {
-            background: radial-gradient(circle at 80% 70%, rgba(219, 39, 119, 0.5) 0%, transparent 40%);
-            animation: dramaticFloat 18s ease-in-out infinite reverse;
+        .glow-orb-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--neon-blue);
+            bottom: -150px;
+            left: -150px;
+            opacity: 0.12;
+            animation: orbFloat 25s ease-in-out infinite reverse;
         }
 
-        .depth-layer-3 {
-            background: radial-gradient(circle at 50% 50%, rgba(219, 39, 119, 0.3) 0%, transparent 50%);
-            animation: dramaticFloat 22s ease-in-out infinite;
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(50px, -50px); }
         }
 
-        @keyframes dramaticFloat {
-            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            33% { transform: translate(40px, -40px) rotate(8deg) scale(1.05); }
-            66% { transform: translate(-20px, 30px) rotate(-8deg) scale(0.95); }
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 30px rgba(219, 39, 119, 0.4), 0 0 60px rgba(219, 39, 119, 0.3); }
-            50% { box-shadow: 0 0 50px rgba(219, 39, 119, 0.5), 0 0 100px rgba(219, 39, 119, 0.4); }
-        }
-
-        @keyframes countUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Container */
         .container {
-            max-width: 1400px;
+            max-width: 1300px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 0 24px;
             position: relative;
             z-index: 1;
         }
 
         /* Hero Section */
         .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            padding: 60px 20px 40px;
-            position: relative;
+            padding: 80px 20px;
         }
 
         .genre-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #db2777 0%, #db2777cc 100%);
-            padding: 10px 24px;
-            border-radius: 24px;
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            box-shadow: 0 8px 32px rgba(219, 39, 119, 0.5);
-            animation: pulseGlow 3s ease-in-out infinite;
-        }
-
-        .logo-container {
-            margin-bottom: 30px;
-            perspective: 1200px;
-        }
-
-        .logo-icon {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            width: 140px;
-            height: 140px;
-            background: rgba(15, 15, 30, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 3px solid #db2777;
-            border-radius: 32px;
-            font-size: 72px;
-            box-shadow:
-                0 25px 70px rgba(0, 0, 0, 0.5),
-                0 0 40px rgba(219, 39, 119, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15);
-            transform-style: preserve-3d;
-            animation: logoFloat 4s ease-in-out infinite;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--electric-purple) 0%, var(--neon-blue) 100%);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(168, 85, 247, 0.4);
         }
 
-        @keyframes logoFloat {
-            0%, 100% { transform: rotateY(0deg) rotateX(0deg) translateY(0); }
-            50% { transform: rotateY(15deg) rotateX(8deg) translateY(-10px); }
+        .genre-badge::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: var(--white);
+            border-radius: 50%;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
         }
 
         h1 {
-            font-size: 72px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(40px, 8vw, 80px);
             font-weight: 900;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #ffffff 0%, #db2777 100%);
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--white) 0%, var(--electric-purple) 50%, var(--neon-blue) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            line-height: 1.1;
-            text-transform: uppercase;
-            letter-spacing: -2px;
         }
 
         .tagline {
-            font-size: 32px;
-            color: #db2777;
-            margin-bottom: 30px;
-            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(16px, 2.5vw, 24px);
+            color: var(--electric-purple);
+            margin-bottom: 24px;
+            letter-spacing: 6px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0 0 20px rgba(219, 39, 119, 0.4);
         }
 
-        .hero-message {
-            font-size: 19px;
-            color: rgba(255, 255, 255, 0.85);
-            max-width: 900px;
-            margin: 0 auto 40px;
-            line-height: 1.7;
+        .hero-description {
+            font-size: 20px;
+            color: var(--silver);
+            max-width: 700px;
+            line-height: 1.8;
+            margin-bottom: 40px;
         }
 
-        /* NEW: Pricing Section */
-        .pricing-section {
-            background: linear-gradient(135deg, rgba(219, 39, 119, 0.4) 0%, rgba(219, 39, 119, 0.2) 100%);
-            border: 2px solid #db2777;
+        .hero-image {
+            width: 100%;
+            max-width: 1000px;
             border-radius: 24px;
-            padding: 40px;
-            margin: 40px auto;
-            max-width: 800px;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(219, 39, 119, 0.5);
-        }
-
-        .price-tag {
-            font-size: 64px;
-            font-weight: 900;
-            color: #db2777;
-            margin-bottom: 10px;
-            text-shadow: 0 0 30px rgba(219, 39, 119, 0.5);
-        }
-
-        .price-subtitle {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 30px;
-        }
-
-        .demo-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 50px;
+            box-shadow:
+                0 0 80px rgba(168, 85, 247, 0.3),
+                0 40px 80px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(168, 85, 247, 0.3);
         }
 
         /* CTA Buttons */
-        .cta-buttons {
+        .cta-container {
             display: flex;
             gap: 20px;
-            justify-content: center;
             flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .cta-btn {
+            padding: 20px 40px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
         }
 
         .cta-primary {
-            background: #db2777;
-            color: #ffffff;
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            box-shadow: 0 15px 50px rgba(219, 39, 119, 0.5);
-            border: 2px solid #db2777;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
+            background: linear-gradient(135deg, var(--electric-purple) 0%, var(--neon-blue) 100%);
+            color: var(--white);
+            box-shadow: 0 15px 40px rgba(168, 85, 247, 0.4);
         }
 
         .cta-primary:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(219, 39, 119, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(168, 85, 247, 0.5);
         }
 
         .cta-secondary {
             background: transparent;
-            color: #db2777;
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            border: 2px solid #db2777;
-            transition: all 0.3s ease;
-            cursor: pointer;
+            color: var(--white);
+            border: 2px solid var(--silver);
         }
 
         .cta-secondary:hover {
-            background: rgba(219, 39, 119, 0.3);
-            transform: translateY(-3px);
+            border-color: var(--electric-purple);
+            color: var(--electric-purple);
+            transform: translateY(-4px);
         }
 
-        .cta-wishlist {
-            background: rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.9);
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .cta-wishlist:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-3px);
-        }
-
-        /* Game Metadata Bar */
-        .game-metadata {
+        /* Stats Bar */
+        .stats-bar {
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 60px;
             flex-wrap: wrap;
-            padding: 30px;
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(219, 39, 119, 0.3);
-            border-radius: 20px;
-            margin-bottom: 50px;
-            backdrop-filter: blur(10px);
-        }
-
-        .metadata-item {
-            text-align: center;
-            animation: countUp 0.6s ease-out;
-        }
-
-        .metadata-value {
-            font-size: 28px;
-            font-weight: 800;
-            color: #db2777;
-            display: block;
-        }
-
-        .metadata-label {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* NEW: Video Section */
-        .video-section {
-            margin: 60px 0;
-            text-align: center;
-        }
-
-        .video-container {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-            aspect-ratio: 16 / 9;
-            background: linear-gradient(135deg, rgba(219, 39, 119, 0.3) 0%, rgba(15, 15, 30, 0.9) 100%);
+            padding: 50px;
+            background: var(--dark-surface);
             border-radius: 24px;
-            border: 2px solid rgba(219, 39, 119, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(219, 39, 119, 0.4);
+            margin: 80px 0;
+            border: 1px solid rgba(168, 85, 247, 0.2);
         }
 
-        .video-placeholder {
+        .stat-item {
             text-align: center;
-            padding: 40px;
         }
 
-        .play-button {
-            width: 100px;
-            height: 100px;
-            background: #db2777;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            box-shadow: 0 10px 40px rgba(219, 39, 119, 0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 42px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--electric-purple), var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
         }
 
-        .play-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 50px rgba(219, 39, 119, 0.5);
-        }
-
-        .play-button::after {
-            content: '▶';
-            font-size: 40px;
-            color: white;
-            margin-left: 8px;
+        .stat-label {
+            font-size: 14px;
+            color: var(--silver);
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         /* Section Styling */
         .section {
-            margin: 100px 0;
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 12px;
+            color: var(--electric-purple);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 16px;
         }
 
         .section-title {
-            font-size: 48px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(28px, 5vw, 48px);
             font-weight: 800;
-            text-align: center;
-            margin-bottom: 60px;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #ffffff 0%, #db2777 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--white);
+            letter-spacing: 1px;
         }
 
-        /* Game Modes */
-        .modes-grid {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 60px;
-        }
-
-        .mode-badge {
-            background: rgba(15, 15, 30, 0.5);
-            border: 2px solid rgba(219, 39, 119, 0.3);
-            padding: 12px 28px;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.9);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .mode-badge:hover {
-            background: rgba(219, 39, 119, 0.3);
-            border-color: #db2777;
-            transform: translateY(-2px);
-        }
-
-        /* Features Grid */
-        .features-grid {
+        /* Instruments Grid */
+        .instruments-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
         }
 
-        .feature-card {
-            background: rgba(15, 15, 30, 0.5);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 2px solid rgba(219, 39, 119, 0.3);
-            border-radius: 24px;
-            padding: 45px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+        .instrument-card {
+            background: var(--dark-surface);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 20px;
+            padding: 40px 24px;
+            text-align: center;
+            transition: all 0.4s ease;
         }
 
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, #db2777, transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        .instrument-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--electric-purple);
+            box-shadow: 0 20px 50px rgba(168, 85, 247, 0.2);
         }
 
-        .feature-card:hover {
-            transform: translateY(-8px);
-            border-color: #db2777;
-            box-shadow: 0 15px 60px rgba(219, 39, 119, 0.4);
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-
-        .feature-icon {
+        .instrument-icon {
             font-size: 56px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .instrument-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+
+        .instrument-count {
+            font-size: 14px;
+            color: var(--electric-purple);
+        }
+
+        /* DAW Features */
+        .daw-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .daw-card {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(59, 130, 246, 0.05));
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 24px;
+            padding: 50px;
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            transition: all 0.4s ease;
+        }
+
+        .daw-card:hover {
+            border-color: var(--electric-purple);
+            transform: translateX(10px);
+        }
+
+        .daw-icon {
+            font-size: 48px;
+            flex-shrink: 0;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--electric-purple), var(--neon-blue));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .daw-content h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--white);
+        }
+
+        .daw-content p {
+            font-size: 16px;
+            color: var(--silver);
+            line-height: 1.7;
+        }
+
+        /* Sound Library */
+        .sounds-showcase {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .sound-card {
+            background: var(--dark-surface);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .sound-card:hover {
+            border-color: var(--electric-purple);
+        }
+
+        .sound-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
             margin-bottom: 20px;
         }
 
-        .feature-card h3 {
-            font-size: 26px;
-            margin-bottom: 15px;
-            color: #db2777;
+        .sound-icon {
+            font-size: 32px;
+        }
+
+        .sound-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
             font-weight: 700;
         }
 
-        .feature-card p {
-            font-size: 17px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.75);
+        .sound-waveform {
+            height: 60px;
+            background: linear-gradient(90deg,
+                rgba(168, 85, 247, 0.3) 0%,
+                rgba(59, 130, 246, 0.5) 25%,
+                rgba(168, 85, 247, 0.7) 50%,
+                rgba(59, 130, 246, 0.5) 75%,
+                rgba(168, 85, 247, 0.3) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            overflow: hidden;
         }
 
-        /* NEW: System Requirements */
-        .system-requirements {
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(219, 39, 119, 0.3);
+        .wave-bar {
+            width: 4px;
+            background: var(--white);
+            border-radius: 2px;
+            animation: waveAnim 1s ease-in-out infinite;
+        }
+
+        .wave-bar:nth-child(1) { height: 20px; animation-delay: 0s; }
+        .wave-bar:nth-child(2) { height: 35px; animation-delay: 0.1s; }
+        .wave-bar:nth-child(3) { height: 25px; animation-delay: 0.2s; }
+        .wave-bar:nth-child(4) { height: 45px; animation-delay: 0.3s; }
+        .wave-bar:nth-child(5) { height: 30px; animation-delay: 0.4s; }
+        .wave-bar:nth-child(6) { height: 50px; animation-delay: 0.5s; }
+        .wave-bar:nth-child(7) { height: 35px; animation-delay: 0.6s; }
+        .wave-bar:nth-child(8) { height: 40px; animation-delay: 0.7s; }
+        .wave-bar:nth-child(9) { height: 28px; animation-delay: 0.8s; }
+        .wave-bar:nth-child(10) { height: 38px; animation-delay: 0.9s; }
+
+        @keyframes waveAnim {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(0.6); }
+        }
+
+        .sound-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 16px;
+            font-size: 14px;
+            color: var(--silver);
+        }
+
+        /* Collaboration */
+        .collab-section {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(59, 130, 246, 0.1));
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 32px;
+            padding: 80px 60px;
+            text-align: center;
+            margin: 80px 0;
+        }
+
+        .collab-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .collab-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--electric-purple), var(--neon-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            border: 3px solid var(--deep-black);
+            animation: floatAvatar 3s ease-in-out infinite;
+        }
+
+        .collab-avatar:nth-child(2) { animation-delay: 0.5s; }
+        .collab-avatar:nth-child(3) { animation-delay: 1s; }
+
+        @keyframes floatAvatar {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .collab-description {
+            font-size: 20px;
+            color: var(--silver);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Requirements */
+        .requirements {
+            background: var(--dark-surface);
+            border: 1px solid rgba(168, 85, 247, 0.2);
             border-radius: 24px;
-            padding: 50px;
+            padding: 60px;
             margin: 60px 0;
         }
 
         .requirements-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-top: 40px;
         }
 
-        .requirement-item {
-            display: flex;
-            align-items: start;
-            gap: 15px;
+        .req-item {
+            text-align: center;
         }
 
-        .requirement-icon {
-            font-size: 32px;
-            flex-shrink: 0;
+        .req-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
         }
 
-        .requirement-content h4 {
-            color: #db2777;
-            font-size: 18px;
+        .req-label {
+            font-size: 14px;
+            color: var(--silver);
             margin-bottom: 8px;
         }
 
-        .requirement-content p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 15px;
-            line-height: 1.5;
-        }
-
-        /* NEW: Awards & Social Proof */
-        .awards-section {
-            background: linear-gradient(135deg, rgba(219, 39, 119, 0.2) 0%, rgba(15, 15, 30, 0.6) 100%);
-            border: 1px solid rgba(219, 39, 119, 0.3);
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin: 60px 0;
-            text-align: center;
-        }
-
-        .awards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .award-badge {
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: 16px;
-            padding: 30px 20px;
-            transition: all 0.3s ease;
-        }
-
-        .award-badge:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 215, 0, 0.6);
-        }
-
-        .award-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        .award-title {
+        .req-value {
+            font-family: 'Orbitron', sans-serif;
             font-size: 18px;
             font-weight: 700;
-            color: #db2777;
-            margin-bottom: 5px;
-        }
-
-        .award-subtitle {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* NEW: Testimonials */
-        .testimonials-section {
-            margin: 80px 0;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .testimonial-card {
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(219, 39, 119, 0.3);
-            border-radius: 20px;
-            padding: 35px;
-            position: relative;
-        }
-
-        .testimonial-quote {
-            font-size: 17px;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .testimonial-quote::before {
-            content: '"';
-            font-size: 48px;
-            color: #db2777;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            opacity: 0.3;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            background: #db2777;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 20px;
-        }
-
-        .author-info {
-            flex: 1;
-        }
-
-        .author-name {
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 3px;
-        }
-
-        .author-stars {
-            color: #ffd700;
-            font-size: 14px;
-        }
-
-        /* NEW: Community Section */
-        .community-section {
-            background: linear-gradient(135deg, rgba(219, 39, 119, 0.3) 0%, rgba(15, 15, 30, 0.6) 100%);
-            border: 1px solid rgba(219, 39, 119, 0.3);
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin: 60px 0;
-            text-align: center;
-        }
-
-        .community-links {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        .community-link {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 20px 35px;
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .community-link:hover {
-            background: rgba(219, 39, 119, 0.3);
-            border-color: #db2777;
-            transform: translateY(-3px);
-        }
-
-        .community-icon {
-            font-size: 24px;
-        }
-
-        /* NEW: Age Rating */
-        .age-rating {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(15, 15, 30, 0.6);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 15px 30px;
-            margin-top: 20px;
-        }
-
-        .rating-badge {
-            background: #db2777;
-            color: white;
-            font-weight: 900;
-            font-size: 24px;
-            padding: 10px 15px;
-            border-radius: 8px;
-        }
-
-        .rating-text {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.8);
-            text-align: left;
-        }
-
-        /* Screenshots */
-        .screenshots-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .screenshot-card {
-            background: rgba(15, 15, 30, 0.4);
-            border: 2px solid rgba(219, 39, 119, 0.3);
-            border-radius: 20px;
-            padding: 25px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .screenshot-card:hover {
-            border-color: #db2777;
-            transform: scale(1.02);
-        }
-
-        .screenshot-placeholder {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background: linear-gradient(135deg, rgba(219, 39, 119, 0.3) 0%, rgba(15, 15, 30, 0.8) 100%);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 20px;
-            font-weight: 600;
-            border: 2px dashed rgba(219, 39, 119, 0.4);
-        }
-
-        /* NEW: Developer Section */
-        .developer-section {
-            background: rgba(15, 15, 30, 0.3);
-            border: 1px solid rgba(219, 39, 119, 0.3);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 60px 0;
-        }
-
-        .developer-content {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .developer-logo {
-            width: 100px;
-            height: 100px;
-            background: #db2777;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            flex-shrink: 0;
-        }
-
-        .developer-info {
-            flex: 1;
-        }
-
-        .developer-info h3 {
-            font-size: 24px;
-            color: #db2777;
-            margin-bottom: 10px;
-        }
-
-        .developer-info p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .developer-links {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .developer-link {
-            color: #db2777;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            transition: opacity 0.3s ease;
-        }
-
-        .developer-link:hover {
-            opacity: 0.7;
+            color: var(--electric-purple);
         }
 
         /* Footer */
         footer {
             text-align: center;
             padding: 80px 20px;
-            border-top: 1px solid rgba(219, 39, 119, 0.3);
-            margin-top: 120px;
+            border-top: 1px solid rgba(168, 85, 247, 0.2);
+            margin-top: 80px;
         }
 
-        footer p {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 15px;
-            margin-bottom: 10px;
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, var(--electric-purple), var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 24px;
         }
 
         .footer-links {
             display: flex;
-            gap: 20px;
+            gap: 30px;
             justify-content: center;
-            margin-top: 20px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
         }
 
         .footer-link {
-            color: rgba(255, 255, 255, 0.5);
+            color: var(--silver);
             text-decoration: none;
-            font-size: 14px;
+            font-size: 15px;
             transition: color 0.3s ease;
         }
 
         .footer-link:hover {
-            color: #db2777;
+            color: var(--electric-purple);
+        }
+
+        .footer-copyright {
+            font-size: 14px;
+            color: rgba(161, 161, 170, 0.6);
         }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+            .instruments-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .sounds-showcase {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .requirements-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
-            h1 {
-                font-size: 48px;
-            }
-
-            .tagline {
-                font-size: 24px;
-            }
-
-            .section-title {
-                font-size: 36px;
-            }
-
-            .price-tag {
-                font-size: 48px;
-            }
-
-            .features-grid,
-            .screenshots-grid,
-            .testimonials-grid {
+            .instruments-grid,
+            .daw-grid,
+            .sounds-showcase {
                 grid-template-columns: 1fr;
             }
 
-            .cta-buttons {
+            .stats-bar {
+                gap: 30px;
+            }
+
+            .cta-container {
                 flex-direction: column;
-                align-items: stretch;
             }
 
-            .game-metadata {
-                gap: 20px;
+            .cta-btn {
+                width: 100%;
+                text-align: center;
             }
 
-            .developer-content {
+            .daw-card {
                 flex-direction: column;
                 text-align: center;
             }
 
-            .community-links {
-                flex-direction: column;
+            .daw-icon {
+                margin: 0 auto;
+            }
+
+            .collab-section {
+                padding: 50px 30px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 3D Depth Layers -->
-    <div class="depth-layer depth-layer-1"></div>
-    <div class="depth-layer depth-layer-2"></div>
-    <div class="depth-layer depth-layer-3"></div>
+    <!-- Equalizer Background -->
+    <div class="equalizer-bg">
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+    </div>
+
+    <!-- Glow Orbs -->
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <span class="genre-badge">Music Production</span>
+            <h1>Spatial<br>Music Studio</h1>
+            <p class="tagline">Create in Three Dimensions</p>
+            <p class="hero-description">
+                The future of music production is spatial. Mix, master, and perform with holographic instruments
+                floating in your space. Professional-grade DAW reimagined for Apple Vision Pro.
+            </p>
+            <img src="hero-spatial.png" alt="Spatial Music Studio" class="hero-image">
+            <div class="cta-container">
+                <a href="#" class="cta-btn cta-primary">Start Creating</a>
+                <a href="#" class="cta-btn cta-secondary">Watch Demo</a>
+            </div>
+        </div>
+    </section>
 
     <div class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="genre-badge">MUSIC CREATION</div>
-
-            <div class="logo-container">
-                <div class="logo-icon">🎹</div>
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value">150K+</div>
+                <div class="stat-label">Producers</div>
             </div>
+            <div class="stat-item">
+                <div class="stat-value">4.9</div>
+                <div class="stat-label">Rating</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">10K+</div>
+                <div class="stat-label">Sounds</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">500+</div>
+                <div class="stat-label">Presets</div>
+            </div>
+        </div>
 
-            <h1>Spatial Music Studio</h1>
-            <p class="tagline">PRODUCE MUSIC IN 3D SPACE</p>
-            <p class="hero-message">
-                Arrange instruments in 3D around you. Create music by positioning sounds spatially and conducting with natural gestures. The future of music production is spatial.
+        <!-- Instruments Section -->
+        <section class="section">
+            <div class="section-header">
+                <p class="section-label">Virtual Instruments</p>
+                <h2 class="section-title">Holographic Gear</h2>
+            </div>
+            <div class="instruments-grid">
+                <div class="instrument-card">
+                    <span class="instrument-icon">🎹</span>
+                    <h3 class="instrument-name">Synthesizers</h3>
+                    <p class="instrument-count">24 Synths</p>
+                </div>
+                <div class="instrument-card">
+                    <span class="instrument-icon">🥁</span>
+                    <h3 class="instrument-name">Drum Machines</h3>
+                    <p class="instrument-count">18 Kits</p>
+                </div>
+                <div class="instrument-card">
+                    <span class="instrument-icon">🎸</span>
+                    <h3 class="instrument-name">String Suite</h3>
+                    <p class="instrument-count">12 Instruments</p>
+                </div>
+                <div class="instrument-card">
+                    <span class="instrument-icon">🎺</span>
+                    <h3 class="instrument-name">Brass & Winds</h3>
+                    <p class="instrument-count">16 Instruments</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DAW Features -->
+        <section class="section">
+            <div class="section-header">
+                <p class="section-label">Professional Tools</p>
+                <h2 class="section-title">Studio Features</h2>
+            </div>
+            <div class="daw-grid">
+                <div class="daw-card">
+                    <div class="daw-icon">🎚️</div>
+                    <div class="daw-content">
+                        <h3>Spatial Mixer</h3>
+                        <p>Position tracks anywhere in 3D space. Mix with true spatial audio for immersive soundscapes.</p>
+                    </div>
+                </div>
+                <div class="daw-card">
+                    <div class="daw-icon">🎛️</div>
+                    <div class="daw-content">
+                        <h3>Gesture Controls</h3>
+                        <p>Twist knobs, push faders, and trigger samples with natural hand movements.</p>
+                    </div>
+                </div>
+                <div class="daw-card">
+                    <div class="daw-icon">📊</div>
+                    <div class="daw-content">
+                        <h3>Visual EQ</h3>
+                        <p>See your frequencies in 3D. Sculpt sound with holographic equalizers around you.</p>
+                    </div>
+                </div>
+                <div class="daw-card">
+                    <div class="daw-icon">🔊</div>
+                    <div class="daw-content">
+                        <h3>Dolby Atmos</h3>
+                        <p>Export directly to Dolby Atmos and Apple Spatial Audio formats.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sound Library -->
+        <section class="section">
+            <div class="section-header">
+                <p class="section-label">Sound Library</p>
+                <h2 class="section-title">Premium Sounds</h2>
+            </div>
+            <div class="sounds-showcase">
+                <div class="sound-card">
+                    <div class="sound-header">
+                        <span class="sound-icon">🎵</span>
+                        <span class="sound-name">Analog Dreams</span>
+                    </div>
+                    <div class="sound-waveform">
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                    </div>
+                    <div class="sound-meta">
+                        <span>1,200 samples</span>
+                        <span>Synth</span>
+                    </div>
+                </div>
+                <div class="sound-card">
+                    <div class="sound-header">
+                        <span class="sound-icon">🎤</span>
+                        <span class="sound-name">Vocal FX</span>
+                    </div>
+                    <div class="sound-waveform">
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                    </div>
+                    <div class="sound-meta">
+                        <span>800 samples</span>
+                        <span>Vocal</span>
+                    </div>
+                </div>
+                <div class="sound-card">
+                    <div class="sound-header">
+                        <span class="sound-icon">🎼</span>
+                        <span class="sound-name">808 Essentials</span>
+                    </div>
+                    <div class="sound-waveform">
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                    </div>
+                    <div class="sound-meta">
+                        <span>500 samples</span>
+                        <span>Drums</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Collaboration Section -->
+        <section class="collab-section">
+            <div class="section-header">
+                <p class="section-label">Work Together</p>
+                <h2 class="section-title">Real-Time Collaboration</h2>
+            </div>
+            <div class="collab-icons">
+                <div class="collab-avatar">👨‍🎤</div>
+                <div class="collab-avatar">👩‍🎤</div>
+                <div class="collab-avatar">🎧</div>
+            </div>
+            <p class="collab-description">
+                Produce music with collaborators anywhere in the world. Share your spatial studio,
+                jam together in real-time, and create magic across distances.
             </p>
         </section>
 
-        <!-- NEW: Pricing Section -->
-        <section class="pricing-section">
-            
-            <div class="price-tag">$14.99</div>
-            <p class="price-subtitle">One-Time Purchase • No Subscriptions</p>
-
-            <div class="cta-buttons">
-                <a href="#" class="cta-primary">📱 Download on App Store</a>
-                <a href="#" class="cta-secondary">🎬 Watch Trailer</a>
-                <a href="#" class="cta-wishlist">❤️ Add to Wishlist</a>
+        <!-- Requirements -->
+        <section class="requirements">
+            <div class="section-header">
+                <p class="section-label">Get Started</p>
+                <h2 class="section-title">Requirements</h2>
             </div>
-
-            <div class="age-rating">
-                <div class="rating-badge">E10+</div>
-                <div class="rating-text">
-                    <strong>Everyone 10+</strong><br>
-                    Accessibility: Subtitles, Colorblind Mode, Seated Play
-                </div>
-            </div>
-        </section>
-
-        <!-- Game Metadata -->
-        <section class="game-metadata">
-            <div class="metadata-item">
-                <span class="metadata-value">35K+</span>
-                <span class="metadata-label">Players</span>
-            </div>
-            <div class="metadata-item">
-                <span class="metadata-value">⭐ 4.8</span>
-                <span class="metadata-label">Rating</span>
-            </div>
-            <div class="metadata-item">
-                <span class="metadata-value">Light</span>
-                <span class="metadata-label">Intensity</span>
-            </div>
-            <div class="metadata-item">
-                <span class="metadata-value">Room-Scale</span>
-                <span class="metadata-label">Space</span>
-            </div>
-        </section>
-
-        <!-- NEW: Video Section -->
-        <section class="video-section">
-            <h2 class="section-title">GAMEPLAY TRAILER</h2>
-            <div class="video-container">
-                <div class="video-placeholder">
-                    <div class="play-button"></div>
-                    <p>Official Gameplay Trailer</p>
-                    <p style="font-size: 14px; color: rgba(255, 255, 255, 0.5); margin-top: 10px;">
-                        Watch spatial gameplay in action
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Game Modes -->
-        <section class="section">
-            <h2 class="section-title">GAME MODES</h2>
-            <div class="modes-grid">
-                <div class="mode-badge">Free Jam</div>
-                <div class="mode-badge">Beat Making</div>
-                <div class="mode-badge">Live Performance</div>
-                <div class="mode-badge">Tutorial Lessons</div>
-                <div class="mode-badge">Collaboration</div>
-            </div>
-        </section>
-
-        <!-- Gameplay Features -->
-        <section class="section">
-            <h2 class="section-title">EPIC GAMEPLAY FEATURES</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🎹</div>
-                    <h3>Spatial Instruments</h3>
-                    <p>50+ instruments positioned in your room</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎚️</div>
-                    <h3>3D Audio Mixing</h3>
-                    <p>Mix by arranging sounds spatially</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">👋</div>
-                    <h3>Gesture Conducting</h3>
-                    <p>Control tempo and dynamics with movements</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎵</div>
-                    <h3>Loop Stations</h3>
-                    <p>Layer compositions in real-time</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💾</div>
-                    <h3>Export & Share</h3>
-                    <p>Professional audio export and community</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Awards & Social Proof -->
-        <section class="awards-section">
-            <h2 class="section-title">AWARDS & RECOGNITION</h2>
-            <div class="awards-grid">
-                <div class="award-badge">
-                    <div class="award-icon">🏆</div>
-                    <div class="award-title">Best VR Game 2024</div>
-                    <div class="award-subtitle">Vision Pro Awards</div>
-                </div>
-                <div class="award-badge">
-                    <div class="award-icon">⭐</div>
-                    <div class="award-title">Editor's Choice</div>
-                    <div class="award-subtitle">App Store Featured</div>
-                </div>
-                <div class="award-badge">
-                    <div class="award-icon">🎮</div>
-                    <div class="award-title">Game of the Month</div>
-                    <div class="award-subtitle">Spatial Gaming Weekly</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Testimonials -->
-        <section class="testimonials-section">
-            <h2 class="section-title">PLAYER REVIEWS</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">Most immersive experience I've ever had. My room truly becomes the game world!</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">A</div>
-                        <div class="author-info">
-                            <div class="author-name">Alex M.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">The spatial mechanics are mind-blowing. This is the future of gaming.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">S</div>
-                        <div class="author-info">
-                            <div class="author-name">Sarah K.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">Can't stop playing! The physicality makes every session feel like a workout.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">J</div>
-                        <div class="author-info">
-                            <div class="author-name">James R.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Screenshots -->
-        <section class="section">
-            <h2 class="section-title">GAMEPLAY GALLERY</h2>
-            <div class="screenshots-grid">
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">ACTION SCREENSHOT</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">COMBAT MOMENT</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">SPECIAL ABILITY</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">MULTIPLAYER ACTION</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: System Requirements -->
-        <section class="system-requirements">
-            <h2 class="section-title">SYSTEM REQUIREMENTS</h2>
             <div class="requirements-grid">
-                <div class="requirement-item">
-                    <div class="requirement-icon">📱</div>
-                    <div class="requirement-content">
-                        <h4>Device</h4>
-                        <p>Apple Vision Pro with visionOS 1.0 or later</p>
-                    </div>
+                <div class="req-item">
+                    <div class="req-icon">📱</div>
+                    <div class="req-label">Device</div>
+                    <div class="req-value">Vision Pro</div>
                 </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">💾</div>
-                    <div class="requirement-content">
-                        <h4>Storage</h4>
-                        <p>3.5 GB available space required</p>
-                    </div>
+                <div class="req-item">
+                    <div class="req-icon">📏</div>
+                    <div class="req-label">Space</div>
+                    <div class="req-value">2m x 2m</div>
                 </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">🎮</div>
-                    <div class="requirement-content">
-                        <h4>Controls</h4>
-                        <p>Hand tracking or compatible controllers</p>
-                    </div>
+                <div class="req-item">
+                    <div class="req-icon">💾</div>
+                    <div class="req-label">Storage</div>
+                    <div class="req-value">4.2 GB</div>
                 </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">📏</div>
-                    <div class="requirement-content">
-                        <h4>Play Space</h4>
-                        <p>Room-Scale • 2m x 2m recommended</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">🌐</div>
-                    <div class="requirement-content">
-                        <h4>Internet</h4>
-                        <p>Required for multiplayer and updates</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">♿</div>
-                    <div class="requirement-content">
-                        <h4>Accessibility</h4>
-                        <p>Subtitles, colorblind mode, seated play option</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Community Section -->
-        <section class="community-section">
-            <h2 class="section-title">JOIN THE COMMUNITY</h2>
-            <p style="font-size: 18px; color: rgba(255, 255, 255, 0.8); margin-bottom: 10px;">
-                Connect with thousands of players worldwide
-            </p>
-            <div class="community-links">
-                <a href="#" class="community-link">
-                    <span class="community-icon">💬</span>
-                    <span>Discord Server</span>
-                </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">🐦</span>
-                    <span>Twitter/X</span>
-                </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">📺</span>
-                    <span>YouTube</span>
-                </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">👾</span>
-                    <span>Reddit</span>
-                </a>
-            </div>
-        </section>
-
-        <!-- NEW: Developer Section -->
-        <section class="developer-section">
-            <div class="developer-content">
-                <div class="developer-logo">🎮</div>
-                <div class="developer-info">
-                    <h3>Spatial Games Studio</h3>
-                    <p>Pioneers of immersive spatial gaming experiences for Apple Vision Pro. Creating the future of interactive entertainment.</p>
-                    <div class="developer-links">
-                        <a href="#" class="developer-link">More Games →</a>
-                        <a href="#" class="developer-link">Press Kit →</a>
-                        <a href="#" class="developer-link">Contact Support →</a>
-                    </div>
+                <div class="req-item">
+                    <div class="req-icon">💰</div>
+                    <div class="req-label">Price</div>
+                    <div class="req-value">$24.99</div>
                 </div>
             </div>
         </section>
     </div>
 
     <footer>
-        <p>&copy; 2024 Spatial Music Studio. Experience the future of spatial gaming on Apple Vision Pro.</p>
+        <div class="footer-logo">Spatial Music Studio</div>
         <div class="footer-links">
             <a href="#" class="footer-link">Privacy Policy</a>
             <a href="#" class="footer-link">Terms of Service</a>
             <a href="#" class="footer-link">Support</a>
-            <a href="#" class="footer-link">Press Kit</a>
+            <a href="#" class="footer-link">Artist Showcase</a>
         </div>
+        <p class="footer-copyright">&copy; 2025 Spatial Music Studio. Professional music production for Apple Vision Pro.</p>
     </footer>
 </body>
 </html>

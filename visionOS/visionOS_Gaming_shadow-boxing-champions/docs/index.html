@@ -3,8 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shadow Boxing Champions - ACTION SPORTS for Vision Pro</title>
+    <title>Shadow Boxing Champions - Train Like a Champion in Spatial Reality</title>
+    <meta name="description" content="The ultimate boxing fitness game for Apple Vision Pro. Train with holographic opponents, perfect your technique, and become a champion in your living room.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --champion-red: #ef4444;
+            --champion-gold: #f59e0b;
+            --power-orange: #f97316;
+            --ring-black: #0a0a0a;
+            --ring-dark: #171717;
+            --text-white: #ffffff;
+            --text-gray: #a3a3a3;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,1139 +26,727 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
-            background: #000000;
-            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            background: var(--ring-black);
+            color: var(--text-white);
             overflow-x: hidden;
-            scroll-behavior: smooth;
+            line-height: 1.6;
         }
 
-        /* Enhanced 3D Depth Layers */
-        .depth-layer {
+        /* Punch Impact Animation */
+        .impact {
             position: fixed;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
+            border-radius: 50%;
             pointer-events: none;
             z-index: 0;
+            opacity: 0;
+            animation: punchImpact 3s ease-out infinite;
         }
 
-        .depth-layer-1 {
-            background: radial-gradient(circle at 20% 30%, rgba(239, 68, 68, 0.4) 0%, transparent 40%);
-            animation: dramaticFloat 15s ease-in-out infinite;
+        .impact:nth-child(1) { width: 100px; height: 100px; top: 20%; left: 10%; animation-delay: 0s; }
+        .impact:nth-child(2) { width: 80px; height: 80px; top: 40%; right: 15%; animation-delay: 1s; }
+        .impact:nth-child(3) { width: 120px; height: 120px; bottom: 30%; left: 20%; animation-delay: 2s; }
+        .impact:nth-child(4) { width: 60px; height: 60px; top: 60%; right: 25%; animation-delay: 0.5s; }
+
+        @keyframes punchImpact {
+            0% { transform: scale(0); opacity: 0; background: var(--champion-red); }
+            50% { transform: scale(1.5); opacity: 0.3; background: var(--champion-gold); }
+            100% { transform: scale(2); opacity: 0; background: var(--power-orange); }
         }
 
-        .depth-layer-2 {
-            background: radial-gradient(circle at 80% 70%, rgba(239, 68, 68, 0.5) 0%, transparent 40%);
-            animation: dramaticFloat 18s ease-in-out infinite reverse;
+        /* Energy Lines */
+        .energy-line {
+            position: fixed;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--champion-red), transparent);
+            pointer-events: none;
+            z-index: 0;
+            animation: energySlash 2s linear infinite;
         }
 
-        .depth-layer-3 {
-            background: radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.3) 0%, transparent 50%);
-            animation: dramaticFloat 22s ease-in-out infinite;
+        .energy-line:nth-child(5) { width: 200px; top: 15%; left: -100px; animation-delay: 0s; }
+        .energy-line:nth-child(6) { width: 150px; top: 45%; left: -100px; animation-delay: 0.5s; }
+        .energy-line:nth-child(7) { width: 180px; top: 75%; left: -100px; animation-delay: 1s; }
+
+        @keyframes energySlash {
+            0% { transform: translateX(0); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateX(calc(100vw + 200px)); opacity: 0; }
         }
 
-        @keyframes dramaticFloat {
-            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            33% { transform: translate(40px, -40px) rotate(8deg) scale(1.05); }
-            66% { transform: translate(-20px, 30px) rotate(-8deg) scale(0.95); }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 3rem;
+            background: linear-gradient(180deg, rgba(10, 10, 10, 0.95) 0%, transparent 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 30px rgba(239, 68, 68, 0.4), 0 0 60px rgba(239, 68, 68, 0.3); }
-            50% { box-shadow: 0 0 50px rgba(239, 68, 68, 0.5), 0 0 100px rgba(239, 68, 68, 0.4); }
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--champion-red);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        @keyframes countUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .logo-icon {
+            font-size: 1.8rem;
         }
 
-        /* Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            position: relative;
-            z-index: 1;
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Oswald', sans-serif;
+            color: var(--text-white);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--champion-red);
         }
 
         /* Hero Section */
         .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            padding: 60px 20px 40px;
+            padding: 2rem;
             position: relative;
+            background: linear-gradient(180deg,
+                rgba(10, 10, 10, 0.3) 0%,
+                rgba(10, 10, 10, 0.9) 100%),
+                url('hero-spatial.png') center/cover no-repeat;
         }
 
-        .genre-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #ef4444 0%, #ef4444cc 100%);
-            padding: 10px 24px;
-            border-radius: 24px;
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            box-shadow: 0 8px 32px rgba(239, 68, 68, 0.5);
-            animation: pulseGlow 3s ease-in-out infinite;
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 0%, var(--ring-black) 70%);
+            pointer-events: none;
         }
 
-        .logo-container {
-            margin-bottom: 30px;
-            perspective: 1200px;
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
         }
 
-        .logo-icon {
+        .champion-badge {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            width: 140px;
-            height: 140px;
-            background: rgba(15, 15, 30, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 3px solid #ef4444;
-            border-radius: 32px;
-            font-size: 72px;
-            box-shadow:
-                0 25px 70px rgba(0, 0, 0, 0.5),
-                0 0 40px rgba(239, 68, 68, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15);
-            transform-style: preserve-3d;
-            animation: logoFloat 4s ease-in-out infinite;
-        }
-
-        @keyframes logoFloat {
-            0%, 100% { transform: rotateY(0deg) rotateX(0deg) translateY(0); }
-            50% { transform: rotateY(15deg) rotateX(8deg) translateY(-10px); }
+            gap: 0.75rem;
+            background: linear-gradient(135deg, var(--champion-red), var(--power-orange));
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 0;
+            clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
         }
 
         h1 {
-            font-size: 72px;
-            font-weight: 900;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #ffffff 0%, #ef4444 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.1;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(4rem, 12vw, 8rem);
+            line-height: 0.9;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
             text-transform: uppercase;
-            letter-spacing: -2px;
         }
 
-        .tagline {
-            font-size: 32px;
-            color: #ef4444;
-            margin-bottom: 30px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
-        }
-
-        .hero-message {
-            font-size: 19px;
-            color: rgba(255, 255, 255, 0.85);
-            max-width: 900px;
-            margin: 0 auto 40px;
-            line-height: 1.7;
-        }
-
-        /* NEW: Pricing Section */
-        .pricing-section {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.4) 0%, rgba(239, 68, 68, 0.2) 100%);
-            border: 2px solid #ef4444;
-            border-radius: 24px;
-            padding: 40px;
-            margin: 40px auto;
-            max-width: 800px;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(239, 68, 68, 0.5);
-        }
-
-        .price-tag {
-            font-size: 64px;
-            font-weight: 900;
-            color: #ef4444;
-            margin-bottom: 10px;
-            text-shadow: 0 0 30px rgba(239, 68, 68, 0.5);
-        }
-
-        .price-subtitle {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 30px;
-        }
-
-        .demo-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        /* CTA Buttons */
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .cta-primary {
-            background: #ef4444;
-            color: #ffffff;
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            box-shadow: 0 15px 50px rgba(239, 68, 68, 0.5);
-            border: 2px solid #ef4444;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-        }
-
-        .cta-primary:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(239, 68, 68, 0.5);
-        }
-
-        .cta-secondary {
-            background: transparent;
-            color: #ef4444;
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            border: 2px solid #ef4444;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .cta-secondary:hover {
-            background: rgba(239, 68, 68, 0.3);
-            transform: translateY(-3px);
-        }
-
-        .cta-wishlist {
-            background: rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.9);
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .cta-wishlist:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-3px);
-        }
-
-        /* Game Metadata Bar */
-        .game-metadata {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            padding: 30px;
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            border-radius: 20px;
-            margin-bottom: 50px;
-            backdrop-filter: blur(10px);
-        }
-
-        .metadata-item {
-            text-align: center;
-            animation: countUp 0.6s ease-out;
-        }
-
-        .metadata-value {
-            font-size: 28px;
-            font-weight: 800;
-            color: #ef4444;
+        h1 span {
             display: block;
         }
 
-        .metadata-label {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.6);
+        h1 .highlight {
+            color: var(--champion-red);
+            text-shadow: 0 0 40px rgba(239, 68, 68, 0.5);
+        }
+
+        .hero-subtitle {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            color: var(--text-gray);
+            margin-bottom: 2.5rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.1em;
         }
 
-        /* NEW: Video Section */
-        .video-section {
-            margin: 60px 0;
-            text-align: center;
-        }
-
-        .video-container {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-            aspect-ratio: 16 / 9;
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.3) 0%, rgba(15, 15, 30, 0.9) 100%);
-            border-radius: 24px;
-            border: 2px solid rgba(239, 68, 68, 0.3);
+        .hero-buttons {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(239, 68, 68, 0.4);
-        }
-
-        .video-placeholder {
-            text-align: center;
-            padding: 40px;
-        }
-
-        .play-button {
-            width: 100px;
-            height: 100px;
-            background: #ef4444;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            box-shadow: 0 10px 40px rgba(239, 68, 68, 0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .play-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 50px rgba(239, 68, 68, 0.5);
-        }
-
-        .play-button::after {
-            content: '▶';
-            font-size: 40px;
-            color: white;
-            margin-left: 8px;
-        }
-
-        /* Section Styling */
-        .section {
-            margin: 100px 0;
-        }
-
-        .section-title {
-            font-size: 48px;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 60px;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #ffffff 0%, #ef4444 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Game Modes */
-        .modes-grid {
-            display: flex;
-            gap: 15px;
+            gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 60px;
         }
 
-        .mode-badge {
-            background: rgba(15, 15, 30, 0.5);
-            border: 2px solid rgba(239, 68, 68, 0.3);
-            padding: 12px 28px;
-            border-radius: 30px;
-            font-size: 16px;
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--champion-red);
+            color: white;
+            padding: 1.25rem 3rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
             font-weight: 600;
-            color: rgba(255, 255, 255, 0.9);
-            transition: all 0.3s ease;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s;
+            border: none;
             cursor: pointer;
+            clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
         }
 
-        .mode-badge:hover {
-            background: rgba(239, 68, 68, 0.3);
-            border-color: #ef4444;
-            transform: translateY(-2px);
+        .btn-primary:hover {
+            background: var(--champion-gold);
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(245, 158, 11, 0.5);
         }
 
-        /* Features Grid */
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: transparent;
+            color: var(--text-white);
+            padding: 1.25rem 3rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s;
+            border: 2px solid var(--text-white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-white);
+            color: var(--ring-black);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            padding: 3rem 2rem;
+            background: var(--ring-dark);
+            border-top: 3px solid var(--champion-red);
+            border-bottom: 3px solid var(--champion-red);
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            color: var(--champion-gold);
+        }
+
+        .stat-label {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Training Modes */
+        .training-section {
+            background: linear-gradient(180deg, var(--ring-black), var(--ring-dark), var(--ring-black));
+        }
+
+        .training-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .training-card {
+            background: var(--ring-dark);
+            border-left: 4px solid var(--champion-red);
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .training-card:hover {
+            transform: translateX(10px);
+            border-left-color: var(--champion-gold);
+            box-shadow: -10px 0 30px rgba(245, 158, 11, 0.2);
+        }
+
+        .training-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .training-name {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .training-description {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* Punch Types */
+        .punches-section {
+            background: var(--ring-black);
+        }
+
+        .punches-showcase {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .punch-item {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--ring-dark), rgba(239, 68, 68, 0.1));
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .punch-item:hover {
+            border-color: var(--champion-red);
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.3);
+        }
+
+        .punch-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .punch-name {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        /* Features */
+        .features-section {
+            background: var(--ring-dark);
+        }
+
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .feature-card {
-            background: rgba(15, 15, 30, 0.5);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 2px solid rgba(239, 68, 68, 0.3);
-            border-radius: 24px;
-            padding: 45px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, #ef4444, transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            border-color: #ef4444;
-            box-shadow: 0 15px 60px rgba(239, 68, 68, 0.4);
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--ring-black);
+            border-bottom: 2px solid var(--champion-red);
         }
 
         .feature-icon {
-            font-size: 56px;
-            margin-bottom: 20px;
-        }
-
-        .feature-card h3 {
-            font-size: 26px;
-            margin-bottom: 15px;
-            color: #ef4444;
-            font-weight: 700;
-        }
-
-        .feature-card p {
-            font-size: 17px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.75);
-        }
-
-        /* NEW: System Requirements */
-        .system-requirements {
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            border-radius: 24px;
-            padding: 50px;
-            margin: 60px 0;
-        }
-
-        .requirements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .requirement-item {
-            display: flex;
-            align-items: start;
-            gap: 15px;
-        }
-
-        .requirement-icon {
-            font-size: 32px;
+            font-size: 1.5rem;
             flex-shrink: 0;
         }
 
-        .requirement-content h4 {
-            color: #ef4444;
-            font-size: 18px;
-            margin-bottom: 8px;
+        .feature-text h3 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
         }
 
-        .requirement-content p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 15px;
-            line-height: 1.5;
+        .feature-text p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
         }
 
-        /* NEW: Awards & Social Proof */
-        .awards-section {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(15, 15, 30, 0.6) 100%);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin: 60px 0;
+        /* CTA Section */
+        .cta-section {
             text-align: center;
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg,
+                var(--ring-black),
+                rgba(239, 68, 68, 0.2),
+                var(--ring-black));
         }
 
-        .awards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
+        .cta-section h2 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            margin-bottom: 1.5rem;
         }
 
-        .award-badge {
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: 16px;
-            padding: 30px 20px;
-            transition: all 0.3s ease;
-        }
-
-        .award-badge:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 215, 0, 0.6);
-        }
-
-        .award-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        .award-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #ef4444;
-            margin-bottom: 5px;
-        }
-
-        .award-subtitle {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* NEW: Testimonials */
-        .testimonials-section {
-            margin: 80px 0;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .testimonial-card {
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            border-radius: 20px;
-            padding: 35px;
-            position: relative;
-        }
-
-        .testimonial-quote {
-            font-size: 17px;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .testimonial-quote::before {
-            content: '"';
-            font-size: 48px;
-            color: #ef4444;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            opacity: 0.3;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            background: #ef4444;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 20px;
-        }
-
-        .author-info {
-            flex: 1;
-        }
-
-        .author-name {
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 3px;
-        }
-
-        .author-stars {
-            color: #ffd700;
-            font-size: 14px;
-        }
-
-        /* NEW: Community Section */
-        .community-section {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.3) 0%, rgba(15, 15, 30, 0.6) 100%);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin: 60px 0;
-            text-align: center;
-        }
-
-        .community-links {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        .community-link {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 20px 35px;
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .community-link:hover {
-            background: rgba(239, 68, 68, 0.3);
-            border-color: #ef4444;
-            transform: translateY(-3px);
-        }
-
-        .community-icon {
-            font-size: 24px;
-        }
-
-        /* NEW: Age Rating */
-        .age-rating {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(15, 15, 30, 0.6);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 15px 30px;
-            margin-top: 20px;
-        }
-
-        .rating-badge {
-            background: #ef4444;
-            color: white;
-            font-weight: 900;
-            font-size: 24px;
-            padding: 10px 15px;
-            border-radius: 8px;
-        }
-
-        .rating-text {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.8);
-            text-align: left;
-        }
-
-        /* Screenshots */
-        .screenshots-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .screenshot-card {
-            background: rgba(15, 15, 30, 0.4);
-            border: 2px solid rgba(239, 68, 68, 0.3);
-            border-radius: 20px;
-            padding: 25px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .screenshot-card:hover {
-            border-color: #ef4444;
-            transform: scale(1.02);
-        }
-
-        .screenshot-placeholder {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.3) 0%, rgba(15, 15, 30, 0.8) 100%);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 20px;
-            font-weight: 600;
-            border: 2px dashed rgba(239, 68, 68, 0.4);
-        }
-
-        /* NEW: Developer Section */
-        .developer-section {
-            background: rgba(15, 15, 30, 0.3);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 60px 0;
-        }
-
-        .developer-content {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .developer-logo {
-            width: 100px;
-            height: 100px;
-            background: #ef4444;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            flex-shrink: 0;
-        }
-
-        .developer-info {
-            flex: 1;
-        }
-
-        .developer-info h3 {
-            font-size: 24px;
-            color: #ef4444;
-            margin-bottom: 10px;
-        }
-
-        .developer-info p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .developer-links {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .developer-link {
-            color: #ef4444;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            transition: opacity 0.3s ease;
-        }
-
-        .developer-link:hover {
-            opacity: 0.7;
+        .cta-section p {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
 
         /* Footer */
         footer {
+            background: var(--ring-dark);
+            padding: 3rem 2rem;
             text-align: center;
-            padding: 80px 20px;
-            border-top: 1px solid rgba(239, 68, 68, 0.3);
-            margin-top: 120px;
+            border-top: 3px solid var(--champion-red);
         }
 
-        footer p {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 15px;
-            margin-bottom: 10px;
+        .footer-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            color: var(--champion-red);
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
         }
 
         .footer-links {
             display: flex;
-            gap: 20px;
             justify-content: center;
-            margin-top: 20px;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
 
-        .footer-link {
-            color: rgba(255, 255, 255, 0.5);
+        .footer-links a {
+            font-family: 'Oswald', sans-serif;
+            color: var(--text-gray);
             text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s ease;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.3s;
         }
 
-        .footer-link:hover {
-            color: #ef4444;
+        .footer-links a:hover {
+            color: var(--champion-red);
+        }
+
+        .copyright {
+            color: rgba(163, 163, 163, 0.5);
+            font-size: 0.85rem;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 48px;
+            nav {
+                padding: 1rem 1.5rem;
             }
 
-            .tagline {
-                font-size: 24px;
+            .nav-links {
+                display: none;
             }
 
-            .section-title {
-                font-size: 36px;
+            .hero {
+                padding-top: 6rem;
             }
 
-            .price-tag {
-                font-size: 48px;
+            .stats-bar {
+                gap: 2rem;
+                flex-wrap: wrap;
             }
 
-            .features-grid,
-            .screenshots-grid,
-            .testimonials-grid {
-                grid-template-columns: 1fr;
+            .stat-value {
+                font-size: 2rem;
             }
 
-            .cta-buttons {
-                flex-direction: column;
-                align-items: stretch;
+            .punches-showcase {
+                gap: 1.5rem;
             }
 
-            .game-metadata {
-                gap: 20px;
+            .punch-item {
+                width: 120px;
+                height: 120px;
             }
 
-            .developer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .community-links {
-                flex-direction: column;
+            .impact:nth-child(3),
+            .impact:nth-child(4) {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 3D Depth Layers -->
-    <div class="depth-layer depth-layer-1"></div>
-    <div class="depth-layer depth-layer-2"></div>
-    <div class="depth-layer depth-layer-3"></div>
+    <!-- Animated Background -->
+    <div class="impact"></div>
+    <div class="impact"></div>
+    <div class="impact"></div>
+    <div class="impact"></div>
+    <div class="energy-line"></div>
+    <div class="energy-line"></div>
+    <div class="energy-line"></div>
 
-    <div class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="genre-badge">ACTION SPORTS</div>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">
+            <span class="logo-icon">&#129354;</span>
+            SHADOW BOXING
+        </a>
+        <ul class="nav-links">
+            <li><a href="#training">Training</a></li>
+            <li><a href="#punches">Techniques</a></li>
+            <li><a href="#features">Features</a></li>
+        </ul>
+    </nav>
 
-            <div class="logo-container">
-                <div class="logo-icon">🥊</div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="champion-badge">
+                <span>&#127942;</span>
+                Boxing Fitness for Vision Pro
             </div>
-
-            <h1>Shadow Boxing Champions</h1>
-            <p class="tagline">TRAIN LIKE A CHAMPION IN YOUR LIVING ROOM</p>
-            <p class="hero-message">
-                Transform your space into a professional boxing ring. AI tracks every punch, dodge, and combination with precision. Feel the burn as you unleash devastating combos in 360° spatial combat.
-            </p>
-        </section>
-
-        <!-- NEW: Pricing Section -->
-        <section class="pricing-section">
-            
-            <div class="price-tag">$9.99</div>
-            <p class="price-subtitle">One-Time Purchase • No Subscriptions</p>
-
-            <div class="cta-buttons">
-                <a href="#" class="cta-primary">📱 Download on App Store</a>
-                <a href="#" class="cta-secondary">🎬 Watch Trailer</a>
-                <a href="#" class="cta-wishlist">❤️ Add to Wishlist</a>
-            </div>
-
-            <div class="age-rating">
-                <div class="rating-badge">E</div>
-                <div class="rating-text">
-                    <strong>Everyone</strong><br>
-                    Accessibility: Subtitles, Colorblind Mode, Seated Play
-                </div>
-            </div>
-        </section>
-
-        <!-- Game Metadata -->
-        <section class="game-metadata">
-            <div class="metadata-item">
-                <span class="metadata-value">25K+</span>
-                <span class="metadata-label">Players</span>
-            </div>
-            <div class="metadata-item">
-                <span class="metadata-value">⭐ 4.8</span>
-                <span class="metadata-label">Rating</span>
-            </div>
-            <div class="metadata-item">
-                <span class="metadata-value">High Intensity</span>
-                <span class="metadata-label">Intensity</span>
-            </div>
-            <div class="metadata-item">
-                <span class="metadata-value">Standing Space</span>
-                <span class="metadata-label">Space</span>
-            </div>
-        </section>
-
-        <!-- NEW: Video Section -->
-        <section class="video-section">
-            <h2 class="section-title">GAMEPLAY TRAILER</h2>
-            <div class="video-container">
-                <div class="video-placeholder">
-                    <div class="play-button"></div>
-                    <p>Official Gameplay Trailer</p>
-                    <p style="font-size: 14px; color: rgba(255, 255, 255, 0.5); margin-top: 10px;">
-                        Watch spatial gameplay in action
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Game Modes -->
-        <section class="section">
-            <h2 class="section-title">GAME MODES</h2>
-            <div class="modes-grid">
-                <div class="mode-badge">Story Campaign</div>
-                <div class="mode-badge">Quick Training</div>
-                <div class="mode-badge">AI Sparring</div>
-                <div class="mode-badge">Time Attack</div>
-                <div class="mode-badge">Daily Challenges</div>
-            </div>
-        </section>
-
-        <!-- Gameplay Features -->
-        <section class="section">
-            <h2 class="section-title">EPIC GAMEPLAY FEATURES</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🥊</div>
-                    <h3>360° Combat Zone</h3>
-                    <p>Your room becomes the ring with spatial boundary detection</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>AI Precision Tracking</h3>
-                    <p>Real-time analysis of punch speed, accuracy, and form</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏆</div>
-                    <h3>Championship Training</h3>
-                    <p>Professional programs from beginner to elite fighter</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">👤</div>
-                    <h3>Adaptive AI Opponents</h3>
-                    <p>Spar against fighters that learn your style</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💪</div>
-                    <h3>Fitness Analytics</h3>
-                    <p>Track calories burned, combos landed, and skill progression</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Awards & Social Proof -->
-        <section class="awards-section">
-            <h2 class="section-title">AWARDS & RECOGNITION</h2>
-            <div class="awards-grid">
-                <div class="award-badge">
-                    <div class="award-icon">🏆</div>
-                    <div class="award-title">Best VR Game 2024</div>
-                    <div class="award-subtitle">Vision Pro Awards</div>
-                </div>
-                <div class="award-badge">
-                    <div class="award-icon">⭐</div>
-                    <div class="award-title">Editor's Choice</div>
-                    <div class="award-subtitle">App Store Featured</div>
-                </div>
-                <div class="award-badge">
-                    <div class="award-icon">🎮</div>
-                    <div class="award-title">Game of the Month</div>
-                    <div class="award-subtitle">Spatial Gaming Weekly</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Testimonials -->
-        <section class="testimonials-section">
-            <h2 class="section-title">PLAYER REVIEWS</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">Most immersive experience I've ever had. My room truly becomes the game world!</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">A</div>
-                        <div class="author-info">
-                            <div class="author-name">Alex M.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">The spatial mechanics are mind-blowing. This is the future of gaming.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">S</div>
-                        <div class="author-info">
-                            <div class="author-name">Sarah K.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">Can't stop playing! The physicality makes every session feel like a workout.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">J</div>
-                        <div class="author-info">
-                            <div class="author-name">James R.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Screenshots -->
-        <section class="section">
-            <h2 class="section-title">GAMEPLAY GALLERY</h2>
-            <div class="screenshots-grid">
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">ACTION SCREENSHOT</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">COMBAT MOMENT</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">SPECIAL ABILITY</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">MULTIPLAYER ACTION</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: System Requirements -->
-        <section class="system-requirements">
-            <h2 class="section-title">SYSTEM REQUIREMENTS</h2>
-            <div class="requirements-grid">
-                <div class="requirement-item">
-                    <div class="requirement-icon">📱</div>
-                    <div class="requirement-content">
-                        <h4>Device</h4>
-                        <p>Apple Vision Pro with visionOS 1.0 or later</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">💾</div>
-                    <div class="requirement-content">
-                        <h4>Storage</h4>
-                        <p>3.5 GB available space required</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">🎮</div>
-                    <div class="requirement-content">
-                        <h4>Controls</h4>
-                        <p>Hand tracking or compatible controllers</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">📏</div>
-                    <div class="requirement-content">
-                        <h4>Play Space</h4>
-                        <p>Standing Space • 2m x 2m recommended</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">🌐</div>
-                    <div class="requirement-content">
-                        <h4>Internet</h4>
-                        <p>Required for multiplayer and updates</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">♿</div>
-                    <div class="requirement-content">
-                        <h4>Accessibility</h4>
-                        <p>Subtitles, colorblind mode, seated play option</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Community Section -->
-        <section class="community-section">
-            <h2 class="section-title">JOIN THE COMMUNITY</h2>
-            <p style="font-size: 18px; color: rgba(255, 255, 255, 0.8); margin-bottom: 10px;">
-                Connect with thousands of players worldwide
-            </p>
-            <div class="community-links">
-                <a href="#" class="community-link">
-                    <span class="community-icon">💬</span>
-                    <span>Discord Server</span>
+            <h1>
+                <span>SHADOW</span>
+                <span class="highlight">BOXING</span>
+                <span>CHAMPIONS</span>
+            </h1>
+            <p class="hero-subtitle">Train like a world champion in your living room</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn-primary">
+                    <span>&#129354;</span>
+                    Start Training
                 </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">🐦</span>
-                    <span>Twitter/X</span>
-                </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">📺</span>
-                    <span>YouTube</span>
-                </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">👾</span>
-                    <span>Reddit</span>
+                <a href="#training" class="btn-secondary">
+                    <span>&#127916;</span>
+                    View Modes
                 </a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- NEW: Developer Section -->
-        <section class="developer-section">
-            <div class="developer-content">
-                <div class="developer-logo">🎮</div>
-                <div class="developer-info">
-                    <h3>Spatial Games Studio</h3>
-                    <p>Pioneers of immersive spatial gaming experiences for Apple Vision Pro. Creating the future of interactive entertainment.</p>
-                    <div class="developer-links">
-                        <a href="#" class="developer-link">More Games →</a>
-                        <a href="#" class="developer-link">Press Kit →</a>
-                        <a href="#" class="developer-link">Contact Support →</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-value">500+</div>
+            <div class="stat-label">Calories/Hour</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">12</div>
+            <div class="stat-label">Training Modes</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">50+</div>
+            <div class="stat-label">Workout Plans</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">&#8734;</div>
+            <div class="stat-label">Champion Spirit</div>
+        </div>
     </div>
 
-    <footer>
-        <p>&copy; 2024 Shadow Boxing Champions. Experience the future of spatial gaming on Apple Vision Pro.</p>
-        <div class="footer-links">
-            <a href="#" class="footer-link">Privacy Policy</a>
-            <a href="#" class="footer-link">Terms of Service</a>
-            <a href="#" class="footer-link">Support</a>
-            <a href="#" class="footer-link">Press Kit</a>
+    <!-- Training Modes -->
+    <section class="training-section" id="training">
+        <div class="section-header">
+            <h2>TRAINING MODES</h2>
+            <p class="section-subtitle">From beginner to champion, find your perfect workout</p>
         </div>
+        <div class="training-grid">
+            <div class="training-card">
+                <div class="training-icon">&#127947;</div>
+                <h3 class="training-name">Speed Bag</h3>
+                <p class="training-description">Master rhythm and timing with holographic speed bags that respond to your every punch.</p>
+            </div>
+            <div class="training-card">
+                <div class="training-icon">&#128170;</div>
+                <h3 class="training-name">Heavy Bag</h3>
+                <p class="training-description">Build power with virtual heavy bags. Feel the impact through haptic feedback.</p>
+            </div>
+            <div class="training-card">
+                <div class="training-icon">&#129354;</div>
+                <h3 class="training-name">Sparring</h3>
+                <p class="training-description">Face AI opponents that adapt to your skill level. Duck, dodge, and counter!</p>
+            </div>
+            <div class="training-card">
+                <div class="training-icon">&#128293;</div>
+                <h3 class="training-name">HIIT Boxing</h3>
+                <p class="training-description">Intense interval training combining boxing combos with full-body cardio.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Punch Techniques -->
+    <section class="punches-section" id="punches">
+        <div class="section-header">
+            <h2>MASTER EVERY PUNCH</h2>
+            <p class="section-subtitle">Learn and perfect professional boxing techniques</p>
+        </div>
+        <div class="punches-showcase">
+            <div class="punch-item">
+                <div class="punch-icon">&#128074;</div>
+                <div class="punch-name">Jab</div>
+            </div>
+            <div class="punch-item">
+                <div class="punch-icon">&#129307;</div>
+                <div class="punch-name">Cross</div>
+            </div>
+            <div class="punch-item">
+                <div class="punch-icon">&#128170;</div>
+                <div class="punch-name">Hook</div>
+            </div>
+            <div class="punch-item">
+                <div class="punch-icon">&#9994;</div>
+                <div class="punch-name">Uppercut</div>
+            </div>
+            <div class="punch-item">
+                <div class="punch-icon">&#128293;</div>
+                <div class="punch-name">Combos</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-section" id="features">
+        <div class="section-header">
+            <h2>CHAMPION FEATURES</h2>
+            <p class="section-subtitle">Everything you need to train like a pro</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-item">
+                <span class="feature-icon">&#128200;</span>
+                <div class="feature-text">
+                    <h3>Punch Analytics</h3>
+                    <p>Track speed, power, accuracy, and form with detailed performance metrics.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">&#127947;</span>
+                <div class="feature-text">
+                    <h3>Personal Trainer</h3>
+                    <p>AI coach guides you through workouts with real-time form corrections.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">&#127942;</span>
+                <div class="feature-text">
+                    <h3>Career Mode</h3>
+                    <p>Rise from amateur to world champion through challenging tournaments.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">&#127911;</span>
+                <div class="feature-text">
+                    <h3>Music Sync</h3>
+                    <p>Your punches match the beat with Apple Music integration.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">&#128101;</span>
+                <div class="feature-text">
+                    <h3>Multiplayer</h3>
+                    <p>Spar with friends or compete in online ranked matches.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">&#10084;</span>
+                <div class="feature-text">
+                    <h3>Health Kit</h3>
+                    <p>Syncs with Apple Health for comprehensive fitness tracking.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>BECOME A CHAMPION</h2>
+        <p>Your training starts now</p>
+        <a href="#" class="btn-primary">
+            <span>&#129354;</span>
+            Download Now
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">&#129354; SHADOW BOXING CHAMPIONS</div>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Support</a>
+            <a href="#">Press Kit</a>
+        </div>
+        <p class="copyright">&copy; 2025 Shadow Boxing Champions. Requires Apple Vision Pro with visionOS 2.0+</p>
     </footer>
 </body>
 </html>

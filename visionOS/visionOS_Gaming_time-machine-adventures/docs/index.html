@@ -3,8 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Time Machine Adventures - ADVENTURE PUZZLE for Vision Pro</title>
+    <title>Time Machine Adventures - Journey Through History in Spatial Reality</title>
+    <meta name="description" content="Travel through time in Apple Vision Pro. Visit ancient civilizations, witness historical events, and shape the future in this epic temporal adventure.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --golden-amber: #f59e0b;
+            --temporal-blue: #3b82f6;
+            --antique-bronze: #cd7f32;
+            --deep-sepia: #1a1408;
+            --parchment: #fef3c7;
+            --cosmic-purple: #7c3aed;
+            --aged-gold: #d4af37;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,1139 +26,977 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
-            background: #000000;
-            color: #ffffff;
+            font-family: 'Crimson Text', Georgia, serif;
+            background: var(--deep-sepia);
+            color: var(--parchment);
             overflow-x: hidden;
-            scroll-behavior: smooth;
+            line-height: 1.7;
         }
 
-        /* Enhanced 3D Depth Layers */
-        .depth-layer {
+        /* Floating Clock Gears */
+        .gear {
             position: fixed;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
+            border: 3px solid var(--antique-bronze);
+            border-radius: 50%;
+            opacity: 0.15;
+            animation: rotateClock linear infinite;
             pointer-events: none;
             z-index: 0;
         }
 
-        .depth-layer-1 {
-            background: radial-gradient(circle at 20% 30%, rgba(124, 58, 237, 0.4) 0%, transparent 40%);
-            animation: dramaticFloat 15s ease-in-out infinite;
+        .gear::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 30%;
+            height: 30%;
+            background: var(--antique-bronze);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
         }
 
-        .depth-layer-2 {
-            background: radial-gradient(circle at 80% 70%, rgba(124, 58, 237, 0.5) 0%, transparent 40%);
-            animation: dramaticFloat 18s ease-in-out infinite reverse;
+        .gear::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--antique-bronze);
+            transform: translateY(-50%);
         }
 
-        .depth-layer-3 {
-            background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.3) 0%, transparent 50%);
-            animation: dramaticFloat 22s ease-in-out infinite;
+        .gear:nth-child(1) { width: 120px; height: 120px; top: 10%; left: 5%; animation-duration: 20s; }
+        .gear:nth-child(2) { width: 80px; height: 80px; top: 30%; right: 10%; animation-duration: 15s; animation-direction: reverse; }
+        .gear:nth-child(3) { width: 150px; height: 150px; bottom: 20%; left: 8%; animation-duration: 25s; }
+        .gear:nth-child(4) { width: 60px; height: 60px; top: 60%; right: 5%; animation-duration: 12s; animation-direction: reverse; }
+        .gear:nth-child(5) { width: 100px; height: 100px; bottom: 10%; right: 15%; animation-duration: 18s; }
+
+        @keyframes rotateClock {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
-        @keyframes dramaticFloat {
-            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            33% { transform: translate(40px, -40px) rotate(8deg) scale(1.05); }
-            66% { transform: translate(-20px, 30px) rotate(-8deg) scale(0.95); }
+        /* Time Particles */
+        .time-particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: var(--golden-amber);
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 0;
+            animation: timeFloat 8s ease-in-out infinite;
         }
 
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 30px rgba(124, 58, 237, 0.4), 0 0 60px rgba(124, 58, 237, 0.3); }
-            50% { box-shadow: 0 0 50px rgba(124, 58, 237, 0.5), 0 0 100px rgba(124, 58, 237, 0.4); }
+        .time-particle:nth-child(6) { left: 10%; animation-delay: 0s; }
+        .time-particle:nth-child(7) { left: 25%; animation-delay: 1s; }
+        .time-particle:nth-child(8) { left: 45%; animation-delay: 2s; }
+        .time-particle:nth-child(9) { left: 65%; animation-delay: 3s; }
+        .time-particle:nth-child(10) { left: 85%; animation-delay: 4s; }
+        .time-particle:nth-child(11) { left: 35%; animation-delay: 5s; }
+        .time-particle:nth-child(12) { left: 75%; animation-delay: 6s; }
+
+        @keyframes timeFloat {
+            0% { bottom: -10px; opacity: 0; transform: scale(0.5); }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.8; }
+            100% { bottom: 100vh; opacity: 0; transform: scale(1.5); }
         }
 
-        @keyframes countUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 3rem;
+            background: linear-gradient(180deg, rgba(26, 20, 8, 0.95) 0%, transparent 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            position: relative;
-            z-index: 1;
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--golden-amber);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--parchment);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links a:hover {
+            color: var(--golden-amber);
         }
 
         /* Hero Section */
         .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            padding: 60px 20px 40px;
+            padding: 2rem;
             position: relative;
+            background: linear-gradient(180deg,
+                rgba(26, 20, 8, 0.4) 0%,
+                rgba(26, 20, 8, 0.8) 100%),
+                url('hero-spatial.png') center/cover no-repeat;
         }
 
-        .genre-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #7c3aed 0%, #7c3aedcc 100%);
-            padding: 10px 24px;
-            border-radius: 24px;
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.5);
-            animation: pulseGlow 3s ease-in-out infinite;
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 0%, var(--deep-sepia) 70%);
+            pointer-events: none;
         }
 
-        .logo-container {
-            margin-bottom: 30px;
-            perspective: 1200px;
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
         }
 
-        .logo-icon {
+        .era-badge {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            width: 140px;
-            height: 140px;
-            background: rgba(15, 15, 30, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 3px solid #7c3aed;
-            border-radius: 32px;
-            font-size: 72px;
-            box-shadow:
-                0 25px 70px rgba(0, 0, 0, 0.5),
-                0 0 40px rgba(124, 58, 237, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15);
-            transform-style: preserve-3d;
-            animation: logoFloat 4s ease-in-out infinite;
-        }
-
-        @keyframes logoFloat {
-            0%, 100% { transform: rotateY(0deg) rotateX(0deg) translateY(0); }
-            50% { transform: rotateY(15deg) rotateX(8deg) translateY(-10px); }
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--antique-bronze), var(--golden-amber));
+            color: var(--deep-sepia);
+            padding: 0.5rem 1.5rem;
+            border-radius: 2rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
 
         h1 {
-            font-size: 72px;
-            font-weight: 900;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #ffffff 0%, #7c3aed 100%);
+            font-family: 'Cinzel', serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(180deg, var(--parchment) 0%, var(--golden-amber) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            line-height: 1.1;
-            text-transform: uppercase;
-            letter-spacing: -2px;
+            text-shadow: 0 0 60px rgba(245, 158, 11, 0.3);
         }
 
-        .tagline {
-            font-size: 32px;
-            color: #7c3aed;
-            margin-bottom: 30px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: rgba(254, 243, 199, 0.85);
+            margin-bottom: 2.5rem;
+            font-style: italic;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .hero-message {
-            font-size: 19px;
-            color: rgba(255, 255, 255, 0.85);
-            max-width: 900px;
-            margin: 0 auto 40px;
-            line-height: 1.7;
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
-        /* NEW: Pricing Section */
-        .pricing-section {
-            background: linear-gradient(135deg, rgba(124, 58, 237, 0.4) 0%, rgba(124, 58, 237, 0.2) 100%);
-            border: 2px solid #7c3aed;
-            border-radius: 24px;
-            padding: 40px;
-            margin: 40px auto;
-            max-width: 800px;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.5);
-        }
-
-        .price-tag {
-            font-size: 64px;
-            font-weight: 900;
-            color: #7c3aed;
-            margin-bottom: 10px;
-            text-shadow: 0 0 30px rgba(124, 58, 237, 0.5);
-        }
-
-        .price-subtitle {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 30px;
-        }
-
-        .demo-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 14px;
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, var(--golden-amber), var(--antique-bronze));
+            color: var(--deep-sepia);
+            padding: 1rem 2.5rem;
+            border-radius: 0.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        /* CTA Buttons */
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .cta-primary {
-            background: #7c3aed;
-            color: #ffffff;
-            padding: 20px 60px;
-            border-radius: 14px;
             text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            box-shadow: 0 15px 50px rgba(124, 58, 237, 0.5);
-            border: 2px solid #7c3aed;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: none;
             cursor: pointer;
+            letter-spacing: 0.05em;
         }
 
-        .cta-primary:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.5);
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(245, 158, 11, 0.4);
         }
 
-        .cta-secondary {
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
             background: transparent;
-            color: #7c3aed;
-            padding: 20px 60px;
-            border-radius: 14px;
+            color: var(--golden-amber);
+            padding: 1rem 2.5rem;
+            border-radius: 0.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
             text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            border: 2px solid #7c3aed;
-            transition: all 0.3s ease;
-            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid var(--golden-amber);
+            letter-spacing: 0.05em;
         }
 
-        .cta-secondary:hover {
-            background: rgba(124, 58, 237, 0.3);
-            transform: translateY(-3px);
+        .btn-secondary:hover {
+            background: var(--golden-amber);
+            color: var(--deep-sepia);
         }
 
-        .cta-wishlist {
-            background: rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.9);
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .cta-wishlist:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-3px);
-        }
-
-        /* Game Metadata Bar */
-        .game-metadata {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            padding: 30px;
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(124, 58, 237, 0.3);
-            border-radius: 20px;
-            margin-bottom: 50px;
-            backdrop-filter: blur(10px);
-        }
-
-        .metadata-item {
-            text-align: center;
-            animation: countUp 0.6s ease-out;
-        }
-
-        .metadata-value {
-            font-size: 28px;
-            font-weight: 800;
-            color: #7c3aed;
-            display: block;
-        }
-
-        .metadata-label {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* NEW: Video Section */
-        .video-section {
-            margin: 60px 0;
-            text-align: center;
-        }
-
-        .video-container {
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
             position: relative;
-            max-width: 1000px;
+            z-index: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--golden-amber);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: rgba(254, 243, 199, 0.7);
+            max-width: 600px;
             margin: 0 auto;
-            aspect-ratio: 16 / 9;
-            background: linear-gradient(135deg, rgba(124, 58, 237, 0.3) 0%, rgba(15, 15, 30, 0.9) 100%);
-            border-radius: 24px;
-            border: 2px solid rgba(124, 58, 237, 0.3);
+            font-style: italic;
+        }
+
+        /* Historical Eras */
+        .eras-section {
+            background: linear-gradient(180deg, transparent, rgba(205, 127, 50, 0.1), transparent);
+        }
+
+        .eras-timeline {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: linear-gradient(180deg, var(--golden-amber), var(--temporal-blue), var(--cosmic-purple));
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .era-card {
             display: flex;
             align-items: center;
-            justify-content: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .era-card:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .era-card:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .era-content {
+            width: 45%;
+            background: linear-gradient(135deg, rgba(26, 20, 8, 0.9), rgba(205, 127, 50, 0.1));
+            border: 1px solid var(--antique-bronze);
+            border-radius: 1rem;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .era-card:nth-child(odd) .era-content {
+            margin-right: auto;
+            text-align: right;
+        }
+
+        .era-card:nth-child(even) .era-content {
+            margin-left: auto;
+            text-align: left;
+        }
+
+        .era-year {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--golden-amber);
+            color: var(--deep-sepia);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .era-card:nth-child(odd) .era-year {
+            left: calc(50% + 20px);
+        }
+
+        .era-card:nth-child(even) .era-year {
+            right: calc(50% + 20px);
+        }
+
+        .era-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .era-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--parchment);
+            margin-bottom: 0.75rem;
+        }
+
+        .era-description {
+            color: rgba(254, 243, 199, 0.8);
+            font-size: 1rem;
+        }
+
+        /* Time Machine Controls */
+        .controls-section {
+            background: var(--deep-sepia);
+        }
+
+        .controls-display {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(205, 127, 50, 0.2), rgba(59, 130, 246, 0.1));
+            border: 2px solid var(--antique-bronze);
+            border-radius: 2rem;
+            padding: 3rem;
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.4);
         }
 
-        .video-placeholder {
+        .controls-display::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(245, 158, 11, 0.1), transparent);
+            animation: controlSweep 10s linear infinite;
+        }
+
+        @keyframes controlSweep {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .controls-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .date-display {
             text-align: center;
-            padding: 40px;
+            margin-bottom: 2rem;
         }
 
-        .play-button {
+        .date-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--temporal-blue);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .date-value {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--golden-amber);
+            text-shadow: 0 0 30px rgba(245, 158, 11, 0.5);
+        }
+
+        .control-dials {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .dial {
+            text-align: center;
+        }
+
+        .dial-circle {
             width: 100px;
             height: 100px;
-            background: #7c3aed;
+            border: 3px solid var(--antique-bronze);
             border-radius: 50%;
+            margin: 0 auto 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
-            box-shadow: 0 10px 40px rgba(124, 58, 237, 0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--parchment);
+            position: relative;
+            background: radial-gradient(circle, rgba(205, 127, 50, 0.2), transparent);
         }
 
-        .play-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 50px rgba(124, 58, 237, 0.5);
+        .dial-circle::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 1px solid rgba(205, 127, 50, 0.3);
+            border-radius: 50%;
         }
 
-        .play-button::after {
-            content: '▶';
-            font-size: 40px;
-            color: white;
-            margin-left: 8px;
-        }
-
-        /* Section Styling */
-        .section {
-            margin: 100px 0;
-        }
-
-        .section-title {
-            font-size: 48px;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 60px;
+        .dial-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: rgba(254, 243, 199, 0.7);
             text-transform: uppercase;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #ffffff 0%, #7c3aed 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            letter-spacing: 0.1em;
         }
 
-        /* Game Modes */
-        .modes-grid {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 60px;
-        }
-
-        .mode-badge {
-            background: rgba(15, 15, 30, 0.5);
-            border: 2px solid rgba(124, 58, 237, 0.3);
-            padding: 12px 28px;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.9);
-            transition: all 0.3s ease;
+        .engage-button {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 1.25rem;
+            background: linear-gradient(135deg, var(--golden-amber), var(--antique-bronze));
+            border: none;
+            border-radius: 0.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--deep-sepia);
             cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
         }
 
-        .mode-badge:hover {
-            background: rgba(124, 58, 237, 0.3);
-            border-color: #7c3aed;
-            transform: translateY(-2px);
+        .engage-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(245, 158, 11, 0.5);
         }
 
-        /* Features Grid */
-        .features-grid {
+        /* Temporal Abilities */
+        .abilities-section {
+            background: linear-gradient(180deg, transparent, rgba(124, 58, 237, 0.1), transparent);
+        }
+
+        .abilities-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .feature-card {
-            background: rgba(15, 15, 30, 0.5);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 2px solid rgba(124, 58, 237, 0.3);
-            border-radius: 24px;
-            padding: 45px;
-            transition: all 0.3s ease;
+        .ability-card {
+            background: linear-gradient(135deg, rgba(26, 20, 8, 0.9), rgba(124, 58, 237, 0.1));
+            border: 1px solid var(--cosmic-purple);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
             position: relative;
             overflow: hidden;
         }
 
-        .feature-card::before {
+        .ability-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, #7c3aed, transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cosmic-purple), var(--temporal-blue), var(--golden-amber));
         }
 
-        .feature-card:hover {
-            transform: translateY(-8px);
-            border-color: #7c3aed;
-            box-shadow: 0 15px 60px rgba(124, 58, 237, 0.4);
+        .ability-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--golden-amber);
+            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.2);
         }
 
-        .feature-card:hover::before {
-            opacity: 1;
+        .ability-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .ability-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--parchment);
+            margin-bottom: 1rem;
+        }
+
+        .ability-description {
+            color: rgba(254, 243, 199, 0.7);
+            font-size: 1rem;
+        }
+
+        .ability-cooldown {
+            margin-top: 1rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: var(--temporal-blue);
+        }
+
+        /* Features */
+        .features-section {
+            background: var(--deep-sepia);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: rgba(205, 127, 50, 0.05);
+            border-radius: 0.75rem;
+            border-left: 3px solid var(--golden-amber);
         }
 
         .feature-icon {
-            font-size: 56px;
-            margin-bottom: 20px;
-        }
-
-        .feature-card h3 {
-            font-size: 26px;
-            margin-bottom: 15px;
-            color: #7c3aed;
-            font-weight: 700;
-        }
-
-        .feature-card p {
-            font-size: 17px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.75);
-        }
-
-        /* NEW: System Requirements */
-        .system-requirements {
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(124, 58, 237, 0.3);
-            border-radius: 24px;
-            padding: 50px;
-            margin: 60px 0;
-        }
-
-        .requirements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .requirement-item {
-            display: flex;
-            align-items: start;
-            gap: 15px;
-        }
-
-        .requirement-icon {
-            font-size: 32px;
+            font-size: 1.5rem;
             flex-shrink: 0;
         }
 
-        .requirement-content h4 {
-            color: #7c3aed;
-            font-size: 18px;
-            margin-bottom: 8px;
+        .feature-text h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--parchment);
+            margin-bottom: 0.5rem;
         }
 
-        .requirement-content p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 15px;
-            line-height: 1.5;
+        .feature-text p {
+            color: rgba(254, 243, 199, 0.7);
+            font-size: 0.95rem;
         }
 
-        /* NEW: Awards & Social Proof */
-        .awards-section {
-            background: linear-gradient(135deg, rgba(124, 58, 237, 0.2) 0%, rgba(15, 15, 30, 0.6) 100%);
-            border: 1px solid rgba(124, 58, 237, 0.3);
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin: 60px 0;
+        /* CTA Section */
+        .cta-section {
             text-align: center;
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg,
+                var(--deep-sepia),
+                rgba(205, 127, 50, 0.2),
+                var(--deep-sepia));
         }
 
-        .awards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
+        .cta-section h2 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1.5rem;
         }
 
-        .award-badge {
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: 16px;
-            padding: 30px 20px;
-            transition: all 0.3s ease;
-        }
-
-        .award-badge:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 215, 0, 0.6);
-        }
-
-        .award-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        .award-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #7c3aed;
-            margin-bottom: 5px;
-        }
-
-        .award-subtitle {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* NEW: Testimonials */
-        .testimonials-section {
-            margin: 80px 0;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .testimonial-card {
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(124, 58, 237, 0.3);
-            border-radius: 20px;
-            padding: 35px;
-            position: relative;
-        }
-
-        .testimonial-quote {
-            font-size: 17px;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 20px;
+        .cta-section p {
+            font-size: 1.3rem;
+            color: rgba(254, 243, 199, 0.8);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
             font-style: italic;
-        }
-
-        .testimonial-quote::before {
-            content: '"';
-            font-size: 48px;
-            color: #7c3aed;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            opacity: 0.3;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            background: #7c3aed;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 20px;
-        }
-
-        .author-info {
-            flex: 1;
-        }
-
-        .author-name {
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 3px;
-        }
-
-        .author-stars {
-            color: #ffd700;
-            font-size: 14px;
-        }
-
-        /* NEW: Community Section */
-        .community-section {
-            background: linear-gradient(135deg, rgba(124, 58, 237, 0.3) 0%, rgba(15, 15, 30, 0.6) 100%);
-            border: 1px solid rgba(124, 58, 237, 0.3);
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin: 60px 0;
-            text-align: center;
-        }
-
-        .community-links {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        .community-link {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 20px 35px;
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .community-link:hover {
-            background: rgba(124, 58, 237, 0.3);
-            border-color: #7c3aed;
-            transform: translateY(-3px);
-        }
-
-        .community-icon {
-            font-size: 24px;
-        }
-
-        /* NEW: Age Rating */
-        .age-rating {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(15, 15, 30, 0.6);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 15px 30px;
-            margin-top: 20px;
-        }
-
-        .rating-badge {
-            background: #7c3aed;
-            color: white;
-            font-weight: 900;
-            font-size: 24px;
-            padding: 10px 15px;
-            border-radius: 8px;
-        }
-
-        .rating-text {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.8);
-            text-align: left;
-        }
-
-        /* Screenshots */
-        .screenshots-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .screenshot-card {
-            background: rgba(15, 15, 30, 0.4);
-            border: 2px solid rgba(124, 58, 237, 0.3);
-            border-radius: 20px;
-            padding: 25px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .screenshot-card:hover {
-            border-color: #7c3aed;
-            transform: scale(1.02);
-        }
-
-        .screenshot-placeholder {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background: linear-gradient(135deg, rgba(124, 58, 237, 0.3) 0%, rgba(15, 15, 30, 0.8) 100%);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 20px;
-            font-weight: 600;
-            border: 2px dashed rgba(124, 58, 237, 0.4);
-        }
-
-        /* NEW: Developer Section */
-        .developer-section {
-            background: rgba(15, 15, 30, 0.3);
-            border: 1px solid rgba(124, 58, 237, 0.3);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 60px 0;
-        }
-
-        .developer-content {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .developer-logo {
-            width: 100px;
-            height: 100px;
-            background: #7c3aed;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            flex-shrink: 0;
-        }
-
-        .developer-info {
-            flex: 1;
-        }
-
-        .developer-info h3 {
-            font-size: 24px;
-            color: #7c3aed;
-            margin-bottom: 10px;
-        }
-
-        .developer-info p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .developer-links {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .developer-link {
-            color: #7c3aed;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            transition: opacity 0.3s ease;
-        }
-
-        .developer-link:hover {
-            opacity: 0.7;
         }
 
         /* Footer */
         footer {
+            background: rgba(10, 8, 4, 0.95);
+            padding: 3rem 2rem;
             text-align: center;
-            padding: 80px 20px;
-            border-top: 1px solid rgba(124, 58, 237, 0.3);
-            margin-top: 120px;
+            border-top: 1px solid var(--antique-bronze);
         }
 
-        footer p {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 15px;
-            margin-bottom: 10px;
+        .footer-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--golden-amber);
+            margin-bottom: 1rem;
         }
 
         .footer-links {
             display: flex;
-            gap: 20px;
             justify-content: center;
-            margin-top: 20px;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
 
-        .footer-link {
-            color: rgba(255, 255, 255, 0.5);
+        .footer-links a {
+            color: rgba(254, 243, 199, 0.7);
             text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s ease;
+            font-size: 0.95rem;
+            transition: color 0.3s;
         }
 
-        .footer-link:hover {
-            color: #7c3aed;
+        .footer-links a:hover {
+            color: var(--golden-amber);
+        }
+
+        .copyright {
+            color: rgba(254, 243, 199, 0.5);
+            font-size: 0.85rem;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 48px;
+            nav {
+                padding: 1rem 1.5rem;
             }
 
-            .tagline {
-                font-size: 24px;
+            .nav-links {
+                display: none;
             }
 
-            .section-title {
-                font-size: 36px;
+            .hero {
+                padding-top: 6rem;
             }
 
-            .price-tag {
-                font-size: 48px;
+            .timeline-line {
+                left: 20px;
             }
 
-            .features-grid,
-            .screenshots-grid,
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-buttons {
+            .era-card,
+            .era-card:nth-child(even) {
                 flex-direction: column;
-                align-items: stretch;
             }
 
-            .game-metadata {
-                gap: 20px;
+            .era-content,
+            .era-card:nth-child(odd) .era-content,
+            .era-card:nth-child(even) .era-content {
+                width: 100%;
+                margin-left: 40px;
+                text-align: left;
             }
 
-            .developer-content {
-                flex-direction: column;
-                text-align: center;
+            .era-year,
+            .era-card:nth-child(odd) .era-year,
+            .era-card:nth-child(even) .era-year {
+                position: relative;
+                left: auto;
+                right: auto;
+                top: auto;
+                transform: none;
+                display: inline-block;
+                margin-bottom: 1rem;
             }
 
-            .community-links {
-                flex-direction: column;
+            .control-dials {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+
+            .dial-circle {
+                width: 70px;
+                height: 70px;
+                font-size: 1.1rem;
+            }
+
+            .gear:nth-child(1),
+            .gear:nth-child(3),
+            .gear:nth-child(5) {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 3D Depth Layers -->
-    <div class="depth-layer depth-layer-1"></div>
-    <div class="depth-layer depth-layer-2"></div>
-    <div class="depth-layer depth-layer-3"></div>
+    <!-- Animated Background Elements -->
+    <div class="gear"></div>
+    <div class="gear"></div>
+    <div class="gear"></div>
+    <div class="gear"></div>
+    <div class="gear"></div>
+    <div class="time-particle"></div>
+    <div class="time-particle"></div>
+    <div class="time-particle"></div>
+    <div class="time-particle"></div>
+    <div class="time-particle"></div>
+    <div class="time-particle"></div>
+    <div class="time-particle"></div>
 
-    <div class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="genre-badge">ADVENTURE PUZZLE</div>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">
+            <span class="logo-icon">&#8987;</span>
+            Time Machine
+        </a>
+        <ul class="nav-links">
+            <li><a href="#eras">Eras</a></li>
+            <li><a href="#controls">Controls</a></li>
+            <li><a href="#abilities">Abilities</a></li>
+            <li><a href="#features">Features</a></li>
+        </ul>
+    </nav>
 
-            <div class="logo-container">
-                <div class="logo-icon">⏰</div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="era-badge">
+                <span>&#9881;</span>
+                Temporal Adventure for Vision Pro
             </div>
-
             <h1>Time Machine Adventures</h1>
-            <p class="tagline">TRAVEL THROUGH TIME IN YOUR ROOM</p>
-            <p class="hero-message">
-                Watch your room transform across historical eras. Solve temporal puzzles spanning ancient Egypt to distant futures. Experience history come alive in your physical space.
-            </p>
-        </section>
-
-        <!-- NEW: Pricing Section -->
-        <section class="pricing-section">
-            
-            <div class="price-tag">$8.99</div>
-            <p class="price-subtitle">One-Time Purchase • No Subscriptions</p>
-
-            <div class="cta-buttons">
-                <a href="#" class="cta-primary">📱 Download on App Store</a>
-                <a href="#" class="cta-secondary">🎬 Watch Trailer</a>
-                <a href="#" class="cta-wishlist">❤️ Add to Wishlist</a>
-            </div>
-
-            <div class="age-rating">
-                <div class="rating-badge">E10+</div>
-                <div class="rating-text">
-                    <strong>Everyone 10+</strong><br>
-                    Accessibility: Subtitles, Colorblind Mode, Seated Play
-                </div>
-            </div>
-        </section>
-
-        <!-- Game Metadata -->
-        <section class="game-metadata">
-            <div class="metadata-item">
-                <span class="metadata-value">45K+</span>
-                <span class="metadata-label">Players</span>
-            </div>
-            <div class="metadata-item">
-                <span class="metadata-value">⭐ 4.8</span>
-                <span class="metadata-label">Rating</span>
-            </div>
-            <div class="metadata-item">
-                <span class="metadata-value">Light</span>
-                <span class="metadata-label">Intensity</span>
-            </div>
-            <div class="metadata-item">
-                <span class="metadata-value">Room-Scale</span>
-                <span class="metadata-label">Space</span>
-            </div>
-        </section>
-
-        <!-- NEW: Video Section -->
-        <section class="video-section">
-            <h2 class="section-title">GAMEPLAY TRAILER</h2>
-            <div class="video-container">
-                <div class="video-placeholder">
-                    <div class="play-button"></div>
-                    <p>Official Gameplay Trailer</p>
-                    <p style="font-size: 14px; color: rgba(255, 255, 255, 0.5); margin-top: 10px;">
-                        Watch spatial gameplay in action
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Game Modes -->
-        <section class="section">
-            <h2 class="section-title">GAME MODES</h2>
-            <div class="modes-grid">
-                <div class="mode-badge">Story Mode</div>
-                <div class="mode-badge">Free Exploration</div>
-                <div class="mode-badge">Puzzle Challenges</div>
-                <div class="mode-badge">Educational Mode</div>
-                <div class="mode-badge">Time Trials</div>
-            </div>
-        </section>
-
-        <!-- Gameplay Features -->
-        <section class="section">
-            <h2 class="section-title">EPIC GAMEPLAY FEATURES</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">⏳</div>
-                    <h3>Era Transformation</h3>
-                    <p>Experience 15 historical periods in your space</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔍</div>
-                    <h3>Temporal Puzzles</h3>
-                    <p>Solve mysteries that span across time periods</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏛️</div>
-                    <h3>Living History</h3>
-                    <p>Interactive historical figures and events</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📜</div>
-                    <h3>Branching Narratives</h3>
-                    <p>Your choices alter the timeline</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎓</div>
-                    <h3>Educational Content</h3>
-                    <p>Learn history through immersive gameplay</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Awards & Social Proof -->
-        <section class="awards-section">
-            <h2 class="section-title">AWARDS & RECOGNITION</h2>
-            <div class="awards-grid">
-                <div class="award-badge">
-                    <div class="award-icon">🏆</div>
-                    <div class="award-title">Best VR Game 2024</div>
-                    <div class="award-subtitle">Vision Pro Awards</div>
-                </div>
-                <div class="award-badge">
-                    <div class="award-icon">⭐</div>
-                    <div class="award-title">Editor's Choice</div>
-                    <div class="award-subtitle">App Store Featured</div>
-                </div>
-                <div class="award-badge">
-                    <div class="award-icon">🎮</div>
-                    <div class="award-title">Game of the Month</div>
-                    <div class="award-subtitle">Spatial Gaming Weekly</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Testimonials -->
-        <section class="testimonials-section">
-            <h2 class="section-title">PLAYER REVIEWS</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">Most immersive experience I've ever had. My room truly becomes the game world!</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">A</div>
-                        <div class="author-info">
-                            <div class="author-name">Alex M.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">The spatial mechanics are mind-blowing. This is the future of gaming.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">S</div>
-                        <div class="author-info">
-                            <div class="author-name">Sarah K.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">Can't stop playing! The physicality makes every session feel like a workout.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">J</div>
-                        <div class="author-info">
-                            <div class="author-name">James R.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Screenshots -->
-        <section class="section">
-            <h2 class="section-title">GAMEPLAY GALLERY</h2>
-            <div class="screenshots-grid">
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">ACTION SCREENSHOT</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">COMBAT MOMENT</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">SPECIAL ABILITY</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">MULTIPLAYER ACTION</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: System Requirements -->
-        <section class="system-requirements">
-            <h2 class="section-title">SYSTEM REQUIREMENTS</h2>
-            <div class="requirements-grid">
-                <div class="requirement-item">
-                    <div class="requirement-icon">📱</div>
-                    <div class="requirement-content">
-                        <h4>Device</h4>
-                        <p>Apple Vision Pro with visionOS 1.0 or later</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">💾</div>
-                    <div class="requirement-content">
-                        <h4>Storage</h4>
-                        <p>3.5 GB available space required</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">🎮</div>
-                    <div class="requirement-content">
-                        <h4>Controls</h4>
-                        <p>Hand tracking or compatible controllers</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">📏</div>
-                    <div class="requirement-content">
-                        <h4>Play Space</h4>
-                        <p>Room-Scale • 2m x 2m recommended</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">🌐</div>
-                    <div class="requirement-content">
-                        <h4>Internet</h4>
-                        <p>Required for multiplayer and updates</p>
-                    </div>
-                </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">♿</div>
-                    <div class="requirement-content">
-                        <h4>Accessibility</h4>
-                        <p>Subtitles, colorblind mode, seated play option</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Community Section -->
-        <section class="community-section">
-            <h2 class="section-title">JOIN THE COMMUNITY</h2>
-            <p style="font-size: 18px; color: rgba(255, 255, 255, 0.8); margin-bottom: 10px;">
-                Connect with thousands of players worldwide
-            </p>
-            <div class="community-links">
-                <a href="#" class="community-link">
-                    <span class="community-icon">💬</span>
-                    <span>Discord Server</span>
+            <p class="hero-subtitle">Step through the portal and witness history unfold around you. From ancient wonders to distant futures, time itself becomes your playground.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn-primary">
+                    <span>&#8987;</span>
+                    Begin Your Journey
                 </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">🐦</span>
-                    <span>Twitter/X</span>
-                </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">📺</span>
-                    <span>YouTube</span>
-                </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">👾</span>
-                    <span>Reddit</span>
+                <a href="#eras" class="btn-secondary">
+                    <span>&#128220;</span>
+                    Explore Eras
                 </a>
             </div>
-        </section>
-
-        <!-- NEW: Developer Section -->
-        <section class="developer-section">
-            <div class="developer-content">
-                <div class="developer-logo">🎮</div>
-                <div class="developer-info">
-                    <h3>Spatial Games Studio</h3>
-                    <p>Pioneers of immersive spatial gaming experiences for Apple Vision Pro. Creating the future of interactive entertainment.</p>
-                    <div class="developer-links">
-                        <a href="#" class="developer-link">More Games →</a>
-                        <a href="#" class="developer-link">Press Kit →</a>
-                        <a href="#" class="developer-link">Contact Support →</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <footer>
-        <p>&copy; 2024 Time Machine Adventures. Experience the future of spatial gaming on Apple Vision Pro.</p>
-        <div class="footer-links">
-            <a href="#" class="footer-link">Privacy Policy</a>
-            <a href="#" class="footer-link">Terms of Service</a>
-            <a href="#" class="footer-link">Support</a>
-            <a href="#" class="footer-link">Press Kit</a>
         </div>
+    </section>
+
+    <!-- Historical Eras Section -->
+    <section class="eras-section" id="eras">
+        <div class="section-header">
+            <h2>Travel Through Time</h2>
+            <p class="section-subtitle">Visit pivotal moments in history and shape the course of civilizations</p>
+        </div>
+        <div class="eras-timeline">
+            <div class="timeline-line"></div>
+
+            <div class="era-card">
+                <div class="era-content">
+                    <div class="era-icon">&#127963;</div>
+                    <h3 class="era-name">Ancient Egypt</h3>
+                    <p class="era-description">Walk among the pyramids as they're being built. Meet pharaohs and uncover the secrets of the Nile civilization.</p>
+                </div>
+                <span class="era-year">2500 BCE</span>
+            </div>
+
+            <div class="era-card">
+                <div class="era-content">
+                    <div class="era-icon">&#9876;</div>
+                    <h3 class="era-name">Medieval Europe</h3>
+                    <p class="era-description">Storm castle walls, witness jousting tournaments, and navigate the intrigue of royal courts.</p>
+                </div>
+                <span class="era-year">1200 CE</span>
+            </div>
+
+            <div class="era-card">
+                <div class="era-content">
+                    <div class="era-icon">&#127912;</div>
+                    <h3 class="era-name">The Renaissance</h3>
+                    <p class="era-description">Meet Leonardo da Vinci in his workshop. Watch masterpieces being created and ideas that changed the world.</p>
+                </div>
+                <span class="era-year">1500 CE</span>
+            </div>
+
+            <div class="era-card">
+                <div class="era-content">
+                    <div class="era-icon">&#128640;</div>
+                    <h3 class="era-name">The Future</h3>
+                    <p class="era-description">Journey to 2500 CE. Witness humanity among the stars, with cities spanning planets and technology beyond imagination.</p>
+                </div>
+                <span class="era-year">2500 CE</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Time Machine Controls -->
+    <section class="controls-section" id="controls">
+        <div class="section-header">
+            <h2>Master the Controls</h2>
+            <p class="section-subtitle">Your hands control the fabric of time itself</p>
+        </div>
+        <div class="controls-display">
+            <div class="controls-inner">
+                <div class="date-display">
+                    <div class="date-label">Destination Time</div>
+                    <div class="date-value">July 4, 1776</div>
+                </div>
+                <div class="control-dials">
+                    <div class="dial">
+                        <div class="dial-circle">ERA</div>
+                        <div class="dial-label">Select Period</div>
+                    </div>
+                    <div class="dial">
+                        <div class="dial-circle">YEAR</div>
+                        <div class="dial-label">Set Year</div>
+                    </div>
+                    <div class="dial">
+                        <div class="dial-circle">LOC</div>
+                        <div class="dial-label">Location</div>
+                    </div>
+                </div>
+                <button class="engage-button">Engage Time Drive</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Temporal Abilities -->
+    <section class="abilities-section" id="abilities">
+        <div class="section-header">
+            <h2>Temporal Abilities</h2>
+            <p class="section-subtitle">Unlock powerful abilities as you master the art of time travel</p>
+        </div>
+        <div class="abilities-grid">
+            <div class="ability-card">
+                <div class="ability-icon">&#9208;</div>
+                <h3 class="ability-name">Time Freeze</h3>
+                <p class="ability-description">Pause moments in time. Walk through frozen battles, examine artifacts, and plan your next move.</p>
+                <div class="ability-cooldown">Cooldown: 30 seconds</div>
+            </div>
+            <div class="ability-card">
+                <div class="ability-icon">&#9194;</div>
+                <h3 class="ability-name">Temporal Rewind</h3>
+                <p class="ability-description">Made a mistake? Rewind the last 10 seconds and try a different approach to history.</p>
+                <div class="ability-cooldown">Cooldown: 60 seconds</div>
+            </div>
+            <div class="ability-card">
+                <div class="ability-icon">&#128065;</div>
+                <h3 class="ability-name">Future Sight</h3>
+                <p class="ability-description">Glimpse possible futures. See how your actions might ripple through the timeline.</p>
+                <div class="ability-cooldown">Cooldown: 90 seconds</div>
+            </div>
+            <div class="ability-card">
+                <div class="ability-icon">&#127744;</div>
+                <h3 class="ability-name">Temporal Echo</h3>
+                <p class="ability-description">Create a past version of yourself to assist in puzzles and overcome impossible obstacles.</p>
+                <div class="ability-cooldown">Cooldown: 120 seconds</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="section-header">
+            <h2>Revolutionary Features</h2>
+            <p class="section-subtitle">Experience time travel like never before</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-item">
+                <span class="feature-icon">&#127917;</span>
+                <div class="feature-text">
+                    <h3>Living History</h3>
+                    <p>Interact with historical figures powered by advanced AI. Ask questions, learn their stories.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">&#127758;</span>
+                <div class="feature-text">
+                    <h3>Photorealistic Worlds</h3>
+                    <p>Each era recreated with stunning detail from archaeological and historical research.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">&#129419;</span>
+                <div class="feature-text">
+                    <h3>Butterfly Effect</h3>
+                    <p>Your choices matter. Small changes can ripple into dramatically different timelines.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">&#128214;</span>
+                <div class="feature-text">
+                    <h3>Chronicle Journal</h3>
+                    <p>Automatically document your travels. Collect artifacts and memories across time.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">&#127925;</span>
+                <div class="feature-text">
+                    <h3>Era Soundscapes</h3>
+                    <p>Immersive spatial audio transports you to each period with authentic sounds and music.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">&#127942;</span>
+                <div class="feature-text">
+                    <h3>Historical Missions</h3>
+                    <p>Complete quests that challenge your knowledge and impact the flow of history.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>History Awaits</h2>
+        <p>From the dawn of civilization to the edge of tomorrow, every moment in time is yours to explore.</p>
+        <a href="#" class="btn-primary">
+            <span>&#8987;</span>
+            Start Time Traveling
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">&#8987; Time Machine Adventures</div>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Support</a>
+            <a href="#">Press Kit</a>
+        </div>
+        <p class="copyright">&copy; 2025 Time Machine Adventures. Requires Apple Vision Pro with visionOS 2.0+</p>
     </footer>
 </body>
 </html>

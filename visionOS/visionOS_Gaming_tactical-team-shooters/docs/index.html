@@ -3,8 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tactical Team Shooters - TACTICAL FPS for Vision Pro</title>
+    <meta name="hero-ref" content="1">
+    <title>Tactical Team Shooters - Strategic Spatial Combat for Vision Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --tactical-blue: #0ea5e9;
+            --command-orange: #f97316;
+            --stealth-gray: #64748b;
+            --alert-red: #ef4444;
+            --operations-green: #22c55e;
+            --dark-ops: #0a0f1a;
+            --grid-line: rgba(14, 165, 233, 0.15);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,1139 +26,1224 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
-            background: #000000;
-            color: #ffffff;
+            font-family: 'Source Sans Pro', sans-serif;
+            background: var(--dark-ops);
+            color: #e2e8f0;
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
-        /* Enhanced 3D Depth Layers */
-        .depth-layer {
+        /* Tactical Grid Background */
+        .tactical-grid {
             position: fixed;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+            animation: gridPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Radar Sweep Animation */
+        .radar-sweep {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 800px;
+            height: 800px;
+            transform: translate(-50%, -50%);
             pointer-events: none;
             z-index: 0;
         }
 
-        .depth-layer-1 {
-            background: radial-gradient(circle at 20% 30%, rgba(220, 38, 38, 0.4) 0%, transparent 40%);
-            animation: dramaticFloat 15s ease-in-out infinite;
+        .radar-sweep::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0deg,
+                rgba(14, 165, 233, 0.3) 30deg,
+                transparent 60deg
+            );
+            border-radius: 50%;
+            animation: radarSweep 6s linear infinite;
         }
 
-        .depth-layer-2 {
-            background: radial-gradient(circle at 80% 70%, rgba(220, 38, 38, 0.5) 0%, transparent 40%);
-            animation: dramaticFloat 18s ease-in-out infinite reverse;
+        @keyframes radarSweep {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
-        .depth-layer-3 {
-            background: radial-gradient(circle at 50% 50%, rgba(220, 38, 38, 0.3) 0%, transparent 50%);
-            animation: dramaticFloat 22s ease-in-out infinite;
+        /* Scanning Line Animation */
+        .scan-line {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--tactical-blue), transparent);
+            z-index: 1;
+            animation: scanMove 4s linear infinite;
+            opacity: 0.5;
         }
 
-        @keyframes dramaticFloat {
-            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            33% { transform: translate(40px, -40px) rotate(8deg) scale(1.05); }
-            66% { transform: translate(-20px, 30px) rotate(-8deg) scale(0.95); }
+        @keyframes scanMove {
+            0% { top: 0; }
+            100% { top: 100%; }
         }
 
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 30px rgba(220, 38, 38, 0.4), 0 0 60px rgba(220, 38, 38, 0.3); }
-            50% { box-shadow: 0 0 50px rgba(220, 38, 38, 0.5), 0 0 100px rgba(220, 38, 38, 0.4); }
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(180deg, rgba(10, 15, 26, 0.7) 0%, var(--dark-ops) 100%),
+                        url('hero-spatial.png') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
         }
 
-        @keyframes countUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(14, 165, 233, 0.2);
+            border: 1px solid var(--tactical-blue);
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--tactical-blue);
+            margin-bottom: 30px;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            background: var(--operations-green);
+            border-radius: 50%;
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 10px var(--operations-green); }
+            50% { opacity: 0.5; box-shadow: 0 0 5px var(--operations-green); }
+        }
+
+        .logo-container {
+            margin-bottom: 30px;
+        }
+
+        .logo-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.3) 0%, rgba(249, 115, 22, 0.3) 100%);
+            border: 2px solid var(--tactical-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.4), transparent);
+            animation: logoScan 3s ease-in-out infinite;
+        }
+
+        @keyframes logoScan {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        h1 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 80px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #ffffff 0%, var(--tactical-blue) 50%, var(--command-orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .tagline {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--command-orange);
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            margin-bottom: 30px;
+        }
+
+        .hero-description {
+            font-size: 20px;
+            max-width: 800px;
+            line-height: 1.8;
+            color: rgba(226, 232, 240, 0.9);
+            margin-bottom: 40px;
+        }
+
+        /* CTA Buttons */
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, var(--tactical-blue) 0%, #0284c7 100%);
+            color: white;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 18px 50px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-primary:hover::before {
+            left: 100%;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(14, 165, 233, 0.4);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: var(--command-orange);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 18px 50px;
+            border: 2px solid var(--command-orange);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(249, 115, 22, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 30px 40px;
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--tactical-blue);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--stealth-gray);
         }
 
         /* Container */
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 0 20px;
             position: relative;
             z-index: 1;
         }
 
-        /* Hero Section */
-        .hero {
+        /* Section */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-header {
             text-align: center;
-            padding: 60px 20px 40px;
-            position: relative;
+            margin-bottom: 60px;
         }
 
-        .genre-badge {
+        .section-tag {
             display: inline-block;
-            background: linear-gradient(135deg, #dc2626 0%, #dc2626cc 100%);
-            padding: 10px 24px;
-            border-radius: 24px;
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            box-shadow: 0 8px 32px rgba(220, 38, 38, 0.5);
-            animation: pulseGlow 3s ease-in-out infinite;
-        }
-
-        .logo-container {
-            margin-bottom: 30px;
-            perspective: 1200px;
-        }
-
-        .logo-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 140px;
-            height: 140px;
-            background: rgba(15, 15, 30, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 3px solid #dc2626;
-            border-radius: 32px;
-            font-size: 72px;
-            box-shadow:
-                0 25px 70px rgba(0, 0, 0, 0.5),
-                0 0 40px rgba(220, 38, 38, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15);
-            transform-style: preserve-3d;
-            animation: logoFloat 4s ease-in-out infinite;
-        }
-
-        @keyframes logoFloat {
-            0%, 100% { transform: rotateY(0deg) rotateX(0deg) translateY(0); }
-            50% { transform: rotateY(15deg) rotateX(8deg) translateY(-10px); }
-        }
-
-        h1 {
-            font-size: 72px;
-            font-weight: 900;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #ffffff 0%, #dc2626 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.1;
-            text-transform: uppercase;
-            letter-spacing: -2px;
-        }
-
-        .tagline {
-            font-size: 32px;
-            color: #dc2626;
-            margin-bottom: 30px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0 0 20px rgba(220, 38, 38, 0.4);
-        }
-
-        .hero-message {
-            font-size: 19px;
-            color: rgba(255, 255, 255, 0.85);
-            max-width: 900px;
-            margin: 0 auto 40px;
-            line-height: 1.7;
-        }
-
-        /* NEW: Pricing Section */
-        .pricing-section {
-            background: linear-gradient(135deg, rgba(220, 38, 38, 0.4) 0%, rgba(220, 38, 38, 0.2) 100%);
-            border: 2px solid #dc2626;
-            border-radius: 24px;
-            padding: 40px;
-            margin: 40px auto;
-            max-width: 800px;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(220, 38, 38, 0.5);
-        }
-
-        .price-tag {
-            font-size: 64px;
-            font-weight: 900;
-            color: #dc2626;
-            margin-bottom: 10px;
-            text-shadow: 0 0 30px rgba(220, 38, 38, 0.5);
-        }
-
-        .price-subtitle {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 30px;
-        }
-
-        .demo-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 8px 20px;
-            border-radius: 20px;
+            font-family: 'Rajdhani', sans-serif;
             font-size: 14px;
             font-weight: 600;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        /* CTA Buttons */
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .cta-primary {
-            background: #dc2626;
-            color: #ffffff;
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            box-shadow: 0 15px 50px rgba(220, 38, 38, 0.5);
-            border: 2px solid #dc2626;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-        }
-
-        .cta-primary:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(220, 38, 38, 0.5);
-        }
-
-        .cta-secondary {
-            background: transparent;
-            color: #dc2626;
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            border: 2px solid #dc2626;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .cta-secondary:hover {
-            background: rgba(220, 38, 38, 0.3);
-            transform: translateY(-3px);
-        }
-
-        .cta-wishlist {
-            background: rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.9);
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .cta-wishlist:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-3px);
-        }
-
-        /* Game Metadata Bar */
-        .game-metadata {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            padding: 30px;
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(220, 38, 38, 0.3);
-            border-radius: 20px;
-            margin-bottom: 50px;
-            backdrop-filter: blur(10px);
-        }
-
-        .metadata-item {
-            text-align: center;
-            animation: countUp 0.6s ease-out;
-        }
-
-        .metadata-value {
-            font-size: 28px;
-            font-weight: 800;
-            color: #dc2626;
-            display: block;
-        }
-
-        .metadata-label {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* NEW: Video Section */
-        .video-section {
-            margin: 60px 0;
-            text-align: center;
-        }
-
-        .video-container {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-            aspect-ratio: 16 / 9;
-            background: linear-gradient(135deg, rgba(220, 38, 38, 0.3) 0%, rgba(15, 15, 30, 0.9) 100%);
-            border-radius: 24px;
-            border: 2px solid rgba(220, 38, 38, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(220, 38, 38, 0.4);
-        }
-
-        .video-placeholder {
-            text-align: center;
-            padding: 40px;
-        }
-
-        .play-button {
-            width: 100px;
-            height: 100px;
-            background: #dc2626;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            box-shadow: 0 10px 40px rgba(220, 38, 38, 0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .play-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 50px rgba(220, 38, 38, 0.5);
-        }
-
-        .play-button::after {
-            content: '▶';
-            font-size: 40px;
-            color: white;
-            margin-left: 8px;
-        }
-
-        /* Section Styling */
-        .section {
-            margin: 100px 0;
+            color: var(--command-orange);
+            margin-bottom: 15px;
         }
 
         .section-title {
+            font-family: 'Rajdhani', sans-serif;
             font-size: 48px;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 60px;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #ffffff 0%, #dc2626 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            letter-spacing: 2px;
+            color: white;
         }
 
-        /* Game Modes */
-        .modes-grid {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 60px;
-        }
-
-        .mode-badge {
-            background: rgba(15, 15, 30, 0.5);
-            border: 2px solid rgba(220, 38, 38, 0.3);
-            padding: 12px 28px;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.9);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .mode-badge:hover {
-            background: rgba(220, 38, 38, 0.3);
-            border-color: #dc2626;
-            transform: translateY(-2px);
-        }
-
-        /* Features Grid */
-        .features-grid {
+        /* Operator Classes */
+        .operators-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-bottom: 60px;
         }
 
-        .feature-card {
-            background: rgba(15, 15, 30, 0.5);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 2px solid rgba(220, 38, 38, 0.3);
-            border-radius: 24px;
-            padding: 45px;
+        .operator-card {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(10, 15, 26, 0.8) 100%);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            border-radius: 8px;
+            padding: 35px;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .feature-card::before {
+        .operator-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
+            width: 4px;
+            height: 0;
+            background: var(--tactical-blue);
+            transition: height 0.3s ease;
+        }
+
+        .operator-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--tactical-blue);
+            box-shadow: 0 20px 60px rgba(14, 165, 233, 0.2);
+        }
+
+        .operator-card:hover::before {
+            height: 100%;
+        }
+
+        .operator-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .operator-name {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .operator-role {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--command-orange);
+            margin-bottom: 15px;
+        }
+
+        .operator-desc {
+            font-size: 16px;
+            line-height: 1.6;
+            color: rgba(226, 232, 240, 0.7);
+            margin-bottom: 20px;
+        }
+
+        .operator-stats {
+            display: flex;
+            gap: 20px;
+        }
+
+        .op-stat {
+            flex: 1;
+        }
+
+        .op-stat-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--stealth-gray);
+            margin-bottom: 5px;
+        }
+
+        .op-stat-bar {
             height: 4px;
-            background: linear-gradient(90deg, transparent, #dc2626, transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            background: rgba(14, 165, 233, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
         }
 
-        .feature-card:hover {
-            transform: translateY(-8px);
-            border-color: #dc2626;
-            box-shadow: 0 15px 60px rgba(220, 38, 38, 0.4);
+        .op-stat-fill {
+            height: 100%;
+            background: var(--tactical-blue);
+            border-radius: 2px;
         }
 
-        .feature-card:hover::before {
-            opacity: 1;
+        /* Game Modes */
+        .modes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
         }
 
-        .feature-icon {
+        .mode-card {
+            background: rgba(10, 15, 26, 0.8);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            border-radius: 8px;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .mode-card:hover {
+            border-color: var(--command-orange);
+            transform: translateX(10px);
+            box-shadow: -10px 0 40px rgba(249, 115, 22, 0.2);
+        }
+
+        .mode-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .mode-icon {
+            font-size: 40px;
+        }
+
+        .mode-info h3 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: white;
+        }
+
+        .mode-info span {
+            font-size: 14px;
+            color: var(--command-orange);
+        }
+
+        .mode-desc {
+            font-size: 16px;
+            line-height: 1.6;
+            color: rgba(226, 232, 240, 0.7);
+            margin-bottom: 20px;
+        }
+
+        .mode-meta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .mode-tag {
+            background: rgba(249, 115, 22, 0.2);
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--command-orange);
+        }
+
+        /* Tactical Equipment */
+        .equipment-section {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(10, 15, 26, 0.9) 100%);
+            border-top: 1px solid rgba(14, 165, 233, 0.3);
+            border-bottom: 1px solid rgba(14, 165, 233, 0.3);
+        }
+
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        .equipment-item {
+            background: rgba(10, 15, 26, 0.6);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .equipment-item:hover {
+            border-color: var(--tactical-blue);
+            transform: scale(1.05);
+        }
+
+        .equipment-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .equipment-name {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .equipment-type {
+            font-size: 12px;
+            color: var(--stealth-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Team Roles */
+        .roles-container {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .role-card {
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            background: rgba(10, 15, 26, 0.8);
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .role-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+        }
+
+        .role-card.leader::before { background: var(--command-orange); }
+        .role-card.assault::before { background: var(--alert-red); }
+        .role-card.support::before { background: var(--operations-green); }
+        .role-card.recon::before { background: var(--tactical-blue); }
+
+        .role-icon {
             font-size: 56px;
             margin-bottom: 20px;
         }
 
-        .feature-card h3 {
-            font-size: 26px;
-            margin-bottom: 15px;
-            color: #dc2626;
+        .role-name {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 28px;
             font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
         }
 
-        .feature-card p {
-            font-size: 17px;
+        .role-card.leader .role-name { color: var(--command-orange); }
+        .role-card.assault .role-name { color: var(--alert-red); }
+        .role-card.support .role-name { color: var(--operations-green); }
+        .role-card.recon .role-name { color: var(--tactical-blue); }
+
+        .role-desc {
+            font-size: 16px;
             line-height: 1.6;
-            color: rgba(255, 255, 255, 0.75);
+            color: rgba(226, 232, 240, 0.7);
         }
 
-        /* NEW: System Requirements */
-        .system-requirements {
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(220, 38, 38, 0.3);
-            border-radius: 24px;
-            padding: 50px;
-            margin: 60px 0;
-        }
-
-        .requirements-grid {
+        /* Features Highlights */
+        .features-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 30px;
-            margin-top: 30px;
         }
 
-        .requirement-item {
-            display: flex;
-            align-items: start;
-            gap: 15px;
-        }
-
-        .requirement-icon {
-            font-size: 32px;
-            flex-shrink: 0;
-        }
-
-        .requirement-content h4 {
-            color: #dc2626;
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        .requirement-content p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 15px;
-            line-height: 1.5;
-        }
-
-        /* NEW: Awards & Social Proof */
-        .awards-section {
-            background: linear-gradient(135deg, rgba(220, 38, 38, 0.2) 0%, rgba(15, 15, 30, 0.6) 100%);
-            border: 1px solid rgba(220, 38, 38, 0.3);
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin: 60px 0;
-            text-align: center;
-        }
-
-        .awards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .award-badge {
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: 16px;
-            padding: 30px 20px;
-            transition: all 0.3s ease;
-        }
-
-        .award-badge:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 215, 0, 0.6);
-        }
-
-        .award-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        .award-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #dc2626;
-            margin-bottom: 5px;
-        }
-
-        .award-subtitle {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* NEW: Testimonials */
-        .testimonials-section {
-            margin: 80px 0;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .testimonial-card {
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(220, 38, 38, 0.3);
-            border-radius: 20px;
-            padding: 35px;
-            position: relative;
-        }
-
-        .testimonial-quote {
-            font-size: 17px;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .testimonial-quote::before {
-            content: '"';
-            font-size: 48px;
-            color: #dc2626;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            opacity: 0.3;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            background: #dc2626;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 20px;
-        }
-
-        .author-info {
-            flex: 1;
-        }
-
-        .author-name {
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 3px;
-        }
-
-        .author-stars {
-            color: #ffd700;
-            font-size: 14px;
-        }
-
-        /* NEW: Community Section */
-        .community-section {
-            background: linear-gradient(135deg, rgba(220, 38, 38, 0.3) 0%, rgba(15, 15, 30, 0.6) 100%);
-            border: 1px solid rgba(220, 38, 38, 0.3);
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin: 60px 0;
-            text-align: center;
-        }
-
-        .community-links {
+        .feature-item {
             display: flex;
             gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        .community-link {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 20px 35px;
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .community-link:hover {
-            background: rgba(220, 38, 38, 0.3);
-            border-color: #dc2626;
-            transform: translateY(-3px);
-        }
-
-        .community-icon {
-            font-size: 24px;
-        }
-
-        /* NEW: Age Rating */
-        .age-rating {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(15, 15, 30, 0.6);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 15px 30px;
-            margin-top: 20px;
-        }
-
-        .rating-badge {
-            background: #dc2626;
-            color: white;
-            font-weight: 900;
-            font-size: 24px;
-            padding: 10px 15px;
+            padding: 30px;
+            background: rgba(10, 15, 26, 0.6);
+            border: 1px solid rgba(14, 165, 233, 0.2);
             border-radius: 8px;
-        }
-
-        .rating-text {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.8);
-            text-align: left;
-        }
-
-        /* Screenshots */
-        .screenshots-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .screenshot-card {
-            background: rgba(15, 15, 30, 0.4);
-            border: 2px solid rgba(220, 38, 38, 0.3);
-            border-radius: 20px;
-            padding: 25px;
-            backdrop-filter: blur(10px);
             transition: all 0.3s ease;
-            cursor: pointer;
         }
 
-        .screenshot-card:hover {
-            border-color: #dc2626;
-            transform: scale(1.02);
+        .feature-item:hover {
+            border-color: var(--tactical-blue);
+            background: rgba(14, 165, 233, 0.1);
         }
 
-        .screenshot-placeholder {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background: linear-gradient(135deg, rgba(220, 38, 38, 0.3) 0%, rgba(15, 15, 30, 0.8) 100%);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 20px;
-            font-weight: 600;
-            border: 2px dashed rgba(220, 38, 38, 0.4);
-        }
-
-        /* NEW: Developer Section */
-        .developer-section {
-            background: rgba(15, 15, 30, 0.3);
-            border: 1px solid rgba(220, 38, 38, 0.3);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 60px 0;
-        }
-
-        .developer-content {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .developer-logo {
-            width: 100px;
-            height: 100px;
-            background: #dc2626;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
+        .feature-icon {
+            font-size: 36px;
             flex-shrink: 0;
         }
 
-        .developer-info {
-            flex: 1;
-        }
-
-        .developer-info h3 {
-            font-size: 24px;
-            color: #dc2626;
+        .feature-content h3 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: white;
             margin-bottom: 10px;
         }
 
-        .developer-info p {
-            color: rgba(255, 255, 255, 0.7);
+        .feature-content p {
+            font-size: 16px;
             line-height: 1.6;
-            margin-bottom: 15px;
+            color: rgba(226, 232, 240, 0.7);
         }
 
-        .developer-links {
+        /* Requirements */
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            background: rgba(10, 15, 26, 0.8);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            border-radius: 8px;
+            padding: 40px;
+        }
+
+        .req-item {
             display: flex;
+            align-items: flex-start;
             gap: 15px;
-            flex-wrap: wrap;
         }
 
-        .developer-link {
-            color: #dc2626;
-            text-decoration: none;
-            font-weight: 600;
+        .req-icon {
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        .req-content h4 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--tactical-blue);
+            margin-bottom: 5px;
+        }
+
+        .req-content p {
             font-size: 14px;
-            transition: opacity 0.3s ease;
-        }
-
-        .developer-link:hover {
-            opacity: 0.7;
+            color: rgba(226, 232, 240, 0.7);
         }
 
         /* Footer */
         footer {
+            background: rgba(10, 15, 26, 0.9);
+            border-top: 1px solid rgba(14, 165, 233, 0.3);
+            padding: 60px 20px;
             text-align: center;
-            padding: 80px 20px;
-            border-top: 1px solid rgba(220, 38, 38, 0.3);
-            margin-top: 120px;
         }
 
-        footer p {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 15px;
-            margin-bottom: 10px;
+        .footer-logo {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--tactical-blue);
+            margin-bottom: 20px;
         }
 
         .footer-links {
             display: flex;
-            gap: 20px;
+            gap: 30px;
             justify-content: center;
-            margin-top: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
         }
 
         .footer-link {
-            color: rgba(255, 255, 255, 0.5);
+            color: var(--stealth-gray);
             text-decoration: none;
             font-size: 14px;
             transition: color 0.3s ease;
         }
 
         .footer-link:hover {
-            color: #dc2626;
+            color: var(--tactical-blue);
+        }
+
+        .footer-copy {
+            font-size: 14px;
+            color: var(--stealth-gray);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             h1 {
                 font-size: 48px;
+                letter-spacing: 2px;
             }
 
             .tagline {
-                font-size: 24px;
+                font-size: 18px;
+                letter-spacing: 3px;
             }
 
             .section-title {
                 font-size: 36px;
             }
 
-            .price-tag {
-                font-size: 48px;
+            .stats-bar {
+                gap: 30px;
             }
 
-            .features-grid,
-            .screenshots-grid,
-            .testimonials-grid {
+            .features-list {
                 grid-template-columns: 1fr;
             }
 
-            .cta-buttons {
+            .cta-group {
                 flex-direction: column;
                 align-items: stretch;
-            }
-
-            .game-metadata {
-                gap: 20px;
-            }
-
-            .developer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .community-links {
-                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 3D Depth Layers -->
-    <div class="depth-layer depth-layer-1"></div>
-    <div class="depth-layer depth-layer-2"></div>
-    <div class="depth-layer depth-layer-3"></div>
+    <!-- Background Effects -->
+    <div class="tactical-grid"></div>
+    <div class="radar-sweep"></div>
+    <div class="scan-line"></div>
 
-    <div class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="genre-badge">TACTICAL FPS</div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="status-badge">
+            <span class="status-indicator"></span>
+            TACTICAL OPERATIONS ACTIVE
+        </div>
 
-            <div class="logo-container">
-                <div class="logo-icon">🎮</div>
+        <div class="logo-container">
+            <div class="logo-icon">🎯</div>
+        </div>
+
+        <h1>Tactical Team<br>Shooters</h1>
+        <p class="tagline">Strategic Spatial Combat</p>
+        <p class="hero-description">
+            Transform your space into dynamic battlegrounds. Command elite operators, coordinate with your squad through spatial audio, and execute tactical maneuvers in immersive 5v5 combat on Apple Vision Pro.
+        </p>
+
+        <div class="cta-group">
+            <a href="#" class="cta-primary">Deploy Now - $14.99</a>
+            <a href="#" class="cta-secondary">Watch Briefing</a>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-item">
+                <span class="stat-value">150K+</span>
+                <span class="stat-label">Operators</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">4.9</span>
+                <span class="stat-label">Rating</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">6</span>
+                <span class="stat-label">Classes</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">30+</span>
+                <span class="stat-label">Loadouts</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">5v5</span>
+                <span class="stat-label">Combat</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Operator Classes -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">// Select Your Specialist</span>
+                <h2 class="section-title">Operator Classes</h2>
             </div>
 
-            <h1>Tactical Team Shooters</h1>
-            <p class="tagline">COMMAND YOUR SPACE IN TACTICAL WARFARE</p>
-            <p class="hero-message">
-                Turn your room into dynamic battlegrounds. Use real furniture as cover, coordinate with teammates through spatial audio, and dominate in competitive 5v5 tactical combat.
-            </p>
-        </section>
+            <div class="operators-grid">
+                <div class="operator-card">
+                    <div class="operator-icon">🛡️</div>
+                    <h3 class="operator-name">Vanguard</h3>
+                    <div class="operator-role">Front Line Defender</div>
+                    <p class="operator-desc">Heavy armor specialist who creates cover and absorbs damage for the team.</p>
+                    <div class="operator-stats">
+                        <div class="op-stat">
+                            <div class="op-stat-label">Armor</div>
+                            <div class="op-stat-bar"><div class="op-stat-fill" style="width: 95%"></div></div>
+                        </div>
+                        <div class="op-stat">
+                            <div class="op-stat-label">Speed</div>
+                            <div class="op-stat-bar"><div class="op-stat-fill" style="width: 40%"></div></div>
+                        </div>
+                    </div>
+                </div>
 
-        <!-- NEW: Pricing Section -->
-        <section class="pricing-section">
-            
-            <div class="price-tag">$14.99</div>
-            <p class="price-subtitle">One-Time Purchase • No Subscriptions</p>
+                <div class="operator-card">
+                    <div class="operator-icon">⚡</div>
+                    <h3 class="operator-name">Striker</h3>
+                    <div class="operator-role">Assault Specialist</div>
+                    <p class="operator-desc">High mobility operator excelling in aggressive pushes and flanking maneuvers.</p>
+                    <div class="operator-stats">
+                        <div class="op-stat">
+                            <div class="op-stat-label">Armor</div>
+                            <div class="op-stat-bar"><div class="op-stat-fill" style="width: 50%"></div></div>
+                        </div>
+                        <div class="op-stat">
+                            <div class="op-stat-label">Speed</div>
+                            <div class="op-stat-bar"><div class="op-stat-fill" style="width: 90%"></div></div>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="cta-buttons">
-                <a href="#" class="cta-primary">📱 Download on App Store</a>
-                <a href="#" class="cta-secondary">🎬 Watch Trailer</a>
-                <a href="#" class="cta-wishlist">❤️ Add to Wishlist</a>
-            </div>
+                <div class="operator-card">
+                    <div class="operator-icon">🔍</div>
+                    <h3 class="operator-name">Recon</h3>
+                    <div class="operator-role">Intelligence Gatherer</div>
+                    <p class="operator-desc">Surveillance expert who reveals enemy positions and provides tactical intel.</p>
+                    <div class="operator-stats">
+                        <div class="op-stat">
+                            <div class="op-stat-label">Armor</div>
+                            <div class="op-stat-bar"><div class="op-stat-fill" style="width: 45%"></div></div>
+                        </div>
+                        <div class="op-stat">
+                            <div class="op-stat-label">Speed</div>
+                            <div class="op-stat-bar"><div class="op-stat-fill" style="width: 75%"></div></div>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="age-rating">
-                <div class="rating-badge">T</div>
-                <div class="rating-text">
-                    <strong>Teen • Fantasy Violence</strong><br>
-                    Accessibility: Subtitles, Colorblind Mode, Seated Play
+                <div class="operator-card">
+                    <div class="operator-icon">💊</div>
+                    <h3 class="operator-name">Medic</h3>
+                    <div class="operator-role">Combat Healer</div>
+                    <p class="operator-desc">Field medic who keeps the team in fighting condition with healing abilities.</p>
+                    <div class="operator-stats">
+                        <div class="op-stat">
+                            <div class="op-stat-label">Armor</div>
+                            <div class="op-stat-bar"><div class="op-stat-fill" style="width: 55%"></div></div>
+                        </div>
+                        <div class="op-stat">
+                            <div class="op-stat-label">Speed</div>
+                            <div class="op-stat-bar"><div class="op-stat-fill" style="width: 65%"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="operator-card">
+                    <div class="operator-icon">💣</div>
+                    <h3 class="operator-name">Demolisher</h3>
+                    <div class="operator-role">Explosives Expert</div>
+                    <p class="operator-desc">Area denial specialist using grenades and breaching charges.</p>
+                    <div class="operator-stats">
+                        <div class="op-stat">
+                            <div class="op-stat-label">Armor</div>
+                            <div class="op-stat-bar"><div class="op-stat-fill" style="width: 70%"></div></div>
+                        </div>
+                        <div class="op-stat">
+                            <div class="op-stat-label">Speed</div>
+                            <div class="op-stat-bar"><div class="op-stat-fill" style="width: 55%"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="operator-card">
+                    <div class="operator-icon">🎯</div>
+                    <h3 class="operator-name">Marksman</h3>
+                    <div class="operator-role">Precision Shooter</div>
+                    <p class="operator-desc">Long-range specialist providing overwatch and eliminating high-value targets.</p>
+                    <div class="operator-stats">
+                        <div class="op-stat">
+                            <div class="op-stat-label">Armor</div>
+                            <div class="op-stat-bar"><div class="op-stat-fill" style="width: 40%"></div></div>
+                        </div>
+                        <div class="op-stat">
+                            <div class="op-stat-label">Speed</div>
+                            <div class="op-stat-bar"><div class="op-stat-fill" style="width: 60%"></div></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Game Metadata -->
-        <section class="game-metadata">
-            <div class="metadata-item">
-                <span class="metadata-value">150K+</span>
-                <span class="metadata-label">Players</span>
+    <!-- Game Modes -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">// Mission Types</span>
+                <h2 class="section-title">Game Modes</h2>
             </div>
-            <div class="metadata-item">
-                <span class="metadata-value">⭐ 4.9</span>
-                <span class="metadata-label">Rating</span>
-            </div>
-            <div class="metadata-item">
-                <span class="metadata-value">Moderate</span>
-                <span class="metadata-label">Intensity</span>
-            </div>
-            <div class="metadata-item">
-                <span class="metadata-value">Room-Scale</span>
-                <span class="metadata-label">Space</span>
-            </div>
-        </section>
 
-        <!-- NEW: Video Section -->
-        <section class="video-section">
-            <h2 class="section-title">GAMEPLAY TRAILER</h2>
-            <div class="video-container">
-                <div class="video-placeholder">
-                    <div class="play-button"></div>
-                    <p>Official Gameplay Trailer</p>
-                    <p style="font-size: 14px; color: rgba(255, 255, 255, 0.5); margin-top: 10px;">
-                        Watch spatial gameplay in action
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Game Modes -->
-        <section class="section">
-            <h2 class="section-title">GAME MODES</h2>
             <div class="modes-grid">
-                <div class="mode-badge">Ranked 5v5</div>
-                <div class="mode-badge">Casual Match</div>
-                <div class="mode-badge">Team Deathmatch</div>
-                <div class="mode-badge">Bomb Defusal</div>
-                <div class="mode-badge">Custom Games</div>
-            </div>
-        </section>
+                <div class="mode-card">
+                    <div class="mode-header">
+                        <span class="mode-icon">🏆</span>
+                        <div class="mode-info">
+                            <h3>Ranked 5v5</h3>
+                            <span>Competitive</span>
+                        </div>
+                    </div>
+                    <p class="mode-desc">Climb the global leaderboard in intense skill-based matches. From Bronze to Champion, prove your tactical supremacy.</p>
+                    <div class="mode-meta">
+                        <span class="mode-tag">10 Rounds</span>
+                        <span class="mode-tag">Skill-Based</span>
+                        <span class="mode-tag">Ranked Points</span>
+                    </div>
+                </div>
 
-        <!-- Gameplay Features -->
-        <section class="section">
-            <h2 class="section-title">EPIC GAMEPLAY FEATURES</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Room-Scale Battlegrounds</h3>
-                    <p>Your furniture becomes tactical cover positions</p>
+                <div class="mode-card">
+                    <div class="mode-header">
+                        <span class="mode-icon">💀</span>
+                        <div class="mode-info">
+                            <h3>Team Deathmatch</h3>
+                            <span>Action</span>
+                        </div>
+                    </div>
+                    <p class="mode-desc">Fast-paced elimination combat. First team to reach the target score wins. Respawn and get back in the fight.</p>
+                    <div class="mode-meta">
+                        <span class="mode-tag">Respawn</span>
+                        <span class="mode-tag">8 Minutes</span>
+                        <span class="mode-tag">50 Eliminations</span>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">👥</div>
-                    <h3>Team Coordination</h3>
-                    <p>Spatial audio and gesture-based team communication</p>
+
+                <div class="mode-card">
+                    <div class="mode-header">
+                        <span class="mode-icon">💥</span>
+                        <div class="mode-info">
+                            <h3>Bomb Defusal</h3>
+                            <span>Tactical</span>
+                        </div>
+                    </div>
+                    <p class="mode-desc">Attack or defend objectives in this classic tactical mode. Plant or defuse to secure victory for your team.</p>
+                    <div class="mode-meta">
+                        <span class="mode-tag">No Respawn</span>
+                        <span class="mode-tag">13 Rounds</span>
+                        <span class="mode-tag">Strategic</span>
+                    </div>
                 </div>
-                <div class="feature-card">
+
+                <div class="mode-card">
+                    <div class="mode-header">
+                        <span class="mode-icon">🏰</span>
+                        <div class="mode-info">
+                            <h3>Hostage Rescue</h3>
+                            <span>Objective</span>
+                        </div>
+                    </div>
+                    <p class="mode-desc">Extract hostages while defending against counter-attacks. Coordination and timing are essential.</p>
+                    <div class="mode-meta">
+                        <span class="mode-tag">Asymmetric</span>
+                        <span class="mode-tag">Time Limit</span>
+                        <span class="mode-tag">High Stakes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tactical Equipment -->
+    <section class="section equipment-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">// Arsenal</span>
+                <h2 class="section-title">Tactical Equipment</h2>
+            </div>
+
+            <div class="equipment-grid">
+                <div class="equipment-item">
+                    <div class="equipment-icon">🔫</div>
+                    <div class="equipment-name">Assault Rifles</div>
+                    <div class="equipment-type">Primary</div>
+                </div>
+                <div class="equipment-item">
+                    <div class="equipment-icon">🎯</div>
+                    <div class="equipment-name">Precision Rifles</div>
+                    <div class="equipment-type">Primary</div>
+                </div>
+                <div class="equipment-item">
+                    <div class="equipment-icon">⚡</div>
+                    <div class="equipment-name">SMGs</div>
+                    <div class="equipment-type">Primary</div>
+                </div>
+                <div class="equipment-item">
+                    <div class="equipment-icon">🔥</div>
+                    <div class="equipment-name">Shotguns</div>
+                    <div class="equipment-type">Primary</div>
+                </div>
+                <div class="equipment-item">
+                    <div class="equipment-icon">💣</div>
+                    <div class="equipment-name">Frag Grenades</div>
+                    <div class="equipment-type">Tactical</div>
+                </div>
+                <div class="equipment-item">
+                    <div class="equipment-icon">💨</div>
+                    <div class="equipment-name">Smoke Grenades</div>
+                    <div class="equipment-type">Tactical</div>
+                </div>
+                <div class="equipment-item">
+                    <div class="equipment-icon">✨</div>
+                    <div class="equipment-name">Flashbangs</div>
+                    <div class="equipment-type">Tactical</div>
+                </div>
+                <div class="equipment-item">
+                    <div class="equipment-icon">📡</div>
+                    <div class="equipment-name">Motion Sensors</div>
+                    <div class="equipment-type">Intel</div>
+                </div>
+                <div class="equipment-item">
+                    <div class="equipment-icon">🛡️</div>
+                    <div class="equipment-name">Deployable Cover</div>
+                    <div class="equipment-type">Defense</div>
+                </div>
+                <div class="equipment-item">
+                    <div class="equipment-icon">💊</div>
+                    <div class="equipment-name">Med Kits</div>
+                    <div class="equipment-type">Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Roles -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">// Squad Composition</span>
+                <h2 class="section-title">Team Roles</h2>
+            </div>
+
+            <div class="roles-container">
+                <div class="role-card leader">
+                    <div class="role-icon">👑</div>
+                    <h3 class="role-name">Squad Leader</h3>
+                    <p class="role-desc">Call the shots and coordinate your team's movements. Access to tactical map and command abilities.</p>
+                </div>
+
+                <div class="role-card assault">
+                    <div class="role-icon">⚔️</div>
+                    <h3 class="role-name">Entry Fragger</h3>
+                    <p class="role-desc">First through the door. Clear rooms and create openings for your team to push.</p>
+                </div>
+
+                <div class="role-card support">
+                    <div class="role-icon">🔧</div>
+                    <h3 class="role-name">Support</h3>
+                    <p class="role-desc">Provide utility, healing, and backup fire. Keep your team operational and effective.</p>
+                </div>
+
+                <div class="role-card recon">
+                    <div class="role-icon">👁️</div>
+                    <h3 class="role-name">Intel Operator</h3>
+                    <p class="role-desc">Gather enemy intel and provide overwatch. Your information wins matches.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">// Combat Features</span>
+                <h2 class="section-title">Spatial Warfare</h2>
+            </div>
+
+            <div class="features-list">
+                <div class="feature-item">
+                    <div class="feature-icon">🏠</div>
+                    <div class="feature-content">
+                        <h3>Room-Scale Battlegrounds</h3>
+                        <p>Your furniture becomes tactical cover. Peek around real corners and use spatial awareness to gain advantages.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">🔊</div>
+                    <div class="feature-content">
+                        <h3>Spatial Audio Communication</h3>
+                        <p>Voice chat positioned in 3D space. Hear teammates from their actual direction for natural coordination.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
                     <div class="feature-icon">🗺️</div>
-                    <h3>Adaptive Maps</h3>
-                    <p>Procedural battlegrounds that fit your space perfectly</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⚔️</div>
-                    <h3>Realistic Arsenal</h3>
-                    <p>30+ weapons with spatial reloading mechanics</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏅</div>
-                    <h3>Competitive Ranks</h3>
-                    <p>Climb from Bronze to Champion with skill-based matching</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Awards & Social Proof -->
-        <section class="awards-section">
-            <h2 class="section-title">AWARDS & RECOGNITION</h2>
-            <div class="awards-grid">
-                <div class="award-badge">
-                    <div class="award-icon">🏆</div>
-                    <div class="award-title">Best VR Game 2024</div>
-                    <div class="award-subtitle">Vision Pro Awards</div>
-                </div>
-                <div class="award-badge">
-                    <div class="award-icon">⭐</div>
-                    <div class="award-title">Editor's Choice</div>
-                    <div class="award-subtitle">App Store Featured</div>
-                </div>
-                <div class="award-badge">
-                    <div class="award-icon">🎮</div>
-                    <div class="award-title">Game of the Month</div>
-                    <div class="award-subtitle">Spatial Gaming Weekly</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Testimonials -->
-        <section class="testimonials-section">
-            <h2 class="section-title">PLAYER REVIEWS</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">Most immersive experience I've ever had. My room truly becomes the game world!</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">A</div>
-                        <div class="author-info">
-                            <div class="author-name">Alex M.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
-                        </div>
+                    <div class="feature-content">
+                        <h3>Adaptive Map Generation</h3>
+                        <p>Procedural battlegrounds that fit your space perfectly. Every room becomes a unique tactical arena.</p>
                     </div>
                 </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">The spatial mechanics are mind-blowing. This is the future of gaming.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">S</div>
-                        <div class="author-info">
-                            <div class="author-name">Sarah K.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
-                        </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">🤝</div>
+                    <div class="feature-content">
+                        <h3>Hand Signal System</h3>
+                        <p>Communicate silently with gesture-based commands. Point, signal, and coordinate without breaking stealth.</p>
                     </div>
                 </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">Can't stop playing! The physicality makes every session feel like a workout.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">J</div>
-                        <div class="author-info">
-                            <div class="author-name">James R.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
-                        </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-content">
+                        <h3>Real-Time Analytics</h3>
+                        <p>Post-match heat maps, accuracy stats, and tactical analysis. Learn from every engagement.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">🎖️</div>
+                    <div class="feature-content">
+                        <h3>Seasonal Ranked System</h3>
+                        <p>Climb from Bronze to Champion with quarterly resets. Exclusive rewards for top performers.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Screenshots -->
-        <section class="section">
-            <h2 class="section-title">GAMEPLAY GALLERY</h2>
-            <div class="screenshots-grid">
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">ACTION SCREENSHOT</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">COMBAT MOMENT</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">SPECIAL ABILITY</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">MULTIPLAYER ACTION</div>
-                </div>
+    <!-- System Requirements -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">// Deployment Requirements</span>
+                <h2 class="section-title">System Specs</h2>
             </div>
-        </section>
 
-        <!-- NEW: System Requirements -->
-        <section class="system-requirements">
-            <h2 class="section-title">SYSTEM REQUIREMENTS</h2>
             <div class="requirements-grid">
-                <div class="requirement-item">
-                    <div class="requirement-icon">📱</div>
-                    <div class="requirement-content">
+                <div class="req-item">
+                    <div class="req-icon">📱</div>
+                    <div class="req-content">
                         <h4>Device</h4>
-                        <p>Apple Vision Pro with visionOS 1.0 or later</p>
+                        <p>Apple Vision Pro with visionOS 1.0+</p>
                     </div>
                 </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">💾</div>
-                    <div class="requirement-content">
+                <div class="req-item">
+                    <div class="req-icon">💾</div>
+                    <div class="req-content">
                         <h4>Storage</h4>
-                        <p>3.5 GB available space required</p>
+                        <p>3.5 GB available space</p>
                     </div>
                 </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">🎮</div>
-                    <div class="requirement-content">
+                <div class="req-item">
+                    <div class="req-icon">🎮</div>
+                    <div class="req-content">
                         <h4>Controls</h4>
-                        <p>Hand tracking or compatible controllers</p>
+                        <p>Hand tracking or controllers</p>
                     </div>
                 </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">📏</div>
-                    <div class="requirement-content">
+                <div class="req-item">
+                    <div class="req-icon">📏</div>
+                    <div class="req-content">
                         <h4>Play Space</h4>
-                        <p>Room-Scale • 2m x 2m recommended</p>
+                        <p>2m x 2m recommended</p>
                     </div>
                 </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">🌐</div>
-                    <div class="requirement-content">
-                        <h4>Internet</h4>
-                        <p>Required for multiplayer and updates</p>
+                <div class="req-item">
+                    <div class="req-icon">🌐</div>
+                    <div class="req-content">
+                        <h4>Connection</h4>
+                        <p>Stable internet required</p>
                     </div>
                 </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">♿</div>
-                    <div class="requirement-content">
-                        <h4>Accessibility</h4>
-                        <p>Subtitles, colorblind mode, seated play option</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Community Section -->
-        <section class="community-section">
-            <h2 class="section-title">JOIN THE COMMUNITY</h2>
-            <p style="font-size: 18px; color: rgba(255, 255, 255, 0.8); margin-bottom: 10px;">
-                Connect with thousands of players worldwide
-            </p>
-            <div class="community-links">
-                <a href="#" class="community-link">
-                    <span class="community-icon">💬</span>
-                    <span>Discord Server</span>
-                </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">🐦</span>
-                    <span>Twitter/X</span>
-                </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">📺</span>
-                    <span>YouTube</span>
-                </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">👾</span>
-                    <span>Reddit</span>
-                </a>
-            </div>
-        </section>
-
-        <!-- NEW: Developer Section -->
-        <section class="developer-section">
-            <div class="developer-content">
-                <div class="developer-logo">🎮</div>
-                <div class="developer-info">
-                    <h3>Spatial Games Studio</h3>
-                    <p>Pioneers of immersive spatial gaming experiences for Apple Vision Pro. Creating the future of interactive entertainment.</p>
-                    <div class="developer-links">
-                        <a href="#" class="developer-link">More Games →</a>
-                        <a href="#" class="developer-link">Press Kit →</a>
-                        <a href="#" class="developer-link">Contact Support →</a>
+                <div class="req-item">
+                    <div class="req-icon">🔞</div>
+                    <div class="req-content">
+                        <h4>Rating</h4>
+                        <p>Teen (Fantasy Violence)</p>
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Tactical Team Shooters. Experience the future of spatial gaming on Apple Vision Pro.</p>
+        <div class="footer-logo">Tactical Team Shooters</div>
         <div class="footer-links">
             <a href="#" class="footer-link">Privacy Policy</a>
             <a href="#" class="footer-link">Terms of Service</a>
             <a href="#" class="footer-link">Support</a>
             <a href="#" class="footer-link">Press Kit</a>
+            <a href="#" class="footer-link">Discord</a>
         </div>
+        <p class="footer-copy">&copy; 2025 Spatial Games Studio. Strategic spatial gaming for Apple Vision Pro.</p>
     </footer>
 </body>
 </html>

@@ -3,8 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reality MMO Layer - SPATIAL MMO for Vision Pro</title>
+    <meta name="hero-ref" content="1">
+    <title>Reality MMO Layer - Massive Multiplayer Spatial Worlds for Vision Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --mystic-purple: #7c3aed;
+            --royal-gold: #f59e0b;
+            --celestial-blue: #3b82f6;
+            --ethereal-teal: #14b8a6;
+            --deep-void: #0f0a1a;
+            --nebula-dark: #1a0f2e;
+            --starlight: #e0d4f7;
+            --ancient-bronze: #cd7f32;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,1137 +27,1069 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
-            background: #000000;
+            font-family: 'Lora', Georgia, serif;
+            background: var(--deep-void);
             color: #ffffff;
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
-        /* Enhanced 3D Depth Layers */
-        .depth-layer {
+        /* Floating Magical Orbs */
+        .magical-orbs {
             position: fixed;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(1px);
+            animation: floatOrb 20s ease-in-out infinite;
+        }
+
+        .orb:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, var(--mystic-purple) 0%, transparent 70%);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .orb:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, var(--royal-gold) 0%, transparent 70%);
+            top: 60%;
+            right: 15%;
+            animation-delay: -5s;
+        }
+
+        .orb:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, var(--celestial-blue) 0%, transparent 70%);
+            top: 30%;
+            right: 25%;
+            animation-delay: -10s;
+        }
+
+        .orb:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, var(--ethereal-teal) 0%, transparent 70%);
+            bottom: 20%;
+            left: 20%;
+            animation-delay: -15s;
+        }
+
+        .orb:nth-child(5) {
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, var(--ancient-bronze) 0%, transparent 70%);
+            top: 45%;
+            left: 5%;
+            animation-delay: -7s;
+        }
+
+        @keyframes floatOrb {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.4;
+            }
+            25% {
+                transform: translate(50px, -30px) scale(1.1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translate(20px, 40px) scale(0.9);
+                opacity: 0.5;
+            }
+            75% {
+                transform: translate(-30px, 20px) scale(1.05);
+                opacity: 0.55;
+            }
+        }
+
+        /* Portal Swirl Effect */
+        .portal-vortex {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
             pointer-events: none;
             z-index: 0;
         }
 
-        .depth-layer-1 {
-            background: radial-gradient(circle at 20% 30%, rgba(8, 145, 178, 0.4) 0%, transparent 40%);
-            animation: dramaticFloat 15s ease-in-out infinite;
+        .portal-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 2px solid transparent;
+            animation: portalSpin 15s linear infinite;
         }
 
-        .depth-layer-2 {
-            background: radial-gradient(circle at 80% 70%, rgba(8, 145, 178, 0.5) 0%, transparent 40%);
-            animation: dramaticFloat 18s ease-in-out infinite reverse;
+        .portal-ring:nth-child(1) {
+            width: 600px;
+            height: 600px;
+            border-top-color: rgba(124, 58, 237, 0.3);
+            border-right-color: rgba(59, 130, 246, 0.2);
+            animation-duration: 20s;
         }
 
-        .depth-layer-3 {
-            background: radial-gradient(circle at 50% 50%, rgba(8, 145, 178, 0.3) 0%, transparent 50%);
-            animation: dramaticFloat 22s ease-in-out infinite;
+        .portal-ring:nth-child(2) {
+            width: 500px;
+            height: 500px;
+            border-bottom-color: rgba(245, 158, 11, 0.3);
+            border-left-color: rgba(20, 184, 166, 0.2);
+            animation-duration: 15s;
+            animation-direction: reverse;
         }
 
-        @keyframes dramaticFloat {
-            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            33% { transform: translate(40px, -40px) rotate(8deg) scale(1.05); }
-            66% { transform: translate(-20px, 30px) rotate(-8deg) scale(0.95); }
+        .portal-ring:nth-child(3) {
+            width: 400px;
+            height: 400px;
+            border-top-color: rgba(124, 58, 237, 0.2);
+            animation-duration: 12s;
         }
 
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 30px rgba(8, 145, 178, 0.4), 0 0 60px rgba(8, 145, 178, 0.3); }
-            50% { box-shadow: 0 0 50px rgba(8, 145, 178, 0.5), 0 0 100px rgba(8, 145, 178, 0.4); }
-        }
-
-        @keyframes countUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            position: relative;
-            z-index: 1;
+        @keyframes portalSpin {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
         /* Hero Section */
         .hero {
-            text-align: center;
-            padding: 60px 20px 40px;
             position: relative;
-        }
-
-        .genre-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #0891b2 0%, #0891b2cc 100%);
-            padding: 10px 24px;
-            border-radius: 24px;
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            box-shadow: 0 8px 32px rgba(8, 145, 178, 0.5);
-            animation: pulseGlow 3s ease-in-out infinite;
-        }
-
-        .logo-container {
-            margin-bottom: 30px;
-            perspective: 1200px;
-        }
-
-        .logo-icon {
-            display: inline-flex;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            justify-content: center;
-            width: 140px;
-            height: 140px;
-            background: rgba(15, 15, 30, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 3px solid #0891b2;
-            border-radius: 32px;
-            font-size: 72px;
-            box-shadow:
-                0 25px 70px rgba(0, 0, 0, 0.5),
-                0 0 40px rgba(8, 145, 178, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15);
-            transform-style: preserve-3d;
-            animation: logoFloat 4s ease-in-out infinite;
-        }
-
-        @keyframes logoFloat {
-            0%, 100% { transform: rotateY(0deg) rotateX(0deg) translateY(0); }
-            50% { transform: rotateY(15deg) rotateX(8deg) translateY(-10px); }
-        }
-
-        h1 {
-            font-size: 72px;
-            font-weight: 900;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #ffffff 0%, #0891b2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.1;
-            text-transform: uppercase;
-            letter-spacing: -2px;
-        }
-
-        .tagline {
-            font-size: 32px;
-            color: #0891b2;
-            margin-bottom: 30px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0 0 20px rgba(8, 145, 178, 0.4);
-        }
-
-        .hero-message {
-            font-size: 19px;
-            color: rgba(255, 255, 255, 0.85);
-            max-width: 900px;
-            margin: 0 auto 40px;
-            line-height: 1.7;
-        }
-
-        /* NEW: Pricing Section */
-        .pricing-section {
-            background: linear-gradient(135deg, rgba(8, 145, 178, 0.4) 0%, rgba(8, 145, 178, 0.2) 100%);
-            border: 2px solid #0891b2;
-            border-radius: 24px;
-            padding: 40px;
-            margin: 40px auto;
-            max-width: 800px;
             text-align: center;
-            box-shadow: 0 20px 60px rgba(8, 145, 178, 0.5);
+            padding: 60px 20px;
+            z-index: 1;
         }
 
-        .price-tag {
-            font-size: 64px;
-            font-weight: 900;
-            color: #0891b2;
-            margin-bottom: 10px;
-            text-shadow: 0 0 30px rgba(8, 145, 178, 0.5);
-        }
-
-        .price-subtitle {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 30px;
-        }
-
-        .demo-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        /* CTA Buttons */
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .cta-primary {
-            background: #0891b2;
-            color: #ffffff;
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            box-shadow: 0 15px 50px rgba(8, 145, 178, 0.5);
-            border: 2px solid #0891b2;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-        }
-
-        .cta-primary:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(8, 145, 178, 0.5);
-        }
-
-        .cta-secondary {
-            background: transparent;
-            color: #0891b2;
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            border: 2px solid #0891b2;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .cta-secondary:hover {
-            background: rgba(8, 145, 178, 0.3);
-            transform: translateY(-3px);
-        }
-
-        .cta-wishlist {
-            background: rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.9);
-            padding: 20px 60px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .cta-wishlist:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-3px);
-        }
-
-        /* Game Metadata Bar */
-        .game-metadata {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            padding: 30px;
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(8, 145, 178, 0.3);
-            border-radius: 20px;
-            margin-bottom: 50px;
-            backdrop-filter: blur(10px);
-        }
-
-        .metadata-item {
-            text-align: center;
-            animation: countUp 0.6s ease-out;
-        }
-
-        .metadata-value {
-            font-size: 28px;
-            font-weight: 800;
-            color: #0891b2;
-            display: block;
-        }
-
-        .metadata-label {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* NEW: Video Section */
-        .video-section {
-            margin: 60px 0;
-            text-align: center;
-        }
-
-        .video-container {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-            aspect-ratio: 16 / 9;
-            background: linear-gradient(135deg, rgba(8, 145, 178, 0.3) 0%, rgba(15, 15, 30, 0.9) 100%);
-            border-radius: 24px;
-            border: 2px solid rgba(8, 145, 178, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(8, 145, 178, 0.4);
-        }
-
-        .video-placeholder {
-            text-align: center;
-            padding: 40px;
-        }
-
-        .play-button {
-            width: 100px;
-            height: 100px;
-            background: #0891b2;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            box-shadow: 0 10px 40px rgba(8, 145, 178, 0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .play-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 50px rgba(8, 145, 178, 0.5);
-        }
-
-        .play-button::after {
-            content: '▶';
-            font-size: 40px;
-            color: white;
-            margin-left: 8px;
-        }
-
-        /* Section Styling */
-        .section {
-            margin: 100px 0;
-        }
-
-        .section-title {
-            font-size: 48px;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 60px;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #ffffff 0%, #0891b2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Game Modes */
-        .modes-grid {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 60px;
-        }
-
-        .mode-badge {
-            background: rgba(15, 15, 30, 0.5);
-            border: 2px solid rgba(8, 145, 178, 0.3);
-            padding: 12px 28px;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.9);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .mode-badge:hover {
-            background: rgba(8, 145, 178, 0.3);
-            border-color: #0891b2;
-            transform: translateY(-2px);
-        }
-
-        /* Features Grid */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .feature-card {
-            background: rgba(15, 15, 30, 0.5);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 2px solid rgba(8, 145, 178, 0.3);
-            border-radius: 24px;
-            padding: 45px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
+        .hero::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, #0891b2, transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            bottom: 0;
+            background: url('hero-spatial.png') center/cover no-repeat;
+            opacity: 0.4;
+            z-index: -1;
         }
 
-        .feature-card:hover {
-            transform: translateY(-8px);
-            border-color: #0891b2;
-            box-shadow: 0 15px 60px rgba(8, 145, 178, 0.4);
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-
-        .feature-icon {
-            font-size: 56px;
-            margin-bottom: 20px;
-        }
-
-        .feature-card h3 {
-            font-size: 26px;
-            margin-bottom: 15px;
-            color: #0891b2;
-            font-weight: 700;
-        }
-
-        .feature-card p {
-            font-size: 17px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.75);
-        }
-
-        /* NEW: System Requirements */
-        .system-requirements {
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(8, 145, 178, 0.3);
-            border-radius: 24px;
-            padding: 50px;
-            margin: 60px 0;
-        }
-
-        .requirements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .requirement-item {
-            display: flex;
-            align-items: start;
-            gap: 15px;
-        }
-
-        .requirement-icon {
-            font-size: 32px;
-            flex-shrink: 0;
-        }
-
-        .requirement-content h4 {
-            color: #0891b2;
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        .requirement-content p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 15px;
-            line-height: 1.5;
-        }
-
-        /* NEW: Awards & Social Proof */
-        .awards-section {
-            background: linear-gradient(135deg, rgba(8, 145, 178, 0.2) 0%, rgba(15, 15, 30, 0.6) 100%);
-            border: 1px solid rgba(8, 145, 178, 0.3);
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin: 60px 0;
-            text-align: center;
-        }
-
-        .awards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .award-badge {
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: 16px;
-            padding: 30px 20px;
-            transition: all 0.3s ease;
-        }
-
-        .award-badge:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 215, 0, 0.6);
-        }
-
-        .award-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        .award-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #0891b2;
-            margin-bottom: 5px;
-        }
-
-        .award-subtitle {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* NEW: Testimonials */
-        .testimonials-section {
-            margin: 80px 0;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .testimonial-card {
-            background: rgba(15, 15, 30, 0.4);
-            border: 1px solid rgba(8, 145, 178, 0.3);
-            border-radius: 20px;
-            padding: 35px;
-            position: relative;
-        }
-
-        .testimonial-quote {
-            font-size: 17px;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .testimonial-quote::before {
-            content: '"';
-            font-size: 48px;
-            color: #0891b2;
+        .hero::after {
+            content: '';
             position: absolute;
-            top: 20px;
-            left: 20px;
-            opacity: 0.3;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom,
+                rgba(15, 10, 26, 0.3) 0%,
+                rgba(15, 10, 26, 0.6) 50%,
+                var(--deep-void) 100%);
+            z-index: -1;
         }
 
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .realm-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--mystic-purple), var(--celestial-blue));
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            box-shadow: 0 0 30px rgba(124, 58, 237, 0.5);
+            animation: shimmerBadge 3s ease-in-out infinite;
         }
 
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            background: #0891b2;
+        @keyframes shimmerBadge {
+            0%, 100% { box-shadow: 0 0 30px rgba(124, 58, 237, 0.5); }
+            50% { box-shadow: 0 0 50px rgba(124, 58, 237, 0.7), 0 0 80px rgba(59, 130, 246, 0.4); }
+        }
+
+        .logo-emblem {
+            width: 160px;
+            height: 160px;
+            background: linear-gradient(135deg, var(--nebula-dark) 0%, var(--deep-void) 100%);
+            border: 4px solid var(--royal-gold);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
+            font-size: 80px;
+            margin-bottom: 30px;
+            box-shadow:
+                0 0 40px rgba(245, 158, 11, 0.4),
+                inset 0 0 40px rgba(124, 58, 237, 0.3);
+            animation: emblemGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes emblemGlow {
+            0%, 100% {
+                transform: rotateY(0deg);
+                box-shadow: 0 0 40px rgba(245, 158, 11, 0.4), inset 0 0 40px rgba(124, 58, 237, 0.3);
+            }
+            50% {
+                transform: rotateY(10deg);
+                box-shadow: 0 0 60px rgba(245, 158, 11, 0.6), inset 0 0 50px rgba(124, 58, 237, 0.4);
+            }
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 72px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, var(--royal-gold) 50%, var(--mystic-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 60px rgba(245, 158, 11, 0.3);
+        }
+
+        .epic-tagline {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            color: var(--royal-gold);
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+        }
+
+        .hero-description {
+            font-family: 'Lora', serif;
             font-size: 20px;
+            color: var(--starlight);
+            max-width: 800px;
+            line-height: 1.8;
+            margin-bottom: 50px;
+            font-style: italic;
         }
 
-        .author-info {
-            flex: 1;
+        /* CTA Buttons */
+        .cta-container {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        .author-name {
+        .cta-primary {
+            background: linear-gradient(135deg, var(--mystic-purple) 0%, var(--celestial-blue) 100%);
+            color: #fff;
+            padding: 20px 50px;
+            border-radius: 50px;
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
             font-weight: 700;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 3px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid transparent;
+            box-shadow: 0 10px 40px rgba(124, 58, 237, 0.5);
+            transition: all 0.3s ease;
         }
 
-        .author-stars {
-            color: #ffd700;
-            font-size: 14px;
+        .cta-primary:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 50px rgba(124, 58, 237, 0.7);
         }
 
-        /* NEW: Community Section */
-        .community-section {
-            background: linear-gradient(135deg, rgba(8, 145, 178, 0.3) 0%, rgba(15, 15, 30, 0.6) 100%);
-            border: 1px solid rgba(8, 145, 178, 0.3);
-            border-radius: 24px;
-            padding: 60px 40px;
+        .cta-secondary {
+            background: transparent;
+            color: var(--royal-gold);
+            padding: 20px 50px;
+            border-radius: 50px;
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid var(--royal-gold);
+            transition: all 0.3s ease;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(245, 158, 11, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Stats Bar */
+        .realm-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            padding: 50px 30px;
+            background: linear-gradient(180deg, transparent, rgba(26, 15, 46, 0.8));
+            border-top: 1px solid rgba(124, 58, 237, 0.3);
+            border-bottom: 1px solid rgba(124, 58, 237, 0.3);
             margin: 60px 0;
+        }
+
+        .stat-item {
             text-align: center;
         }
 
-        .community-links {
+        .stat-value {
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--royal-gold);
+            display: block;
+            text-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+        }
+
+        .stat-label {
+            font-family: 'Lora', serif;
+            font-size: 14px;
+            color: var(--starlight);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            font-weight: 900;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, var(--royal-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-family: 'Lora', serif;
+            font-size: 18px;
+            text-align: center;
+            color: var(--starlight);
+            font-style: italic;
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Character Classes */
+        .classes-section {
+            padding: 100px 0;
+        }
+
+        .classes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .class-card {
+            background: linear-gradient(135deg, var(--nebula-dark) 0%, rgba(15, 10, 26, 0.9) 100%);
+            border: 2px solid rgba(124, 58, 237, 0.3);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .class-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .class-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--royal-gold);
+            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.4);
+        }
+
+        .class-card:hover::before {
+            left: 100%;
+        }
+
+        .class-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .class-name {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--royal-gold);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .class-role {
+            font-family: 'Lora', serif;
+            font-size: 14px;
+            color: var(--mystic-purple);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .class-desc {
+            font-family: 'Lora', serif;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Realms Section */
+        .realms-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(26, 15, 46, 0.5) 50%, transparent 100%);
+        }
+
+        .realms-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .realm-card {
+            background: linear-gradient(180deg, rgba(124, 58, 237, 0.15) 0%, rgba(15, 10, 26, 0.95) 100%);
+            border: 2px solid rgba(124, 58, 237, 0.4);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .realm-card:hover {
+            transform: scale(1.03);
+            border-color: var(--ethereal-teal);
+            box-shadow: 0 30px 80px rgba(20, 184, 166, 0.3);
+        }
+
+        .realm-visual {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.3), rgba(59, 130, 246, 0.2));
+        }
+
+        .realm-info {
+            padding: 30px;
+        }
+
+        .realm-name {
+            font-family: 'Cinzel', serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .realm-type {
+            font-family: 'Lora', serif;
+            font-size: 13px;
+            color: var(--ethereal-teal);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .realm-desc {
+            font-family: 'Lora', serif;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Guild Features */
+        .guild-section {
+            padding: 100px 0;
+        }
+
+        .guild-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .guild-feature {
+            background: rgba(26, 15, 46, 0.6);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 16px;
+            padding: 35px;
             display: flex;
             gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        .community-link {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 20px 35px;
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 600;
+            align-items: flex-start;
             transition: all 0.3s ease;
+        }
+
+        .guild-feature:hover {
+            border-color: var(--royal-gold);
+            transform: translateX(10px);
+            box-shadow: -10px 0 40px rgba(245, 158, 11, 0.2);
+        }
+
+        .guild-icon {
+            font-size: 40px;
+            flex-shrink: 0;
+        }
+
+        .guild-content h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--royal-gold);
+            margin-bottom: 10px;
+        }
+
+        .guild-content p {
+            font-family: 'Lora', serif;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Combat Section */
+        .combat-section {
+            padding: 100px 0;
+            background: radial-gradient(ellipse at center, rgba(239, 68, 68, 0.1) 0%, transparent 70%);
+        }
+
+        .combat-modes {
             display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .community-link:hover {
-            background: rgba(8, 145, 178, 0.3);
-            border-color: #0891b2;
-            transform: translateY(-3px);
-        }
-
-        .community-icon {
-            font-size: 24px;
-        }
-
-        /* NEW: Age Rating */
-        .age-rating {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(15, 15, 30, 0.6);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 15px 30px;
-            margin-top: 20px;
-        }
-
-        .rating-badge {
-            background: #0891b2;
-            color: white;
-            font-weight: 900;
-            font-size: 24px;
-            padding: 10px 15px;
-            border-radius: 8px;
-        }
-
-        .rating-text {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.8);
-            text-align: left;
-        }
-
-        /* Screenshots */
-        .screenshots-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 30px;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
             margin-bottom: 60px;
         }
 
-        .screenshot-card {
-            background: rgba(15, 15, 30, 0.4);
-            border: 2px solid rgba(8, 145, 178, 0.3);
-            border-radius: 20px;
-            padding: 25px;
-            backdrop-filter: blur(10px);
+        .combat-mode {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(124, 58, 237, 0.2));
+            border: 2px solid rgba(239, 68, 68, 0.4);
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: all 0.3s ease;
             cursor: pointer;
         }
 
-        .screenshot-card:hover {
-            border-color: #0891b2;
-            transform: scale(1.02);
+        .combat-mode:hover {
+            background: rgba(239, 68, 68, 0.4);
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(239, 68, 68, 0.3);
         }
 
-        .screenshot-placeholder {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background: linear-gradient(135deg, rgba(8, 145, 178, 0.3) 0%, rgba(15, 15, 30, 0.8) 100%);
+        .combat-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .combat-card {
+            background: rgba(15, 10, 26, 0.8);
+            border: 1px solid rgba(239, 68, 68, 0.3);
             border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 20px;
-            font-weight: 600;
-            border: 2px dashed rgba(8, 145, 178, 0.4);
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
         }
 
-        /* NEW: Developer Section */
-        .developer-section {
-            background: rgba(15, 15, 30, 0.3);
-            border: 1px solid rgba(8, 145, 178, 0.3);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 60px 0;
+        .combat-card:hover {
+            border-color: rgba(239, 68, 68, 0.7);
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.3);
         }
 
-        .developer-content {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .developer-logo {
-            width: 100px;
-            height: 100px;
-            background: #0891b2;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .combat-card-icon {
             font-size: 48px;
-            flex-shrink: 0;
-        }
-
-        .developer-info {
-            flex: 1;
-        }
-
-        .developer-info h3 {
-            font-size: 24px;
-            color: #0891b2;
-            margin-bottom: 10px;
-        }
-
-        .developer-info p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
             margin-bottom: 15px;
         }
 
-        .developer-links {
+        .combat-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .combat-card p {
+            font-family: 'Lora', serif;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Loot & Rewards */
+        .loot-section {
+            padding: 100px 0;
+        }
+
+        .loot-tiers {
             display: flex;
-            gap: 15px;
+            justify-content: center;
+            gap: 30px;
             flex-wrap: wrap;
         }
 
-        .developer-link {
-            color: #0891b2;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            transition: opacity 0.3s ease;
+        .loot-tier {
+            background: rgba(26, 15, 46, 0.6);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            width: 200px;
+            transition: all 0.3s ease;
         }
 
-        .developer-link:hover {
-            opacity: 0.7;
+        .loot-tier.common { border: 2px solid #9ca3af; }
+        .loot-tier.common .tier-name { color: #9ca3af; }
+
+        .loot-tier.rare { border: 2px solid #3b82f6; }
+        .loot-tier.rare .tier-name { color: #3b82f6; }
+
+        .loot-tier.epic { border: 2px solid #7c3aed; }
+        .loot-tier.epic .tier-name { color: #7c3aed; }
+
+        .loot-tier.legendary { border: 2px solid #f59e0b; }
+        .loot-tier.legendary .tier-name { color: #f59e0b; }
+
+        .loot-tier.mythic { border: 2px solid #ef4444; }
+        .loot-tier.mythic .tier-name { color: #ef4444; }
+
+        .loot-tier:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .tier-icon {
+            font-size: 56px;
+            margin-bottom: 15px;
+        }
+
+        .tier-name {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .tier-chance {
+            font-family: 'Lora', serif;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
         }
 
         /* Footer */
         footer {
             text-align: center;
             padding: 80px 20px;
-            border-top: 1px solid rgba(8, 145, 178, 0.3);
-            margin-top: 120px;
+            border-top: 1px solid rgba(124, 58, 237, 0.3);
+            background: linear-gradient(180deg, transparent, rgba(26, 15, 46, 0.5));
+        }
+
+        .footer-crest {
+            font-size: 60px;
+            margin-bottom: 20px;
+            opacity: 0.6;
         }
 
         footer p {
+            font-family: 'Lora', serif;
             color: rgba(255, 255, 255, 0.5);
-            font-size: 15px;
-            margin-bottom: 10px;
+            font-size: 14px;
+            margin-bottom: 20px;
         }
 
         .footer-links {
             display: flex;
-            gap: 20px;
+            gap: 30px;
             justify-content: center;
-            margin-top: 20px;
+            flex-wrap: wrap;
         }
 
         .footer-link {
-            color: rgba(255, 255, 255, 0.5);
+            font-family: 'Cinzel', serif;
+            color: var(--mystic-purple);
             text-decoration: none;
-            font-size: 14px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: color 0.3s ease;
         }
 
         .footer-link:hover {
-            color: #0891b2;
+            color: var(--royal-gold);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             h1 {
-                font-size: 48px;
+                font-size: 42px;
+                letter-spacing: 2px;
             }
 
-            .tagline {
-                font-size: 24px;
+            .epic-tagline {
+                font-size: 18px;
+                letter-spacing: 3px;
             }
 
             .section-title {
+                font-size: 32px;
+            }
+
+            .stat-value {
                 font-size: 36px;
             }
 
-            .price-tag {
-                font-size: 48px;
+            .realm-stats {
+                gap: 30px;
             }
 
-            .features-grid,
-            .screenshots-grid,
-            .testimonials-grid {
-                grid-template-columns: 1fr;
+            .loot-tiers {
+                gap: 15px;
             }
 
-            .cta-buttons {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .game-metadata {
-                gap: 20px;
-            }
-
-            .developer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .community-links {
-                flex-direction: column;
+            .loot-tier {
+                width: 150px;
+                padding: 25px 15px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 3D Depth Layers -->
-    <div class="depth-layer depth-layer-1"></div>
-    <div class="depth-layer depth-layer-2"></div>
-    <div class="depth-layer depth-layer-3"></div>
+    <!-- Floating Magical Orbs -->
+    <div class="magical-orbs">
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+
+    <!-- Portal Vortex Effect -->
+    <div class="portal-vortex">
+        <div class="portal-ring"></div>
+        <div class="portal-ring"></div>
+        <div class="portal-ring"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="realm-badge">Spatial MMO Adventure</div>
+        <div class="logo-emblem">🌍</div>
+        <h1>Reality MMO Layer</h1>
+        <p class="epic-tagline">Conquer Infinite Realms in Your Space</p>
+        <p class="hero-description">
+            Enter a persistent MMO universe layered over reality. Join thousands of players across floating islands,
+            crystal spires, and ancient fortresses. Forge alliances, conquer territories, and become legend in
+            the most immersive spatial multiplayer experience ever created for Vision Pro.
+        </p>
+        <div class="cta-container">
+            <a href="#" class="cta-primary">Enter the Realm</a>
+            <a href="#" class="cta-secondary">Watch Trailer</a>
+        </div>
+    </section>
+
+    <!-- Realm Stats -->
+    <div class="realm-stats">
+        <div class="stat-item">
+            <span class="stat-value">500K+</span>
+            <span class="stat-label">Active Heroes</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-value">12</span>
+            <span class="stat-label">Unique Realms</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-value">8</span>
+            <span class="stat-label">Character Classes</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-value">1000+</span>
+            <span class="stat-label">Active Guilds</span>
+        </div>
+    </div>
 
     <div class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="genre-badge">SPATIAL MMO</div>
+        <!-- Character Classes -->
+        <section class="classes-section">
+            <h2 class="section-title">Choose Your Destiny</h2>
+            <p class="section-subtitle">Eight legendary classes await. Master unique abilities and forge your path to glory.</p>
 
-            <div class="logo-container">
-                <div class="logo-icon">🌍</div>
-            </div>
-
-            <h1>Reality MMO Layer</h1>
-            <p class="tagline">PERSISTENT MMO OVERLAID ON REALITY</p>
-            <p class="hero-message">
-                Join a persistent MMO world layered over the real world. See other players in shared spaces, collect resources from locations, and build in the spatial metaverse.
-            </p>
-        </section>
-
-        <!-- NEW: Pricing Section -->
-        <section class="pricing-section">
-            <div class="demo-badge">✨ Free Demo Available</div>
-            <div class="price-tag">FREE</div>
-            <p class="price-subtitle">Plus In-App Purchases</p>
-
-            <div class="cta-buttons">
-                <a href="#" class="cta-primary">📱 Download on App Store</a>
-                <a href="#" class="cta-secondary">🎬 Watch Trailer</a>
-                <a href="#" class="cta-wishlist">❤️ Add to Wishlist</a>
-            </div>
-
-            <div class="age-rating">
-                <div class="rating-badge">E10+</div>
-                <div class="rating-text">
-                    <strong>Everyone 10+</strong><br>
-                    Accessibility: Subtitles, Colorblind Mode, Seated Play
+            <div class="classes-grid">
+                <div class="class-card">
+                    <span class="class-icon">⚔️</span>
+                    <h3 class="class-name">Warrior</h3>
+                    <p class="class-role">Tank / Melee DPS</p>
+                    <p class="class-desc">Masters of steel and strength. Lead the charge into battle and protect your allies.</p>
+                </div>
+                <div class="class-card">
+                    <span class="class-icon">🔮</span>
+                    <h3 class="class-name">Mage</h3>
+                    <p class="class-role">Ranged DPS / Control</p>
+                    <p class="class-desc">Wield arcane forces to devastate enemies from afar with elemental fury.</p>
+                </div>
+                <div class="class-card">
+                    <span class="class-icon">🏹</span>
+                    <h3 class="class-name">Ranger</h3>
+                    <p class="class-role">Ranged DPS / Scout</p>
+                    <p class="class-desc">Silent hunters who strike from the shadows with deadly precision.</p>
+                </div>
+                <div class="class-card">
+                    <span class="class-icon">✨</span>
+                    <h3 class="class-name">Healer</h3>
+                    <p class="class-role">Support / Restoration</p>
+                    <p class="class-desc">Channel divine light to mend wounds and shield allies from harm.</p>
+                </div>
+                <div class="class-card">
+                    <span class="class-icon">🗡️</span>
+                    <h3 class="class-name">Assassin</h3>
+                    <p class="class-role">Melee DPS / Stealth</p>
+                    <p class="class-desc">Masters of shadow who eliminate targets before they can react.</p>
+                </div>
+                <div class="class-card">
+                    <span class="class-icon">🛡️</span>
+                    <h3 class="class-name">Paladin</h3>
+                    <p class="class-role">Tank / Hybrid</p>
+                    <p class="class-desc">Holy warriors balancing protection with righteous damage.</p>
+                </div>
+                <div class="class-card">
+                    <span class="class-icon">🌿</span>
+                    <h3 class="class-name">Druid</h3>
+                    <p class="class-role">Shapeshifter / Versatile</p>
+                    <p class="class-desc">Nature's champions who shift forms to adapt to any situation.</p>
+                </div>
+                <div class="class-card">
+                    <span class="class-icon">💀</span>
+                    <h3 class="class-name">Necromancer</h3>
+                    <p class="class-role">Summoner / Dark Arts</p>
+                    <p class="class-desc">Command the undead and drain life from your enemies.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Game Metadata -->
-        <section class="game-metadata">
-            <div class="metadata-item">
-                <span class="metadata-value">250K+</span>
-                <span class="metadata-label">Players</span>
-            </div>
-            <div class="metadata-item">
-                <span class="metadata-value">⭐ 4.8</span>
-                <span class="metadata-label">Rating</span>
-            </div>
-            <div class="metadata-item">
-                <span class="metadata-value">Moderate</span>
-                <span class="metadata-label">Intensity</span>
-            </div>
-            <div class="metadata-item">
-                <span class="metadata-value">Room-Scale</span>
-                <span class="metadata-label">Space</span>
-            </div>
-        </section>
+        <!-- Realms Section -->
+        <section class="realms-section">
+            <h2 class="section-title">Explore Endless Realms</h2>
+            <p class="section-subtitle">Twelve distinct worlds layered over reality, each with unique challenges and treasures.</p>
 
-        <!-- NEW: Video Section -->
-        <section class="video-section">
-            <h2 class="section-title">GAMEPLAY TRAILER</h2>
-            <div class="video-container">
-                <div class="video-placeholder">
-                    <div class="play-button"></div>
-                    <p>Official Gameplay Trailer</p>
-                    <p style="font-size: 14px; color: rgba(255, 255, 255, 0.5); margin-top: 10px;">
-                        Watch spatial gameplay in action
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Game Modes -->
-        <section class="section">
-            <h2 class="section-title">GAME MODES</h2>
-            <div class="modes-grid">
-                <div class="mode-badge">Open World</div>
-                <div class="mode-badge">Dungeons</div>
-                <div class="mode-badge">PvP Zones</div>
-                <div class="mode-badge">Guild Wars</div>
-                <div class="mode-badge">Events</div>
-            </div>
-        </section>
-
-        <!-- Gameplay Features -->
-        <section class="section">
-            <h2 class="section-title">EPIC GAMEPLAY FEATURES</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🌐</div>
-                    <h3>Persistent World</h3>
-                    <p>Shared MMO across real-world locations</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">👥</div>
-                    <h3>See Other Players</h3>
-                    <p>Real-time multiplayer in physical spaces</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎒</div>
-                    <h3>Resource Gathering</h3>
-                    <p>Collect items from real-world locations</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏰</div>
-                    <h3>Territory Control</h3>
-                    <p>Guilds claim and defend real areas</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⚔️</div>
-                    <h3>PvP & PvE Combat</h3>
-                    <p>Battle players and monsters in your space</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Awards & Social Proof -->
-        <section class="awards-section">
-            <h2 class="section-title">AWARDS & RECOGNITION</h2>
-            <div class="awards-grid">
-                <div class="award-badge">
-                    <div class="award-icon">🏆</div>
-                    <div class="award-title">Best VR Game 2024</div>
-                    <div class="award-subtitle">Vision Pro Awards</div>
-                </div>
-                <div class="award-badge">
-                    <div class="award-icon">⭐</div>
-                    <div class="award-title">Editor's Choice</div>
-                    <div class="award-subtitle">App Store Featured</div>
-                </div>
-                <div class="award-badge">
-                    <div class="award-icon">🎮</div>
-                    <div class="award-title">Game of the Month</div>
-                    <div class="award-subtitle">Spatial Gaming Weekly</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Testimonials -->
-        <section class="testimonials-section">
-            <h2 class="section-title">PLAYER REVIEWS</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">Most immersive experience I've ever had. My room truly becomes the game world!</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">A</div>
-                        <div class="author-info">
-                            <div class="author-name">Alex M.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
-                        </div>
+            <div class="realms-showcase">
+                <div class="realm-card">
+                    <div class="realm-visual">🏰</div>
+                    <div class="realm-info">
+                        <h3 class="realm-name">Celestial Citadel</h3>
+                        <p class="realm-type">Floating Fortress</p>
+                        <p class="realm-desc">Ancient floating islands connected by crystal bridges. Home to the most powerful guilds and epic raid encounters.</p>
                     </div>
                 </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">The spatial mechanics are mind-blowing. This is the future of gaming.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">S</div>
-                        <div class="author-info">
-                            <div class="author-name">Sarah K.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
-                        </div>
+                <div class="realm-card">
+                    <div class="realm-visual">🌲</div>
+                    <div class="realm-info">
+                        <h3 class="realm-name">Elderwood Forest</h3>
+                        <p class="realm-type">Enchanted Wilderness</p>
+                        <p class="realm-desc">Mystical forests where ancient spirits dwell. Perfect for gatherers and those seeking rare crafting materials.</p>
                     </div>
                 </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">Can't stop playing! The physicality makes every session feel like a workout.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">J</div>
-                        <div class="author-info">
-                            <div class="author-name">James R.</div>
-                            <div class="author-stars">⭐⭐⭐⭐⭐</div>
-                        </div>
+                <div class="realm-card">
+                    <div class="realm-visual">🌋</div>
+                    <div class="realm-info">
+                        <h3 class="realm-name">Infernal Depths</h3>
+                        <p class="realm-type">Volcanic Dungeon</p>
+                        <p class="realm-desc">Dangerous volcanic caverns filled with demons and legendary loot. Only the brave survive.</p>
+                    </div>
+                </div>
+                <div class="realm-card">
+                    <div class="realm-visual">❄️</div>
+                    <div class="realm-info">
+                        <h3 class="realm-name">Frozen Expanse</h3>
+                        <p class="realm-type">Arctic Wilderness</p>
+                        <p class="realm-desc">Frozen tundra where ice dragons roam. Challenging PvP arena and unique seasonal events.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Screenshots -->
-        <section class="section">
-            <h2 class="section-title">GAMEPLAY GALLERY</h2>
-            <div class="screenshots-grid">
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">ACTION SCREENSHOT</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">COMBAT MOMENT</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">SPECIAL ABILITY</div>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">MULTIPLAYER ACTION</div>
-                </div>
-            </div>
-        </section>
+        <!-- Guild Features -->
+        <section class="guild-section">
+            <h2 class="section-title">Guild Warfare</h2>
+            <p class="section-subtitle">Build your guild, claim territories, and dominate the spatial battlefield.</p>
 
-        <!-- NEW: System Requirements -->
-        <section class="system-requirements">
-            <h2 class="section-title">SYSTEM REQUIREMENTS</h2>
-            <div class="requirements-grid">
-                <div class="requirement-item">
-                    <div class="requirement-icon">📱</div>
-                    <div class="requirement-content">
-                        <h4>Device</h4>
-                        <p>Apple Vision Pro with visionOS 1.0 or later</p>
+            <div class="guild-features">
+                <div class="guild-feature">
+                    <span class="guild-icon">🏛️</span>
+                    <div class="guild-content">
+                        <h3>Guild Halls</h3>
+                        <p>Build and customize your guild's spatial headquarters. Unlock upgrades and recruit members.</p>
                     </div>
                 </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">💾</div>
-                    <div class="requirement-content">
-                        <h4>Storage</h4>
-                        <p>3.5 GB available space required</p>
+                <div class="guild-feature">
+                    <span class="guild-icon">🗺️</span>
+                    <div class="guild-content">
+                        <h3>Territory Wars</h3>
+                        <p>Capture real-world zones for your guild. Defend your territory and earn passive rewards.</p>
                     </div>
                 </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">🎮</div>
-                    <div class="requirement-content">
-                        <h4>Controls</h4>
-                        <p>Hand tracking or compatible controllers</p>
+                <div class="guild-feature">
+                    <span class="guild-icon">🎪</span>
+                    <div class="guild-content">
+                        <h3>Guild Events</h3>
+                        <p>Participate in weekly guild challenges, raids, and competitive tournaments for epic rewards.</p>
                     </div>
                 </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">📏</div>
-                    <div class="requirement-content">
-                        <h4>Play Space</h4>
-                        <p>Room-Scale • 2m x 2m recommended</p>
+                <div class="guild-feature">
+                    <span class="guild-icon">📊</span>
+                    <div class="guild-content">
+                        <h3>Leaderboards</h3>
+                        <p>Compete for global rankings. Top guilds earn exclusive cosmetics and recognition.</p>
                     </div>
                 </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">🌐</div>
-                    <div class="requirement-content">
-                        <h4>Internet</h4>
-                        <p>Required for multiplayer and updates</p>
+                <div class="guild-feature">
+                    <span class="guild-icon">🤝</span>
+                    <div class="guild-content">
+                        <h3>Alliances</h3>
+                        <p>Form alliances with other guilds to tackle massive world bosses and faction wars.</p>
                     </div>
                 </div>
-                <div class="requirement-item">
-                    <div class="requirement-icon">♿</div>
-                    <div class="requirement-content">
-                        <h4>Accessibility</h4>
-                        <p>Subtitles, colorblind mode, seated play option</p>
+                <div class="guild-feature">
+                    <span class="guild-icon">💰</span>
+                    <div class="guild-content">
+                        <h3>Guild Bank</h3>
+                        <p>Shared resources and treasury. Fund guild upgrades and support your members.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- NEW: Community Section -->
-        <section class="community-section">
-            <h2 class="section-title">JOIN THE COMMUNITY</h2>
-            <p style="font-size: 18px; color: rgba(255, 255, 255, 0.8); margin-bottom: 10px;">
-                Connect with thousands of players worldwide
-            </p>
-            <div class="community-links">
-                <a href="#" class="community-link">
-                    <span class="community-icon">💬</span>
-                    <span>Discord Server</span>
-                </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">🐦</span>
-                    <span>Twitter/X</span>
-                </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">📺</span>
-                    <span>YouTube</span>
-                </a>
-                <a href="#" class="community-link">
-                    <span class="community-icon">👾</span>
-                    <span>Reddit</span>
-                </a>
+        <!-- Combat Section -->
+        <section class="combat-section">
+            <h2 class="section-title">Epic Combat</h2>
+            <p class="section-subtitle">Engage in thrilling PvP and PvE battles in your physical space.</p>
+
+            <div class="combat-modes">
+                <div class="combat-mode">Arena PvP</div>
+                <div class="combat-mode">World Bosses</div>
+                <div class="combat-mode">Dungeons</div>
+                <div class="combat-mode">Battlegrounds</div>
+                <div class="combat-mode">Faction Wars</div>
+            </div>
+
+            <div class="combat-features">
+                <div class="combat-card">
+                    <div class="combat-card-icon">🎯</div>
+                    <h3>Gesture Combat</h3>
+                    <p>Cast spells and swing weapons with real hand gestures</p>
+                </div>
+                <div class="combat-card">
+                    <div class="combat-card-icon">⚡</div>
+                    <h3>Combo System</h3>
+                    <p>Chain abilities for devastating combo attacks</p>
+                </div>
+                <div class="combat-card">
+                    <div class="combat-card-icon">🎭</div>
+                    <h3>Tactical Positioning</h3>
+                    <p>Use your room space for strategic advantage</p>
+                </div>
+                <div class="combat-card">
+                    <div class="combat-card-icon">🐉</div>
+                    <h3>Boss Mechanics</h3>
+                    <p>Dodge spatial attacks and coordinate with teammates</p>
+                </div>
             </div>
         </section>
 
-        <!-- NEW: Developer Section -->
-        <section class="developer-section">
-            <div class="developer-content">
-                <div class="developer-logo">🎮</div>
-                <div class="developer-info">
-                    <h3>Spatial Games Studio</h3>
-                    <p>Pioneers of immersive spatial gaming experiences for Apple Vision Pro. Creating the future of interactive entertainment.</p>
-                    <div class="developer-links">
-                        <a href="#" class="developer-link">More Games →</a>
-                        <a href="#" class="developer-link">Press Kit →</a>
-                        <a href="#" class="developer-link">Contact Support →</a>
-                    </div>
+        <!-- Loot Section -->
+        <section class="loot-section">
+            <h2 class="section-title">Legendary Loot</h2>
+            <p class="section-subtitle">Collect gear across five rarity tiers. Chase the rarest mythic items.</p>
+
+            <div class="loot-tiers">
+                <div class="loot-tier common">
+                    <div class="tier-icon">🪨</div>
+                    <div class="tier-name">Common</div>
+                    <div class="tier-chance">60% Drop Rate</div>
+                </div>
+                <div class="loot-tier rare">
+                    <div class="tier-icon">💎</div>
+                    <div class="tier-name">Rare</div>
+                    <div class="tier-chance">25% Drop Rate</div>
+                </div>
+                <div class="loot-tier epic">
+                    <div class="tier-icon">🔮</div>
+                    <div class="tier-name">Epic</div>
+                    <div class="tier-chance">10% Drop Rate</div>
+                </div>
+                <div class="loot-tier legendary">
+                    <div class="tier-icon">👑</div>
+                    <div class="tier-name">Legendary</div>
+                    <div class="tier-chance">4% Drop Rate</div>
+                </div>
+                <div class="loot-tier mythic">
+                    <div class="tier-icon">🌟</div>
+                    <div class="tier-name">Mythic</div>
+                    <div class="tier-chance">1% Drop Rate</div>
                 </div>
             </div>
         </section>
     </div>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Reality MMO Layer. Experience the future of spatial gaming on Apple Vision Pro.</p>
+        <div class="footer-crest">⚔️</div>
+        <p>&copy; 2024 Reality MMO Layer. All rights reserved.</p>
+        <p>Experience the ultimate spatial MMO on Apple Vision Pro.</p>
         <div class="footer-links">
-            <a href="#" class="footer-link">Privacy Policy</a>
-            <a href="#" class="footer-link">Terms of Service</a>
+            <a href="#" class="footer-link">Privacy</a>
+            <a href="#" class="footer-link">Terms</a>
             <a href="#" class="footer-link">Support</a>
+            <a href="#" class="footer-link">Discord</a>
             <a href="#" class="footer-link">Press Kit</a>
         </div>
     </footer>
