@@ -1,0 +1,152 @@
+name: Deploy visionOS Landing Pages
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - 'visionOS/**/docs/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create landing pages directory
+        run: |
+          mkdir -p _site/visionOS
+
+          # Copy all visionOS landing pages
+          for dir in visionOS/visionOS_*/docs; do
+            if [ -d "$dir" ]; then
+              app_name=$(echo "$dir" | sed 's|visionOS/visionOS_||' | sed 's|/docs||')
+              mkdir -p "_site/visionOS/$app_name"
+              cp -r "$dir"/* "_site/visionOS/$app_name/" 2>/dev/null || true
+            fi
+          done
+
+          # Create index page
+          cat > _site/index.html << 'INDEXEOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>visionOS Apps Portfolio</title>
+              <style>
+                  * { margin: 0; padding: 0; box-sizing: border-box; }
+                  body {
+                      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+                      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+                      color: #fff;
+                      min-height: 100vh;
+                      padding: 40px 20px;
+                  }
+                  h1 {
+                      text-align: center;
+                      font-size: 3rem;
+                      margin-bottom: 10px;
+                      background: linear-gradient(135deg, #667eea, #764ba2);
+                      -webkit-background-clip: text;
+                      -webkit-text-fill-color: transparent;
+                  }
+                  .subtitle { text-align: center; color: #888; margin-bottom: 40px; }
+                  .grid {
+                      display: grid;
+                      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                      gap: 20px;
+                      max-width: 1400px;
+                      margin: 0 auto;
+                  }
+                  .card {
+                      background: rgba(255,255,255,0.05);
+                      border: 1px solid rgba(255,255,255,0.1);
+                      border-radius: 12px;
+                      padding: 20px;
+                      transition: all 0.3s ease;
+                      text-decoration: none;
+                      color: inherit;
+                  }
+                  .card:hover {
+                      transform: translateY(-5px);
+                      border-color: #667eea;
+                      box-shadow: 0 10px 40px rgba(102, 126, 234, 0.2);
+                  }
+                  .card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+                  .card p { font-size: 0.85rem; color: #888; }
+                  .badge {
+                      display: inline-block;
+                      padding: 4px 10px;
+                      background: rgba(102, 126, 234, 0.2);
+                      border-radius: 20px;
+                      font-size: 0.7rem;
+                      color: #667eea;
+                      margin-top: 10px;
+                  }
+              </style>
+          </head>
+          <body>
+              <h1>visionOS Apps</h1>
+              <p class="subtitle">Built for Apple Vision Pro</p>
+              <div class="grid" id="apps"></div>
+              <script>
+                  // This will be populated by the build script
+              </script>
+          </body>
+          </html>
+          INDEXEOF
+
+      - name: Generate app links
+        run: |
+          # Generate JavaScript to populate the grid
+          echo '<script>' >> _site/index.html
+          echo 'const apps = [' >> _site/index.html
+
+          for dir in visionOS/visionOS_*/docs; do
+            if [ -d "$dir" ]; then
+              app_name=$(echo "$dir" | sed 's|visionOS/visionOS_||' | sed 's|/docs||')
+              display_name=$(echo "$app_name" | sed 's/-/ /g' | sed 's/_/ /g')
+              echo "{name: '$display_name', path: 'visionOS/$app_name/index.html'}," >> _site/index.html
+            fi
+          done
+
+          echo '];' >> _site/index.html
+          echo 'const grid = document.getElementById("apps");' >> _site/index.html
+          echo 'apps.forEach(app => {' >> _site/index.html
+          echo '  const card = document.createElement("a");' >> _site/index.html
+          echo '  card.href = app.path;' >> _site/index.html
+          echo '  card.className = "card";' >> _site/index.html
+          echo '  card.innerHTML = `<h3>${app.name}</h3><span class="badge">View Landing Page</span>`;' >> _site/index.html
+          echo '  grid.appendChild(card);' >> _site/index.html
+          echo '});' >> _site/index.html
+          echo '</script></body></html>' >> _site/index.html
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '_site'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
