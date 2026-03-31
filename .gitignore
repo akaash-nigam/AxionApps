@@ -1,0 +1,17 @@
+node_modules/
+.next/
+dist/
+build/
+__pycache__/
+*.pyc
+.env
+.env.local
+# Nested git repos
+DeepApps/Deep3D/
+DeepApps/DeepAstro/
+DeepApps/DeepCompliance/
+agentpulse/
+aispendtracker/
+devpulse/
+gaanaai/
+mcp/mcp-development/02_MCP_Development/awesome-mcp-servers/
