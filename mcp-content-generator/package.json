@@ -25,10 +25,10 @@
   "author": "Aakash Nigam",
   "license": "MIT",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.0.4",
+    "@modelcontextprotocol/sdk": "^1.26.0",
     "@google/generative-ai": "^0.21.0",
     "openai": "^4.77.0",
-    "axios": "^1.7.9",
+    "axios": "^1.13.5",
     "dotenv": "^16.4.7"
   },
   "devDependencies": {
